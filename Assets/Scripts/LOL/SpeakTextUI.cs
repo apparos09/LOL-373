@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // Speaks text as part of the UI.
-    public class SpeakKeyUI : MonoBehaviour
+    // Attach to an interactable object in the UI and call the SpeakText() function.
+    public class SpeakTextUI : MonoBehaviour
     {
         // Speaks text using the provided key.
         public void SpeakText(string key)

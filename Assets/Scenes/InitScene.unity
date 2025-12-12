@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b48aae4b0f886f04d89e62b8ce531424, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ttsAudioSource: {fileID: 0}
+  ttsAudioSource: {fileID: 468292096}
 --- !u!114 &244718875
 MonoBehaviour:
   m_ObjectHideFlags: 0

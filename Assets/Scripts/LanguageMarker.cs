@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using LoLSDK;
 
@@ -82,6 +83,17 @@ namespace RM_EDU
         }
 
         // Marks the provided text object.
+        public void MarkText(Text text)
+        {
+            // Added this to avoid triggering an unreachable code warning.
+            bool changeColor = CHANGE_TEXT_COLOR;
+
+            // If the text color should be changed.
+            if (changeColor)
+                text.color = noLoadColor;
+        }
+
+        // Marks the provided TMP text object.
         public void MarkText(TMP_Text text)
         {
             // Added this to avoid triggering an unreachable code warning.
@@ -93,6 +105,28 @@ namespace RM_EDU
         }
 
         // Translates the text using the provided key.
+        // If the language file isn't loaded, then the text is marked using the noLoad colour.
+        public bool TranslateText(Text text, string key, bool markIfFailed)
+        {
+            // Checks if the SDK has been initialized. 
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                text.text = LOLManager.Instance.GetLanguageText(key);
+                return true;
+            }
+            else
+            {
+
+                // If the text should be marked if failed.
+                if (markIfFailed)
+                    MarkText(text);
+
+                return false;
+            }
+
+        }
+
+        // Translates the TMP text using the provided key.
         // If the language file isn't loaded, then the text is marked using the noLoad colour.
         public bool TranslateText(TMP_Text text, string key, bool markIfFailed)
         {
