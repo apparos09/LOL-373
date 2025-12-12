@@ -32,9 +32,9 @@ namespace RM_EDU
         // // The stage data.
         // public StageData[] stageDatas = new StageData[WorldManager.STAGE_COUNT];
         // 
-        // // Tutorial Clears
-        // public Tutorials.TutorialsData tutorialData;
-        // 
+        // Tutorial Clears
+        public Tutorials.TutorialsData tutorialData;
+         
         // // Game Mode
         // public GameplayManager.gameMode gameMode;
     }
