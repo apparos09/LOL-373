@@ -2,96 +2,92 @@
   "questions": [
     {
       "questionId": "q1",
-      "stem": "What is the meaning of life?",
-      "imageURL": "http://conversationagent.typepad.com/.a/6a00d8341c03bb53ef01bb0855b040970d-pi",
+      "stem": "What is a renewable resource?",
       "alternatives": [
         {
           "alternativeId": "a1",
-          "text": "Dunno"
+          "text": "A resource that can be replaced as fast as it is used."
         },
         {
           "alternativeId": "a2",
-          "text": "42"
+          "text": "A resource that has a finite amount on Earth."
         },
         {
           "alternativeId": "a3",
-          "text": "Life?"
+          "text": "A resource that cannot be replenished as fast as it is used."
         },
         {
           "alternativeId": "a4",
-          "text": "Sprinkles"
+          "text": "A resource that can easily be replaced with something else for the same need."
         }
       ],
-      "correctAlternativeId": "a2"
+      "correctAlternativeId": "a1"
     },
     {
       "questionId": "q2",
-      "stem": "A stitch in time saves nine what?",
-      "imageURL": "http://3.bp.blogspot.com/-QM6KFrHYfMQ/U4X92xgQ5WI/AAAAAAAACo0/KLVH0MJbSrc/s1600/Stitch+in+time+saves+nine+(1).gif",
+      "stem": "What is a non-renewable resource?",
       "alternatives": [
         {
           "alternativeId": "a5",
-          "text": "Cats"
+          "text": "A resource that can be replenished as fast as it is used."
         },
         {
           "alternativeId": "a6",
-          "text": "Pineapples"
+          "text": "A resource that cannot be replaced at the rate that it is used."
         },
         {
           "alternativeId": "a7",
-          "text": "Clouds"
+          "text": "A resource that can never be replaced."
         },
         {
           "alternativeId": "a8",
-          "text": "Sprinkles"
+          "text": "A resource that no one today knows how to recreate."
         }
       ],
-      "correctAlternativeId": "a8"
+      "correctAlternativeId": "a6"
     },
     {
       "questionId": "q3",
-      "stem": "After eating, do amphibians have to wait one hour before getting out of the water?",
-      "imageURL": "https://cdn.meme.am/instances/250x250/23625193.jpg",
+      "stem": "Which of the following is a renewable resource?",
       "alternatives": [
         {
           "alternativeId": "a9",
-          "text": "Yes"
+          "text": "Coal"
         },
         {
           "alternativeId": "a10",
-          "text": "NO"
+          "text": "Oil"
         },
         {
           "alternativeId": "a11",
-          "text": "Sprinkles"
+          "text": "Geothermal"
         },
         {
           "alternativeId": "a12",
-          "text": "Maybe?"
+          "text": "Natural Gas"
         }
       ],
-      "correctAlternativeId": "a9"
+      "correctAlternativeId": "a11"
     },
     {
       "questionId": "q4",
-      "stem": "After they make Styrofoam, what do they ship it in?",
-      "imageURL": "https://cdn.meme.am/instances/65111038.jpg",
+      "stem": "Which of the following is a non-renewable resource?",
       "alternatives": [
         {
           "alternativeId": "a13",
-          "text": "Styrofoam"
+          "text": "Biomass"
         },
         {
           "alternativeId": "a14",
-          "text": "Sprinkles"
+          "text": "Solar"
         },
         {
           "alternativeId": "a15",
-          "text": "Bubble Wrap"
+          "text": "Natural Gas"
         },
         {
           "alternativeId": "a16",
-          "text": "Space Ships"
+          "text": "Wave"
         }
       ],
       "correctAlternativeId": "a15"

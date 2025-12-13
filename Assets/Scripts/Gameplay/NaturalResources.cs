@@ -10,6 +10,7 @@ namespace RM_EDU
     public class NaturalResources : MonoBehaviour
     {
         // Natural Resource Enum.
+        // Ordered by renewable then nonrenewable, then alphabetically.
         public enum naturalResource { unknown, biomass, hydro, geothermal, solar, wave, wind, coal, oil, naturalGas, nuclear }
 
         // The singleton instance.
