@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace RM_EDU
 {
@@ -13,17 +15,73 @@ namespace RM_EDU
         // The resource attached to this statement.
         public KnowledgeResource attachedResource;
 
+        [Header("UI")]
+
+        // The button.
+        public Button button;
+
+        // The text for the displayed statement.
+        public TMP_Text statementText;
+
+        // The match text, which is changed to show what the knowledge statement is attached to.
+        public TMP_Text matchText;
+
         // Start is called before the first frame update
         void Start()
         {
 
         }
 
-
-        // Update is called once per frame
-        void Update()
+        // Checks if the statement is attached to a resource.
+        public bool IsAttachedToResource()
         {
+            return attachedResource != null;
+        }
+
+        // Attaches to the following resource.
+        public void AttachToStatement(KnowledgeResource newResource)
+        {
+            // If a resource is attached, detach it.
+            if (attachedResource != null)
+            {
+                DetachResource();
+            }
+
+            // Set the new attachments.
+            attachedResource = newResource;
+            attachedResource.attachedStatement= this;
+
+            // Calls when the attachement has been changed.
+            // If a statement was detached earlier this is technically called twice, but this should be fine.
+            OnAttachmentChange();
+        }
+
+        // Detaches the resource.
+        public void DetachResource()
+        {
+            // If there's already an attachment, remove it.
+            if (attachedResource != null)
+            {
+                // Removes the attachments.
+                attachedResource.attachedStatement = null;
+                attachedResource = null;
+            }
+
+            // Calls when the attachement has been changed.
+            OnAttachmentChange();
+        }
+
+        // Called when the attachment has changed.
+        public void OnAttachmentChange()
+        {
+            // If there is an attachment, change the text to match it.
+            if (attachedResource != null)
+            {
+                // Changes the attached resource's text to match the statement's text.
+                attachedResource.matchText.text = matchText.text;
+            }
 
         }
+
     }
 }
