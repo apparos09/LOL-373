@@ -17,7 +17,7 @@ namespace RM_EDU
         private float gameTimeScale = 1.0F;
 
         // The timer for the game.
-        public float gameTime = 0;
+        public float gameTimer = 0;
 
         // The game score.
         public float gameScore = 0;
@@ -261,7 +261,7 @@ namespace RM_EDU
             // The game isn't paused, add to the game time.
             if (!IsGamePaused())
             {
-                gameTime += Time.unscaledDeltaTime;
+                gameTimer += Time.unscaledDeltaTime;
             }
         }
 

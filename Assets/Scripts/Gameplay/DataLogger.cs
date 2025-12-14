@@ -15,11 +15,12 @@ namespace RM_EDU
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
-        // // The saved game time. This script does not run the timer itself.
-        // // This should be updated whenever a scene that measures time finishes.
-        // [Tooltip("Saves the game time. This should be updated when a scene that tracks the game time ends.")]
-        // public float savedGameTime = 0.0F;
-        // 
+        // The game time. The data logger tracks how long the game has been going.
+        public float gameTimer = 0.0F;
+
+        // If 'true', the timer should be running.
+        public bool runGameTimer = true;
+
         // [Header("World")]
         // 
         // 
@@ -98,10 +99,33 @@ namespace RM_EDU
             }
         }
 
+        // Resets the game time.
+        public void ResetGameTimer()
+        {
+            gameTimer = 0.0F;
+        }
+
+        // Returns 'true' if the game time is paused.
+        public bool IsGameTimerPaused()
+        {
+            return !runGameTimer;
+        }
+
+        // Sets if the timer should be paused.
+        public void SetGameTimerPaused(bool paused)
+        {
+            runGameTimer = !paused;
+        }
+
+
         // Update is called once per frame
         void Update()
         {
-
+            // Add to the timer.
+            if (runGameTimer)
+            {
+                gameTimer += Time.unscaledDeltaTime;
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
