@@ -213,7 +213,7 @@ namespace RM_EDU
         }
 
         // Generates a test statement.
-        public Statement GenerateTestStatement()
+        public static Statement GenerateTestStatement()
         {
             Statement statement = new Statement();
 

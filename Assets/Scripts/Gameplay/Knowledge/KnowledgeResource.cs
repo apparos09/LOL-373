@@ -29,7 +29,29 @@ namespace RM_EDU
         // Start is called before the first frame update
         void Start()
         {
+            // Adds a Select() call on the button.
+            if (button != null)
+            {
+                // Listener for the tutorial toggle.
+                button.onClick.AddListener(delegate
+                {
+                    Select();
+                });
+            }
+        }
 
+        // Called when the resource has been selected.
+        public void Select()
+        {
+            // Set as the selected resource.
+            KnowledgeManager.Instance.selectedResource = this;
+        }
+
+        // Sets the resource and the display text.
+        public void SetResource(NaturalResources.naturalResource resource)
+        {
+            this.resource = resource;
+            resourceText.text = NaturalResources.GetNaturalResourceName(resource);
         }
 
         // Checks if the resource is attached to a statement.

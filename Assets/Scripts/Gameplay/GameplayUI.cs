@@ -23,7 +23,13 @@ namespace RM_EDU
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            // If the game manager isn't set, try to find it.
+            if (gameManager == null)
+                gameManager = FindObjectOfType<GameplayManager>();
 
+            // // If the tutorial UI isn't set, try to find it.
+            // if(tutorialUI == null)
+            //     tutorialUI = FindObjectOfType<TutorialUI>();
         }
 
         // TUTORIAL //

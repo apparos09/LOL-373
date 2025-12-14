@@ -43,22 +43,27 @@ namespace RM_EDU
             if (gameUI == null)
                 gameUI = FindObjectOfType<GameplayUI>();
 
+            // TODO: add in when tutorial is created.
             // Sets the tutorials object.
-            if (tutorials == null)
-                tutorials = Tutorials.Instance;
-
-
-            // If the gameUI is set, check for the tutorial text box.
-            if (gameUI != null)
-            {
-                // If the tutorial text box is set...
-                if (gameUI.tutorialUI.textBox != null)
-                {
-                    // Adds the callbakcs from the tutorial text box.
-                    // I don't think I need to remove them.
-                    gameUI.AddTutorialTextBoxCallbacks(this);
-                }
-            }
+            // if (tutorials == null)
+            //     tutorials = Tutorials.Instance;
+            // 
+            // 
+            // // If the gameUI is set, check for the tutorial text box.
+            // if (gameUI != null)
+            // {
+            //     // If the tutorial is set.
+            //     if(gameUI.tutorialUI != null)
+            //     {
+            //         // If the tutorial text box is set...
+            //         if (gameUI.tutorialUI.textBox != null)
+            //         {
+            //             // Adds the callbakcs from the tutorial text box.
+            //             // I don't think I need to remove them.
+            //             gameUI.AddTutorialTextBoxCallbacks(this);
+            //         }
+            //     }
+            // }
         }
 
 

@@ -157,6 +157,9 @@ MonoBehaviour:
   gameScore: 0
   mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
+  knowledgeUI: {fileID: 0}
+  selectedStatement: {fileID: 0}
+  selectedResource: {fileID: 0}
 --- !u!4 &812242767
 Transform:
   m_ObjectHideFlags: 0
@@ -172,6 +175,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1170434457 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8346425053091773463, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
+  m_PrefabInstance: {fileID: 1253338676}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1229646388
 GameObject:
   m_ObjectHideFlags: 0
@@ -365,13 +373,30 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3759634084473104562}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8346425053091773463, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1253338681}
   m_SourcePrefab: {fileID: 100100000, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
 --- !u!224 &1253338677 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
   m_PrefabInstance: {fileID: 1253338676}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1253338681
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170434457}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92da6ed5acfc84b4e9f424f853d5d807, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  tutorialUI: {fileID: 0}
 --- !u!1 &1551752995
 GameObject:
   m_ObjectHideFlags: 0

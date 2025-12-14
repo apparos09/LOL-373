@@ -28,7 +28,18 @@
 
       "mnu_licenses_dsc": 100,
       "kwd_bgms": 8,
-      "kwd_sfxs": 8
+      "kwd_sfxs": 8,
+
+      "nrs_bms": 16,
+      "nrs_hdo": 16,
+      "nrs_gtl": 16,
+      "nrs_slr": 16,
+      "nrs_wve": 16,
+      "nrs_wnd": 16,
+      "nrs_col": 16,
+      "nrs_ngs": 16,
+      "nrs_nlr": 16,
+      "nrs_oil": 16
     }
   },
   "en": {
@@ -59,5 +70,17 @@
     "mnu_licenses_dsc": "Sourced assets have been modified for use in this game.",
     "kwd_bgms": "BGMs",
     "kwd_sfxs": "SFXs",
+
+    "nrs_ukn": "Unknown",
+    "nrs_bms": "Biomass",
+    "nrs_hdo": "Hydro",
+    "nrs_gtl": "Geothermal",
+    "nrs_slr": "Solar",
+    "nrs_wve": "Wave",
+    "nrs_wnd": "Wind",
+    "nrs_col": "Coal",
+    "nrs_ngs": "Natural Gas",
+    "nrs_nlr": "Nuclear",
+    "nrs_oil": "Oil"
   }
 }

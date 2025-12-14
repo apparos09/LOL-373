@@ -199,6 +199,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button (UI) - Long Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 2928913205120308832, guid: d7d1a16d1c666164e8a83016cc9fd32a, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2928913205120308832, guid: d7d1a16d1c666164e8a83016cc9fd32a, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.5568628
+      objectReference: {fileID: 0}
     - target: {fileID: 3698070445255121272, guid: d7d1a16d1c666164e8a83016cc9fd32a, type: 3}
       propertyPath: m_text
       value: Knowledge Statement

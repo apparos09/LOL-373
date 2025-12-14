@@ -29,6 +29,33 @@ namespace RM_EDU
         // Start is called before the first frame update
         void Start()
         {
+            // Adds a Select() call on the button.
+            if (button != null)
+            {
+                // Listener for the tutorial toggle.
+                button.onClick.AddListener(delegate
+                {
+                    Select();
+                });
+            }
+
+            // Generate the test statement and set it to this object.
+            if(statement == null)
+            {
+                statement = KnowledgeStatementList.GenerateTestStatement();
+            }
+        }
+
+        // Called when the statement has been selected.
+        public void Select()
+        {
+            // Set as the selected statement.
+            KnowledgeManager.Instance.selectedStatement = this;
+        }
+
+        // Sets the statement.
+        public void SetStatement()
+        {
 
         }
 
@@ -82,6 +109,5 @@ namespace RM_EDU
             }
 
         }
-
     }
 }

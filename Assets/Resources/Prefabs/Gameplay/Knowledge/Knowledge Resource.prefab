@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 000
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -199,6 +199,14 @@ PrefabInstance:
     - target: {fileID: 1470436684491121091, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Name
       value: Button (UI) - Short Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.g
+      value: 0.80784315
+      objectReference: {fileID: 0}
+    - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Colors.m_SelectedColor.r
+      value: 0.5568628
       objectReference: {fileID: 0}
     - target: {fileID: 3716918630251316696, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_text

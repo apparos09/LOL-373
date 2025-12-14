@@ -1,3 +1,4 @@
+using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,7 +12,7 @@ namespace RM_EDU
     {
         // Natural Resource Enum.
         // Ordered by renewable then nonrenewable, then alphabetically.
-        public enum naturalResource { unknown, biomass, hydro, geothermal, solar, wave, wind, coal, oil, naturalGas, nuclear }
+        public enum naturalResource { unknown, biomass, hydro, geothermal, solar, wave, wind, coal, naturalGas, nuclear, oil }
 
         // The singleton instance.
         private static NaturalResources instance;
@@ -19,6 +20,7 @@ namespace RM_EDU
         // Gets set to 'true' when the singleton has been instanced.
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
+
 
         // Constructor
         private NaturalResources()
@@ -89,6 +91,131 @@ namespace RM_EDU
             }
         }
 
+        // Gets the natural resource name.
+        public static string GetNaturalResourceName(NaturalResources.naturalResource res)
+        {
+            // The result to be returned.
+            string result;
+
+            // Gets the key for translation.
+            string key = GetNaturalResourceNameKey(res);
+
+            // Checks the resource type to know what name to return.
+            switch (res)
+            {
+                case naturalResource.unknown:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Unknown";
+                    break;
+
+                case naturalResource.biomass:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Biomass";
+                    break;
+
+                case naturalResource.hydro:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Hydro";
+                    break;
+
+                case naturalResource.geothermal:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Geothermal";
+                    break;
+
+                case naturalResource.solar:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Solar";
+                    break;
+
+                case naturalResource.wave:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Wave";
+                    break;
+
+                case naturalResource.wind:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Wind";
+                    break;
+
+                case naturalResource.coal:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Coal";
+                    break;
+
+                case naturalResource.naturalGas:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Natural Gas";
+                    break;
+
+                case naturalResource.nuclear:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Nuclear";
+                    break;
+
+                case naturalResource.oil:
+                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Oil";
+                    break;
+
+                default:
+                    result = string.Empty;
+                    break;
+            }
+
+            return result;
+        }
+        
+        // Gets the key for the natural resource, which is used for the language file.
+        public static string GetNaturalResourceNameKey(NaturalResources.naturalResource res)
+        {
+            // The result to be returned.
+            string result;
+
+            // Checks the resource type to know what key to return.
+            switch(res)
+            {
+                case naturalResource.unknown:
+                    result = "nrs_ukn";
+                    break;
+
+                case naturalResource.biomass:
+                    result = "nrs_bms";
+                    break;
+
+                case naturalResource.hydro:
+                    result = "nrs_hdo";
+                    break;
+
+                case naturalResource.geothermal:
+                    result = "nrs_gtl";
+                    break;
+
+                case naturalResource.solar:
+                    result = "nrs_slr";
+                    break;
+
+                case naturalResource.wave:
+                    result = "nrs_wve";
+                    break;
+
+                case naturalResource.wind:
+                    result = "nrs_wnd";
+                    break;
+
+                case naturalResource.coal:
+                    result = "nrs_col";
+                    break;
+
+                case naturalResource.naturalGas:
+                    result = "nrs_ngs";
+                    break;
+
+                case naturalResource.nuclear:
+                    result = "nrs_nlr";
+                    break;
+
+                case naturalResource.oil:
+                    result = "nrs_oil";
+                    break;
+
+                default:
+                    result = string.Empty;
+                    break;
+            }
+
+            return result;
+        }
+
         // Checks if the natural resource is renewable.
         public static bool IsRenewable(naturalResource res)
         {
@@ -108,9 +235,9 @@ namespace RM_EDU
                     break;
 
                 case naturalResource.coal:
-                case naturalResource.oil:
                 case naturalResource.naturalGas:
                 case naturalResource.nuclear:
+                case naturalResource.oil:
                     renewable = false;
                     break;
 
@@ -141,9 +268,9 @@ namespace RM_EDU
                     break;
 
                 case naturalResource.coal:
-                case naturalResource.oil:
                 case naturalResource.naturalGas:
                 case naturalResource.nuclear:
+                case naturalResource.oil:
                     nonrenewable = true;
                     break;
 
@@ -180,8 +307,8 @@ namespace RM_EDU
                     break;
 
                 case naturalResource.coal:
-                case naturalResource.oil:
                 case naturalResource.naturalGas:
+                case naturalResource.oil:
                     // Releases pollutants into the air when used to generate enegry.
                     result = true;
                     break;
