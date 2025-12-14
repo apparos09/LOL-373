@@ -39,10 +39,11 @@ namespace RM_EDU
                 });
             }
 
+            // NOTE: should probably be commented out when not running tests.
             // Generate the test statement and set it to this object.
             if(statement == null)
             {
-                statement = KnowledgeStatementList.GenerateTestStatement();
+                SetStatement(KnowledgeStatementList.GenerateTestStatement());
             }
         }
 
@@ -54,9 +55,10 @@ namespace RM_EDU
         }
 
         // Sets the statement.
-        public void SetStatement()
+        public void SetStatement(KnowledgeStatementList.Statement statement)
         {
-
+            this.statement = statement;
+            statementText.text = statement.text;
         }
 
         // Checks if the statement is attached to a resource.
@@ -89,7 +91,8 @@ namespace RM_EDU
             // If there's already an attachment, remove it.
             if (attachedResource != null)
             {
-                // Removes the attachments.
+                // Clears the matchText for attachedResource and removes the attachments.
+                attachedResource.matchText.text = "";
                 attachedResource.attachedStatement = null;
                 attachedResource = null;
             }
@@ -108,6 +111,22 @@ namespace RM_EDU
                 attachedResource.matchText.text = matchText.text;
             }
 
+        }
+
+        // Returns 'true' if the attachment has the same resource.
+        // If nothing is attached, returns false.
+        // This does NOT call OnAttachmentMatchedCorrectly(). That happens in the verify function in the knowledge manager.
+        public bool AttachmentMatchesCorrectly()
+        {
+            // If a resource is attached.
+            if(attachedResource != null)
+            {
+                return statement.resource == attachedResource.resource;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

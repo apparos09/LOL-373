@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using util;
 
 namespace RM_EDU
@@ -29,6 +30,15 @@ namespace RM_EDU
 
         // The tutorials object.
         public Tutorials tutorials;
+
+        // The world scene.
+        public string worldScene = "WorldScene";
+
+        // The action scene.
+        public string actionScene = "ActionScene";
+
+        // The knowledge scene.
+        public string knowledgeScene = "KnowledgeScene";
 
         // Awake is called when the script is being loaded
         protected virtual void Awake()
@@ -216,6 +226,34 @@ namespace RM_EDU
         {
             gameUI.OnTutorialEnd();
         }
+
+        // SCENES
+        // Loads a scene, which checks if a loading screen should be used.
+        public virtual void LoadScene(string scene, bool useLoadingScreen)
+        {
+            SceneManager.LoadScene(scene);
+
+            // TODO: implement loading screen.
+        }
+
+        // Goes to the world scene.
+        public virtual void LoadWorldScene(bool useLoadingScreen)
+        {
+            LoadScene(worldScene, useLoadingScreen);
+        }
+
+        // Goes to the action scene.
+        public virtual void LoadActionScene(bool useLoadingScreen)
+        {
+            LoadScene(actionScene, useLoadingScreen);
+        }
+
+        // Goes to the knowledge scene.
+        public virtual void LoadKnowledgeScene(bool useLoadingScreen)
+        {
+            LoadScene(knowledgeScene, useLoadingScreen);
+        }
+
 
         // Update is called once per frame
         protected virtual void Update()

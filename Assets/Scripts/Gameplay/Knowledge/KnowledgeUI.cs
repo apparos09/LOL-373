@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_EDU
 {
@@ -17,7 +18,19 @@ namespace RM_EDU
         [Header("Knowledge")]
 
         // Manager
-        KnowledgeManager knowledgeManager;
+        public KnowledgeManager knowledgeManager;
+
+        // The statements in the knowledge stage.
+        public List<KnowledgeStatement> statements = new List<KnowledgeStatement>();
+
+        // The resources in the knowledge stage.
+        public List<KnowledgeResource> resources = new List<KnowledgeResource>();
+
+        // The butto used to verify the statements.
+        public Button verifyButton;
+
+        // The finish button.
+        public Button finishButton;
 
         // Constructor
         private KnowledgeUI()
@@ -55,10 +68,25 @@ namespace RM_EDU
             base.Start();
 
             // Set the knowledge manager.
-            if(knowledgeManager != null)
+            if(knowledgeManager == null)
             {
                 knowledgeManager = KnowledgeManager.Instance;
             }
+
+            // If the statements list is empty, fill the list automatically.
+            if (statements.Count == 0)
+            {
+                statements = new List<KnowledgeStatement>(FindObjectsOfType<KnowledgeStatement>(true));
+            }
+
+            // If the resources list is empty, fill the list automatically.
+            if (resources.Count == 0)
+            {
+                resources = new List<KnowledgeResource>(FindObjectsOfType<KnowledgeResource>(true));
+            }
+
+            // The finish button only becomes interactable once all elements have been matched correctly.
+            finishButton.interactable = false;
         }
 
         // Gets the instance.
@@ -97,10 +125,29 @@ namespace RM_EDU
             }
         }
 
-        // Update is called once per frame
-        protected override void Update()
+        // Verifies the matches.
+        public void VerifyMatches()
         {
-
+            knowledgeManager.VerifyMatches();
         }
+
+        // Clears all unverified matches.
+        public void ClearUnverifiedMatches()
+        {
+            knowledgeManager.ClearUnverifiedMatches();
+        }
+
+        // Finishes the stage. This should only be called once all statements have been matched correctly.
+        public void FinishStage()
+        {
+            knowledgeManager.FinishStage();
+        }
+
+        // Goes to the world scene.
+        public void LoadWorldScene()
+        {
+            knowledgeManager.LoadWorldScene();
+        }
+
     }
 }

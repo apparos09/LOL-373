@@ -15,6 +15,12 @@ namespace RM_EDU
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        // The statements in the knowledge stage.
+        public List<KnowledgeStatement> statements = new List<KnowledgeStatement>();
+
+        // The resources in the knowledge stage.
+        public List<KnowledgeResource> resources = new List<KnowledgeResource>();
+
         // Constructor
         private GameplayInfo()
         {

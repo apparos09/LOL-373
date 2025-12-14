@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using static RM_EDU.KnowledgeStatementList;
 
 namespace RM_EDU
 {
@@ -38,6 +40,14 @@ namespace RM_EDU
                     Select();
                 });
             }
+
+            // TODO: maybe put a "-" instead?
+            // Clear out the match text.
+            matchText.text = string.Empty;
+
+            // Calls SetResource() to set the text.
+            // Maybe comment this out when not doing tests.
+            SetResource(resource);
         }
 
         // Called when the resource has been selected.
@@ -85,6 +95,7 @@ namespace RM_EDU
             if (attachedStatement != null)
             {
                 // Removes the attachments.
+                // Do NOT change the matchText for the attachedStatement, as that should never change once properly set.
                 attachedStatement.attachedResource = null;
                 attachedStatement = null;
             }
@@ -108,6 +119,29 @@ namespace RM_EDU
             }
         }
 
+        // Returns 'true' if the attachment has the same resource.
+        // If nothing is attached, returns false.
+        // This does NOT call OnAttachmentMatchedCorrectly(). That happens in the verify function in the knowledge manager.
+        public bool AttachmentMatchesCorrectly()
+        {
+            // If a statement is attached.
+            if (attachedStatement != null)
+            {
+                // If there is a statement, check that the resources match.
+                if(attachedStatement.statement != null)
+                {
+                    return resource == attachedStatement.statement.resource;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
 
     }
 }
