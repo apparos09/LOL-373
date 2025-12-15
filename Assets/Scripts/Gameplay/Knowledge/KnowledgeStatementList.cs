@@ -10,6 +10,9 @@ namespace RM_EDU
         // A statement that is paired with a group.
         public class Statement
         {
+            // The id number of the statement.
+            public int idNumber = 0;
+
             // The text for the statement.
             public string text = string.Empty;
 
@@ -19,9 +22,6 @@ namespace RM_EDU
             // The resource this statement belongs to.
             public NaturalResources.naturalResource resource = NaturalResources.naturalResource.unknown;
 
-            // Set to 'true' if this statement has already been matched correctly.
-            public bool matchedCorrectly = false;
-
             // Constructor
             public Statement()
             {
@@ -29,25 +29,27 @@ namespace RM_EDU
             }
 
             // Constructor
-            public Statement(string text)
+            public Statement(int idNumber, string text)
             {
+                this.idNumber = idNumber;
                 this.text = text;
             }
 
             // Constructor
-            public Statement(string text, string key)
+            public Statement(int idNumber, string text, string key)
             {
+                this.idNumber = idNumber;
                 this.text = text;
                 this.key = key;
             }
 
             // Constructor
-            public Statement(string text, string key, NaturalResources.naturalResource resource, bool matchedCorrectly)
+            public Statement(int idNumber, string text, string key, NaturalResources.naturalResource resource)
             {
+                this.idNumber = idNumber;
                 this.text = text;
                 this.key = key;
                 this.resource = resource;
-                this.matchedCorrectly = matchedCorrectly;
             }
         }
 
@@ -72,48 +74,11 @@ namespace RM_EDU
                 this.resource = resource;
             }
 
-            // Gets the statements that have matches.
-            public List<Statement> GetMatchedStatements()
+            // Gets the statements as a list.
+            public List<Statement> GetStatementList()
             {
-                // Resulting list.
-                List<Statement> result = new List<Statement>();
-
-                // Goes through all the statements and gets the matched statements.
-                foreach (Statement statement in statements)
-                {
-                    // Checks if statement exists, then checks if it's been matched correctly.
-                    if (statement != null)
-                    {
-                        if (statement.matchedCorrectly)
-                        {
-                            result.Add(statement);
-                        }
-                    }
-                }
-
-                return result;
-            }
-
-            // Gets the statements that don't have matches yet.
-            public List<Statement> GetUnmatchedStatements()
-            {
-                // Resulting list.
-                List<Statement> result = new List<Statement>();
-
-                // Goes through all the statements and gets the unmatched statements.
-                foreach(Statement statement in statements)
-                {
-                    // Checks if statement exists, then checks if it hasn't been matched correctly.
-                    if (statement != null)
-                    {
-                        if(!statement.matchedCorrectly)
-                        {
-                            result.Add(statement);
-                        }
-                    }
-                }
-
-                return result;
+                List<Statement> statementList = new List<Statement>(statements);
+                return statementList;
             }
         }
 
@@ -126,18 +91,18 @@ namespace RM_EDU
 
         // Natural Resource Groups
         // Renewable
-        public StatementGroup biomassGroup;
-        public StatementGroup hydroGroup;
-        public StatementGroup geothermalGroup;
-        public StatementGroup solarGroup;
-        public StatementGroup waveGroup;
-        public StatementGroup windGroup;
+        protected StatementGroup biomassGroup;
+        protected StatementGroup hydroGroup;
+        protected StatementGroup geothermalGroup;
+        protected StatementGroup solarGroup;
+        protected StatementGroup waveGroup;
+        protected StatementGroup windGroup;
 
         // Non-renewable
-        public StatementGroup coalGroup;
-        public StatementGroup oilGroup;
-        public StatementGroup naturalGasGroup;
-        public StatementGroup nuclearGroup;
+        protected StatementGroup coalGroup;
+        protected StatementGroup oilGroup;
+        protected StatementGroup naturalGasGroup;
+        protected StatementGroup nuclearGroup;
 
         // Constructor
         private KnowledgeStatementList()
@@ -218,10 +183,10 @@ namespace RM_EDU
             Statement statement = new Statement();
 
             // Default values.
-            statement.key = "";
+            statement.idNumber = 0;
             statement.text = "This is a test statement.";
+            statement.key = "";
             statement.resource = NaturalResources.naturalResource.unknown;
-            statement.matchedCorrectly = false;
 
             return statement;
         }
@@ -232,92 +197,86 @@ namespace RM_EDU
             // Renewable
             // Biomass
             biomassGroup = new StatementGroup(NaturalResources.naturalResource.biomass);
-            biomassGroup.statements[0] = new Statement("Biomass 0");
-            biomassGroup.statements[1] = new Statement("Biomass 1");
-            biomassGroup.statements[2] = new Statement("Biomass 2");
-            biomassGroup.statements[3] = new Statement("Biomass 3");
-            biomassGroup.statements[4] = new Statement("Biomass 4");
+            biomassGroup.statements[0] = new Statement(0, "Biomass 0");
+            biomassGroup.statements[1] = new Statement(1, "Biomass 1");
+            biomassGroup.statements[2] = new Statement(2, "Biomass 2");
+            biomassGroup.statements[3] = new Statement(3, "Biomass 3");
+            biomassGroup.statements[4] = new Statement(4, "Biomass 4");
 
 
             // Hydro
             hydroGroup = new StatementGroup(NaturalResources.naturalResource.hydro);
-            hydroGroup.statements[0] = new Statement("Hydro 0");
-            hydroGroup.statements[1] = new Statement("Hydro 1");
-            hydroGroup.statements[2] = new Statement("Hydro 2");
-            hydroGroup.statements[3] = new Statement("Hydro 3");
-            hydroGroup.statements[4] = new Statement("Hydro 4");
+            hydroGroup.statements[0] = new Statement(0, "Hydro 0");
+            hydroGroup.statements[1] = new Statement(1, "Hydro 1");
+            hydroGroup.statements[2] = new Statement(2, "Hydro 2");
+            hydroGroup.statements[3] = new Statement(3, "Hydro 3");
+            hydroGroup.statements[4] = new Statement(4, "Hydro 4");
 
             // Geothermal
             geothermalGroup = new StatementGroup(NaturalResources.naturalResource.geothermal);
-            geothermalGroup.statements[0] = new Statement("Geothermal 0");
-            geothermalGroup.statements[1] = new Statement("Geothermal 1");
-            geothermalGroup.statements[2] = new Statement("Geothermal 2");
-            geothermalGroup.statements[3] = new Statement("Geothermal 3");
-            geothermalGroup.statements[4] = new Statement("Geothermal 4");
+            geothermalGroup.statements[0] = new Statement(0, "Geothermal 0");
+            geothermalGroup.statements[1] = new Statement(1, "Geothermal 1");
+            geothermalGroup.statements[2] = new Statement(2, "Geothermal 2");
+            geothermalGroup.statements[3] = new Statement(3, "Geothermal 3");
+            geothermalGroup.statements[4] = new Statement(4, "Geothermal 4");
 
             // Solar
             solarGroup = new StatementGroup(NaturalResources.naturalResource.solar);
-            solarGroup.statements[0] = new Statement("Solar 0");
-            solarGroup.statements[1] = new Statement("Solar 1");
-            solarGroup.statements[2] = new Statement("Solar 2");
-            solarGroup.statements[3] = new Statement("Solar 3");
-            solarGroup.statements[4] = new Statement("Solar 4");
+            solarGroup.statements[0] = new Statement(0, "Solar 0");
+            solarGroup.statements[1] = new Statement(1, "Solar 1");
+            solarGroup.statements[2] = new Statement(2, "Solar 2");
+            solarGroup.statements[3] = new Statement(3, "Solar 3");
+            solarGroup.statements[4] = new Statement(4, "Solar 4");
 
             // Wave
             waveGroup = new StatementGroup(NaturalResources.naturalResource.wave);
-            waveGroup.statements[0] = new Statement("Wave 0");
-            waveGroup.statements[1] = new Statement("Wave 1");
-            waveGroup.statements[2] = new Statement("Wave 2");
-            waveGroup.statements[3] = new Statement("Wave 3");
-            waveGroup.statements[4] = new Statement("Wave 4");
+            waveGroup.statements[0] = new Statement(0, "Wave 0");
+            waveGroup.statements[1] = new Statement(1, "Wave 1");
+            waveGroup.statements[2] = new Statement(2, "Wave 2");
+            waveGroup.statements[3] = new Statement(3, "Wave 3");
+            waveGroup.statements[4] = new Statement(4, "Wave 4");
 
             // Wind
             windGroup = new StatementGroup(NaturalResources.naturalResource.wind);
-            windGroup.statements[0] = new Statement("Wind 0");
-            windGroup.statements[1] = new Statement("Wind 1");
-            windGroup.statements[2] = new Statement("Wind 2");
-            windGroup.statements[3] = new Statement("Wind 3");
-            windGroup.statements[4] = new Statement("Wind 4");
+            windGroup.statements[0] = new Statement(0, "Wind 0");
+            windGroup.statements[1] = new Statement(1, "Wind 1");
+            windGroup.statements[2] = new Statement(2, "Wind 2");
+            windGroup.statements[3] = new Statement(3, "Wind 3");
+            windGroup.statements[4] = new Statement(4, "Wind 4");
 
             // Non-renewable
             // Coal
             coalGroup = new StatementGroup(NaturalResources.naturalResource.coal);
-            coalGroup.statements[0] = new Statement("Coal 0");
-            coalGroup.statements[1] = new Statement("Coal 1");
-            coalGroup.statements[2] = new Statement("Coal 2");
-            coalGroup.statements[3] = new Statement("Coal 3");
-            coalGroup.statements[4] = new Statement("Coal 4");
+            coalGroup.statements[0] = new Statement(0, "Coal 0");
+            coalGroup.statements[1] = new Statement(1, "Coal 1");
+            coalGroup.statements[2] = new Statement(2, "Coal 2");
+            coalGroup.statements[3] = new Statement(3, "Coal 3");
+            coalGroup.statements[4] = new Statement(4, "Coal 4");
 
             // Oil
             oilGroup = new StatementGroup(NaturalResources.naturalResource.oil);
-            oilGroup.statements[0] = new Statement("Oil 0");
-            oilGroup.statements[1] = new Statement("Oil 1");
-            oilGroup.statements[2] = new Statement("Oil 2");
-            oilGroup.statements[3] = new Statement("Oil 3");
-            oilGroup.statements[4] = new Statement("Oil 4");
+            oilGroup.statements[0] = new Statement(0, "Oil 0");
+            oilGroup.statements[1] = new Statement(1, "Oil 1");
+            oilGroup.statements[2] = new Statement(2, "Oil 2");
+            oilGroup.statements[3] = new Statement(3, "Oil 3");
+            oilGroup.statements[4] = new Statement(4, "Oil 4");
 
             // Natural Gas
             naturalGasGroup = new StatementGroup(NaturalResources.naturalResource.naturalGas);
-            naturalGasGroup.statements[0] = new Statement("Natural Gas 0");
-            naturalGasGroup.statements[1] = new Statement("Natural Gas 1");
-            naturalGasGroup.statements[2] = new Statement("Natural Gas 2");
-            naturalGasGroup.statements[3] = new Statement("Natural Gas 3");
-            naturalGasGroup.statements[4] = new Statement("Natural Gas 4");
+            naturalGasGroup.statements[0] = new Statement(0, "Natural Gas 0");
+            naturalGasGroup.statements[1] = new Statement(1, "Natural Gas 1");
+            naturalGasGroup.statements[2] = new Statement(2, "Natural Gas 2");
+            naturalGasGroup.statements[3] = new Statement(3, "Natural Gas 3");
+            naturalGasGroup.statements[4] = new Statement(4, "Natural Gas 4");
 
             // Nuclear
             nuclearGroup = new StatementGroup(NaturalResources.naturalResource.nuclear);
-            nuclearGroup.statements[0] = new Statement("Nuclear 0");
-            nuclearGroup.statements[1] = new Statement("Nuclear 1");
-            nuclearGroup.statements[2] = new Statement("Nuclear 2");
-            nuclearGroup.statements[3] = new Statement("Nuclear 3");
-            nuclearGroup.statements[4] = new Statement("Nuclear 4");
+            nuclearGroup.statements[0] = new Statement(0, "Nuclear 0");
+            nuclearGroup.statements[1] = new Statement(1, "Nuclear 1");
+            nuclearGroup.statements[2] = new Statement(2, "Nuclear 2");
+            nuclearGroup.statements[3] = new Statement(3, "Nuclear 3");
+            nuclearGroup.statements[4] = new Statement(4, "Nuclear 4");
         }    
-
-        // Applies the data for all the groups to set which ones have been marked correctly.
-        public void ApplyGroupDatas()
-        {
-            // TODO: implement.
-        }
 
         // Gets the groups as a list.
         public List<StatementGroup> GetGroupsAsList()
@@ -339,6 +298,63 @@ namespace RM_EDU
             };
 
             return groups;
+        }
+
+        // Gets the requested group.
+        public StatementGroup GetGroup(NaturalResources.naturalResource res)
+        {
+            // The group to be returned.
+            StatementGroup group;
+
+            // Checks what group to return.
+            switch(res)
+            {
+                default:
+                    group = null;
+                    break;
+
+                case NaturalResources.naturalResource.biomass:
+                    group = biomassGroup;
+                    break;
+
+                case NaturalResources.naturalResource.hydro:
+                    group = hydroGroup;
+                    break;
+
+                case NaturalResources.naturalResource.geothermal:
+                    group = geothermalGroup;
+                    break;
+
+                case NaturalResources.naturalResource.solar:
+                    group = solarGroup;
+                    break;
+
+                case NaturalResources.naturalResource.wave:
+                    group = waveGroup;
+                    break;
+
+                case NaturalResources.naturalResource.wind:
+                    group = windGroup;
+                    break;
+
+                case NaturalResources.naturalResource.coal:
+                    group = coalGroup;
+                    break;
+
+                case NaturalResources.naturalResource.oil:
+                    group = oilGroup;
+                    break;
+
+                case NaturalResources.naturalResource.naturalGas:
+                    group = naturalGasGroup;
+                    break;
+
+                case NaturalResources.naturalResource.nuclear:
+                    group = nuclearGroup;
+                    break;
+            }
+
+            return group;
         }
     }
 }

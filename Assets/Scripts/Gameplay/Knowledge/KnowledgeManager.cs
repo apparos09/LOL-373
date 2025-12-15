@@ -28,6 +28,9 @@ namespace RM_EDU
         // The selected knowledge resource.
         public KnowledgeResource selectedResource = null;
 
+        // The statement groups that the knowledge stages pulls from.
+        public List<KnowledgeStatementList.StatementGroup> statementGroups = new List<KnowledgeStatementList.StatementGroup>();
+
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
@@ -236,8 +239,21 @@ namespace RM_EDU
                     // The button won't be used, so turn it off.
                     knowledgeUI.resources[i].gameObject.SetActive(false);
                 }
-
             }
+
+            // Statement Groups
+            // Clears the group list and gets the knowledge statement list.
+            statementGroups.Clear();
+            KnowledgeStatementList ksl = KnowledgeStatementList.Instance;
+
+            // Get the needed statement groups.
+            foreach(KnowledgeResource resource in knowledgeUI.resources)
+            {
+                // Adds the group to the list.
+                statementGroups.Add(ksl.GetGroup(resource.resource));
+            }
+
+            // TODO: remove all statements that already have matches.
         }
 
         // Verifies the matches to see if they're correct.

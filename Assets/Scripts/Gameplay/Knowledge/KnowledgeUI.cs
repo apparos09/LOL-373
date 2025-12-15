@@ -149,5 +149,15 @@ namespace RM_EDU
             knowledgeManager.LoadWorldScene();
         }
 
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected virtual void OnDestroy()
+        {
+            // If the saved instance is being deleted, set 'instanced' to false.
+            if (instance == this)
+            {
+                instanced = false;
+            }
+        }
+
     }
 }
