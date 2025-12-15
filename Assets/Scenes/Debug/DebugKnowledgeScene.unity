@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 812242767}
   - component: {fileID: 812242766}
+  - component: {fileID: 812242768}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -155,7 +156,7 @@ MonoBehaviour:
   gameUI: {fileID: 0}
   gameTimer: 0
   gameScore: 0
-  mouseTouch: {fileID: 0}
+  mouseTouch: {fileID: 812242768}
   tutorials: {fileID: 0}
   worldScene: WorldScene
   actionScene: ActionScene
@@ -178,6 +179,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &812242768
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 812242765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbf84c24b72c2464aad36c9b7249ecd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackMouse: 1
+  trackTouch: 1
+  ignoreUI: 0
+  mouseWorldPosition: {x: 0, y: 0, z: 0}
+  mouseHoveredObject: {fileID: 0}
+  touchObjects: []
 --- !u!1 &1229646388
 GameObject:
   m_ObjectHideFlags: 0

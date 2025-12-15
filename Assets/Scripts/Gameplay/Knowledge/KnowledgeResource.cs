@@ -1,26 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static RM_EDU.KnowledgeStatementList;
+using TMPro;
 
 namespace RM_EDU
 {
     // A resource in the knowledge stage. A knowledge statement is matched to it.
-    public class KnowledgeResource : MonoBehaviour
+    public class KnowledgeResource : KnowledgeElement
     {
+        // Doesn't show up unless the object below is editable in the inspector.
+        // [Header("Resource")]
+
         // The natural resource for this knowledge resource.
         public NaturalResources.naturalResource resource = NaturalResources.naturalResource.unknown;
 
         // The statement that is attached to this resource.
         public KnowledgeStatement attachedStatement;
-
-        [Header("UI")]
-
-        // The button.
-        public Button button;
 
         // The description for this resource. This is just the name of the resource.
         public TMP_Text resourceText;
@@ -29,17 +25,9 @@ namespace RM_EDU
         public TMP_Text matchText;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
-            // Adds a Select() call on the button.
-            if (button != null)
-            {
-                // Listener for the tutorial toggle.
-                button.onClick.AddListener(delegate
-                {
-                    Select();
-                });
-            }
+            base.Start();
 
             // TODO: maybe put a "-" instead?
             // Clear out the match text.
@@ -51,10 +39,17 @@ namespace RM_EDU
         }
 
         // Called when the resource has been selected.
-        public void Select()
+        public override void Select()
         {
+            // If something is already selected, make sure the button image is its normal color.
+            if (KnowledgeManager.Instance.selectedResource != null)
+                KnowledgeManager.Instance.selectedResource.SetButtonToNormalColor();
+
             // Set as the selected resource.
             KnowledgeManager.Instance.selectedResource = this;
+
+            // Sets the button image color to the selected color.
+            SetButtonToSelectedColor();
         }
 
         // Sets the resource and the display text.
@@ -68,6 +63,27 @@ namespace RM_EDU
         public bool IsAttachedToStatement()
         {
             return attachedStatement != null;
+        }
+
+        // Returns true if the attached element is the same as the provided element.
+        public bool IsAttachedToStatement(KnowledgeStatement statement)
+        {
+            return attachedStatement == statement;
+        }
+
+        // Returns 'true' if the attached statement has this resource attached.
+        public bool AttachedStatementHasThisResource()
+        {
+            // Checks if there is a statement.
+            if(IsAttachedToStatement())
+            {
+                // Returns true if the attached statement has this resource.
+                return attachedStatement.attachedResource == this;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Attaches to the following statement.
@@ -92,11 +108,16 @@ namespace RM_EDU
         public void DetachStatement()
         {
             // If there's already an attachment, remove it.
-            if (attachedStatement != null)
+            if (IsAttachedToStatement())
             {
                 // Removes the attachments.
                 // Do NOT change the matchText for the attachedStatement, as that should never change once properly set.
-                attachedStatement.attachedResource = null;
+                // If the attached statement has this resource, set it to null. This is to account for mismatches.
+                if(AttachedStatementHasThisResource())
+                {
+                    attachedStatement.attachedResource = null;
+                }
+
                 attachedStatement = null;
             }
 
@@ -108,7 +129,7 @@ namespace RM_EDU
         public void OnAttachmentChange()
         {
             // If there is an attachment, change the text to match it.
-            if (attachedStatement != null)
+            if (IsAttachedToStatement())
             {
                 matchText.text = attachedStatement.matchText.text;
             }
@@ -140,6 +161,23 @@ namespace RM_EDU
             else
             {
                 return false;
+            }
+        }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+
+            // If attached to a statement...
+            if(IsAttachedToStatement())
+            {
+                // If the knowledge statement isn't attached to this resource, it means it's attached to something else.
+                // If so, this resource is wrongly attached to it, and said attachment should be removed.
+                if(!attachedStatement.IsAttachedToResource(this))
+                {
+                    DetachStatement();
+                }
             }
         }
 

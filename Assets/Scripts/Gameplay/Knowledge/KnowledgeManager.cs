@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace RM_EDU
 {
@@ -125,8 +126,8 @@ namespace RM_EDU
                 // Goes through all statements to see if they all match.
                 foreach(KnowledgeStatement statement in knowledgeUI.statements)
                 {
-                    // If the statement object is active, check it.
-                    if(statement.gameObject.activeSelf)
+                    // If the statement object is active and enabled.
+                    if(statement.isActiveAndEnabled)
                     {
                         // If an incorrect match is found, mark that a match failed and clear the selection.
                         if (!statement.AttachmentMatchesCorrectly())
@@ -153,6 +154,20 @@ namespace RM_EDU
             // If all the statements match, the stage can be finished. If not, the stage cannot finish.
             if(allMatch)
             {
+                // NOTE: it does this with all knowledge statement and resource objects, even those that aren't active.
+
+                // Disable all knowledge statement buttons.
+                foreach (KnowledgeStatement statement in knowledgeUI.statements)
+                {
+                    statement.button.interactable = false;
+                }
+
+                // Disable all knowledge resource buttons.
+                foreach(KnowledgeResource resource in knowledgeUI.resources)
+                {
+                    resource.button.interactable = false;
+                }
+
                 knowledgeUI.finishButton.interactable = true;
             }
             else
@@ -177,6 +192,14 @@ namespace RM_EDU
                 // Deselects the button.
                 EventSystem.current.SetSelectedGameObject(null);
             }
+
+            // Since the selections are being cleared, their buttons should be their normal colors...
+            // Resets the buttons to their normal colors, as they might be their selected colors.
+            if (selectedStatement != null)
+                selectedStatement.SetButtonToNormalColor();
+
+            if (selectedResource != null)
+                selectedResource.SetButtonToNormalColor();
 
             // Clear the selections.
             selectedStatement = null;
@@ -203,6 +226,33 @@ namespace RM_EDU
 
             // Clears the current selection.
             ClearCurrentSelection();
+        }
+
+        // Resets all matches, undoing all of them.
+        public void ResetAllMatches()
+        {
+            // NOTE: you shouldn't need to call detach on both statements and resources...
+            // But you do it anyway just to be sure.
+
+            // Disable all knowledge statement buttons.
+            foreach (KnowledgeStatement statement in knowledgeUI.statements)
+            {
+                statement.DetachResource();
+                statement.button.interactable = true;
+                statement.SetButtonToNormalColor();
+            }
+
+            // Disable all knowledge resource buttons.
+            foreach (KnowledgeResource resource in knowledgeUI.resources)
+            {
+                resource.DetachStatement();
+                resource.button.interactable = true;
+                resource.SetButtonToNormalColor();
+            }
+
+            // Verify button is interactable, but the finish button isn't.
+            knowledgeUI.verifyButton.interactable = true;
+            knowledgeUI.finishButton.interactable = false;
         }
 
 
@@ -242,19 +292,21 @@ namespace RM_EDU
             }
             else
             {
-                // EventSystem.currentSelectedGameObject shows the last object that was selected.
-                // This object is saved until something else is selected.
-                // If the player selects empty space, this is set to null.
-                if (EventSystem.current.currentSelectedGameObject == null)
-                {
-                    // If one of the statements is selected, clear the selections, since a knowledge button...
-                    // Has been deselected without connecting to anything.
-                    // If one of these things is not null, but not both, clear the selections.
-                    if(selectedStatement != null ^ selectedResource != null)
-                    {
-                        ClearCurrentSelection();
-                    }
-                }
+                // Clearing the selection broke when you added more buttons. Try to fix that.
+
+                // // EventSystem.currentSelectedGameObject shows the last object that was selected.
+                // // This object is saved until something else is selected.
+                // // If the player selects empty space, this is set to null.
+                // if (EventSystem.current.currentSelectedGameObject == null)
+                // {
+                //     // If one of the statements is selected, clear the selections, since a knowledge button...
+                //     // Has been deselected without connecting to anything.
+                //     // If one of these things is not null, but not both, clear the selections.
+                //     if(selectedStatement != null ^ selectedResource != null)
+                //     {
+                //         ClearCurrentSelection();
+                //     }
+                // }
             }
             
         }

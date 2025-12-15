@@ -7,18 +7,16 @@ using TMPro;
 namespace RM_EDU
 {
     // A statement for the knowledge stage. It gets matched to a knowledge resource.
-    public class KnowledgeStatement : MonoBehaviour
+    public class KnowledgeStatement : KnowledgeElement
     {
+        // Doesn't show up unless the object below is editable in the inspector.
+        // [Header("Statement")]
+
         // The statement that this KnowledgeStatment is using from the list.
         public KnowledgeStatementList.Statement statement;
 
         // The resource attached to this statement.
         public KnowledgeResource attachedResource;
-
-        [Header("UI")]
-
-        // The button.
-        public Button button;
 
         // The text for the displayed statement.
         public TMP_Text statementText;
@@ -27,17 +25,9 @@ namespace RM_EDU
         public TMP_Text matchText;
 
         // Start is called before the first frame update
-        void Start()
+        protected override void Start()
         {
-            // Adds a Select() call on the button.
-            if (button != null)
-            {
-                // Listener for the tutorial toggle.
-                button.onClick.AddListener(delegate
-                {
-                    Select();
-                });
-            }
+            base.Start();
 
             // NOTE: should probably be commented out when not running tests.
             // Generate the test statement and set it to this object.
@@ -48,10 +38,17 @@ namespace RM_EDU
         }
 
         // Called when the statement has been selected.
-        public void Select()
+        public override void Select()
         {
+            // If something is already selected, make sure the button image is its normal color.
+            if (KnowledgeManager.Instance.selectedStatement != null)
+                KnowledgeManager.Instance.selectedStatement.SetButtonToNormalColor();
+
             // Set as the selected statement.
             KnowledgeManager.Instance.selectedStatement = this;
+
+            // Sets the button image color to the selected color.
+            SetButtonToSelectedColor();
         }
 
         // Sets the statement.
@@ -67,18 +64,39 @@ namespace RM_EDU
             return attachedResource != null;
         }
 
+        // Returns true if the attached element is the same as the provided element.
+        public bool IsAttachedToResource(KnowledgeResource resource)
+        {
+            return attachedResource == resource;
+        }
+
+        // Returns 'true' if the attached statement has this resource attached.
+        public bool AttachedResourceHasThisStatement()
+        {
+            // Checks if there is a resource.
+            if (IsAttachedToResource())
+            {
+                // Returns true if the attached resource has this statement.
+                return attachedResource.attachedStatement == this;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         // Attaches to the following resource.
-        public void AttachToStatement(KnowledgeResource newResource)
+        public void AttachToResource(KnowledgeResource newResource)
         {
             // If a resource is attached, detach it.
-            if (attachedResource != null)
+            if (IsAttachedToResource())
             {
                 DetachResource();
             }
 
             // Set the new attachments.
             attachedResource = newResource;
-            attachedResource.attachedStatement= this;
+            attachedResource.attachedStatement = this;
 
             // Calls when the attachement has been changed.
             // If a statement was detached earlier this is technically called twice, but this should be fine.
@@ -89,11 +107,19 @@ namespace RM_EDU
         public void DetachResource()
         {
             // If there's already an attachment, remove it.
-            if (attachedResource != null)
+            if (IsAttachedToResource())
             {
                 // Clears the matchText for attachedResource and removes the attachments.
-                attachedResource.matchText.text = "";
-                attachedResource.attachedStatement = null;
+                // If the attached resource has this statement, clear the match text and set it to null.
+                // This is to account for mismatches.
+                if (AttachedResourceHasThisStatement())
+                {
+
+                    attachedResource.matchText.text = "";
+                    attachedResource.attachedStatement = null;
+                }
+
+
                 attachedResource = null;
             }
 
@@ -126,6 +152,23 @@ namespace RM_EDU
             else
             {
                 return false;
+            }
+        }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+
+            // If attached to a statement...
+            if (IsAttachedToResource())
+            {
+                // If the knowledge resource isn't attached to this statement, it means it's attached to something else.
+                // If so, this statement is wrongly attached to it, and said attachment should be removed.
+                if (!attachedResource.IsAttachedToStatement(this))
+                {
+                    DetachResource();
+                }
             }
         }
     }
