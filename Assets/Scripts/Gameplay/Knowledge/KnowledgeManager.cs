@@ -28,6 +28,16 @@ namespace RM_EDU
         // The selected knowledge resource.
         public KnowledgeResource selectedResource = null;
 
+        // The natural resources that will be used.
+        public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
+
+        // If 'true', random natural resources from the list are selected.
+        [Tooltip("Selects random natural resources from the list when initializing buttons instead of going in order if true.")]
+        public bool randomResourcesOrder = true;
+
+        // The difficulty of the stage.
+        public int difficulty = 0;
+
         // Constructor
         private KnowledgeManager()
         {
@@ -69,7 +79,21 @@ namespace RM_EDU
                 knowledgeUI = KnowledgeUI.Instance;
             }
 
-            
+            // Tries to find the start info. The object must be active for it to be gotten.
+            KnowledgeStageStartInfo startInfo = FindObjectOfType<KnowledgeStageStartInfo>(false);
+
+            // Found start info, so set the default values.
+            if (startInfo != null)
+            {
+                // Applies the start info.
+                startInfo.ApplyStartInfo(this);
+
+                // Destroys the start info object.
+                Destroy(startInfo.gameObject);
+            }
+
+            // Initializes the knowledge stage.
+            InitializeKnowledgeStage();
         }
 
         // Gets the instance.
@@ -105,6 +129,114 @@ namespace RM_EDU
             get
             {
                 return instanced;
+            }
+        }
+
+        // Initializes the knowledge stage.
+        public void InitializeKnowledgeStage()
+        {
+            // The number of statements to use.
+            int statmentCount = 0;
+
+            // Determines the statement count by the difficulty.
+            switch(difficulty)
+            {
+                default:
+                case 0:
+                    statmentCount = knowledgeUI.statements.Count;
+                    break;
+
+                case 1:
+                case 2:
+                case 3:
+                    statmentCount = 3;
+                    break;
+
+                case 4:
+                case 5:
+                case 6:
+                    statmentCount = 4;
+                    break;
+
+                case 7:
+                case 8:
+                case 9:
+                    statmentCount = knowledgeUI.statements.Count;
+                    break;
+            }
+
+            // TODO: maybe initialize the natural resources first, then the statements...
+            // So that you can make sure there are never any more statements than there are resources...
+            // Even if such a case should never be encountered.
+
+            // Enables the statements that will be used.
+            for(int i = 0; i < knowledgeUI.statements.Count; i++)
+            {
+                // If the statement will be used, enable it.
+                // If it won't be used, disable it.
+                if(i < statmentCount)
+                {
+                    knowledgeUI.statements[i].gameObject.SetActive(true);
+                    knowledgeUI.statements[i].matchText.text = (i + 1).ToString();
+                }
+                else
+                {
+                    knowledgeUI.statements[i].gameObject.SetActive(false);
+                    knowledgeUI.statements[i].matchText.text = "0";
+                }
+            }
+
+            // If there are no natural resources in a list, get a list of all of them.
+            if (naturalResources.Count == 0)
+            {
+                naturalResources = NaturalResources.GenerateNaturalResourceTypeList(false);
+            }
+
+            // The list of resources that will be used.
+            List<NaturalResources.naturalResource> resourceList = naturalResources;
+
+            // Checks if the resources should be put in a random order form the list.
+            if (randomResourcesOrder)
+            {
+                // The resources queue.
+                Queue<NaturalResources.naturalResource> resQueue = new Queue<NaturalResources.naturalResource>();
+
+                // While there are elements left, add them to the queue at random.
+                while(resourceList.Count > 0)
+                {
+                    // Get a random index.
+                    int randIndex = Random.Range(0, resourceList.Count);
+
+                    // Add the element to the queue and remove it from the list.
+                    resQueue.Enqueue(resourceList[randIndex]);
+                    resourceList.RemoveAt(randIndex);
+                }
+
+                // Put the elements from the queue in the list.
+                while(resQueue.Count > 0)
+                {
+                    // Remove from the queue and add it to the list.
+                    resourceList.Add(resQueue.Dequeue());
+                }
+            }
+
+            // Applies the natural resources to the buttons.
+            // If there are more resources than there are buttons, the remaining resources in the list are unused.
+            for (int i = 0; i < knowledgeUI.resources.Count; i++)
+            {
+                // If the button won't be used, turn it off.
+                if (i < resourceList.Count)
+                {
+                    // Sets the resource of the button.
+                    knowledgeUI.resources[i].gameObject.SetActive(true);
+                    knowledgeUI.resources[i].SetResource(naturalResources[i]);
+                }
+                else
+                {
+                    // The button won't be used, so turn it off.
+                    knowledgeUI.resources[i].gameObject.SetActive(false);
+                }
+
             }
         }
 
@@ -233,6 +365,9 @@ namespace RM_EDU
         {
             // NOTE: you shouldn't need to call detach on both statements and resources...
             // But you do it anyway just to be sure.
+
+            // Buttons that're currently off stay off. Once a stage is initialized...
+            // The active parameters shouldn't be changed.
 
             // Disable all knowledge statement buttons.
             foreach (KnowledgeStatement statement in knowledgeUI.statements)

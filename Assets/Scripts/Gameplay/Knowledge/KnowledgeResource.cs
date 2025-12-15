@@ -13,6 +13,7 @@ namespace RM_EDU
         // [Header("Resource")]
 
         // The natural resource for this knowledge resource.
+        // This should be set using SetResource, but then it wouldn't be editable in the inspector.
         public NaturalResources.naturalResource resource = NaturalResources.naturalResource.unknown;
 
         // The statement that is attached to this resource.

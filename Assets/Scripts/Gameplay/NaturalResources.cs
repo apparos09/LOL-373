@@ -1,8 +1,6 @@
 using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Security.Cryptography;
 using UnityEngine;
 
 namespace RM_EDU
@@ -91,8 +89,37 @@ namespace RM_EDU
             }
         }
 
+        // Returns a list of all the natural resource types.
+        // If 'includeUnknown' is true, the unknown type is included. If it's false, unknown isn't included.
+        public static List<naturalResource> GenerateNaturalResourceTypeList(bool includeUnknown)
+        {
+            // Makes a list of types.
+            List<naturalResource> typeList = new List<naturalResource>()
+            {
+                naturalResource.unknown,
+                naturalResource.biomass,
+                naturalResource.hydro, 
+                naturalResource.geothermal, 
+                naturalResource.solar, 
+                naturalResource.wave, 
+                naturalResource.wind, 
+                naturalResource.coal,
+                naturalResource.naturalGas,
+                naturalResource.nuclear, 
+                naturalResource.oil
+            };
+
+            // If unknown shouldn't be included, remove unknown.
+            if(!includeUnknown)
+            {
+                typeList.Remove(naturalResource.unknown);
+            }
+
+            return typeList;
+        }
+
         // Gets the natural resource name.
-        public static string GetNaturalResourceName(NaturalResources.naturalResource res)
+        public static string GetNaturalResourceName(naturalResource res)
         {
             // The result to be returned.
             string result;
@@ -156,7 +183,7 @@ namespace RM_EDU
         }
         
         // Gets the key for the natural resource, which is used for the language file.
-        public static string GetNaturalResourceNameKey(NaturalResources.naturalResource res)
+        public static string GetNaturalResourceNameKey(naturalResource res)
         {
             // The result to be returned.
             string result;
@@ -214,6 +241,66 @@ namespace RM_EDU
             }
 
             return result;
+        }
+
+        // Gets the color assigned to this natural resource.
+        public static Color GetNaturalResourceColor(naturalResource res)
+        {
+            // The color to be returned.
+            Color color;
+
+            // TODO: implement.
+
+            // Checks the resource type to know what key to return.
+            switch (res)
+            {
+                default:
+                case naturalResource.unknown:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.biomass:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.hydro:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.geothermal:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.solar:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.wave:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.wind:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.coal:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.naturalGas:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.nuclear:
+                    color = Color.white;
+                    break;
+
+                case naturalResource.oil:
+                    color = Color.white;
+                    break;
+            }
+
+            return color;
         }
 
         // Checks if the natural resource is renewable.

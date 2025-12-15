@@ -164,6 +164,9 @@ MonoBehaviour:
   knowledgeUI: {fileID: 0}
   selectedStatement: {fileID: 0}
   selectedResource: {fileID: 0}
+  naturalResources: 
+  randomResourcesOrder: 1
+  difficulty: 0
 --- !u!4 &812242767
 Transform:
   m_ObjectHideFlags: 0
@@ -305,7 +308,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1412654533
 Transform:
   m_ObjectHideFlags: 0
@@ -333,7 +336,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8ce6e3e08763ec48911838077280a12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources: []
+  naturalResources: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
+  difficulty: 0
   statements: []
 --- !u!1 &1551752995
 GameObject:

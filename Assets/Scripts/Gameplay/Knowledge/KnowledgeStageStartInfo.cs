@@ -21,24 +21,18 @@ namespace RM_EDU
         // Applies the start info to the provided manager.
         public override void ApplyStartInfo(GameplayManager manager)
         {
-            // If the game manager is a knowledge manager, convert it and send it to the appropriate function.
-            if(manager is KnowledgeManager)
-            {
-                ApplyStartInfo(manager as KnowledgeManager);
-            }
-        }
+            // If this isn't the right manager type, return.
+            if(manager is not KnowledgeManager)
+                return;
 
-        // Applies the start info to the knowledge manager.
-        public void ApplyStartInfo(KnowledgeManager manager)
-        {
-            // TODO: implement.
-        }
+            // Gets the knowledge manager.
+            KnowledgeManager knowledgeManager = (KnowledgeManager)manager;
 
+            // Gives it the natural resources.
+            knowledgeManager.naturalResources = naturalResources;
 
-        // Update is called once per frame
-        void Update()
-        {
-
+            // Sets the difficulty.
+            knowledgeManager.difficulty = difficulty;
         }
     }
 }
