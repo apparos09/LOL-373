@@ -150,9 +150,9 @@ namespace RM_EDU
             if (attachedStatement != null)
             {
                 // If there is a statement, check that the resources match.
-                if(attachedStatement.statement != null)
+                if(attachedStatement.Statement != null)
                 {
-                    return resource == attachedStatement.statement.resource;
+                    return resource == attachedStatement.Statement.resource;
                 }
                 else
                 {

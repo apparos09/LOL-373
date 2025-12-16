@@ -13,7 +13,7 @@ namespace RM_EDU
         // [Header("Statement")]
 
         // The statement that this KnowledgeStatment is using from the list.
-        public KnowledgeStatementList.Statement statement;
+        private KnowledgeStatementList.Statement statement;
 
         // The resource attached to this statement.
         public KnowledgeResource attachedResource;
@@ -49,6 +49,26 @@ namespace RM_EDU
 
             // Sets the button image color to the selected color.
             SetButtonToSelectedColor();
+        }
+
+        // The statement.
+        public KnowledgeStatementList.Statement Statement
+        {
+            get
+            {
+                return GetStatement();
+            }
+
+            set
+            {
+                SetStatement(value);
+            }
+        }
+
+        // Gets the statement.
+        public KnowledgeStatementList.Statement GetStatement()
+        {
+            return statement;
         }
 
         // Sets the statement.

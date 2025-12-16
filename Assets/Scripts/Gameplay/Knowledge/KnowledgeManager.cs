@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using util;
 
 namespace RM_EDU
 {
@@ -31,12 +33,19 @@ namespace RM_EDU
         // The statement groups that the knowledge stages pulls from.
         public List<KnowledgeStatementList.StatementGroup> statementGroups = new List<KnowledgeStatementList.StatementGroup>();
 
+        // The list of used statements.
+        private List<KnowledgeStatementList.Statement> usedStatements = new List<KnowledgeStatementList.Statement>();
+
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
         // If 'true', random natural resources from the list are selected.
-        [Tooltip("Selects random natural resources from the list when initializing buttons instead of going in order if true.")]
+        [Tooltip("Selects random natural resources from the list when initializing buttons instead of going in list order if true.")]
         public bool randomResourcesOrder = true;
+
+        // If 'true', the statements are randomized if a match failed.
+        [Tooltip("Randomizes a statement if a match failed.")]
+        public bool randomizeStatementsOnFail = true;
 
         // The difficulty of the stage.
         public int difficulty = 0;
@@ -253,7 +262,137 @@ namespace RM_EDU
                 statementGroups.Add(ksl.GetGroup(resource.resource));
             }
 
-            // TODO: remove all statements that already have matches.
+            // TODO: remove statements that have already been answered.
+
+            // Randomizes the order of statements in the groups.
+            foreach(KnowledgeStatementList.StatementGroup group in statementGroups)
+            {
+                // Randomize the order of statements in the group.
+                group.statements = ListHelper.RandomizeListOrder(group.statements);
+            }
+
+            // TODO: remove all statements that have already been used.
+            
+            // Randomizes the statements.
+            RandomizeStatements(false);
+        }
+
+        // Randomizes the statements using the groups.
+        // If 'includeInactive' is true, inactive statements and resources are included.
+        public void RandomizeStatements(bool includeInactive = false)
+        {
+            // If there are no statement groups, there's no statements to pull from.
+            // As such, don't do anything.
+            if (statementGroups.Count <= 0)
+                return;
+
+            // The used resources.
+            List<KnowledgeResource> usedResources = new List<KnowledgeResource>();
+
+            // Goes through each resource and finds ones have been used.
+            foreach(KnowledgeResource resource in knowledgeUI.resources)
+            {
+                // If the resource is active and enabled, or if inactive elements should be included.
+                if(resource.isActiveAndEnabled || includeInactive)
+                {
+                    // If the resource has been matched correctly, include it.
+                    if (resource.AttachmentMatchesCorrectly())
+                    {
+                        usedResources.Add(resource);
+                    }
+                }
+            }
+
+
+            // The list of usable groups. The order is randomized.
+            List<KnowledgeStatementList.StatementGroup> usableGroups = ListHelper.RandomizeListOrder(statementGroups);
+
+            // The index of the usable groups list.
+            int usableGroupsIndex = 0;
+            
+            // Removes groups that have no elements.
+            for (int i = usableGroups.Count - 1;  i >= 0; i--)
+            {
+                // If there are no statements, remove this as a usable group.
+                if (usableGroups[i].statements.Count <= 0)
+                {
+                    usableGroups.RemoveAt(i);
+                }
+                else
+                {
+                    // Checks all the usable resources.
+                    foreach(KnowledgeResource usedResource in usedResources)
+                    {
+                        // If this resource has been used, remove it, as there shouldn't be any buttons for it.
+                        if(usedResource.resource == usableGroups[i].resource)
+                        {
+                            usableGroups.RemoveAt(i);
+                            break;
+                        }
+                    }
+                }
+            }
+
+            // If there are usable groups, choose random statements.
+            if(usableGroups.Count > 0)
+            {
+                // Goes through each knowledge statement and gives them a random statement.
+                foreach (KnowledgeStatement statement in knowledgeUI.statements)
+                {
+                    // If the statement is active and enabled, it's usable.
+                    // If 'includeInactive' is true, then use the statement regardless.
+                    if(statement.isActiveAndEnabled || includeInactive)
+                    {
+                        // If the attachment doesn't match correctly or there is no attachment, randomize it.
+                        if (!statement.AttachmentMatchesCorrectly())
+                        {
+                            // Gets the group's index in the original group list.
+                            int groupOrigIndex = statementGroups.IndexOf(usableGroups[usableGroupsIndex]);
+
+                            // Gets the statement at index 0 from the statement groups and gives it to the knowledge statement.
+                            KnowledgeStatementList.Statement listStatement = statementGroups[groupOrigIndex].statements[0];
+                            statement.Statement = listStatement;
+
+                            // Removes the statement at index 0 and puts it back in at the end of the list.
+                            statementGroups[groupOrigIndex].statements.RemoveAt(0);
+                            statementGroups[groupOrigIndex].statements.Add(listStatement);
+
+                            // Increases the value in the usable groups index.
+                            usableGroupsIndex++;
+
+                            // If the index has reached the end of the usableGroups list, loop back to the start.
+                            // NOTE: there shouldn't be cases of the multiples of the same resource showing up at the same time...
+                            // In the knowledge stage. However, the code does account for it.
+                            if (usableGroupsIndex >= usableGroups.Count)
+                            {
+                                usableGroupsIndex = 0;
+                            }
+
+                            // NOTE: while this case shouldn't occur, the program could theoretically use the same statement...
+                            // Multiple times in one match, which would soft lock the game. However, there should be enough...
+                            // Statements and no group duplications in the list, meaning such a circumstance shouldn't happen.
+                        }
+                    }
+                    
+                }
+            }
+            // There are no usable groups, pick of already used statements.
+            else
+            {
+                // TODO: pick from used statements.
+                // Give the test statement to all statements.
+                foreach(KnowledgeStatement statement in knowledgeUI.statements)
+                {
+                    // If the statement is active and enabled, it's usable.
+                    // If 'includeInactive' is true, then use the statement regardless.
+                    if(statement.isActiveAndEnabled || includeInactive)
+                    {
+                        statement.Statement = KnowledgeStatementList.GenerateTestStatement();
+                    }
+                }
+            }
+
+                
         }
 
         // Verifies the matches to see if they're correct.
@@ -318,9 +457,17 @@ namespace RM_EDU
 
                 knowledgeUI.finishButton.interactable = true;
             }
+            // Not all matching.
             else
             {
                 knowledgeUI.finishButton.interactable = false;
+
+                // If the statements should be randomized if a match fails, randomize them.
+                // If not, keep them the same.
+                if(randomizeStatementsOnFail)
+                {
+                    RandomizeStatements(false);
+                }
             }
             
             return allMatch;
