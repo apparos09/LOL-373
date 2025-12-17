@@ -70,6 +70,14 @@ namespace RM_EDU
             //     Destroy(data.gameObject);
             // }
 
+            // TODO: get data from data logger and then destroy it.
+
+            // TODO: maybe move this to another function, or destroy the data logger once you get the data from it.
+            // If the data logger has been instantiated, destroy it.
+            if (DataLogger.Instantiated)
+            {
+                Destroy(DataLogger.Instance.gameObject);
+            }
         }
 
         // Gets the instance.

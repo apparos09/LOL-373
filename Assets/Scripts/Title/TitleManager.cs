@@ -185,6 +185,11 @@ namespace RM_EDU
         // Starts the game (general function for moving to the GameScene).
         public void StartGame()
         {
+            // Creates the data logger and makes sure it won't be destroyed on load.
+            // It will get destroyed in the results scene once all data is gotten from it.
+            DataLogger dataLogger = DataLogger.Instance;
+            DontDestroyOnLoad(dataLogger);
+
             // If the loading screen has been instnatiated.
             if (LoadingSceneCanvas.Instantiated)
             {
