@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -262,8 +263,6 @@ namespace RM_EDU
                 statementGroups.Add(ksl.GetGroupCopy(resource.resource));
             }
 
-            // TODO: remove statements that have already been answered.
-
             // Randomizes the order of statements in the groups.
             for(int i = statementGroups.Count - 1; i >= 0; i--)
             {
@@ -422,20 +421,87 @@ namespace RM_EDU
             // There are no usable groups, pick of already used statements.
             else
             {
-                // TODO: pick from used statements.
-                // Give the test statement to all statements.
-                foreach(KnowledgeStatement statement in knowledgeUI.statements)
+                // Gets set to 'true' if statements were filled when checking with the data logger.
+                bool filledStatements = false;
+
+                // If the data logger is being used and the data logger has been instantiated, try reusing a statement.
+                if(useDataLogger && DataLogger.Instantiated)
                 {
-                    // If the statement is active and enabled, it's usable.
-                    // If 'includeInactive' is true, then use the statement regardless.
-                    if(statement.isActiveAndEnabled || includeInactive)
+                    // There are statemetns that can be reused.
+                    if(dataLogger.matchedStatementDatas.Count > 0)
                     {
-                        statement.Statement = KnowledgeStatementList.GenerateTestStatement();
+                        // Goes through each knowledge statement and gives it a random statement that has been used.
+                        foreach (KnowledgeStatement statement in knowledgeUI.statements)
+                        {
+                            // If the statement is active and enabled or inactive should be included.
+                            if (statement.isActiveAndEnabled || includeInactive)
+                            {
+                                // Gets the data and gets the group that it would come from.
+                                KnowledgeStatementList.Statement.StatementData tempData = dataLogger.matchedStatementDatas[Random.Range(0, dataLogger.matchedStatementDatas.Count)];
+                                KnowledgeStatementList.StatementGroup tempGroup = KnowledgeStatementList.Instance.GetGroupCopy(tempData.groupResource);
+
+                                // If the temp group exists, reuse a statement from it.
+                                if (tempGroup != null)
+                                {
+                                    // The new statement.
+                                    KnowledgeStatementList.Statement newStatement = null;
+
+                                    // Goes through the statements to find the one with the matching ID.
+                                    foreach (KnowledgeStatementList.Statement ksls in tempGroup.statements)
+                                    {
+                                        // If the ID number and resource match, grab the statement.
+                                        if (ksls.idNumber == tempData.idNumber && ksls.resource == tempData.statementResource)
+                                        {
+                                            newStatement = ksls;
+                                            break;
+                                        }
+                                    }
+
+                                    // If a new statement wasn't found, just load the test statement.
+                                    if(newStatement == null)
+                                    {
+                                        newStatement = KnowledgeStatementList.GenerateTestStatement();
+                                    }
+
+                                    // Set the new statement to the knowledge statement.
+                                    statement.Statement = newStatement;
+                                }
+                                else
+                                {
+                                    // Use test statement.
+                                    statement.Statement = KnowledgeStatementList.GenerateTestStatement();
+                                }
+
+                            }
+
+                        }
+
+                        // Marks that statements were reused.
+                        filledStatements = true;
                     }
                 }
-            }
 
-                
+                // If the statements haven't been filled yet, load test statements.
+                if(!filledStatements)
+                {
+                    // Give the test statement to all statements.
+                    foreach (KnowledgeStatement statement in knowledgeUI.statements)
+                    {
+                        // NOTE: the test statement is in the unknown group.
+                        // Since there's no button for the unknown group in the final game, this softlocks the stage.
+                        // This case should never be encountered since the player shouldn't end up using up...
+                        // All the statements in a single group.
+
+                        // If the statement is active and enabled, it's usable.
+                        // If 'includeInactive' is true, then use the statement regardless.
+                        if (statement.isActiveAndEnabled || includeInactive)
+                        {
+                            statement.Statement = KnowledgeStatementList.GenerateTestStatement();
+                        }
+                    }
+                }
+                    
+            }   
         }
 
         // Verifies the matches to see if they're correct.
