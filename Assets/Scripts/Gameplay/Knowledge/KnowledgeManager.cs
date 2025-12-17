@@ -277,17 +277,22 @@ namespace RM_EDU
                     List<KnowledgeStatementList.Statement> unmatchedList = new List<KnowledgeStatementList.Statement>(group.statements);
 
                     // Goes through all the matched statements, removing a statement if it was found.
-                    foreach (KnowledgeStatementList.Statement statement in dataLogger.matchedStatements)
+                    foreach (KnowledgeStatementList.Statement.StatementData statementData in dataLogger.matchedStatementDatas)
                     {
                         // If the statements match, remove the statement.
                         for (int j = unmatchedList.Count - 1; j >= 0; j--)
                         {
-                            // If the unmatched list contains a matched statement, remove it.
-                            if (unmatchedList[j] == statement)
+                            // If the group resource matches, it means that this statement data belongs to this group.
+                            if(group.resource == statementData.groupResource)
                             {
-                                unmatchedList.RemoveAt(j);
-                                break;
-                            }
+                                // If the unmatched list contains a statement that matches the provided data...
+                                // Remove that statment from the unmatched list.
+                                if (unmatchedList[j].MatchesData(statementData))
+                                {
+                                    unmatchedList.RemoveAt(j);
+                                    break;
+                                }
+                            } 
                         }
                     }
 
@@ -487,12 +492,18 @@ namespace RM_EDU
                 {
                     statement.button.interactable = false;
 
-
                     // Adds the statement to the matched statements list in the data logger so that the player...
                     // Won't get this statement again.
                     if(useDataLogger)
                     {
-                        dataLogger.matchedStatements.Add(statement.Statement);
+                        // Generates the statement data.
+                        KnowledgeStatementList.Statement.StatementData data = statement.Statement.GenerateStatementData();
+
+                        // Gives it the resource from the attached resource, as it's also the group this data belongs to.
+                        data.groupResource = statement.attachedResource.resource;
+
+                        // Adds the data to the data logger.
+                        dataLogger.matchedStatementDatas.Add(data);
                     }
                 }
 

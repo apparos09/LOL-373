@@ -31,7 +31,7 @@ namespace RM_EDU
         [Header("Knowledge")]
         
         // The list of statements the player has matched correctly.
-        public List<KnowledgeStatementList.Statement> matchedStatements = new List<KnowledgeStatementList.Statement>();
+        public List<KnowledgeStatementList.Statement.StatementData> matchedStatementDatas = new List<KnowledgeStatementList.Statement.StatementData>();
 
         // Constructor
         private DataLogger()
