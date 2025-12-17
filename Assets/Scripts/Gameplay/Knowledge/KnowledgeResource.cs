@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
+using static RM_EDU.KnowledgeStatementList;
 
 namespace RM_EDU
 {
@@ -144,7 +145,7 @@ namespace RM_EDU
         // Returns 'true' if the attachment has the same resource.
         // If nothing is attached, returns false.
         // This does NOT call OnAttachmentMatchedCorrectly(). That happens in the verify function in the knowledge manager.
-        public bool AttachmentMatchesCorrectly()
+        public bool IsAttachmentMatchedCorrectly()
         {
             // If a statement is attached.
             if (attachedStatement != null)

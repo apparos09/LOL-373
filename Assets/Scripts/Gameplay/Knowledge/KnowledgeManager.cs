@@ -259,16 +259,54 @@ namespace RM_EDU
             foreach(KnowledgeResource resource in knowledgeUI.resources)
             {
                 // Adds the group to the list.
-                statementGroups.Add(ksl.GetGroup(resource.resource));
+                statementGroups.Add(ksl.GetGroupCopy(resource.resource));
             }
 
             // TODO: remove statements that have already been answered.
 
             // Randomizes the order of statements in the groups.
-            foreach(KnowledgeStatementList.StatementGroup group in statementGroups)
+            for(int i = statementGroups.Count - 1; i >= 0; i--)
             {
-                // Randomize the order of statements in the group.
-                group.statements = ListHelper.RandomizeListOrder(group.statements);
+                // Grabs the statement group.
+                KnowledgeStatementList.StatementGroup group = statementGroups[i];
+
+                // If the data logger should be used, use it to take out statements that have already been matched in other stages.
+                if(useDataLogger)
+                {
+                    // Creates a list that'll hold the unmatched statements.
+                    List<KnowledgeStatementList.Statement> unmatchedList = new List<KnowledgeStatementList.Statement>(group.statements);
+
+                    // Goes through all the matched statements, removing a statement if it was found.
+                    foreach (KnowledgeStatementList.Statement statement in dataLogger.matchedStatements)
+                    {
+                        // If the statements match, remove the statement.
+                        for (int j = unmatchedList.Count - 1; j >= 0; j--)
+                        {
+                            // If the unmatched list contains a matched statement, remove it.
+                            if (unmatchedList[j] == statement)
+                            {
+                                unmatchedList.RemoveAt(j);
+                                break;
+                            }
+                        }
+                    }
+
+                    // Give the group the unmatched list.
+                    group.statements = unmatchedList;
+                }
+                
+
+                // If there are statements left...
+                if (group.statements.Count > 0)
+                {
+                    // Randomize the order of statements in the group.
+                    group.statements = ListHelper.RandomizeListOrder(group.statements);
+                }
+                else
+                {
+                    // The 'RandomizeStatements' function will ignore groups that have no statements.
+                    // statementGroups.RemoveAt(i);
+                }
             }
 
             // TODO: remove all statements that have already been used.
@@ -296,7 +334,7 @@ namespace RM_EDU
                 if(resource.isActiveAndEnabled || includeInactive)
                 {
                     // If the resource has been matched correctly, include it.
-                    if (resource.AttachmentMatchesCorrectly())
+                    if (resource.IsAttachmentMatchedCorrectly())
                     {
                         usedResources.Add(resource);
                     }
@@ -344,7 +382,7 @@ namespace RM_EDU
                     if(statement.isActiveAndEnabled || includeInactive)
                     {
                         // If the attachment doesn't match correctly or there is no attachment, randomize it.
-                        if (!statement.AttachmentMatchesCorrectly())
+                        if (!statement.IsAttachmentMatchedCorrectly())
                         {
                             // Gets the group's index in the original group list.
                             int groupOrigIndex = statementGroups.IndexOf(usableGroups[usableGroupsIndex]);
@@ -416,17 +454,17 @@ namespace RM_EDU
                     // If the statement object is active and enabled.
                     if(statement.isActiveAndEnabled)
                     {
-                        // If an incorrect match is found, mark that a match failed and clear the selection.
-                        if (!statement.AttachmentMatchesCorrectly())
-                        {
-                            allMatch = false;
-                            statement.DetachResource();
-                        }
-                        else
+                        // If the statement is matched correctly, disable the buttons since they shouldn't be used anymore.
+                        if(statement.IsAttachmentMatchedCorrectly())
                         {
                             // If the statement matches, disable the buttons since they don't need to be used.
                             statement.button.interactable = false;
                             statement.attachedResource.button.interactable = false;
+                        }
+                        else
+                        {
+                            allMatch = false;
+                            statement.DetachResource();
                         }
                     }
                 }
@@ -444,9 +482,18 @@ namespace RM_EDU
                 // NOTE: it does this with all knowledge statement and resource objects, even those that aren't active.
 
                 // Disable all knowledge statement buttons.
+                // Also saves all statements that were matched correctly in the data logger.
                 foreach (KnowledgeStatement statement in knowledgeUI.statements)
                 {
                     statement.button.interactable = false;
+
+
+                    // Adds the statement to the matched statements list in the data logger so that the player...
+                    // Won't get this statement again.
+                    if(useDataLogger)
+                    {
+                        dataLogger.matchedStatements.Add(statement.Statement);
+                    }
                 }
 
                 // Disable all knowledge resource buttons.

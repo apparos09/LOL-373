@@ -162,7 +162,7 @@ namespace RM_EDU
         // Returns 'true' if the attachment has the same resource.
         // If nothing is attached, returns false.
         // This does NOT call OnAttachmentMatchedCorrectly(). That happens in the verify function in the knowledge manager.
-        public bool AttachmentMatchesCorrectly()
+        public bool IsAttachmentMatchedCorrectly()
         {
             // If a resource is attached.
             if(attachedResource != null)

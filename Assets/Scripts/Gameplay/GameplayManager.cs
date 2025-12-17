@@ -40,6 +40,12 @@ namespace RM_EDU
         // The knowledge scene.
         public string knowledgeScene = "KnowledgeScene";
 
+        // The data logger.
+        public DataLogger dataLogger;
+
+        // If 'true', the data logger is used saving and loading data.
+        public bool useDataLogger = true;
+
         // Awake is called when the script is being loaded
         protected virtual void Awake()
         {
@@ -52,6 +58,10 @@ namespace RM_EDU
             // If the game UI isn't set, try to find it.
             if (gameUI == null)
                 gameUI = FindObjectOfType<GameplayUI>();
+
+            // If the data logger isn't set, get the instance.
+            if (dataLogger == null)
+                dataLogger = DataLogger.Instance;
 
             // TODO: add in when tutorial is created.
             // Sets the tutorials object.

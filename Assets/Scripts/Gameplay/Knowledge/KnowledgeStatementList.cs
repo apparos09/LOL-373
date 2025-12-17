@@ -1,5 +1,7 @@
+using SimpleJSON;
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 namespace RM_EDU
@@ -10,6 +12,20 @@ namespace RM_EDU
         // A statement that is paired with a group.
         public class Statement
         {
+            // Data for a statement.
+            [System.Serializable]
+            public struct StatementData
+            {
+                // The ID number.
+                public int idNumber;
+
+                // The group resource.
+                public NaturalResources.naturalResource groupResource;
+
+                // The statement resource.
+                public NaturalResources.naturalResource statementResource;
+            }
+
             // The id number of the statement.
             public int idNumber = 0;
 
@@ -51,11 +67,72 @@ namespace RM_EDU
                 this.key = key;
                 this.resource = resource;
             }
+
+            // Generates the statement data. The group resource is the same as the statement's resource.
+            public StatementData GenerateStatementData()
+            {
+                StatementData statementData = new StatementData();
+                statementData.idNumber = idNumber;
+                statementData.statementResource = resource;
+                statementData.groupResource = statementData.statementResource;
+
+                return statementData;
+            }
+
+            // Generates the statement data and gives it the provided group resource.
+            public StatementData GenerateStatementData(NaturalResources.naturalResource groupResource)
+            {
+                StatementData statementData = new StatementData();
+                statementData.idNumber = idNumber;
+                statementData.statementResource = resource;
+                statementData.groupResource = groupResource;
+
+                return statementData;
+            }
+
+            // Returns true if the provided data matches this statement. Cannot check group resource.
+            public bool MatchesData(StatementData data)
+            {
+                return data.idNumber == idNumber && data.statementResource == resource;
+            }
         }
 
         // A group for a given resource. It holds all the statements that this resource uses.
         public class StatementGroup
         {
+            // Data for a statement group.
+            [System.Serializable]
+            public class StatementGroupData
+            {
+                // The resource for this group.
+                public NaturalResources.naturalResource resource;
+
+                // The statement data.
+                public List<Statement.StatementData> statementDatas = new List<Statement.StatementData>();
+
+                // Constructor
+                public StatementGroupData()
+                {
+                    // ...
+                }
+
+                // Constructor
+                public StatementGroupData(NaturalResources.naturalResource resource)
+                {
+                    this.resource = resource;
+                }
+
+                // Constructor
+                public StatementGroupData(NaturalResources.naturalResource resource, List<Statement.StatementData> statementDatas)
+                {
+                    this.resource = resource;
+
+                    // Clears the statement data and adds the passed data.
+                    this.statementDatas.Clear();
+                    this.statementDatas.AddRange(statementDatas);
+                }
+            }
+
             // The resource this group is for.
             public NaturalResources.naturalResource resource;
 
@@ -90,6 +167,32 @@ namespace RM_EDU
                     statement.resource = resource;
                 }
             }
+
+            // Generates a copy of the group.
+            public StatementGroup GenerateGroupCopy()
+            {
+                StatementGroup groupCopy = new StatementGroup(resource);
+                groupCopy.statements = new List<Statement>(statements);
+                groupCopy.SetAllStatementsToGroupResource();
+                return groupCopy;
+            }
+
+            // Generates the statement group data.
+            public StatementGroupData GenerateStatementGroupData()
+            {
+                // The statement group data and the provided resource.
+                StatementGroupData statementGroupData = new StatementGroupData();
+                statementGroupData.resource = resource;
+
+                // Generates the data from each statement.
+                foreach(Statement statement in statements)
+                {
+                    statementGroupData.statementDatas.Add(statement.GenerateStatementData(statementGroupData.resource));
+                }
+
+                // Returns the group data.
+                return statementGroupData;
+            }
         }
 
         // The singleton instance.
@@ -101,18 +204,21 @@ namespace RM_EDU
 
         // Natural Resource Groups
         // Renewable
-        protected StatementGroup biomassGroup;
-        protected StatementGroup hydroGroup;
-        protected StatementGroup geothermalGroup;
-        protected StatementGroup solarGroup;
-        protected StatementGroup waveGroup;
-        protected StatementGroup windGroup;
+        private StatementGroup biomassGroup;
+        private StatementGroup hydroGroup;
+        private StatementGroup geothermalGroup;
+        private StatementGroup solarGroup;
+        private StatementGroup waveGroup;
+        private StatementGroup windGroup;
 
         // Non-renewable
-        protected StatementGroup coalGroup;
-        protected StatementGroup oilGroup;
-        protected StatementGroup naturalGasGroup;
-        protected StatementGroup nuclearGroup;
+        private StatementGroup coalGroup;
+        private StatementGroup oilGroup;
+        private StatementGroup naturalGasGroup;
+        private StatementGroup nuclearGroup;
+
+        // Gets set to 'true' if the groups have all been generated.
+        private bool groupsGenerated = false;
 
         // Constructor
         private KnowledgeStatementList()
@@ -298,32 +404,19 @@ namespace RM_EDU
             nuclearGroup.statements.Add(new Statement(3, "Nuclear 3"));
             nuclearGroup.statements.Add(new Statement(4, "Nuclear 4"));
             nuclearGroup.SetAllStatementsToGroupResource();
-        }    
 
-        // Gets the groups as a list.
-        public List<StatementGroup> GetGroupsAsList()
+            // All the groups have been generated.
+            groupsGenerated = true;
+        }
+        
+        // Returns 'true' if the groups have been generated.
+        public bool AreGroupsGenerated()
         {
-            // The statement groups.
-            // Put in the same order as their enum in 'NaturalResources' class.
-            List<StatementGroup> groups = new List<StatementGroup>()
-            {
-                biomassGroup,
-                hydroGroup,
-                geothermalGroup,
-                solarGroup,
-                waveGroup,
-                windGroup,
-                coalGroup,
-                oilGroup,
-                naturalGasGroup,
-                nuclearGroup
-            };
-
-            return groups;
+            return groupsGenerated;
         }
 
-        // Gets the requested group.
-        public StatementGroup GetGroup(NaturalResources.naturalResource res)
+        // Gets the requested group as a copy.
+        protected StatementGroup GetGroup(NaturalResources.naturalResource res)
         {
             // The group to be returned.
             StatementGroup group;
@@ -377,6 +470,108 @@ namespace RM_EDU
             }
 
             return group;
+        }
+
+        // Gets a group copy so that the original group won't be edited.
+        public StatementGroup GetGroupCopy(NaturalResources.naturalResource res)
+        {
+            // The original group and the group copy.
+            StatementGroup group = GetGroup(res);
+            StatementGroup groupCopy = null;
+
+            // If the group exists, create a group copy.
+            if(group != null)
+            {
+                groupCopy = group.GenerateGroupCopy();
+            }
+
+            return groupCopy;
+        }
+
+        // Gets the groups as a list.
+        protected List<StatementGroup> GetAllGroups()
+        {
+            // The statement groups.
+            // Put in the same order as their enum in 'NaturalResources' class.
+            List<StatementGroup> groups = new List<StatementGroup>()
+            {
+                biomassGroup,
+                hydroGroup,
+                geothermalGroup,
+                solarGroup,
+                waveGroup,
+                windGroup,
+                coalGroup,
+                oilGroup,
+                naturalGasGroup,
+                nuclearGroup
+            };
+
+            return groups;
+        }
+
+        // Gets the groups copy as a list.
+        protected List<StatementGroup> GetAllGroupsCopy()
+        {
+            // The statement group copy.
+            // Put in the same order as their enum in 'NaturalResources' class.
+            List<StatementGroup> groups = new List<StatementGroup>()
+            {
+                biomassGroup.GenerateGroupCopy(),
+                hydroGroup.GenerateGroupCopy(),
+                geothermalGroup.GenerateGroupCopy(),
+                solarGroup.GenerateGroupCopy(),
+                waveGroup.GenerateGroupCopy(),
+                windGroup.GenerateGroupCopy(),
+                coalGroup.GenerateGroupCopy(),
+                oilGroup.GenerateGroupCopy(),
+                naturalGasGroup.GenerateGroupCopy(),
+                nuclearGroup.GenerateGroupCopy()
+            };
+
+            return groups;
+        }
+
+        // Gets the group data.
+        public StatementGroup.StatementGroupData GetGroupData(NaturalResources.naturalResource res)
+        {
+            // The group data and the group.
+            StatementGroup.StatementGroupData groupData;
+            StatementGroup group = GetGroup(res);
+
+            // If the group is set, get its data.
+            if(group != null)
+            {
+                groupData = group.GenerateStatementGroupData();
+            }
+            // No group, so return null.
+            else
+            {
+                groupData = null;
+            }
+
+            return groupData;
+        }
+
+        // Gets all the group datas.
+        public List<StatementGroup.StatementGroupData> GetAllGroupDatas()
+        {
+            // The statement group datas.
+            List<StatementGroup.StatementGroupData> groupDatas = new List<StatementGroup.StatementGroupData>()
+            {
+                biomassGroup.GenerateStatementGroupData(),
+                hydroGroup.GenerateStatementGroupData(),
+                geothermalGroup.GenerateStatementGroupData(),
+                solarGroup.GenerateStatementGroupData(),
+                waveGroup.GenerateStatementGroupData(),
+                windGroup.GenerateStatementGroupData(),
+                coalGroup.GenerateStatementGroupData(),
+                oilGroup.GenerateStatementGroupData(),
+                naturalGasGroup.GenerateStatementGroupData(),
+                nuclearGroup.GenerateStatementGroupData()
+            };
+
+            return groupDatas;
         }
     }
 }
