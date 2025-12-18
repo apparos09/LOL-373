@@ -74,11 +74,13 @@ namespace RM_EDU
        
         }
 
-        // // Start is called before the first frame update
-        // void Start()
-        // {
-        //     // ...
-        // }
+        // Start is called before the first frame update
+        void Start()
+        {
+            // If defs is not set, try to set it.
+            if(defs == null)
+                defs = SharedState.LanguageDefs;
+        }
 
         // Returns the instance of the accessibility.
         public static LOLManager Instance
@@ -121,6 +123,8 @@ namespace RM_EDU
             return Instantiated && IsLOLSDKInitialized();
         }
 
+        // NOTE: this function could be static, but the game shouldn't be operating if the LOLSDK and LOLManager...
+        // Aren't both instantiated. As such, this is kept as a non-static function.
         // Gets the text from the language file.
         public string GetLanguageText(string key)
         {

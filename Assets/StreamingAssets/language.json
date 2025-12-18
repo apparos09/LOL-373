@@ -30,16 +30,21 @@
       "kwd_bgms": 8,
       "kwd_sfxs": 8,
 
-      "nrs_bms": 16,
-      "nrs_hdo": 16,
-      "nrs_gtl": 16,
-      "nrs_slr": 16,
-      "nrs_wve": 16,
-      "nrs_wnd": 16,
-      "nrs_col": 16,
-      "nrs_ngs": 16,
-      "nrs_nlr": 16,
-      "nrs_oil": 16
+      "kwd_worldStage": 18,
+      "kwd_actionStage": 18,
+      "kwd_knowledgeStage": 18,
+      "kwd_unknownStage": 18,
+
+      "nrs_bms": 18,
+      "nrs_hdo": 18,
+      "nrs_gtl": 18,
+      "nrs_slr": 18,
+      "nrs_wve": 18,
+      "nrs_wnd": 18,
+      "nrs_col": 18,
+      "nrs_ngs": 18,
+      "nrs_nlr": 18,
+      "nrs_oil": 18
     }
   },
   "en": {
@@ -70,6 +75,11 @@
     "mnu_licenses_dsc": "Sourced assets have been modified for use in this game.",
     "kwd_bgms": "BGMs",
     "kwd_sfxs": "SFXs",
+
+    "kwd_worldStage": "World Stage",
+    "kwd_actionStage": "Action Stage",
+    "kwd_knowledgeStage": "Knowledge Stage",
+    "kwd_unknownStage": "Unknown Stage",
 
     "nrs_ukn": "Unknown",
     "nrs_bms": "Biomass",

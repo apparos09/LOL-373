@@ -7,16 +7,19 @@ namespace RM_EDU
     // The world knowledge stage.
     public class WorldKnowledgeStage : WorldStage
     {
+        // [Header("Knowledge")]
+
+
         // Start is called before the first frame update
         protected override void Start()
         {
-
+            base.Start();
         }
 
         // Update is called once per frame
         protected override void Update()
         {
-
+            base.Update();
         }
     }
 }

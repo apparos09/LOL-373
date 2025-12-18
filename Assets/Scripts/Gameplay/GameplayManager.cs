@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using util;
@@ -39,6 +40,9 @@ namespace RM_EDU
 
         // The knowledge scene.
         public string knowledgeScene = "KnowledgeScene";
+
+        // If 'true', the loading screen is enabled.
+        public bool loadingScreenEnabled = true;
 
         // The data logger.
         public DataLogger dataLogger;
@@ -238,6 +242,12 @@ namespace RM_EDU
         }
 
         // SCENES
+        // Loads the scene and cheks the loading screen member variable to see if the loading screen should be used.
+        public virtual void LoadScene(string scene)
+        {
+            LoadScene(scene, loadingScreenEnabled);
+        }
+
         // Loads a scene, which checks if a loading screen should be used.
         public virtual void LoadScene(string scene, bool useLoadingScreen)
         {
@@ -246,10 +256,22 @@ namespace RM_EDU
             // TODO: implement loading screen.
         }
 
+        // Loads the world scene and checks a member function for using the loading screen.
+        public virtual void LoadWorldScene()
+        {
+            LoadScene(worldScene, loadingScreenEnabled);
+        }
+
         // Goes to the world scene.
         public virtual void LoadWorldScene(bool useLoadingScreen)
         {
             LoadScene(worldScene, useLoadingScreen);
+        }
+
+        // Loads the action scene and checks a member function for using the loading screen.
+        public virtual void LoadActionScene()
+        {
+            LoadScene(actionScene, loadingScreenEnabled);
         }
 
         // Goes to the action scene.
@@ -258,7 +280,13 @@ namespace RM_EDU
             LoadScene(actionScene, useLoadingScreen);
         }
 
-        // Goes to the knowledge scene.
+        // Loads the knowledge scene. Uses a loading screen based on a class variable.
+        public virtual void LoadKnowledgeScene()
+        {
+            LoadScene(knowledgeScene, loadingScreenEnabled);
+        }
+
+        // Goes to the knowledge scene and has the user set if the loading screen should be used.
         public virtual void LoadKnowledgeScene(bool useLoadingScreen)
         {
             LoadScene(knowledgeScene, useLoadingScreen);

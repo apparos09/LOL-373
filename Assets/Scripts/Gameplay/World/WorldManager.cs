@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -20,6 +21,14 @@ namespace RM_EDU
         // If 'true', auto saving is enabled.
         private bool autoSave = true;
 
+        [Header("World")]
+
+        // The world UI.
+        public WorldUI worldUI;
+
+        // The areas.
+        public List<WorldArea> areas;
+
         // Awake is called when the script is being loaded
         protected override void Awake()
         {
@@ -30,6 +39,10 @@ namespace RM_EDU
         protected override void Start()
         {
             base.Start();
+
+            // Gets the world UI instance.
+            if (worldUI == null)
+                worldUI = WorldUI.Instance;
         }
 
         // Gets the instance.
@@ -87,6 +100,27 @@ namespace RM_EDU
             set
             {
                 autoSave = value;
+            }
+        }
+
+        // Starts the provided stage.
+        public void StartStage(WorldStage worldStage)
+        {
+            // TODO: create start info.
+
+            // Checks the stage type to see what kind of scene to load.
+            if (worldStage is WorldActionStage)
+            {
+                LoadActionScene();
+            }
+            else if(worldStage is WorldKnowledgeStage)
+            {
+                LoadKnowledgeScene();
+            }
+            else
+            {
+                Debug.LogError("No destination scene could be determined.");
+                return;
             }
         }
 

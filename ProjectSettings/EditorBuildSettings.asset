@@ -14,4 +14,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Debug/DebugScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Debug/DebugActionScene.unity
+    guid: e55e9fd5e374b3c4f88cf51fdffe0566
+  - enabled: 1
+    path: Assets/Scenes/Debug/DebugKnowledgeScene.unity
+    guid: b20de5327e9b4634a91fff9b4830f83d
+  - enabled: 1
+    path: Assets/Scenes/Debug/DebugWorldScene.unity
+    guid: 0930a4714b4250b4fb4418c7b3647740
   m_configObjects: {}

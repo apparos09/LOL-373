@@ -16,8 +16,11 @@ namespace RM_EDU
 
         [Header("World")]
 
-        // The areas.
-        public List<WorldArea> areas;
+        // The world manager.
+        public WorldManager worldManager;
+
+        // The stage prompt.
+        public WorldStagePrompt stagePrompt;
 
 
         // Awake is called when the script is being loaded
@@ -48,6 +51,18 @@ namespace RM_EDU
         protected override void Start()
         {
             base.Start();
+
+            // Gets the world manager instance.
+            if(worldManager == null)
+            {
+                worldManager = WorldManager.Instance;
+            }
+
+            // Turn off the stage prompt.
+            if(stagePrompt != null)
+            {
+                stagePrompt.gameObject.SetActive(false);
+            }
         }
 
         // Gets the instance.
@@ -83,6 +98,20 @@ namespace RM_EDU
             {
                 return instanced;
             }
+        }
+
+        // TODO: expand on these functions.
+        // Opens the stage prompt.
+        public void OpenStagePrompt(WorldStage worldStage)
+        {
+            stagePrompt.SetWorldStage(worldStage);
+            stagePrompt.gameObject.SetActive(true);
+        }
+
+        // Closes the stage prompt.
+        public void CloseStagePrompt()
+        {
+            stagePrompt.gameObject.SetActive(false);
         }
 
         // Update is called once per frame
