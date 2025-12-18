@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
 using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -31,11 +32,11 @@ namespace RM_EDU
         // The selected knowledge resource.
         public KnowledgeResource selectedResource = null;
 
+        // The knowledge statement list.
+        public KnowledgeStatementList knowledgeStatementList;
+
         // The statement groups that the knowledge stages pulls from.
         public List<KnowledgeStatementList.StatementGroup> statementGroups = new List<KnowledgeStatementList.StatementGroup>();
-
-        // The list of used statements.
-        private List<KnowledgeStatementList.Statement> usedStatements = new List<KnowledgeStatementList.Statement>();
 
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
@@ -91,6 +92,11 @@ namespace RM_EDU
             {
                 knowledgeUI = KnowledgeUI.Instance;
             }
+
+            // If the knowledge statement list is not set, try to get the instance.
+            // This also instantiates the object if it hasn't been instantiated already.
+            if (knowledgeStatementList == null)
+                knowledgeStatementList = KnowledgeStatementList.Instance;
 
             // Tries to find the start info. The object must be active for it to be gotten.
             KnowledgeStageStartInfo startInfo = FindObjectOfType<KnowledgeStageStartInfo>(false);
@@ -149,55 +155,43 @@ namespace RM_EDU
         public void InitializeKnowledgeStage()
         {
             // The number of statements to use.
-            int statmentCount = 0;
+            int statementCount = 0;
+
+            // The base number of statements used.
+            int baseStatementCount = 0;
 
             // Determines the statement count by the difficulty.
             switch(difficulty)
             {
                 default:
                 case 0:
-                    statmentCount = knowledgeUI.statements.Count;
+                    baseStatementCount = knowledgeUI.statements.Count;
                     break;
 
                 case 1:
                 case 2:
                 case 3:
-                    statmentCount = 3;
+                    baseStatementCount = 3;
                     break;
 
                 case 4:
                 case 5:
                 case 6:
-                    statmentCount = 4;
+                    baseStatementCount = 4;
                     break;
 
                 case 7:
                 case 8:
                 case 9:
-                    statmentCount = knowledgeUI.statements.Count;
+                    baseStatementCount = knowledgeUI.statements.Count;
                     break;
             }
 
-            // TODO: maybe initialize the natural resources first, then the statements...
-            // So that you can make sure there are never any more statements than there are resources...
-            // Even if such a case should never be encountered.
+            // Set the base statement count to the statement count.
+            statementCount = baseStatementCount;
 
-            // Enables the statements that will be used.
-            for(int i = 0; i < knowledgeUI.statements.Count; i++)
-            {
-                // If the statement will be used, enable it.
-                // If it won't be used, disable it.
-                if(i < statmentCount)
-                {
-                    knowledgeUI.statements[i].gameObject.SetActive(true);
-                    knowledgeUI.statements[i].matchText.text = (i + 1).ToString();
-                }
-                else
-                {
-                    knowledgeUI.statements[i].gameObject.SetActive(false);
-                    knowledgeUI.statements[i].matchText.text = "0";
-                }
-            }
+            // NOTE: the statements used to set here. They have been moved after...
+            // The resource setting so that there won't be more statements than there are resources.
 
             // If there are no natural resources in a list, get a list of all of them.
             if (naturalResources.Count == 0)
@@ -233,6 +227,9 @@ namespace RM_EDU
                 }
             }
 
+            // Counts the amount of resources that will be used.
+            int resourceCount = 0;
+
             // Applies the natural resources to the buttons.
             // If there are more resources than there are buttons, the remaining resources in the list are unused.
             for (int i = 0; i < knowledgeUI.resources.Count; i++)
@@ -243,11 +240,40 @@ namespace RM_EDU
                     // Sets the resource of the button.
                     knowledgeUI.resources[i].gameObject.SetActive(true);
                     knowledgeUI.resources[i].SetResource(naturalResources[i]);
+                    resourceCount++;
                 }
                 else
                 {
                     // The button won't be used, so turn it off.
                     knowledgeUI.resources[i].gameObject.SetActive(false);
+                }
+            }
+
+            // If the statement count is greater than the reosurce count...
+            // Make the statement count match the resource count.
+            if(statementCount > resourceCount)
+            {
+                statementCount = resourceCount;
+            }
+
+            
+            // So that you can make sure there are never any more statements than there are resources...
+            // Even if such a case should never be encountered.
+
+            // Enables the statements that will be used.
+            for(int i = 0; i < knowledgeUI.statements.Count; i++)
+            {
+                // If the statement will be used, enable it.
+                // If it won't be used, disable it.
+                if(i < statementCount)
+                {
+                    knowledgeUI.statements[i].gameObject.SetActive(true);
+                    knowledgeUI.statements[i].matchText.text = (i + 1).ToString();
+                }
+                else
+                {
+                    knowledgeUI.statements[i].gameObject.SetActive(false);
+                    knowledgeUI.statements[i].matchText.text = "0";
                 }
             }
 
@@ -259,8 +285,12 @@ namespace RM_EDU
             // Get the needed statement groups.
             foreach(KnowledgeResource resource in knowledgeUI.resources)
             {
-                // Adds the group to the list.
-                statementGroups.Add(ksl.GetGroupCopy(resource.resource));
+                // Adds the group to the list if its button is active and enabled.
+                // If the button is active and enabled, it means the button will be used.
+                if(resource.isActiveAndEnabled)
+                {
+                    statementGroups.Add(ksl.GetGroupCopy(resource.resource));
+                }
             }
 
             // Randomizes the order of statements in the groups.
@@ -556,6 +586,10 @@ namespace RM_EDU
                 // Also saves all statements that were matched correctly in the data logger.
                 foreach (KnowledgeStatement statement in knowledgeUI.statements)
                 {
+                    // If the statement isn't active and enabled, move onto the next stagement.
+                    if (!statement.isActiveAndEnabled)
+                        continue;
+
                     statement.button.interactable = false;
 
                     // Adds the statement to the matched statements list in the data logger so that the player...
@@ -678,16 +712,34 @@ namespace RM_EDU
         }
 
 
-        // Finishes the stage.
+        // Finishes the stage. Only call this if the stage is complete.
         public void FinishStage()
         {
-            // TODO: implement.
-        }
+            // If the data logger should be used.
+            if(useDataLogger)
+            {
+                // Gets the instance.
+                if (dataLogger == null)
+                    dataLogger = DataLogger.Instance;
 
-        // Goes to the world scene.
-        public void LoadWorldScene()
-        {
-            base.LoadWorldScene(false);
+                // Saves all the statements to the data logger.
+                foreach (KnowledgeStatement statement in knowledgeUI.statements)
+                {
+                    // If the statement is active and enabled.
+                    if(statement.isActiveAndEnabled)
+                    {
+                        // If the statement isn't null, save it as a used statement since the stage is finished.
+                        if(statement.Statement != null)
+                        {
+                            // Generate the statement data.
+                            dataLogger.matchedStatementDatas.Add(statement.Statement.GenerateStatementData());
+                        }
+                    }
+                }
+            }
+
+            // Loads the world scene.
+            LoadWorldScene();
         }
 
         // Update is called once per frame

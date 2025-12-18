@@ -14,7 +14,7 @@ namespace RM_EDU
         public WorldManager worldManager;
 
         // The natural resources the stage uses.
-        public List<NaturalResources.naturalResource> resources = new List<NaturalResources.naturalResource>();
+        public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
         // The stage's difficulty.
         public int difficulty = 0;

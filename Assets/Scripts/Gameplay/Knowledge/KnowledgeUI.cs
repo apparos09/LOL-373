@@ -143,12 +143,6 @@ namespace RM_EDU
             knowledgeManager.FinishStage();
         }
 
-        // Goes to the world scene.
-        public void LoadWorldScene()
-        {
-            knowledgeManager.LoadWorldScene();
-        }
-
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()
         {

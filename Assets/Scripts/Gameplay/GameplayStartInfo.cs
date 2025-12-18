@@ -13,16 +13,15 @@ namespace RM_EDU
         // The difficulty, which goes from 1-9. A difficulty of (0) is the default value.
         public int difficulty = 0;
 
-        // Awake is called when the script is being loaded
-        void Awake()
+        // Sets the start info using the provided world stage.
+        public virtual void SetStartInfo(WorldStage worldStage)
         {
-            // ...
-        }
+            // Set the difficulty.
+            difficulty = worldStage.difficulty;
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
+            // Set the resources.
+            naturalResources.Clear();
+            naturalResources.AddRange(worldStage.naturalResources);
         }
 
         // Applies the start info to the provided manager.

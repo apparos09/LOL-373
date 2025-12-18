@@ -113,10 +113,28 @@ namespace RM_EDU
             tutorialUI.textBox.OnTextBoxClosedRemoveCallback(manager.OnTutorialEnd);
         }
 
+        // Goes to the world scene.
+        public void LoadWorldScene()
+        {
+            gameManager.LoadWorldScene();
+        }
+
+        // Goes to the action scene.
+        public void LoadActionScene()
+        {
+            gameManager.LoadActionScene();
+        }
+
+        // Goes to the knowledge scene.
+        public void LoadKnowledgeScene()
+        {
+            gameManager.LoadKnowledgeScene();
+        }
+
         // Update is called once per frame
         protected virtual void Update()
         {
-
+            // ...
         }
     }
 }

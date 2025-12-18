@@ -18,6 +18,20 @@ namespace RM_EDU
 
         }
 
+        // Sets the start info from the provided stage.
+        public override void SetStartInfo(WorldStage worldStage)
+        {
+            // If the world stage is not a knowledge stage, do nothing.
+            if (worldStage is not WorldKnowledgeStage)
+                return;
+
+            // Calls the base function.
+            base.SetStartInfo(worldStage);
+
+            // Convert to a knowledge stage.
+            WorldKnowledgeStage knowledgeStage = (WorldKnowledgeStage)worldStage;
+        }
+
         // Applies the start info to the provided manager.
         public override void ApplyStartInfo(GameplayManager manager)
         {
@@ -34,5 +48,6 @@ namespace RM_EDU
             // Sets the difficulty.
             knowledgeManager.difficulty = difficulty;
         }
+
     }
 }

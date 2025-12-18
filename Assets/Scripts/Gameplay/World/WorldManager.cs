@@ -115,6 +115,17 @@ namespace RM_EDU
             }
             else if(worldStage is WorldKnowledgeStage)
             {
+                // Creates a temporary object and add the knowledge stage start info.
+                GameObject tempObject = new GameObject("Knowledge Stage Start Info");
+                KnowledgeStageStartInfo kssi = tempObject.AddComponent<KnowledgeStageStartInfo>();
+
+                // Sets the start info.
+                kssi.SetStartInfo(worldStage);
+
+                // Don't destroy the temporary object. It will be destroyed in the action scene.
+                DontDestroyOnLoad(tempObject);
+
+                // Load the scene.
                 LoadKnowledgeScene();
             }
             else

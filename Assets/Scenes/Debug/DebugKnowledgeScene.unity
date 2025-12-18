@@ -157,14 +157,19 @@ MonoBehaviour:
   gameScore: 0
   mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
-  worldScene: WorldScene
-  actionScene: ActionScene
-  knowledgeScene: KnowledgeScene
+  worldScene: DebugWorldScene
+  actionScene: DebugActionScene
+  knowledgeScene: DebugKnowledgeScene
+  loadingScreenEnabled: 1
+  dataLogger: {fileID: 0}
+  useDataLogger: 1
   knowledgeUI: {fileID: 0}
   selectedStatement: {fileID: 0}
   selectedResource: {fileID: 0}
+  knowledgeStatementList: {fileID: 0}
   naturalResources: 
   randomResourcesOrder: 1
+  randomizeStatementsOnFail: 1
   difficulty: 0
 --- !u!4 &812242767
 Transform:
