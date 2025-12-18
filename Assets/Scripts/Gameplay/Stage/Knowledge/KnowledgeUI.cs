@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace RM_EDU
 {
     // The UI for the knowledge stage.
-    public class KnowledgeUI : GameplayUI
+    public class KnowledgeUI : StageUI
     {
         // The singleton instance.
         private static KnowledgeUI instance;

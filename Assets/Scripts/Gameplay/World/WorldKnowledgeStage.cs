@@ -16,6 +16,12 @@ namespace RM_EDU
             base.Start();
         }
 
+        // Gets the stage type.
+        public override stageType GetStageType()
+        {
+            return stageType.knowledge;
+        }
+
         // Update is called once per frame
         protected override void Update()
         {

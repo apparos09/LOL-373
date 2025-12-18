@@ -65,7 +65,20 @@ namespace RM_EDU
 
             // If the data logger isn't set, get the instance.
             if (dataLogger == null)
+            {
+                // Checks if the data logger is already instantiated.
+                bool alreadyInstantiated = DataLogger.Instantiated;
+
+                // Grabs the instance.
                 dataLogger = DataLogger.Instance;
+
+                // If the object wasn't already instanted, set it to not being destroyed on load.
+                if(!alreadyInstantiated)
+                {
+                    // If the data logger wasn't already instantiated, set it to not be destroyed on load.
+                    DontDestroyOnLoad(dataLogger.gameObject);
+                }
+            }
 
             // TODO: add in when tutorial is created.
             // Sets the tutorials object.

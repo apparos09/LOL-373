@@ -7,6 +7,29 @@ namespace RM_EDU
     // The world stage.
     public abstract class WorldStage : MonoBehaviour
     {
+        // The world stage data.
+        [SerializeField]
+        public class WorldStageData
+        {
+            // The world index of the stage.
+            public int worldStageIndex = -1;
+
+            // The id number of the stage.
+            public int idNumber = 0;
+
+            // The stage type.
+            public stageType stageType;
+
+            // The stage score.
+            public float score = 0;
+
+            // Marks if the stage is complete.
+            public bool complete = false;
+        }
+
+        // Enum for the world stage type.
+        public enum stageType { unknown, action, knowledge };
+
         // The collider for the world stage.
         public new Collider2D collider;
 
@@ -16,8 +39,17 @@ namespace RM_EDU
         // The natural resources the stage uses.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
+        // The stage's ID number.
+        public int idNumber = 0;
+
         // The stage's difficulty.
         public int difficulty = 0;
+
+        // The score for this stage.
+        public int score = 0;
+
+        // Marker for if the stage is complete.
+        public bool complete = false;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -38,17 +70,46 @@ namespace RM_EDU
         }
 
         // TODO: add function to check when the object is enabled to refersh text.
-
-        // Returns 'true' if this is an action stage.
-        public bool IsActionStage()
+        // Returns the index of this stage in the world manager. If -1 is returned, it's not in the world manager stage list.
+        public int GetWorldStageIndex()
         {
-            return this is WorldActionStage;
+            return worldManager.GetWorldStageIndex(this);
         }
 
-        // Returns 'true' if this is a knowledge stage.
-        public bool IsKnowledgeStage()
+        // Gets the stage type.
+        public virtual stageType GetStageType()
         {
-            return this is WorldKnowledgeStage;
+            return stageType.unknown;
+        }
+
+        // Generates the data.
+        public WorldStageData GenerateWorldStageData()
+        {
+            // 
+            WorldStageData data = new WorldStageData();
+
+            data.worldStageIndex = GetWorldStageIndex();
+            data.idNumber = idNumber;
+            data.stageType = GetStageType();
+            data.score = score;
+            data.complete = complete;
+
+            return data;
+        }
+
+        // Applies world stage data.
+        public void ApplyWorldStageData(WorldStageData data)
+        {
+            // If the world index, id number, or stage type don't match, display a message.
+            if(data.worldStageIndex != GetWorldStageIndex() || idNumber != data.idNumber || data.stageType != GetStageType())
+            {
+                Debug.LogAssertion("The ID number or id number don't match. Id number changed to match data.");
+            }
+            
+            // Set the values.
+            idNumber = data.idNumber;
+            data.score = score;
+            data.complete = complete;
         }
 
         // Update is called once per frame

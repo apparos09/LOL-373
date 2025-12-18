@@ -21,9 +21,10 @@ namespace RM_EDU
         // If 'true', the timer should be running.
         public bool runGameTimer = true;
 
-        // [Header("World")]
-        // 
-        // 
+        [Header("World")]
+        // The world stage data. The index of the array matches up with the index in the world stage list.
+        public WorldStage.WorldStageData[] worldStageDatas = new WorldStage.WorldStageData[WorldManager.STAGE_COUNT];
+         
         // 
         // [Header("Action")]
         // 

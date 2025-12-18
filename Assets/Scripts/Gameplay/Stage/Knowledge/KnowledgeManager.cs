@@ -1,8 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Text.RegularExpressions;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -12,7 +9,7 @@ using util;
 namespace RM_EDU
 {
     // The knowledge manager.
-    public class KnowledgeManager : GameplayManager
+    public class KnowledgeManager : StageManager
     {
         // The singleton instance.
         private static KnowledgeManager instance;
@@ -38,9 +35,6 @@ namespace RM_EDU
         // The statement groups that the knowledge stages pulls from.
         public List<KnowledgeStatementList.StatementGroup> statementGroups = new List<KnowledgeStatementList.StatementGroup>();
 
-        // The natural resources that will be used.
-        public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
-
         // If 'true', random natural resources from the list are selected.
         [Tooltip("Selects random natural resources from the list when initializing buttons instead of going in list order if true.")]
         public bool randomResourcesOrder = true;
@@ -48,9 +42,6 @@ namespace RM_EDU
         // If 'true', the statements are randomized if a match failed.
         [Tooltip("Randomizes a statement if a match failed.")]
         public bool randomizeStatementsOnFail = true;
-
-        // The difficulty of the stage.
-        public int difficulty = 0;
 
         // Constructor
         private KnowledgeManager()

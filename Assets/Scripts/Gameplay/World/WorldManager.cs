@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -27,7 +28,10 @@ namespace RM_EDU
         public WorldUI worldUI;
 
         // The areas.
-        public List<WorldArea> areas;
+        public List<WorldArea> areas = new List<WorldArea>();
+
+        // The world stages.
+        public List<WorldStage> stages = new List<WorldStage>();
 
         // Awake is called when the script is being loaded
         protected override void Awake()
@@ -43,6 +47,20 @@ namespace RM_EDU
             // Gets the world UI instance.
             if (worldUI == null)
                 worldUI = WorldUI.Instance;
+
+            // Finds all the stages in the scene if the list has none.
+            if (areas.Count <= 0)
+            {
+                areas.Clear();
+                areas.AddRange(FindObjectsOfType<WorldArea>());
+            }
+
+            // Finds all the stages in the scene if the list has none.
+            if(stages.Count <= 0)
+            {
+                stages.Clear();
+                stages.AddRange(FindObjectsOfType<WorldStage>());
+            }
         }
 
         // Gets the instance.
@@ -135,6 +153,22 @@ namespace RM_EDU
             }
         }
 
+        // Gets the index of the stage in the manager's list. Returns "-1" if not in list.
+        public int GetWorldStageIndex(WorldStage worldStage)
+        {
+            // Checks if in list.
+            if(stages.Contains(worldStage))
+            {
+                return stages.IndexOf(worldStage);
+            }
+            // Not in list.
+            else
+            {
+                return -1;
+            }
+        }
+
+        // SAVE/LOAD
         // Saves the data for the game.
         public bool SaveGame()
         {
@@ -144,6 +178,13 @@ namespace RM_EDU
 
         // Loads data, and return a 'bool' to show it was successful.
         public bool LoadGame()
+        {
+            // TODO: implement.
+            return false;
+        }
+
+        // Checks if the game is complete.
+        public bool IsGameComplete()
         {
             // TODO: implement.
             return false;
