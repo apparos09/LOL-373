@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RM_EDU
 {
     // The start info for the knowledge stage.
-    public class KnowledgeStageStartInfo : GameplayStartInfo
+    public class KnowledgeStageStartInfo : StageStartInfo
     {
         [Header("Knowledge")]
 
@@ -39,14 +39,11 @@ namespace RM_EDU
             if(manager is not KnowledgeManager)
                 return;
 
+            // Apply the start info.
+            base.ApplyStartInfo(manager);
+
             // Gets the knowledge manager.
             KnowledgeManager knowledgeManager = (KnowledgeManager)manager;
-
-            // Gives it the natural resources.
-            knowledgeManager.naturalResources = naturalResources;
-
-            // Sets the difficulty.
-            knowledgeManager.difficulty = difficulty;
         }
 
     }

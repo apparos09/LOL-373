@@ -24,29 +24,6 @@ namespace RM_EDU
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
-        // // Awake is called when the script is being loaded
-        // protected override void Awake()
-        // {
-        //     base.Awake();
-        // }
-        // 
-        // // Start is called before the first frame update
-        // protected override void Start()
-        // {
-        //     base.Start();
-        // }
-        // 
-        // // Update is called once per frame
-        // protected override void Update()
-        // {
-        //     base.Update();
-        // }
-        // 
-        // protected override void OnDestroy()
-        // {
-        //     base.OnDestroy();
-        // }
-
         // Gets the stage type.
         public WorldStage.stageType GetStageType()
         {
@@ -64,6 +41,18 @@ namespace RM_EDU
                 return WorldStage.stageType.unknown;
             }
         }
+
+        // Returns the stage score.
+        public float GetStageScore()
+        {
+            return gameScore;
+        }
+
+        // Returns 'true' if the stage is complete.
+        public abstract bool IsComplete();
+
+        // Finishes the stage.
+        public abstract void FinishStage();
 
         // Generates the stage data.
         public WorldStage.WorldStageData GenerateStageData(bool complete)

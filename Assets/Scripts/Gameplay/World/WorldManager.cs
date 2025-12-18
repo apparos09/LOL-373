@@ -61,6 +61,9 @@ namespace RM_EDU
                 stages.Clear();
                 stages.AddRange(FindObjectsOfType<WorldStage>());
             }
+
+            // Initializes the world.
+            InitializeWorld();
         }
 
         // Gets the instance.
@@ -99,6 +102,25 @@ namespace RM_EDU
             }
         }
 
+        // Initializes the world.
+        public void InitializeWorld()
+        {
+            // Tries to find the start info.
+            WorldStartInfo startInfo = FindObjectOfType<WorldStartInfo>();
+
+            // If start info was found, apply the data and destroy the info object.
+            if (startInfo != null)
+            {
+                // Apply the start info.
+                startInfo.ApplyStartInfo(this);
+
+                // Destroy the start info.
+                Destroy(startInfo.gameObject);
+            }
+
+            // TODO: add a variable that shows that initialization took place.
+        }
+
         // SAVING/LOADING
         // Generates the save data for the game.
         public EDU_GameData GenerateSaveData()
@@ -118,6 +140,36 @@ namespace RM_EDU
             set
             {
                 autoSave = value;
+            }
+        }
+
+        // Gets a world stage by its index.
+        public WorldStage GetWorldStage(int index)
+        {
+            // If the index is greater than 0 and less than the stage count...
+            // Get the stage from the list.
+            if(index >= 0 && index < stages.Count)
+            {
+                return stages[index];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        // Gets the index of the stage in the manager's list. Returns "-1" if not in list.
+        public int GetWorldStageIndex(WorldStage worldStage)
+        {
+            // Checks if in list.
+            if (stages.Contains(worldStage))
+            {
+                return stages.IndexOf(worldStage);
+            }
+            // Not in list.
+            else
+            {
+                return -1;
             }
         }
 
@@ -150,21 +202,6 @@ namespace RM_EDU
             {
                 Debug.LogError("No destination scene could be determined.");
                 return;
-            }
-        }
-
-        // Gets the index of the stage in the manager's list. Returns "-1" if not in list.
-        public int GetWorldStageIndex(WorldStage worldStage)
-        {
-            // Checks if in list.
-            if(stages.Contains(worldStage))
-            {
-                return stages.IndexOf(worldStage);
-            }
-            // Not in list.
-            else
-            {
-                return -1;
             }
         }
 

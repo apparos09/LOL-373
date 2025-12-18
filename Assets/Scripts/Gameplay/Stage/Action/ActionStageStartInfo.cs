@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RM_EDU
 {
     // The action stage start info.
-    public class ActionStageStartInfo : GameplayStartInfo
+    public class ActionStageStartInfo : StageStartInfo
     {
         // Sets the start info using the provided world stage.
         public override void SetStartInfo(WorldStage worldStage)
@@ -18,7 +18,7 @@ namespace RM_EDU
             base.SetStartInfo(worldStage);
 
             // Convert to a action stage.
-            WorldActionStage knowledgeStage = (WorldActionStage)worldStage;
+            WorldActionStage actionStage = (WorldActionStage)worldStage;
         }
 
         // Applies the start info.

@@ -703,8 +703,15 @@ namespace RM_EDU
         }
 
 
+        // Returns 'true' if the stage is complete.
+        public override bool IsComplete()
+        {
+            // TODO: implement
+            return false;
+        }
+
         // Finishes the stage. Only call this if the stage is complete.
-        public void FinishStage()
+        public override void FinishStage()
         {
             // If the data logger should be used.
             if(useDataLogger)
@@ -728,6 +735,16 @@ namespace RM_EDU
                     }
                 }
             }
+
+            // Creates a start info object.
+            GameObject temp = new GameObject("World Start Info");
+            WorldStartInfo startInfo = temp.AddComponent<WorldStartInfo>();
+
+            // Applies the start info.
+            startInfo.SetStartInfo(this);
+
+            // Don't destroy the start info object.
+            DontDestroyOnLoad(startInfo.gameObject);
 
             // Loads the world scene.
             LoadWorldScene();

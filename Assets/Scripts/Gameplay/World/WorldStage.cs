@@ -46,7 +46,7 @@ namespace RM_EDU
         public int difficulty = 0;
 
         // The score for this stage.
-        public int score = 0;
+        public float score = 0;
 
         // Marker for if the stage is complete.
         public bool complete = false;

@@ -18,5 +18,18 @@ namespace RM_EDU
         // {
         //     
         // }
+
+        // Returns 'true' if the stage is complete.
+        public override bool IsComplete()
+        {
+            // TODO: implement
+            return false;
+        }
+
+        // Called to finish the stage. TODO: implement.
+        public override void FinishStage()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
