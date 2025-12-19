@@ -18,6 +18,9 @@ namespace RM_EDU
         // The game time. The data logger tracks how long the game has been going.
         public float gameTimer = 0.0F;
 
+        // The score for the entire game.
+        public float gameScore = 0.0F;
+
         // If 'true', the timer should be running.
         public bool runGameTimer = true;
 

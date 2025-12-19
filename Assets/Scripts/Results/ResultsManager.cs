@@ -70,6 +70,12 @@ namespace RM_EDU
             //     Destroy(data.gameObject);
             // }
 
+            // If this isn't set, get the instance.
+            if(resultsUI == null)
+            {
+                resultsUI = ResultsUI.Instance;
+            }
+
             // TODO: get data from data logger and then destroy it.
 
             // TODO: maybe move this to another function, or destroy the data logger once you get the data from it.
@@ -122,24 +128,44 @@ namespace RM_EDU
         //     resultsUI.ApplyResultsData(data);
         // }
         // 
-        // // Goes to the title scene.
-        // public void ToTitleScene()
-        // {
-        //     // If the loading screen is being used.
-        //     if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
-        //     {
-        //         LoadingScreenCanvas.Instance.LoadScene(titleScene);
-        //     }
-        //     else
-        //     {
-        //         SceneManager.LoadScene(titleScene);
-        //     }
-        // }
+        // Goes to the title scene.
+        public void ToTitleScene()
+        {
+            // If the loading scene canvas exists, see if the loading graphic should be used.
+            if(LoadingSceneCanvas.Instantiated)
+            {
+                // If the loading screen is being used.
+                if (LoadingSceneCanvas.Instance.IsUsingLoadingGraphic())
+                {
+                    LoadingSceneCanvas.Instance.LoadScene(titleScene);
+                }
+                else
+                {
+                    SceneManager.LoadScene(titleScene);
+                }
+            }
+            // No loading screen, so load the screen
+            else
+            {
+                SceneManager.LoadScene(titleScene);
+            }
+            
+        }
 
         // Update is called once per frame
         void Update()
         {
 
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected virtual void OnDestroy()
+        {
+            // If the saved instance is being deleted, set 'instanced' to false.
+            if (instance == this)
+            {
+                instanced = false;
+            }
         }
     }
 }

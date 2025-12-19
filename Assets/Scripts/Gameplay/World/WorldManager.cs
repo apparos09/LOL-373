@@ -118,6 +118,24 @@ namespace RM_EDU
                 Destroy(startInfo.gameObject);
             }
 
+            // If the data logger exists.
+            if(dataLogger != null)
+            {
+                // Reset.
+                dataLogger.gameScore = 0;
+
+                // Goes through all stages.
+                for (int i = 0; i < stages.Count; i++)
+                {
+                    // Stage exists.
+                    if(stages[i] != null)
+                    {
+                        // Adds the score to the data logger.
+                        dataLogger.gameScore += stages[i].score;
+                    }
+                }
+            }
+            
             // TODO: add a variable that shows that initialization took place.
         }
 

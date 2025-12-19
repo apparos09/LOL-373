@@ -42,6 +42,12 @@ namespace RM_EDU
             }
         }
 
+        // Returns the stage time.
+        public virtual float GetStageTime()
+        {
+            return gameTimer;
+        }
+
         // Returns the stage score.
         public virtual float GetStageScore()
         {
@@ -53,7 +59,16 @@ namespace RM_EDU
         public abstract bool IsComplete();
 
         // Finishes the stage.
-        public abstract void FinishStage();
+        public virtual void FinishStage()
+        {
+            // Reset the game time scale to make sure it's 1.00.
+            ResetGameTimeScale();
+
+            // TODO: maybe have the stage timer be seperate from the game timer?
+
+            // Stop running the game timer so that the time is measured accurately.
+            PauseGameTimer();
+        }
 
         // Generates the stage data.
         public WorldStage.WorldStageData GenerateStageData(bool complete)

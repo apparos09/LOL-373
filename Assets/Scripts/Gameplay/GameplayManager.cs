@@ -20,10 +20,16 @@ namespace RM_EDU
         // The timer for the game.
         public float gameTimer = 0;
 
+        // If 'true', the game run timer is run.
+        // This is seperate from the "pause" function so that time scale is uneffected.
+        [Tooltip("If true, the game timer is running. Stopping the game timer from running doesn't change the time scale.")]
+        public bool runGameTimer = true;
+
         // The game score.
         public float gameScore = 0;
 
         // Pauses the timer if true.
+        [Tooltip("If true, the game is paused, which changes the time scale to 0.")]
         private bool gamePaused = false;
 
         // The mouse touch object.
@@ -132,6 +138,36 @@ namespace RM_EDU
         public bool IsGameTimeScaleNormal()
         {
             return gameTimeScale == 1.0F;
+        }
+
+        // Returns 'true' if the game timer is running.
+        public bool IsGameTimerRunning()
+        {
+            return runGameTimer;
+        }
+
+        // Set if the game timer should be running.
+        public void SetGameTimerRunning(bool running)
+        {
+            runGameTimer = running;
+        }
+
+        // Pauses the game timer.
+        public void PauseGameTimer()
+        {
+            SetGameTimerRunning(false);
+        }
+
+        // Unpauses the game timer.
+        public void UnpauseGameTimer()
+        {
+            SetGameTimerRunning(true);
+        }
+
+        // Toggle the game timer running.
+        public void ToggleGameTimerRunning()
+        {
+            runGameTimer = !runGameTimer;
         }
 
         // Returns 'true' if the game is paused.
@@ -325,7 +361,7 @@ namespace RM_EDU
         protected virtual void Update()
         {
             // The game isn't paused, add to the game time.
-            if (!IsGamePaused())
+            if (runGameTimer && !IsGamePaused())
             {
                 gameTimer += Time.unscaledDeltaTime;
             }

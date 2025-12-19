@@ -605,6 +605,13 @@ namespace RM_EDU
                 }
 
                 knowledgeUI.finishButton.interactable = true;
+
+                // Pause the stage timer since the stage is finished.
+                PauseGameTimer();
+
+                // Calculates and sets the game score.
+                // TODO: move this function call to a more appropriate place.
+                CalculateAndSetGameScore();
             }
             // Not all matching.
             else
@@ -707,7 +714,7 @@ namespace RM_EDU
         {
             // TODO: you'll likely change the way this is calculated later.
             // Calculates the stage score and sets it.
-            gameScore = CalculateStageScore();
+            CalculateAndSetGameScore();
 
             // Returns the game score.
             return gameScore;
@@ -736,6 +743,12 @@ namespace RM_EDU
             // TODO: expand.
 
             return localScore;
+        }
+
+        // Calculates and sets the game score.
+        public void CalculateAndSetGameScore()
+        {
+            gameScore = CalculateStageScore();
         }
 
         // Returns 'true' if the stage is complete.
@@ -767,6 +780,8 @@ namespace RM_EDU
         // Finishes the stage. Only call this if the stage is complete.
         public override void FinishStage()
         {
+            base.FinishStage();
+
             // If the data logger should be used.
             if(useDataLogger)
             {

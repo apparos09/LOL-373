@@ -20,6 +20,9 @@ namespace RM_EDU
             // The stage type.
             public stageType stageType;
 
+            // The amount of time the stage took (in seconds).
+            public float time = 0;
+
             // The stage score.
             public float score = 0;
 
@@ -44,6 +47,9 @@ namespace RM_EDU
 
         // The stage's difficulty.
         public int difficulty = 0;
+
+        // The time the stage took (in seconds).
+        public float time = 0;
 
         // The score for this stage.
         public float score = 0;
@@ -97,6 +103,7 @@ namespace RM_EDU
             data.worldStageIndex = GetWorldStageIndex();
             data.idNumber = idNumber;
             data.stageType = GetStageType();
+            data.time = time;
             data.score = score;
             data.complete = complete;
 
@@ -114,8 +121,9 @@ namespace RM_EDU
             
             // Set the values.
             idNumber = data.idNumber;
-            data.score = score;
-            data.complete = complete;
+            time = data.time;
+            score = data.score;
+            complete = data.complete;
         }
 
         // Update is called once per frame

@@ -21,6 +21,9 @@ namespace RM_EDU
         // The stage type.
         public WorldStage.stageType stageType;
 
+        // The stage time (in seconds0.
+        public float stageTime = 0;
+
         // The score.
         public float stageScore = 0;
 
@@ -46,6 +49,9 @@ namespace RM_EDU
 
                 // Gets the stage type.
                 stageType = stageManager.GetStageType();
+
+                // Gets the stage time.
+                stageTime = stageManager.GetStageTime();
 
                 // Gets the stage score.
                 stageScore = stageManager.GetStageScore();
@@ -77,6 +83,9 @@ namespace RM_EDU
                 // The world stage is set.
                 if(worldStage != null)
                 {
+                    // Sets the stage time.
+                    worldStage.time = stageTime;
+
                     // Give the stage score.
                     worldStage.score = stageScore;
 
