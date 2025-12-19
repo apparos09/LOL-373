@@ -43,8 +43,9 @@ namespace RM_EDU
         }
 
         // Returns the stage score.
-        public float GetStageScore()
+        public virtual float GetStageScore()
         {
+            // Returns the game score.
             return gameScore;
         }
 

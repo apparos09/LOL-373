@@ -41,6 +41,9 @@ namespace RM_EDU
         // The knowledge scene.
         public string knowledgeScene = "KnowledgeScene";
 
+        // The results scene.
+        public string resultsScene = "ResultsScene";
+
         // If 'true', the loading screen is enabled.
         public bool loadingScreenEnabled = true;
 
@@ -303,6 +306,18 @@ namespace RM_EDU
         public virtual void LoadKnowledgeScene(bool useLoadingScreen)
         {
             LoadScene(knowledgeScene, useLoadingScreen);
+        }
+
+        // Loads the results scene.
+        public virtual void LoadResultsScene()
+        {
+            LoadScene(resultsScene, loadingScreenEnabled);
+        }
+
+        // Loads the results scene and uses argument to determine if the loading screen should be used.
+        public virtual void LoadResultsScene(bool useLoadingScreen)
+        {
+            LoadScene(resultsScene, useLoadingScreen);
         }
 
 

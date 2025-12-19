@@ -227,6 +227,15 @@ namespace RM_EDU
             return false;
         }
 
+        // Called when the game has been completed.
+        public void CompleteGame()
+        {
+            // TODO: create results data
+
+            // Go to the results scene.
+            LoadResultsScene();
+        }
+
         // Update is called once per frame
         protected override void Update()
         {

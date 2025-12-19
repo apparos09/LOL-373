@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7919597420100107504, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+      propertyPath: worldStage
+      value: 
+      objectReference: {fileID: 2413287391043541662}
     - target: {fileID: 8628637405587512150, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
       propertyPath: m_Name
       value: World Action Stage Variant
@@ -83,5 +87,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collider: {fileID: 46663796113029244}
-  resources: 
+  worldManager: {fileID: 0}
+  naturalResources: 
+  idNumber: 0
   difficulty: 0
+  score: 0
+  complete: 0

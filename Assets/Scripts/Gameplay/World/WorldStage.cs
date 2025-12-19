@@ -82,6 +82,12 @@ namespace RM_EDU
             return stageType.unknown;
         }
 
+        // Returns 'true' if the stage is complete.
+        public bool IsComplete()
+        {
+            return complete;
+        }
+
         // Generates the data.
         public WorldStageData GenerateWorldStageData()
         {

@@ -702,12 +702,66 @@ namespace RM_EDU
             knowledgeUI.finishButton.interactable = false;
         }
 
+        // Returns the stage score.
+        public override float GetStageScore()
+        {
+            // TODO: you'll likely change the way this is calculated later.
+            // Calculates the stage score and sets it.
+            gameScore = CalculateStageScore();
+
+            // Returns the game score.
+            return gameScore;
+        }
+
+        // Calculates the stage score.
+        public float CalculateStageScore()
+        {
+            // The local score.
+            float localScore = 0.0F;
+
+            // Goes through all the statements.
+            foreach(KnowledgeStatement statement in KnowledgeUI.Instance.statements)
+            {
+                // If the statement is active and enabled.
+                if(statement.isActiveAndEnabled)
+                {
+                    // If the statement is matched correctly, add it to the local score.
+                    if(statement.IsAttachmentMatchedCorrectly())
+                    {
+                        localScore += 50.0F;
+                    }
+                }
+            }
+
+            // TODO: expand.
+
+            return localScore;
+        }
 
         // Returns 'true' if the stage is complete.
         public override bool IsComplete()
         {
-            // TODO: implement
-            return false;
+            // TODO: save the complete status to a variable.
+
+            // Gets set to false if not all matching.
+            bool allMatch = true;
+
+            // Goes through all statements to see if they match.
+            foreach(KnowledgeStatement statement in knowledgeUI.statements)
+            {
+                // If the statement is active and enabled, check it.
+                if(statement.isActiveAndEnabled)
+                {
+                    // If the statement isn't matched correctly, the stage isn't complete.
+                    if(!statement.IsAttachmentMatchedCorrectly())
+                    {
+                        allMatch = false;
+                    }
+                }
+            }
+
+            // Return result.
+            return allMatch;
         }
 
         // Finishes the stage. Only call this if the stage is complete.
