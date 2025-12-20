@@ -84,7 +84,51 @@ namespace RM_EDU
             }
         }
 
-        
+        // Stage maps are 16x7.
+        // The lane blasters are all in the first column, so the usable space for the player is 15x7.
+        // For the tile set, the two digit number determines the tile type, and the letter on the end determines the version used (e.g., "00A").
+        /*
+         * Tileset:
+         *  0: nothing
+         *  1: land
+         *  2: river
+         *  3: sea
+         */
+
+        // Generates and returns an empty stage map.
+        private string[,] GetStageMapEmpty()
+        {
+            // An empty map to use as a base to make other function.
+            string[,] map = new string[,] {
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
+                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+            };
+
+            return map;
+        }
+
+        // Generates and returns the debug stage map.
+        public string[,] GetStageMapDebug()
+        {
+            // A debug stage map.
+            string[,] map = new string[,] {
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
+                { "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" }
+            };
+
+            return map;
+        }
+
 
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()
