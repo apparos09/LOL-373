@@ -14,6 +14,9 @@ namespace RM_EDU
         // This world position is used to change the camera's position.
         public GameObject cameraPos;
 
+        // The sprite for the area.
+        public SpriteRenderer background;
+
         // The stages in the area.
         public List<WorldStage> stages = new List<WorldStage>();
 

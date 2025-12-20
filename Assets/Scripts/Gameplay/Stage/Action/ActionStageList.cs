@@ -4,35 +4,24 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // The action manager.
-    public class ActionManager : StageManager
+    // Holds all the data for the action stage.
+    public class ActionStageList : MonoBehaviour
     {
         // The singleton instance.
-        private static ActionManager instance;
+        private static ActionStageList instance;
 
         // Gets set to 'true' when the singleton has been instanced.
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
-        [Header("Action")]
-
-        // The action UI.
-        public ActionUI actionUI;
-
-        // The action stage list.
-        public ActionStageList actionStageList;
-
-        // The action stage.
-        public ActionStage actionStage;
-
         // Constructor
-        private ActionManager()
+        private ActionStageList()
         {
             // ...
         }
 
         // Awake is called when the script is being loaded
-        protected override void Awake()
+        protected virtual void Awake()
         {
             // If the instance hasn't been set, set it to this object.
             if (instance == null)
@@ -51,36 +40,16 @@ namespace RM_EDU
             {
                 instanced = true;
             }
-
-            base.Awake();
         }
 
         // Start is called before the first frame update
-        protected override void Start()
+        protected virtual void Start()
         {
-            base.Start();
-
-            // If the action UI is not set, find it.
-            if(actionUI == null)
-            {
-                actionUI = ActionUI.Instance;
-            }
-
-            // Gets the action stage list.
-            if(actionStageList == null)
-            {
-                actionStageList = ActionStageList.Instance;
-            }
-
-            // If the action stage is not set.
-            if(actionStage == null)
-            {
-                actionStage = FindObjectOfType<ActionStage>();
-            }
+            // ...
         }
 
         // Gets the instance.
-        public static ActionManager Instance
+        public static ActionStageList Instance
         {
             get
             {
@@ -88,15 +57,15 @@ namespace RM_EDU
                 if (instance == null)
                 {
                     // Tries to find the instance.
-                    instance = FindAnyObjectByType<ActionManager>(FindObjectsInactive.Include);
+                    instance = FindAnyObjectByType<ActionStageList>(FindObjectsInactive.Include);
 
 
                     // The instance doesn't already exist.
                     if (instance == null)
                     {
                         // Generate the instance.
-                        GameObject go = new GameObject("Action Manager (singleton)");
-                        instance = go.AddComponent<ActionManager>();
+                        GameObject go = new GameObject("Action Stage List (singleton)");
+                        instance = go.AddComponent<ActionStageList>();
                     }
 
                 }
@@ -117,36 +86,14 @@ namespace RM_EDU
 
         
 
-        // Returns 'true' if the stage is complete.
-        public override bool IsComplete()
-        {
-            // TODO: implement
-            return false;
-        }
-
-        // Called to finish the stage. TODO: implement.
-        public override void FinishStage()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        // Update is called once per frame
-        protected override void Update()
-        {
-            base.Update();
-        }
-
         // This function is called when the MonoBehaviour will be destroyed.
-        protected override void OnDestroy()
+        protected virtual void OnDestroy()
         {
             // If the saved instance is being deleted, set 'instanced' to false.
             if (instance == this)
             {
                 instanced = false;
             }
-
-            base.OnDestroy();
         }
-
     }
 }
