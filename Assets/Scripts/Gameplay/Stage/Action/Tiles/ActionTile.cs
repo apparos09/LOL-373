@@ -16,17 +16,46 @@ namespace RM_EDU
         // The tile type.
         public actionTile tileType = actionTile.unknown;
 
-        // The sprite renderer.
-        public SpriteRenderer spriteRenderer;
+        // The tile verison.
+        public char tileVersion = 'A';
+
+        [Header("Sprites")]
 
         // The animator.
         public Animator animator;
 
-        // The tile variant.
-        public List<Sprite> tileVersions = new List<Sprite>();
+        // The highlight sprite renderer.
+        [Tooltip("The sprite used to highlight the tile to show if it's usable or not.")]
+        public SpriteRenderer highlightSpriteRenderer;
 
-        // The tile verison.
-        public char tileVersion = 'A';
+        // The overlay sprite renderer.
+        [Tooltip("The sprite used to put things on top of the base sprite.")]
+        public SpriteRenderer overlaySpriteRenderer;
+
+        // The sprite renderer.
+        [Tooltip("The base sprite iamge.")]
+        public SpriteRenderer baseSpriteRenderer;
+
+        // The tile variant.
+        public List<Sprite> tileVersionSprites = new List<Sprite>();
+
+        // The normal and darkened colours are used to create a checkerboard for the game.
+        // The normal tile color.
+        private static Color normalColor = Color.white;
+
+        // The darkened tile color.
+        private static Color darkenedColor = new Color(0.75F, 0.75F, 0.75F);
+
+        // The colour used to show that the tile is usable.
+        private static Color usableColor = Color.yellow;
+
+        // The colour used to show that the tile is unusable.
+        private static Color unusableColor = Color.grey;
+
+        // The alpha of highlights on the tile.
+        private static float highlightAlpha = 0.75F;
+
+        [Header("World")]
 
         // The map position on the tile.
         // This is in map space, so its extents are (0, 0) to the size of the map.
@@ -41,6 +70,10 @@ namespace RM_EDU
             // If the action manager isn't set, make the instance.
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
+
+            // Turn off 
+            highlightSpriteRenderer.gameObject.SetActive(false);
+            overlaySpriteRenderer.gameObject.SetActive(false);
 
         }
 
@@ -63,12 +96,12 @@ namespace RM_EDU
             int index;
 
             // If there is a sprite, see if it's in the tile version list.
-            if (spriteRenderer.sprite != null)
+            if (baseSpriteRenderer.sprite != null)
             {
                 // If the tile is in the list, get the index.
-                if (tileVersions.Contains(spriteRenderer.sprite))
+                if (tileVersionSprites.Contains(baseSpriteRenderer.sprite))
                 {
-                    index = tileVersions.IndexOf(spriteRenderer.sprite);
+                    index = tileVersionSprites.IndexOf(baseSpriteRenderer.sprite);
                 }
                 else
                 {
@@ -82,6 +115,99 @@ namespace RM_EDU
 
             return index;
         }
+
+        // COLOR CHANGES
+
+        // Gets the tile's base color.
+        public Color GetTileBaseColor()
+        {
+            return baseSpriteRenderer.color;
+        }
+
+        // Returns 'true' if the base tile is its normal color.
+        // This checks the base sprite renderer.
+        public bool IsNormalBaseColor()
+        {
+            return baseSpriteRenderer.color == normalColor;
+        }
+
+        // Returns 'true' if the base tile is its darkened color.
+        // This checks the base sprite renderer.
+        public bool IsDarkenedBaseColor()
+        {
+            return baseSpriteRenderer.color == darkenedColor;
+        }
+
+        // Returns the normal color.
+        public static Color NormalColor
+        {
+            get { return normalColor; }
+        }
+
+        // Returns the darkened color.
+        public static Color DarkenedColor
+        {
+            get { return darkenedColor; }
+        }
+
+        // HIGHLIGHT
+
+        // The color used to show that a tile is usable.
+        public static Color UsableColor
+        {
+            get { return usableColor; }
+        }
+
+        // The color used to show that a tile is unusable.
+        public static Color UnusableColor
+        {
+            get { return unusableColor; }
+        }
+
+        // Returns the highlight alpha.
+        public static float HighlightAlpha
+        {
+            get { return highlightAlpha; }
+        }
+
+        // Returns 'true' if the tile is currently highlighted.
+        public bool IsHighlighted()
+        {
+            return highlightSpriteRenderer.gameObject.activeSelf;
+        }
+
+        // Sets if the tile should be highlighted.
+        // The 'usuable' argument determines what the highlight color will be.
+        // If there will be no highlight, the highlight color is white.
+        public void SetHighlighted(bool highlighted, bool usable)
+        {
+            // The new color.
+            Color newColor;
+
+            // Checks if the highlight will be turned on or off.
+            if (highlighted)
+            {
+                newColor = usable ? UsableColor : UnusableColor;
+            }
+            else
+            {
+                // The tile won't be highlighted, so just make it white.
+                newColor = Color.white;
+            }
+
+
+            // Change the alpha value.
+            newColor.a = highlightAlpha;
+
+            // Sets the new color.
+            highlightSpriteRenderer.color = newColor;
+
+            // Changes the activity of the sprite renderer based on if it's highlighted or not.
+            highlightSpriteRenderer.gameObject.SetActive(highlighted);
+        }
+
+        // WORLD
+
 
         // Gets the map position.
         public Vector2Int GetMapPosition()

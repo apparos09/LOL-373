@@ -29,10 +29,7 @@ namespace RM_EDU
         // The tile parent.
         public GameObject tileParent;
 
-        // The action tiles.
-        // public List<ActionTile> tiles = new List<ActionTile>();
-
-        // The action tile array.
+        // The action tile array, which also determines the map size.
         // (r, w) = (y, x)
         public ActionTile[,] tiles = new ActionTile[7, 16];
 
@@ -45,10 +42,6 @@ namespace RM_EDU
         // The original of the map.
         // (0.5, 0.5) is the centre, (1, 1) is the top right corner and (0, 0) is the bottom left corner.
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
-
-        // The size of the action stage map in tile units (length, width).
-        // Taken out since the tiles are put in an array now.
-        // private Vector2 mapSize = new Vector2(16, 7);
 
         // Start is called before the first frame update
         void Start()
@@ -98,13 +91,13 @@ namespace RM_EDU
         }
 
         // Gets the map's row count.
-        public int GetMapRowCount
+        public int MapRowCount
         {
             get { return tiles.GetLength(0); }
         }
 
         // Get's the map's column count.
-        public int GetMapColumnCount
+        public int MapColumnCount
         {
             get { return tiles.GetLength(1); }
         }
@@ -153,7 +146,7 @@ namespace RM_EDU
                     // If it's the right length (3), the last character is used as the version.
                     // If the length is wrong, it defaults to the first tile version (A).
                     // This accounts for cases where there's only the two number digits (00), though this should never happen.
-                    char tileVersion = tileId.Length == 3 ? tileId[2] : 'A';
+                    char tileVersion = tileId.Length == 3 ? char.ToUpper(tileId[2]) : 'A';
 
                     // Generates the new tile.
                     ActionTile newTile = actionTilePrefabs.InstantiatePrefab(tileNumber);
@@ -179,10 +172,24 @@ namespace RM_EDU
                     Vector3 newLocalPos = ConvertMapPositionToWorldUnits(c, r);
                     newTile.transform.localPosition = newLocalPos;
 
-                    // Add the tile to the list.
-                    // tiles.Add(newTile); // Old
+                    // The tile colour.
+                    Color tileColor = Color.white;
 
-                    // Add the tile to the array.
+                    // Sets the tile's colour, which is used to make a checkerboardp attern.
+                    // The bottom left corner (0, 0) of the map is black (darkenend tile).
+                    if(r % 2 == 0) // Black
+                    {
+                        // 0 = black, 1 = white
+                        tileColor = c % 2 == 0 ? ActionTile.DarkenedColor : ActionTile.NormalColor;
+                    }
+                    else // White
+                    {
+                        // 0 = white, 1 = black
+                        tileColor = c % 2 == 0 ? ActionTile.NormalColor: ActionTile.DarkenedColor;
+                    }
+
+                    // Sets the tile colour.
+                    newTile.baseSpriteRenderer.color = tileColor;
 
                     // If there's already a tile in this array index...
                     // Destroy it, so it can be replaced.
@@ -191,7 +198,7 @@ namespace RM_EDU
                         Destroy(tiles[r, c].gameObject);
                     }
 
-                    // Sets the new tile.
+                    // Add the tile to the array.
                     tiles[r, c] = newTile; // New
                 }
             }
@@ -278,6 +285,51 @@ namespace RM_EDU
             }
 
             return result;
+        }
+
+        // Calculates the color of the tile at a given index.
+        public Color CalculateTileColorInMap(int row, int col)
+        {
+            // The row and column counts.
+            int rowCount = MapRowCount;
+            int colCount = MapColumnCount;
+
+            // The colour that will be returned.
+            Color color;
+
+            // If the index is valid, just send the color white.
+            if (row >= 0 && row < rowCount && col >= 0 && col < colCount)
+            {
+                // Determines if the normal colour should be returned.
+                // The "white" color is just the normal color.
+                // The "black" color is just the darkened color.
+                bool useNormal;
+
+                // The bottom left corner (0, 0) is black.
+                // 0 = black, 1 = white.
+                if (row % 2 == 0) // Black
+                {
+                    // 0 = black, 1 = white
+                    useNormal = col % 2 == 0 ? false : true;
+                }
+                else // White
+                {
+                    // 0 = white, 1 = black
+                    useNormal = col % 2 == 0 ? true: false;
+                }
+
+                // Gets the color.
+                color = useNormal ? ActionTile.NormalColor : ActionTile.DarkenedColor;
+            }
+            else
+            {
+                // Invalid index, so just return the colour white.
+                Debug.LogAssertion("Index invalid. Returning Color.white.");
+                color = Color.white;
+            }
+
+            // Returns the color.
+            return color;
         }
 
         // Gets the stage map data. Returns null if there's no data.
