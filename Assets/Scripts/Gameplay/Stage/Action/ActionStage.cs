@@ -152,9 +152,19 @@ namespace RM_EDU
                     ActionTile newTile = actionTilePrefabs.InstantiatePrefab(tileNumber);
 
                     // If the new tile doesn't exist, go to the next tile.
-                    // Tile 0 is a blank tile.
+                    // Tile 0 is an empty space.
                     if (newTile == null)
+                    {
+                        // Destroys the tile at the index if it eixsts.
+                        if (tiles[r, c] != null)
+                        {
+                            Destroy(tiles[r, c].gameObject);
+                            tiles[r, c] = null;
+                        }
+
+                        // Next.
                         continue;
+                    }    
 
                     // Applies the parent.
                     if(tileParent != null)
@@ -191,11 +201,11 @@ namespace RM_EDU
                     // Sets the tile colour.
                     newTile.baseSpriteRenderer.color = tileColor;
 
-                    // If there's already a tile in this array index...
-                    // Destroy it, so it can be replaced.
+                    // If there's already a tile in this array index, destroy it so it can be replaced.
                     if (tiles[r, c] != null)
                     {
                         Destroy(tiles[r, c].gameObject);
+                        tiles[r, c] = null; 
                     }
 
                     // Add the tile to the array.
