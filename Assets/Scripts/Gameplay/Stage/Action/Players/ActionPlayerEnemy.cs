@@ -64,7 +64,7 @@ namespace RM_EDU
         {
             // The maximum length of the stage is used...
             // To determine how much energy the enemy should lose every second.
-            float result = energyMax / ActionManager.STAGE_LENGTH_SECONDS;
+            float result = energyMax / ActionManager.STAGE_LENGTH_MAX_SECONDS;
 
             return result;
         }
@@ -95,7 +95,7 @@ namespace RM_EDU
                 // If the enemy has no energy left, the stage is over.
                 if(energy <= 0.0F)
                 {
-                    actionManager.OnPlayerDeath(this);
+                    actionManager.OnPlayerUserDeath();
                 }
                 // The enemy still has energy.
                 else

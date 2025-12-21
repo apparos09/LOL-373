@@ -27,7 +27,13 @@ namespace RM_EDU
 
         // The total amount of time the stage lasts in seconds.
         // The stage lasts 2 minutes (120 seconds).
-        public const float STAGE_LENGTH_SECONDS = 120.0F;
+        // Day and night are 1 minute each (half of the stage).
+        public const float STAGE_LENGTH_MAX_SECONDS = 120.0F;
+
+        // The stage day timer, which is used to determine the time of day.
+        // This is seperate from 'gameTime' which is the real-world time it takes the player to finish the stage.
+        // TODO: loop around to day time.
+        private float stageDayTimer = 0.0F;
 
         // The player user.
         public ActionPlayerUser playerUser;
@@ -141,22 +147,29 @@ namespace RM_EDU
             base.InitializeStage();
         }
 
-        // Called upon a player death occurring.
-        public void OnPlayerDeath(ActionPlayer actionPlayer)
+        // Returns the stage
+        public float GetStageDayTimer()
         {
-            // It's the action player.
-            if (actionPlayer is ActionPlayerUser)
-            {
-                OnPlayerUserDeath();
-            }
-            else if (actionPlayer is ActionPlayerEnemy)
-            {
-                OnPlayerEnemyDeath();
-            }
-            else
-            {
-                Debug.LogError("No functionality found.");
-            }
+            return stageDayTimer;
+        }
+
+        // Returns 'true' if its day time. Day time is the first half of the stage.
+        public bool IsDayTime()
+        {
+            return stageDayTimer < STAGE_LENGTH_MAX_SECONDS / 2.0F;
+        }
+
+        // Returns 'true' if it's night time. Night time is the second half of the stage.
+        public bool IsNightTime()
+        {
+            return stageDayTimer >= STAGE_LENGTH_MAX_SECONDS / 2.0F;
+        }
+
+        // Called when the game rolls over to the next day.
+        // In other words, the day timer has gone path the stage length time.
+        public void OnStageNextDay()
+        {
+            // TODO: roll over time?
         }
 
         // Called on the death of the user.
@@ -194,6 +207,19 @@ namespace RM_EDU
         protected override void Update()
         {
             base.Update();
+
+            // If the stage is playing and the game isn't paused, adjust the stage day timer.
+            if(IsStagePlayingAndGameUnpaused())
+            {
+                stageDayTimer += Time.deltaTime;
+
+                // If the stage day timer has passed the stage length...
+                // Mark that the stage has looped around to the next day.
+                if(stageDayTimer > STAGE_LENGTH_MAX_SECONDS)
+                {
+                    OnStageNextDay();
+                }
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
