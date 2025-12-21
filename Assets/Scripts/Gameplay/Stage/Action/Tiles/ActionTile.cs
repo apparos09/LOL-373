@@ -22,6 +22,20 @@ namespace RM_EDU
         // The animator.
         public Animator animator;
 
+        // The tile variant.
+        public List<Sprite> tileVersions = new List<Sprite>();
+
+        // The map position on the tile.
+        // This is in map space, so its extents are (0, 0) to the size of the map.
+        [Tooltip("The tile's position in the map's space.")]
+        public Vector2Int mapPos = new Vector2Int(-1, -1);
+
+        // Gets the tile type.
+        public actionTile GetTileType()
+        {
+            return tileType;
+        }
+
         // Start is called before the first frame update
         protected virtual void Start()
         {
@@ -30,10 +44,10 @@ namespace RM_EDU
                 actionManager = ActionManager.Instance;
         }
 
-        // Update is called once per frame
-        protected virtual void Update()
-        {
-
-        }
+        // // Update is called once per frame
+        // protected virtual void Update()
+        // {
+        // 
+        // }
     }
 }

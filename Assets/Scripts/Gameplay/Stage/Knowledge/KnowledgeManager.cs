@@ -103,7 +103,7 @@ namespace RM_EDU
             }
 
             // Initializes the knowledge stage.
-            InitializeKnowledgeStage();
+            InitializeStage();
         }
 
         // Gets the instance.
@@ -143,7 +143,7 @@ namespace RM_EDU
         }
 
         // Initializes the knowledge stage.
-        public void InitializeKnowledgeStage()
+        public override void InitializeStage()
         {
             // The number of statements to use.
             int statementCount = 0;
@@ -338,6 +338,9 @@ namespace RM_EDU
             
             // Randomizes the statements.
             RandomizeStatements(false);
+
+            // Call the base function to mark that the stage has been initialized successfully.
+            base.InitializeStage();
         }
 
         // Randomizes the statements using the groups.

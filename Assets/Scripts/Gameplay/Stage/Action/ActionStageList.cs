@@ -96,7 +96,7 @@ namespace RM_EDU
          */
 
         // Generates and returns an empty stage map.
-        private string[,] GetStageMapEmpty()
+        private static string[,] GenerateStageMapEmpty()
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[,] {
@@ -113,7 +113,7 @@ namespace RM_EDU
         }
 
         // Generates and returns the debug stage map.
-        public string[,] GetStageMapDebug()
+        public static string[,] GenerateStageMapDebug()
         {
             // A debug stage map.
             string[,] map = new string[,] {

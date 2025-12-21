@@ -24,6 +24,24 @@ namespace RM_EDU
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
+        // Gets set to 'true' if the stage is initialized.
+        private bool stageInitialized = false;
+
+        // NOTE: this is not called in the Start() function of StageManager() since some other things...
+        // Need to be initialized first.
+
+        // Initializes the stage.
+        public virtual void InitializeStage()
+        {
+            stageInitialized = true;
+        }
+
+        // Returns 'true' if the stage has been initialized.
+        public bool IsStageInitialized()
+        {
+            return stageInitialized;
+        }
+
         // Gets the stage type.
         public WorldStage.stageType GetStageType()
         {

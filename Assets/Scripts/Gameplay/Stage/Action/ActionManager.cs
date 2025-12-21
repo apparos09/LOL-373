@@ -77,6 +77,9 @@ namespace RM_EDU
             {
                 actionStage = FindObjectOfType<ActionStage>();
             }
+
+            // Initializes the stage.
+            InitializeStage();
         }
 
         // Gets the instance.
@@ -115,7 +118,15 @@ namespace RM_EDU
             }
         }
 
-        
+        // Initializes the knowledge stage.
+        public override void InitializeStage()
+        {
+            // Generates the map using the id number.
+            actionStage.GenerateMap(idNumber);
+
+            // Call the base function to mark that the stage has been initialized successfully.
+            base.InitializeStage();
+        }
 
         // Returns 'true' if the stage is complete.
         public override bool IsComplete()
