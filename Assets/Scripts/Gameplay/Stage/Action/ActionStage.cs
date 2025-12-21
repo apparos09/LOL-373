@@ -50,6 +50,10 @@ namespace RM_EDU
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
 
+            // If the action stage isn't set, set it to this.
+            if (actionManager.actionStage == null)
+                actionManager.actionStage = this;
+
             // Gets the instance.
             // NOTE: this uses instance for ease of access, but it should NOT be set this way.
             // This is because the prefabs aren't set if you aren't using a pre-built object.

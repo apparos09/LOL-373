@@ -27,6 +27,9 @@ namespace RM_EDU
         // Gets set to 'true' if the stage is initialized.
         private bool stageInitialized = false;
 
+        // Gets set to 'true' when the stage is active/running.
+        private bool stagePlaying = false;
+
         // NOTE: this is not called in the Start() function of StageManager() since some other things...
         // Need to be initialized first.
 
@@ -34,12 +37,32 @@ namespace RM_EDU
         public virtual void InitializeStage()
         {
             stageInitialized = true;
+
+            stagePlaying = true;
         }
 
         // Returns 'true' if the stage has been initialized.
         public bool IsStageInitialized()
         {
             return stageInitialized;
+        }
+
+        // Returns 'true' if the stage is playing.
+        public bool IsStagePlaying()
+        {
+            return stagePlaying;
+        }
+
+        // Sets if the stage is playing or not.
+        public void SetStagePlaying(bool stagePlaying)
+        {
+            this.stagePlaying = stagePlaying;
+        }
+
+        // Returns 'true' if the stage is playing and the game is unpaused.
+        public bool IsStagePlayingAndGameUnpaused()
+        {
+            return IsStagePlaying() && !IsGamePaused();
         }
 
         // Gets the stage type.
@@ -103,6 +126,12 @@ namespace RM_EDU
             data.complete = complete;
 
             return data;
+        }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
         }
     }
 }

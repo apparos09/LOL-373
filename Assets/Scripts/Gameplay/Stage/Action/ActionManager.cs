@@ -25,6 +25,16 @@ namespace RM_EDU
         // The action stage.
         public ActionStage actionStage;
 
+        // The total amount of time the stage lasts in seconds.
+        // The stage lasts 2 minutes (120 seconds).
+        public const float STAGE_LENGTH_SECONDS = 120.0F;
+
+        // The player user.
+        public ActionPlayerUser playerUser;
+
+        // The player enemy.
+        public ActionPlayerEnemy playerEnemy;
+
         // Constructor
         private ActionManager()
         {
@@ -124,8 +134,47 @@ namespace RM_EDU
             // Generates the map using the id number.
             actionStage.GenerateMap(idNumber);
 
+            // Sets the energy to max.
+            playerEnemy.SetEnergyToMax();
+
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
+        }
+
+        // Called upon a player death occurring.
+        public void OnPlayerDeath(ActionPlayer actionPlayer)
+        {
+            // It's the action player.
+            if (actionPlayer is ActionPlayerUser)
+            {
+                OnPlayerUserDeath();
+            }
+            else if (actionPlayer is ActionPlayerEnemy)
+            {
+                OnPlayerEnemyDeath();
+            }
+            else
+            {
+                Debug.LogError("No functionality found.");
+            }
+        }
+
+        // Called on the death of the user.
+        public void OnPlayerUserDeath()
+        {
+            OnStageOver();
+        }
+
+        // Called on the death of the enemy.
+        public void OnPlayerEnemyDeath()
+        {
+            OnStageOver();
+        }
+
+        // Called when the stage is over.
+        public void OnStageOver()
+        {
+            SetStagePlaying(false);
         }
 
         // Returns 'true' if the stage is complete.

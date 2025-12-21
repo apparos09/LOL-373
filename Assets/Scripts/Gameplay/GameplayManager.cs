@@ -226,7 +226,6 @@ namespace RM_EDU
             SetGamePaused(!gamePaused);
         }
 
-
         // TUTORIAL //
         // Checks if the game is using the tutorial.
         public bool IsUsingTutorial()
