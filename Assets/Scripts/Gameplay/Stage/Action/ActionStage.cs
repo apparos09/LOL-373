@@ -30,10 +30,11 @@ namespace RM_EDU
         public GameObject tileParent;
 
         // The action tiles.
-        public List<ActionTile> tiles = new List<ActionTile>();
+        // public List<ActionTile> tiles = new List<ActionTile>();
 
-        // The tile array.
-        // public ActionTile[,] tiles = new ActionTile[16, 7];
+        // The action tile array.
+        // (r, w) = (y, x)
+        public ActionTile[,] tiles = new ActionTile[7, 16];
 
         // The origin of the tile. By default, it's the middle of the tile.
         private Vector2 tileOrigin = new Vector2(0.5F, 0.5F);
@@ -46,7 +47,8 @@ namespace RM_EDU
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
 
         // The size of the action stage map in tile units (length, width).
-        private Vector2 mapSize = new Vector2(16, 7);
+        // Taken out since the tiles are put in an array now.
+        // private Vector2 mapSize = new Vector2(16, 7);
 
         // Start is called before the first frame update
         void Start()
@@ -81,7 +83,30 @@ namespace RM_EDU
         // Gets the map size.
         public Vector2 MapSize
         {
-            get { return mapSize; }
+            get 
+            {
+                // return mapSize; 
+                // (row, col) = (y, x)
+                return new Vector2(tiles.GetLength(1), tiles.GetLength(0));
+            }
+        }
+
+        // Gets the maximum amount of tiles in the map.
+        public int MapTileCountMax
+        {
+            get { return tiles.Length; }
+        }
+
+        // Gets the map's row count.
+        public int GetMapRowCount
+        {
+            get { return tiles.GetLength(0); }
+        }
+
+        // Get's the map's column count.
+        public int GetMapColumnCount
+        {
+            get { return tiles.GetLength(1); }
         }
 
         // Gets the id number, which is taken from the action manager.
@@ -100,25 +125,6 @@ namespace RM_EDU
         // Generates a map using the provided ID number. Saves the provided as the ID number.
         public void GenerateMap(int idNumber)
         {
-            // If there are tiles.
-            if (tiles.Count > 0)
-            {
-                // Goes through all the tiles.
-                foreach (ActionTile tile in tiles)
-                {
-                    // If the tile exists, destroy it.
-                    if (tile != null)
-                    {
-                        Destroy(tile.gameObject);
-                    }
-                }
-
-                // TODO: destroy the assets on the tiles.
-            }
-
-            // Clear the list of tiles.
-            tiles.Clear();
-
             // TODO: create the tiles.
             string[,] map = ActionStageList.GenerateStageMapDebug();
 
@@ -165,6 +171,7 @@ namespace RM_EDU
                     newTile.tileVersion = tileVersion;
 
                     // Sets the map position of the new tile.
+                    // Row = Y, Col = X
                     newTile.mapPos.x = c;
                     newTile.mapPos.y = r;
 
@@ -173,7 +180,19 @@ namespace RM_EDU
                     newTile.transform.localPosition = newLocalPos;
 
                     // Add the tile to the list.
-                    tiles.Add(newTile);
+                    // tiles.Add(newTile); // Old
+
+                    // Add the tile to the array.
+
+                    // If there's already a tile in this array index...
+                    // Destroy it, so it can be replaced.
+                    if (tiles[r, c] != null)
+                    {
+                        Destroy(tiles[r, c].gameObject);
+                    }
+
+                    // Sets the new tile.
+                    tiles[r, c] = newTile; // New
                 }
             }
         }
@@ -185,6 +204,9 @@ namespace RM_EDU
             // NOTE: the term "local" refers to the local position of the tile in world units.
             // So say, if the tile is a child of another object, the result is the local position of that tile...
             // In reference to its parent.
+
+            // The map size.
+            Vector2 mapSize = MapSize;
 
             // The map size in pixels.
             Vector2 mapPixelSize = mapSize * tileSize;
@@ -226,6 +248,38 @@ namespace RM_EDU
             return ConvertMapPositionToWorldUnits(new Vector2(mapPosX, mapPosY));
         }
 
+        // Returns 'true' if the map contains the provided tile and the tile's saved mapPos.
+        // If it doesn't, or if the tile isn't in the array, it returns false.
+        public bool MapContainsTileAtIndex(ActionTile tile)
+        {
+            // The tile's row and column positions
+            int tileRow = tile.GetMapRowPosition();
+            int tileCol = tile.GetMapColumnPosition();
+
+            // The result.
+            bool result;
+
+            // If the row and column values are valid.
+            if (tileRow >= 0 && tileRow < tiles.GetLength(0) && tileCol >= 0 && tileCol < tiles.GetLength(1))
+            {
+                // If the tile is saved at the index, the check is valid.
+                if (tiles[tileRow, tileCol] == tile)
+                {
+                    result = true;
+                }
+                else // Not in space, so check is false.
+                {
+                    result = false;
+                }
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
         // Gets the stage map data. Returns null if there's no data.
         public string[,] GetStageMapData()
         {
@@ -234,6 +288,8 @@ namespace RM_EDU
 
             // The map to be returned.
             string[,] map = null;
+
+            // TODO: implement.
 
             // Generates the map.
             switch(idNumber)

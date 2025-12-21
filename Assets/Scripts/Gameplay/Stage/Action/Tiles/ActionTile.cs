@@ -83,6 +83,24 @@ namespace RM_EDU
             return index;
         }
 
+        // Gets the map position.
+        public Vector2Int GetMapPosition()
+        {
+            return mapPos;
+        }
+
+        // Gets the tile's map row position, which corresponds to the tile's map y-position (mapPos.y).
+        public int GetMapRowPosition()
+        {
+            return mapPos.y;
+        }
+
+        // Gets the tile's map colum position, which corresponds to the tile's map x-position (mapPos.x).
+        public int GetMapColumnPosition()
+        {
+            return mapPos.x;
+        }
+
         // // Update is called once per frame
         // protected virtual void Update()
         // {
