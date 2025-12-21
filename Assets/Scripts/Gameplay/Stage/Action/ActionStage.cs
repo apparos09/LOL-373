@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using util;
 
 namespace RM_EDU
 {
@@ -31,6 +32,12 @@ namespace RM_EDU
         // The action tiles.
         public List<ActionTile> tiles = new List<ActionTile>();
 
+        // The tile array.
+        // public ActionTile[,] tiles = new ActionTile[16, 7];
+
+        // The origin of the tile. By default, it's the middle of the tile.
+        private Vector2 tileOrigin = new Vector2(0.5F, 0.5F);
+
         // The tile sprite size in pixels (length, width)
         private Vector2 tileSize = new Vector2(1.28F, 1.28F);
 
@@ -39,7 +46,7 @@ namespace RM_EDU
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
 
         // The size of the action stage map in tile units (length, width).
-        private Vector2 mapSize = new Vector2(24, 24);
+        private Vector2 mapSize = new Vector2(16, 7);
 
         // Start is called before the first frame update
         void Start()
@@ -154,6 +161,9 @@ namespace RM_EDU
                     if(tileParent != null)
                         newTile.transform.parent = tileParent.transform;
 
+                    // Sets the tile version.
+                    newTile.tileVersion = tileVersion;
+
                     // Sets the map position of the new tile.
                     newTile.mapPos.x = c;
                     newTile.mapPos.y = r;
@@ -197,6 +207,13 @@ namespace RM_EDU
 
             // Adjusts the map position in the world based on the map's origin in the world.
             mapPosLocal -= mapOriginPosLocal;
+
+            // The origin of the tile in pixels. This is the tile origin based on the size of the tile in pixels.
+            Vector2 tilePixelOrigin = tileSize * tileOrigin;
+
+            // Adjust the tile's world position by its tile origin.
+            // The base calculation assumes the tile origin is its bottom-left corner.
+            mapPosLocal += tilePixelOrigin;
 
             // Returns the map position in the world.
             return mapPosLocal;

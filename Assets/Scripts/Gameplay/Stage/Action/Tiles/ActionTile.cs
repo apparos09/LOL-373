@@ -25,16 +25,15 @@ namespace RM_EDU
         // The tile variant.
         public List<Sprite> tileVersions = new List<Sprite>();
 
+        // The tile verison.
+        public char tileVersion = 'A';
+
         // The map position on the tile.
         // This is in map space, so its extents are (0, 0) to the size of the map.
         [Tooltip("The tile's position in the map's space.")]
         public Vector2Int mapPos = new Vector2Int(-1, -1);
 
-        // Gets the tile type.
-        public actionTile GetTileType()
-        {
-            return tileType;
-        }
+        
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -42,6 +41,46 @@ namespace RM_EDU
             // If the action manager isn't set, make the instance.
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
+
+        }
+
+        // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
+        protected virtual void OnMouseDown()
+        {
+            // Debug.Log("Clicked");
+        }
+
+        // Gets the tile type.
+        public actionTile GetTileType()
+        {
+            return tileType;
+        }
+
+        // Gets the tile version index.
+        public int GetTileVersionIndex()
+        {
+            // The index.
+            int index;
+
+            // If there is a sprite, see if it's in the tile version list.
+            if (spriteRenderer.sprite != null)
+            {
+                // If the tile is in the list, get the index.
+                if (tileVersions.Contains(spriteRenderer.sprite))
+                {
+                    index = tileVersions.IndexOf(spriteRenderer.sprite);
+                }
+                else
+                {
+                    index = -1;
+                }
+            }
+            else
+            {
+                index = -1;
+            }
+
+            return index;
         }
 
         // // Update is called once per frame
