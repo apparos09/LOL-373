@@ -152,8 +152,13 @@ namespace RM_EDU
                     // This accounts for cases where there's only the two number digits (00), though this should never happen.
                     char tileVersion = tileId.Length == 3 ? char.ToUpper(tileId[2]) : 'A';
 
-                    // Generates the new tile.
-                    ActionTile newTile = actionTilePrefabs.InstantiatePrefab(tileNumber);
+                    // The tile prefab and the new tile.
+                    ActionTile tilePrefab = actionTilePrefabs.GetPrefab(tileNumber);
+                    ActionTile newTile = null;
+
+                    // If the tile prefab exists, create the tile.
+                    if (tilePrefab != null)
+                        newTile = Instantiate(tilePrefab, transform);
 
                     // If the new tile doesn't exist, go to the next tile.
                     // Tile 0 is an empty space.

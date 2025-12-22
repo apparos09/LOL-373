@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,10 +19,6 @@ namespace RM_EDU
         // The rate at which enemies are spawned.
         public float spawnRate = 1.0F;
 
-        // The number of enemies generated in a single spawn.
-        // This should change as the stage goes on.
-        public int enemiesPerSpawn = 1;
-
         // The countdown timer for spawning enemies.
         public float spawnTimer = 0.0F;
 
@@ -29,12 +26,20 @@ namespace RM_EDU
         // This should change based on the game difficulty.
         public float spawnTimeMax = 4.0F;
 
+        // The enemy spawn count minimum. This determines the minimum of enemies to spawn eachi nstance.
+        [Tooltip("Minimum number of enemies to spawn at once.")]
+        public int enemiesPerSpawnMin = 1;
+
+        // The enemy spawn count maximum. This determines the maximum of enemies to spawn each instance.
+        [Tooltip("Maximum number of enemies to spawn at once.")]
+        public int enemiesPerSpawnMax = 7;
+
         // If 'true', spawning is allowed.
         private bool allowSpawns = true;
 
         // The list of usable enemies by their indexes in the prefab list.
         // The enemy id number should match the index number.
-        [Tooltip("Lists the indexes for usable enemies from the prefab list.")]
+        [Tooltip("Lists the indexes for usable enemies from the prefab list. These indexes should be the same as the enemy ids in said slots.")]
         public List<int> usableEnemyIndexes = new List<int>();
 
         // The action enemy units.
@@ -141,10 +146,77 @@ namespace RM_EDU
         // Spawns enemies.
         public void SpawnEnemies()
         {
-            // TODO: implement
+            // The number of enemies in each row.
+            // By default, it's length is equal to the number of rows. All indexes are filled by 0 by default.
+            List<int> rowEnemyCount = new List<int>(new int[actionManager.actionStage.MapRowCount]);
+
+            // Gets the number of spawns.
+            int spawns = Random.Range(enemiesPerSpawnMin, enemiesPerSpawnMax + 1);
+
+            // A temporary list of spawned enemies.
+            List<ActionUnitEnemy> tempList = new List<ActionUnitEnemy>();
+
+            // While spawns is greater than 0.
+            while(spawns > 0)
+            {
+                // Gets the prefab.
+                int prefabIndex = Random.Range(0, usableEnemyIndexes.Count);
+                ActionUnitEnemy prefab = actionUnitPrefabs.GetEnemyPrefab(usableEnemyIndexes[prefabIndex]);
+
+                // Prefab exists.
+                if(prefab != null)
+                {
+                    // Creates the new enemy, making a child of this object by default.
+                    ActionUnitEnemy enemyUnit = Instantiate(prefab, transform);
+
+                    // If there's a dedicated unit parent, give it that as the parent.
+                    if (unitParent != null)
+                        enemyUnit.transform.parent = unitParent.transform;
+
+                    // Gets a random row.
+                    int row = Random.Range(0, actionManager.actionStage.MapRowCount);
+
+                    // The column should be the end of the map.
+                    int col = actionManager.actionStage.MapColumnCount - 1;
+
+                    // Gives enemy the values.
+                    // Gets the enemy position.
+                    Vector3 enemyPos = actionManager.actionStage.ConvertMapPositionToWorldUnits(col, row);
+
+                    // Saves the row this enemy is in and increases the row count.
+                    enemyUnit.row = row;
+                    rowEnemyCount[row] += 1;
+
+                    // Adjust the enemy's position by how many enemies are in that row.
+                    // This moves it off-screen and prevents enemies from overlapping each other.
+                    enemyPos.x += rowEnemyCount[row] * actionManager.actionStage.TileSize.x;
+
+                    // Give enemy their position.
+                    enemyUnit.transform.position = enemyPos;
+
+                    // Mark enemy unit as belonging to this enemy and add to the list of spawned enemies.
+                    enemyUnit.playerEnemy = this;
+                    spawnedEnemies.Add(enemyUnit);
+                }
+
+                spawns--;
+            }
+
 
             // Reset the spawn timer.
             ResetSpawnTimer();
+        }
+
+        // Called when an enemy unit has been killed.
+        public void OnEnemyUnitDeath(ActionUnitEnemy enemyUnit)
+        {
+            // If the enemy unit is in the list of spawned enemies, remove it.
+            if(spawnedEnemies.Contains(enemyUnit))
+                spawnedEnemies.Remove(enemyUnit);
+
+            // TODO: have enemy run back to ship before it's destroyed.
+
+            Destroy(enemyUnit.gameObject);
         }
 
         // Update is called once per frame
