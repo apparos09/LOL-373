@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace RM_EDU
@@ -33,13 +35,22 @@ namespace RM_EDU
         // The stage day timer, which is used to determine the time of day.
         // This is seperate from 'gameTime' which is the real-world time it takes the player to finish the stage.
         // TODO: loop around to day time.
-        private float stageDayTimer = 0.0F;
+        public float dayNightTimer = 0.0F;
+
+        // The fade duration for transitioning from day to night.
+        private float dayNightTransDur = 10.0F;
 
         // The player user.
         public ActionPlayerUser playerUser;
 
         // The player enemy.
         public ActionPlayerEnemy playerEnemy;
+
+        // The action post processor.
+        public ActionPostProcessor postProcessor;
+
+        // If 'true', the game uses post processing.
+        private bool usePostProcessing = false;
 
         // Constructor
         private ActionManager()
@@ -148,26 +159,79 @@ namespace RM_EDU
         }
 
         // Returns the stage
-        public float GetStageDayTimer()
+        public float GetDayNightTimer()
         {
-            return stageDayTimer;
+            return dayNightTimer;
         }
 
         // Returns 'true' if its day time. Day time is the first half of the stage.
         public bool IsDayTime()
         {
-            return stageDayTimer < STAGE_LENGTH_MAX_SECONDS / 2.0F;
+            return dayNightTimer < STAGE_LENGTH_MAX_SECONDS / 2.0F;
         }
 
         // Returns 'true' if it's night time. Night time is the second half of the stage.
         public bool IsNightTime()
         {
-            return stageDayTimer >= STAGE_LENGTH_MAX_SECONDS / 2.0F;
+            return dayNightTimer >= STAGE_LENGTH_MAX_SECONDS / 2.0F;
         }
 
-        // Called when the game rolls over to the next day.
-        // In other words, the day timer has gone path the stage length time.
-        public void OnStageNextDay()
+        // Gets the day night transition duration.
+        public float GetDayNightTransitionDuration()
+        {
+            return dayNightTransDur;
+        }
+
+        // Returns 'true' if the day night cycle is in transition.
+        public bool InDayNightTransition()
+        {
+            // Calculates the end of the transition and the start of the transition.
+            // Keep in mind that the day night timer counts up.
+            // TODO: make this a dedicated variable?
+            float transEnd = STAGE_LENGTH_MAX_SECONDS / 2.0F;
+            float transStart = transEnd - dayNightTransDur;
+
+            // Gets the result.
+            bool result = dayNightTimer >= transStart && dayNightTimer <= transEnd;
+
+            return result;
+        }
+
+        // Gets the day-night transition value.
+        // If it's below the transition point, it's 0.0F. If it's above the transition point, it's 1.0F.
+        public float GetDayNightTransitionValue()
+        {
+            // The transition end and start.
+            float transEnd = STAGE_LENGTH_MAX_SECONDS / 2.0F;
+            float transStart = transEnd - dayNightTransDur;
+
+            // Calculates the result.
+            float result = Mathf.InverseLerp(transStart, transEnd, dayNightTimer);
+
+            // Clamps it into 01 space.
+            result = Mathf.Clamp01(result);
+
+            // Returns the result.
+            return result;
+        }
+
+
+        // Updates the day-night effect.
+        public void UpdateDayNightEffect()
+        {
+            // If the post processor isn't set, do nothing.
+            if (postProcessor == null)
+                return;
+
+            // Gets the day-night transition value.
+            float t = Mathf.Clamp01(GetDayNightTransitionValue());
+
+            // Sets t-value.
+            postProcessor.lerpT = t;
+        }
+
+        // Called when the day-night timer has finished, which rolls the timer over to another day.
+        public void OnDayNightTimerFinished()
         {
             // TODO: roll over time?
         }
@@ -211,13 +275,22 @@ namespace RM_EDU
             // If the stage is playing and the game isn't paused, adjust the stage day timer.
             if(IsStagePlayingAndGameUnpaused())
             {
-                stageDayTimer += Time.deltaTime;
+                dayNightTimer += Time.deltaTime;
 
                 // If the stage day timer has passed the stage length...
                 // Mark that the stage has looped around to the next day.
-                if(stageDayTimer > STAGE_LENGTH_MAX_SECONDS)
+                if(dayNightTimer > STAGE_LENGTH_MAX_SECONDS)
                 {
-                    OnStageNextDay();
+                    OnDayNightTimerFinished();
+                }
+                else
+                {
+                    // If post processing is being used.
+                    if(usePostProcessing)
+                    {
+                        // Update the day-night effect.
+                        UpdateDayNightEffect();
+                    }
                 }
             }
         }
