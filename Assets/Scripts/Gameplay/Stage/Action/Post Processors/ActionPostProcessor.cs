@@ -8,12 +8,6 @@ namespace RM_EDU
     public class ActionPostProcessor : util.PostProcessor
     {
         [Header("Action")]
-        // Color Grade Day ID
-        public string colorGradeDayId = "_ColorGradeDay";
-
-        // The colour grade for day (RGB).
-        public Texture2D colorGradeDay;
-
         // Color Grade Night ID
         public string colorGradeNightId = "_ColorGradeNight";
 
@@ -47,7 +41,6 @@ namespace RM_EDU
         // Sets the textures to be used for color grading.
         public void SetValuesToMaterial()
         {
-            postMaterial.SetTexture(colorGradeDayId, colorGradeDay);
             postMaterial.SetTexture(colorGradeNightId, colorGradeNight);
             postMaterial.SetFloat(lerpTId, lerpT);
         }

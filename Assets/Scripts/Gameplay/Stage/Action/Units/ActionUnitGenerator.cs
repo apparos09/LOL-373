@@ -4,9 +4,12 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // The player unit.
-    public abstract class ActionPlayerUnit : ActionUnit
+    // A generator unit, which is used to generate power.
+    public class ActionUnitGenerator : ActionUnitUser
     {
+        // The resource this generator uses.
+        public NaturalResources.naturalResource resource;
+
         // // Start is called before the first frame update
         // void Start()
         // {
@@ -18,5 +21,11 @@ namespace RM_EDU
         // {
         // 
         // }
+
+        // Gets the unit type.
+        public override unitType GetUnitType()
+        {
+            return unitType.generator;
+        }
     }
 }

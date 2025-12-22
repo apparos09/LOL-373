@@ -7,12 +7,38 @@ namespace RM_EDU
     // The action player enemy.
     public class ActionPlayerEnemy : ActionPlayer
     {
+        [Header("Enemy")]
         // The maximum amount of energy the enemy has.
         public float energyMax = 120.0F;
 
         // The enemy's decrementation amount, which reduces from the enemy's energy every frame.
         // When the enemy runs out of energy, the stage is over.
         private float energyDec = 1.0F;
+
+        // The rate at which enemies are spawned.
+        public float spawnRate = 1.0F;
+
+        // The number of enemies generated in a single spawn.
+        // This should change as the stage goes on.
+        public int enemiesPerSpawn = 1;
+
+        // The countdown timer for spawning enemies.
+        public float spawnTimer = 0.0F;
+
+        // The spawn time max.
+        // This should change based on the game difficulty.
+        public float spawnTimeMax = 4.0F;
+
+        // If 'true', spawning is allowed.
+        private bool allowSpawns = true;
+
+        // The list of usable enemies by their indexes in the prefab list.
+        // The enemy id number should match the index number.
+        [Tooltip("Lists the indexes for usable enemies from the prefab list.")]
+        public List<int> usableEnemyIndexes = new List<int>();
+
+        // The action enemy units.
+        public List<ActionUnitEnemy> spawnedEnemies = new List<ActionUnitEnemy>();
 
         // Start is called before the first frame update
         protected override void Start()
@@ -25,8 +51,38 @@ namespace RM_EDU
                 actionManager.playerEnemy = this;
             }
 
-            // Sets the enemy to max.
+            // Sets the enemy to max and resets the spwn timer.
             SetEnergyToMax();
+            ResetSpawnTimer();
+
+            // If the list is empty, fill it with every enemy unit.
+            if(usableEnemyIndexes.Count <= 0)
+            {
+                // For every valid enemy in the list, add the id number as usable.
+                // Note: the enemy at index 0 is a debug enemy that shouldn't be used.
+                // That's why index 0 is skipped.
+                for(int i = 1; i < actionUnitPrefabs.enemyPrefabs.Count; i++)
+                {
+                    // If there is an enemy prefab, get the id number.
+                    if (actionUnitPrefabs.enemyPrefabs[i] != null)
+                    {
+                        // Adds as a usable index.
+                        usableEnemyIndexes.Add(i);
+                    }
+                }
+            }
+        }
+
+        // Applies the game difficulty to the enemy.
+        public void ApplyDifficulty(int difficulty)
+        {
+
+        }
+
+        // Gets the difficulty from the manager and uses that to apply the settings.
+        public void ApplyDifficulty()
+        {
+            ApplyDifficulty(actionManager.difficulty);
         }
 
         // Gets the energy max.
@@ -64,7 +120,8 @@ namespace RM_EDU
         {
             // The maximum length of the stage is used...
             // To determine how much energy the enemy should lose every second.
-            float result = energyMax / ActionManager.STAGE_LENGTH_MAX_SECONDS;
+            // It's also multiplied by delta time to know how much to reduce it by.
+            float result = energyMax / ActionManager.STAGE_LENGTH_MAX_SECONDS * Time.deltaTime;
 
             return result;
         }
@@ -72,7 +129,22 @@ namespace RM_EDU
         // Calculates and sets the energy decrement amount.
         public void CalculateAndSetEnergyDecrementAmount()
         {
+            energyDec = CalculateEnergyDecrementAmount();
+        }
 
+        // Resets the spawn timer.
+        public void ResetSpawnTimer()
+        {
+            spawnTimer = spawnTimeMax;
+        }
+
+        // Spawns enemies.
+        public void SpawnEnemies()
+        {
+            // TODO: implement
+
+            // Reset the spawn timer.
+            ResetSpawnTimer();
         }
 
         // Update is called once per frame
@@ -100,7 +172,19 @@ namespace RM_EDU
                 // The enemy still has energy.
                 else
                 {
+                    // If spawns are allowed.
+                    if(allowSpawns)
+                    {
+                        spawnTimer -= Time.deltaTime;
 
+                        // If the spawn timer has run out, generate spawns.
+                        if(spawnTimer <= 0.0F)
+                        {
+                            spawnTimer = 0.0F;
+                            SpawnEnemies();
+                        }
+                    }
+                    
                 }
             }
         }

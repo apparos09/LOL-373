@@ -28,8 +28,8 @@ Shader "Hidden/Day Night Image Effect Shader"
             return o;
         }
 
-        // The day and night textures used for the day-night cycle.
-        sampler2D _ColorGradeDay;
+        // The night texture for the shader, which is used for applying night colours.
+        // The day colours are the default colours.
         sampler2D _ColorGradeNight;
 
         // The lerp between the colour codes.
@@ -52,16 +52,11 @@ Shader "Hidden/Day Night Image Effect Shader"
 
             fixed4 frag (v2f i) : SV_Target
             {
-                // Base colour.
+                // Base colour, which is also the day color.
                 fixed4 col = tex2D(_MainTex, i.uv);
                
-                // The new color.
+                // The new color, which is the base color by default.
                 fixed4 newCol = col;
-
-                // The day colors.
-                fixed4 dayColRed = tex2D(_ColorGradeDay, fixed2(col.r, 1.0F));
-                fixed4 dayColGreen = tex2D(_ColorGradeDay, fixed2(col.g, 0.5F));
-                fixed4 dayColBlue = tex2D(_ColorGradeDay, fixed2(col.b, 0.0F));
 
                 // The night colors.
                 fixed4 nightColRed = tex2D(_ColorGradeNight, fixed2(col.r, 1.0F));
@@ -69,10 +64,10 @@ Shader "Hidden/Day Night Image Effect Shader"
                 fixed4 nightColBlue = tex2D(_ColorGradeNight, fixed2(col.b, 0.0F));
 
                 // Mixes the day colors and night colors using lerp T.
-                newCol.r = lerp(dayColRed.r, nightColRed.r, _LerpT);
-                newCol.g = lerp(dayColGreen.g, nightColGreen.g, _LerpT);
-                newCol.b = lerp(dayColBlue.b, nightColBlue.b, _LerpT);
-                newCol.a = col.a; // Likely unneeded.
+                newCol.r = lerp(col.r, nightColRed.r, _LerpT);
+                newCol.g = lerp(col.g, nightColGreen.g, _LerpT);
+                newCol.b = lerp(col.b, nightColBlue.b, _LerpT);
+                // newCol.a = col.a; // Unneeded since the alpha has already been copied over.
 
                 // Returns the new color.
                 return newCol;

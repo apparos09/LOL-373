@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // The action enemy unit.
-    public class ActionEnemyUnit : ActionUnit
+    // The player user unit.
+    public abstract class ActionUnitUser : ActionUnit
     {
         // // Start is called before the first frame update
         // void Start()

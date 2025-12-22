@@ -38,7 +38,7 @@ namespace RM_EDU
         public float dayNightTimer = 0.0F;
 
         // The fade duration for transitioning from day to night.
-        private float dayNightTransDur = 10.0F;
+        private float dayNightTransDur = 5.0F;
 
         // The player user.
         public ActionPlayerUser playerUser;
@@ -50,7 +50,7 @@ namespace RM_EDU
         public ActionPostProcessor postProcessor;
 
         // If 'true', the game uses post processing.
-        private bool usePostProcessing = false;
+        private bool usePostProcessing = true;
 
         // Constructor
         private ActionManager()
@@ -162,6 +162,12 @@ namespace RM_EDU
         public float GetDayNightTimer()
         {
             return dayNightTimer;
+        }
+
+        // Gets the stage time progress based on how long the stage has been going.
+        public float GetDayNightTimerProgress()
+        {
+            return dayNightTimer / STAGE_LENGTH_MAX_SECONDS;
         }
 
         // Returns 'true' if its day time. Day time is the first half of the stage.

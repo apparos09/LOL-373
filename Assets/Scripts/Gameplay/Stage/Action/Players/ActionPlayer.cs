@@ -10,8 +10,14 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The action unit prefabs.
+        public ActionUnitPrefabs actionUnitPrefabs;
+
         // The amount of energy the player has.
         public float energy = 0;
+
+        // The parent of the units created by the player.
+        public GameObject unitParent;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -19,6 +25,10 @@ namespace RM_EDU
             // If the action manager is null, get the action manager.
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
+
+            // The action unit prefabs.
+            if (actionUnitPrefabs == null)
+                actionUnitPrefabs = ActionUnitPrefabs.Instance;
         }
 
         // Update is called once per frame

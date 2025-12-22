@@ -5,8 +5,11 @@ using UnityEngine;
 namespace RM_EDU
 {
     // The action stage unit.
-    public class ActionUnit : MonoBehaviour
+    public abstract class ActionUnit : MonoBehaviour
     {
+        // The unit type.
+        public enum unitType { unknown, generator, defense, enemy }
+
         // The action manager.
         public ActionManager actionManager;
 
@@ -26,6 +29,9 @@ namespace RM_EDU
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
         }
+
+        // Gets the action unit type.
+        public abstract unitType GetUnitType();
 
         // Update is called once per frame
         virtual protected void Update()

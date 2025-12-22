@@ -15,6 +15,7 @@ namespace RM_EDU
         private static bool instanced = false;
 
         // The action tile prefabs.
+        // The tile at index 0 is blank since it's meant to be an empty tile.
         public List<ActionTile> tilePrefabs = new List<ActionTile>();
 
         // Constructor
@@ -102,7 +103,7 @@ namespace RM_EDU
             ActionTile prefab = GetPrefab(index);
             ActionTile newTile = null;
 
-            // If the prefab isn't equal to null, create an instance and return it.
+            // If the prefab isn't equal to null, create an instance.
             if (prefab != null)
             {
                 newTile = Instantiate(prefab);
