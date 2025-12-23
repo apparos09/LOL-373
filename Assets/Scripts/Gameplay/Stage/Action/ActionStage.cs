@@ -122,13 +122,13 @@ namespace RM_EDU
         // Generates a map using the provided ID number. Saves the provided as the ID number.
         public void GenerateMap(int idNumber)
         {
-            // TODO: create the tiles.
-            string[,] map = ActionStageList.GenerateStageMapDebug();
+            // Gets the map based on the id number.
+            string[,] map = ActionStageList.GenerateStageMap(idNumber);
 
             // The map doesn't exist.
             if(map == null)
             {
-                Debug.LogError("No map data was fine.");
+                Debug.LogError("No map data was found.");
                 return;
             }
 
@@ -274,6 +274,38 @@ namespace RM_EDU
             return ConvertMapPositionToWorldUnits(new Vector2(mapPosX, mapPosY));
         }
 
+        // Gets the map lower bound in world units.
+        // If 'useTileCorner' is true, the lower bounds is the edge of the tile.
+        // If 'useTileCorner' is false, it goes by the tile position, which is the tile's centre (origin).
+        public Vector2 GetMapLowerBoundsInWorldUnits(bool useTileCorner = true)
+        {
+            // Result.
+            Vector2 result = ConvertMapPositionToWorldUnits(0, 0);
+
+            // If using the tile corner, reduce it by the tile size / 2.
+            // It's /2 because the tile origin is the tile's centre.
+            if (useTileCorner)
+                result -= TileSize / 2.0F;
+
+            return result;
+        }
+
+        // Gets the map upper bound in world units.
+        // If 'useTileCorner' is true, the upper bounds is the edge of the tile.
+        // If 'useTileCorner' is false, it goes by the tile position, which is the tile's centre (origin).
+        public Vector2 GetMapUpperBoundsInWorldUnits(bool useTileCorner = true)
+        {
+            // Result
+            Vector2 result = ConvertMapPositionToWorldUnits(MapSize);
+
+            // If using the tile corner, increase it by the tile size / 2.
+            // It's /2 because the tile origin is the tile's centre.
+            if (useTileCorner)
+                result += TileSize / 2.0F;
+
+            return result;
+        }
+
         // Returns 'true' if the map contains the provided tile and the tile's saved mapPos.
         // If it doesn't, or if the tile isn't in the array, it returns false.
         public bool MapContainsTileAtIndex(ActionTile tile)
@@ -334,7 +366,7 @@ namespace RM_EDU
                 else // White
                 {
                     // 0 = white, 1 = black
-                    useNormal = col % 2 == 0 ? true: false;
+                    useNormal = col % 2 == 0 ? true : false;
                 }
 
                 // Gets the color.
@@ -351,6 +383,27 @@ namespace RM_EDU
             return color;
         }
 
+        // Gets a vector representing the provided world position in reference to the map.
+        // If a value for an axis is (0), it means the position is within the stage.
+        // If it's a 1, it's outside the stage on the positive end of that axis.
+        // If it's a -1, it's outisde the stage on the negative end of that axis.
+        public Vector3 GetMapWorldPositionReferenceVector(Vector3 worldPos)
+        {
+            // The map bounds.
+            Vector3 mapBoundsLower = GetMapLowerBoundsInWorldUnits();
+            Vector3 mapBoundsUpper = GetMapUpperBoundsInWorldUnits();
+
+            // The reference vector.
+            Vector3 refVec = new Vector3(
+                worldPos.x < mapBoundsLower.x ? -1 : worldPos.x > mapBoundsUpper.x ? 1 : 0,
+                worldPos.y < mapBoundsLower.y ? -1 : worldPos.y > mapBoundsUpper.y ? 1 : 0,
+                worldPos.z < mapBoundsLower.z ? -1 : worldPos.z > mapBoundsUpper.z ? 1 : 0
+                );
+
+            // Returns the vector.
+            return refVec;
+        }
+
         // Gets the stage map data. Returns null if there's no data.
         public string[,] GetStageMapData()
         {
@@ -358,19 +411,9 @@ namespace RM_EDU
             int idNumber = GetIdNumber();
 
             // The map to be returned.
-            string[,] map = null;
+            string[,] map = ActionStageList.GenerateStageMap(idNumber);
 
-            // TODO: implement.
-
-            // Generates the map.
-            switch(idNumber)
-            {
-                default:
-                case 0:
-                    map = ActionStageList.GenerateStageMapDebug();
-                    break;
-            }
-
+            // Return map.
             return map;
         }
 

@@ -258,6 +258,9 @@ namespace RM_EDU
         public void OnStageOver()
         {
             SetStagePlaying(false);
+
+            // Open the end UI.
+            actionUI.SetStageEndWindowActive(true);
         }
 
         // Returns 'true' if the stage is complete.
@@ -270,7 +273,14 @@ namespace RM_EDU
         // Called to finish the stage. TODO: implement.
         public override void FinishStage()
         {
-            throw new System.NotImplementedException();
+            base.FinishStage();
+
+            // Open the window.
+            // actionUI.SetStageEndWindowActive(true);
+
+            // TODO: put this into the UI instead.
+            LoadWorldScene();
+
         }
 
         // Update is called once per frame

@@ -95,6 +95,27 @@ namespace RM_EDU
          *  3: sea
          */
 
+        // Generates a map based on the provided value. If there's no map to match that value, null is returned.
+        public static string[,] GenerateStageMap(int idNumber)
+        {
+            // The map to be returned.
+            string[,] map;
+
+            // Checks the value to see what map to return.
+            switch(idNumber)
+            {
+                default:
+                    map = null;
+                    break;
+                    
+                case 0:
+                    map = GenerateStageMapDebug();
+                    break;
+            }
+
+            return map;
+        }
+
         // Generates and returns an empty stage map.
         private static string[,] GenerateStageMapEmpty()
         {

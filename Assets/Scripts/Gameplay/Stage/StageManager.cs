@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
 
 namespace RM_EDU
 {
@@ -12,6 +12,10 @@ namespace RM_EDU
         // Uncomment these functions if actual functionaliy is added.
 
         [Header("Stage")]
+
+        // The stage user interface.
+        public StageUI stageUI;
+
         // The stage's ID number.
         public int idNumber = 0;
 
@@ -32,6 +36,18 @@ namespace RM_EDU
 
         // NOTE: this is not called in the Start() function of StageManager() since some other things...
         // Need to be initialized first.
+
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // Finds the stage ui if it isn't set.
+            if (stageUI == null)
+                stageUI = FindObjectOfType<StageUI>();
+
+            
+        }
 
         // Initializes the stage.
         public virtual void InitializeStage()
@@ -109,6 +125,9 @@ namespace RM_EDU
 
             // Stop running the game timer so that the time is measured accurately.
             PauseGameTimer();
+
+            // Stage is no longer playing.
+            SetStagePlaying(false);
         }
 
         // Generates the stage data.

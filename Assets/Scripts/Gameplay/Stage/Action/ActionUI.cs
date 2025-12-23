@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace RM_EDU
@@ -13,6 +14,17 @@ namespace RM_EDU
         // Gets set to 'true' when the singleton has been instanced.
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
+
+        [Header("Action")]
+
+        // The action manager.
+        public ActionManager actionManager;
+
+        // The enemy's energy bar.
+        public util.ProgressBar enemyEnergyBar;
+
+        // The window that shows up when the stage is over.
+        public GameObject stageEndWindow;
 
         // Constructor
         private ActionUI()
@@ -46,6 +58,13 @@ namespace RM_EDU
         protected override void Start()
         {
             base.Start();
+
+            // Gets the instance.
+            if (actionManager == null)
+                actionManager = ActionManager.Instance;
+
+            // Close the stage end window.
+            stageEndWindow.SetActive(false);
         }
 
         // Gets the instance.
@@ -84,10 +103,44 @@ namespace RM_EDU
             }
         }
 
+        // Updates the enemy's energy bar.
+        public void UpdatePlayerEnemyEnergyBar()
+        {
+            // Gets the enemy.
+            ActionPlayerEnemy playerEnemy = actionManager.playerEnemy;
+
+            // If the enemy exists, update the bar.
+            if (playerEnemy != null)
+            {
+                // Calculates the energy percent and applies it to the energy bar.
+                float energyPercent = playerEnemy.energy / playerEnemy.energyMax;
+                enemyEnergyBar.SetValueAsPercentage(energyPercent);
+            }
+        }
+
+        // Opens the stage end window.
+        public void SetStageEndWindowActive(bool active)
+        {
+            stageEndWindow.SetActive(active);
+        }
+
+        // Called to finish the stage.
+        public override void FinishStage()
+        {
+            actionManager.FinishStage();
+        }
+
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
+
+            // If the stage is playing and the game is unpaused.
+            if(actionManager.IsStagePlayingAndGameUnpaused())
+            {
+                // Updates the player enemy energy bar.
+                UpdatePlayerEnemyEnergyBar();
+            }
         }
 
     }

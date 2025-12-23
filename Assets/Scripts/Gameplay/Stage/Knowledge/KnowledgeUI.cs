@@ -138,7 +138,7 @@ namespace RM_EDU
         }
 
         // Finishes the stage. This should only be called once all statements have been matched correctly.
-        public void FinishStage()
+        public override void FinishStage()
         {
             knowledgeManager.FinishStage();
         }

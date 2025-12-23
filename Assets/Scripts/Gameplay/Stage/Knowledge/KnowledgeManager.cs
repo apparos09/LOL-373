@@ -80,9 +80,7 @@ namespace RM_EDU
 
             // Sets the knowledge UI if it isn't already set.
             if(knowledgeUI == null)
-            {
                 knowledgeUI = KnowledgeUI.Instance;
-            }
 
             // If the knowledge statement list is not set, try to get the instance.
             // This also instantiates the object if it hasn't been instantiated already.

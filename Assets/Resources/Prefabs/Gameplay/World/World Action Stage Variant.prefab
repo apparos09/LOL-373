@@ -8,6 +8,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7421944655172225121, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+      propertyPath: m_SortingLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421944655172225121, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7421944655172225121, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 483747239
+      objectReference: {fileID: 0}
     - target: {fileID: 7866883268474285435, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -91,5 +103,6 @@ MonoBehaviour:
   naturalResources: 
   idNumber: 0
   difficulty: 0
+  time: 0
   score: 0
   complete: 0

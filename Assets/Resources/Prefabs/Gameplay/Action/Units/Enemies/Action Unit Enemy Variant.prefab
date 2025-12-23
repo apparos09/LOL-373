@@ -86,8 +86,10 @@ MonoBehaviour:
   idNumber: 3
   spriteRenderer: {fileID: 8147518098009090336}
   animator: {fileID: 2850429345959189649}
+  playerEnemy: {fileID: 0}
   moveSpeed: 1
   row: -1
+  deathEnergyCost: 1
 --- !u!212 &8147518098009090336 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 824763696059470028, guid: 09943904bff810340a376831cb22bfec, type: 3}

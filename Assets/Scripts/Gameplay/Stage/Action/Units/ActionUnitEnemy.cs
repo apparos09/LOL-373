@@ -47,6 +47,15 @@ namespace RM_EDU
             {
                 // Moves the enemy.
                 transform.Translate(moveDirec * moveSpeed * Time.deltaTime);
+
+                // Gets the reference vector.
+                Vector3 refVec = actionManager.actionStage.GetMapWorldPositionReferenceVector(transform.position);
+
+                if(refVec.x < 0.0F)
+                {
+                    // The player has died.
+                    actionManager.OnPlayerUserDeath();
+                }
             }
         }
     }

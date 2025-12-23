@@ -158,13 +158,14 @@ MonoBehaviour:
   gameScore: 0
   mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
-  worldScene: WorldScene
-  actionScene: ActionScene
-  knowledgeScene: KnowledgeScene
+  worldScene: DebugWorldScene
+  actionScene: DebugActionScene
+  knowledgeScene: DebugKnowledgeScene
   resultsScene: ResultsScene
   loadingScreenEnabled: 1
   dataLogger: {fileID: 0}
   useDataLogger: 1
+  stageUI: {fileID: 0}
   idNumber: 0
   worldStageIndex: -1
   difficulty: 0
@@ -855,30 +856,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2708951535726589995, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 9090741551036630106}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
---- !u!1 &9090741551036630105 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2708951535726589995, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
-  m_PrefabInstance: {fileID: 9090741551036630104}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &9090741551036630106
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9090741551036630105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b15f8f5454ef89e45bb46423e1a5f4df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameManager: {fileID: 0}
-  tutorialUI: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

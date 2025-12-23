@@ -112,6 +112,9 @@ namespace RM_EDU
             // }
         }
 
+        // WINDOWS
+        // TODO: create.
+        // public abstract void CloseAllWindows();
 
         // GAME TIME SCALE AND PAUSING //
         // Gets the game time scale.
