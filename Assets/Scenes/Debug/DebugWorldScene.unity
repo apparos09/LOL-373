@@ -319,6 +319,7 @@ MonoBehaviour:
   dataLogger: {fileID: 0}
   useDataLogger: 1
   worldUI: {fileID: 0}
+  worldCamera: {fileID: 0}
   areas: []
   stages:
   - {fileID: 1902176520}
@@ -439,6 +440,7 @@ GameObject:
   - component: {fileID: 550502101}
   - component: {fileID: 550502100}
   - component: {fileID: 550502099}
+  - component: {fileID: 550502102}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -520,6 +522,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &550502102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 550502098}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 765501419eb14494687c76eba6ebcea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldManager: {fileID: 0}
+  camera: {fileID: 0}
+  destPos: {x: 0, y: 0, z: 0}
+  freezePosZ: 1
+  moveSpeed: 10
 --- !u!1001 &654468456
 PrefabInstance:
   m_ObjectHideFlags: 0

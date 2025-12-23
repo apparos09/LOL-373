@@ -100,6 +100,18 @@ namespace RM_EDU
             }
         }
 
+        // Goes to the previous world area.
+        public void PreviousWorldArea(bool wrapAround)
+        {
+            worldManager.PreviousWorldArea(wrapAround);
+        }
+
+        // Goes to the next world area.
+        public void NextWorldArea(bool wrapAround)
+        {
+            worldManager.NextWorldArea(wrapAround);
+        }
+
         // TODO: expand on these functions.
         // Opens the stage prompt.
         public void OpenStagePrompt(WorldStage worldStage)

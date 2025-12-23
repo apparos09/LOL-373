@@ -82,6 +82,12 @@ namespace RM_EDU
             return worldManager.GetWorldStageIndex(this);
         }
 
+        // Gets the world area this stage is in.
+        public WorldArea GetWorldStageArea()
+        {
+            return worldManager.GetWorldStageArea(this);
+        }
+
         // Gets the stage type.
         public virtual stageType GetStageType()
         {
