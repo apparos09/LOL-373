@@ -43,6 +43,12 @@ namespace RM_EDU
         // (0.5, 0.5) is the centre, (1, 1) is the top right corner and (0, 0) is the bottom left corner.
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
 
+        // Gets set to 'true' if there are metal tiles.
+        // If so, the enemies don't check for the map end every frame. They only do so once they hit a metal tile.
+        // If not, the enemies check for the map end every frame.
+        // Technically this is set as true even if there's only one metal tile, but semantics.
+        private bool hasMetalTiles = false;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -132,6 +138,10 @@ namespace RM_EDU
                 return;
             }
 
+            // Sets has metal tiles to false.
+            // This will be set to true once a metal tile is created.
+            hasMetalTiles = false;
+
             // Goes through all the rows and columns, generating the tiles.
             // Row
             for(int r = 0; r < map.GetLength(0); r++)
@@ -217,10 +227,26 @@ namespace RM_EDU
                         tiles[r, c] = null; 
                     }
 
+                    // If the stage has no metal tiles.
+                    if(!hasMetalTiles)
+                    {
+                        // If this is a metal tile, mark that there is a metal tile.
+                        if (newTile.GetTileType() == ActionTile.actionTile.metal)
+                        {
+                            hasMetalTiles = true;
+                        }
+                    }
+
                     // Add the tile to the array.
                     tiles[r, c] = newTile; // New
                 }
             }
+        }
+
+        // Returns 'true' if the stage has metal tiles.
+        public bool HasMetalTiles
+        {
+            get { return hasMetalTiles; }
         }
 
         // Converts the provided map tile position to local position in world units.

@@ -8,7 +8,7 @@ namespace RM_EDU
     public class ActionTile : MonoBehaviour
     {
         // The action tile.
-        public enum actionTile { unknown, land, river, sea };
+        public enum actionTile { unknown, land, river, sea, metal };
 
         // The action manager.
         public ActionManager actionManager;
@@ -18,6 +18,9 @@ namespace RM_EDU
 
         // The tile verison.
         public char tileVersion = 'A';
+
+        // The collider.
+        public new Collider2D collider;
 
         [Header("Sprites")]
 
@@ -71,7 +74,11 @@ namespace RM_EDU
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
 
-            // Turn off 
+            // Gets the collider.
+            if (collider == null)
+                collider = GetComponent<Collider2D>();
+
+            // Turn off highlight and overlay.
             highlightSpriteRenderer.gameObject.SetActive(false);
             overlaySpriteRenderer.gameObject.SetActive(false);
 

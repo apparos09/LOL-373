@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2356950983744757008}
   m_Layer: 0
   m_Name: Action Tile
-  m_TagString: Untagged
+  m_TagString: Tile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -66,7 +66,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   tileType: 0
   tileVersion: 65
+  collider: {fileID: 8777409888098926867}
   animator: {fileID: 6086815689167183318}
   highlightSpriteRenderer: {fileID: 9010221699124483645}
   overlaySpriteRenderer: {fileID: 3803946226529072956}
