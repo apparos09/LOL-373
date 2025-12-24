@@ -27,6 +27,11 @@ namespace RM_EDU
             // Gets set to 'false' if an uncompleted stage is found.
             bool allComplete = true;
 
+            // You could check the areas instead of the stages, and it'd be a shorter check...
+            // But this also works.
+            // All stages should belong to an area, but in case one of them doesn't...
+            // Doing a check this way works while doing a check by area would not.
+
             // Goes through all stages.
             foreach(WorldStage stage in worldManager.stages)
             {

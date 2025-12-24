@@ -20,6 +20,9 @@ namespace RM_EDU
         // The stages in the area.
         public List<WorldStage> stages = new List<WorldStage>();
 
+        // The area complete event.
+        public AreaCompleteEvent areaCompleteEvent;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -28,6 +31,10 @@ namespace RM_EDU
             {
                 worldManager = WorldManager.Instance;
             }
+
+            // If not set, try to get component.
+            if (areaCompleteEvent == null)
+                areaCompleteEvent = GetComponent<AreaCompleteEvent>();
 
             // Finds all the stage children and puts them into the list if the list is empty.
             if (stages.Count <= 0)

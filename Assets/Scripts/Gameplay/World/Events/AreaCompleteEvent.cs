@@ -22,6 +22,10 @@ namespace RM_EDU
             // Sets the instance.
             if (worldManager == null)
                 worldManager = WorldManager.Instance;
+
+            // If the area isn't set, get the area.
+            if(area == null)
+                area = GetComponent<WorldArea>();
         }
 
         // Updates the event.
@@ -57,7 +61,12 @@ namespace RM_EDU
         {
             base.OnEventComplete();
 
-            // TODO: unlock the next area
+            // If area buttons should be effected by events.
+            if (worldManager.EffectAreaButtons)
+            {
+                // The next area button is interactable.
+                worldManager.worldUI.nextAreaButton.interactable = true;
+            }
         }
 
         // Update is called once per frame

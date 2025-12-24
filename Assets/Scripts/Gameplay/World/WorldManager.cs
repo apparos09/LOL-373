@@ -40,6 +40,10 @@ namespace RM_EDU
         // The current area.
         private int currAreaIndex = 0;
 
+        // If 'true', the state of the game effects the area buttons.
+        // If 'false', the area buttons remain on at all times.
+        private bool effectAreaButtons = false;
+
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
 
@@ -201,6 +205,25 @@ namespace RM_EDU
             }
         }
 
+        // Gets the index of the current world area.
+        public int GetWorldAreaIndex()
+        {
+            // Gets the area.
+            WorldArea currArea = GetCurrentWorldArea();
+
+            // Area is in list.
+            if (areas.Contains(currArea))
+            {
+                // Return index.
+                return areas.IndexOf(currArea);
+            }
+            else
+            {
+                // Return -1 since not in list.
+                return -1;
+            }
+        }
+
         // Gets the current world area.
         public WorldArea GetCurrentWorldArea()
         {
@@ -229,7 +252,46 @@ namespace RM_EDU
             // If the current area exists, move the camera towards it.
             if (currArea != null)
             {
+                // Move camera.
                 worldCamera.Move(currArea, instantCameraMovement);
+
+                // If the state of the world should effect the area buttons.
+                if(effectAreaButtons)
+                {
+                    // Current area index, prev area index, and next area index.
+                    int currAreaIndex = GetCurrentWorldAreaIndex();
+                    int prevAreaIndex = currAreaIndex - 1;
+                    int nextAreaIndex = currAreaIndex + 1;
+
+                    // Turn on both area buttons to start.
+                    worldUI.prevAreaButton.interactable = true;
+                    worldUI.nextAreaButton.interactable = true;
+
+                    // Previous
+                    // If negative, make the prev button non-interactable.
+                    if (prevAreaIndex < 0)
+                    {
+                        worldUI.prevAreaButton.interactable = false;
+                    }
+                    else
+                    {
+                        // Set button interactable if the previous area has been cleared.
+                        worldUI.prevAreaButton.interactable = areas[prevAreaIndex].areaCompleteEvent.cleared;
+                    }
+
+                    // Next
+                    // If the current area is completed, the next area must be open.
+                    if (nextAreaIndex < areas.Count)
+                    {
+                        worldUI.nextAreaButton.interactable = currArea.areaCompleteEvent.cleared;
+                    }
+                    // If this is the last area in the list, there is no next area to go to.
+                    else
+                    {
+                        worldUI.nextAreaButton.interactable = false;
+                    }
+                }
+
             }
         }
 
@@ -328,6 +390,12 @@ namespace RM_EDU
 
             // Set the new area.
             SetCurrentWorldArea(index);
+        }
+
+        // If area buttons should be effected by the state of the world.
+        public bool EffectAreaButtons
+        {
+            get { return effectAreaButtons; }
         }
 
         // Starts the provided stage.

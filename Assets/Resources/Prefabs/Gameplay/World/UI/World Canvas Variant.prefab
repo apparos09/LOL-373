@@ -416,6 +416,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
   m_PrefabInstance: {fileID: 4849537162780101450}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7723561102664122762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
+  m_PrefabInstance: {fileID: 4849537162780101450}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5051262599545018231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -546,7 +557,7 @@ MonoBehaviour:
   tutorialUI: {fileID: 0}
   worldManager: {fileID: 0}
   prevAreaButton: {fileID: 1580990765971838001}
-  nextAreaButton: {fileID: 1580990765971838001}
+  nextAreaButton: {fileID: 7723561102664122762}
   stagePrompt: {fileID: 2344112202134844928}
 --- !u!224 &4446877280303409859 stripped
 RectTransform:
