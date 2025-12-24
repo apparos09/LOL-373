@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_EDU
 {
@@ -18,6 +19,12 @@ namespace RM_EDU
 
         // The world manager.
         public WorldManager worldManager;
+
+        // The previous area button.
+        public Button prevAreaButton;
+
+        // The next area button.
+        public Button nextAreaButton;
 
         // The stage prompt.
         public WorldStagePrompt stagePrompt;

@@ -28,6 +28,13 @@ namespace RM_EDU
             {
                 worldManager = WorldManager.Instance;
             }
+
+            // Finds all the stage children and puts them into the list if the list is empty.
+            if (stages.Count <= 0)
+            {
+                stages.Clear();
+                stages.AddRange(GetComponentsInChildren<WorldStage>());
+            }
         }
 
         // Update is called once per frame
