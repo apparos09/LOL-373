@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: durability
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: movementSpeed
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 5736827563331587179, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

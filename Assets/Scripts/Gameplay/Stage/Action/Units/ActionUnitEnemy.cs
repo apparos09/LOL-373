@@ -12,12 +12,9 @@ namespace RM_EDU
         // The enemy player.
         public ActionPlayerEnemy playerEnemy;
 
-        // The move speed of the enemy.
-        public float moveSpeed = 1.0F;
-
         // The enemy's movement direction.
         // Enemies go from left to right.
-        private Vector3 moveDirec = Vector3.left;
+        private Vector3 movementDirec = Vector3.left;
 
         // If 'true', the enemy moves.
         private bool movementEnabled = true;
@@ -86,13 +83,19 @@ namespace RM_EDU
                 // If the enemy should use movement.
                 if (movementEnabled)
                 {
+                    // NOTE: the speed isn't effected by the factor variable.
+
+                    // Calculates the move speed.
+                    float moveSpeedAdjusted = movementSpeed / 100.0F * statFactor;
+
+
                     // Moves the enemy unit. The enemy shoud move at a fixed speed.
                     // Old - Uses translate function.
-                    // transform.Translate(moveDirec * moveSpeed * Time.deltaTime);
+                    // transform.Translate(movementDirec * moveSpeedAdjusted * Time.deltaTime);
 
                     // New - adds force and clamps it to the move speed.
-                    rigidbody.AddForce(moveDirec * moveSpeed * Time.deltaTime, ForceMode2D.Impulse);
-                    rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeed);
+                    rigidbody.AddForce(movementDirec * moveSpeedAdjusted * Time.deltaTime, ForceMode2D.Impulse);
+                    rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeedAdjusted);
                 }
                 else
                 {
