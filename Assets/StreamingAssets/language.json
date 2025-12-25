@@ -30,6 +30,8 @@
       "kwd_bgms": 8,
       "kwd_sfxs": 8,
 
+      "kwd_ukn": 18,
+
       "kwd_worldStage": 18,
       "kwd_actionStage": 18,
       "kwd_knowledgeStage": 18,
@@ -45,6 +47,7 @@
       "nrs_ngs": 18,
       "nrs_nlr": 18,
       "nrs_oil": 18
+
     }
   },
   "en": {
@@ -76,12 +79,13 @@
     "kwd_bgms": "BGMs",
     "kwd_sfxs": "SFXs",
 
+    "kwd_unknown": "Unknown",
+
     "kwd_worldStage": "World Stage",
     "kwd_actionStage": "Action Stage",
     "kwd_knowledgeStage": "Knowledge Stage",
     "kwd_unknownStage": "Unknown Stage",
 
-    "nrs_ukn": "Unknown",
     "nrs_bms": "Biomass",
     "nrs_hdo": "Hydro",
     "nrs_gtl": "Geothermal",
@@ -92,5 +96,6 @@
     "nrs_ngs": "Natural Gas",
     "nrs_nlr": "Nuclear",
     "nrs_oil": "Oil"
+
   }
 }

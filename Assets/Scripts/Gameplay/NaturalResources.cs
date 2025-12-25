@@ -192,7 +192,7 @@ namespace RM_EDU
             switch(res)
             {
                 case naturalResource.unknown:
-                    result = "nrs_ukn";
+                    result = "kwd_unknown"; // Uses keyword "Unknown".
                     break;
 
                 case naturalResource.biomass:

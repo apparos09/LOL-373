@@ -7,6 +7,23 @@ namespace RM_EDU
     // The user action player.
     public class ActionPlayerUser : ActionPlayer
     {
+        [Header("User")]
+
+        // The energy the player user starts with.
+        public float startingEnergy = 50.0F;
+
+        // The energy auto generation timer.
+        public float energyAutoGenTimer = 0.0F;
+
+        // The amount of time it takes for the player to generate energy.
+        public float energyAutoGenTimerMax = 5.0F;
+
+        // The amount of energy that's generated for every instance.
+        public float energyAutoGenAmount = 5.0F;
+
+        // If 'true', the player automatically generates energy.
+        private bool energyAutoGenEnabled = true;
+
         // The unit prefab the action player user has selected.
         private ActionUnit selectedUnitPrefab;
 
@@ -20,6 +37,60 @@ namespace RM_EDU
             {
                 actionManager.playerUser = this;
             }
+
+            // Sets the user's energy to the starting energy.
+            SetEnergyToStartingEnergy();
+
+            // Resets the energy auto generation timer.
+            ResetEnergyAutoGenerationTimer();
+        }
+
+        // Sets the starting energy.
+        public void SetStartingEnergy(float startingEnergy)
+        {
+            this.startingEnergy = startingEnergy;
+        }
+
+        // Sets the user's energy to their starting energy.
+        public void SetEnergyToStartingEnergy()
+        {
+            energy = startingEnergy;
+        }
+
+        // Adds the starting energy to the user's energy.
+        public void AddStartingEnergyToEnery()
+        {
+            energy += startingEnergy;
+        }
+
+        // Returns 'true' if the energy auto generates.
+        public bool IsEnergyAutoGenerating()
+        {
+            return energyAutoGenEnabled;
+        }
+
+        // Gets the energy auto generation timer max.
+        public float GetEnergyAutoGenerationTimerMax()
+        {
+            return energyAutoGenTimerMax;
+        }
+
+        // Gets the energy auto generation timer.
+        public float GetEnergyAutoGenerationTimer()
+        {
+            return energyAutoGenTimer;
+        }
+
+        // Resets the energy auto generation timer.
+        public void ResetEnergyAutoGenerationTimer()
+        {
+            energyAutoGenTimer = energyAutoGenTimerMax;
+        }
+
+        // Gets the amount of energy generated automatically per instance.
+        public float GetEnergyAutoGenerationAmount()
+        {
+            return energyAutoGenAmount;
         }
 
         // Returns 'true' if the player is selecting a unit.
@@ -49,14 +120,41 @@ namespace RM_EDU
         // Resets the player.
         public override void ResetPlayer()
         {
+            SetEnergyToStartingEnergy();
+            ResetEnergyAutoGenerationTimer();
             ClearSelectedUnitPrefab();
-            // TODO: reset energy amount.
         }
 
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
+
+            // If the game is playing and unpaused.
+            if (actionManager.IsStagePlayingAndGameUnpaused())
+            {
+                // If energy should be generated automatically.
+                if (energyAutoGenEnabled)
+                {
+                    // Reduces timer.
+                    energyAutoGenTimer -= Time.deltaTime;
+
+                    // If the auto gen timer is less than or equal to 0, add energy.
+                    if(energyAutoGenTimer <= 0.0F)
+                    {
+                        // Sets the timer to 0 to stop it from going negative.
+                        energyAutoGenTimer = 0.0F;
+
+                        // Adds energy.
+                        energy += energyAutoGenAmount;
+
+                        // Set timer to max.
+                        ResetEnergyAutoGenerationTimer();
+                    }
+                }
+            }
+                
+
         }
     }
 }

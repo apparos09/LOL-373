@@ -18,6 +18,8 @@ namespace RM_EDU
         private float gameTimeScale = 1.0F;
 
         // The timer for the game.
+        // NOTE: the data logger is used to track the overall game time.
+        // The variable gameTimer is used to track time in the specific scene.
         public float gameTimer = 0;
 
         // If 'true', the game run timer is run.
@@ -115,6 +117,19 @@ namespace RM_EDU
         // WINDOWS
         // TODO: create.
         // public abstract void CloseAllWindows();
+
+        // GAME TIME
+        // Gets the game timer.
+        public float GetGameTimer()
+        {
+            return gameTimer;
+        }
+
+        // Resets the game timer.
+        public void ResetGameTimer()
+        {
+            gameTimer = 0.0F;
+        }
 
         // GAME TIME SCALE AND PAUSING //
         // Gets the game time scale.

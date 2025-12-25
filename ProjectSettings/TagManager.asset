@@ -9,6 +9,7 @@ TagManager:
   - VCE
   - TTS
   - Tile
+  - Manager
   layers:
   - Default
   - TransparentFX

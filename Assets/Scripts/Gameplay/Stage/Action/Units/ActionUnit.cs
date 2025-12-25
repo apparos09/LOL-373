@@ -1,3 +1,4 @@
+using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,9 +12,22 @@ namespace RM_EDU
         public enum unitType { unknown, generator, defense, enemy }
 
         // The rating a stat can have.
-        // noneMinus means the stat is lower than 0.
-        // maxPlus means the stat is at its above its maximum.
-        public enum statRating { unknown, noneMinus, none, veryLow, low, medium, high, veryHigh, maximum, maxPlus }
+        // Stat noneMinus means the stat is lower than 0.
+        // Stat maxPlus means the stat is at its above its maximum.
+        /*
+         * Ranges are listed below. 
+         * NOTE: In some cases None Minus and None might be grouped together. Very High, Maximum, and Maximum Plus may also get grouped together.
+         *  - None Minus: <0
+         *  - None: 0
+         *  - Very Low: 1-20
+         *  - Low: 21-40
+         *  - Meidum: 41-60
+         *  - High: 61-80
+         *  - Very High: 81-99
+         *  - Maximum: 100
+         *  - Maximum Plus: >100
+         */
+        public enum statRating { unknown, noneMinus, none, veryLow, low, medium, high, veryHigh, maximum, maximumPlus }
 
         // The action manager.
         public ActionManager actionManager;
@@ -127,7 +141,7 @@ namespace RM_EDU
             // Checks the rating to give.
             if(stat > statMax) // 100+ (Above Max)
             {
-                rating = statRating.maxPlus;
+                rating = statRating.maximumPlus;
             }
             else if(stat == statMax) // 100 (Max)
             {
@@ -165,6 +179,66 @@ namespace RM_EDU
             // Returns the rating.
             return rating;
         }
+
+        // Converts a stat rating to a string.
+        public string StatRatingToString(statRating statRating)
+        {
+            // NOTE: these aren't translated since they aren't displayed in the actual game.
+
+            // The result to be returned.
+            string result;
+
+            // Goes through each rating, checking what string to return.
+            switch(statRating)
+            {
+                default:
+                    result = string.Empty;
+                    break;
+
+                case statRating.unknown:
+                    result = "Unknown";
+                    break;
+
+                case statRating.noneMinus:
+                    result = "None-";
+                    break;
+
+                case statRating.none:
+                    result = "None";
+                    break;
+
+                case statRating.veryLow:
+                    result = "Very Low";
+                    break;
+
+                case statRating.low:
+                    result = "Low";
+                    break;
+
+                case statRating.medium:
+                    result = "Medium";
+                    break;
+
+                case statRating.high:
+                    result = "High";
+                    break;
+
+                case statRating.veryHigh:
+                    result = "Very High";
+                    break;
+
+                case statRating.maximum:
+                    result = "Maximum";
+                    break;
+
+                case statRating.maximumPlus:
+                    result = "Maximum+";
+                    break;
+            }
+
+            return result;
+        }
+
 
         // Kills the unit.
         public virtual void Kill()

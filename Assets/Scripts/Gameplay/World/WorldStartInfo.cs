@@ -51,7 +51,7 @@ namespace RM_EDU
                 stageType = stageManager.GetStageType();
 
                 // Gets the stage time.
-                stageTime = stageManager.GetStageTime();
+                stageTime = stageManager.GetStageTimer();
 
                 // Gets the stage score.
                 stageScore = stageManager.GetStageScore();

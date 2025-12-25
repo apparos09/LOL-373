@@ -16,6 +16,11 @@ namespace RM_EDU
         // The stage user interface.
         public StageUI stageUI;
 
+        // The timer for the stage. This is scaled with delta time since it's tied to game events.
+        // This is effected by the time scale and is reset if the stage starts over.
+        [Tooltip("The stage timer, which is used for some stage events. This is effected by time scale and reset if the stage starts over.")]
+        public float stageTimer = 0.0F;
+
         // The stage's ID number.
         public int idNumber = 0;
 
@@ -100,9 +105,24 @@ namespace RM_EDU
         }
 
         // Returns the stage time.
-        public virtual float GetStageTime()
+        public virtual float GetStageTimer()
         {
-            return gameTimer;
+            return stageTimer;
+        }
+
+        // Resets the game timer and stage timer.
+        public void ResetGameTimerAndStageTimer()
+        {
+            ResetGameTimer();
+            ResetStageTimer();
+        }
+
+        // Resets the stage timer.
+        // NOTE: this doesn't reset gameTimer. The stage timer is effected by time scale, but the game timer is not.
+        // If you want to reset the game timer, call ResetStageTimer().
+        public virtual void ResetStageTimer()
+        {
+            stageTimer = 0.0F;
         }
 
         // Returns the stage score.
@@ -119,7 +139,9 @@ namespace RM_EDU
         public virtual void FinishStage()
         {
             // Reset the game time scale to make sure it's 1.00.
+            ResetGameTimer();
             ResetGameTimeScale();
+            ResetStageTimer();
 
             // TODO: maybe have the stage timer be seperate from the game timer?
 
@@ -151,6 +173,12 @@ namespace RM_EDU
         protected override void Update()
         {
             base.Update();
+
+            // If the stage is playing and the game is unpaused...
+            if(IsStagePlayingAndGameUnpaused())
+            {
+                stageTimer += Time.deltaTime;
+            }
         }
     }
 }

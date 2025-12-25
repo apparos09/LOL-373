@@ -1,3 +1,4 @@
+using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -51,6 +52,12 @@ namespace RM_EDU
 
         // If 'true', the day-night cycle is enabled.
         private bool dayNightEnabled = true;
+
+        // The wind speeds of the stage. The times the wind speed changes is based on how many wind elements there are.
+        public ActionUnit.statRating[] windSpeeds = new ActionUnit.statRating[3];
+
+        // If 'true', wind is enabled.
+        private bool windEnabled = true;
 
         // The player user.
         public ActionPlayerUser playerUser;
@@ -170,6 +177,7 @@ namespace RM_EDU
             base.InitializeStage();
         }
 
+        // DAY-NIGHT CYCLE
         // Returns the stage
         public float GetDayNightTimer()
         {
@@ -301,6 +309,170 @@ namespace RM_EDU
             }
         }
 
+        // Resets the day night cycle.
+        public void ResetDayNightCycle()
+        {
+            // Sets day night timer to 0 and transition (going from day to night).
+            dayNightTimer = 0.0F;
+            dayToNight = true;
+        }
+        
+        // WIND
+        // If true, the wind weather effect is enabled.
+        public bool IsWindEnabled()
+        {
+            return windEnabled;
+        }
+
+        // Gets the current wind rating.
+        // If wind is disabled, a rating of 'none' is returned.
+        public ActionUnit.statRating GetCurrentWindRating()
+        {
+            // The wind rating.
+            ActionUnit.statRating rating;
+
+            // Checks if the wind is enabled.
+            if(windEnabled)
+            {
+                // If there are wind speeds.
+                if(windSpeeds.Length > 0)
+                {
+                    // Gets the time increment. The wind should change based on the stat of the stage.
+                    // Each wind speed goes for an equal amount of time.
+                    float timeInc = STAGE_LENGTH_MAX_SECONDS / windSpeeds.Length;
+
+                    // Adds to the sum until it finds a value just below the stage length.
+                    float timeSum = 0.0F;
+
+                    // If the time increment is greater than 0.
+                    if(timeInc > 0)
+                    {
+                        // Gets the stage time.
+                        float stageTime = GetStageTimer();
+
+                        // The wind speed index.
+                        int windSpeedIndex = 0;
+
+                        // While the time sum is greater than the stage time.
+                        while (timeSum < stageTime)
+                        {
+                            // Add the time increment to the time sum.
+                            timeSum += timeInc;
+                            
+                            // Increase the index if the time sum...
+                            // Hasn't moved into the next bracket.
+                            if(timeSum < stageTime)
+                                windSpeedIndex++;
+                        }
+
+                        // Clamps the wind speed index.
+                        windSpeedIndex = Mathf.Clamp(windSpeedIndex, 0, windSpeeds.Length);
+
+                        // Gets the wind speed based on the index.
+                        rating = windSpeeds[windSpeedIndex];
+
+                        // TODO: make this calculation more efficient? Maybe track the index periodically.
+                    }
+                    else
+                    {
+                        // The time sum is 0, so there's no wind.
+                        // This case should never be used.
+                        rating = ActionUnit.statRating.none;
+                    }
+                }
+                // No wind speeds, so no wind.
+                else
+                {
+                    rating = ActionUnit.statRating.none;
+                }
+            }
+            // Disabled.
+            else
+            {
+                // The wind is disabled, so there's no wind.
+                rating = ActionUnit.statRating.none;
+            }
+
+            return rating;
+        }
+
+        // Gets the provide wind rating as a value.
+        public float GetWindRatingAsValue(ActionUnit.statRating windRating)
+        {
+            // The stat maximum (100).
+            float statMax = ActionUnit.BASE_STAT_MAXIMUM;
+
+            // The threshold stats are compared to.
+            // The stat maximum is 100.
+            float threshold = statMax / 5.0F;
+
+            // The result to return.
+            float result;
+
+            // Checks the stat rating to know the wind rating value.
+            // These are fixed values based on the rating.
+            switch (windRating)
+            {
+                case ActionUnit.statRating.maximumPlus: // 100
+                case ActionUnit.statRating.maximum: // 100
+                case ActionUnit.statRating.veryHigh: // 100
+                    result = threshold * 5;
+                    break;
+
+                case ActionUnit.statRating.high: // 80
+                    result = threshold * 4;
+                    break;
+
+                case ActionUnit.statRating.medium: // 60
+                    result = threshold * 3;
+                    break;
+
+                case ActionUnit.statRating.low: // 40
+                    result = threshold * 2;
+                    break;
+
+                case ActionUnit.statRating.veryLow: // 20
+                    result = threshold * 1;
+                    break;
+
+                case ActionUnit.statRating.none: // 0 (No WInd)
+                case ActionUnit.statRating.noneMinus:
+                    result = threshold * 0;
+                    break;
+
+                default: // 0 (No Wind)
+                    result = 0.0F;
+                    break;
+            }
+
+            // Returns the rating.
+            return result;
+        }
+
+        // Gets the current wind rating as a value.
+        public float GetCurrentWindRatingAsValue()
+        {
+            return GetWindRatingAsValue(GetCurrentWindRating());
+        }
+
+        // Gets the wind rating as a percentage.
+        public float GetWindRatingAsAPercentage(ActionUnit.statRating windRating)
+        {
+            // Gets the value and the percentage.
+            float value = GetWindRatingAsValue(windRating);
+            float percentage = value / ActionUnit.BASE_STAT_MAXIMUM;
+
+            // Returns percentage.
+            return percentage;
+        }
+
+        // Gets the current wind rating as a percentage.
+        public float GetCurrentWindRatingAsAPercentage()
+        {
+            return GetWindRatingAsAPercentage(GetCurrentWindRating());
+        }
+
+        // PLAYERS
         // Called on the death of the user.
         public void OnPlayerUserDeath()
         {
@@ -332,7 +504,13 @@ namespace RM_EDU
         // Resets the acion stage.
         public void ResetStage()
         {
-            playerUser.ClearSelectedUnitPrefab();
+            // Resets the timers and the day-night cycle.
+            ResetGameTimerAndStageTimer();
+            ResetDayNightCycle();
+
+            // Reset the players.
+            playerUser.ResetPlayer();
+            playerEnemy.ResetPlayer();
         }
 
         // Called to finish the stage. TODO: implement.

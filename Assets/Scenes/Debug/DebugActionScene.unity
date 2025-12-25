@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 91205895}
   m_Layer: 0
   m_Name: Manager
-  m_TagString: Untagged
+  m_TagString: Manager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -166,6 +166,7 @@ MonoBehaviour:
   dataLogger: {fileID: 0}
   useDataLogger: 1
   stageUI: {fileID: 0}
+  stageTimer: 0
   idNumber: 0
   worldStageIndex: -1
   difficulty: 0
@@ -174,6 +175,7 @@ MonoBehaviour:
   actionStageList: {fileID: 0}
   actionStage: {fileID: 689166624}
   dayNightTimer: 0
+  windSpeeds: 000000000000000000000000
   playerUser: {fileID: 8040844772360132460}
   playerEnemy: {fileID: 1835002386927201937}
   postProcessor: {fileID: 368618438}
@@ -367,10 +369,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 368618436}
   postShader: {fileID: 4800000, guid: 3c5b295e7618aaa48aa36c2ab79c8872, type: 3}
+  actionUI: {fileID: 0}
   colorGradeNightId: _ColorGradeNight
   colorGradeNight: {fileID: 2800000, guid: f0f449909fb7b274b83df13be215872e, type: 3}
   lerpTId: _LerpT
   lerpT: 0
+  dayToNightId: _DayToNight
 --- !u!114 &462939720 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6732195696827849188, guid: 5da4e63e22f91b542aa2093c8fe273dc, type: 3}

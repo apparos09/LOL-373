@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
+using TMPro;
+using util;
 
 namespace RM_EDU
 {
@@ -23,8 +24,11 @@ namespace RM_EDU
         // The day night indicator.
         public DayNightIndicator dayNightIndicator;
 
+        // The player user energy text.
+        public TMP_Text playerUserEnergyText;
+
         // The enemy's energy bar.
-        public util.ProgressBar enemyEnergyBar;
+        public ProgressBar playerEnemyEnergyBar;
 
         // The window that shows up when the stage is over.
         public GameObject stageEndWindow;
@@ -106,8 +110,21 @@ namespace RM_EDU
             }
         }
 
-        // Updates the enemy's energy bar.
-        public void UpdatePlayerEnemyEnergyBar()
+        // Updates the player user's UI.
+        public void UpdatePlayerUserUI()
+        {
+            // Gets the user.
+            ActionPlayerUser playerUser = actionManager.playerUser;
+
+            // If the player exists, update the energy text.
+            if(playerUser != null)
+            {
+                playerUserEnergyText.text = Mathf.Floor(playerUser.energy).ToString();
+            }
+        }
+
+        // Updates the player enemy UI.
+        public void UpdatePlayerEnemyUI()
         {
             // Gets the enemy.
             ActionPlayerEnemy playerEnemy = actionManager.playerEnemy;
@@ -117,7 +134,7 @@ namespace RM_EDU
             {
                 // Calculates the energy percent and applies it to the energy bar.
                 float energyPercent = playerEnemy.energy / playerEnemy.energyMax;
-                enemyEnergyBar.SetValueAsPercentage(energyPercent);
+                playerEnemyEnergyBar.SetValueAsPercentage(energyPercent);
             }
         }
 
@@ -141,8 +158,9 @@ namespace RM_EDU
             // If the stage is playing and the game is unpaused.
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {
-                // Updates the player enemy energy bar.
-                UpdatePlayerEnemyEnergyBar();
+                // Updates the players.
+                UpdatePlayerUserUI();
+                UpdatePlayerEnemyUI();
             }
         }
 

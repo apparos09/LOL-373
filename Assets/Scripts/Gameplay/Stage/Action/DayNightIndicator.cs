@@ -41,11 +41,14 @@ namespace RM_EDU
             // If the indicator is enabled.
             if (indicatorEnabled)
             {
+                // Gets the action manager.
+                ActionManager actionManager = ActionManager.Instance;
+
                 // If the stage is progressing, update the indicator.
-                if (actionUI.actionManager.IsStagePlayingAndGameUnpaused())
+                if (actionManager.IsStagePlayingAndGameUnpaused())
                 {
                     // The t-value for going from day to night.
-                    float t = actionUI.actionManager.GetDayNightTimerProgress();
+                    float t = actionManager.GetDayNightTimerProgress();
 
                     // Lerps between the two colours.
                     image.color = Color.Lerp(dayColor, nightColor, t);
