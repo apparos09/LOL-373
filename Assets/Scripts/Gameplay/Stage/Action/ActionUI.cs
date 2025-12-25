@@ -20,6 +20,9 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The day night indicator.
+        public DayNightIndicator dayNightIndicator;
+
         // The enemy's energy bar.
         public util.ProgressBar enemyEnergyBar;
 

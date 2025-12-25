@@ -24,5 +24,17 @@ namespace RM_EDU
         {
             return unitType.defense;
         }
+
+        // Kills the unit.
+        public override void Kill()
+        {
+            base.Kill();
+        }
+
+        // Called when a unit has died/been destroyed.
+        public override void OnUnitDeath()
+        {
+            base.OnUnitDeath();
+        }
     }
 }

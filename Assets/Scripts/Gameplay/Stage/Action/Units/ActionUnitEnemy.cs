@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -70,6 +71,26 @@ namespace RM_EDU
         public override unitType GetUnitType()
         {
             return unitType.enemy;
+        }
+
+        // Kills the unit.
+        public override void Kill()
+        {
+            base.Kill();
+        }
+
+        // Called when a unit has died/been destroyed.
+        public override void OnUnitDeath()
+        {
+            base.OnUnitDeath();
+
+            // If attached to a player enemy.
+            if(playerEnemy != null)
+            {
+                // Calls the related function.
+                playerEnemy.OnEnemyUnitDeath(this);
+            }
+            
         }
 
         // Update is called once per frame

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 
 namespace RM_EDU
@@ -30,6 +31,9 @@ namespace RM_EDU
             if (actionUnitPrefabs == null)
                 actionUnitPrefabs = ActionUnitPrefabs.Instance;
         }
+
+        // Resets the player.
+        public abstract void ResetPlayer();
 
         // Update is called once per frame
         protected virtual void Update()

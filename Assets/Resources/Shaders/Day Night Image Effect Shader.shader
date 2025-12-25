@@ -35,6 +35,10 @@ Shader "Hidden/Day Night Image Effect Shader"
         // The lerp between the colour codes.
         fixed _LerpT;
 
+        // Used to see if the stage is going from day to night, or vice-versa.
+        // This is an integer, but it's treated like a boolean.
+        int _DayToNight;
+
     ENDCG
 
     SubShader
@@ -64,9 +68,20 @@ Shader "Hidden/Day Night Image Effect Shader"
                 fixed4 nightColBlue = tex2D(_ColorGradeNight, fixed2(col.b, 0.0F));
 
                 // Mixes the day colors and night colors using lerp T.
-                newCol.r = lerp(col.r, nightColRed.r, _LerpT);
-                newCol.g = lerp(col.g, nightColGreen.g, _LerpT);
-                newCol.b = lerp(col.b, nightColBlue.b, _LerpT);
+                // Checks if going from day to night or night to day.
+                if(_DayToNight != 0) // True (all non-0 values register as true)
+                {
+                    newCol.r = lerp(col.r, nightColRed.r, _LerpT);
+                    newCol.g = lerp(col.g, nightColGreen.g, _LerpT);
+                    newCol.b = lerp(col.b, nightColBlue.b, _LerpT);
+                }
+                else // False (0)
+                {
+                    newCol.r = lerp(nightColRed.r, col.r, _LerpT);
+                    newCol.g = lerp(nightColGreen.g, col.g, _LerpT);
+                    newCol.b = lerp(nightColBlue.b, col.b, _LerpT);
+                }
+
                 // newCol.a = col.a; // Unneeded since the alpha has already been copied over.
 
                 // Returns the new color.

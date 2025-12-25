@@ -166,6 +166,18 @@ namespace RM_EDU
             return rating;
         }
 
+        // Kills the unit.
+        public virtual void Kill()
+        {
+            OnUnitDeath();
+        }
+
+        // Called when a unit has died/been destroyed.
+        public virtual void OnUnitDeath()
+        {
+            // ...
+        }
+
         // Update is called once per frame
         virtual protected void Update()
         {

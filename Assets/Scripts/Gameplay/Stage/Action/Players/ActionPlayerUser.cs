@@ -46,6 +46,13 @@ namespace RM_EDU
             selectedUnitPrefab = null;
         }
 
+        // Resets the player.
+        public override void ResetPlayer()
+        {
+            ClearSelectedUnitPrefab();
+            // TODO: reset energy amount.
+        }
+
         // Update is called once per frame
         protected override void Update()
         {

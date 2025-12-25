@@ -144,7 +144,7 @@ namespace RM_EDU
         }
 
         // Spawns enemies.
-        public void SpawnEnemies()
+        public void SpawnEnemyUnits()
         {
             // The number of enemies in each row.
             // By default, it's length is equal to the number of rows. All indexes are filled by 0 by default.
@@ -207,6 +207,22 @@ namespace RM_EDU
             ResetSpawnTimer();
         }
 
+        // Destroys all enemy units.
+        // TODO: add check to see if the death state should be used.
+        public void KillAllEnemyUnits()
+        {
+            // Destroys all enemy units spawned by this enenmy.
+            for (int i = spawnedEnemies.Count - 1; i >= 0; i--)
+            {
+                // Kills the spawned enemy.
+                // This function leds to another function where the enemy removes itself from the list.
+                spawnedEnemies[i].Kill();
+            }
+
+            // Clears all spawned enemies.
+            spawnedEnemies.Clear();
+        }
+
         // Called when an enemy unit has been killed.
         public void OnEnemyUnitDeath(ActionUnitEnemy enemyUnit)
         {
@@ -217,6 +233,16 @@ namespace RM_EDU
             // TODO: have enemy run back to ship before it's destroyed.
 
             Destroy(enemyUnit.gameObject);
+        }
+
+        // Resets the player.
+        public override void ResetPlayer()
+        {
+            // Kills all the enemy units.
+            KillAllEnemyUnits();
+
+            // Sets the energy to max.
+            SetEnergyToMax();
         }
 
         // Update is called once per frame
@@ -253,7 +279,7 @@ namespace RM_EDU
                         if(spawnTimer <= 0.0F)
                         {
                             spawnTimer = 0.0F;
-                            SpawnEnemies();
+                            SpawnEnemyUnits();
                         }
                     }
                     

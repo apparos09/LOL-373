@@ -40,6 +40,18 @@ namespace RM_EDU
         // The fade duration for transitioning from day to night.
         private float dayNightTransDur = 5.0F;
 
+        // If 'true', the stage is progressing from day to night.
+        // If 'false', the stage is progerssing from night to day.
+        private bool dayToNight = true;
+
+        // If 'true', the day-night cycle loops. When the end of a day-night period is reached...
+        // The timer resets, and the game marks that it's going from night to day.
+        // If this is 'false', the timer continues without adjusting the day-night cycle at all.
+        private bool loopDayNightCycle = false;
+
+        // If 'true', the day-night cycle is enabled.
+        private bool dayNightEnabled = true;
+
         // The player user.
         public ActionPlayerUser playerUser;
 
@@ -164,22 +176,58 @@ namespace RM_EDU
             return dayNightTimer;
         }
 
-        // Gets the stage time progress based on how long the stage has been going.
+        // Gets the stage time progress as a percentage based on how long the stage has been going.
         public float GetDayNightTimerProgress()
         {
             return dayNightTimer / STAGE_LENGTH_MAX_SECONDS;
         }
 
+        // Returns 'true' if the day-night cycle is in the first half of the timer (< 50).
+        // Check dayToNight to see if it's day to night or night to day.
+        private bool IsDayNightProgressInFirstHalf()
+        {
+            return dayNightTimer < STAGE_LENGTH_MAX_SECONDS / 2.0F;
+        }
+
+        // Returns 'true' if the day-night cycle is in the second half of the timer (>= 50%).
+        // Check dayToNight to see if it's day to night or night to day.
+        private bool IsDayNightProgressInSecondHalf()
+        {
+            return dayNightTimer >= STAGE_LENGTH_MAX_SECONDS / 2.0F;
+        }
+        
+        // Returns true if the stage is going from day to night.
+        public bool IsDayToNight()
+        {
+            return dayToNight;
+        }
+
+        // Returns 'true' if teh stage is going from night to day.
+        public bool IsNightToDay()
+        {
+            return !dayToNight;
+        }
+
         // Returns 'true' if its day time. Day time is the first half of the stage.
         public bool IsDayTime()
         {
-            return dayNightTimer < STAGE_LENGTH_MAX_SECONDS / 2.0F;
+            // If the stage is transitioning from day to night, check if it's in the first half of the cycle (day).
+            // If the stage is transitioning from night to day, check if it's in the second half of the cycle (day).
+            return (dayToNight) ? IsDayNightProgressInFirstHalf() : IsDayNightProgressInSecondHalf();
         }
 
         // Returns 'true' if it's night time. Night time is the second half of the stage.
         public bool IsNightTime()
         {
-            return dayNightTimer >= STAGE_LENGTH_MAX_SECONDS / 2.0F;
+            // If the stage is transitioning from day to night, check if it's in the second half of the cycle (night).
+            // If the stage is transitioning from night to day, check if it's in the first half of the cycle (night).
+            return (dayToNight) ? IsDayNightProgressInSecondHalf() : IsDayNightProgressInFirstHalf();
+        }
+
+        // Does the day night cycle loop? If not, it stops when it becomes night.
+        public bool IsDayNightCycleLooping()
+        {
+            return loopDayNightCycle;
         }
 
         // Gets the day night transition duration.
@@ -239,7 +287,18 @@ namespace RM_EDU
         // Called when the day-night timer has finished, which rolls the timer over to another day.
         public void OnDayNightTimerFinished()
         {
-            // TODO: roll over time?
+            // Checks if the day night cycle should be looped or not.
+            if(loopDayNightCycle) // Roll over to the next day.
+            {
+                dayNightTimer = 0.0F; // Set timer to 0.
+                dayToNight = !dayToNight; // Swap cycle.
+            }
+            else // Clamp the timer since day-night cycle is over.
+            {
+                // Stop the timer from going past the stage length.
+                if (dayNightTimer > STAGE_LENGTH_MAX_SECONDS)
+                    dayNightTimer = STAGE_LENGTH_MAX_SECONDS;
+            }
         }
 
         // Called on the death of the user.
@@ -270,6 +329,12 @@ namespace RM_EDU
             return false;
         }
 
+        // Resets the acion stage.
+        public void ResetStage()
+        {
+            playerUser.ClearSelectedUnitPrefab();
+        }
+
         // Called to finish the stage. TODO: implement.
         public override void FinishStage()
         {
@@ -291,23 +356,28 @@ namespace RM_EDU
             // If the stage is playing and the game isn't paused, adjust the stage day timer.
             if(IsStagePlayingAndGameUnpaused())
             {
-                dayNightTimer += Time.deltaTime;
+                // If the day night cycle is enabled.
+                if(dayNightEnabled)
+                {
+                    dayNightTimer += Time.deltaTime;
 
-                // If the stage day timer has passed the stage length...
-                // Mark that the stage has looped around to the next day.
-                if(dayNightTimer > STAGE_LENGTH_MAX_SECONDS)
-                {
-                    OnDayNightTimerFinished();
-                }
-                else
-                {
-                    // If post processing is being used.
-                    if(usePostProcessing)
+                    // If the stage day timer has passed the stage length...
+                    // Mark that the timer has finished.
+                    if (dayNightTimer >= STAGE_LENGTH_MAX_SECONDS)
                     {
-                        // Update the day-night effect.
-                        UpdateDayNightEffect();
+                        OnDayNightTimerFinished();
+                    }
+                    else
+                    {
+                        // If post processing is being used.
+                        if (usePostProcessing)
+                        {
+                            // Update the day-night effect.
+                            UpdateDayNightEffect();
+                        }
                     }
                 }
+
             }
         }
 

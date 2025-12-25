@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,9 @@ namespace RM_EDU
     public class ActionPostProcessor : util.PostProcessor
     {
         [Header("Action")]
+        // The action UI.
+        public ActionUI actionUI;
+
         // Color Grade Night ID
         public string colorGradeNightId = "_ColorGradeNight";
 
@@ -20,6 +24,10 @@ namespace RM_EDU
         // The lerp value between the day and night textures.
         public float lerpT = 0.0F;
 
+        // A check to see if the transition is from day to night or day to day.
+        [Tooltip("The id for a boolean in the shader that indicates if the stage is going from day to night or vice-versa.")]
+        public string dayToNightId = "_DayToNight";
+
         // Awake is called when the script instance is being loaded
         protected override void Awake()
         {
@@ -27,6 +35,16 @@ namespace RM_EDU
 
             // Set the textures to the material.
             SetValuesToMaterial();
+        }
+
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // If the action UI isn't set, set it.
+            if (actionUI == null)
+                actionUI = ActionUI.Instance;
         }
 
         // OnRenderImage is called after all rendering is complete to render image
@@ -41,8 +59,11 @@ namespace RM_EDU
         // Sets the textures to be used for color grading.
         public void SetValuesToMaterial()
         {
+            // This takes an instance of the ActionManager because the ActionUI wasn't getting set in time.
+
             postMaterial.SetTexture(colorGradeNightId, colorGradeNight);
             postMaterial.SetFloat(lerpTId, lerpT);
+            postMaterial.SetInteger(dayToNightId, Convert.ToInt32(ActionManager.Instance.IsDayToNight()));
         }
     }
 }
