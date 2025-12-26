@@ -22,6 +22,9 @@ namespace RM_EDU
         private Color noWindColor = Color.blue;
         private Color maxWindColor = Color.red;
 
+        // If the wind indicator should be updated automatically.
+        public bool autoUpdateIndicator = true;
+
         // If the indicator is enabled, update it every frame.
         public bool indicatorEnabled = true;
 
@@ -33,25 +36,32 @@ namespace RM_EDU
                 actionUI = ActionUI.Instance;
         }
 
-        
+        // Updates the indicator.
+        public void UpdateIndicator()
+        {
+            // Gets the instance.
+            ActionManager actionManager = ActionManager.Instance;
+
+            // If the wind is enabled.
+            if (actionManager.IsWindEnabled())
+            {
+                // Gets the wind rating as a percentage.
+                float t = actionManager.GetCurrentWindRatingAsAPercentage();
+
+                // Lerps between the two colours.
+                image.color = Color.Lerp(noWindColor, maxWindColor, t);
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
             // If the indicator is enabled.
-            if (indicatorEnabled)
+            if (indicatorEnabled && ActionManager.Instance.IsWindEnabled())
             {
-                // Gets the instance.
-                ActionManager actionManager = ActionManager.Instance;
-
-                // If the wind is enabled.
-                if (actionManager.IsWindEnabled())
-                {
-                    // Gets the wind rating as a percentage.
-                    float t = actionManager.GetCurrentWindRatingAsAPercentage();
-
-                    // Lerps between the two colours.
-                    image.color = Color.Lerp(noWindColor, maxWindColor, t);
-                }
+                // If the indicator should be automatically updated, call the function.
+                if (autoUpdateIndicator)
+                    UpdateIndicator();
             }
         }
     }

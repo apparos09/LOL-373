@@ -772,6 +772,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   dayNightIndicator: {fileID: 4603498745723743153}
   playerUserEnergyText: {fileID: 8861003513079438512}
+  windIndicator: {fileID: 5406466826637114404}
   playerEnemyEnergyBar: {fileID: 7835992301121791407}
   stageEndWindow: {fileID: 2907831924055794194}
 --- !u!224 &3306661983057246600 stripped
@@ -881,6 +882,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8939531771375022865, guid: 79a2688e6d35c0d458e329f355991cd8, type: 3}
   m_PrefabInstance: {fileID: 7817449839284720385}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5406466826637114404 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2844737688121339685, guid: 79a2688e6d35c0d458e329f355991cd8, type: 3}
+  m_PrefabInstance: {fileID: 7817449839284720385}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3925558299f630409ea5638379e32c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8095779845880603364
 PrefabInstance:
   m_ObjectHideFlags: 0

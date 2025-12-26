@@ -27,6 +27,9 @@ namespace RM_EDU
         // The player user energy text.
         public TMP_Text playerUserEnergyText;
 
+        // The wind indicator.
+        public WindIndicator windIndicator;
+
         // The enemy's energy bar.
         public ProgressBar playerEnemyEnergyBar;
 

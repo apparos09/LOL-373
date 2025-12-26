@@ -7,6 +7,8 @@ namespace RM_EDU
     // Holds all the data for the action stage.
     public class ActionStageList : MonoBehaviour
     {
+        // TODO: create a stage struct that contains the map and wind settings.
+
         // The singleton instance.
         private static ActionStageList instance;
 

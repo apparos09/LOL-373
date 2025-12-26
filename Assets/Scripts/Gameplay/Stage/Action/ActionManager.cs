@@ -53,8 +53,11 @@ namespace RM_EDU
         // If 'true', the day-night cycle is enabled.
         private bool dayNightEnabled = true;
 
-        // The wind speeds of the stage. The times the wind speed changes is based on how many wind elements there are.
-        public ActionUnit.statRating[] windSpeeds = new ActionUnit.statRating[3];
+        // The wind ratings (speeds) of the stage. The times the wind speed changes is based on how many wind elements there are.
+        public ActionUnit.statRating[] windRatings = new ActionUnit.statRating[3];
+
+        // The last wind speed that the stage had.
+        private ActionUnit.statRating savedWindRating = ActionUnit.statRating.unknown;
 
         // If 'true', wind is enabled.
         private bool windEnabled = true;
@@ -178,6 +181,12 @@ namespace RM_EDU
         }
 
         // DAY-NIGHT CYCLE
+        // Is the day night function enabled.
+        public bool IsDayNightEnabled()
+        {
+            return dayNightEnabled;
+        }
+
         // Returns the stage
         public float GetDayNightTimer()
         {
@@ -335,11 +344,11 @@ namespace RM_EDU
             if(windEnabled)
             {
                 // If there are wind speeds.
-                if(windSpeeds.Length > 0)
+                if(windRatings.Length > 0)
                 {
                     // Gets the time increment. The wind should change based on the stat of the stage.
                     // Each wind speed goes for an equal amount of time.
-                    float timeInc = STAGE_LENGTH_MAX_SECONDS / windSpeeds.Length;
+                    float timeInc = STAGE_LENGTH_MAX_SECONDS / windRatings.Length;
 
                     // Adds to the sum until it finds a value just below the stage length.
                     float timeSum = 0.0F;
@@ -366,12 +375,19 @@ namespace RM_EDU
                         }
 
                         // Clamps the wind speed index.
-                        windSpeedIndex = Mathf.Clamp(windSpeedIndex, 0, windSpeeds.Length);
+                        windSpeedIndex = Mathf.Clamp(windSpeedIndex, 0, windRatings.Length);
 
                         // Gets the wind speed based on the index.
-                        rating = windSpeeds[windSpeedIndex];
+                        rating = windRatings[windSpeedIndex];
 
                         // TODO: make this calculation more efficient? Maybe track the index periodically.
+
+                        // If the rating has changed, update the value and call the related function.
+                        if (rating != savedWindRating)
+                        {
+                            savedWindRating = rating;
+                            OnWindChanged();
+                        }
                     }
                     else
                     {
@@ -471,6 +487,29 @@ namespace RM_EDU
         {
             return GetWindRatingAsAPercentage(GetCurrentWindRating());
         }
+        // Called when the wind speed has changed.
+        protected virtual void OnWindChanged()
+        {
+            // If the wind indicator isn't being automatically updated, manaully update it.
+            if(!actionUI.windIndicator.autoUpdateIndicator)
+            {
+                actionUI.windIndicator.UpdateIndicator();
+            }
+        }
+
+        // Resets the wind. This doesn't clear the wind array.
+        protected virtual void ResetWind()
+        {
+            savedWindRating = ActionUnit.statRating.unknown;
+        }
+
+        // Updates the wind.
+        protected virtual void UpdateWind()
+        {
+            // Gets the current wind rating, which also calculates the wind rating.
+            ActionUnit.statRating windRating = GetCurrentWindRating();
+        }
+
 
         // PLAYERS
         // Called on the death of the user.
@@ -504,9 +543,10 @@ namespace RM_EDU
         // Resets the acion stage.
         public void ResetStage()
         {
-            // Resets the timers and the day-night cycle.
+            // Resets the timers, the day-night cycle, and the wind.
             ResetGameTimerAndStageTimer();
             ResetDayNightCycle();
+            ResetWind();
 
             // Reset the players.
             playerUser.ResetPlayer();
@@ -554,6 +594,13 @@ namespace RM_EDU
                             UpdateDayNightEffect();
                         }
                     }
+                }
+
+                // If the wind is enabled.
+                if(windEnabled)
+                {
+                    // Call update function.
+                    UpdateWind();
                 }
 
             }

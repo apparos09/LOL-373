@@ -24,6 +24,9 @@ namespace RM_EDU
         // The night color.
         private Color nightColor = Color.blue;
 
+        // If the wind indicator should be updated automatically.
+        public bool autoUpdateIndicator = true;
+
         // If the indicator is enabled, update it every frame.
         public bool indicatorEnabled = true;
 
@@ -35,24 +38,32 @@ namespace RM_EDU
                 actionUI = ActionUI.Instance;
         }
 
+        // Updates the indicator.
+        public void UpdateIndicator()
+        {
+            // Gets the action manager.
+            ActionManager actionManager = ActionManager.Instance;
+
+            // If the stage is progressing, update the indicator.
+            if (actionManager.IsStagePlayingAndGameUnpaused())
+            {
+                // The t-value for going from day to night.
+                float t = actionManager.GetDayNightTimerProgress();
+
+                // Lerps between the two colours.
+                image.color = Color.Lerp(dayColor, nightColor, t);
+            }
+        }
+
         // Update is called once per frame
         void Update()
         {
-            // If the indicator is enabled.
-            if (indicatorEnabled)
+            // If the indicator is enabled and day night is enabled.
+            if (indicatorEnabled && ActionManager.Instance.IsDayNightEnabled())
             {
-                // Gets the action manager.
-                ActionManager actionManager = ActionManager.Instance;
-
-                // If the stage is progressing, update the indicator.
-                if (actionManager.IsStagePlayingAndGameUnpaused())
-                {
-                    // The t-value for going from day to night.
-                    float t = actionManager.GetDayNightTimerProgress();
-
-                    // Lerps between the two colours.
-                    image.color = Color.Lerp(dayColor, nightColor, t);
-                }
+                // If the indicator should be automatically updated, call the function.
+                if (autoUpdateIndicator)
+                    UpdateIndicator();
             }
             
         }
