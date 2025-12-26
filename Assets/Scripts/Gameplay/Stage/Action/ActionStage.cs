@@ -29,9 +29,15 @@ namespace RM_EDU
         // The tile parent.
         public GameObject tileParent;
 
+        // The default row count for the map.
+        public const int MAP_ROW_COUNT_DEFAULT = 7;
+
+        // The default colum count for a map.
+        public const int MAP_COL_COUNT_DEFAULT = 16;
+
         // The action tile array, which also determines the map size.
         // (r, w) = (y, x)
-        public ActionTile[,] tiles = new ActionTile[7, 16];
+        public ActionTile[,] tiles = new ActionTile[MAP_ROW_COUNT_DEFAULT, MAP_COL_COUNT_DEFAULT];
 
         // The origin of the tile. By default, it's the middle of the tile.
         private Vector2 tileOrigin = new Vector2(0.5F, 0.5F);
@@ -48,6 +54,9 @@ namespace RM_EDU
         // If not, the enemies check for the map end every frame.
         // Technically this is set as true even if there's only one metal tile, but semantics.
         private bool hasMetalTiles = false;
+
+        // The row enemy units.
+        public List<List<ActionUnitEnemy>> rowEnemyUnits = new List<List<ActionUnitEnemy>>();
 
         // Start is called before the first frame update
         void Start()
@@ -129,7 +138,17 @@ namespace RM_EDU
         public void GenerateMap(int idNumber)
         {
             // Gets the map based on the id number.
-            string[,] map = ActionStageList.GenerateStageMap(idNumber);
+            ActionStageList.StageGenerationData data = ActionStageList.GenerateStageMap(idNumber);
+
+            // The data doesn't exist.
+            if(data == null)
+            {
+                Debug.LogError("Data could not be found.");
+                return;
+            }
+
+            // Sets the map.
+            string[,] map = data.map;
 
             // The map doesn't exist.
             if(map == null)
@@ -240,6 +259,26 @@ namespace RM_EDU
                     // Add the tile to the array.
                     tiles[r, c] = newTile; // New
                 }
+            }
+
+            // If there are stage rows, clear all the lists
+            if(rowEnemyUnits.Count > 0)
+            {
+                // Clears all the lists.
+                foreach(List<ActionUnitEnemy> list in rowEnemyUnits)
+                {
+                    // TODO: make sure all enemies are out of these lists.
+                    list.Clear();
+                }
+            }
+
+            // Clear the list of enemy row unit lists.
+            rowEnemyUnits.Clear();
+            
+            // Make a list for every row.
+            for(int n = 0; n < map.GetLength(0); n++)
+            {
+                rowEnemyUnits.Add(new List<ActionUnitEnemy>());
             }
         }
 
@@ -436,8 +475,15 @@ namespace RM_EDU
             // Gets the id number.
             int idNumber = GetIdNumber();
 
+            // Gets the data.
+            ActionStageList.StageGenerationData data = ActionStageList.GenerateStageMap(idNumber);
+
             // The map to be returned.
-            string[,] map = ActionStageList.GenerateStageMap(idNumber);
+            string[,] map = null;
+
+            // Sets the map.
+            if (data != null)
+                map = data.map;
 
             // Return map.
             return map;

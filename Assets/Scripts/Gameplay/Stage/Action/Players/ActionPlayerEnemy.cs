@@ -173,6 +173,10 @@ namespace RM_EDU
                     if (unitParent != null)
                         enemyUnit.transform.parent = unitParent.transform;
 
+                    // Gives the enemy unit the action manager since it won't be set...
+                    // Before certain functions are used.
+                    enemyUnit.actionManager = ActionManager.Instance;
+
                     // Gets a random row.
                     int row = Random.Range(0, actionManager.actionStage.MapRowCount);
 
@@ -184,7 +188,7 @@ namespace RM_EDU
                     Vector3 enemyPos = actionManager.actionStage.ConvertMapPositionToWorldUnits(col, row);
 
                     // Saves the row this enemy is in and increases the row count.
-                    enemyUnit.row = row;
+                    enemyUnit.SetRow(row);
                     rowEnemyCount[row] += 1;
 
                     // Adjust the enemy's position by how many enemies are in that row.

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.tvOS;
 
 namespace RM_EDU
 {
@@ -21,8 +22,7 @@ namespace RM_EDU
         private bool movementEnabled = true;
 
         // The row the action unit is in.
-        // TODO: is this needed?
-        public int row = -1;
+        private int row = -1;
 
         // The amount of energy the enemy loses when a death occurs.
         public float deathEnergyCost = 1;
@@ -73,6 +73,109 @@ namespace RM_EDU
             return unitType.enemy;
         }
 
+        // Returns the row the enemy is in.
+        public int GetRow()
+        {
+            return row;
+        }
+
+        // Sets the row the enemy is in.
+        public void SetRow(int newRow)
+        {
+            // Gets the row count.
+            int rowCountMax = ActionManager.Instance.actionStage.rowEnemyUnits.Count;
+
+            // Tries to remove the enemy unit from its row list.
+            TryRemoveFromRowList();
+
+            // Set the new row.
+            row = newRow;
+
+            // Tries to add to the row list.
+            TryAddToRowList();
+        }
+
+        // Returns 'true' if the enemy unit is in a row list.
+        public bool InRowList()
+        {
+            bool result = false;
+
+            // If the row index is valid.
+            if (row >= 0 && row < actionManager.actionStage.rowEnemyUnits.Count)
+            {
+                // Checks that the row exists.
+                if (actionManager.actionStage.rowEnemyUnits[row] != null)
+                {
+                    result = actionManager.actionStage.rowEnemyUnits[row].Contains(this);
+                }
+            }
+
+            return result;
+        }
+
+        // Tries to add to the set row list. Returns 'true' if it was added. Won't be added if already in list.
+        public bool TryAddToRowList()
+        {
+            // Gets set to 'true' if added in the list. Won't add if already in list.
+            bool added = false;
+
+            // New row is valid.
+            if (row >= 0 && row <= actionManager.actionStage.rowEnemyUnits.Count)
+            {
+                // Checks that the row exists.
+                if (actionManager.actionStage.rowEnemyUnits[row] != null)
+                {
+                    // If the list doesn't contain this enemy unit, add it.
+                    if (!actionManager.actionStage.rowEnemyUnits[row].Contains(this))
+                    {
+                        actionManager.actionStage.rowEnemyUnits[row].Add(this);
+                        added = true;
+                    }
+                }
+            }
+            // Row is not valid.
+            else
+            {
+                Debug.LogWarning("There is no row " + row.ToString() + " in the row lists for the stage map.");
+            }
+
+            return added;
+        }
+
+        // Tries to add this to the provided row list. Returns 'true' if it was added. Won't be added if already in list.
+        public void TryAddToRowList(int newRow)
+        {
+            SetRow(newRow);
+        }
+
+        // Tries removing this unti enemy from the row list its in.
+        // Returns 'true' if it was successfully removed.
+        // Returns 'false' if the row didn't exist or if the row didn't contain this enemy.
+        public bool TryRemoveFromRowList()
+        {
+            // Checks if the enemy was removed.
+            bool removed = false;
+
+            // If the row index is valid.
+            if (row >= 0 && row < actionManager.actionStage.rowEnemyUnits.Count)
+            {
+                // Checks that the row exists.
+                if (actionManager.actionStage.rowEnemyUnits[row] != null)
+                {
+                    // If the list contains this enemy unit, remove it.
+                    if (actionManager.actionStage.rowEnemyUnits[row].Contains(this))
+                    {
+                        actionManager.actionStage.rowEnemyUnits[row].Remove(this);
+
+                        // Enemy unit removed.
+                        removed = true;
+                    }
+                }
+            }
+
+            return removed;
+        }
+
         // Kills the unit.
         public override void Kill()
         {
@@ -90,7 +193,10 @@ namespace RM_EDU
                 // Calls the related function.
                 playerEnemy.OnEnemyUnitDeath(this);
             }
-            
+
+            // Tries to remove the unit from its row list.
+            // This automatically checks if the row list contains this.
+            TryRemoveFromRowList();
         }
 
         // Update is called once per frame
@@ -147,6 +253,15 @@ namespace RM_EDU
                 if (rigidbody.velocity != Vector2.zero)
                     rigidbody.velocity = Vector2.zero;
             }
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            // Tries to remove this object from the row list.
+            TryRemoveFromRowList();
         }
     }
 }

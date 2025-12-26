@@ -14,7 +14,7 @@ namespace RM_EDU
         {
             // Data for a statement.
             [System.Serializable]
-            public struct StatementData
+            public class StatementData
             {
                 // The ID number.
                 public int idNumber;

@@ -257,5 +257,11 @@ namespace RM_EDU
         {
 
         }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected virtual void OnDestroy()
+        {
+            // ...
+        }
     }
 }

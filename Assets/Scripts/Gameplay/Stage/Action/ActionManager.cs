@@ -53,8 +53,11 @@ namespace RM_EDU
         // If 'true', the day-night cycle is enabled.
         private bool dayNightEnabled = true;
 
+        // The default number of wind ratings.
+        public const int WIND_RATINGS_COUNT_DEFAULT = 3;
+
         // The wind ratings (speeds) of the stage. The times the wind speed changes is based on how many wind elements there are.
-        public ActionUnit.statRating[] windRatings = new ActionUnit.statRating[3];
+        public ActionUnit.statRating[] windRatings = new ActionUnit.statRating[WIND_RATINGS_COUNT_DEFAULT];
 
         // The last wind speed that the stage had.
         private ActionUnit.statRating savedWindRating = ActionUnit.statRating.unknown;
@@ -451,12 +454,13 @@ namespace RM_EDU
                     result = threshold * 1;
                     break;
 
-                case ActionUnit.statRating.none: // 0 (No WInd)
+                case ActionUnit.statRating.none: // 0 (No Wind)
                 case ActionUnit.statRating.noneMinus:
                     result = threshold * 0;
                     break;
 
-                default: // 0 (No Wind)
+                case ActionUnit.statRating.unknown: // 0 (No Wind)
+                default:
                     result = 0.0F;
                     break;
             }
