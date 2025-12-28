@@ -162,10 +162,16 @@ namespace RM_EDU
             defenseUnitSelector.RefreshUnitButtonsInteractable();
         }
 
-        // Updates the selected unit UI.
-        public void SetSelectedUnitUI(ActionUnitButton unitButton)
+        // Updates the selected unit info.
+        public void SetSelectedUnitInfo(ActionUnit unit)
         {
-            selectedUnit.ApplyActionUnitButtonInfo(unitButton);
+            selectedUnit.ApplyActionUnitInfo(unit);
+        }
+
+        // Updates the selected unit info.
+        public void SetSelectedUnitInfo(ActionUnitButton unitButton)
+        {
+            selectedUnit.ApplyActionUnitInfo(unitButton);
         }
 
         // Clears the selected unit.

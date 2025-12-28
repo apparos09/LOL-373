@@ -34,22 +34,49 @@ namespace RM_EDU
         //     // ...
         // }
 
-        // Applies information from an action unit button.
-        public void ApplyActionUnitButtonInfo(ActionUnitButton unitButton)
+        // Applies information from action unit.
+        public void ApplyActionUnitInfo(ActionUnit actionUnit)
         {
-            unitCardBackground.sprite = unitButton.button.image.sprite;
-            unitNameText.text = unitButton.unitNameText.text;
-            unitIconImage.sprite = unitButton.unitIconImage.sprite;
-            energyCostText.text = unitButton.energyCostText.text;
+            // If the unit exists, get the info.
+            if(actionUnit != null)
+            {
+                unitCardBackground.sprite = actionUnit.cardBackgroundSprite;
+                unitNameText.text = actionUnit.GetUnitCardDisplayName();
+                unitIconImage.sprite = actionUnit.iconSprite;
+                energyCostText.text = actionUnit.energyCreationCost.ToString();
+            }
+            // Null unit, so clear the info instead.
+            else
+            {
+                ClearActionUnitInfo();
+            }
+        }
+
+        // Applies information from an action unit button.
+        public void ApplyActionUnitInfo(ActionUnitButton unitButton)
+        {
+            // If the button exists, get the info.
+            if (unitButton != null)
+            {
+                unitCardBackground.sprite = unitButton.button.image.sprite;
+                unitNameText.text = unitButton.unitNameText.text;
+                unitIconImage.sprite = unitButton.unitIconImage.sprite;
+                energyCostText.text = unitButton.energyCostText.text;
+            }
+            // Null object, so clear the info instead.
+            else
+            {
+                ClearActionUnitInfo();
+            }
         }
 
         // Clears the information displayed for the icon.
         public void ClearActionUnitInfo()
         {
             unitCardBackground.sprite = null;
-            unitNameText.text = "";
+            unitNameText.text = "-";
             unitIconImage.sprite = null;
-            energyCostText.text = "";
+            energyCostText.text = "-";
         }
     }
 }

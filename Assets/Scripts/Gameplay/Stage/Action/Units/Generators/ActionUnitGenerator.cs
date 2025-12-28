@@ -54,6 +54,12 @@ namespace RM_EDU
             return unitType.generator;
         }
 
+        // Gets the display name for the unit's card.
+        public override string GetUnitCardDisplayName()
+        {
+            return GetNaturalResourceNameAbbreviation();
+        }
+
         // Gets the natural resource name.
         public string GetNaturalResourceName()
         {

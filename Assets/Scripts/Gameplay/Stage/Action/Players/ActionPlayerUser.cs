@@ -162,6 +162,9 @@ namespace RM_EDU
         public void SetSelectedUnitPrefab(ActionUnit unitPrefab)
         {
             selectedUnitPrefab = unitPrefab;
+
+            // Sets the info.
+            ActionUI.Instance.SetSelectedUnitInfo(unitPrefab);
         }
 
         // Clears the prefab the player has selected.

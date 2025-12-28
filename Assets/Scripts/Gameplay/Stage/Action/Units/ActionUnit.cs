@@ -220,6 +220,12 @@ namespace RM_EDU
             return key;
         }
 
+        // Gets the display name for the unit's card.
+        public virtual string GetUnitCardDisplayName()
+        {
+            return GetUnitTypeName();
+        }
+
         // Gets the stat rating, using the base stat maximum for comparison.
         public statRating GetStatRating(float stat)
         {

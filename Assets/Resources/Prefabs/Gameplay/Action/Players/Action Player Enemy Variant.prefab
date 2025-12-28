@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Player Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5754763098957996370, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
+      propertyPath: m_TagString
+      value: Computer
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -83,9 +87,10 @@ MonoBehaviour:
   unitParent: {fileID: 8199424694780268437}
   energyMax: 120
   spawnRate: 1
-  enemiesPerSpawn: 1
   spawnTimer: 0
   spawnTimeMax: 4
+  enemiesPerSpawnMin: 1
+  enemiesPerSpawnMax: 7
   usableEnemyIndexes: 010000000200000003000000
   spawnedEnemies: []
 --- !u!1 &8199424694780268437 stripped
