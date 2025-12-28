@@ -68,6 +68,13 @@ namespace RM_EDU
             return stageInitialized;
         }
 
+        // Sets the natural resource list to the resource type list.
+        public virtual void SetNaturalResourceListToTypeList(bool includeUnknown = false)
+        {
+            naturalResources.Clear();
+            naturalResources = NaturalResources.GenerateNaturalResourceTypeList(includeUnknown);
+        }
+
         // Returns 'true' if the stage is playing.
         public bool IsStagePlaying()
         {

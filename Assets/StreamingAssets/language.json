@@ -37,6 +37,10 @@
       "kwd_knowledgeStage": 18,
       "kwd_unknownStage": 18,
 
+      "kwd_generator": 18,
+      "kwd_defense": 18,
+      "kwd_enemy": 18,
+
       "nrs_bms": 18,
       "nrs_hdo": 18,
       "nrs_gtl": 18,
@@ -85,6 +89,10 @@
     "kwd_actionStage": "Action Stage",
     "kwd_knowledgeStage": "Knowledge Stage",
     "kwd_unknownStage": "Unknown Stage",
+
+    "kwd_generator": "Generator",
+    "kwd_defense": "Defense",
+    "kwd_enemy": "Enemy",
 
     "nrs_bms": "Biomass",
     "nrs_hdo": "Hydro",

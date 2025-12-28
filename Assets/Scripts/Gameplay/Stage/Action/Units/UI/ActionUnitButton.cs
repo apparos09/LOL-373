@@ -57,6 +57,10 @@ namespace RM_EDU
                     Select();
                 });
             }
+
+            // Applies the prefab.
+            // If there is no prefab, the button is cleared.
+            ApplyUnitPrefabInfo();
         }
 
         // Called when the button has been pressed.
@@ -101,7 +105,7 @@ namespace RM_EDU
             if(unitPrefab != null)
             {
                 unitIconImage.sprite = unitPrefab.iconSprite;
-                unitNameText.text = unitPrefab.name;
+                unitNameText.text = unitPrefab.GetUnitTypeName(); // TODO: use short-hand.
                 energyCostText.text = unitPrefab.energyCreationCost.ToString();
 
                 // TODO: adjust the highlights.

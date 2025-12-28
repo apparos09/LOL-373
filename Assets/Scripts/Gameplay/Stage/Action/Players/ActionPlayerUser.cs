@@ -28,8 +28,17 @@ namespace RM_EDU
         // If 'true', the player automatically generates energy.
         private bool energyAutoGenEnabled = true;
 
+        [Header("User/Units")]
+
+        // The generator prefabs the player can use.
+        public List<ActionUnitGenerator> generatorPrefabs = new List<ActionUnitGenerator>();
+
+        // The defense prefabs the player can use.
+        public List<ActionUnitDefense> defensePrefabs = new List<ActionUnitDefense>();
+
         // The unit prefab the action player user has selected.
-        private ActionUnit selectedUnitPrefab;
+        // TODO: make private.
+        public ActionUnit selectedUnitPrefab;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -105,6 +114,36 @@ namespace RM_EDU
 
             // Sets previous update saved energy to this energy.
             prevUpdateEnergy = energy;
+        }
+
+        // Sets the generator prefabs from the provided resources.
+        public void SetGeneratorPrefabs(List<NaturalResources.naturalResource> resources)
+        {
+            // The unit list.
+            List<ActionUnit> unitList = new List<ActionUnit>();
+
+            // Clears the current list.
+            generatorPrefabs.Clear();
+
+            // Gets the prefabs for all the resources.
+            foreach (NaturalResources.naturalResource resource in resources)
+            {
+                // Gets the prefab.
+                ActionUnitGenerator generatorPrefab = ActionUnitPrefabs.Instance.GetGeneratorPrefab((int)resource);
+
+                // Puts the prefab in the generator list and the new list.
+                generatorPrefabs.Add(generatorPrefab);
+                unitList.Add(generatorPrefab);
+            }
+
+            // Adds the unit list to the generator unit selector.
+            ActionUI.Instance.generatorUnitSelector.SetActionUnitPrefabs(unitList);
+        }
+
+        // Sets the generator prefabs from the manager.
+        public void SetGeneratorPrefabsFromManager()
+        {
+            SetGeneratorPrefabs(ActionManager.Instance.naturalResources);
         }
 
         // Returns 'true' if the player is selecting a unit.

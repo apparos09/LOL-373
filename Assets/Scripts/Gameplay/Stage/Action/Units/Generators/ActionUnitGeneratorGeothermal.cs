@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // Action Unit Generator - Nuclear
-    public class ActionUnitGeneratorNuclear : ActionUnitGenerator
+    // Action Unit Generator - Coal
+    public class ActionUnitGeneratorGeothermal : ActionUnitGenerator
     {
     }
 }

@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionUnitGeneratorNaturalGas : MonoBehaviour
+namespace RM_EDU
 {
-    // Start is called before the first frame update
-    void Start()
+    // Action Unit Generator - Natural Gas
+    public class ActionUnitGeneratorNaturalGas : ActionUnitGenerator
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

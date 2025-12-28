@@ -37,8 +37,6 @@ namespace RM_EDU
             // Gets the instance.
             if (actionUI == null)
                 actionUI = ActionUI.Instance;
-
-            RefreshUnitButtons();
         }
 
         // Sets the action unit prefabs using the provided list.
@@ -78,6 +76,9 @@ namespace RM_EDU
                     }
                 }
             }
+
+            // Go to the first row.
+            SetRow(0);
         }
 
         // Sets the row.
@@ -147,7 +148,7 @@ namespace RM_EDU
                     int unitButtonIndex = 0;
 
                     // Goes through all columns at the current row.
-                    for (int c = 0; c < unitPrefabs.GetLength(1); c++)
+                    for (int c = 0; c < unitPrefabs.GetLength(1) && unitButtonIndex < unitButtons.Count; c++)
                     {
                         // Gets the unit button.
                         // If a button doens't have a prefab, turn the button off.
@@ -159,7 +160,7 @@ namespace RM_EDU
                             // If there's a prefab, set it to the unit button.
                             if (unitPrefabs[r, c] != null)
                             {
-                                unitButton.ClearUnitButton();
+                                unitButton.ApplyUnitPrefabInfo(unitPrefabs[r, c]);
                             }
                             // No prefab, so clear the button and disable it.
                             else
@@ -167,6 +168,9 @@ namespace RM_EDU
                                 unitButton.ClearUnitButton();
                             }
                         }
+
+                        // Increase the unit button index.
+                        unitButtonIndex++;
                     }
                 }
             }

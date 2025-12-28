@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionUnitGeneratorCoal : MonoBehaviour
+namespace RM_EDU
 {
-    // Start is called before the first frame update
-    void Start()
+    // Action Unit Generator - Coal
+    public class ActionUnitGeneratorCoal : ActionUnitGenerator
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

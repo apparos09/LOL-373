@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2131954471664586210, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 49b4149f8d197a24881f9b3cf0e5299f, type: 3}
     - target: {fileID: 2529540329388304553, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,8 +56,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Generator - Wind Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4035956208484555091, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5809114815761047153}
   m_SourcePrefab: {fileID: 100100000, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+--- !u!95 &2708677330432412224 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 7970826034563428883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &5329072976721192884 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2840288876026598823, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 7970826034563428883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6241013566864337728 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4035956208484555091, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 7970826034563428883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5809114815761047153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6241013566864337728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 46774ee5216165c4f9b8c5356ddd8cf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionManager: {fileID: 0}
+  idNumber: 6
+  spriteRenderer: {fileID: 8288920503193255921}
+  iconSprite: {fileID: 21300000, guid: 49b4149f8d197a24881f9b3cf0e5299f, type: 3}
+  animator: {fileID: 2708677330432412224}
+  collider: {fileID: 7425700527384149387}
+  rigidbody: {fileID: 5329072976721192884}
+  statFactor: 1
+  energyCreationCost: 0
+  energyDeathCost: 0
+  energyGenerationAmount: 0
+  energyGenerationSpeed: 0
+  attackPower: 0
+  attackSpeed: 0
+  durability: 0
+  movementSpeed: 0
+  airPollution: 0
+  validTiles: 
+  resource: 6
+  energyGenerationTimer: 0
+  timeUsage: 0
+  useWindToGenEnergy: 0
+  energyGenerationTotal: 0
+  energyGenerationLimit: -1
+  useEnergyGenLimit: 0
+--- !u!61 &7425700527384149387 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 690021909378568088, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 7970826034563428883}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8288920503193255921 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2131954471664586210, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 7970826034563428883}
+  m_PrefabAsset: {fileID: 0}

@@ -90,6 +90,12 @@ namespace RM_EDU
         // This also doesn't account for applying the statFactor value to a stat.
         public const float BASE_STAT_MAXIMUM = 100.0F;
 
+        // Awake is called when the script instance is being loaded
+        protected virtual void Awake()
+        {
+            // ...
+        }
+
         // Start is called before the first frame update
         virtual protected void Start()
         {
@@ -126,6 +132,96 @@ namespace RM_EDU
 
         // Gets the action unit type.
         public abstract unitType GetUnitType();
+
+        // Gets the unit type name.
+        public static string GetUnitTypeName(unitType type)
+        {
+            // Gets the key.
+            string key = GetUnitTypeNameKey(type);
+
+            // The name to return.
+            string name;
+
+            // If the SDK is initialized, get the text from it.
+            // If it isn't, manually set it.
+            if(LOLManager.IsLOLSDKInitialized())
+            {
+                name = LOLManager.Instance.GetLanguageText(key);
+            }
+            else
+            {
+                // Checks the type to know what to return.
+                switch (type)
+                {
+                    default:
+                        name = "";
+                        break;
+
+                    case unitType.unknown:
+                        name = "Unknown";
+                        break;
+
+                    case unitType.generator:
+                        name = "Generator";
+                        break;
+
+                    case unitType.defense:
+                        name = "Defense";
+                        break;
+
+                    case unitType.enemy:
+                        name = "Enemy";
+                        break;
+                }
+            }
+
+            return name;    
+        }
+
+        // Gets the unit type name.
+        public string GetUnitTypeName()
+        {
+            return GetUnitTypeName(GetUnitType());
+        }
+
+        // Gets the unit type name key.
+        public static string GetUnitTypeNameKey(unitType type)
+        {
+            // The name key to be returned.
+            string key;
+
+            // Checks the type to know what to return.
+            switch(type)
+            {
+                default:
+                    key = "";
+                    break;
+
+                case unitType.unknown:
+                    key = "kwd_unknown";
+                    break;
+
+                case unitType.generator:
+                    key = "kwd_generator";
+                    break;
+
+                case unitType.defense:
+                    key = "kwd_defense";
+                    break;
+
+                case unitType.enemy:
+                    key = "kwd_enemy";
+                    break;
+            }
+
+            return key;
+        }
+
+        // Gets the unit type name key.
+        public string GetUnitTypeNameKey()
+        {
+            return GetUnitTypeNameKey(GetUnitType());
+        }
 
         // Gets the stat rating, using the base stat maximum for comparison.
         public statRating GetStatRating(float stat)

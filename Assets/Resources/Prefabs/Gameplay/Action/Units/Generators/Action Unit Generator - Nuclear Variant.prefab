@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2131954471664586210, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 8e647d94db77e7e4180931e5e01e1651, type: 3}
     - target: {fileID: 2529540329388304553, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,8 +56,74 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Generator - Nuclear Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4035956208484555091, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5159144818120123081}
   m_SourcePrefab: {fileID: 100100000, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+--- !u!95 &999530221839502221 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 5104334103399347166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &5712059216436968518 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 690021909378568088, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 5104334103399347166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &6575261612139626044 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2131954471664586210, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 5104334103399347166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &7042652890708092537 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2840288876026598823, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 5104334103399347166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &9139109981856377485 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4035956208484555091, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 5104334103399347166}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &5159144818120123081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9139109981856377485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a106a821495dda043a706a3bb5baba44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionManager: {fileID: 0}
+  idNumber: 9
+  spriteRenderer: {fileID: 6575261612139626044}
+  iconSprite: {fileID: 21300000, guid: 5e3558571a489fe4097fcc7cba53a2c5, type: 3}
+  animator: {fileID: 999530221839502221}
+  collider: {fileID: 5712059216436968518}
+  rigidbody: {fileID: 7042652890708092537}
+  statFactor: 1
+  energyCreationCost: 0
+  energyDeathCost: 0
+  energyGenerationAmount: 0
+  energyGenerationSpeed: 0
+  attackPower: 0
+  attackSpeed: 0
+  durability: 0
+  movementSpeed: 0
+  airPollution: 0
+  validTiles: 
+  resource: 9
+  energyGenerationTimer: 0
+  timeUsage: 0
+  useWindToGenEnergy: 0
+  energyGenerationTotal: 0
+  energyGenerationLimit: -1
+  useEnergyGenLimit: 0

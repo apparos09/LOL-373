@@ -95,10 +95,28 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 0
   spriteRenderer: {fileID: 2131954471664586210}
+  iconSprite: {fileID: 0}
   animator: {fileID: 5406913998153414739}
   collider: {fileID: 690021909378568088}
   rigidbody: {fileID: 2840288876026598823}
+  statFactor: 1
+  energyCreationCost: 0
+  energyDeathCost: 0
+  energyGenerationAmount: 0
+  energyGenerationSpeed: 0
+  attackPower: 0
+  attackSpeed: 0
+  durability: 0
+  movementSpeed: 0
+  airPollution: 0
+  validTiles: 
   resource: 0
+  energyGenerationTimer: 0
+  timeUsage: 0
+  useWindToGenEnergy: 0
+  energyGenerationTotal: 0
+  energyGenerationLimit: -1
+  useEnergyGenLimit: 0
 --- !u!95 &5406913998153414739 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}

@@ -44,7 +44,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 779133eb5b403684c808d8ed35eed6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generatorPrefabs: []
+  generatorPrefabs:
+  - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  - {fileID: 5969299565369339548, guid: ad4db0ac20b24d14997efcf2c48c650b, type: 3}
+  - {fileID: 135193415238856009, guid: 93dada60d2fd32b4fa9098fd966f8d0d, type: 3}
+  - {fileID: 405284360726760347, guid: 297740676c04b2f4a9615ec8e77801cb, type: 3}
+  - {fileID: 6129230016316110231, guid: 8031e7bf7cdba3746a408a2318b60362, type: 3}
+  - {fileID: 4707138622183788118, guid: c769a93a69eed484b8621608a85550ef, type: 3}
+  - {fileID: 5809114815761047153, guid: 298e88b5b167b3345b87ee53772f0d13, type: 3}
+  - {fileID: 4319587165838356064, guid: 113a3df378818b94ca148eaaa3c23108, type: 3}
+  - {fileID: 6295034552015058486, guid: 3f02f3fcbb0045849b6391afcfed26bc, type: 3}
+  - {fileID: 5159144818120123081, guid: f1213725a7ac29642a1be2b578ca7544, type: 3}
+  - {fileID: 2847674788801534402, guid: 158a27e6a4b745943bd9eaea42ae2c03, type: 3}
   defensePrefabs: []
   enemyPrefabs:
   - {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}

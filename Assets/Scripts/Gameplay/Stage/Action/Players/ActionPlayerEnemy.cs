@@ -16,6 +16,8 @@ namespace RM_EDU
         // When the enemy runs out of energy, the stage is over.
         private float energyDec = 1.0F;
 
+        [Header("Enemy/Units")]
+
         // The rate at which enemies are spawned.
         public float spawnRate = 1.0F;
 

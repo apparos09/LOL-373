@@ -130,6 +130,19 @@ namespace RM_EDU
                 actionStage = FindObjectOfType<ActionStage>();
             }
 
+            // Tries to find the start info. The object must be active for it to be gotten.
+            ActionStageStartInfo startInfo = FindObjectOfType<ActionStageStartInfo>(false);
+
+            // Found start info, so set the default values.
+            if (startInfo != null)
+            {
+                // Applies the start info.
+                startInfo.ApplyStartInfo(this);
+
+                // Destroys the start info object.
+                Destroy(startInfo.gameObject);
+            }
+
             // Initializes the stage.
             InitializeStage();
         }
@@ -173,8 +186,17 @@ namespace RM_EDU
         // Initializes the knowledge stage.
         public override void InitializeStage()
         {
+            // If there are no natrual resources, fill the list with the type list.
+            if(naturalResources.Count <= 0)
+            {
+                SetNaturalResourceListToTypeList();
+            }
+
             // Generates the map using the id number.
             actionStage.GenerateMap(idNumber);
+
+            // Sets the generator prefabs.
+            playerUser.SetGeneratorPrefabsFromManager();
 
             // Sets the energy to max.
             playerEnemy.SetEnergyToMax();

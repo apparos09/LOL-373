@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActionUnitGeneratorBiomass : MonoBehaviour
+namespace RM_EDU
 {
-    // Start is called before the first frame update
-    void Start()
+    // Action Unit Generator - Biomass
+    public class ActionUnitGeneratorBiomass : ActionUnitGenerator
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

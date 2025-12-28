@@ -183,9 +183,9 @@ namespace RM_EDU
             // The resource setting so that there won't be more statements than there are resources.
 
             // If there are no natural resources in a list, get a list of all of them.
-            if (naturalResources.Count == 0)
+            if(naturalResources.Count <= 0)
             {
-                naturalResources = NaturalResources.GenerateNaturalResourceTypeList(false);
+                SetNaturalResourceListToTypeList();
             }
 
             // The list of resources that will be used.

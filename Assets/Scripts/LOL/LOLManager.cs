@@ -139,6 +139,19 @@ namespace RM_EDU
                 return "";
         }
 
+        // Gets the language text. Static function version.
+        public static string GetLanguageTextStatic(string key)
+        {
+            // Gets the language defs.
+            JSONNode languageDefs = SharedState.LanguageDefs;
+
+            // Returns the text.
+            if (languageDefs != null)
+                return languageDefs[key];
+            else
+                return "";
+        }
+
         // Speaks the text.
         public void SpeakText(string key)
         {
