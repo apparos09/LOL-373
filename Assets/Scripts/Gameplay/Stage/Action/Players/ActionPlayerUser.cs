@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RM_EDU
@@ -39,6 +40,10 @@ namespace RM_EDU
         // The unit prefab the action player user has selected.
         // TODO: make private.
         public ActionUnit selectedUnitPrefab;
+
+        // A list of the units created by this player.
+        // Only user units can be placed in this list.
+        public List<ActionUnitUser> createdUserUnits = new List<ActionUnitUser>();
 
         // Start is called before the first frame update
         protected override void Start()
@@ -147,19 +152,19 @@ namespace RM_EDU
         }
 
         // Returns 'true' if the player is selecting a unit.
-        public bool IsSelectingUnitPrefab()
+        public bool IsSelectingActionUnitPrefab()
         {
             return selectedUnitPrefab != null;
         }
 
         // Gets the unit the player has selected.
-        public ActionUnit GetSelectedUnitPrefab()
+        public ActionUnit GetSelectedActionUnitPrefab()
         {
             return selectedUnitPrefab;
         }
 
         // Sets the prefab the player has selected. This should be a prefab, not an actual object.
-        public void SetSelectedUnitPrefab(ActionUnit unitPrefab)
+        public void SetSelectedActionUnitPrefab(ActionUnit unitPrefab)
         {
             selectedUnitPrefab = unitPrefab;
 
@@ -168,9 +173,84 @@ namespace RM_EDU
         }
 
         // Clears the prefab the player has selected.
-        public void ClearSelectedUnitPrefab()
+        public void ClearSelectedActionUnitPrefab()
         {
             selectedUnitPrefab = null;
+        }
+
+        // Instantiates the selected action unit without putting it on a tile.
+        public ActionUnit InstantiateSelectedActionUnit()
+        {
+            return InstantiateSelectedActionUnit(null);
+        }
+
+        // Instantiates the selected unit and places it on the provided tile.
+        public ActionUnit InstantiateSelectedActionUnit(ActionTile tile)
+        {
+            // No selected prefab, so return null.
+            if(selectedUnitPrefab == null)
+            {
+                return null;
+            }
+
+            // Instantiate the unit.
+            ActionUnit newUnit = Instantiate(selectedUnitPrefab);
+
+            // Sets the parent.
+            SetActionUnitParentToUnitParent(newUnit);
+
+            // Downcasts to a user unit.
+            ActionUnitUser userUnit = (newUnit is ActionUnitUser) ? (newUnit as ActionUnitUser) : null;
+
+            // If the user unit isn't equal to null, that means the conversion was successful.
+            // As such, do functions specific to this unit.
+            if(userUnit != null)
+            {
+                // If the tile exists, place the unit on it.
+                if (tile != null)
+                {
+                    // Sets the action tile to have this unit.
+                    tile.SetActionUnitUser(userUnit);
+
+                    // If the new unit is a user unit.
+                    if (newUnit is ActionUnitUser)
+                    {
+                        // Set to tile position using function.
+                        (newUnit as ActionUnitUser).SetPositionToTilePosition(tile);
+                    }
+                    // Not user unit.
+                    else
+                    {
+                        // Set to tile position.
+                        newUnit.transform.position = tile.transform.position;
+                    }
+                }
+
+                // Adds to the created user units list if it exists.
+                if (userUnit != null)
+                {
+                    createdUserUnits.Add(userUnit);
+                }
+            }
+           
+            // Returns the new unit.
+            return newUnit;
+        }
+
+        // Tries to remove the user unit from the created units list.
+        public bool TryRemoveCreatedUnitFromList(ActionUnitUser userUnit)
+        {
+            // If it's in the list, remove it.
+            if(createdUserUnits.Contains(userUnit))
+            {
+                createdUserUnits.Remove(userUnit);
+                return true;
+            }
+            // Not in list.
+            else
+            {
+                return false;
+            }
         }
 
         // Resets the player.
@@ -178,7 +258,7 @@ namespace RM_EDU
         {
             SetEnergyToStartingEnergy();
             ResetEnergyAutoGenerationTimer();
-            ClearSelectedUnitPrefab();
+            ClearSelectedActionUnitPrefab();
         }
 
         // Update is called once per frame

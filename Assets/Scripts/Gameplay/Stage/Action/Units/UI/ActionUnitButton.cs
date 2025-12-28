@@ -73,7 +73,7 @@ namespace RM_EDU
             if(playerUser != null)
             {
                 // Give the player the selected prefab.
-                playerUser.SetSelectedUnitPrefab(unitPrefab);
+                playerUser.SetSelectedActionUnitPrefab(unitPrefab);
             }
         }
 

@@ -171,9 +171,8 @@ namespace RM_EDU
                     // Creates the new enemy, making a child of this object by default.
                     ActionUnitEnemy enemyUnit = Instantiate(prefab, transform);
 
-                    // If there's a dedicated unit parent, give it that as the parent.
-                    if (unitParent != null)
-                        enemyUnit.transform.parent = unitParent.transform;
+                    // Sets the parent.
+                    SetActionUnitParentToUnitParent(enemyUnit);
 
                     // Gives the enemy unit the action manager since it won't be set...
                     // Before certain functions are used.

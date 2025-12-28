@@ -30,6 +30,10 @@ namespace RM_EDU
             // The action unit prefabs.
             if (actionUnitPrefabs == null)
                 actionUnitPrefabs = ActionUnitPrefabs.Instance;
+
+            // If the unit parent is null, make this object the unit parent.
+            if (unitParent == null)
+                unitParent = gameObject;
         }
 
         // Returns 'true' if the action player can create a unit with the provided energy cost.
@@ -42,6 +46,22 @@ namespace RM_EDU
         public bool CanCreateActionUnit(ActionUnit actionUnit)
         {
             return CanCreateActionUnit(actionUnit.energyCreationCost);
+        }
+
+        // Sets the action unit parent to the unit parent object.
+        // If 'thisParentIfNull' is true, this is set as the unit's parent if the unit parent object is null.
+        public virtual void SetActionUnitParentToUnitParent(ActionUnit actionUnit, bool thisParentIfNull = true)
+        {
+            // If there's a dedicated unit parent, give it that as the parent.
+            if (unitParent != null)
+            {
+                actionUnit.transform.parent = unitParent.transform;
+            }
+            // No unit parent, so make this object the parent of the enemy unit.
+            else
+            {
+                actionUnit.transform.parent = (thisParentIfNull) ? transform : null;
+            }
         }
 
         // Resets the player.

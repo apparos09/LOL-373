@@ -33,11 +33,12 @@ namespace RM_EDU
         public const int MAP_ROW_COUNT_DEFAULT = 7;
 
         // The default colum count for a map.
-        public const int MAP_COL_COUNT_DEFAULT = 16;
+        public const int MAP_COLUMN_COUNT_DEFAULT = 16;
 
+        // Arrays - (r, w) = (y, x)
+        // Action Tiles
         // The action tile array, which also determines the map size.
-        // (r, w) = (y, x)
-        public ActionTile[,] tiles = new ActionTile[MAP_ROW_COUNT_DEFAULT, MAP_COL_COUNT_DEFAULT];
+        public ActionTile[,] tiles = new ActionTile[MAP_ROW_COUNT_DEFAULT, MAP_COLUMN_COUNT_DEFAULT];
 
         // The origin of the tile. By default, it's the middle of the tile.
         private Vector2 tileOrigin = new Vector2(0.5F, 0.5F);

@@ -170,7 +170,7 @@ MonoBehaviour:
   idNumber: 0
   worldStageIndex: -1
   difficulty: 0
-  naturalResources: 010000000200000003000000
+  naturalResources: 
   actionUI: {fileID: 0}
   actionStageList: {fileID: 0}
   actionStage: {fileID: 689166624}

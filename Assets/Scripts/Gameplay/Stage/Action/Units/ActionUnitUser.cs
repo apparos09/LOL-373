@@ -7,9 +7,16 @@ namespace RM_EDU
     // The player user unit.
     public abstract class ActionUnitUser : ActionUnit
     {
+        [Header("User")]
         // The tiles that are valid to place this unit on.
         // The metal tile is only for the lane blaster, so it's not included by default.
         public List<ActionTile.actionTile> validTiles = new List<ActionTile.actionTile>();
+
+        // The tile the user unit is placed on.
+        public ActionTile tile = null;
+
+        // The position offset of the unit when placed on a tile.
+        public Vector3 tilePosOffset = Vector3.zero;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -29,7 +36,7 @@ namespace RM_EDU
                 // Checks if the tile is interactable, if the tile is usable by an action unit,...
                 // And if the tile already has an action unit.
                 // If the tile cannot be used for any reason, return false.
-                if(!tile.interactable || !tile.IsUsableByActionUnit() || tile.HasActionUnit())
+                if(!tile.interactable || !tile.IsUsableByActionUnitUser() || tile.HasActionUnitUser())
                 {
                     // Tile already being used.
                     result = false;
@@ -37,17 +44,8 @@ namespace RM_EDU
                 // No unit on tile, so check if usable.
                 else
                 {
-                    // Checks if there are specific tiles that are valid.
-                    if (validTiles.Count > 0)
-                    {
-                        // If the valid list contains the tile type, the unit can be placed there.
-                        result = validTiles.Contains(tile.GetTileType());
-                    }
-                    // Since there are no valid tiles, the game acts as if there are no invalid tiles.
-                    else
-                    {
-                        result = true;
-                    }
+                    // Sets result based on if the tile is usable by its type.
+                    result = UsableTileType(tile);
                 }
             }
             // The tile doesn't exist, so nothing can be placed there.
@@ -55,14 +53,88 @@ namespace RM_EDU
             {
                 result = false;
             }
+            
+            return result;
+        }
 
-                return result;
+        // Returns 'true' if the tile is usable based purely on its type.
+        // If there is some other factor that makes the tile usable or unusable, it isn't considered.
+        public bool UsableTileType(ActionTile tile)
+        {
+            bool result;
+
+            // Checks if there are specific tiles that are valid.
+            if (validTiles.Count > 0)
+            {
+                // If the valid list contains the tile type, the unit can be placed there.
+                result = validTiles.Contains(tile.GetTileType());
+            }
+            // Since there are no valid tiles, the game acts as if there are no invalid tiles.
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
+        // Sets the position to the provided tile's position.
+        public void SetPositionToTilePosition(ActionTile refTile)
+        {
+            transform.position = refTile.transform.position + tilePosOffset;
+        }
+
+        // Sets the position to the provided tile's position.
+        public void SetPositionToTilePosition()
+        {
+            SetPositionToTilePosition(tile);
+        }
+
+        // Clears the tile this unit is on.
+        public void ClearTile()
+        {
+            // The tile exists.
+            if (tile != null)
+            {
+                // The tile has this action unit, so clear the tile.
+                if (tile.actionUnit == this)
+                {
+                    tile.ClearActionUnitUser();
+                }
+            }
+
+            // Clear tile.
+            tile = null;
+        }
+
+        // Called when a unit has died/been destroyed.
+        public override void OnUnitDeath()
+        {
+            // Tries to remove the unit from its user list.
+            actionManager.playerUser.TryRemoveCreatedUnitFromList(this);
+
+            // Clears the tile this unit is on.
+            ClearTile();
+
+            base.OnUnitDeath();
         }
 
         // Update is called once per frame
         protected override void Update()
         {
             base.Update();
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+
+            // Tries to remove the unit from its user list.
+            actionManager.playerUser.TryRemoveCreatedUnitFromList(this);
+
+            // Clears the tile.
+            ClearTile();
         }
     }
 }

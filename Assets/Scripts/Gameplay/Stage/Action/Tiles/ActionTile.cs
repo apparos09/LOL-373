@@ -26,7 +26,7 @@ namespace RM_EDU
         [Tooltip("If true, the tile is interactable by the user.")]
         public bool interactable = true;
 
-        [Header("Sprites")]
+        [Header("Visuals")]
 
         // The animator.
         public Animator animator;
@@ -69,9 +69,9 @@ namespace RM_EDU
         [Tooltip("The tile's position in the map's space.")]
         public Vector2Int mapPos = new Vector2Int(-1, -1);
 
-        // The action unit on the tile.
-        [Tooltip("If not null, there's an action unit on the tile.")]
-        public ActionUnit actionUnit = null;
+        // The action unit user on the tile.
+        [Tooltip("If action unit user on the tile. If null, then there's no user unit on the tile.")]
+        public ActionUnitUser actionUnit = null;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -93,7 +93,16 @@ namespace RM_EDU
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
         protected virtual void OnMouseDown()
         {
-            // Debug.Log("Clicked");
+            // If there is no unit on the tile.
+            // TODO: check if the unit can be placed there.
+            if(!HasActionUnitUser())
+            {
+                // If the player user has a unit prefab, place the unit on it.
+                if(actionManager.playerUser.IsSelectingActionUnitPrefab())
+                {
+                    actionManager.playerUser.InstantiateSelectedActionUnit(this);
+                }
+            }
         }
 
         // Gets the tile type.
@@ -239,16 +248,57 @@ namespace RM_EDU
         }
 
         // Returns 'true' if an action unit can be placed on this tile.
-        public bool IsUsableByActionUnit()
+        public bool IsUsableByActionUnitUser()
         {
             // TODO: implement.
             return true;
         }
 
         // Returns 'true' if an action unit is on the tile.
-        public bool HasActionUnit()
+        public bool HasActionUnitUser()
         {
             return actionUnit;
+        }
+
+        // Returns 'true' if this action unit is on this tile.
+        // Returns 'false' if this unit isn't on this tile or if the tile has no unit.
+        public bool HasActionUnitUser(ActionUnitUser compUnit)
+        {
+            return actionUnit == compUnit;
+        }
+
+        // Sets the action unit.
+        public void SetActionUnitUser(ActionUnitUser actionUnit)
+        {
+            this.actionUnit = actionUnit;
+
+            // If the unit has been set.
+            if(this.actionUnit != null)
+            {
+                // If the unit
+                if (this.actionUnit is ActionUnitUser)
+                {
+                    (this.actionUnit as ActionUnitUser).tile = this;
+                }
+            }
+            
+        }
+
+        // Clears the action unit on the tile.
+        public void ClearActionUnitUser()
+        {
+            // If there is an action unit user.
+            if(actionUnit != null)
+            {
+                // If the saved tile is this tile, set it to null.
+                if (actionUnit.tile == this)
+                {
+                    actionUnit.tile = null;
+                }
+            }
+
+            // Set unit to null.
+            actionUnit = null;
         }
 
         // // Update is called once per frame
