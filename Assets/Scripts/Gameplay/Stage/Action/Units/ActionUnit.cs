@@ -62,7 +62,9 @@ namespace RM_EDU
         // The energy death cost of the unit. This is the amount of energy it costs when a unit dies.
         public float energyDeathCost = 0.0F;
 
-        // The energy generation amount. 
+        // The energy generation amount. This is the BASE amount of energy generated.
+        // A dedicated function should be used to calculate the amount in real time based on the stage conditions.
+        [Tooltip("The base stat for energy amount generated. May differ based on the current map conditions.")]
         public float energyGenerationAmount = 0.0F;
 
         // The energy generation speed.
@@ -242,6 +244,13 @@ namespace RM_EDU
             return result;
         }
 
+        // Calculates the energy generation amount.
+        // Override this function if the calculation should be changed.
+        public virtual float CalculateEnergyGenerationAmount()
+        {
+            // Ceil(Amount Stat / Stat Maximum * 10)
+            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 100.0F);
+        }        
 
         // Kills the unit.
         public virtual void Kill()

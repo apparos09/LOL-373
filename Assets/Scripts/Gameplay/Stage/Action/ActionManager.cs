@@ -336,6 +336,39 @@ namespace RM_EDU
             return windEnabled;
         }
 
+        // Returns 'true' if there is any wind belowing at all.
+        // If the wind isn't enabled, this always returns false.
+        public bool IsWindBlowing()
+        {
+            bool result;
+
+            // First checks if there is wind.
+            if(windEnabled)
+            {
+                // Gets the current wind rating.
+                ActionUnit.statRating windRating = GetCurrentWindRating();
+
+                // Checks the rating.
+                switch(windRating)
+                {
+                    case ActionUnit.statRating.noneMinus: // No wind blowing.
+                    case ActionUnit.statRating.none:
+                        result = false;
+                        break;
+
+                    default: // Wind blowing.
+                        result = true;
+                        break;
+                }
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
         // Gets the current wind rating.
         // If wind is disabled, a rating of 'none' is returned.
         public ActionUnit.statRating GetCurrentWindRating()
