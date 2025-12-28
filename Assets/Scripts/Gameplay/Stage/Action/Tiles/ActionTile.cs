@@ -22,6 +22,10 @@ namespace RM_EDU
         // The collider.
         public new Collider2D collider;
 
+        // If 'true', the tile can be interacted with for game functions.
+        [Tooltip("If true, the tile is interactable by the user.")]
+        public bool interactable = true;
+
         [Header("Sprites")]
 
         // The animator.
@@ -65,7 +69,9 @@ namespace RM_EDU
         [Tooltip("The tile's position in the map's space.")]
         public Vector2Int mapPos = new Vector2Int(-1, -1);
 
-        
+        // The action unit on the tile.
+        [Tooltip("If not null, there's an action unit on the tile.")]
+        public ActionUnit actionUnit = null;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -214,8 +220,6 @@ namespace RM_EDU
         }
 
         // WORLD
-
-
         // Gets the map position.
         public Vector2Int GetMapPosition()
         {
@@ -232,6 +236,19 @@ namespace RM_EDU
         public int GetMapColumnPosition()
         {
             return mapPos.x;
+        }
+
+        // Returns 'true' if an action unit can be placed on this tile.
+        public bool IsUsableByActionUnit()
+        {
+            // TODO: implement.
+            return true;
+        }
+
+        // Returns 'true' if an action unit is on the tile.
+        public bool HasActionUnit()
+        {
+            return actionUnit;
         }
 
         // // Update is called once per frame

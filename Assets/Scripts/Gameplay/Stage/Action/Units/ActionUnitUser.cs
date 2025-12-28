@@ -26,16 +26,28 @@ namespace RM_EDU
             // If the tile exists, check if it's usable.
             if(tile != null)
             {
-                // Checks if there are specific tiles that are valid.
-                if (validTiles.Count > 0)
+                // Checks if the tile is interactable, if the tile is usable by an action unit,...
+                // And if the tile already has an action unit.
+                // If the tile cannot be used for any reason, return false.
+                if(!tile.interactable || !tile.IsUsableByActionUnit() || tile.HasActionUnit())
                 {
-                    // If the valid list contains the tile type, the unit can be placed there.
-                    result = validTiles.Contains(tile.GetTileType());
+                    // Tile already being used.
+                    result = false;
                 }
-                // Since there are no valid tiles, the game acts as if there are no invalid tiles.
+                // No unit on tile, so check if usable.
                 else
                 {
-                    result = true;
+                    // Checks if there are specific tiles that are valid.
+                    if (validTiles.Count > 0)
+                    {
+                        // If the valid list contains the tile type, the unit can be placed there.
+                        result = validTiles.Contains(tile.GetTileType());
+                    }
+                    // Since there are no valid tiles, the game acts as if there are no invalid tiles.
+                    else
+                    {
+                        result = true;
+                    }
                 }
             }
             // The tile doesn't exist, so nothing can be placed there.
