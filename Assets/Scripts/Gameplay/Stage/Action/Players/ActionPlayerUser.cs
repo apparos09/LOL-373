@@ -176,6 +176,9 @@ namespace RM_EDU
         public void ClearSelectedActionUnitPrefab()
         {
             selectedUnitPrefab = null;
+
+            // Clears the info.
+            ActionUI.Instance.ClearSelectedUnitInfo();
         }
 
         // Instantiates the selected action unit without putting it on a tile.

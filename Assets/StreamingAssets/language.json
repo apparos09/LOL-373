@@ -62,7 +62,11 @@
       "nrs_col_abv": 18,
       "nrs_ngs_abv": 18,
       "nrs_nlr_abv": 18,
-      "nrs_oil_abv": 18
+      "nrs_oil_abv": 18,
+
+      "kwd_select":18,
+      "kwd_deselect": 18,
+      "kwd_remove": 18
 
     }
   },
@@ -127,7 +131,10 @@
     "nrs_col_abv": "COL",
     "nrs_ngs_abv": "NGS",
     "nrs_nlr_abv": "NLR",
-    "nrs_oil_abv": "OIL"
+    "nrs_oil_abv": "OIL",
 
+    "kwd_select": "Select",
+    "kwd_deselect": "Deselect",
+    "kwd_remove": "Remove"
   }
 }

@@ -155,6 +155,7 @@ namespace RM_EDU
             }
         }
 
+        // SELECT UNIT //
         // Refreshes the interactable component of the unit buttons.
         public void RefreshUnitButtonsInteractable()
         {
@@ -176,16 +177,27 @@ namespace RM_EDU
 
         // Clears the selected unit.
         // NOTE: this does not deselect the unit from the player.
-        public void ClearSelectedUnitUI()
+        public void ClearSelectedUnitInfo()
         {
             selectedUnit.ClearActionUnitInfo();
         }
+
+        // DESELECT UNIT //
+        // Deselects the player's selected unit.
+        public void DeselectUnit()
+        {
+            actionManager.playerUser.ClearSelectedActionUnitPrefab();
+        }
+
+        // WINDOWS //
 
         // Opens the stage end window.
         public void SetStageEndWindowActive(bool active)
         {
             stageEndWindow.SetActive(active);
         }
+
+        // FINISH
 
         // Called to finish the stage.
         public override void FinishStage()
