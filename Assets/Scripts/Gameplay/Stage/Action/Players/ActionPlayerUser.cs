@@ -12,6 +12,10 @@ namespace RM_EDU
         // The energy the player user starts with.
         public float startingEnergy = 50.0F;
 
+        // The energy the player had on the previous update.
+        // Used to see if the player's energy has changed between updates.
+        private float prevUpdateEnergy = -1.0F;
+
         // The energy auto generation timer.
         public float energyAutoGenTimer = 0.0F;
 
@@ -93,6 +97,16 @@ namespace RM_EDU
             return energyAutoGenAmount;
         }
 
+        // Called when the energy amount for the user has changed.
+        public void OnEnergyChanged()
+        {
+            // Refreshes the unit buttons.
+            actionManager.actionUI.RefreshUnitButtonsInteractable();
+
+            // Sets previous update saved energy to this energy.
+            prevUpdateEnergy = energy;
+        }
+
         // Returns 'true' if the player is selecting a unit.
         public bool IsSelectingUnitPrefab()
         {
@@ -151,6 +165,12 @@ namespace RM_EDU
                         // Set timer to max.
                         ResetEnergyAutoGenerationTimer();
                     }
+                }
+
+                // If the player's energy has changed.
+                if(prevUpdateEnergy != energy)
+                {
+                    OnEnergyChanged();
                 }
             }
                 

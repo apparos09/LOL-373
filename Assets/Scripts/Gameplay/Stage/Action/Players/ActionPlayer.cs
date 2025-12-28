@@ -32,13 +32,25 @@ namespace RM_EDU
                 actionUnitPrefabs = ActionUnitPrefabs.Instance;
         }
 
+        // Returns 'true' if the action player can create a unit with the provided energy cost.
+        public bool CanCreateActionUnit(float energyCreationCost)
+        {
+            return energyCreationCost <= energy;
+        }
+
+        // Returns 'true' if the action player can create the provided action unit.
+        public bool CanCreateActionUnit(ActionUnit actionUnit)
+        {
+            return CanCreateActionUnit(actionUnit.energyCreationCost);
+        }
+
         // Resets the player.
         public abstract void ResetPlayer();
 
         // Update is called once per frame
         protected virtual void Update()
         {
-
+            // ...
         }
     }
 }

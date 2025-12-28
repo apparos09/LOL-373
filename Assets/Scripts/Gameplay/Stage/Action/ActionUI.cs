@@ -21,6 +21,7 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        [Header("Action/Top Header")]
         // The day night indicator.
         public DayNightIndicator dayNightIndicator;
 
@@ -35,6 +36,14 @@ namespace RM_EDU
 
         // The window that shows up when the stage is over.
         public GameObject stageEndWindow;
+
+        [Header("Action/Bottom Header")]
+
+        // The generator selector.
+        public ActionUnitSelector generatorUnitSelector;
+
+        // The defense selector.
+        public ActionUnitSelector defenseUnitSelector;
 
         // Constructor
         private ActionUI()
@@ -139,6 +148,13 @@ namespace RM_EDU
                 float energyPercent = playerEnemy.energy / playerEnemy.energyMax;
                 playerEnemyEnergyBar.SetValueAsPercentage(energyPercent);
             }
+        }
+
+        // Refreshes the interactable component of the unit buttons.
+        public void RefreshUnitButtonsInteractable()
+        {
+            generatorUnitSelector.RefreshUnitButtonsInteractable();
+            defenseUnitSelector.RefreshUnitButtonsInteractable();
         }
 
         // Opens the stage end window.

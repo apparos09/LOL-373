@@ -38,6 +38,9 @@ namespace RM_EDU
         // The sprite renderer.
         public SpriteRenderer spriteRenderer;
 
+        // The sprite used for this unit's icon.
+        public Sprite iconSprite;
+
         // The animator.
         public Animator animator;
 

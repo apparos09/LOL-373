@@ -175,7 +175,7 @@ MonoBehaviour:
   actionStageList: {fileID: 0}
   actionStage: {fileID: 689166624}
   dayNightTimer: 0
-  windSpeeds: 000000000000000000000000
+  windRatings: 000000000000000000000000
   playerUser: {fileID: 8040844772360132460}
   playerEnemy: {fileID: 1835002386927201937}
   postProcessor: {fileID: 368618438}

@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -128}
-  m_SizeDelta: {x: 128, y: 64}
+  m_AnchoredPosition: {x: 0, y: -104}
+  m_SizeDelta: {x: 128, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3837155213424801269
 CanvasRenderer:
@@ -128,6 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionUI: {fileID: 0}
   button: {fileID: 1857510620126655577}
+  unitIconImage: {fileID: 6110831296171863297}
   unitNameText: {fileID: 157780337576049473}
   energyCostText: {fileID: 6747631995733676449}
   topHighlightImage: {fileID: 2673281995923293965}
@@ -242,8 +243,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 128}
-  m_SizeDelta: {x: 128, y: 64}
+  m_AnchoredPosition: {x: 0, y: 104}
+  m_SizeDelta: {x: 128, y: 16}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2829000173063487329
 CanvasRenderer:
@@ -349,7 +350,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Energy Cost
+  m_text: 000
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -376,12 +377,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 20
+  m_fontSize: 30
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 14
-  m_fontSizeMax: 20
+  m_fontSizeMax: 30
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -446,11 +447,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1263557160315411584, guid: 3e56a82eab9ff3849971e708f8e53c7e, type: 3}
       propertyPath: m_fontSize
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 1263557160315411584, guid: 3e56a82eab9ff3849971e708f8e53c7e, type: 3}
       propertyPath: m_fontSizeMax
-      value: 20
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 2287434372100847543, guid: 3e56a82eab9ff3849971e708f8e53c7e, type: 3}
       propertyPath: m_Name

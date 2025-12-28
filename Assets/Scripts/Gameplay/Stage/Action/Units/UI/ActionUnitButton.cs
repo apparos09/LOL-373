@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Unity.VisualScripting;
 
 namespace RM_EDU
 {
@@ -14,6 +15,9 @@ namespace RM_EDU
 
         // The button script.
         public Button button;
+
+        // The icon that's on the button.
+        public Image unitIconImage;
 
         // The name of the unit.
         public TMP_Text unitNameText;
@@ -59,7 +63,7 @@ namespace RM_EDU
         public virtual void Select()
         {
             // Gets the player user.
-            ActionPlayerUser playerUser = actionUI.actionManager.playerUser;
+            ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
 
             // If the player exists, give it this unit prefab.
             if(playerUser != null)
@@ -88,6 +92,67 @@ namespace RM_EDU
 
             // Returns the unit type.
             return unitType;
+        }
+
+        // Applies infromation from the unit prefab.
+        public void ApplyUnitPrefabInfo()
+        {
+            // Checks if the prefab exists.
+            if(unitPrefab != null)
+            {
+                unitIconImage.sprite = unitPrefab.iconSprite;
+                unitNameText.text = unitPrefab.name;
+                energyCostText.text = unitPrefab.energyCreationCost.ToString();
+
+                // TODO: adjust the highlights.
+
+                // Refresh the unit button to set the interactable.
+                RefreshUnitButtonInteractable();
+            }
+            // The prefab is null, so clear the unit button.
+            else
+            {
+                ClearUnitButton();
+            }
+        }
+
+        // Applies information from the unit prefab.
+        public void ApplyUnitPrefabInfo(ActionUnit newUnitPrefab)
+        {
+            unitPrefab = newUnitPrefab;
+            ApplyUnitPrefabInfo();
+        }
+
+        // Refresh the interactability of the unit button.
+        public void RefreshUnitButtonInteractable()
+        {
+            // Checks if there's a prefab.
+            if(unitPrefab != null)
+            {
+                // Sets interactable if the player can place this unit.
+                button.interactable = ActionManager.Instance.playerUser.CanCreateActionUnit(unitPrefab);
+            }
+            // No prefab, so set as non-interactable.
+            else
+            {
+                button.interactable = false;
+            }
+        }
+
+        // Clears the unit button.
+        public void ClearUnitButton()
+        {
+            unitIconImage.sprite = null;
+            unitNameText.text = "-";
+            energyCostText.text = "-";
+
+            // TODO: adjust the highlights.
+
+            // The button is no longer interactable.
+            button.interactable = false;
+
+            // Clears prefab.
+            unitPrefab = null;
         }
 
     }
