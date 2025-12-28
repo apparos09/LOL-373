@@ -54,6 +54,30 @@ namespace RM_EDU
             return unitType.generator;
         }
 
+        // Gets the natural resource name.
+        public string GetNaturalResourceName()
+        {
+            return NaturalResources.GetNaturalResourceName(resource);
+        }
+
+        // Gets the natural resource name key.
+        public static string GetNaturalResourceNameKey(NaturalResources.naturalResource resource)
+        {
+            return NaturalResources.GetNaturalResourceNameKey(resource);
+        }
+
+        // Gets the natural resource name abbreviation.
+        public string GetNaturalResourceNameAbbreviation()
+        {
+            return NaturalResources.GetNaturalResourceNameAbbreviation(resource);
+        }
+
+        // Gets the natural resource name key.
+        public static string GetNaturalResourceNameAbbreviationKey(NaturalResources.naturalResource resource)
+        {
+            return NaturalResources.GetNaturalResourceNameAbbreviationKey(resource);
+        }
+
         // Gets the maximum of the energy generation timer.
         public virtual float GetEnergyGenerationTimerMax()
         {

@@ -127,57 +127,67 @@ namespace RM_EDU
             // Gets the key for translation.
             string key = GetNaturalResourceNameKey(res);
 
-            // Checks the resource type to know what name to return.
-            switch (res)
+            // If the LOL manager has been initialized and the key exists.
+            if(LOLManager.IsLOLSDKInitialized() && key != "")
             {
-                case naturalResource.unknown:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Unknown";
-                    break;
-
-                case naturalResource.biomass:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Biomass";
-                    break;
-
-                case naturalResource.hydro:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Hydro";
-                    break;
-
-                case naturalResource.geothermal:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Geothermal";
-                    break;
-
-                case naturalResource.solar:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Solar";
-                    break;
-
-                case naturalResource.wave:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Wave";
-                    break;
-
-                case naturalResource.wind:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Wind";
-                    break;
-
-                case naturalResource.coal:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Coal";
-                    break;
-
-                case naturalResource.naturalGas:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Natural Gas";
-                    break;
-
-                case naturalResource.nuclear:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Nuclear";
-                    break;
-
-                case naturalResource.oil:
-                    result = LOLManager.IsLOLSDKInitialized() ? LOLManager.Instance.GetLanguageText(key) : "Oil";
-                    break;
-
-                default:
-                    result = string.Empty;
-                    break;
+                result = LOLManager.Instance.GetLanguageText(key);
             }
+            // Either the LOL SDK isn't initialized or the key is empty, so manually fill the values.
+            else
+            {
+                // Checks the resource type to know what name to return.
+                switch (res)
+                {
+                    case naturalResource.unknown:
+                        result = "Unknown";
+                        break;
+
+                    case naturalResource.biomass:
+                        result = "Biomass";
+                        break;
+
+                    case naturalResource.hydro:
+                        result = "Hydro";
+                        break;
+
+                    case naturalResource.geothermal:
+                        result = "Geothermal";
+                        break;
+
+                    case naturalResource.solar:
+                        result = "Solar";
+                        break;
+
+                    case naturalResource.wave:
+                        result = "Wave";
+                        break;
+
+                    case naturalResource.wind:
+                        result = "Wind";
+                        break;
+
+                    case naturalResource.coal:
+                        result = "Coal";
+                        break;
+
+                    case naturalResource.naturalGas:
+                        result = "Natural Gas";
+                        break;
+
+                    case naturalResource.nuclear:
+                        result = "Nuclear";
+                        break;
+
+                    case naturalResource.oil:
+                        result = "Oil";
+                        break;
+
+                    default:
+                        result = string.Empty;
+                        break;
+                }
+            }
+         
 
             return result;
         }
@@ -233,6 +243,141 @@ namespace RM_EDU
 
                 case naturalResource.oil:
                     result = "nrs_oil";
+                    break;
+
+                default:
+                    result = string.Empty;
+                    break;
+            }
+
+            return result;
+        }
+
+        // Gets the natural resource name.
+        public static string GetNaturalResourceNameAbbreviation(naturalResource res)
+        {
+            // The result to be returned.
+            string result;
+
+            // Gets the key for translation.
+            string key = GetNaturalResourceNameAbbreviationKey(res);
+
+            // If the LOL manager has been initialized and the key exists.
+            if (LOLManager.IsLOLSDKInitialized() && key != "")
+            {
+                result = LOLManager.Instance.GetLanguageText(key);
+            }
+            // Either the LOL SDK isn't initialized or the key is empty, so manually fill the values.
+            else
+            {
+                // Checks the resource type to know what name abbreviation to return.
+                switch (res)
+                {
+                    case naturalResource.unknown:
+                        result = "UKN";
+                        break;
+
+                    case naturalResource.biomass:
+                        result = "BMS";
+                        break;
+
+                    case naturalResource.hydro:
+                        result = "HDO";
+                        break;
+
+                    case naturalResource.geothermal:
+                        result = "GTL";
+                        break;
+
+                    case naturalResource.solar:
+                        result = "SLR";
+                        break;
+
+                    case naturalResource.wave:
+                        result = "WVE";
+                        break;
+
+                    case naturalResource.wind:
+                        result = "WND";
+                        break;
+
+                    case naturalResource.coal:
+                        result = "COL";
+                        break;
+
+                    case naturalResource.naturalGas:
+                        result = "NGS";
+                        break;
+
+                    case naturalResource.nuclear:
+                        result = "NLR";
+                        break;
+
+                    case naturalResource.oil:
+                        result = "OIL";
+                        break;
+
+                    default:
+                        result = string.Empty;
+                        break;
+                }
+            }
+
+
+            return result;
+        }
+
+        // Gets the key for the natural resource abbreviation, which is used for the language file.
+        public static string GetNaturalResourceNameAbbreviationKey(naturalResource res)
+        {
+            // The result to be returned.
+            string result;
+
+            // Checks the resource type to know what key to return.
+            switch (res)
+            {
+                case naturalResource.unknown:
+                    result = "kwd_unknown_abv"; // Uses keyword "Unknown".
+                    break;
+
+                case naturalResource.biomass:
+                    result = "nrs_bms_abv";
+                    break;
+
+                case naturalResource.hydro:
+                    result = "nrs_hdo_abv";
+                    break;
+
+                case naturalResource.geothermal:
+                    result = "nrs_gtl_abv";
+                    break;
+
+                case naturalResource.solar:
+                    result = "nrs_slr_abv";
+                    break;
+
+                case naturalResource.wave:
+                    result = "nrs_wve_abv";
+                    break;
+
+                case naturalResource.wind:
+                    result = "nrs_wnd_abv";
+                    break;
+
+                case naturalResource.coal:
+                    result = "nrs_col_abv";
+                    break;
+
+                case naturalResource.naturalGas:
+                    result = "nrs_ngs_abv";
+                    break;
+
+                case naturalResource.nuclear:
+                    result = "nrs_nlr_abv";
+                    break;
+
+                case naturalResource.oil:
+                    result = "nrs_oil_abv";
                     break;
 
                 default:

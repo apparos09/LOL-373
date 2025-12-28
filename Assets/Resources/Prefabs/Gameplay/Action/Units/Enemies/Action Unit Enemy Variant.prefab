@@ -85,6 +85,8 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 3
   spriteRenderer: {fileID: 8147518098009090336}
+  iconSprite: {fileID: 0}
+  cardBackgroundSprite: {fileID: 21300000, guid: f27e84b1992d762478cce4d9c6aa514c, type: 3}
   animator: {fileID: 2850429345959189649}
   collider: {fileID: 7283594400394210138}
   rigidbody: {fileID: 0}
@@ -99,7 +101,6 @@ MonoBehaviour:
   movementSpeed: 60
   airPollution: 0
   playerEnemy: {fileID: 0}
-  row: -1
   deathEnergyCost: 1
 --- !u!61 &7283594400394210138 stripped
 BoxCollider2D:

@@ -42,6 +42,9 @@ namespace RM_EDU
         // The generator selector.
         public ActionUnitSelector generatorUnitSelector;
 
+        // The selected unit.
+        public ActionUnitCard selectedUnit;
+
         // The defense selector.
         public ActionUnitSelector defenseUnitSelector;
 
@@ -132,6 +135,8 @@ namespace RM_EDU
             if(playerUser != null)
             {
                 playerUserEnergyText.text = Mathf.Floor(playerUser.energy).ToString();
+
+
             }
         }
 
@@ -155,6 +160,19 @@ namespace RM_EDU
         {
             generatorUnitSelector.RefreshUnitButtonsInteractable();
             defenseUnitSelector.RefreshUnitButtonsInteractable();
+        }
+
+        // Updates the selected unit UI.
+        public void SetSelectedUnitUI(ActionUnitButton unitButton)
+        {
+            selectedUnit.ApplyActionUnitButtonInfo(unitButton);
+        }
+
+        // Clears the selected unit.
+        // NOTE: this does not deselect the unit from the player.
+        public void ClearSelectedUnitUI()
+        {
+            selectedUnit.ClearActionUnitInfo();
         }
 
         // Opens the stage end window.

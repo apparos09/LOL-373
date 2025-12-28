@@ -74,6 +74,9 @@ namespace RM_EDU
             {
                 // Give the player the selected prefab.
                 playerUser.SetSelectedUnitPrefab(unitPrefab);
+
+                // Sets the selected unit.
+                ActionUI.Instance.SetSelectedUnitUI(this);
             }
         }
 
@@ -104,8 +107,21 @@ namespace RM_EDU
             // Checks if the prefab exists.
             if(unitPrefab != null)
             {
+                // Icon image.
                 unitIconImage.sprite = unitPrefab.iconSprite;
-                unitNameText.text = unitPrefab.GetUnitTypeName(); // TODO: use short-hand.
+
+                // If it's a unit generator, use the generator abbreviation.
+                if(unitPrefab is ActionUnitGenerator)
+                {
+                    unitNameText.text = (unitPrefab as ActionUnitGenerator).GetNaturalResourceNameAbbreviation();
+                }
+                else
+                {
+                    // Uses the unit type name.
+                    unitNameText.text = unitPrefab.GetUnitTypeName();
+                }
+
+                // Energy cost.
                 energyCostText.text = unitPrefab.energyCreationCost.ToString();
 
                 // TODO: adjust the highlights.

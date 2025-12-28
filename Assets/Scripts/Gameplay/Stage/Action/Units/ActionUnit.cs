@@ -41,6 +41,9 @@ namespace RM_EDU
         // The sprite used for this unit's icon.
         public Sprite iconSprite;
 
+        // The sprite used for the card background of this unit.
+        public Sprite cardBackgroundSprite;
+
         // The animator.
         public Animator animator;
 
@@ -215,12 +218,6 @@ namespace RM_EDU
             }
 
             return key;
-        }
-
-        // Gets the unit type name key.
-        public string GetUnitTypeNameKey()
-        {
-            return GetUnitTypeNameKey(GetUnitType());
         }
 
         // Gets the stat rating, using the base stat maximum for comparison.

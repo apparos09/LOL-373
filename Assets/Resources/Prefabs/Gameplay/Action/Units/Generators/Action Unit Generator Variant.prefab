@@ -96,6 +96,7 @@ MonoBehaviour:
   idNumber: 0
   spriteRenderer: {fileID: 2131954471664586210}
   iconSprite: {fileID: 0}
+  cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 5406913998153414739}
   collider: {fileID: 690021909378568088}
   rigidbody: {fileID: 2840288876026598823}

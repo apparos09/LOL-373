@@ -45,8 +45,10 @@ namespace RM_EDU
         public void SetActionUnitPrefabs(List<ActionUnit> newPrefabs)
         {
             // Gets the row count.
+            // Converts one of the values to a float so that decimal places are included...
+            // Instead of automatically rounding down.
             // Any remaining spots in a page will be left empty.
-            int rowCount = Mathf.CeilToInt(newPrefabs.Count / unitButtons.Count);
+            int rowCount = Mathf.CeilToInt((float)newPrefabs.Count / unitButtons.Count);
 
             // Gets the column count.
             int colCount = unitButtons.Count;

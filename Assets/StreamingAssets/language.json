@@ -31,6 +31,7 @@
       "kwd_sfxs": 8,
 
       "kwd_ukn": 18,
+      "kwd_ukn_abv": 3,
 
       "kwd_worldStage": 18,
       "kwd_actionStage": 18,
@@ -50,7 +51,18 @@
       "nrs_col": 18,
       "nrs_ngs": 18,
       "nrs_nlr": 18,
-      "nrs_oil": 18
+      "nrs_oil": 18,
+
+      "nrs_bms_abv": 18,
+      "nrs_hdo_abv": 18,
+      "nrs_gtl_abv": 18,
+      "nrs_slr_abv": 18,
+      "nrs_wve_abv": 18,
+      "nrs_wnd_abv": 18,
+      "nrs_col_abv": 18,
+      "nrs_ngs_abv": 18,
+      "nrs_nlr_abv": 18,
+      "nrs_oil_abv": 18
 
     }
   },
@@ -84,6 +96,7 @@
     "kwd_sfxs": "SFXs",
 
     "kwd_unknown": "Unknown",
+    "kwd_ukn_abv": "UKN",
 
     "kwd_worldStage": "World Stage",
     "kwd_actionStage": "Action Stage",
@@ -103,7 +116,18 @@
     "nrs_col": "Coal",
     "nrs_ngs": "Natural Gas",
     "nrs_nlr": "Nuclear",
-    "nrs_oil": "Oil"
+    "nrs_oil": "Oil",
+
+    "nrs_bms_abv": "BMS",
+    "nrs_hdo_abv": "HDO",
+    "nrs_gtl_abv": "GTL",
+    "nrs_slr_abv": "SLR",
+    "nrs_wve_abv": "WVE",
+    "nrs_wnd_abv": "WND",
+    "nrs_col_abv": "COL",
+    "nrs_ngs_abv": "NGS",
+    "nrs_nlr_abv": "NLR",
+    "nrs_oil_abv": "OIL"
 
   }
 }
