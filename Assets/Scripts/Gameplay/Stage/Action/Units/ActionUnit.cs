@@ -53,10 +53,23 @@ namespace RM_EDU
         // The rigid body.
         public new Rigidbody2D rigidbody;
 
+        [Header("Health")]
+
+        // The unit's health.
+        [Tooltip("The unit's current health. This is NOT effected by statFactor.")]
+        public float health = 0.0F;
+
+        // The unit's max health.
+        [Tooltip("The unit's maximum health. This is NOT effected by statFactor.")]
+        public float maxHealth = 100.0F;
+
+        // Gets set to 'true' if the unit is vulnerable.
+        public bool vulnerable = true;
+
         [Header("Unit Stats")]
 
-        // The stat factor, which is multipled by each stat. This is multipled by a stat for a given entity.
-        // Note that some entites may not use this factor for certain stats.
+        // The stat factor, which can be multiplied by a stat. This may be left unapplied based on the unit.
+        [Tooltip("A factor that modifies certain stats. Whether or not a stat uses the stat factor depends on the unit.")]
         public float statFactor = 1.0F;
 
         // The energy creation cost of the unit. This is how much energy it takes to create a unit.
@@ -78,6 +91,13 @@ namespace RM_EDU
 
         // The attack speed of the unit.
         public float attackSpeed = 0.0F;
+
+        // The cooldown timer for calculating attacks.
+        [Tooltip("The cooldown timer between attacks by this unit.")]
+        public float attackCooldownTimer = 0.0F;
+
+        // If 'true', the cooldown timer is used.
+        protected bool useAttackCooldownTimer = true;
 
         // The durability of the unit.
         public float durability = 0.0F;
@@ -113,6 +133,9 @@ namespace RM_EDU
             // Gets the rigidbody.
             if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
+
+            // Sets the health to the max.
+            SetHealthToMax();
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -133,6 +156,7 @@ namespace RM_EDU
         //     
         // }
 
+        // UNIT TYPE / RATING //
         // Gets the action unit type.
         public abstract unitType GetUnitType();
 
@@ -343,6 +367,20 @@ namespace RM_EDU
             return result;
         }
 
+        // HEALTH / VULNERABLE //
+        // Sets the unit's health to its max.
+        public void SetHealthToMax()
+        {
+            health = maxHealth;
+        }
+
+        // Returns 'true' if the unit is vulnerable to attack.
+        public bool IsVulnerable()
+        {
+            return vulnerable;
+        }
+
+        // ENERGY //
         // Calculates the energy generation amount.
         // Override this function if the calculation should be changed.
         public virtual float CalculateEnergyGenerationAmount()
@@ -351,13 +389,114 @@ namespace RM_EDU
             return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 100.0F);
         }
 
+        // TILE //
         // Returns 'true' if the unit can use the tile.
         public abstract bool UsableTile(ActionTile tile);
+
+        // ATTACK / DAMAGE //
+        // Returns 'true' if the action unit is capable of attacking.
+        // This checks if the attack cooldown timer is 0.
+        public virtual bool CanAttack()
+        {
+            return attackCooldownTimer <= 0.0F;
+        }
+
+        // Attacks this unit with another unit.
+        public static void AttackUnit(ActionUnit attacker, ActionUnit target)
+        {
+            // Calculates the attack power with a given target.
+            float power = attacker.CalculateAttackPower(target, false);
+
+            // Applies the power as damage to the target.
+            target.ApplyDamage(power);
+
+            // Called when a unit has been attacked.
+            target.OnUnitAttacked(attacker);
+        }
+
+        // The provided unit attacks this unit.
+        public virtual void AttackUnit(ActionUnit attacker)
+        {
+            AttackUnit(attacker, this);
+        }
+
+        // Calculates the attack power of this unit based on the provided target.
+        // ignoreVulnerable: if true, the vulnerability of the unit is ingored.
+        //  - If false, the attack power is 0 if the target is invulnerable.
+        public virtual float CalculateAttackPower(ActionUnit target, bool ignoreVulnerable)
+        {
+            // Calculates the base power.
+            float power;
+
+            // Gets set to 'true' if the attack is valid.
+            // If vulnerability shouldn't be ignored, check if the target can take damage.
+            bool valid = (ignoreVulnerable) ? true : target.vulnerable;
+
+            // If the attack is valid, do the calculation.
+            if(valid)
+            {
+                // 2.0 * statFactor + ((attackPower * 1.25 * statFactor) - (target.durability * 1.5 * target.statFactor))
+                power = (2.0F * statFactor) + ((attackPower * 1.25F * statFactor) - (target.durability * 1.5F * target.statFactor));
+
+                // If the power is negative, set the power to 1.
+                if (power < 0.0F)
+                {
+                    power = 1.0F;
+                }
+            }
+            else
+            {
+                power = 0.0F;
+            }
+
+            // Gets the attack power.
+            return power;
+        }
+
+        // Apply damage to the unit.
+        // This does NOT call OnUnitAttacked.
+        public void ApplyDamage(float damage)
+        {
+            // Reduces health by provided damage amount.
+            health -= damage;
+
+            // If health is negative, clamp it at 0.
+            if (health < 0.0F)
+                health = 0.0F;
+        }
+
+        // Called when the unit hasp performed an attack.
+        public virtual void OnUnitAttackPerformed()
+        {
+            // Set the attack cooldown timer to the attack speed.
+            if(useAttackCooldownTimer)
+            {
+                attackCooldownTimer = attackSpeed;
+            }
+        }
+
+        // Called when the unit has been attacked.
+        public virtual void OnUnitAttacked(ActionUnit attacker)
+        {
+            // If the unit is now dead, call the kill function.
+            if(health <= 0.0F)
+            {
+                health = 0.0F;
+                Kill();
+            }
+        }
+
+        // Called when a unit has been attacked, setting the attacker to 'null'.
+        public virtual void OnUnitAttacked()
+        {
+            OnUnitAttacked(null);
+        }
 
         // Kills the unit.
         public virtual void Kill()
         {
             // TODO: add animation.
+            health = 0.0F;
             OnUnitDeath();
         }
 
@@ -368,10 +507,39 @@ namespace RM_EDU
             Destroy(gameObject);
         }
 
+        // Returns 'true' if the unit's health is less than it's max health.
+        public bool IsDead()
+        {
+            return health <= 0.0F;
+        }
+
         // Update is called once per frame
         virtual protected void Update()
         {
+            // The stage is operating.
+            if(actionManager.IsStagePlayingAndGameUnpaused())
+            {
+                // If the attack cooldown timer should be used.
+                if(useAttackCooldownTimer)
+                {
+                    // If the cooldown timer is not 0, reduce it.
+                    if(attackCooldownTimer > 0.0F)
+                    {
+                        attackCooldownTimer -= Time.deltaTime;
 
+                        // Clamp to 0.
+                        if (attackCooldownTimer < 0.0F)
+                            attackCooldownTimer = 0.0F;
+                    }
+                }
+
+                // TODO: check if in dearth animation.
+                // Checks if the unit is dead.
+                if(IsDead())
+                {
+                    OnUnitDeath();
+                }
+            }
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

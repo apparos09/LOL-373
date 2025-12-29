@@ -14,6 +14,15 @@ namespace RM_EDU
         // The enemy player.
         public ActionPlayerEnemy playerEnemy;
 
+        // The enemy attack object.
+        public EnemyAttack enemyAttack;
+
+        // The row the action unit is in.
+        private int row = -1;
+
+        // The amount of energy the enemy loses when a death occurs.
+        public float deathEnergyCost = 1;
+
         // The enemy's movement direction.
         // Enemies go from left to right.
         private Vector3 movementDirec = Vector3.left;
@@ -21,11 +30,11 @@ namespace RM_EDU
         // If 'true', the enemy moves.
         private bool movementEnabled = true;
 
-        // The row the action unit is in.
-        private int row = -1;
+        // The user unit the enemy unit is targeting.
+        public ActionUnitUser targetUserUnit = null;
 
-        // The amount of energy the enemy loses when a death occurs.
-        public float deathEnergyCost = 1;
+        // If set to 'true', the enemy can move and attack at the same time.
+        protected bool moveAndAttack = false;
 
         [HideInInspector]
         // If 'true', the enemy unit checks if it's at the end of the map on the left.
@@ -37,6 +46,17 @@ namespace RM_EDU
         protected override void Start()
         {
             base.Start();
+
+            // Gets the enemy attack in the children.
+            if (enemyAttack == null)
+                enemyAttack = GetComponentInChildren<EnemyAttack>();
+
+            // Turn off the enemy attack.
+            if(enemyAttack != null)
+            {
+                enemyAttack.gameObject.SetActive(false);
+            }
+
 
             // If the stage has no metal tiles, check for the map left bound every frame.
             // The metal tiles tell the enemy to check for the end of the map.
@@ -65,14 +85,68 @@ namespace RM_EDU
                     checkForMapLeftBound = true;
                 }
             }
+
+            // Checks if colliding with a player user unit.
+            ActionUnitUser userUnit;
+
+            // Tries to get the component.
+            if(collision.TryGetComponent(out userUnit))
+            {
+                targetUserUnit = userUnit;
+            }
         }
 
+        // TYPES //
         // Gets the unit type.
         public override unitType GetUnitType()
         {
             return unitType.enemy;
         }
 
+        // ATTACK //
+        // Returns 'true' if the enemy has an attack target.
+        public bool HasAttackTarget()
+        {
+            // First sees if the target exists.
+            bool result = targetUserUnit != null;
+
+            // If the target exists, check if it's dead.
+            if(result)
+            {
+                // If the target isn't dead, attack them.
+                result = !targetUserUnit.IsDead();
+            }
+
+            return result;
+        }
+
+        // Returns 'true' if the enemy can move and attack at the same time.
+        public bool CanMoveAndAttack()
+        {
+            return moveAndAttack;
+        }
+
+        // Returns 'true' if the enemy attack object is active.
+        public bool IsEnemyAttackActive()
+        {
+            return enemyAttack.isActiveAndEnabled;
+        }
+
+        // Activates the enemy attack and targets the provided unit.
+        public void ActivateEnemyAttack(ActionUnit targetUnit)
+        {
+            enemyAttack.gameObject.SetActive(true);
+            enemyAttack.transform.position = targetUnit.transform.position;
+        }
+
+        // Deactivates the enemy attack.
+        public void DeactivateEnemyAttack()
+        {
+            enemyAttack.transform.position = Vector3.zero;
+            enemyAttack.gameObject.SetActive(false);
+        }
+
+        // MOVEMENT //
         // Returns the row the enemy is in.
         public int GetRow()
         {
@@ -183,6 +257,22 @@ namespace RM_EDU
             return true;
         }
 
+        // Attacks the provivided user unit.
+        public void AttackUserUnit(ActionUnitUser target)
+        {
+            // The target exists, so attack.
+            if(target != null)
+            {
+                target.AttackUnit(this);
+            }
+        }
+
+        // Attacks the saved user unit.
+        public void AttackUserUnit()
+        {
+            AttackUserUnit(targetUserUnit);
+        }
+
         // Kills the unit.
         public override void Kill()
         {
@@ -214,22 +304,57 @@ namespace RM_EDU
             // If the stage is playing and the game is unpaused.
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {
+                // Set to true if the entity tried to perform an attack.
+                bool triedAttack = false;
+
+                // Set to true if the entity has moved.
+                // bool moved = false;
+
+
+                // If the enemy has a target to attack.
+                if(HasAttackTarget())
+                {
+                    // Stop movement.
+                    if (rigidbody.velocity != Vector2.zero)
+                        rigidbody.velocity = Vector2.zero;
+
+                    // Attack the unit.
+                    if(CanAttack())
+                    {
+                        AttackUserUnit();
+                    }
+
+                    // An attack was attempted, so set this to true.
+                    triedAttack = true;
+                }
+
                 // If the enemy should use movement.
                 if (movementEnabled)
                 {
-                    // NOTE: the speed isn't effected by the factor variable.
+                    // If the enemy can move and attack...
+                    // Or if the enemy can't move and attack at the same time, but has attacked.
+                    if(moveAndAttack || (!moveAndAttack && !triedAttack))
+                    {
+                        // Calculates the move speed.
+                        float moveSpeedAdjusted = movementSpeed / 100.0F * statFactor;
 
-                    // Calculates the move speed.
-                    float moveSpeedAdjusted = movementSpeed / 100.0F * statFactor;
+                        // Moves the enemy unit. The enemy shoud move at a fixed speed.
+                        // Old - Uses translate function.
+                        // transform.Translate(movementDirec * moveSpeedAdjusted * Time.deltaTime);
 
+                        // New - adds force and clamps it to the move speed.
+                        rigidbody.AddForce(movementDirec * moveSpeedAdjusted * Time.deltaTime, ForceMode2D.Impulse);
+                        rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeedAdjusted);
 
-                    // Moves the enemy unit. The enemy shoud move at a fixed speed.
-                    // Old - Uses translate function.
-                    // transform.Translate(movementDirec * moveSpeedAdjusted * Time.deltaTime);
-
-                    // New - adds force and clamps it to the move speed.
-                    rigidbody.AddForce(movementDirec * moveSpeedAdjusted * Time.deltaTime, ForceMode2D.Impulse);
-                    rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeedAdjusted);
+                        // The enemy moved.
+                        // moved = true;
+                    }
+                    else
+                    {
+                        // Cancel out the velocity.
+                        if (rigidbody.velocity != Vector2.zero)
+                            rigidbody.velocity = Vector2.zero;
+                    }
                 }
                 else
                 {
