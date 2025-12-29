@@ -30,6 +30,10 @@ namespace RM_EDU
             // Tries to automatically get the rigid body.
             if(rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
+
+            // If the unit enemy exists, make the attack be unable to collide with the enemy.
+            if (unitEnemy != null)
+                IgnoreUnitEnemyCollider(true);
         }
 
         // OnTriggerEnter2D is called when the Collider2D enters the trigger (2D physics only).

@@ -14,14 +14,8 @@ namespace RM_EDU
         // The enemy player.
         public ActionPlayerEnemy playerEnemy;
 
-        // The enemy attack object.
-        public EnemyAttack enemyAttack;
-
         // The row the action unit is in.
         private int row = -1;
-
-        // The amount of energy the enemy loses when a death occurs.
-        public float deathEnergyCost = 1;
 
         // The enemy's movement direction.
         // Enemies go from left to right.
@@ -32,6 +26,13 @@ namespace RM_EDU
 
         // The user unit the enemy unit is targeting.
         public ActionUnitUser targetUserUnit = null;
+
+        // The enemy attack object.
+        public EnemyAttack enemyAttack;
+
+        // If true, the enemy attack object is used. If false, the enemy attacks directly.
+        [Tooltip("Determines if the enemy attack object should be used for attacking or not.")]
+        public bool enemyAttackEnabled = true;
 
         // If set to 'true', the enemy can move and attack at the same time.
         protected bool moveAndAttack = false;
@@ -49,11 +50,17 @@ namespace RM_EDU
 
             // Gets the enemy attack in the children.
             if (enemyAttack == null)
+            {
                 enemyAttack = GetComponentInChildren<EnemyAttack>();
+            }
 
             // Turn off the enemy attack.
             if(enemyAttack != null)
             {
+                // Set enemy attack to use this enemy.
+                if (enemyAttack.unitEnemy == null)
+                    enemyAttack.unitEnemy = this;
+
                 enemyAttack.gameObject.SetActive(false);
             }
 
@@ -101,50 +108,7 @@ namespace RM_EDU
         public override unitType GetUnitType()
         {
             return unitType.enemy;
-        }
-
-        // ATTACK //
-        // Returns 'true' if the enemy has an attack target.
-        public bool HasAttackTarget()
-        {
-            // First sees if the target exists.
-            bool result = targetUserUnit != null;
-
-            // If the target exists, check if it's dead.
-            if(result)
-            {
-                // If the target isn't dead, attack them.
-                result = !targetUserUnit.IsDead();
-            }
-
-            return result;
-        }
-
-        // Returns 'true' if the enemy can move and attack at the same time.
-        public bool CanMoveAndAttack()
-        {
-            return moveAndAttack;
-        }
-
-        // Returns 'true' if the enemy attack object is active.
-        public bool IsEnemyAttackActive()
-        {
-            return enemyAttack.isActiveAndEnabled;
-        }
-
-        // Activates the enemy attack and targets the provided unit.
-        public void ActivateEnemyAttack(ActionUnit targetUnit)
-        {
-            enemyAttack.gameObject.SetActive(true);
-            enemyAttack.transform.position = targetUnit.transform.position;
-        }
-
-        // Deactivates the enemy attack.
-        public void DeactivateEnemyAttack()
-        {
-            enemyAttack.transform.position = Vector3.zero;
-            enemyAttack.gameObject.SetActive(false);
-        }
+        } 
 
         // MOVEMENT //
         // Returns the row the enemy is in.
@@ -250,11 +214,79 @@ namespace RM_EDU
             return removed;
         }
 
+        // Cancels out the velocity, setting it to 0.
+        // If 'checkVelocity' is true, a check is done to see if the velocity isn't 0 first. If it is, do nothing.
+        // If 'checkVelocity' is false, the change happens regardless.
+        public void CancelVelocity(bool checkVelocity = true)
+        {
+            // If the velocity should be checked for it not being zero.
+            if(checkVelocity)
+            {
+                if (rigidbody.velocity != Vector2.zero)
+                    rigidbody.velocity = Vector2.zero;
+            }
+            // Do it regardless.
+            else
+            {
+                rigidbody.velocity = Vector2.zero;
+            }
+        }
+
+        // TILE //
         // Returns true if the entity can use the tile.
         public override bool UsableTile(ActionTile tile)
         {
             // Enemies units can share a tile, and are not locked to a single tile.
             return true;
+        }
+
+        // ATTACK //
+        // Returns 'true' if the enemy has an attack target.
+        public bool HasAttackTarget()
+        {
+            // First sees if the target exists.
+            bool result = targetUserUnit != null;
+
+            // If the target exists, check if it's dead.
+            if (result)
+            {
+                // If the target isn't dead, attack them.
+                result = !targetUserUnit.IsDead();
+            }
+
+            return result;
+        }
+
+        // Returns 'true' if the enemy can move and attack at the same time.
+        public bool CanMoveAndAttack()
+        {
+            return moveAndAttack;
+        }
+
+        // Returns 'true' if the enemy attack object is active.
+        public bool IsEnemyAttackActive()
+        {
+            return enemyAttack.isActiveAndEnabled;
+        }
+
+        // Activates the enemy attack and targets the provided unit.
+        public void ActivateEnemyAttack(ActionUnit targetUnit)
+        {
+            enemyAttack.gameObject.SetActive(true);
+            enemyAttack.transform.position = targetUnit.transform.position;
+        }
+
+        // Activates the enemy attack.
+        public void ActivateEnemyAttack()
+        {
+            ActivateEnemyAttack(targetUserUnit);
+        }
+
+        // Deactivates the enemy attack.
+        public void DeactivateEnemyAttack()
+        {
+            enemyAttack.transform.position = Vector3.zero;
+            enemyAttack.gameObject.SetActive(false);
         }
 
         // Attacks the provivided user unit.
@@ -273,6 +305,7 @@ namespace RM_EDU
             AttackUserUnit(targetUserUnit);
         }
 
+        // KILL / DEATH //
         // Kills the unit.
         public override void Kill()
         {
@@ -318,10 +351,19 @@ namespace RM_EDU
                     if (rigidbody.velocity != Vector2.zero)
                         rigidbody.velocity = Vector2.zero;
 
-                    // Attack the unit.
-                    if(CanAttack())
+
+                    // Checks if the enemy attack should be used, and that it exists.
+                    if(enemyAttackEnabled && enemyAttack != null)
                     {
-                        AttackUserUnit();
+                        ActivateEnemyAttack();
+                    }
+                    else
+                    {
+                        // Attack the unit manually.
+                        if (CanAttack())
+                        {
+                            AttackUserUnit();
+                        }
                     }
 
                     // An attack was attempted, so set this to true.
@@ -352,15 +394,13 @@ namespace RM_EDU
                     else
                     {
                         // Cancel out the velocity.
-                        if (rigidbody.velocity != Vector2.zero)
-                            rigidbody.velocity = Vector2.zero;
+                        CancelVelocity();
                     }
                 }
                 else
                 {
                     // If the rigidbody's velocity is not 0, make it 0.
-                    if (rigidbody.velocity != Vector2.zero)
-                        rigidbody.velocity = Vector2.zero;
+                    CancelVelocity();
                 }
 
                 // If the enemy should check for the end of the map on the left side.
@@ -382,8 +422,7 @@ namespace RM_EDU
             else if(!actionManager.IsStagePlaying())
             {
                 // If the rigidbody's velocity is not 0, make it 0.
-                if (rigidbody.velocity != Vector2.zero)
-                    rigidbody.velocity = Vector2.zero;
+                CancelVelocity();
             }
         }
 

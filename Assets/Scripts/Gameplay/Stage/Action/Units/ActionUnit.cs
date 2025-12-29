@@ -92,6 +92,9 @@ namespace RM_EDU
         // The attack speed of the unit.
         public float attackSpeed = 0.0F;
 
+        // Gets set to 'true' if this is an entity that can attack.
+        protected bool attackingEnabled = true;
+
         // The cooldown timer for calculating attacks.
         [Tooltip("The cooldown timer between attacks by this unit.")]
         public float attackCooldownTimer = 0.0F;
@@ -394,11 +397,18 @@ namespace RM_EDU
         public abstract bool UsableTile(ActionTile tile);
 
         // ATTACK / DAMAGE //
+        // Returns 'true' if the entity has the function for attacking.
+        // Use CanAttack to see if an attack is available at this exact moment.
+        public bool IsAttackingEnabled()
+        {
+            return attackingEnabled;
+        }
+
         // Returns 'true' if the action unit is capable of attacking.
         // This checks if the attack cooldown timer is 0.
         public virtual bool CanAttack()
         {
-            return attackCooldownTimer <= 0.0F;
+            return attackingEnabled && attackCooldownTimer <= 0.0F;
         }
 
         // Attacks this unit with another unit.
