@@ -18,14 +18,24 @@ namespace RM_EDU
         // The position offset of the unit when placed on a tile.
         public Vector3 tilePosOffset = Vector3.zero;
 
+        // Returns 'true' if the unit can be removed by the user player once it's placed.
+        private bool removableByUser = true;
+
         // Start is called before the first frame update
         protected override void Start()
         {
             base.Start();
         }
 
+        // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
+        protected virtual void OnMouseDown()
+        {
+            // Tries to perform a player user action.
+            TryPerformPlayerUserAction();
+        }
+
         // Returns 'true' if the provided tile can be used by this action unit.
-        public virtual bool UsableTile(ActionTile tile)
+        public override bool UsableTile(ActionTile tile)
         {
             // The result to be returned. 
             bool result;
@@ -97,7 +107,7 @@ namespace RM_EDU
             if (tile != null)
             {
                 // The tile has this action unit, so clear the tile.
-                if (tile.actionUnit == this)
+                if (tile.actionUnitUser == this)
                 {
                     tile.ClearActionUnitUser();
                 }
@@ -105,6 +115,18 @@ namespace RM_EDU
 
             // Clear tile.
             tile = null;
+        }
+
+        // Returns 'true' if the unit can be removed by the user.
+        public bool IsRemovableByUser()
+        {
+            return removableByUser;
+        }
+
+        // Kills the unit.
+        public override void Kill()
+        {
+            base.Kill();
         }
 
         // Called when a unit has died/been destroyed.
@@ -117,6 +139,31 @@ namespace RM_EDU
             ClearTile();
 
             base.OnUnitDeath();
+        }
+
+        // Tries to perform a player user action when clicked on.
+        // Returns true if an action was performed.
+        public bool TryPerformPlayerUserAction()
+        {
+            // Gets set to 'true' if an action was performed.
+            bool performed = false;
+
+            // Gets the player user from the aciton manager.
+            ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
+
+            // If the player is in remove mode, kill the unit.
+            if (playerUser.InRemoveMode())
+            {
+                // If this unit can be removed by the player user.
+                if(IsRemovableByUser())
+                {
+                    Kill();
+                    performed = true;
+                }
+            }
+
+            // Returns 'true' if an action was performed.
+            return performed;
         }
 
         // Update is called once per frame

@@ -8,6 +8,11 @@ namespace RM_EDU
     // The user action player.
     public class ActionPlayerUser : ActionPlayer
     {
+        // The modes the player user can be in.
+        // Select: the player can select action units and place them on the map.
+        // Remove: the player can remove action units they've placed on the map.
+        public enum playerUserMode { select, remove };
+
         [Header("User")]
 
         // The energy the player user starts with.
@@ -36,6 +41,9 @@ namespace RM_EDU
 
         // The defense prefabs the player can use.
         public List<ActionUnitDefense> defensePrefabs = new List<ActionUnitDefense>();
+
+        // The player mode of the player.
+        private playerUserMode userMode = playerUserMode.select;
 
         // The unit prefab the action player user has selected.
         // TODO: make private.
@@ -151,6 +159,56 @@ namespace RM_EDU
             SetGeneratorPrefabs(ActionManager.Instance.naturalResources);
         }
 
+        // MODES
+        // Returns the user mode.
+        public playerUserMode GetPlayerUserMode()
+        {
+            return userMode;
+        }
+
+        // Sets the player user mode.
+        public void SetPlayerUserMode(playerUserMode newMode)
+        {
+            userMode = newMode;
+
+            // Update UI based on what mode the user is in.
+            switch(userMode)
+            {
+                case playerUserMode.select:
+                    ActionUI.Instance.SetSelectedUnitInfoToSelect();
+                    break;
+
+                case playerUserMode.remove:
+                    ActionUI.Instance.SetSelectedUnitInfoToRemove();
+                    break;
+            }
+        }
+
+        // Returns true if the user is in select mode.
+        public bool InSelectMode()
+        {
+            return userMode == playerUserMode.select;
+        }
+
+        // Sets the player to select mode.
+        public void SetToSelectMode()
+        {
+            SetPlayerUserMode(playerUserMode.select);
+        }
+
+        // Returns true if the user is in remove mode.
+        public bool InRemoveMode()
+        {
+            return userMode == playerUserMode.remove;
+        }
+
+        // Sets to remove mode.
+        public void SetToRemoveMode()
+        {
+            SetPlayerUserMode(playerUserMode.remove);
+        }
+
+        // SELECT
         // Returns 'true' if the player is selecting a unit.
         public bool IsSelectingActionUnitPrefab()
         {
@@ -166,6 +224,10 @@ namespace RM_EDU
         // Sets the prefab the player has selected. This should be a prefab, not an actual object.
         public void SetSelectedActionUnitPrefab(ActionUnit unitPrefab)
         {
+            // Set to select mode.
+            SetToSelectMode();
+
+            // Set prefab.
             selectedUnitPrefab = unitPrefab;
 
             // Sets the info.
@@ -175,10 +237,28 @@ namespace RM_EDU
         // Clears the prefab the player has selected.
         public void ClearSelectedActionUnitPrefab()
         {
+            // Set to select mode.
+            SetToSelectMode();
+
+            // Clear selected prefab.
             selectedUnitPrefab = null;
 
             // Clears the info.
             ActionUI.Instance.ClearSelectedUnitInfo();
+        }
+
+        // Returns 'true' if the selected action unit can use the tile.
+        public bool CanSelectedActionUnitUseTile(ActionTile tile)
+        {
+            // Checks if their is a selected unit prefab.
+            if(selectedUnitPrefab != null)
+            {
+                return selectedUnitPrefab.UsableTile(tile);
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Instantiates the selected action unit without putting it on a tile.
@@ -261,8 +341,9 @@ namespace RM_EDU
         {
             SetEnergyToStartingEnergy();
             ResetEnergyAutoGenerationTimer();
-            ClearSelectedActionUnitPrefab();
+            ClearSelectedActionUnitPrefab(); // Also sets to "select" mode.
         }
+
 
         // Update is called once per frame
         protected override void Update()

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using util;
+using UnityEngine.UI;
 
 namespace RM_EDU
 {
@@ -31,9 +32,6 @@ namespace RM_EDU
         // The wind indicator.
         public WindIndicator windIndicator;
 
-        // The enemy's energy bar.
-        public ProgressBar playerEnemyEnergyBar;
-
         // The window that shows up when the stage is over.
         public GameObject stageEndWindow;
 
@@ -47,6 +45,17 @@ namespace RM_EDU
 
         // The defense selector.
         public ActionUnitSelector defenseUnitSelector;
+
+        [Header("Action/Left, Right")]
+
+        // The deselect button.
+        public Button deselectButton;
+
+        // The remove button.
+        public ActionUnitRemoveButton removeButton;
+        
+        // The enemy's energy bar.
+        public ProgressBar playerEnemyEnergyBar;
 
         // Constructor
         private ActionUI()
@@ -163,6 +172,18 @@ namespace RM_EDU
             defenseUnitSelector.RefreshUnitButtonsInteractable();
         }
 
+        // Sets the selected unit info to the select UI.
+        public void SetSelectedUnitInfoToSelect()
+        {
+            selectedUnit.ClearActionUnitInfo();
+        }
+
+        // Sets the selected unit info to the remove UI.
+        public void SetSelectedUnitInfoToRemove()
+        {
+            selectedUnit.ApplyRemoveActionUnitInfo(removeButton);
+        }
+
         // Updates the selected unit info.
         public void SetSelectedUnitInfo(ActionUnit unit)
         {
@@ -182,7 +203,7 @@ namespace RM_EDU
             selectedUnit.ClearActionUnitInfo();
         }
 
-        // DESELECT UNIT //
+        // DESELECT, REMOVE //
         // Deselects the player's selected unit.
         public void DeselectUnit()
         {

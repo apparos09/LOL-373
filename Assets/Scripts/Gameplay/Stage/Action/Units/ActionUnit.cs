@@ -349,18 +349,23 @@ namespace RM_EDU
         {
             // Ceil(Amount Stat / Stat Maximum * 10)
             return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 100.0F);
-        }        
+        }
+
+        // Returns 'true' if the unit can use the tile.
+        public abstract bool UsableTile(ActionTile tile);
 
         // Kills the unit.
         public virtual void Kill()
         {
+            // TODO: add animation.
             OnUnitDeath();
         }
 
         // Called when a unit has died/been destroyed.
         public virtual void OnUnitDeath()
         {
-            // ...
+            // Destroys this unit.
+            Destroy(gameObject);
         }
 
         // Update is called once per frame

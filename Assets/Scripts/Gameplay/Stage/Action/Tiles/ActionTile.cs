@@ -71,7 +71,7 @@ namespace RM_EDU
 
         // The action unit user on the tile.
         [Tooltip("If action unit user on the tile. If null, then there's no user unit on the tile.")]
-        public ActionUnitUser actionUnit = null;
+        public ActionUnitUser actionUnitUser = null;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -93,16 +93,8 @@ namespace RM_EDU
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
         protected virtual void OnMouseDown()
         {
-            // If there is no unit on the tile.
-            // TODO: check if the unit can be placed there.
-            if(!HasActionUnitUser())
-            {
-                // If the player user has a unit prefab, place the unit on it.
-                if(actionManager.playerUser.IsSelectingActionUnitPrefab())
-                {
-                    actionManager.playerUser.InstantiateSelectedActionUnit(this);
-                }
-            }
+            // Tries to perform a player user action.
+            TryPerformPlayerUserAction();
         }
 
         // Gets the tile type.
@@ -257,28 +249,28 @@ namespace RM_EDU
         // Returns 'true' if an action unit is on the tile.
         public bool HasActionUnitUser()
         {
-            return actionUnit;
+            return actionUnitUser;
         }
 
         // Returns 'true' if this action unit is on this tile.
         // Returns 'false' if this unit isn't on this tile or if the tile has no unit.
         public bool HasActionUnitUser(ActionUnitUser compUnit)
         {
-            return actionUnit == compUnit;
+            return actionUnitUser == compUnit;
         }
 
         // Sets the action unit.
         public void SetActionUnitUser(ActionUnitUser actionUnit)
         {
-            this.actionUnit = actionUnit;
+            this.actionUnitUser = actionUnit;
 
             // If the unit has been set.
-            if(this.actionUnit != null)
+            if(this.actionUnitUser != null)
             {
                 // If the unit
-                if (this.actionUnit is ActionUnitUser)
+                if (this.actionUnitUser is ActionUnitUser)
                 {
-                    (this.actionUnit as ActionUnitUser).tile = this;
+                    (this.actionUnitUser as ActionUnitUser).tile = this;
                 }
             }
             
@@ -288,17 +280,77 @@ namespace RM_EDU
         public void ClearActionUnitUser()
         {
             // If there is an action unit user.
-            if(actionUnit != null)
+            if(actionUnitUser != null)
             {
                 // If the saved tile is this tile, set it to null.
-                if (actionUnit.tile == this)
+                if (actionUnitUser.tile == this)
                 {
-                    actionUnit.tile = null;
+                    actionUnitUser.tile = null;
                 }
             }
 
             // Set unit to null.
-            actionUnit = null;
+            actionUnitUser = null;
+        }
+
+        // Kills the action unit user.
+        public void KillActionUnitUser()
+        {
+            // If there's an action user unit on this tile, kill it.
+            if(actionUnitUser != null)
+            {
+                actionUnitUser.Kill();
+            }
+
+            actionUnitUser = null;
+        }
+
+        // Tries to perform a player user action when clicked on.
+        // Returns true if an action was performed.
+        public bool TryPerformPlayerUserAction()
+        {
+            // Gets set to 'true' if an action was performed.
+            bool performed = false;
+
+            // Gets the player user from the aciton manager.
+            ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
+
+            // NOTE: since an action unit being on a tile would be blocking the tile's collider...
+            // The remove call will likely never be triggered unless the player hits an edge of the tile...
+            // That is not covered by the action unit's hit box.
+
+            // Checks what mode the player user is in.
+            if (playerUser.InSelectMode()) // Select
+            {
+                // If there is no unit on the tile, see if the player wants to place a unit.
+                if (!HasActionUnitUser())
+                {
+                    // If the player user has a unit prefab and it can use this tile...
+                    // Instantiate the unit and put it on this tile.
+                    // This function also checks if the player user is selecting a tile.
+                    if (playerUser.CanSelectedActionUnitUseTile(this))
+                    {                        
+                        playerUser.InstantiateSelectedActionUnit(this);
+                        performed = true;
+                    }
+                }
+            }
+            else if (playerUser.InRemoveMode()) // Remove
+            {
+                // Checks if there's a unit on this tile to remove.
+                if(HasActionUnitUser())
+                {
+                    // If the action unit user can be removed by the user.
+                    if(actionUnitUser.IsRemovableByUser())
+                    {
+                        KillActionUnitUser(); // Kill the user on this platform.
+                        performed = true;
+                    }
+                }
+            }
+
+            // Returns 'true' if an action was performed.
+            return performed;
         }
 
         // // Update is called once per frame

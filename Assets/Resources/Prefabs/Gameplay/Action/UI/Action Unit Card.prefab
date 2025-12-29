@@ -263,6 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   unitCardBackground: {fileID: 4709829330402230994}
+  unitCardDefaultBackground: {fileID: 21300000, guid: 4ff371db62fd0a64d80a19c2bf53e4a2, type: 3}
   unitNameText: {fileID: 8187722072385440499}
   unitIconImage: {fileID: 904151915172450126}
   energyCostText: {fileID: 8665794214693362273}

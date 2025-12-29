@@ -96,6 +96,7 @@ MonoBehaviour:
   idNumber: 6
   spriteRenderer: {fileID: 8288920503193255921}
   iconSprite: {fileID: 21300000, guid: 49b4149f8d197a24881f9b3cf0e5299f, type: 3}
+  cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 2708677330432412224}
   collider: {fileID: 7425700527384149387}
   rigidbody: {fileID: 5329072976721192884}
@@ -110,6 +111,8 @@ MonoBehaviour:
   movementSpeed: 0
   airPollution: 0
   validTiles: 
+  tile: {fileID: 0}
+  tilePosOffset: {x: 0, y: 0, z: 0}
   resource: 6
   energyGenerationTimer: 0
   timeUsage: 0

@@ -12,6 +12,9 @@ namespace RM_EDU
         // The card background.
         public Image unitCardBackground;
 
+        // The default card background.
+        public Sprite unitCardDefaultBackground;
+
         // The unit name text.
         public TMP_Text unitNameText;
 
@@ -70,10 +73,27 @@ namespace RM_EDU
             }
         }
 
+        // Applies info from the remove button.
+        public void ApplyRemoveActionUnitInfo(ActionUnitRemoveButton removeButton)
+        {
+            // Checks if remove button exists.
+            if(removeButton != null)
+            {
+                unitCardBackground.sprite = removeButton.cardBackgroundSprite;
+                unitNameText.text = "";
+                unitIconImage.sprite = removeButton.cardIconSprite;
+                energyCostText.text = "";
+            }
+            else
+            {
+                ClearActionUnitInfo();
+            }
+        }
+
         // Clears the information displayed for the icon.
         public void ClearActionUnitInfo()
         {
-            unitCardBackground.sprite = null;
+            unitCardBackground.sprite = unitCardDefaultBackground;
             unitNameText.text = "-";
             unitIconImage.sprite = null;
             energyCostText.text = "-";

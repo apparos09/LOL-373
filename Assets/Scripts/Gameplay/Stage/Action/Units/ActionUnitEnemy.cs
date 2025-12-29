@@ -176,6 +176,13 @@ namespace RM_EDU
             return removed;
         }
 
+        // Returns true if the entity can use the tile.
+        public override bool UsableTile(ActionTile tile)
+        {
+            // Enemies units can share a tile, and are not locked to a single tile.
+            return true;
+        }
+
         // Kills the unit.
         public override void Kill()
         {
