@@ -43,12 +43,21 @@ namespace RM_EDU
         // The origin of the tile. By default, it's the middle of the tile.
         private Vector2 tileOrigin = new Vector2(0.5F, 0.5F);
 
+        // The default tile size x-length.
+        public const float TILE_SIZE_X_DEFAULT = 1.28F;
+
+        // The default tile size y-length.
+        public const float TILE_SIZE_Y_DEFAULT = 1.28F;
+
         // The tile sprite size in pixels (length, width)
-        private Vector2 tileSize = new Vector2(1.28F, 1.28F);
+        private Vector2 tileSize = new Vector2(TILE_SIZE_X_DEFAULT, TILE_SIZE_Y_DEFAULT);
 
         // The original of the map.
         // (0.5, 0.5) is the centre, (1, 1) is the top right corner and (0, 0) is the bottom left corner.
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
+
+        // An offset that can be applied whenn checking if something's in the stage bounds or not.
+        private Vector3 stageBoundsOffset = new Vector3(TILE_SIZE_X_DEFAULT * 5, TILE_SIZE_Y_DEFAULT * 5, 0.0F);
 
         // Gets set to 'true' if there are metal tiles.
         // If so, the enemies don't check for the map end every frame. They only do so once they hit a metal tile.
@@ -468,6 +477,37 @@ namespace RM_EDU
 
             // Returns the vector.
             return refVec;
+        }
+
+        // Returns 'true' if the position is in the stage bounds.
+        // If 'ignoreZ' is true, the z-position is ignored when checking if the position is within the stage bounds.
+        //  - This is a 2D game, so the z-position should be ignored.
+        // If 'applyOffset' is true, an offset is applied when checking if within the stage bounds.
+        // If 'applyOffset' is false, no offset is applied, meaning an object is only in the stage bounds if...
+        // It's position is in the map itself.
+        public bool InStageBounds(Vector3 pos, bool ignoreZ = true, bool applyOffset = true)
+        {
+            // Gets the map lower bounds and upper bounds.
+            Vector3 mapLowerBounds = GetMapLowerBoundsInWorldUnits();
+            Vector3 mapUpperBounds = GetMapUpperBoundsInWorldUnits();
+
+            // Calculates the lower bounds and upper bounds.
+            // Gives different results if the stage bounds offset should be applied or not.
+            Vector3 lowerBounds = applyOffset ? mapLowerBounds - stageBoundsOffset : mapLowerBounds;
+            Vector3 upperBounds = applyOffset ? mapUpperBounds + stageBoundsOffset : mapUpperBounds;
+
+            bool inX = pos.x >= lowerBounds.x && pos.x <= upperBounds.x;
+            bool inY = pos.y >= lowerBounds.y && pos.y <= upperBounds.y;
+            bool inZ = ignoreZ ? true : pos.z >= lowerBounds.x && pos.z <= upperBounds.x;
+
+            // Returns true if the unit is in all 3 bounds.
+            return inX && inY && inZ;
+        }
+
+        // Returns 'true' if the object is within the stage bounds.
+        public bool InStageBounds(GameObject obj, bool ignoreZ = true, bool applyOffset = true)
+        {
+            return InStageBounds(obj.transform.position, applyOffset);
         }
 
         // Gets the stage map data. Returns null if there's no data.

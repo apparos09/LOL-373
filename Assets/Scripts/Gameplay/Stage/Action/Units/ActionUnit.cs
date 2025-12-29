@@ -556,10 +556,18 @@ namespace RM_EDU
                     }
                 }
 
-                // TODO: check if in dearth animation.
+                // TODO: check if in death animation.
                 // Checks if the unit is dead.
                 if(IsDead())
                 {
+                    OnUnitDeath();
+                }
+
+                // Check if within stage bounds.
+                if(!actionManager.actionStage.InStageBounds(gameObject))
+                {
+                    // TODO: maybe call kill instead of OnUnitDeath() if there's a way to skip a death animation.
+                    // Not in stage bounds, so destroy the unit.
                     OnUnitDeath();
                 }
             }
