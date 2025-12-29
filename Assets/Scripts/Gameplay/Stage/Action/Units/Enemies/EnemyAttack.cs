@@ -10,11 +10,8 @@ namespace RM_EDU
         // The action unit enemy this enemy attack belongs to.
         public ActionUnitEnemy unitEnemy;
 
-        // The collider for this attack.
-        public new Collider2D collider;
-
-        // The rigidbody of the enemy attack.
-        public new Rigidbody2D rigidbody;
+        // The animator for the enemy attack.
+        public Animator animator;
 
         // Start is called before the first frame update
         void Start()
@@ -23,51 +20,40 @@ namespace RM_EDU
             if (unitEnemy == null)
                 unitEnemy = GetComponentInParent<ActionUnitEnemy>();
 
-            // Autosets the collider if it's not set.
-            if(collider == null)
-                collider = GetComponent<Collider2D>();
-
-            // Tries to automatically get the rigid body.
-            if(rigidbody == null)
-                rigidbody = GetComponent<Rigidbody2D>();
-
-            // If the unit enemy exists, make the attack be unable to collide with the enemy.
-            if (unitEnemy != null)
-                IgnoreUnitEnemyCollider(true);
+            // Sets animator if not set already.
+            if(animator == null)
+                animator = GetComponent<Animator>();
         }
 
-        // OnTriggerEnter2D is called when the Collider2D enters the trigger (2D physics only).
-        private void OnTriggerEnter2D(Collider2D collision)
+        // POSITIONING
+        // Sets to the target position.
+        public void SetToTargetPosition(Vector3 target, Vector3 offset)
         {
-            // The action user unit from this collider.
-            ActionUnitUser colUserUnit;
-
-            // Tries to get the user collision unit.
-            if(collision.TryGetComponent(out colUserUnit))
-            {
-                // If there is a user unit, try to damage it.
-                unitEnemy.AttackUnit(colUserUnit);
-            }
+            transform.position = target + offset;
         }
 
-        // Ignores the collider of the enemy this attack belongs to.
-        public void IgnoreUnitEnemyCollider(bool ignore = true)
+        // Sets to the target position.
+        public void SetToTargetPosition(Vector3 target)
         {
-            // If the enemy exists.
-            if(unitEnemy != null)
-            {
-                // If the enemy and the attack colliders exist.
-                if(unitEnemy.collider != null && collider != null)
-                {
-                    Physics2D.IgnoreCollision(unitEnemy.collider, collider, ignore);
-                }
-            }
+            SetToTargetPosition(target, Vector3.zero);
         }
 
-        // Update is called once per frame
-        void Update()
+        // Sets to the target position.
+        public void SetToTargetPosition(GameObject target, Vector3 offset)
         {
+            SetToTargetPosition(target.transform.position, offset);
+        }
 
+        // Sets to the target position.
+        public void SetToTargetPosition(GameObject target)
+        {
+            SetToTargetPosition(target.transform.position, Vector3.zero);
+        }
+
+        // Sets the attack's local position to zero.
+        public void SetLocalPositionToZero()
+        {
+            transform.localPosition = Vector3.zero;
         }
     }
 }

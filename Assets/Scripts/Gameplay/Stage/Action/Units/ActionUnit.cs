@@ -95,8 +95,8 @@ namespace RM_EDU
         // Gets set to 'true' if this is an entity that can attack.
         protected bool attackingEnabled = true;
 
-        // The cooldown timer for calculating attacks.
-        [Tooltip("The cooldown timer between attacks by this unit.")]
+        // The cooldown countdown timer for attacks. This is in seconds.
+        [Tooltip("The cooldown count down timer between attacks by this unit.")]
         public float attackCooldownTimer = 0.0F;
 
         // If 'true', the cooldown timer is used.
@@ -421,6 +421,7 @@ namespace RM_EDU
             target.ApplyDamage(power);
 
             // Called when a unit has been attacked.
+            attacker.OnUnitAttackPerformed(target);
             target.OnUnitAttacked(attacker);
         }
 
@@ -476,13 +477,25 @@ namespace RM_EDU
         }
 
         // Called when the unit hasp performed an attack.
-        public virtual void OnUnitAttackPerformed()
+        // If target is null, there was no target.
+        public virtual void OnUnitAttackPerformed(ActionUnit target)
         {
             // Set the attack cooldown timer to the attack speed.
             if(useAttackCooldownTimer)
             {
-                attackCooldownTimer = attackSpeed;
+                // Calculates the attack cooldown.
+                attackCooldownTimer = 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 5.0F);
+
+                // If teh attakc cooldown is negative, set it to 1.
+                if (attackCooldownTimer < 0.0F)
+                    attackCooldownTimer = 1.0F;
             }
+        }
+
+        // Called when the unit has performed an attack.
+        public virtual void OnUnitAttackPerformed()
+        {
+            OnUnitAttackPerformed(null);
         }
 
         // Called when the unit has been attacked.

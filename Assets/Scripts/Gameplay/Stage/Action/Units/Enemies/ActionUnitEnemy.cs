@@ -28,11 +28,8 @@ namespace RM_EDU
         public ActionUnitUser targetUserUnit = null;
 
         // The enemy attack object.
+        // This is used as part of animations.
         public EnemyAttack enemyAttack;
-
-        // If true, the enemy attack object is used. If false, the enemy attacks directly.
-        [Tooltip("Determines if the enemy attack object should be used for attacking or not.")]
-        public bool enemyAttackEnabled = true;
 
         // If set to 'true', the enemy can move and attack at the same time.
         protected bool moveAndAttack = false;
@@ -352,18 +349,10 @@ namespace RM_EDU
                         rigidbody.velocity = Vector2.zero;
 
 
-                    // Checks if the enemy attack should be used, and that it exists.
-                    if(enemyAttackEnabled && enemyAttack != null)
+                    // Attack the unit manually.
+                    if (CanAttack())
                     {
-                        ActivateEnemyAttack();
-                    }
-                    else
-                    {
-                        // Attack the unit manually.
-                        if (CanAttack())
-                        {
-                            AttackUserUnit();
-                        }
+                        AttackUserUnit();
                     }
 
                     // An attack was attempted, so set this to true.
