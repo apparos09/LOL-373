@@ -59,14 +59,18 @@ namespace RM_EDU
         // The wind ratings (speeds) of the stage. The times the wind speed changes is based on how many wind elements there are.
         public ActionUnit.statRating[] windRatings = new ActionUnit.statRating[WIND_RATINGS_COUNT_DEFAULT];
 
-        // The last wind speed that the stage had.
-        private ActionUnit.statRating savedWindRating = ActionUnit.statRating.unknown;
+        // The most recent wind speed that the stage had.
+        private ActionUnit.statRating recentWindRating = ActionUnit.statRating.unknown;
 
         // If 'true', wind is enabled.
         private bool windEnabled = true;
 
         // The player user.
         public ActionPlayerUser playerUser;
+
+        // The player user defense ids, which are used to determine what defenses the player has.
+        [Tooltip("The list of defense IDs for the defeneses the player is loaded with")]
+        public List<int> userDefenseIds = new List<int>();
 
         // The player enemy.
         public ActionPlayerEnemy playerEnemy;
@@ -192,17 +196,32 @@ namespace RM_EDU
                 SetNaturalResourceListToTypeList();
             }
 
+            // No defense ids, so fill it with the default list.
+            // Index 0 and index 1 aren't included since the former is null and the latter is the lane blaster.
+            if(userDefenseIds.Count <= 0)
+            {
+                SetDefenseIdListToAllValidIds();
+            }
+
             // Generates the map using the id number.
             actionStage.GenerateMap(idNumber);
 
-            // Sets the generator prefabs.
+            // Sets the generator and defense prefabs.
             playerUser.SetGeneratorPrefabsFromManager();
+            playerUser.SetDefensePrefabsFromManager();
 
             // Sets the energy to max.
             playerEnemy.SetEnergyToMax();
 
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
+        }
+
+        // Sets the defense id list to all valid ids.
+        public void SetDefenseIdListToAllValidIds()
+        {
+            userDefenseIds.Clear();
+            userDefenseIds = ActionUnitPrefabs.Instance.GenerateDefensePrefabIdList(false, false);
         }
 
         // DAY-NIGHT CYCLE
@@ -441,9 +460,9 @@ namespace RM_EDU
                         // TODO: make this calculation more efficient? Maybe track the index periodically.
 
                         // If the rating has changed, update the value and call the related function.
-                        if (rating != savedWindRating)
+                        if (rating != recentWindRating)
                         {
-                            savedWindRating = rating;
+                            recentWindRating = rating;
                             OnWindChanged();
                         }
                     }
@@ -559,7 +578,7 @@ namespace RM_EDU
         // Resets the wind. This doesn't clear the wind array.
         protected virtual void ResetWind()
         {
-            savedWindRating = ActionUnit.statRating.unknown;
+            recentWindRating = ActionUnit.statRating.unknown;
         }
 
         // Updates the wind.

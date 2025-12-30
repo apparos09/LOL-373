@@ -476,18 +476,23 @@ namespace RM_EDU
             // Called if the player user is selecting a unit.
             if (playerUser.IsSelectingActionUnitPrefab())
             {
-                // Goes through all the rows and columns.
-                for (int r = 0; r < tiles.GetLength(0); r++)
+                // If highlighting is enabled.
+                if(IsTileHighlightingEnabled)
                 {
-                    for (int c = 0; c < tiles.GetLength(1); c++)
+                    // Goes through all the rows and columns.
+                    for (int r = 0; r < tiles.GetLength(0); r++)
                     {
-                        // The tile exists.
-                        if (tiles[r, c] != null)
+                        for (int c = 0; c < tiles.GetLength(1); c++)
                         {
-                            tiles[r, c].HighlightTile(playerUser.selectedUnitPrefab);
+                            // The tile exists.
+                            if (tiles[r, c] != null)
+                            {
+                                tiles[r, c].HighlightTile(playerUser.selectedUnitPrefab);
+                            }
                         }
                     }
                 }
+                
             }
         }
 
@@ -500,18 +505,23 @@ namespace RM_EDU
             // Called if the player user is selecting a unit.
             if (!playerUser.IsSelectingActionUnitPrefab())
             {
-                // Goes through all the rows and columns.
-                for (int r = 0; r < tiles.GetLength(0); r++)
+                // If tile highlighting is enabled.
+                if (IsTileHighlightingEnabled)
                 {
-                    for (int c = 0; c < tiles.GetLength(1); c++)
+                    // Goes through all the rows and columns.
+                    for (int r = 0; r < tiles.GetLength(0); r++)
                     {
-                        // The tile exists.
-                        if (tiles[r, c] != null)
+                        for (int c = 0; c < tiles.GetLength(1); c++)
                         {
-                            tiles[r, c].UnhighlightTile();
+                            // The tile exists.
+                            if (tiles[r, c] != null)
+                            {
+                                tiles[r, c].UnhighlightTile();
+                            }
                         }
                     }
                 }
+
             }
         }
 

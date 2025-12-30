@@ -138,6 +138,8 @@ namespace RM_EDU
             return actionUnit;
         }
 
+
+        // GENERATOR //
         // Gets a generator prefab. This does NOT instantiate the prefab.
         public ActionUnitGenerator GetGeneratorPrefab(int index)
         {
@@ -150,6 +152,29 @@ namespace RM_EDU
             {
                 return null;
             }
+        }
+
+        // Gets the generator prefab using the resource it represents.
+        // The generators in the list should match up with the numbers for their resources, so using GetGeneratorPrefab...
+        // Is preferable and presumably safe.
+        public ActionUnitGenerator GetGeneratorPrefabByResource(NaturalResources.naturalResource resource)
+        {
+            // Goes through all the prefabs.
+            foreach(ActionUnitGenerator generator in generatorPrefabs)
+            {
+                // Generator exists.
+                if(generator != null)
+                {
+                    // Generator resource matches provided resource.
+                    if(generator.resource == resource)
+                    {
+                        return generator;
+                    }
+                }
+            }
+
+            // None found.
+            return null;
         }
 
         // Instantiates and returns a prefab.
@@ -166,6 +191,22 @@ namespace RM_EDU
                 return null;
         }
 
+        // Instantiates and returns a prefab based on the provided resource type.
+        public ActionUnitGenerator InstantiateGeneratorPrefabByResource(NaturalResources.naturalResource resource)
+        {
+            // Gets the prefab.
+            ActionUnitGenerator prefab = GetGeneratorPrefabByResource(resource);
+
+            // If the prefab exists, instantiate it.
+            // If it doesn't exist, return null.
+            if (prefab != null)
+                return Instantiate(prefab);
+            else
+                return null;
+        }
+
+
+        // DEFENSE //
         // Gets a defense prefab. This does NOT instantiate the prefab.
         public ActionUnitDefense GetDefensePrefab(int index)
         {
@@ -178,6 +219,27 @@ namespace RM_EDU
             {
                 return null;
             }
+        }
+
+        // Gets a defense prefab by its id. This does NOT instantiate the prefab.
+        public ActionUnitDefense GetDefensePrefabById(int id)
+        {
+            // Goes through all the prefabs.
+            foreach (ActionUnitDefense defense in defensePrefabs)
+            {
+                // Defense exists.
+                if (defense != null)
+                {
+                    // Defense id matches provided id.
+                    if (defense.idNumber == id)
+                    {
+                        return defense;
+                    }
+                }
+            }
+
+            // None found.
+            return null;
         }
 
         // Instantiates and returns a prefab.
@@ -194,6 +256,63 @@ namespace RM_EDU
                 return null;
         }
 
+        // Instantiates and returns a prefab.
+        public ActionUnitDefense InstantiateDefensePrefabById(int id)
+        {
+            // Gets the prefab.
+            ActionUnitDefense prefab = GetDefensePrefabById(id);
+
+            // If the prefab exists, instantiate it.
+            // If it doesn't exist, return null.
+            if (prefab != null)
+                return Instantiate(prefab);
+            else
+                return null;
+        }
+
+        // Generates the defense prefab ID list. This doesn't include id0
+        public List<int> GenerateDefensePrefabIdList(bool includeId0, bool includeId1)
+        {
+            // The list to be returned.
+            List<int> list = new List<int>();
+
+            // Goes through all the prefabs.
+            foreach(ActionUnitDefense defense in  defensePrefabs)
+            {
+                // If the defense exists.
+                if(defense != null)
+                { 
+                    // ID isn't in list, so add it.
+                    if(!list.Contains(defense.idNumber))
+                    {
+                        switch(defense.idNumber)
+                        {
+                            default: // Add
+                                list.Add(defense.idNumber);
+                                break;
+
+                            case 0:
+                                // If ID 0 should be included, add it.
+                                if(includeId0)
+                                    list.Add(defense.idNumber);
+                                break;
+
+                            case 1:
+                                // If ID 1 should be included, add it.
+                                if(includeId1)
+                                    list.Add(defense.idNumber);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            // Returns the result.
+            return list;
+        }
+
+
+        // ENEMY //
         // Gets a enemy prefab. This does NOT instantiate the prefab.
         public ActionUnitEnemy GetEnemyPrefab(int index)
         {
@@ -208,11 +327,46 @@ namespace RM_EDU
             }
         }
 
+        // Gets a enemy prefab by its id. This does NOT instantiate the prefab.
+        public ActionUnitEnemy GetEnemyPrefabById(int id)
+        {
+            // Goes through all the prefabs.
+            foreach (ActionUnitEnemy enemy in enemyPrefabs)
+            {
+                // Defense exists.
+                if (enemy != null)
+                {
+                    // Defense id matches provided id.
+                    if (enemy.idNumber == id)
+                    {
+                        return enemy;
+                    }
+                }
+            }
+
+            // None found.
+            return null;
+        }
+
         // Instantiates and returns a prefab.
         public ActionUnitEnemy InstantiateEnemyPrefab(int index)
         {
             // Gets the prefab.
             ActionUnitEnemy prefab = GetEnemyPrefab(index);
+
+            // If the prefab exists, instantiate it.
+            // If it doesn't exist, return null.
+            if (prefab != null)
+                return Instantiate(prefab);
+            else
+                return null;
+        }
+
+        // Instantiates and returns a prefab.
+        public ActionUnitEnemy InstantiateEnemyPrefabById(int id)
+        {
+            // Gets the prefab.
+            ActionUnitEnemy prefab = GetEnemyPrefabById(id);
 
             // If the prefab exists, instantiate it.
             // If it doesn't exist, return null.

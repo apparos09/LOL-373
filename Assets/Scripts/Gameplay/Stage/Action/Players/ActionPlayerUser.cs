@@ -42,6 +42,9 @@ namespace RM_EDU
         // The defense prefabs the player can use.
         public List<ActionUnitDefense> defensePrefabs = new List<ActionUnitDefense>();
 
+        // The id of the lane blaster.
+        public const int LANE_BLASTER_ID = 1;
+
         // The player mode of the player.
         private playerUserMode userMode = playerUserMode.select;
 
@@ -138,7 +141,7 @@ namespace RM_EDU
             // Clears the current list.
             generatorPrefabs.Clear();
 
-            // Gets the prefabs for all the resources.
+            // Gets the prefabs for the provided resources.
             foreach (NaturalResources.naturalResource resource in resources)
             {
                 // Gets the prefab.
@@ -157,6 +160,37 @@ namespace RM_EDU
         public void SetGeneratorPrefabsFromManager()
         {
             SetGeneratorPrefabs(ActionManager.Instance.naturalResources);
+        }
+
+        // Sets the defense unit prefabs using a list of ids. The defense ids should line up with the indexes.
+        public void SetDefensePrefabs(List<int> defenseIds)
+        {
+            // The unit list.
+            List<ActionUnit> unitList = new List<ActionUnit>();
+
+            // Clears the current list.
+            defensePrefabs.Clear();
+
+            // Gets the prefabs for all the provided defenses.
+            foreach (int defenseId in defenseIds)
+            {
+                // Gets the prefab.
+                // The ID should match up with the index of the defense prefab.
+                ActionUnitDefense defensePrefab = ActionUnitPrefabs.Instance.GetDefensePrefab(defenseId);
+
+                // Puts the prefab in the defense list and the new unit list.
+                defensePrefabs.Add(defensePrefab);
+                unitList.Add(defensePrefab);
+            }
+
+            // Adds the unit list to the defense unit selector.
+            ActionUI.Instance.defenseUnitSelector.SetActionUnitPrefabs(unitList);
+        }
+
+        // Sets the defense prefabs from the manager.
+        public void SetDefensePrefabsFromManager()
+        {
+            SetDefensePrefabs(ActionManager.Instance.userDefenseIds);
         }
 
         // MODES
@@ -233,9 +267,8 @@ namespace RM_EDU
             // Sets the info.
             ActionUI.Instance.SetSelectedUnitInfo(unitPrefab);
 
-            // Highlights tiles.
-            if (ActionStage.IsTileHighlightingEnabled)
-                ActionManager.Instance.actionStage.OnPlayerUserSelectedUnit();
+            // Highlights tiles if tile highlighting is enabled.
+            ActionManager.Instance.actionStage.OnPlayerUserSelectedUnit();
         }
 
         // Clears the prefab the player has selected.
@@ -250,9 +283,8 @@ namespace RM_EDU
             // Clears the info.
             ActionUI.Instance.ClearSelectedUnitInfo();
 
-            // Unhighlight tiles.
-            if (ActionStage.IsTileHighlightingEnabled)
-                ActionManager.Instance.actionStage.OnPlayerUserClearedSelectedUnit();
+            // Unhighlight tiles if highlighting is enabled.
+            ActionManager.Instance.actionStage.OnPlayerUserClearedSelectedUnit();
         }
 
         // Returns 'true' if the selected action unit can use the tile.
