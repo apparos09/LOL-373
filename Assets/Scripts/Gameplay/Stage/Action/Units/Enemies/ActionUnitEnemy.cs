@@ -24,15 +24,15 @@ namespace RM_EDU
         // If 'true', the enemy moves.
         private bool movementEnabled = true;
 
-        // The user unit the enemy unit is targeting.
-        public ActionUnitUser targetUserUnit = null;
-
         // The enemy attack object.
         // This is used as part of animations.
         public EnemyAttack enemyAttack;
 
         // If set to 'true', the enemy can move and attack at the same time.
         protected bool moveAndAttack = false;
+
+        // Gets set to 'true' when a target within range has been found.
+        private bool targetInRange = false;
 
         [HideInInspector]
         // If 'true', the enemy unit checks if it's at the end of the map on the left.
@@ -75,16 +75,22 @@ namespace RM_EDU
         protected override void OnTriggerEnter2D(Collider2D collision)
         {
             base.OnTriggerEnter2D(collision);
+        }
+
+        // OnTriggerStay2D is called once per frame for every Collider2D other that is touching this trigger (2D physics only)
+        protected override void OnTriggerStay2D(Collider2D collision)
+        {
+            base.OnTriggerStay2D(collision);
 
             // Checks if colliding with a tile.
             ActionTile tile;
 
             // Tries to get the tile component.
-            if(collision.TryGetComponent(out tile))
+            if (collision.TryGetComponent(out tile))
             {
                 // If this is a metal tile, the enemy should be approaching the end of the map.
                 // As such, start checking if at the end of the map every frame.
-                if(tile.GetTileType() == ActionTile.actionTile.metal)
+                if (tile.GetTileType() == ActionTile.actionTile.metal)
                 {
                     checkForMapLeftBound = true;
                 }
@@ -94,9 +100,16 @@ namespace RM_EDU
             ActionUnitUser userUnit;
 
             // Tries to get the component.
-            if(collision.TryGetComponent(out userUnit))
+            if (collision.TryGetComponent(out userUnit))
             {
-                targetUserUnit = userUnit;
+                // A target is in range.
+                targetInRange = true;
+
+                // If the enemy can attack.
+                if (CanAttack())
+                {
+                    AttackUserUnit(userUnit);
+                }                
             }
         }
 
@@ -238,20 +251,10 @@ namespace RM_EDU
         }
 
         // ATTACK //
-        // Returns 'true' if the enemy has an attack target.
-        public bool HasAttackTarget()
+        // Returns 'true' if there's a target within range.
+        public bool IsTargetInRange()
         {
-            // First sees if the target exists.
-            bool result = targetUserUnit != null;
-
-            // If the target exists, check if it's dead.
-            if (result)
-            {
-                // If the target isn't dead, attack them.
-                result = !targetUserUnit.IsDead();
-            }
-
-            return result;
+            return targetInRange;
         }
 
         // Returns 'true' if the enemy can move and attack at the same time.
@@ -273,12 +276,6 @@ namespace RM_EDU
             enemyAttack.transform.position = targetUnit.transform.position;
         }
 
-        // Activates the enemy attack.
-        public void ActivateEnemyAttack()
-        {
-            ActivateEnemyAttack(targetUserUnit);
-        }
-
         // Deactivates the enemy attack.
         public void DeactivateEnemyAttack()
         {
@@ -294,12 +291,6 @@ namespace RM_EDU
             {
                 target.AttackUnit(this);
             }
-        }
-
-        // Attacks the saved user unit.
-        public void AttackUserUnit()
-        {
-            AttackUserUnit(targetUserUnit);
         }
 
         // KILL / DEATH //
@@ -342,20 +333,13 @@ namespace RM_EDU
 
 
                 // If the enemy has a target to attack.
-                if(HasAttackTarget())
+                if(IsTargetInRange())
                 {
-                    // Stop movement.
-                    if (rigidbody.velocity != Vector2.zero)
-                        rigidbody.velocity = Vector2.zero;
-
-
-                    // Attack the unit manually.
-                    if (CanAttack())
-                    {
-                        AttackUserUnit();
-                    }
+                    // Cancel out the velocity.
+                    CancelVelocity();
 
                     // An attack was attempted, so set this to true.
+                    // This doesn't mean an attakc happened, just that one was attempted.
                     triedAttack = true;
                 }
 
@@ -391,6 +375,9 @@ namespace RM_EDU
                     // If the rigidbody's velocity is not 0, make it 0.
                     CancelVelocity();
                 }
+
+                // Sets to false. This will keep getting set to true as long as there's a target in range.
+                targetInRange = false;
 
                 // If the enemy should check for the end of the map on the left side.
                 if (checkForMapLeftBound)
