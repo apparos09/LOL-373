@@ -116,8 +116,9 @@ MonoBehaviour:
   rigidbody: {fileID: 2842442279350359791}
   defaultAttackPower: 1
   useAttackPowerOfShooter: 1
+  defaultOneHitKill: 0
   moveDirec: {x: 1, y: 0}
-  moveSpeed: 1
+  moveSpeed: 10
   validTargets: 
   dieOnContact: 1
 --- !u!1 &6426779114391841676
@@ -193,7 +194,7 @@ SpriteRenderer:
   m_SortingLayerID: 1483626707
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: c802ca9555498514d9c52854d5b03597, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3c99dc3d303d44e44bb98ab2c54f0422, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

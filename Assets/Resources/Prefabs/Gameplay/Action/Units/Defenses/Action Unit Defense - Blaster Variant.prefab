@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1706905028135206088
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5717164286411412314}
+  m_Layer: 0
+  m_Name: Projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5717164286411412314
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706905028135206088}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1849280751653751939}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7433684422133844323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -60,8 +91,89 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 9115346750531339744, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5717164286411412314}
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 877795126609007684}
   m_SourcePrefab: {fileID: 100100000, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+--- !u!1 &194169653813968249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &877795126609007684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 194169653813968249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbe0484c1ac393847abb5b6877126ea6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionManager: {fileID: 0}
+  idNumber: 2
+  spriteRenderer: {fileID: 2820790240764193224}
+  iconSprite: {fileID: 0}
+  cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
+  animator: {fileID: 8194997913235594361}
+  collider: {fileID: 3684014631833299890}
+  rigidbody: {fileID: 2151022029249442189}
+  health: 0
+  maxHealth: 100
+  vulnerable: 1
+  statFactor: 1
+  energyCreationCost: 0
+  energyDeathCost: 0
+  energyGenerationAmount: 0
+  energyGenerationSpeed: 0
+  attackPower: 60
+  attackSpeed: 60
+  attackingEnabled: 1
+  attackCooldownTimer: 0
+  oneHitKill: 0
+  durability: 60
+  movementSpeed: 0
+  airPollution: 0
+  validTiles: 
+  tile: {fileID: 0}
+  tilePosOffset: {x: 0, y: 0, z: 0}
+  removableByUser: 1
+  projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+  projectileParent: {fileID: 1706905028135206088}
+  projectileStartPosOffset: {x: 0, y: 0, z: 0}
+  firedProjectiles: []
+--- !u!4 &1849280751653751939 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9115346750531339744, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &2151022029249442189 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 8858641744088496366, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2820790240764193224 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &3684014631833299890 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 6055651898615620305, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &8194997913235594361 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1626850282260206874, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}

@@ -58,8 +58,8 @@ MonoBehaviour:
   - {fileID: 2847674788801534402, guid: 158a27e6a4b745943bd9eaea42ae2c03, type: 3}
   defensePrefabs:
   - {fileID: 0}
-  - {fileID: 2965699144641607504, guid: 8fcf8899b6c32024fa36f5ff92e07940, type: 3}
-  - {fileID: 7676990157429311105, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+  - {fileID: 8963299378571816709, guid: 8fcf8899b6c32024fa36f5ff92e07940, type: 3}
+  - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   enemyPrefabs:
   - {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
   - {fileID: 4939435568882342715, guid: 6aa0338d3d7a73247bafed7fac87efeb, type: 3}

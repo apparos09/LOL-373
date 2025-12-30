@@ -39,7 +39,7 @@ namespace RM_EDU
 
         // The movement speed. The projectile moves at a fixed speed.
         [Tooltip("The movement speed of a projectile. Projectiles move at a fixed speed.")]
-        public float moveSpeed = 1.0F;
+        public float moveSpeed = 10.0F;
 
         // Valid targets for the projectile.
         // If the list is empty, all units are valid targets.

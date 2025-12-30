@@ -15,6 +15,10 @@ namespace RM_EDU
         // The parent of the projectile.
         public GameObject projectileParent;
 
+        // The offset of the starting position of a fired projectile.
+        [Tooltip("The offset of the starting position of a fired projectile. This offset is based on the shooter's position.")]
+        public Vector3 projectileStartPosOffset = Vector3.zero;
+
         // The projectiles fired by this unit.
         public List<ActionProjectile> firedProjectiles = new List<ActionProjectile>();
 
@@ -32,6 +36,9 @@ namespace RM_EDU
             if(projectilePrefab != null)
             {
                 ActionProjectile projectile = Instantiate(projectilePrefab);
+
+                // Gives the projectile the positon of the shooter plus an offset.
+                projectile.transform.position = transform.position + projectileStartPosOffset;
 
                 // Sets the projectile parent.
                 projectile.transform.parent = (projectileParent != null) ? projectile.transform : transform;

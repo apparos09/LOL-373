@@ -16,6 +16,10 @@ namespace RM_EDU
         // The button script.
         public Button button;
 
+        // The default image of the button.
+        [Tooltip("The button's default image. Gets set to button's image on start if null.")]
+        public Sprite buttonDefaultImageSprite = null;
+
         // The icon that's on the button.
         public Image unitIconImage;
 
@@ -51,6 +55,10 @@ namespace RM_EDU
             // Adds a Select() call on the button.
             if (button != null)
             {
+                // Sets the default image.
+                if (buttonDefaultImageSprite != null)
+                    buttonDefaultImageSprite = button.image.sprite;
+
                 // Listener for the tutorial toggle.
                 button.onClick.AddListener(delegate
                 {
@@ -104,7 +112,8 @@ namespace RM_EDU
             // Checks if the prefab exists.
             if(unitPrefab != null)
             {
-                // Icon image, display name, and energy cosy.
+                // Icon image, display name, and energy cost.
+                button.image.sprite = unitPrefab.cardBackgroundSprite;
                 unitIconImage.sprite = unitPrefab.iconSprite;
                 unitNameText.text = unitPrefab.GetUnitCardDisplayName();
                 energyCostText.text = unitPrefab.energyCreationCost.ToString();
@@ -147,6 +156,7 @@ namespace RM_EDU
         // Clears the unit button.
         public void ClearUnitButton()
         {
+            button.image.sprite = buttonDefaultImageSprite;
             unitIconImage.sprite = null;
             unitNameText.text = "-";
             energyCostText.text = "-";
