@@ -30,6 +30,10 @@ namespace RM_EDU
         // Upon collision with a valid target occurring.
         public bool useAttackPowerOfShooter = true;
 
+        // The default 'one hit kill' check. If true, the projectile kills its target in one hit.
+        [Tooltip("If true, by default the projectile kills the target in one hit.")]
+        public bool defaultOneHitKill = false;
+
         // The movement direction.
         public Vector2 moveDirec = Vector2.right;
 
@@ -100,8 +104,15 @@ namespace RM_EDU
                 }
                 else
                 {
+                    // Power for attack.
+                    float damage = defaultAttackPower;
+
+                    // If this is a one-hit kill projectile, set damage to target's health.
+                    if (defaultOneHitKill)
+                        damage = target.health;
+
                     // Apply damage using the projectile.
-                    target.ApplyDamage(defaultAttackPower, false);
+                    target.ApplyDamage(damage, false);
                 }
 
                 // If the projectile should die on contact, kill it.

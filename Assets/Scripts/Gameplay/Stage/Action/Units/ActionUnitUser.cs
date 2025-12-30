@@ -19,7 +19,7 @@ namespace RM_EDU
         public Vector3 tilePosOffset = Vector3.zero;
 
         // Returns 'true' if the unit can be removed by the user player once it's placed.
-        private bool removableByUser = true;
+        public bool removableByUser = true;
 
         // Start is called before the first frame update
         protected override void Start()

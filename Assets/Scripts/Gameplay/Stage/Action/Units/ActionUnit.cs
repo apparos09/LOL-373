@@ -1,6 +1,7 @@
 using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Build;
 using UnityEngine;
 
 namespace RM_EDU
@@ -101,6 +102,10 @@ namespace RM_EDU
 
         // If 'true', the cooldown timer is used.
         protected bool useAttackCooldownTimer = true;
+
+        // If true, attackes from this unit instantly kill the target.
+        [Tooltip("If true, attacks from this unit are one hit kill.")]
+        public bool oneHitKill = false;
 
         // The durability of the unit.
         public float durability = 0.0F;
@@ -419,6 +424,13 @@ namespace RM_EDU
 
             // Calculates the attack power with a given target.
             float power = attacker.CalculateAttackPower(target, ignoreVulnerable);
+
+            // If the attacker is an one hit kill attacker...
+            // Kill target is one hit.
+            if(attacker.oneHitKill)
+            {
+                power = target.health;
+            }
 
             // Applies the power as damage to the target.
             target.ApplyDamage(power, ignoreVulnerable);
