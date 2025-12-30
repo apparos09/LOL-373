@@ -243,10 +243,8 @@ namespace RM_EDU
         // Resets the player.
         public override void ResetPlayer()
         {
-            // Kills all the enemy units.
+            // Kills all enemy units and sets the energy to max.
             KillAllEnemyUnits();
-
-            // Sets the energy to max.
             SetEnergyToMax();
         }
 

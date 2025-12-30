@@ -414,6 +414,15 @@ namespace RM_EDU
             return performed;
         }
 
+        // Resets the tile.
+        public void ResetTile()
+        {
+            // Clears the action user unit. 
+            ClearActionUnitUser();
+
+            // TODO: clear the tile overlay.
+        }
+
         // // Update is called once per frame
         // protected virtual void Update()
         // {

@@ -42,6 +42,9 @@ namespace RM_EDU
         // The defense prefabs the player can use.
         public List<ActionUnitDefense> defensePrefabs = new List<ActionUnitDefense>();
 
+        // The lane blaster prefab.
+        public ActionUnitDefense laneBlasterPrefab;
+
         // The id of the lane blaster.
         public const int LANE_BLASTER_ID = 1;
 
@@ -65,6 +68,12 @@ namespace RM_EDU
             if(actionManager.playerUser == null)
             {
                 actionManager.playerUser = this;
+            }
+
+            // If the lane blaster is null, set the prefab using the lane blaster id.
+            if(laneBlasterPrefab == null)
+            {
+                laneBlasterPrefab = actionUnitPrefabs.GetDefensePrefab(LANE_BLASTER_ID);
             }
 
             // Sets the user's energy to the starting energy.
@@ -242,7 +251,7 @@ namespace RM_EDU
             SetPlayerUserMode(playerUserMode.remove);
         }
 
-        // SELECT
+        // SELECT / INSTANTIATE
         // Returns 'true' if the player is selecting a unit.
         public bool IsSelectingActionUnitPrefab()
         {
@@ -301,23 +310,17 @@ namespace RM_EDU
             }
         }
 
-        // Instantiates the selected action unit without putting it on a tile.
-        public ActionUnit InstantiateSelectedActionUnit()
+        // Instantiates an action unit on the provided tile.
+        public ActionUnit InstantiateActionUnit(ActionUnit unitPrefab, ActionTile tile)
         {
-            return InstantiateSelectedActionUnit(null);
-        }
-
-        // Instantiates the selected unit and places it on the provided tile.
-        public ActionUnit InstantiateSelectedActionUnit(ActionTile tile)
-        {
-            // No selected prefab, so return null.
-            if(selectedUnitPrefab == null)
+            // No prefab so return null.
+            if(unitPrefab == null)
             {
                 return null;
             }
 
             // Instantiate the unit.
-            ActionUnit newUnit = Instantiate(selectedUnitPrefab);
+            ActionUnit newUnit = Instantiate(unitPrefab);
 
             // Sets the parent.
             SetActionUnitParentToUnitParent(newUnit);
@@ -327,13 +330,17 @@ namespace RM_EDU
 
             // If the user unit isn't equal to null, that means the conversion was successful.
             // As such, do functions specific to this unit.
-            if(userUnit != null)
+            if(newUnit != null)
             {
                 // If the tile exists, place the unit on it.
                 if (tile != null)
                 {
-                    // Sets the action tile to have this unit.
-                    tile.SetActionUnitUser(userUnit);
+                    // If the tile doesn't have an action user unit, give it the generated one.
+                    if (!tile.HasActionUnitUser())
+                    {
+                        // Sets the action tile to have this unit.
+                        tile.SetActionUnitUser(userUnit);
+                    }
 
                     // If the new unit is a user unit.
                     if (newUnit is ActionUnitUser)
@@ -347,17 +354,41 @@ namespace RM_EDU
                         // Set to tile position.
                         newUnit.transform.position = tile.transform.position;
                     }
-                }
-
-                // Adds to the created user units list if it exists.
-                if (userUnit != null)
-                {
-                    createdUserUnits.Add(userUnit);
-                }
+                }               
             }
-           
+
+            // Adds to the created user units list if it exists.
+            if (userUnit != null)
+            {
+                createdUserUnits.Add(userUnit);
+            }
+
             // Returns the new unit.
             return newUnit;
+        }
+
+        // Instantiates the selected action unit without putting it on a tile.
+        public ActionUnit InstantiateSelectedActionUnit()
+        {
+            return InstantiateSelectedActionUnit(null);
+        }
+
+        // Instantiates the selected unit and places it on the provided tile.
+        public ActionUnit InstantiateSelectedActionUnit(ActionTile tile)
+        {
+            return InstantiateActionUnit(selectedUnitPrefab, tile);
+        }
+
+        // Instantiates a lane blaster.
+        public ActionUnit InstantiateLaneBlaster()
+        {
+            return InstantiateActionUnit(laneBlasterPrefab, null);
+        }
+
+        // Instantiates a lane blaster on the provided tile.
+        public ActionUnit InstantiateLaneBlaster(ActionTile tile)
+        {
+            return InstantiateActionUnit(laneBlasterPrefab, tile);
         }
 
         // Tries to remove the user unit from the created units list.
@@ -376,9 +407,27 @@ namespace RM_EDU
             }
         }
 
+        // Kills all user units.
+        public void KillAllUserUnits()
+        {
+            // Goes through all saved units.
+            for (int i = createdUserUnits.Count - 1; i >= 0; i--)
+            {
+                // Kill the enemy.
+                if (createdUserUnits[i] != null)
+                    createdUserUnits[i].OnUnitDeath();
+
+            }
+
+            // Clears the list.
+            createdUserUnits.Clear();
+        }
+
         // Resets the player.
         public override void ResetPlayer()
         {
+            // Kills all the user units, resets the energy, and clears the selected prefab.
+            KillAllUserUnits();
             SetEnergyToStartingEnergy();
             ResetEnergyAutoGenerationTimer();
             ClearSelectedActionUnitPrefab(); // Also sets to "select" mode.

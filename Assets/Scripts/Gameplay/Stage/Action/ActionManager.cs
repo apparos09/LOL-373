@@ -630,6 +630,9 @@ namespace RM_EDU
             // Reset the players.
             playerUser.ResetPlayer();
             playerEnemy.ResetPlayer();
+
+            // Resets the map.
+            actionStage.ResetMap();
         }
 
         // Called to finish the stage. TODO: implement.

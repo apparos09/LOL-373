@@ -9,12 +9,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+      propertyPath: moveSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+      propertyPath: dieOnContact
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
       propertyPath: defaultOneHitKill
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 687462378236978623, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
       propertyPath: m_Name
-      value: Action Projectile - User - One Hit Kill Variant
+      value: Action Projectile - User - Lane Blaster Variant
       objectReference: {fileID: 0}
     - target: {fileID: 5687991169777826106, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
       propertyPath: m_LocalPosition.x

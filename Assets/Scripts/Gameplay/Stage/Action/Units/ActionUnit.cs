@@ -461,8 +461,8 @@ namespace RM_EDU
             // If the attack is valid, do the calculation.
             if(valid)
             {
-                // 2.0 * statFactor + ((attackPower * 1.25 * statFactor) - (target.durability * 1.5 * target.statFactor))
-                power = (2.0F * statFactor) + ((attackPower * 1.25F * statFactor) - (target.durability * 1.5F * target.statFactor));
+                // 2.0 * statFactor + ((attackPower * 1.85 * statFactor) - (target.durability * 1.15 * target.statFactor))
+                power = (2.0F * statFactor) + ((attackPower * 1.85F * statFactor) - (target.durability * 1.15F * target.statFactor));
 
                 // If the power is negative, set the power to 1.
                 if (power < 0.0F)

@@ -59,6 +59,8 @@ namespace RM_EDU
             // On a tile.
             if (tile != null)
             {
+                // TODO: enable limit on range.
+
                 // Gets the tile's row.
                 int row = tile.GetMapRowPosition();
 

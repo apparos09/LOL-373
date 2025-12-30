@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using util;
 
 namespace RM_EDU
@@ -62,14 +63,17 @@ namespace RM_EDU
         // An offset that can be applied whenn checking if something's in the stage bounds or not.
         private Vector3 stageBoundsOffset = new Vector3(TILE_SIZE_X_DEFAULT * 5, TILE_SIZE_Y_DEFAULT * 5, 0.0F);
 
-        // Gets set to 'true' if there are metal tiles.
-        // If so, the enemies don't check for the map end every frame. They only do so once they hit a metal tile.
-        // If not, the enemies check for the map end every frame.
-        // Technically this is set as true even if there's only one metal tile, but semantics.
-        private bool hasMetalTiles = false;
+        // The list of metal tiles in the stage.
+        private List<ActionTile> metalTiles = new List<ActionTile>();
+
+        // If true, lane blasters are used.
+        private bool useLaneBlasters = true;
 
         // The row enemy units.
         public List<List<ActionUnitEnemy>> rowEnemyUnits = new List<List<ActionUnitEnemy>>();
+
+        // Gets set to 'true' when a map has been generated.
+        private bool mapGenerated = false;
 
         // Start is called before the first frame update
         void Start()
@@ -170,9 +174,8 @@ namespace RM_EDU
                 return;
             }
 
-            // Sets has metal tiles to false.
-            // This will be set to true once a metal tile is created.
-            hasMetalTiles = false;
+            // Clears the list of metal tiles.
+            metalTiles.Clear();
 
             // Goes through all the rows and columns, generating the tiles.
             // Row
@@ -259,14 +262,12 @@ namespace RM_EDU
                         tiles[r, c] = null; 
                     }
 
-                    // If the stage has no metal tiles.
-                    if(!hasMetalTiles)
+
+                    // If this is a metal tile...
+                    if (newTile.GetTileType() == ActionTile.actionTile.metal)
                     {
-                        // If this is a metal tile, mark that there is a metal tile.
-                        if (newTile.GetTileType() == ActionTile.actionTile.metal)
-                        {
-                            hasMetalTiles = true;
-                        }
+                        // Add the tile to the list.
+                        metalTiles.Add(newTile);
                     }
 
                     // Add the tile to the array.
@@ -274,13 +275,36 @@ namespace RM_EDU
                 }
             }
 
+            // Put a lane blaster on the far left edge of the map.
+            if(useLaneBlasters)
+            {
+                // Gets the player user.
+                ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
+
+                // Goes through each row.
+                for (int r = 0; r < map.GetLength(0); r++)
+                {
+                    // If the tile exists.
+                    if (tiles[r, 0] != null)
+                    {
+                        playerUser.InstantiateLaneBlaster(tiles[r, 0]);
+                    }
+                }
+            }
+
             // If there are stage rows, clear all the lists
-            if(rowEnemyUnits.Count > 0)
+            if (rowEnemyUnits.Count > 0)
             {
                 // Clears all the lists.
                 foreach(List<ActionUnitEnemy> list in rowEnemyUnits)
                 {
-                    // TODO: make sure all enemies are out of these lists.
+                    // Destroys all enemies in the list, before clearing it.
+                    for(int i = list.Count - 1; i >= 0; i--)
+                    {
+                        list[i].OnUnitDeath();
+                    }
+
+                    // Clears the list.
                     list.Clear();
                 }
             }
@@ -293,6 +317,15 @@ namespace RM_EDU
             {
                 rowEnemyUnits.Add(new List<ActionUnitEnemy>());
             }
+
+            // The map has now been generated.
+            mapGenerated = true;
+        }
+
+        // Returns true if the map has been generated.
+        public bool IsMapGenerated
+        {
+            get { return mapGenerated; }
         }
 
         // Returns 'true' if the stage allows for tile highlighting.
@@ -304,7 +337,14 @@ namespace RM_EDU
         // Returns 'true' if the stage has metal tiles.
         public bool HasMetalTiles
         {
-            get { return hasMetalTiles; }
+            get { return metalTiles.Count > 0; }
+        }
+
+        // Gets a copy of the list of metal tiles.
+        public List<ActionTile> GetListOfMetalTilesCopy()
+        {
+            List<ActionTile> list = new List<ActionTile>(metalTiles);
+            return list;
         }
 
         // Converts the provided map tile position to local position in world units.
@@ -696,10 +736,21 @@ namespace RM_EDU
             return map;
         }
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
+        // Resets the stage.
+        public void ResetMap()
+        {
+            // Resets all the tiles for the map.
+            for(int r = 0; r < tiles.GetLength(0); r++) // Rows
+            {
+                for(int c = 0; c < tiles.GetLength(1); c++) // Columns
+                {
+                    // Tile exists, so reset it.
+                    if (tiles[r, c] != null)
+                    {
+                        tiles[r, c].ResetTile();
+                    }
+                }
+            }
+        }
     }
 }
