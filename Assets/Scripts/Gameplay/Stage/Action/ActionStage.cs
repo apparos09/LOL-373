@@ -278,18 +278,8 @@ namespace RM_EDU
             // Put a lane blaster on the far left edge of the map.
             if(useLaneBlasters)
             {
-                // Gets the player user.
-                ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
-
-                // Goes through each row.
-                for (int r = 0; r < map.GetLength(0); r++)
-                {
-                    // If the tile exists.
-                    if (tiles[r, 0] != null)
-                    {
-                        playerUser.InstantiateLaneBlaster(tiles[r, 0]);
-                    }
-                }
+                // Create hte lane blasters in row 0.
+                CreateLaneBlastersInRow0(true);
             }
 
             // If there are stage rows, clear all the lists
@@ -389,6 +379,34 @@ namespace RM_EDU
 
             // Returns the map position in the world.
             return mapPosLocal;
+        }
+
+        // Creates lane blasters in row 0.
+        // If 'killUserOnTile' is true, if there's a unit saved to the tile, that unit is killed...
+        // So that the tile can be used by the lane blaster.
+        public void CreateLaneBlastersInRow0(bool killTileUser)
+        {
+            // Gets the player user.
+            ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
+
+            // Goes through each row.
+            for (int r = 0; r < tiles.GetLength(0); r++)
+            {
+                // If the tile exists.
+                if (tiles[r, 0] != null)
+                {
+                    // If there's an action unit user on the tile and they should be killed...
+                    if (killTileUser && tiles[r, 0].HasActionUnitUser())
+                    {
+                        // Kill the action unit user on the tile.
+                        tiles[r, 0].KillActionUnitUser();
+
+                    }
+
+                    // Instantiate the lane laser prefab.
+                    playerUser.InstantiateLaneBlaster(tiles[r, 0]);
+                }
+            }
         }
 
         // Convert the map position to world units.
@@ -750,6 +768,12 @@ namespace RM_EDU
                         tiles[r, c].ResetTile();
                     }
                 }
+            }
+
+            // If lane blasters should be used, create lane blasters in row 0. 
+            if(useLaneBlasters)
+            {
+                CreateLaneBlastersInRow0(true);
             }
         }
     }

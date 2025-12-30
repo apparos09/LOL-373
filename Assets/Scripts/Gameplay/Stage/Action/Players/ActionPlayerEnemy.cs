@@ -47,6 +47,9 @@ namespace RM_EDU
         // The action enemy units.
         public List<ActionUnitEnemy> spawnedEnemies = new List<ActionUnitEnemy>();
 
+        // The enemy unit spawn limit.
+        public const int ACTIVE_ENEMY_UNIT_LIMIT = ActionStage.MAP_ROW_COUNT_DEFAULT * ActionStage.MAP_COLUMN_COUNT_DEFAULT;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -145,6 +148,18 @@ namespace RM_EDU
             spawnTimer = spawnTimeMax;
         }
 
+        // Returns the number of spawned enemy units.
+        public int GetSpawnedEnemyUnitCount()
+        {
+            return spawnedEnemies.Count;
+        }
+
+        // Returns 'ture' if the enemy is at or above their active enemy unit limit.
+        public bool IsBelowActiveEnemyUnitLimit()
+        {
+            return spawnedEnemies.Count < ACTIVE_ENEMY_UNIT_LIMIT;
+        }
+
         // Spawns enemies.
         public void SpawnEnemyUnits()
         {
@@ -158,8 +173,8 @@ namespace RM_EDU
             // A temporary list of spawned enemies.
             List<ActionUnitEnemy> tempList = new List<ActionUnitEnemy>();
 
-            // While spawns is greater than 0.
-            while(spawns > 0)
+            // While spawns is greater than 0 and the enemy is below the active enemy unit limit.
+            while(spawns > 0 && IsBelowActiveEnemyUnitLimit())
             {
                 // Gets the prefab.
                 int prefabIndex = Random.Range(0, usableEnemyIndexes.Count);
@@ -243,9 +258,10 @@ namespace RM_EDU
         // Resets the player.
         public override void ResetPlayer()
         {
-            // Kills all enemy units and sets the energy to max.
+            // Kills all enemy units, sets the energy to max, and resets the spawn timer to max.
             KillAllEnemyUnits();
             SetEnergyToMax();
+            ResetSpawnTimer();
         }
 
         // Update is called once per frame
@@ -282,7 +298,13 @@ namespace RM_EDU
                         if(spawnTimer <= 0.0F)
                         {
                             spawnTimer = 0.0F;
-                            SpawnEnemyUnits();
+
+                            // If the enemy is below the active enemy unit list limit...
+                            // Spawn enemies.
+                            if(IsBelowActiveEnemyUnitLimit())
+                            {
+                                SpawnEnemyUnits();
+                            }
                         }
                     }
                     

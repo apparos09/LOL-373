@@ -219,6 +219,14 @@ namespace RM_EDU
         }
 
         // FINISH
+        // Resets the stage.
+        public void ResetStage()
+        {
+            // Resets the stage and closes the windows.
+            actionManager.ResetStage();
+            SetStageEndWindowActive(false);
+        }
+
 
         // Called to finish the stage.
         public override void FinishStage()

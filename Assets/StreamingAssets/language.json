@@ -32,6 +32,7 @@
 
       "kwd_ukn": 18,
       "kwd_ukn_abv": 3,
+      "kwd_reset": 18,
 
       "kwd_worldStage": 18,
       "kwd_actionStage": 18,
@@ -64,7 +65,7 @@
       "nrs_nlr_abv": 18,
       "nrs_oil_abv": 18,
 
-      "kwd_select":18,
+      "kwd_select": 18,
       "kwd_deselect": 18,
       "kwd_remove": 18
 
@@ -101,6 +102,7 @@
 
     "kwd_unknown": "Unknown",
     "kwd_ukn_abv": "UKN",
+    "kwd_reset": "Reset",
 
     "kwd_worldStage": "World Stage",
     "kwd_actionStage": "Action Stage",

@@ -633,6 +633,18 @@ namespace RM_EDU
 
             // Resets the map.
             actionStage.ResetMap();
+
+            // Updates the UI for the player and enemy.
+            actionUI.UpdatePlayerUserUI();
+            actionUI.UpdatePlayerEnemyUI();
+
+            // Set the selectors for the player user to row 0.
+            actionUI.generatorUnitSelector.SetRow(0);
+            actionUI.defenseUnitSelector.SetRow(0);
+
+            // Sets that the stage is playing.
+            SetStagePlaying(true);
+            SetGamePaused(false);
         }
 
         // Called to finish the stage. TODO: implement.
