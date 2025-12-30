@@ -510,6 +510,105 @@ namespace RM_EDU
             return InStageBounds(obj.transform.position, applyOffset);
         }
 
+        // Checks if there's at least 1 enemy in the provided row.
+        public bool IsEnemyInRow(int row)
+        {
+            // Checks if the row is valid.
+            if(row >= 0 && row < rowEnemyUnits.Count)
+            {
+                return rowEnemyUnits[row].Count > 0;
+            }
+            else
+            {
+                // Row not valid.
+                return false;
+            }
+        }
+
+        // Returns 'true' if there's an enemy negative to the provided position (left of position).
+        public bool IsEnemyInRowLeftOfPosition(int row, Vector3 refPos, bool includeEqualTo)
+        {
+            // Checks if the row is valid.
+            if (row >= 0 && row < rowEnemyUnits.Count)
+            {
+                // Gets set to true if the enemy is in a negative position (left) compared to the reference pos.
+                bool leftOfPos = false;
+
+                // Goes through all enemies.
+                foreach (ActionUnitEnemy enemy in rowEnemyUnits[row])
+                {
+                    // Checks if the equal to case should be included.
+                    if (includeEqualTo)
+                    {
+                        //  The enemy is left of the comparison position.
+                        if (refPos.x >= enemy.transform.position.x)
+                        {
+                            leftOfPos = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        //  The enemy is left of the reference position.
+                        if (refPos.x > enemy.transform.position.x)
+                        {
+                            leftOfPos = true;
+                            break;
+                        }
+                    }
+                }
+
+                return leftOfPos;
+            }
+            else
+            {
+                // Row not valid.
+                return false;
+            }
+        }
+
+        // Returns 'true' if there's an enemy positive to the provided position (right of position).
+        public bool IsEnemyInRowRightOfPosition(int row, Vector3 refPos, bool includeEqualTo)
+        {
+            // Checks if the row is valid.
+            if (row >= 0 && row < rowEnemyUnits.Count)
+            {
+                // Gets set to true if the enemy is in a positive position (right) compared to the comparison pos.
+                bool rightOfPos = false;
+
+                // Goes through all enemies.
+                foreach(ActionUnitEnemy enemy in rowEnemyUnits[row])
+                {
+                    // Checks if the equal to case should be included.
+                    if(includeEqualTo)
+                    {
+                        //  The enemy is right of the comparison position.
+                        if (refPos.x <= enemy.transform.position.x)
+                        {
+                            rightOfPos = true;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        //  The enemy is right of the reference position.
+                        if (refPos.x < enemy.transform.position.x)
+                        {
+                            rightOfPos = true;
+                            break;
+                        }
+                    }
+                }
+
+                return rightOfPos;
+            }
+            else
+            {
+                // Row not valid.
+                return false;
+            }
+        }
+
         // Gets the stage map data. Returns null if there's no data.
         public string[,] GetStageMapData()
         {

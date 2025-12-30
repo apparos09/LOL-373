@@ -93,7 +93,7 @@ namespace RM_EDU
         public float attackSpeed = 0.0F;
 
         // Gets set to 'true' if this is an entity that can attack.
-        protected bool attackingEnabled = true;
+        public bool attackingEnabled = true;
 
         // The cooldown countdown timer for attacks. This is in seconds.
         [Tooltip("The cooldown count down timer between attacks by this unit.")]
@@ -144,15 +144,15 @@ namespace RM_EDU
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
-            
+            // ...
         }
 
-        // // OnTriggerStay2D is called once per frame for every Collider2D other that is touching this trigger (2D physics only)
-        // protected virtual void OnTriggerStay2D(Collider2D collision)
-        // {
-        //     
-        // }
-        // 
+        // OnTriggerStay2D is called once per frame for every Collider2D other that is touching this trigger (2D physics only)
+        protected virtual void OnTriggerStay2D(Collider2D collision)
+        {
+            // ...
+        }
+        
         // // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)
         // protected virtual void OnTriggerExit2D(Collider2D collision)
         // {
@@ -414,11 +414,14 @@ namespace RM_EDU
         // Attacks this unit with another unit.
         public static void AttackUnit(ActionUnit attacker, ActionUnit target)
         {
+            // Used to determine if vulnerability of the target should be ignored.
+            bool ignoreVulnerable = false;
+
             // Calculates the attack power with a given target.
-            float power = attacker.CalculateAttackPower(target, false);
+            float power = attacker.CalculateAttackPower(target, ignoreVulnerable);
 
             // Applies the power as damage to the target.
-            target.ApplyDamage(power);
+            target.ApplyDamage(power, ignoreVulnerable);
 
             // Called when a unit has been attacked.
             attacker.OnUnitAttackPerformed(target);
@@ -466,10 +469,14 @@ namespace RM_EDU
 
         // Apply damage to the unit.
         // This does NOT call OnUnitAttacked.
-        public void ApplyDamage(float damage)
+        public void ApplyDamage(float damage, bool ignoreVulnerable)
         {
-            // Reduces health by provided damage amount.
-            health -= damage;
+            // If the unit is vulnerable, or if the vulnerability of this unit should be ignored.
+            if(vulnerable || ignoreVulnerable)
+            {
+                // Reduces health by provided damage amount.
+                health -= damage;
+            }
 
             // If health is negative, clamp it at 0.
             if (health < 0.0F)

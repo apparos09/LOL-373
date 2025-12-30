@@ -1,6 +1,37 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &1649477988873198894
+--- !u!1 &8132165415511203757
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8082995261795406061}
+  m_Layer: 0
+  m_Name: Projectiles
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8082995261795406061
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132165415511203757}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9115346750531339744}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &5439947482585149543
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,11 +41,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_Name
-      value: Action Unit Generator Variant
-      objectReference: {fileID: 0}
-    - target: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
-      propertyPath: m_Layer
-      value: 6
+      value: Action Unit Defense Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3890728525462386055, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_LocalPosition.x
@@ -56,58 +83,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6109650057116392062, guid: 09943904bff810340a376831cb22bfec, type: 3}
-      propertyPath: m_Layer
-      value: 6
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 3890728525462386055, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8082995261795406061}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 6074401612692501123}
+      addedObject: {fileID: 982881237139591138}
   m_SourcePrefab: {fileID: 100100000, guid: 09943904bff810340a376831cb22bfec, type: 3}
---- !u!61 &690021909378568088 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 2267399927797895862, guid: 09943904bff810340a376831cb22bfec, type: 3}
-  m_PrefabInstance: {fileID: 1649477988873198894}
-  m_PrefabAsset: {fileID: 0}
---- !u!212 &2131954471664586210 stripped
-SpriteRenderer:
-  m_CorrespondingSourceObject: {fileID: 824763696059470028, guid: 09943904bff810340a376831cb22bfec, type: 3}
-  m_PrefabInstance: {fileID: 1649477988873198894}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &2840288876026598823 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 3570972780639013001, guid: 09943904bff810340a376831cb22bfec, type: 3}
-  m_PrefabInstance: {fileID: 1649477988873198894}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &4035956208484555091 stripped
+--- !u!1 &7320624136933962778 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
-  m_PrefabInstance: {fileID: 1649477988873198894}
+  m_PrefabInstance: {fileID: 5439947482585149543}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &6074401612692501123
+--- !u!114 &982881237139591138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4035956208484555091}
+  m_GameObject: {fileID: 7320624136933962778}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 976051b74415d384fb8a4bb599743352, type: 3}
+  m_Script: {fileID: 11500000, guid: cbe0484c1ac393847abb5b6877126ea6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 0
-  spriteRenderer: {fileID: 2131954471664586210}
+  spriteRenderer: {fileID: 0}
   iconSprite: {fileID: 0}
-  cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
-  animator: {fileID: 5406913998153414739}
-  collider: {fileID: 690021909378568088}
-  rigidbody: {fileID: 2840288876026598823}
+  cardBackgroundSprite: {fileID: 0}
+  animator: {fileID: 0}
+  collider: {fileID: 0}
+  rigidbody: {fileID: 0}
   health: 0
   maxHealth: 100
   vulnerable: 1
@@ -125,15 +136,10 @@ MonoBehaviour:
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
-  resource: 0
-  energyGenerationTimer: 0
-  timeUsage: 0
-  useWindToGenEnergy: 0
-  energyGenerationTotal: 0
-  energyGenerationLimit: -1
-  useEnergyGenLimit: 0
---- !u!95 &5406913998153414739 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}
-  m_PrefabInstance: {fileID: 1649477988873198894}
+  projectilePrefab: {fileID: 0}
+  projectileParent: {fileID: 8132165415511203757}
+--- !u!4 &9115346750531339744 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3890728525462386055, guid: 09943904bff810340a376831cb22bfec, type: 3}
+  m_PrefabInstance: {fileID: 5439947482585149543}
   m_PrefabAsset: {fileID: 0}

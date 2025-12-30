@@ -19,7 +19,7 @@ namespace RM_EDU
 
         // The enemy's movement direction.
         // Enemies go from left to right.
-        private Vector3 movementDirec = Vector3.left;
+        public Vector3 movementDirec = Vector3.left;
 
         // If 'true', the enemy moves.
         private bool movementEnabled = true;

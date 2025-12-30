@@ -8,9 +8,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 5736827563331587179}
     m_Modifications:
+    - target: {fileID: 1704220741321181361, guid: 5422149a80a46be48b3f85f2d62ee62d, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 2053640641895152340, guid: 5422149a80a46be48b3f85f2d62ee62d, type: 3}
       propertyPath: m_Name
       value: Enemy Attack
+      objectReference: {fileID: 0}
+    - target: {fileID: 2053640641895152340, guid: 5422149a80a46be48b3f85f2d62ee62d, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7351030459899988006, guid: 5422149a80a46be48b3f85f2d62ee62d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -89,6 +97,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Enemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3890728525462386055, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -128,6 +140,10 @@ PrefabInstance:
     - target: {fileID: 3890728525462386055, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6109650057116392062, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -190,9 +206,9 @@ MonoBehaviour:
   movementSpeed: 60
   airPollution: 0
   playerEnemy: {fileID: 0}
-  enemyAttack: {fileID: 8204392876637201565}
-  deathEnergyCost: 1
+  movementDirec: {x: -1, y: 0, z: 0}
   targetUserUnit: {fileID: 0}
+  enemyAttack: {fileID: 8204392876637201565}
 --- !u!61 &7283594400394210138 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2267399927797895862, guid: 09943904bff810340a376831cb22bfec, type: 3}

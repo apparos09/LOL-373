@@ -18,8 +18,8 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -53,4 +53,7 @@ TagManager:
     locked: 0
   - name: Action Unit
     uniqueID: 1704146833
+    locked: 0
+  - name: Action Unit Effects
+    uniqueID: 1483626707
     locked: 0
