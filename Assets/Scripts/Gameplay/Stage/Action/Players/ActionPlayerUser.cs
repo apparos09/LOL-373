@@ -232,6 +232,10 @@ namespace RM_EDU
 
             // Sets the info.
             ActionUI.Instance.SetSelectedUnitInfo(unitPrefab);
+
+            // Highlights tiles.
+            if (ActionStage.IsTileHighlightingEnabled)
+                ActionManager.Instance.actionStage.OnPlayerUserSelectedUnit();
         }
 
         // Clears the prefab the player has selected.
@@ -245,6 +249,10 @@ namespace RM_EDU
 
             // Clears the info.
             ActionUI.Instance.ClearSelectedUnitInfo();
+
+            // Unhighlight tiles.
+            if (ActionStage.IsTileHighlightingEnabled)
+                ActionManager.Instance.actionStage.OnPlayerUserClearedSelectedUnit();
         }
 
         // Returns 'true' if the selected action unit can use the tile.

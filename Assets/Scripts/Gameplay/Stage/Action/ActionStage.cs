@@ -52,6 +52,9 @@ namespace RM_EDU
         // The tile sprite size in pixels (length, width)
         private Vector2 tileSize = new Vector2(TILE_SIZE_X_DEFAULT, TILE_SIZE_Y_DEFAULT);
 
+        // Returns 'true' if the tile highlights are enabled.
+        private static bool tileHighlightingEnabled = true;
+
         // The original of the map.
         // (0.5, 0.5) is the centre, (1, 1) is the top right corner and (0, 0) is the bottom left corner.
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
@@ -292,6 +295,12 @@ namespace RM_EDU
             }
         }
 
+        // Returns 'true' if the stage allows for tile highlighting.
+        public static bool IsTileHighlightingEnabled
+        {
+            get { return tileHighlightingEnabled; }
+        }
+
         // Returns 'true' if the stage has metal tiles.
         public bool HasMetalTiles
         {
@@ -456,6 +465,54 @@ namespace RM_EDU
 
             // Returns the color.
             return color;
+        }
+
+        // Called when the player user has selected a unit.
+        public void OnPlayerUserSelectedUnit()
+        {
+            // The player user.
+            ActionPlayerUser playerUser = actionManager.playerUser;
+
+            // Called if the player user is selecting a unit.
+            if (playerUser.IsSelectingActionUnitPrefab())
+            {
+                // Goes through all the rows and columns.
+                for (int r = 0; r < tiles.GetLength(0); r++)
+                {
+                    for (int c = 0; c < tiles.GetLength(1); c++)
+                    {
+                        // The tile exists.
+                        if (tiles[r, c] != null)
+                        {
+                            tiles[r, c].HighlightTile(playerUser.selectedUnitPrefab);
+                        }
+                    }
+                }
+            }
+        }
+
+        // Called when the player has unselected a unit.
+        public void OnPlayerUserClearedSelectedUnit()
+        {
+            // The player user.
+            ActionPlayerUser playerUser = actionManager.playerUser;
+
+            // Called if the player user is selecting a unit.
+            if (!playerUser.IsSelectingActionUnitPrefab())
+            {
+                // Goes through all the rows and columns.
+                for (int r = 0; r < tiles.GetLength(0); r++)
+                {
+                    for (int c = 0; c < tiles.GetLength(1); c++)
+                    {
+                        // The tile exists.
+                        if (tiles[r, c] != null)
+                        {
+                            tiles[r, c].UnhighlightTile();
+                        }
+                    }
+                }
+            }
         }
 
         // Gets a vector representing the provided world position in reference to the map.

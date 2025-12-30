@@ -60,7 +60,7 @@ namespace RM_EDU
         private static Color unusableColor = Color.grey;
 
         // The alpha of highlights on the tile.
-        private static float highlightAlpha = 0.75F;
+        private static float highlightAlpha = 0.25F;
 
         [Header("World")]
 
@@ -187,7 +187,7 @@ namespace RM_EDU
         // Returns 'true' if the tile is currently highlighted.
         public bool IsHighlighted()
         {
-            return highlightSpriteRenderer.gameObject.activeSelf;
+            return highlightSpriteRenderer.enabled && highlightSpriteRenderer.gameObject.activeSelf;
         }
 
         // Sets if the tile should be highlighted.
@@ -209,7 +209,6 @@ namespace RM_EDU
                 newColor = Color.white;
             }
 
-
             // Change the alpha value.
             newColor.a = highlightAlpha;
 
@@ -218,6 +217,39 @@ namespace RM_EDU
 
             // Changes the activity of the sprite renderer based on if it's highlighted or not.
             highlightSpriteRenderer.gameObject.SetActive(highlighted);
+        }
+
+        // Highlights the tile.
+        public void HighlightTile(bool usable)
+        {
+            SetHighlighted(true, usable);
+        }
+
+        // Highlights the tile.
+        // If the unit can use this tile, it's highlighted as a usable tile.
+        // Highlighted as not usable if the unit cannot use it.
+        public void HighlightTile(ActionUnit compUnit)
+        {
+            SetHighlighted(true, compUnit.UsableTile(this));
+        }
+
+        // Unhighlights the tile.
+        // Since the highlight is being turned off, usable can be set to anything.
+        public void UnhighlightTile(bool usable)
+        {
+            SetHighlighted(false, usable);
+        }
+
+        // Unhighlights the tile. Automatically sets usable based on if there's an action unit on this tile.
+        public void UnhighlightTile()
+        {
+            SetHighlighted(false, !HasActionUnitUser());
+        }
+
+        // Refreshes the highlighted tile.
+        public void RefreshHighlightedTile()
+        {
+            SetHighlighted(IsHighlighted(), !HasActionUnitUser());
         }
 
         // WORLD
@@ -239,11 +271,37 @@ namespace RM_EDU
             return mapPos.x;
         }
 
-        // Returns 'true' if an action unit can be placed on this tile.
-        public bool IsUsableByActionUnitUser()
+        // ACTION UNUT USER
+        // Called when the player unit user is selecting a unit.
+        public void OnPlayerUserSelectedUnit(ActionUnit selectedUnit)
         {
-            // TODO: implement.
-            return true;
+            HighlightTile(selectedUnit.UsableTile(this));
+        }
+
+        // Called when the player user has deselected a unit.
+        public void OnPlayerUserDeselectedUnit()
+        {
+            UnhighlightTile(HasActionUnitUser());
+        }
+
+        // Returns 'true' if an action unit can be placed on this tile.
+        // If 'ignoreHasActionUser' is true, this ignores if there's a user on the tile.
+        public bool IsUsableByActionUnitUser(ActionUnitUser compUnit, bool ignoreHasActionUser)
+        {
+            bool result = false;
+
+            // If there are no valid tiles, or the valid tiles list contains this tile's type...
+            // This aciton user can use this tile.
+            if(compUnit.UsableTileType(this))
+            {
+                // Checks if the saved user should be ignored.
+                // If the current user should be ignored, this returns true.
+                // If the current user shouldn't be ignored, return false if this tile is being used.
+                result = ignoreHasActionUser ? true : !HasActionUnitUser();
+            }
+
+            // Return result.
+            return result;
         }
 
         // Returns 'true' if an action unit is on the tile.
@@ -260,20 +318,19 @@ namespace RM_EDU
         }
 
         // Sets the action unit.
-        public void SetActionUnitUser(ActionUnitUser actionUnit)
+        public void SetActionUnitUser(ActionUnitUser newUnitUser)
         {
-            this.actionUnitUser = actionUnit;
+            actionUnitUser = newUnitUser;
 
             // If the unit has been set.
-            if(this.actionUnitUser != null)
+            if(actionUnitUser != null)
             {
-                // If the unit
-                if (this.actionUnitUser is ActionUnitUser)
-                {
-                    (this.actionUnitUser as ActionUnitUser).tile = this;
-                }
+                actionUnitUser.tile = this;
             }
-            
+
+            // If the tile is currently highlighted, change the highlight.
+            if(IsHighlighted())
+                RefreshHighlightedTile();
         }
 
         // Clears the action unit on the tile.
@@ -291,6 +348,10 @@ namespace RM_EDU
 
             // Set unit to null.
             actionUnitUser = null;
+
+            // If the tile is currently highlighted, change the highlight.
+            if (IsHighlighted())
+                RefreshHighlightedTile();
         }
 
         // Kills the action unit user.

@@ -46,7 +46,7 @@ namespace RM_EDU
                 // Checks if the tile is interactable, if the tile is usable by an action unit,...
                 // And if the tile already has an action unit.
                 // If the tile cannot be used for any reason, return false.
-                if(!tile.interactable || !tile.IsUsableByActionUnitUser() || tile.HasActionUnitUser())
+                if(!tile.interactable || !tile.IsUsableByActionUnitUser(this, false))
                 {
                     // Tile already being used.
                     result = false;
@@ -67,17 +67,17 @@ namespace RM_EDU
             return result;
         }
 
-        // Returns 'true' if the tile is usable based purely on its type.
-        // If there is some other factor that makes the tile usable or unusable, it isn't considered.
-        public bool UsableTileType(ActionTile tile)
+        // Returns 'true' if the tile type is usable.
+        public bool UsableTileType(ActionTile.actionTile tileType)
         {
+            // The tile type.
             bool result;
 
             // Checks if there are specific tiles that are valid.
             if (validTiles.Count > 0)
             {
                 // If the valid list contains the tile type, the unit can be placed there.
-                result = validTiles.Contains(tile.GetTileType());
+                result = validTiles.Contains(tileType);
             }
             // Since there are no valid tiles, the game acts as if there are no invalid tiles.
             else
@@ -86,6 +86,22 @@ namespace RM_EDU
             }
 
             return result;
+        }
+
+        // Returns 'true' if the tile is usable based purely on its type.
+        // If there is some other factor that makes the tile usable or unusable, it isn't considered.
+        public bool UsableTileType(ActionTile tile)
+        {
+            // If the tile exists, check it's tile type.
+            if(tile != null)
+            {
+                return UsableTileType(tile.GetTileType());
+            }
+            // Tile doesn't exist, so no type to chck, so null.
+            else
+            {
+                return false;   
+            }
         }
 
         // Sets the position to the provided tile's position.

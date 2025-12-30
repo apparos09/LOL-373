@@ -571,6 +571,7 @@ namespace RM_EDU
 
 
         // PLAYERS
+
         // Called on the death of the user.
         public void OnPlayerUserDeath()
         {
