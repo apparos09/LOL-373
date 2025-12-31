@@ -81,7 +81,7 @@ MonoBehaviour:
   actionUnitPrefabs: {fileID: 0}
   energy: 0
   unitParent: {fileID: 7631506222874977085}
-  startingEnergy: 50
+  startingEnergy: 300
   energyAutoGenTimer: 0
   energyAutoGenTimerMax: 5
   energyAutoGenAmount: 5

@@ -17,7 +17,7 @@ namespace RM_EDU
 
             // The overlays on the map.
             // For visual simplicity, this is an int instead of the enum it represents.
-            public int[,] overalys = null;
+            public int[,] overlays = null;
 
             // The wind ratings.
             public ActionUnit.statRating[] windRatings = null;
@@ -149,7 +149,15 @@ namespace RM_EDU
             };
 
             // An empty tile overlay.
-            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT];
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+            };
 
             // Wind array of no wind.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
@@ -159,7 +167,7 @@ namespace RM_EDU
 
             // Setting data.
             data.map = map;
-            data.overalys = overlays;
+            data.overlays = overlays;
             data.windRatings = windRatings;
 
             return data;
@@ -170,17 +178,25 @@ namespace RM_EDU
         {
             // A debug stage map.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
-                { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" }
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" },
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" },
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" },
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" },
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" },
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" },
+                { "04A", "01A", "02A", "03A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "03A", "02A", "01A", "01A", "02A" }
             };
 
             // An debug map overlay.
-            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT];
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+            };
 
             // The wind ratings.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
@@ -191,7 +207,7 @@ namespace RM_EDU
 
             // Setting data.
             data.map = map;
-            data.overalys = overlays;
+            data.overlays = overlays;
             data.windRatings = windRatings;
 
             return data;

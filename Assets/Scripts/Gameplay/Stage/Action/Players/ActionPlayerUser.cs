@@ -16,7 +16,7 @@ namespace RM_EDU
         [Header("User")]
 
         // The energy the player user starts with.
-        public float startingEnergy = 50.0F;
+        public float startingEnergy = 300.0F;
 
         // The energy the player had on the previous update.
         // Used to see if the player's energy has changed between updates.
@@ -311,7 +311,7 @@ namespace RM_EDU
         }
 
         // Instantiates an action unit on the provided tile.
-        public ActionUnit InstantiateActionUnit(ActionUnit unitPrefab, ActionTile tile)
+        public ActionUnit InstantiateActionUnit(ActionUnit unitPrefab, ActionTile tile, bool setAsOwner = true, bool applyEnergyCost = true)
         {
             // No prefab so return null.
             if(unitPrefab == null)
@@ -332,6 +332,12 @@ namespace RM_EDU
             // As such, do functions specific to this unit.
             if(newUnit != null)
             {
+                // If the user should be the owner of this unit.
+                if(setAsOwner)
+                {
+                    newUnit.owner = this;
+                }
+
                 // If the tile exists, place the unit on it.
                 if (tile != null)
                 {
@@ -363,32 +369,54 @@ namespace RM_EDU
                 createdUserUnits.Add(userUnit);
             }
 
+            // If the energy cost should be applied.
+            if(applyEnergyCost)
+            {
+                // Reduce energy.
+                energy -= newUnit.energyCreationCost;
+
+                // Bounds check.
+                if (energy < 0.0F)
+                    energy = 0.0F;
+
+                // If the selected prefab exists.
+                if (selectedUnitPrefab != null)
+                {
+                    // If the player user doesn't have energy to use their currently selected unit prefab...
+                    // Clear the selection.
+                    if (!HasEnergyToCreateActionUnit(selectedUnitPrefab))
+                    {
+                        ClearSelectedActionUnitPrefab();
+                    }
+                }
+            }
+
             // Returns the new unit.
             return newUnit;
         }
 
         // Instantiates the selected action unit without putting it on a tile.
-        public ActionUnit InstantiateSelectedActionUnit()
+        public ActionUnit InstantiateSelectedActionUnit(bool setAsOwner = true, bool applyEnergyCost = true)
         {
-            return InstantiateSelectedActionUnit(null);
+            return InstantiateSelectedActionUnit(null, setAsOwner, applyEnergyCost);
         }
 
         // Instantiates the selected unit and places it on the provided tile.
-        public ActionUnit InstantiateSelectedActionUnit(ActionTile tile)
+        public ActionUnit InstantiateSelectedActionUnit(ActionTile tile, bool setAsOwner = true, bool applyEnergyCost = true)
         {
-            return InstantiateActionUnit(selectedUnitPrefab, tile);
+            return InstantiateActionUnit(selectedUnitPrefab, tile, setAsOwner, applyEnergyCost);
         }
 
         // Instantiates a lane blaster.
-        public ActionUnit InstantiateLaneBlaster()
+        public ActionUnit InstantiateLaneBlaster(bool setAsOwner = true, bool applyEnergyCost = true)
         {
-            return InstantiateActionUnit(laneBlasterPrefab, null);
+            return InstantiateActionUnit(laneBlasterPrefab, null, setAsOwner, applyEnergyCost);
         }
 
         // Instantiates a lane blaster on the provided tile.
-        public ActionUnit InstantiateLaneBlaster(ActionTile tile)
+        public ActionUnit InstantiateLaneBlaster(ActionTile tile, bool setAsOwner = true, bool applyEnergyCost = true)
         {
-            return InstantiateActionUnit(laneBlasterPrefab, tile);
+            return InstantiateActionUnit(laneBlasterPrefab, tile, setAsOwner, applyEnergyCost);
         }
 
         // Tries to remove the user unit from the created units list.

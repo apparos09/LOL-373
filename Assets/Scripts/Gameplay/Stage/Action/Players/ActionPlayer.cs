@@ -64,6 +64,12 @@ namespace RM_EDU
             }
         }
 
+        // Returns 'true' if the player has the energy to create the provided aciton unit.
+        public bool HasEnergyToCreateActionUnit(ActionUnit actionUnit)
+        {
+            return energy >= actionUnit.energyCreationCost;
+        }
+
         // Resets the player.
         public abstract void ResetPlayer();
 

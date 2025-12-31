@@ -181,10 +181,16 @@ namespace RM_EDU
             return energy;
         }
 
+        // Has an energy generation limit.
+        public bool HasEnergyGenerationLimit()
+        {
+            return useEnergyGenLimit;
+        }
+
         // Returns 'true' if the energy generation limit has been reached.
         public bool HasEnergyGenerationLimitBeenReached()
         {
-            return energyGenerationTotal >= energyGenerationLimit;
+            return useEnergyGenLimit && energyGenerationTotal >= energyGenerationLimit;
         }
 
         // Called when the energy generation limit has been reached.
@@ -221,7 +227,17 @@ namespace RM_EDU
                     // Time to generate new energy.
                     if (energyGenerationTimer <= 0.0F)
                     {
+                        // Set timer to 0.
+                        energyGenerationTimer = 0.0F;
 
+                        //  The new energy that was created.
+                        float newEnergy = GenerateEnergy();
+
+                        // Increase the energy of the owner.
+                        if (owner != null)
+                        {
+                            owner.energy += newEnergy;
+                        }
                     }
                 }
                 else

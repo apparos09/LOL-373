@@ -254,6 +254,17 @@ namespace RM_EDU
 
                     // Sets the tile colour.
                     newTile.baseSpriteRenderer.color = tileColor;
+                    
+                    // If there are overlays, set the tile's default overlay.
+                    if(data.overlays != null)
+                    {
+                        // Gets the new overlay, clamping it within valid values.
+                        ActionTile.actionTileOverlay newOverlay =
+                            (ActionTile.actionTileOverlay)(Mathf.Clamp(data.overlays[r, c], 0, ActionTile.ACTION_TILE_OVERLAY_TYPE_COUNT - 1));
+
+                        // Sets the new default type.
+                        newTile.SetDefaultTileOverlayType(newOverlay, true);
+                    }
 
                     // If there's already a tile in this array index, destroy it so it can be replaced.
                     if (tiles[r, c] != null)
@@ -404,7 +415,8 @@ namespace RM_EDU
                     }
 
                     // Instantiate the lane laser prefab.
-                    playerUser.InstantiateLaneBlaster(tiles[r, 0]);
+                    // Don't reduce the player's energy when making a lane blaster.
+                    playerUser.InstantiateLaneBlaster(tiles[r, 0], true, false);
                 }
             }
         }

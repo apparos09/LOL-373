@@ -118,13 +118,16 @@ MonoBehaviour:
   energyGenerationSpeed: 0
   attackPower: 0
   attackSpeed: 0
+  attackingEnabled: 0
   attackCooldownTimer: 0
+  oneHitKill: 0
   durability: 0
   movementSpeed: 0
   airPollution: 0
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
+  removableByUser: 1
   resource: 0
   energyGenerationTimer: 0
   timeUsage: 0

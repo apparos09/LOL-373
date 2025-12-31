@@ -186,6 +186,9 @@ namespace RM_EDU
                     // Creates the new enemy, making a child of this object by default.
                     ActionUnitEnemy enemyUnit = Instantiate(prefab, transform);
 
+                    // This enemy player owns this unit.
+                    enemyUnit.owner = this;
+
                     // Sets the parent.
                     SetActionUnitParentToUnitParent(enemyUnit);
 

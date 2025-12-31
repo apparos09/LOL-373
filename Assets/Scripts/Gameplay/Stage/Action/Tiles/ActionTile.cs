@@ -10,8 +10,14 @@ namespace RM_EDU
         // The action tile.
         public enum actionTile { unknown, land, river, sea, metal };
 
+        // The tile type count.
+        public const int ACTION_TILE_TYPE_COUNT = 5;
+
         // The action tile overlay.
         public enum actionTileOverlay { none, unusable, geothermalSource, coalSource, naturalGasSource, nuclearSource, oilSource, nuclearHazard, oilHazard }
+
+        // The total number of values in the tile overlay enum.
+        public const int ACTION_TILE_OVERLAY_TYPE_COUNT = 9;
 
         // The action manager.
         public ActionManager actionManager;
@@ -23,6 +29,10 @@ namespace RM_EDU
         // This is public because the prefabs need to be able to set this.
         [Tooltip("The tile overlay type. Use the dedication function for changing this member so that the visuals update as well.")]
         public actionTileOverlay tileOverlayType = actionTileOverlay.none;
+
+        // The default tile overlay type.
+        [Tooltip("The default tile overlay type. This is what the tile is set to when reset.")]
+        public actionTileOverlay defaultTileOverlayType = actionTileOverlay.none;
 
         // The tile verison.
         public char tileVersion = 'A';
@@ -94,7 +104,7 @@ namespace RM_EDU
 
             // Turn off highlight and overlay.
             SetHighlighted(false, true);
-            SetTileOverlayType(tileOverlayType);
+            SetTileOverlayType(defaultTileOverlayType);
         }
 
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
@@ -144,10 +154,14 @@ namespace RM_EDU
         }
 
         // Sets the tile overlay type.
-        public void SetTileOverlayType(actionTileOverlay overlayType)
+        public void SetTileOverlayType(actionTileOverlay overlayType, bool setAsDefault = false)
         {
             // Sets the new type.
             tileOverlayType = overlayType;
+
+            // If the overlay type should be set as the default, set it.
+            if(setAsDefault)
+                defaultTileOverlayType = overlayType;
 
             // Turns on the overlay sprite.
             overlaySpriteRenderer.gameObject.SetActive(true);
@@ -166,6 +180,29 @@ namespace RM_EDU
             {
                 overlaySpriteRenderer.gameObject.SetActive(false);
             }
+        }
+
+        // Returns the default tile overlay type.
+        public actionTileOverlay GetDefaultTileOverlayType()
+        {
+            return defaultTileOverlayType;
+        }
+
+        // Sets the default tile overlay type.
+        // If 'setCurrent' is true, the current default type is set as well.
+        public void SetDefaultTileOverlayType(actionTileOverlay newDefaultType, bool setAsCurrent = false)
+        {
+            // Checks if the current overlay type should also be set.
+            if (setAsCurrent)
+                SetTileOverlayType(newDefaultType, true);
+            else
+                defaultTileOverlayType = newDefaultType;
+        }
+
+        // Resets the tile ovelray type.
+        public void ResetTileOverlayType()
+        {
+            SetTileOverlayType(defaultTileOverlayType, true);
         }
 
         // COLOR CHANGES
@@ -458,8 +495,8 @@ namespace RM_EDU
             // Clears the action user unit. 
             ClearActionUnitUser();
 
-            // No overlay.
-            SetTileOverlayType(actionTileOverlay.none);
+            // Resets the tile overlay type.
+            ResetTileOverlayType();
         }
 
         // // Update is called once per frame

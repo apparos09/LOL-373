@@ -54,6 +54,9 @@ namespace RM_EDU
         // The rigid body.
         public new Rigidbody2D rigidbody;
 
+        // The owner of this unit.
+        public ActionPlayer owner;
+
         [Header("Health")]
 
         // The unit's health.
@@ -394,7 +397,7 @@ namespace RM_EDU
         public virtual float CalculateEnergyGenerationAmount()
         {
             // Ceil(Amount Stat / Stat Maximum * 10)
-            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 100.0F);
+            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 10.0F);
         }
 
         // TILE //
