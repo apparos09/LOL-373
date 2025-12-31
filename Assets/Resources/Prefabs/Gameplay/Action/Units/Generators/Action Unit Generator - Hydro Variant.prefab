@@ -110,19 +110,27 @@ MonoBehaviour:
   animator: {fileID: 372058882227910017}
   collider: {fileID: 5166637514685104714}
   rigidbody: {fileID: 7586979431599790197}
+  owner: {fileID: 0}
+  health: 0
+  maxHealth: 100
+  vulnerable: 1
   statFactor: 1
-  energyCreationCost: 0
+  energyCreationCost: 60
   energyDeathCost: 0
-  energyGenerationAmount: 0
-  energyGenerationSpeed: 0
+  energyGenerationAmount: 80
+  energyGenerationSpeed: 80
   attackPower: 0
   attackSpeed: 0
-  durability: 0
+  attackingEnabled: 1
+  attackCooldownTimer: 0
+  oneHitKill: 0
+  durability: 80
   movementSpeed: 0
-  airPollution: 0
-  validTiles: 
+  airPollution: 20
+  validTiles: 02000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
+  removableByUser: 1
   resource: 2
   energyGenerationTimer: 0
   timeUsage: 0

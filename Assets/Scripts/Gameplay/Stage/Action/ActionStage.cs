@@ -34,7 +34,7 @@ namespace RM_EDU
         public const int MAP_ROW_COUNT_DEFAULT = 7;
 
         // The default colum count for a map.
-        public const int MAP_COLUMN_COUNT_DEFAULT = 16;
+        public const int MAP_COLUMN_COUNT_DEFAULT = 15;
 
         // Arrays - (r, w) = (y, x)
         // Action Tiles
@@ -60,9 +60,6 @@ namespace RM_EDU
         // (0.5, 0.5) is the centre, (1, 1) is the top right corner and (0, 0) is the bottom left corner.
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
 
-        // An offset that can be applied whenn checking if something's in the stage bounds or not.
-        private Vector3 stageBoundsOffset = new Vector3(TILE_SIZE_X_DEFAULT * 5, TILE_SIZE_Y_DEFAULT * 5, 0.0F);
-
         // The list of metal tiles in the stage.
         private List<ActionTile> metalTiles = new List<ActionTile>();
 
@@ -72,8 +69,11 @@ namespace RM_EDU
         // The row enemy units.
         public List<List<ActionUnitEnemy>> rowEnemyUnits = new List<List<ActionUnitEnemy>>();
 
+        // An offset that can be applied whenn checking if something's in the stage bounds or not.
+        private Vector3 stageBoundsOffset = new Vector3(TILE_SIZE_X_DEFAULT * 8, TILE_SIZE_Y_DEFAULT * 8, 0.0F);
+
         // Gets set to 'true' when a map has been generated.
-        private bool mapGenerated = false;
+        private bool stageGenerated = false;
 
         // Start is called before the first frame update
         void Start()
@@ -99,7 +99,7 @@ namespace RM_EDU
             // If the map should be generated in the Start() function.
             if(generateMapOnStart)
             {
-                GenerateMap();
+                GenerateStage();
             }
         }
 
@@ -144,15 +144,32 @@ namespace RM_EDU
             return actionManager.idNumber;
         }
 
+        // STAGE DATA / GENERATION //
+        // Gets the stage map data. Returns null if there's no data.
+        public static ActionStageList.StageGenerationData GetStageData(int idNumber)
+        {
+            // Gets the data.
+            ActionStageList.StageGenerationData data = ActionStageList.GenerateStageMap(idNumber);
+
+            // Return map.
+            return data;
+        }
+
+        // Gets the stage map data. Returns null if there's no data.
+        public ActionStageList.StageGenerationData GetStageData()
+        {
+            return GetStageData(GetIdNumber());
+        }
+
         // Generates a map using the id number from the action manager.
-        public void GenerateMap()
+        public void GenerateStage()
         {
             // Generates the map using the id number from the action manager.
-            GenerateMap(actionManager.idNumber);
+            GenerateStage(actionManager.idNumber);
         }
 
         // Generates a map using the provided ID number. Saves the provided as the ID number.
-        public void GenerateMap(int idNumber)
+        public void GenerateStage(int idNumber)
         {
             // Gets the map based on the id number.
             ActionStageList.StageGenerationData data = ActionStageList.GenerateStageMap(idNumber);
@@ -320,13 +337,13 @@ namespace RM_EDU
             }
 
             // The map has now been generated.
-            mapGenerated = true;
+            stageGenerated = true;
         }
 
         // Returns true if the map has been generated.
-        public bool IsMapGenerated
+        public bool IsStageGenerated
         {
-            get { return mapGenerated; }
+            get { return stageGenerated; }
         }
 
         // Returns 'true' if the stage allows for tile highlighting.
@@ -616,37 +633,6 @@ namespace RM_EDU
             return refVec;
         }
 
-        // Returns 'true' if the position is in the stage bounds.
-        // If 'ignoreZ' is true, the z-position is ignored when checking if the position is within the stage bounds.
-        //  - This is a 2D game, so the z-position should be ignored.
-        // If 'applyOffset' is true, an offset is applied when checking if within the stage bounds.
-        // If 'applyOffset' is false, no offset is applied, meaning an object is only in the stage bounds if...
-        // It's position is in the map itself.
-        public bool InStageBounds(Vector3 pos, bool ignoreZ = true, bool applyOffset = true)
-        {
-            // Gets the map lower bounds and upper bounds.
-            Vector3 mapLowerBounds = GetMapLowerBoundsInWorldUnits();
-            Vector3 mapUpperBounds = GetMapUpperBoundsInWorldUnits();
-
-            // Calculates the lower bounds and upper bounds.
-            // Gives different results if the stage bounds offset should be applied or not.
-            Vector3 lowerBounds = applyOffset ? mapLowerBounds - stageBoundsOffset : mapLowerBounds;
-            Vector3 upperBounds = applyOffset ? mapUpperBounds + stageBoundsOffset : mapUpperBounds;
-
-            bool inX = pos.x >= lowerBounds.x && pos.x <= upperBounds.x;
-            bool inY = pos.y >= lowerBounds.y && pos.y <= upperBounds.y;
-            bool inZ = ignoreZ ? true : pos.z >= lowerBounds.x && pos.z <= upperBounds.x;
-
-            // Returns true if the unit is in all 3 bounds.
-            return inX && inY && inZ;
-        }
-
-        // Returns 'true' if the object is within the stage bounds.
-        public bool InStageBounds(GameObject obj, bool ignoreZ = true, bool applyOffset = true)
-        {
-            return InStageBounds(obj.transform.position, applyOffset);
-        }
-
         // Checks if there's at least 1 enemy in the provided row.
         public bool IsEnemyInRow(int row)
         {
@@ -746,28 +732,39 @@ namespace RM_EDU
             }
         }
 
-        // Gets the stage map data. Returns null if there's no data.
-        public string[,] GetStageMapData()
+        // Returns 'true' if the position is in the stage bounds.
+        // If 'ignoreZ' is true, the z-position is ignored when checking if the position is within the stage bounds.
+        //  * This is a 2D game, so the z-position should be ignored.
+        // If 'applyOffset' is true, an offset is applied when checking if within the stage bounds.
+        // If 'applyOffset' is false, no offset is applied, meaning an object is only in the stage bounds if...
+        // It's position is in the map itself.
+        public bool InStageBounds(Vector3 pos, bool ignoreZ = true, bool applyOffset = true)
         {
-            // Gets the id number.
-            int idNumber = GetIdNumber();
+            // Gets the map lower bounds and upper bounds.
+            Vector3 mapLowerBounds = GetMapLowerBoundsInWorldUnits();
+            Vector3 mapUpperBounds = GetMapUpperBoundsInWorldUnits();
 
-            // Gets the data.
-            ActionStageList.StageGenerationData data = ActionStageList.GenerateStageMap(idNumber);
+            // Calculates the lower bounds and upper bounds.
+            // Gives different results if the stage bounds offset should be applied or not.
+            Vector3 lowerBounds = applyOffset ? mapLowerBounds - stageBoundsOffset : mapLowerBounds;
+            Vector3 upperBounds = applyOffset ? mapUpperBounds + stageBoundsOffset : mapUpperBounds;
 
-            // The map to be returned.
-            string[,] map = null;
+            bool inX = pos.x >= lowerBounds.x && pos.x <= upperBounds.x;
+            bool inY = pos.y >= lowerBounds.y && pos.y <= upperBounds.y;
+            bool inZ = ignoreZ ? true : pos.z >= lowerBounds.x && pos.z <= upperBounds.x;
 
-            // Sets the map.
-            if (data != null)
-                map = data.map;
+            // Returns true if the unit is in all 3 bounds.
+            return inX && inY && inZ;
+        }
 
-            // Return map.
-            return map;
+        // Returns 'true' if the object is within the stage bounds.
+        public bool InStageBounds(GameObject obj, bool ignoreZ = true, bool applyOffset = true)
+        {
+            return InStageBounds(obj.transform.position, applyOffset);
         }
 
         // Resets the stage.
-        public void ResetMap()
+        public void ResetStage()
         {
             // Resets all the tiles for the map.
             for(int r = 0; r < tiles.GetLength(0); r++) // Rows

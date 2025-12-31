@@ -177,6 +177,7 @@ MonoBehaviour:
   dayNightTimer: 0
   windRatings: 000000000000000000000000
   playerUser: {fileID: 8040844772360132460}
+  userDefenseIds: 
   playerEnemy: {fileID: 1835002386927201937}
   postProcessor: {fileID: 368618438}
 --- !u!4 &91205896

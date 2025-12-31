@@ -204,7 +204,7 @@ namespace RM_EDU
             }
 
             // Generates the map using the id number.
-            actionStage.GenerateMap(idNumber);
+            actionStage.GenerateStage(idNumber);
 
             // Sets the generator and defense prefabs.
             playerUser.SetGeneratorPrefabsFromManager();
@@ -632,7 +632,7 @@ namespace RM_EDU
             playerEnemy.ResetPlayer();
 
             // Resets the map.
-            actionStage.ResetMap();
+            actionStage.ResetStage();
 
             // Updates the UI for the player and enemy.
             actionUI.UpdatePlayerUserUI();

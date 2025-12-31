@@ -95,6 +95,7 @@ MonoBehaviour:
   animator: {fileID: 4127604691639666909}
   collider: {fileID: 8922324095560941334}
   rigidbody: {fileID: 6137208461938746665}
+  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   vulnerable: 1
@@ -111,7 +112,7 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
-  validTiles: 
+  validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
