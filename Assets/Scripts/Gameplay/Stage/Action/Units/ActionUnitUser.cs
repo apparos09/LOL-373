@@ -118,6 +118,10 @@ namespace RM_EDU
                     result = true;
                     break;
 
+                case ActionTile.actionTileOverlay.unusable:
+                    result = false;
+                    break;
+
                 case ActionTile.actionTileOverlay.geothermalSource:
                     // If this is a generator, check for valid types.
                     if(this is ActionUnitGenerator)
@@ -275,7 +279,21 @@ namespace RM_EDU
 
                     break;
 
-                case ActionTile.actionTileOverlay.unusable:
+                case ActionTile.actionTileOverlay.waterHazard:
+                    // Flooded tile.
+                    // If this is a generator, don't allow it to use this tile.
+                    switch(GetUnitType())
+                    {
+                        case unitType.generator:
+                            result = false;
+                            break;
+
+                        default:
+                            result = true;
+                            break;
+                    }
+                    break;
+
                 case ActionTile.actionTileOverlay.nuclearHazard:
                 case ActionTile.actionTileOverlay.oilHazard:
                     result = false;

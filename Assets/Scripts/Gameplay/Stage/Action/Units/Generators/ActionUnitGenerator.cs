@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RM_EDU
 {
@@ -97,8 +99,64 @@ namespace RM_EDU
             }
             else
             {
+                // The current energy generation speed.
+                float currEnergyGenSpeed;
+
+                // If uses wind to generate energy, set the speed based on that.
+                if(useWindToGenEnergy)
+                {
+                    // The incrementer for the speed.
+                    // The higher the speed, the shorter the time.
+                    float speedInc = BASE_STAT_MAXIMUM / 5;
+
+                    // Checks the wind rating to see the speed.
+                    switch (actionManager.GetCurrentWindRating())
+                    {
+                        default:
+                        case statRating.unknown:
+                        case statRating.noneMinus:
+                        case statRating.none:
+                            // NOTE: the function CanGenerateEnergy() should prevent the generator from...
+                            // Reaching this function to set the energy generation speed.
+                            currEnergyGenSpeed = energyGenerationSpeed; // Default
+                            break;
+
+                        case statRating.veryLow:
+                            currEnergyGenSpeed = speedInc * 1;
+                            break;
+
+                        case statRating.low:
+                            currEnergyGenSpeed = speedInc * 2;
+                            break;
+
+                        case statRating.medium:
+                            currEnergyGenSpeed = speedInc * 3;
+                            break;
+
+                        case statRating.high:
+                            currEnergyGenSpeed = speedInc * 4;
+                            break;
+
+                        case statRating.veryHigh:
+                        case statRating.maximum:
+                        case statRating.maximumPlus:
+                            currEnergyGenSpeed = speedInc * 5;
+                            break;
+                    }
+                }
+                // Fixed generation time max.
+                else
+                {
+                    currEnergyGenSpeed = energyGenerationSpeed;
+                }
+
+                // Calculates the value based on the current energy generation speed.
                 // Calculation: 1 sec + 10 sec * ((maxSpeed - speed) / maxSpeed)
-                value = 1.0F + 10.0F * (BASE_STAT_MAXIMUM - Mathf.Abs(energyGenerationSpeed)) / BASE_STAT_MAXIMUM;
+                value = 1.0F + 10.0F * (BASE_STAT_MAXIMUM - Mathf.Abs(currEnergyGenSpeed)) / BASE_STAT_MAXIMUM;
+
+                // Bounds check.
+                if (value < 0)
+                    value = 0.0F;
             }
 
             // Returns the value.
@@ -106,7 +164,7 @@ namespace RM_EDU
         }
 
         // Sets the energy generation timer to max.
-        public void SetEnergyGenerationTimerToMax()
+        public virtual void SetEnergyGenerationTimerToMax()
         {
             energyGenerationTimer = GetEnergyGenerationTimerMax();
         }

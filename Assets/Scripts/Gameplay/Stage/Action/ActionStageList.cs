@@ -189,18 +189,18 @@ namespace RM_EDU
 
             // An debug map overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 2, 0, 0, 0, 0, 6, 0, 3, 0, 0, 0, 0, 4, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 3, 0, 0, 0, 0, 6, 0, 2, 0, 0, 0, 0, 5, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 4, 0, 0, 0, 0, 5, 0, 2, 0, 0, 0, 0, 6, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                { 0, 5, 0, 0, 0, 0, 4, 0, 3, 0, 0, 0, 0, 6, 0 }
             };
 
             // The wind ratings.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
-                {ActionUnit.statRating.none, ActionUnit.statRating.none, ActionUnit.statRating.none };
+                {ActionUnit.statRating.none, ActionUnit.statRating.veryLow, ActionUnit.statRating.veryHigh };
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();

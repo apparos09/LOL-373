@@ -14,10 +14,10 @@ namespace RM_EDU
         public const int ACTION_TILE_TYPE_COUNT = 5;
 
         // The action tile overlay.
-        public enum actionTileOverlay { none, unusable, geothermalSource, coalSource, naturalGasSource, nuclearSource, oilSource, nuclearHazard, oilHazard }
+        public enum actionTileOverlay { none, unusable, geothermalSource, coalSource, naturalGasSource, nuclearSource, oilSource, waterHazard, nuclearHazard, oilHazard }
 
         // The total number of values in the tile overlay enum.
-        public const int ACTION_TILE_OVERLAY_TYPE_COUNT = 9;
+        public const int ACTION_TILE_OVERLAY_TYPE_COUNT = 10;
 
         // The action manager.
         public ActionManager actionManager;

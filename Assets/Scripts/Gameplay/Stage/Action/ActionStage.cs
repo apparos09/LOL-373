@@ -272,6 +272,7 @@ namespace RM_EDU
                     // Sets the tile colour.
                     newTile.baseSpriteRenderer.color = tileColor;
                     
+                    // OVERLAY //
                     // If there are overlays, set the tile's default overlay.
                     if(data.overlays != null)
                     {
@@ -301,6 +302,14 @@ namespace RM_EDU
                     // Add the tile to the array.
                     tiles[r, c] = newTile; // New
                 }
+            }
+
+            // WIND //
+            // If there's winds, use them for the stage.
+            if(data.windRatings != null)
+            {
+                // Save the wind ratings.
+                ActionManager.Instance.windRatings = data.windRatings;
             }
 
             // Put a lane blaster on the far left edge of the map.
