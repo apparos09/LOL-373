@@ -55,7 +55,7 @@ namespace RM_EDU
                 else
                 {
                     // Sets result based on if the tile is usable by its type.
-                    result = UsableTileType(tile);
+                    result = UsableTileType(tile) && UsableTileOverlayType(tile);
                 }
             }
             // The tile doesn't exist, so nothing can be placed there.
@@ -104,6 +104,194 @@ namespace RM_EDU
             }
         }
 
+        // Returns true if the tile overlay type is usable.
+        public bool UsableTileOverlayType(ActionTile.actionTileOverlay overlay)
+        {
+            // The result to be returned.
+            bool result;
+
+            // Checks what overlay types are usable and unusable.
+            switch (overlay)
+            {
+                default:
+                case ActionTile.actionTileOverlay.none:
+                    result = true;
+                    break;
+
+                case ActionTile.actionTileOverlay.geothermalSource:
+                    // If this is a generator, check for valid types.
+                    if(this is ActionUnitGenerator)
+                    {
+                        // Used to get this object coverted to a generator if applicable.
+                        ActionUnitGenerator tempGen = (ActionUnitGenerator)this;
+
+                        // Checks what resources are valid.
+                        switch(tempGen.resource)
+                        {
+                            case NaturalResources.naturalResource.biomass:
+                            case NaturalResources.naturalResource.hydro:
+                            case NaturalResources.naturalResource.geothermal:
+                            case NaturalResources.naturalResource.solar:
+                            case NaturalResources.naturalResource.wave:
+                            case NaturalResources.naturalResource.wind:
+                                result = true;
+                                break;
+
+                            default:
+                                result = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = true;
+                    }
+                    
+                    break;
+
+                case ActionTile.actionTileOverlay.coalSource:
+                    // If this is a generator, check for valid types.
+                    if (this is ActionUnitGenerator)
+                    {
+                        // Used to get this object coverted to a generator if applicable.
+                        ActionUnitGenerator tempGen = (ActionUnitGenerator)this;
+
+                        // Checks what resources are valid.
+                        switch (tempGen.resource)
+                        {
+                            case NaturalResources.naturalResource.biomass:
+                            case NaturalResources.naturalResource.hydro:
+                            case NaturalResources.naturalResource.solar:
+                            case NaturalResources.naturalResource.wave:
+                            case NaturalResources.naturalResource.wind:
+                            case NaturalResources.naturalResource.coal:
+                            case NaturalResources.naturalResource.naturalGas:
+                                result = true;
+                                break;
+
+                            default:
+                                result = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = true;
+                    }
+
+                    break;
+
+                case ActionTile.actionTileOverlay.naturalGasSource:
+                    // If this is a generator, check for valid types.
+                    if (this is ActionUnitGenerator)
+                    {
+                        // Used to get this object coverted to a generator if applicable.
+                        ActionUnitGenerator tempGen = (ActionUnitGenerator)this;
+
+                        // Checks what resources are valid.
+                        switch (tempGen.resource)
+                        {
+                            case NaturalResources.naturalResource.biomass:
+                            case NaturalResources.naturalResource.hydro:
+                            case NaturalResources.naturalResource.solar:
+                            case NaturalResources.naturalResource.wave:
+                            case NaturalResources.naturalResource.wind:
+                            case NaturalResources.naturalResource.naturalGas:
+                                result = true;
+                                break;
+
+                            default:
+                                result = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = true;
+                    }
+
+                    break;
+
+                case ActionTile.actionTileOverlay.nuclearSource:
+                    // If this is a generator, check for valid types.
+                    if (this is ActionUnitGenerator)
+                    {
+                        // Used to get this object coverted to a generator if applicable.
+                        ActionUnitGenerator tempGen = (ActionUnitGenerator)this;
+
+                        // Checks what resources are valid.
+                        switch (tempGen.resource)
+                        {
+                            case NaturalResources.naturalResource.biomass:
+                            case NaturalResources.naturalResource.hydro:
+                            case NaturalResources.naturalResource.solar:
+                            case NaturalResources.naturalResource.wave:
+                            case NaturalResources.naturalResource.wind:
+                            case NaturalResources.naturalResource.nuclear:
+                                result = true;
+                                break;
+
+                            default:
+                                result = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = true;
+                    }
+
+                    break;
+
+                case ActionTile.actionTileOverlay.oilSource:
+                    // If this is a generator, check for valid types.
+                    if (this is ActionUnitGenerator)
+                    {
+                        // Used to get this object coverted to a generator if applicable.
+                        ActionUnitGenerator tempGen = (ActionUnitGenerator)this;
+
+                        // Checks what resources are valid.
+                        switch (tempGen.resource)
+                        {
+                            case NaturalResources.naturalResource.biomass:
+                            case NaturalResources.naturalResource.hydro:
+                            case NaturalResources.naturalResource.solar:
+                            case NaturalResources.naturalResource.wave:
+                            case NaturalResources.naturalResource.wind:
+                            case NaturalResources.naturalResource.naturalGas:
+                            case NaturalResources.naturalResource.oil:
+                                result = true;
+                                break;
+
+                            default:
+                                result = false;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        result = true;
+                    }
+
+                    break;
+
+                case ActionTile.actionTileOverlay.unusable:
+                case ActionTile.actionTileOverlay.nuclearHazard:
+                case ActionTile.actionTileOverlay.oilHazard:
+                    result = false;
+                    break;
+            }
+
+            return result;
+        }
+
+        // Returns true if the tile overlay type is usable.
+        public bool UsableTileOverlayType(ActionTile tile)
+        {
+            return UsableTileOverlayType(tile.tileOverlayType);
+        }
+
+
         // Sets the position to the provided tile's position.
         public void SetPositionToTilePosition(ActionTile refTile)
         {
@@ -125,7 +313,19 @@ namespace RM_EDU
                 // The tile has this action unit, so clear the tile.
                 if (tile.actionUnitUser == this)
                 {
+                    // Save the tile temporarily.
+                    ActionTile tempTile = tile;
+
+                    // Clear the user.
                     tile.ClearActionUnitUser();
+
+                    // If highlighting is enabled...
+                    if(ActionStage.IsTileHighlightingEnabled)
+                    {
+                        // If the tile is highlighted, refresh the highlight.
+                        if (tempTile.IsHighlighted())
+                            tempTile.RefreshHighlightedTile();
+                    }
                 }
             }
 

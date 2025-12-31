@@ -117,14 +117,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   tileType: 0
+  tileOverlayType: 0
   tileVersion: 65
   collider: {fileID: 8777409888098926867}
+  interactable: 1
   animator: {fileID: 6086815689167183318}
   highlightSpriteRenderer: {fileID: 9010221699124483645}
   overlaySpriteRenderer: {fileID: 3803946226529072956}
   baseSpriteRenderer: {fileID: 3556415347877725770}
   tileVersionSprites: []
   mapPos: {x: -1, y: -1}
+  actionUnitUser: {fileID: 0}
 --- !u!1 &4837108948633335475
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,7 +139,7 @@ GameObject:
   - component: {fileID: 7935603753963318021}
   - component: {fileID: 3556415347877725770}
   m_Layer: 0
-  m_Name: Base Sprite
+  m_Name: Tile Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

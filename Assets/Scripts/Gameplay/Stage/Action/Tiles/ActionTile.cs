@@ -10,11 +10,19 @@ namespace RM_EDU
         // The action tile.
         public enum actionTile { unknown, land, river, sea, metal };
 
+        // The action tile overlay.
+        public enum actionTileOverlay { none, unusable, geothermalSource, coalSource, naturalGasSource, nuclearSource, oilSource, nuclearHazard, oilHazard }
+
         // The action manager.
         public ActionManager actionManager;
 
         // The tile type.
         public actionTile tileType = actionTile.unknown;
+
+        // The tile overlay.
+        // This is public because the prefabs need to be able to set this.
+        [Tooltip("The tile overlay type. Use the dedication function for changing this member so that the visuals update as well.")]
+        public actionTileOverlay tileOverlayType = actionTileOverlay.none;
 
         // The tile verison.
         public char tileVersion = 'A';
@@ -85,9 +93,8 @@ namespace RM_EDU
                 collider = GetComponent<Collider2D>();
 
             // Turn off highlight and overlay.
-            highlightSpriteRenderer.gameObject.SetActive(false);
-            overlaySpriteRenderer.gameObject.SetActive(false);
-
+            SetHighlighted(false, true);
+            SetTileOverlayType(tileOverlayType);
         }
 
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
@@ -128,6 +135,37 @@ namespace RM_EDU
             }
 
             return index;
+        }
+
+        // Returns the tile overlay type.
+        public actionTileOverlay GetTileOverlayType()
+        {
+            return tileOverlayType;
+        }
+
+        // Sets the tile overlay type.
+        public void SetTileOverlayType(actionTileOverlay overlayType)
+        {
+            // Sets the new type.
+            tileOverlayType = overlayType;
+
+            // Turns on the overlay sprite.
+            overlaySpriteRenderer.gameObject.SetActive(true);
+
+            // Gets the tile prefabs.
+            ActionTilePrefabs tilePrefabs = ActionTilePrefabs.Instance;
+
+            // Gets the new sprite.
+            Sprite newSprite = tilePrefabs.GetActionTileOverlaySprite((int)tileOverlayType);
+
+            // Sets the overlay to use the new sprite.
+            overlaySpriteRenderer.sprite = newSprite;
+
+            // If no overlay exists, turn off the overlay sprite renderer.
+            if(tileOverlayType == actionTileOverlay.none)
+            {
+                overlaySpriteRenderer.gameObject.SetActive(false);
+            }
         }
 
         // COLOR CHANGES
@@ -292,7 +330,7 @@ namespace RM_EDU
 
             // If there are no valid tiles, or the valid tiles list contains this tile's type...
             // This aciton user can use this tile.
-            if(compUnit.UsableTileType(this))
+            if(compUnit.UsableTileType(this) && compUnit.UsableTileOverlayType(this))
             {
                 // Checks if the saved user should be ignored.
                 // If the current user should be ignored, this returns true.
@@ -420,7 +458,8 @@ namespace RM_EDU
             // Clears the action user unit. 
             ClearActionUnitUser();
 
-            // TODO: clear the tile overlay.
+            // No overlay.
+            SetTileOverlayType(actionTileOverlay.none);
         }
 
         // // Update is called once per frame

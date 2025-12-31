@@ -43,6 +43,22 @@ namespace RM_EDU
             Kill();
         }
 
+        // Called when the unit has died.
+        public override void OnUnitDeath()
+        {
+            // Tile exists.
+            if(tile != null)
+            {
+                // If this is the unit on the tile, mark the tile as unusable.
+                if(tile.HasActionUnitUser(this))
+                {
+                    tile.SetTileOverlayType(ActionTile.actionTileOverlay.unusable);
+                }
+            }
+
+            base.OnUnitDeath();
+        }
+
 
         // Update is called once per frame
         protected override void Update()

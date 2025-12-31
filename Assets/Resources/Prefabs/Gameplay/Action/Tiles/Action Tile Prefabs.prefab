@@ -50,3 +50,13 @@ MonoBehaviour:
   - {fileID: 7533944973592942323, guid: a4cffa4541607744d9081da0cc269a52, type: 3}
   - {fileID: 5406414497088619027, guid: 1cd5b8e47f974ab4382cc564dc440591, type: 3}
   - {fileID: 3653842959176173592, guid: 51d55710bd843084290b5985c964c4e9, type: 3}
+  tileOverlaySprites:
+  - {fileID: 0}
+  - {fileID: 21300000, guid: fb722c9ac8f4c274693e130689b84013, type: 3}
+  - {fileID: 21300000, guid: 129d17c9995647244968973ba0753da7, type: 3}
+  - {fileID: 21300000, guid: 1eee0462f005f1d47ae531b641b39d72, type: 3}
+  - {fileID: 21300000, guid: d23278a09cf835e44873469332854e31, type: 3}
+  - {fileID: 21300000, guid: 8ca84635744298f4189c7748eb14093f, type: 3}
+  - {fileID: 21300000, guid: a59399b7369d61f43ae33feb254dd633, type: 3}
+  - {fileID: 21300000, guid: a5c0d172edbadf3489674b4f59a0ee85, type: 3}
+  - {fileID: 21300000, guid: 40fde3fc70b026f4aa89838607e82563, type: 3}

@@ -12,8 +12,12 @@ namespace RM_EDU
         // This is a class, not a struct.
         public class StageGenerationData
         {
-            // The map the player will use
+            // The map the player will use.
             public string[,] map = null;
+
+            // The overlays on the map.
+            // For visual simplicity, this is an int instead of the enum it represents.
+            public int[,] overalys = null;
 
             // The wind ratings.
             public ActionUnit.statRating[] windRatings = null;
@@ -134,7 +138,7 @@ namespace RM_EDU
         private static StageGenerationData GenerateStageDataEmpty()
         {
             // An empty map to use as a base to make other function.
-            string[,] map = new string[,] {
+            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
                 { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
                 { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
                 { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
@@ -144,6 +148,9 @@ namespace RM_EDU
                 { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
             };
 
+            // An empty tile overlay.
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT];
+
             // Wind array of no wind.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
 
@@ -152,6 +159,7 @@ namespace RM_EDU
 
             // Setting data.
             data.map = map;
+            data.overalys = overlays;
             data.windRatings = windRatings;
 
             return data;
@@ -161,7 +169,7 @@ namespace RM_EDU
         public static StageGenerationData GenerateStageDataDebug()
         {
             // A debug stage map.
-            string[,] map = new string[,] {
+            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
                 { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
                 { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
                 { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
@@ -170,6 +178,9 @@ namespace RM_EDU
                 { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" },
                 { "04A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A", "03A", "02A", "01A", "00A", "01A", "02A" }
             };
+
+            // An debug map overlay.
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT];
 
             // The wind ratings.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
@@ -180,6 +191,7 @@ namespace RM_EDU
 
             // Setting data.
             data.map = map;
+            data.overalys = overlays;
             data.windRatings = windRatings;
 
             return data;

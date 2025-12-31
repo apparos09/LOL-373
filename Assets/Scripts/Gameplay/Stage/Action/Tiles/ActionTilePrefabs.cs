@@ -18,6 +18,9 @@ namespace RM_EDU
         // The tile at index 0 is blank since it's meant to be an empty tile.
         public List<ActionTile> tilePrefabs = new List<ActionTile>();
 
+        // Sprites used for tile overlays. The id numbers match up with the sprites in the list.
+        public List<Sprite> tileOverlaySprites = new List<Sprite>();
+
         // Constructor
         private ActionTilePrefabs()
         {
@@ -83,7 +86,7 @@ namespace RM_EDU
         }
 
         // Gets a prefab. This does NOT instantiate the prefab.
-        public ActionTile GetPrefab(int index)
+        public ActionTile GetActionTilePrefab(int index)
         {
             // Index validity check.
             if(index >= 0 && index < tilePrefabs.Count)
@@ -96,11 +99,17 @@ namespace RM_EDU
             }
         }
 
+        // Gets the tile by the tile type.
+        public ActionTile GetActionTilePrefabByTileType(ActionTile.actionTile type)
+        {
+            return GetActionTilePrefab((int)type);
+        }
+
         // Instantiates and returns a prefab.
-        public ActionTile InstantiatePrefab(int index)
+        public ActionTile InstantiateActionTilePrefab(int index)
         {
             // The prefab and the new tile.
-            ActionTile prefab = GetPrefab(index);
+            ActionTile prefab = GetActionTilePrefab(index);
             ActionTile newTile = null;
 
             // If the prefab isn't equal to null, create an instance.
@@ -112,6 +121,34 @@ namespace RM_EDU
             // Returns the new tile.
             return newTile;
         }
+
+        // Instantiates the tile by the tile type.
+        public ActionTile InstantiateActionTilePrefabByTileType(ActionTile.actionTile type)
+        {
+            return InstantiateActionTilePrefab((int)type);
+        }
+
+        // Gets the overlay sprite based on the index.
+        public Sprite GetActionTileOverlaySprite(int index)
+        {
+            // Gets the overlay sprite based on the provided index.
+            if (index >= 0 && index < tileOverlaySprites.Count)
+            {
+                return tileOverlaySprites[index];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        // Gets the overlay sprite based on the provided type.
+        // The type number should match up with the index.
+        public Sprite GetActionTileOverlaySprite(ActionTile.actionTileOverlay overlayType)
+        {
+            return GetActionTileOverlaySprite((int)overlayType);
+        }
+
 
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()
