@@ -17,6 +17,9 @@ namespace RM_EDU
         // The amount of energy the player has.
         public float energy = 0;
 
+        // The amount of air pollution the player has generated.
+        public float airPollution = 0;
+
         // The parent of the units created by the player.
         public GameObject unitParent;
 

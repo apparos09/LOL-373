@@ -29,7 +29,7 @@ namespace RM_EDU
         public float energyAutoGenTimerMax = 5.0F;
 
         // The amount of energy that's generated for every instance.
-        public float energyAutoGenAmount = 5.0F;
+        public float energyAutoGenAmount = 10.0F;
 
         // If 'true', the player automatically generates energy.
         private bool energyAutoGenEnabled = true;

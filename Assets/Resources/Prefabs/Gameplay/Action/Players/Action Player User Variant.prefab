@@ -80,11 +80,12 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   actionUnitPrefabs: {fileID: 0}
   energy: 0
+  airPollution: 0
   unitParent: {fileID: 7631506222874977085}
   startingEnergy: 300
   energyAutoGenTimer: 0
   energyAutoGenTimerMax: 5
-  energyAutoGenAmount: 5
+  energyAutoGenAmount: 10
   generatorPrefabs: []
   defensePrefabs: []
   laneBlasterPrefab: {fileID: 8963299378571816709, guid: 8fcf8899b6c32024fa36f5ff92e07940, type: 3}

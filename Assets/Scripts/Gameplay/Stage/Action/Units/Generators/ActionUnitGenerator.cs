@@ -258,6 +258,21 @@ namespace RM_EDU
             // ...
         }
 
+        // Generates air pollution for one instance of this generator.
+        public float GenerateAirPollution()
+        {
+            // Generates the value.
+            float value = 10.0F * (Mathf.Abs(airPollution) / BASE_STAT_MAXIMUM);
+
+            // Set to 0 if negative.
+            if (value < 0)
+                value = 0;
+
+            // Return result.
+            return value;
+
+        }
+
         // Kills the unit.
         public override void Kill()
         {
@@ -288,13 +303,15 @@ namespace RM_EDU
                         // Set timer to 0.
                         energyGenerationTimer = 0.0F;
 
-                        //  The new energy that was created.
+                        // The new energy and pollution that was created.
                         float newEnergy = GenerateEnergy();
+                        float newAirPoll = GenerateAirPollution();
 
                         // Increase the energy of the owner.
                         if (owner != null)
                         {
                             owner.energy += newEnergy;
+                            owner.airPollution += newAirPoll;
                         }
                     }
                 }
