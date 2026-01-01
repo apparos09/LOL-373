@@ -23,16 +23,34 @@ namespace RM_EDU
         // The rigid body.
         public new Rigidbody2D rigidbody;
 
+        [Header("Attack")]
+
         // The default attack power of the projectile.
+        [Tooltip("The default attack power of the projectile.")]
         public float defaultAttackPower = 1.0F;
 
-        // If 'true', the attack power of the shooter is used instead of the projectile's attack power...
+        // The attack power of the shooter.
+        [Tooltip("The attack power of the shooter.")]
+        public float shooterAttackPower = 1.0F;
+
+        // If 'true', the attack power of the shooter is applied to the projectile's attack power...
         // Upon collision with a valid target occurring.
+        [Tooltip("If true, use the attack power of the shooter. If false, use the default attack power..")]
         public bool useAttackPowerOfShooter = true;
 
         // The default 'one hit kill' check. If true, the projectile kills its target in one hit.
         [Tooltip("If true, by default the projectile kills the target in one hit.")]
         public bool defaultOneHitKill = false;
+
+        // The one hit kill value for the shooter.
+        [Tooltip("The shooter's one hit kill value, which determines if attacks kill targets in one hit.")]
+        public bool shooterOneHitKill = false;
+
+        // If 'true', the shooter's one hit kill value is used.
+        [Tooltip("Use the shooter's one hit kill value if available.")]
+        public bool useShooterOneHitKill = true;
+
+        [Header("Movement/Contact")]
 
         // The movement direction.
         public Vector2 moveDirec = Vector2.right;
@@ -67,6 +85,13 @@ namespace RM_EDU
             // If the shooter unit exists, set to ignore the collision.
             if (shooterUnit != null)
                 Physics2D.IgnoreCollision(collider, shooterUnit.collider);
+
+            // If the shooter exists...
+            if(shooterUnit != null)
+            {
+                // Update the shooter attack values.
+                UpdateShooterAttackValues();
+            }
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -82,10 +107,72 @@ namespace RM_EDU
             }
         }
 
+        // Updates the shooter's attack values (attack power and one hit kill).
+        public void UpdateShooterAttackValues()
+        {
+            UpdateShooterAttackPower();
+            UpdateShooterOneHitKill();
+            
+        }
+
+        // Updates the shooter's attack power.
+        public void UpdateShooterAttackPower()
+        {
+            shooterAttackPower = (shooterUnit != null) ? shooterUnit.attackPower * shooterUnit.statFactor : 1;
+        }
+
+        // Update's the shooter's one hit kill.
+        public void UpdateShooterOneHitKill()
+        {
+            shooterOneHitKill = (shooterUnit != null) ? shooterUnit.oneHitKill : false;
+        }
+
+        // Calculates the current attack power based on the parameters.
+        // If 'updateShooter' is true, the shooter's values are updated for the calculations.
+        public float CalculateAttackPower(bool updateShooter)
+        {
+            // Calculates attack power for the projectile.
+            if (useAttackPowerOfShooter)
+            {
+                // Updates the shooter's value if requested.
+                if(updateShooter)
+                    UpdateShooterAttackPower();
+
+                // Returns the shooter attack power.
+                return shooterAttackPower;
+            }
+            // Shooter shouldn't be used.
+            else
+            {
+                return defaultAttackPower;
+            }
+        }
+
+        // Returns 'true' if the projectile is a one-hit kill based on the current parameters.
+        public bool IsOneHitKill(bool updateShooter)
+        {
+            // Checks if using shooter value or projectile value.
+            if (useShooterOneHitKill)
+            {
+                // Updates the shooter's value if requested.
+                if (updateShooter)
+                    UpdateShooterOneHitKill();
+
+                // Returns shooter one hit kill.
+                return shooterOneHitKill;
+            }
+            // Shooter shouldn't be used.
+            else
+            {
+                return defaultOneHitKill;
+            }
+        }
+
         // Called to ignore the collision of this projectile with it's shooter.
         public void IgnoreCollisionWithShooter(bool ignore)
         {
-            Physics2D.IgnoreCollision(collider, shooterUnit.collider, ignore);
+            if(shooterUnit != null)
+                Physics2D.IgnoreCollision(collider, shooterUnit.collider, ignore);
         }
 
         // Called wehn the projectile has made contact with a target.
@@ -95,24 +182,34 @@ namespace RM_EDU
             // Attack the unit.
             if (validTargets.Count <= 0 || validTargets.Contains(target.GetUnitType()))
             {
-                // If the attack power of the shooter should be used...
-                // And there is a shooter unit.
-                if (useAttackPowerOfShooter && shooterUnit != null)
+                // If the shooter exists, use that to attack the target.
+                // This is the more accurate version of applying damage.
+                if (shooterUnit != null)
                 {
-                    // Use the attack function and send the shooter as the attacker.
+                    // Attack the target with the shooter object.
                     target.AttackUnit(shooterUnit);
                 }
                 else
                 {
+                    // Gets the current attack power and one hit kill based on the circumstances.
+                    // Since the shooter is null, the saved values are used if the shooter values...
+                    // Are meant to be used.
+                    // Since there's no shooter, the power and one hit kill shouldn't be updated...
+                    // They also logically shouldn't be updated since effects to the shooter now...
+                    // Shouldn't effect projectiles that have already been fired.
+                    float attackPower = CalculateAttackPower(false);
+                    bool oneHitKill = IsOneHitKill(false);
+
                     // Power for attack.
-                    float damage = defaultAttackPower;
+                    float damage = attackPower;
 
                     // If this is a one-hit kill projectile, set damage to target's health.
-                    if (defaultOneHitKill)
+                    if (oneHitKill)
                         damage = target.health;
 
                     // Apply damage using the projectile.
-                    target.ApplyDamage(damage, false);
+                    // Since the proper attack calculation hasn't been done, apply it.
+                    target.ApplyDamage(damage, true, false);
                 }
 
                 // If the projectile should die on contact, kill it.

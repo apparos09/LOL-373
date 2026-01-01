@@ -29,27 +29,35 @@ namespace RM_EDU
             base.PerformAttack();
         }
 
-        // Shoots a projectile.
-        public virtual void Shoot()
+        // Shoots a projectile. Returns the projectile if it's been instantiated correctly.
+        public virtual ActionProjectile Shoot()
         {
+            // The projectile to be returned.
+            ActionProjectile projectile = null;
+
             // Projectile prefab exists.
-            if(projectilePrefab != null)
+            if (projectilePrefab != null)
             {
-                ActionProjectile projectile = Instantiate(projectilePrefab);
+                projectile = Instantiate(projectilePrefab);
 
                 // Gives the projectile the positon of the shooter plus an offset.
                 projectile.transform.position = transform.position + projectileStartPosOffset;
 
                 // Sets the projectile parent.
-                projectile.transform.parent = (projectileParent != null) ? projectile.transform : transform;
+                projectile.transform.parent = (projectileParent != null) ? projectileParent.transform : transform;
 
                 // Sets the shooter and move direction.
                 projectile.shooterUnit = this;
                 projectile.moveDirec = Vector2.right;
 
+                // Updates the shooter values in the projectile.
+                projectile.UpdateShooterAttackValues();
+
                 // Add to list of fired projectiles.
                 firedProjectiles.Add(projectile);
             }
+
+            return projectile;
         }
 
         // Called when a projectile has been killed.

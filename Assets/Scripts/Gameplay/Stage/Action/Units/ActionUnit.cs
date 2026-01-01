@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Build;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace RM_EDU
 {
@@ -436,7 +437,8 @@ namespace RM_EDU
             }
 
             // Applies the power as damage to the target.
-            target.ApplyDamage(power, ignoreVulnerable);
+            // The attack calculation has already been applied, so don't do it again.
+            target.ApplyDamage(power, false, ignoreVulnerable);
 
             // Called when a unit has been attacked.
             attacker.OnUnitAttackPerformed(target);
@@ -464,6 +466,7 @@ namespace RM_EDU
             // If the attack is valid, do the calculation.
             if(valid)
             {
+                // NOTE: if this calculation is changed, update the ApplyDamage() function.
                 // 2.0 * statFactor + ((attackPower * 1.85 * statFactor) - (target.durability * 1.15 * target.statFactor))
                 power = (2.0F * statFactor) + ((attackPower * 1.85F * statFactor) - (target.durability * 1.15F * target.statFactor));
 
@@ -483,9 +486,28 @@ namespace RM_EDU
         }
 
         // Apply damage to the unit.
+        // applyAttackCalc: if true, the attack calculation is applied to the damage. If false, the damage is applied with no modifications.
+        //  - If applying the attack calculation, its assumed that the provided damage is the final attack power as part of that calculation.
+        // ignoreVulnerable: if true, the vulnerability of the unit is ignored.
         // This does NOT call OnUnitAttacked.
-        public void ApplyDamage(float damage, bool ignoreVulnerable)
+        public void ApplyDamage(float damage, bool applyAttackCalc, bool ignoreVulnerable)
         {
+            // The power of the damage.
+            float power = damage;
+
+            // If the attack calculation should be applied.
+            if(applyAttackCalc)
+            {
+                // Calculates the power.
+                // This reuses the attack calculation.
+                // TODO: this should be optimized so that the code isn't copied.
+                power = damage - (durability * 1.15F * statFactor);
+
+                // The power is negative, so set it to 1.
+                if (power < 0.0F)
+                    power = 1;
+            }
+
             // If the unit is vulnerable, or if the vulnerability of this unit should be ignored.
             if(vulnerable || ignoreVulnerable)
             {
