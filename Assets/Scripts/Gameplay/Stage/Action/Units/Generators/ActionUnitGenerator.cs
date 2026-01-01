@@ -52,6 +52,9 @@ namespace RM_EDU
 
             // Set the generation timer to max.
             SetEnergyGenerationTimerToMax();
+
+            // Generates shouldn't attack anything.
+            attackingEnabled = false;
         }
 
         // Gets the unit type.

@@ -452,7 +452,7 @@ namespace RM_EDU
                         }
 
                         // Clamps the wind speed index.
-                        windSpeedIndex = Mathf.Clamp(windSpeedIndex, 0, windRatings.Length);
+                        windSpeedIndex = Mathf.Clamp(windSpeedIndex, 0, windRatings.Length - 1);
 
                         // Gets the wind speed based on the index.
                         rating = windRatings[windSpeedIndex];

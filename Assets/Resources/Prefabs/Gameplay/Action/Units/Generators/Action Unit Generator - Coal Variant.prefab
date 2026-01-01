@@ -100,18 +100,18 @@ MonoBehaviour:
   maxHealth: 100
   vulnerable: 1
   statFactor: 1
-  energyCreationCost: 0
+  energyCreationCost: 40
   energyDeathCost: 0
-  energyGenerationAmount: 0
-  energyGenerationSpeed: 0
+  energyGenerationAmount: 80
+  energyGenerationSpeed: 80
   attackPower: 0
   attackSpeed: 0
-  attackingEnabled: 1
+  attackingEnabled: 0
   attackCooldownTimer: 0
   oneHitKill: 0
-  durability: 0
+  durability: 60
   movementSpeed: 0
-  airPollution: 0
+  airPollution: 80
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
@@ -120,6 +120,7 @@ MonoBehaviour:
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0
+  useEnergyCycles: 0
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0

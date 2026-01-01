@@ -638,9 +638,22 @@ namespace RM_EDU
                 // Switch the overlay to none.
                 if(tileOverlayType == overlay)
                 {
-                    // Sets to none to hide the overlay since...
-                    // No more of this cycle can be used here.
-                    SetTileOverlayType(actionTileOverlay.none);
+                    // If this is an coal source and there's still natural gas, switch to a natural gas overlay.
+                    if(tileOverlayType == actionTileOverlay.coalSource && naturalGasCycles > 0)
+                    {
+                        SetTileOverlayType(actionTileOverlay.naturalGasSource);
+                    }
+                    // If this is a oil source and there's still natural gas, switch to a natural gas overlay.
+                    else if (tileOverlayType == actionTileOverlay.oilSource && naturalGasCycles > 0)
+                    {
+                        SetTileOverlayType(actionTileOverlay.naturalGasSource);
+                    }
+                    else
+                    {
+                        // Sets to none to hide the overlay since...
+                        // No more of this cycle can be used here.
+                        SetTileOverlayType(actionTileOverlay.none);
+                    }
                 }
             }
         }
