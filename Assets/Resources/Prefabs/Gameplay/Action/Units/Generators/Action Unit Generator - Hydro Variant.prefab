@@ -121,7 +121,7 @@ MonoBehaviour:
   energyGenerationSpeed: 80
   attackPower: 0
   attackSpeed: 0
-  attackingEnabled: 1
+  attackingEnabled: 0
   attackCooldownTimer: 0
   oneHitKill: 0
   durability: 80

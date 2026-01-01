@@ -258,6 +258,33 @@ namespace RM_EDU
             return selectedUnitPrefab != null;
         }
 
+        // Returns 'true' if the user selecting a unit prefab of a certain type.
+        public bool IsSelectingActionUnitTypePrefab(ActionUnit.unitType type)
+        {
+            if (selectedUnitPrefab != null)
+                return selectedUnitPrefab.GetUnitType() == type;
+            else
+                return false;
+        }
+
+        // Returns true if the user is selecting a generator unit prefab.
+        public bool IsSelectingGeneratorUnitPrefab()
+        {
+            return IsSelectingActionUnitTypePrefab(ActionUnit.unitType.generator);
+        }
+
+        // Returns true if the user is selecting a defense unit prefab.
+        public bool IsSelectingDefenseUnitPrefab()
+        {
+            return IsSelectingActionUnitTypePrefab(ActionUnit.unitType.defense);
+        }
+
+        // Returns true if the user is selecting a enemy unit prefab.
+        public bool IsSelectingEnemyUnitPrefab()
+        {
+            return IsSelectingActionUnitTypePrefab(ActionUnit.unitType.enemy);
+        }
+
         // Gets the unit the player has selected.
         public ActionUnit GetSelectedActionUnitPrefab()
         {
@@ -278,6 +305,16 @@ namespace RM_EDU
 
             // Highlights tiles if tile highlighting is enabled.
             ActionManager.Instance.actionStage.OnPlayerUserSelectedUnit();
+        }
+
+        // Gets the type of the selected action unit prefab.
+        // If not selecting a prefab, it returns unknown.
+        public ActionUnit.unitType GetSelectedActionUnitPrefabType()
+        {
+            if (selectedUnitPrefab != null)
+                return selectedUnitPrefab.GetUnitType();
+            else
+                return ActionUnit.unitType.unknown;
         }
 
         // Clears the prefab the player has selected.

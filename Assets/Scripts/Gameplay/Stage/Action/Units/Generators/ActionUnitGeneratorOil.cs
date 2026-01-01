@@ -7,5 +7,31 @@ namespace RM_EDU
     // Action Unit Generator - Oil
     public class ActionUnitGeneratorOil : ActionUnitGenerator
     {
+        // Start is called just before any of the Update methods is called the first time
+        protected override void Start()
+        {
+            base.Start();
+
+            // If the resource is unknown, set it to nuclear.
+            if (resource == NaturalResources.naturalResource.unknown)
+            {
+                resource = NaturalResources.naturalResource.oil;
+            }
+        }
+
+        // Called to kill the unit.
+        public override void Kill()
+        {
+            // If the unit can still generate energy...
+            // Leave a hazard behind.
+            if (CanGenerateEnergy())
+            {
+                // Give the tile an oil hazard.
+                if (tile != null)
+                    tile.SetTileOverlayType(ActionTile.actionTileOverlay.oilHazard);
+            }
+
+            base.Kill();
+        }
     }
 }

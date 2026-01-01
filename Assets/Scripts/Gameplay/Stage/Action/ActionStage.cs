@@ -374,6 +374,16 @@ namespace RM_EDU
             return list;
         }
 
+        // Returns 'true' if the provided map position is valid (valid index).
+        public bool ValidMapPosition(int row, int column)
+        {
+            // Checks x and y for valid positions.
+            bool validRow = row >= 0 && row < MapRowCount;
+            bool validColumn = column >= 0 && column < MapColumnCount;
+
+            return validRow && validColumn;
+        }
+
         // Converts the provided map tile position to local position in world units.
         // Argument "mapPos" is the tile position in the map.
         public Vector2 ConvertMapPositionToWorldUnits(Vector2 mapPos)

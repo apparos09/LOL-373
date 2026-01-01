@@ -355,10 +355,10 @@ namespace RM_EDU
 
                         // Moves the enemy unit. The enemy shoud move at a fixed speed.
                         // Old - Uses translate function.
-                        // transform.Translate(movementDirec * moveSpeedAdjusted * Time.deltaTime);
+                        // transform.Translate(movementDirec.normalized * moveSpeedAdjusted * Time.deltaTime);
 
                         // New - adds force and clamps it to the move speed.
-                        rigidbody.AddForce(movementDirec * moveSpeedAdjusted * Time.deltaTime, ForceMode2D.Impulse);
+                        rigidbody.AddForce(movementDirec.normalized * moveSpeedAdjusted * Time.deltaTime, ForceMode2D.Impulse);
                         rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeedAdjusted);
 
                         // The enemy moved.

@@ -78,7 +78,7 @@ namespace RM_EDU
         private static Color unusableColor = Color.grey;
 
         // The alpha of highlights on the tile.
-        private static float highlightAlpha = 0.25F;
+        private static float highlightAlpha = 0.50F;
 
         [Header("World")]
 
@@ -180,6 +180,40 @@ namespace RM_EDU
             {
                 overlaySpriteRenderer.gameObject.SetActive(false);
             }
+
+            // If the tile is currently highlighted as usable...
+            // And was changed to something that makes the tile unusable...
+            // Change the highlight.
+            if (IsHighlightedUsable())
+            {
+                // Checks the type.
+                switch(tileOverlayType)
+                {
+                    case actionTileOverlay.waterHazard: // Water
+
+                        // If the player user is selecting a prefab.
+                        if(ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab())
+                        {
+                            // Gets the type of the prefab the player user is selecting.
+                            switch (ActionManager.Instance.playerUser.GetSelectedActionUnitPrefabType())
+                            {
+                                // If a generator is being selected, highlight the tile as not usuable...
+                                // Since generators cannot go on this tile.
+                                case ActionUnit.unitType.generator:
+                                    HighlightTile(false);
+                                    break;
+                            }
+                        }
+
+                        break;
+
+                    // If now set to a hazard, unhighlight the tile, since it shouldn't be usable anymore.
+                    case actionTileOverlay.nuclearHazard:
+                    case actionTileOverlay.oilHazard:
+                        HighlightTile(false);
+                        break;
+                }
+            }
         }
 
         // Returns the default tile overlay type.
@@ -263,6 +297,44 @@ namespace RM_EDU
         public bool IsHighlighted()
         {
             return highlightSpriteRenderer.enabled && highlightSpriteRenderer.gameObject.activeSelf;
+        }
+
+        // Returns true if the tile is highlighted as usable.
+        public bool IsHighlightedUsable()
+        {
+            // Check if highlighted...
+            if (IsHighlighted())
+            {
+                // Then check for usable color.
+                Color tempColor = highlightSpriteRenderer.color;
+                tempColor.a = highlightAlpha;
+
+                // If the colors match, this is the usable color.
+                return tempColor == UsableColor;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Returns ture if the tile is highlighted as unusuable.
+        public bool IsHighlightedUnusable()
+        {
+            // Check if highlighted...
+            if (IsHighlighted())
+            {
+                // Then check for usable color.
+                Color tempColor = highlightSpriteRenderer.color;
+                tempColor.a = highlightAlpha;
+
+                // If the colors match, this is the usable color.
+                return tempColor == UnusableColor;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Sets if the tile should be highlighted.
