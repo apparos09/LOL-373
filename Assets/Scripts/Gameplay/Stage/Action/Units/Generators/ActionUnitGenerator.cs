@@ -29,6 +29,10 @@ namespace RM_EDU
         [Tooltip("If true, the generator uses wind to generate energy.")]
         public bool useWindToGenEnergy = false;
 
+        // If 'true', the generator uses energy cycles when generating energy.
+        [Tooltip("If true, the generator can only generate energy a fixed number of times (cycles).")]
+        public bool useEnergyCycles = false;
+
         // The total amount of energy generated.
         [Tooltip("The total amount of energy generated.")]
         public float energyGenerationTotal = 0.0F;
@@ -172,6 +176,7 @@ namespace RM_EDU
         // Returns 'true' if the generator can generate energy.
         public bool CanGenerateEnergy()
         {
+            // TIME OF DAY
             // Gets set to 'true' if the generator can operate at the current time.
             bool validTime = true;
 
@@ -191,16 +196,47 @@ namespace RM_EDU
                 }
             }
 
+
+            // WIND
             // Gets set to 'true' if the wind check was valid.
             // If the generator doesn't use wind, this will always be true.
-            bool windValid = true;
+            bool validWind = true;
 
             // Checks if wind shoudl be used to generate energy.
             if (useWindToGenEnergy)
             {
-                windValid = actionManager.IsWindBlowing();
+                validWind = actionManager.IsWindBlowing();
             }
 
+
+            // ENERGY CYCLES
+            // Checks if there are energy cycles to use (if applicable).
+            bool hasCycles = true;
+
+            // Uses energy cycles.
+            if(useEnergyCycles)
+            {
+                // If this resourcce has energy cycles to use.
+                if(NaturalResources.UsesEnergyCycles(resource))
+                {
+                    // Tile exists.
+                    if(tile != null)
+                    {
+                        // Returns 'true' if there are energy cycles left, false otherwise.
+                        hasCycles = tile.HasEnergyCycles(resource);
+                    }
+                    else
+                    {
+                        Debug.LogWarning("Tile not found when searching for energy cycles.");
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("There are no energy cycles assigned to this resource type. Assuming infinite cycles can be used.");
+                }
+            }
+
+            // ENERGY GENERATION LIMIT
             // Gets set to 'true' if the energy generation limit has been reached.
             bool energyGenLimitReached = false;
 
@@ -211,7 +247,7 @@ namespace RM_EDU
             }
 
             // Calculates the result.
-            bool result = validTime && windValid && !energyGenLimitReached;
+            bool result = validTime && validWind && hasCycles && !energyGenLimitReached;
 
             // Returns the result.
             return result;
@@ -225,6 +261,14 @@ namespace RM_EDU
 
             // Add to the energy generation total.
             energyGenerationTotal += energy;
+
+            // If energy cycles are being used.
+            if(useEnergyCycles)
+            {
+                // If the tile exists, reduce the energy cycle amount by 1.
+                if (tile != null)
+                    tile.DecreaseEnergyCyclesByResource(resource, 1);
+            }
 
             // Sets the timer to max.
             SetEnergyGenerationTimerToMax();
@@ -288,6 +332,8 @@ namespace RM_EDU
         // Update is called once per frame
         protected override void Update()
         {
+            base.Update();
+
             // If the stage is playing and the game is unpaused.
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {

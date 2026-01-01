@@ -135,6 +135,7 @@ MonoBehaviour:
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0
+  useEnergyCycles: 0
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0

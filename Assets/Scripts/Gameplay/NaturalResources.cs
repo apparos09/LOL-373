@@ -558,5 +558,38 @@ namespace RM_EDU
             // Returns the result.
             return result;
         }
+
+        // Returns 'true' if the provided resource uses energy cycles.
+        // Energy cycles determines how much energy a resource can get out of a tile...
+        // Before the generator no longer works. If a generator doesn't use cycles...
+        // Then it can get energy infinitely.
+        public static bool UsesEnergyCycles(naturalResource resource)
+        {
+            bool result;
+
+            // Checks to resource to see if it uses energy cycles or not.
+            switch (resource)
+            {
+                default:
+                case naturalResource.unknown:
+                case naturalResource.biomass:
+                case naturalResource.hydro:
+                case naturalResource.geothermal:
+                case naturalResource.solar:
+                case naturalResource.wave:
+                case naturalResource.wind:
+                    result = false;
+                    break;
+
+                case naturalResource.coal:
+                case naturalResource.naturalGas:
+                case naturalResource.nuclear:
+                case naturalResource.oil:
+                    result = true;
+                    break;
+            }
+
+            return result;
+        }
     }
 }

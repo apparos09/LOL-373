@@ -91,6 +91,26 @@ namespace RM_EDU
         [Tooltip("If action unit user on the tile. If null, then there's no user unit on the tile.")]
         public ActionUnitUser actionUnitUser = null;
 
+        [Header("Energy Cycles")]
+
+        // If a generator uses energy spots, they depelte from energy cycles for whatever...
+        // Energy source they get from the tile.
+
+        // The default number of energy cycles for this tile.
+        public int energyCyclesDefault = 30;
+
+        // The number of coal cycles allowed.
+        public int coalCycles = 0;
+
+        // The number of natural gas cycles allowed.
+        public int naturalGasCycles = 0;
+
+        // The number of nuclear cycles allowed.
+        public int nuclearCycles = 0;
+
+        // The number of oil cycles allowed.
+        public int oilCycles = 0;
+
         // Start is called before the first frame update
         protected virtual void Start()
         {
@@ -105,6 +125,9 @@ namespace RM_EDU
             // Turn off highlight and overlay.
             SetHighlighted(false, true);
             SetTileOverlayType(defaultTileOverlayType);
+
+            // Sets the energy cycles to their default on start.
+            SetEnergyCyclesToDefault();
         }
 
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
@@ -418,6 +441,275 @@ namespace RM_EDU
             return mapPos.x;
         }
 
+        
+        // ENERGY CYCLES //
+        // Sets the energy cycles on a tile to default cycle count.
+        public void SetEnergyCyclesToDefault()
+        {
+            coalCycles = energyCyclesDefault;
+            naturalGasCycles = energyCyclesDefault;
+            nuclearCycles = energyCyclesDefault;
+            oilCycles = energyCyclesDefault;
+        }
+
+        // Returns true if the tile has cycles for the provided overlay.
+        // If this returns false, then there are no cycles for the overlay...
+        // Or that there are no cycles left for the overlay.
+        public bool HasEnergyCycles(actionTileOverlay overlay)
+        {
+            // The result to be returned.
+            bool result;
+
+            // Checks the overlay to see which cycles to check.
+            switch(overlay)
+            {
+                default:
+                case actionTileOverlay.none: // No cycles
+                case actionTileOverlay.unusable:
+                case actionTileOverlay.geothermalSource:
+                    result = false;
+                    break;
+
+                case actionTileOverlay.coalSource:
+                    result = coalCycles > 0;
+                    break;
+
+                case actionTileOverlay.naturalGasSource:
+                    result = naturalGasCycles > 0;
+                    break;
+
+                case actionTileOverlay.nuclearSource:
+                    result = nuclearCycles > 0;
+                    break;
+
+                case actionTileOverlay.oilSource:
+                    result = oilCycles > 0;
+                    break;
+
+                case actionTileOverlay.waterHazard:
+                case actionTileOverlay.nuclearHazard:
+                case actionTileOverlay.oilHazard:
+                    // If it's a hazard tile, there are no cycles, since generators...
+                    // Cannot use the tile.
+                    result = false;
+                    break;
+            }
+
+            // Returns the result.
+            return result;
+        }
+
+        // Checks if the tile has energy cycles for the natural resource provided.
+        // If the resource doesn't use cycles, it returns false.
+        public bool HasEnergyCycles(NaturalResources.naturalResource resource)
+        {
+            // First checks if the resource uses cycles.
+            if(NaturalResources.UsesEnergyCycles(resource))
+            {
+                // Set to true if the resource has cycles.
+                bool hasCycles;
+
+                // Checks the resource to see what type of cycles to check.
+                // If the resource doesn't have cycles attached to it...
+                // The result is false.
+                switch(resource)
+                {
+                    default:
+                        hasCycles = false;
+                        break;
+
+                    case NaturalResources.naturalResource.coal:
+                        hasCycles = HasCoalEnergyCycles();
+                        break;
+
+                    case NaturalResources.naturalResource.naturalGas:
+                        hasCycles = HasNaturalGasEnergyCycles();
+                        break;
+
+                    case NaturalResources.naturalResource.nuclear:
+                        hasCycles = HasNuclearEnergyCycles();
+                        break;
+
+                    case NaturalResources.naturalResource.oil:
+                        hasCycles = HasOilEnergyCycles();
+                        break;
+                }
+
+                return hasCycles;
+            }
+            // Doesn't use cycles, so return false.
+            else
+            {
+                return false;
+            }
+        }
+
+        // Has coal energy cycles.
+        public bool HasCoalEnergyCycles()
+        {
+            return HasEnergyCycles(actionTileOverlay.coalSource);
+        }
+
+        // Has natural gas energy cycles.
+        public bool HasNaturalGasEnergyCycles()
+        {
+            return HasEnergyCycles(actionTileOverlay.naturalGasSource);
+        }
+
+        // Has nuclear energy cycles.
+        public bool HasNuclearEnergyCycles()
+        {
+            return HasEnergyCycles(actionTileOverlay.nuclearSource);
+        }
+
+        // Has oil energy cycles.
+        public bool HasOilEnergyCycles()
+        {
+            return HasEnergyCycles(actionTileOverlay.oilSource);
+        }
+
+        // Adjusts the energy cycles by the overlay type.
+        // Postive amount to add, negative amount to subtract.
+        public void AdjustEnergyCyclesByOverlayType(actionTileOverlay overlay, int amount)
+        {
+            // Gets set to 'true' if there are no more cycles for the type chosen.
+            bool outOfCycles = false;
+
+            // Checks the overlay to see which cycles to change.
+            switch (overlay)
+            {
+                case actionTileOverlay.coalSource:
+                    // Apply amount and save if out of cycles.
+                    coalCycles += amount;
+
+                    if (coalCycles <= 0)
+                    {
+                        coalCycles = 0;
+                        outOfCycles = true;
+                    }
+                        
+
+                    break;
+
+                case actionTileOverlay.naturalGasSource:
+                    // Apply amount and save if out of cycles.
+                    naturalGasCycles += amount;
+
+                    if(naturalGasCycles <= 0)
+                    {
+                        naturalGasCycles = 0;
+                        outOfCycles = true;
+                    }
+                        
+
+                    break;
+
+                case actionTileOverlay.nuclearSource:
+                    // Apply amount and save if out of cycles.
+                    nuclearCycles += amount;
+
+                    if (nuclearCycles <= 0)
+                    {
+                        nuclearCycles = 0;
+                        outOfCycles = true;
+                    }
+                        
+
+                    break;
+
+                case actionTileOverlay.oilSource:
+                    // Apply amount and save if out of cycles.
+                    oilCycles += amount;
+
+                    if (oilCycles <= 0)
+                    {
+                        oilCycles = 0;
+                        outOfCycles = true;
+                    }
+                        
+
+                    break;
+            }
+
+            // If the cycle chosen no longer has any cycles left.
+            if(outOfCycles)
+            {
+                // If the current tile overlay matches the provided overlay...
+                // Switch the overlay to none.
+                if(tileOverlayType == overlay)
+                {
+                    // Sets to none to hide the overlay since...
+                    // No more of this cycle can be used here.
+                    SetTileOverlayType(actionTileOverlay.none);
+                }
+            }
+        }
+
+        // Adds energy cycels by the overlay type.
+        public void IncreaseEnergyCyclesByOverlayType(actionTileOverlay overlay, int amount = 1)
+        {
+            AdjustEnergyCyclesByOverlayType(overlay, amount);
+        }
+
+        // Adds energy cycles based on the current overlay type.
+        public void IncreaseEnergyCyclesByOverlayType(int amount = 1)
+        {
+            AdjustEnergyCyclesByOverlayType(tileOverlayType, amount);
+        }
+
+        // Subtracts energy cycles by overlay type.
+        public void DecreaseEnergyCyclesByOverlayType(actionTileOverlay overlay, int amount = 1)
+        {
+            AdjustEnergyCyclesByOverlayType(overlay, -amount);
+        }
+
+        // Subtract energy cycles based on the current overlay type.
+        public void DecreaseEnergyCyclesByOverlayType(int amount = 1)
+        {
+            AdjustEnergyCyclesByOverlayType(tileOverlayType, -amount);
+        }
+
+        // Adjusts energy cycles by reosurces.
+        public void AdjustEnergyCyclesByResource(NaturalResources.naturalResource resource, int amount)
+        {
+            // Checks the overlay to see which cycles to check.
+            switch (resource)
+            {
+                case NaturalResources.naturalResource.coal:
+                    AdjustEnergyCyclesByOverlayType(actionTileOverlay.coalSource, amount);
+
+                    break;
+
+                case NaturalResources.naturalResource.naturalGas:
+                    AdjustEnergyCyclesByOverlayType(actionTileOverlay.naturalGasSource, amount);
+
+                    break;
+
+                case NaturalResources.naturalResource.nuclear:
+                    AdjustEnergyCyclesByOverlayType(actionTileOverlay.nuclearSource, amount);
+
+                    break;
+
+                case NaturalResources.naturalResource.oil:
+                    AdjustEnergyCyclesByOverlayType(actionTileOverlay.oilSource, amount);
+
+                    break;
+            }
+        }
+
+        // Adds energy cycles by resource.
+        public void IncreaseEnergyCyclesByResource(NaturalResources.naturalResource resource, int amount = 1)
+        {
+            AdjustEnergyCyclesByResource(resource, amount);
+        }
+
+        // Removes energy cycles by resource.
+        public void DecreaseEnergyCyclesByResource(NaturalResources.naturalResource resource, int amount = 1)
+        {
+            AdjustEnergyCyclesByResource(resource, -amount);
+        }
+
+
         // ACTION UNUT USER
         // Called when the player unit user is selecting a unit.
         public void OnPlayerUserSelectedUnit(ActionUnit selectedUnit)
@@ -569,12 +861,9 @@ namespace RM_EDU
 
             // Resets the tile overlay type.
             ResetTileOverlayType();
-        }
 
-        // // Update is called once per frame
-        // protected virtual void Update()
-        // {
-        // 
-        // }
+            // Return the energy cycles to their default values.
+            SetEnergyCyclesToDefault();
+        }
     }
 }

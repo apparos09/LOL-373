@@ -118,6 +118,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   tileType: 0
   tileOverlayType: 0
+  defaultTileOverlayType: 0
   tileVersion: 65
   collider: {fileID: 8777409888098926867}
   interactable: 1
@@ -128,6 +129,11 @@ MonoBehaviour:
   tileVersionSprites: []
   mapPos: {x: -1, y: -1}
   actionUnitUser: {fileID: 0}
+  energyCyclesDefault: 30
+  coalCycles: 0
+  naturalGasCycles: 0
+  nuclearCycles: 0
+  oilCycles: 0
 --- !u!1 &4837108948633335475
 GameObject:
   m_ObjectHideFlags: 0

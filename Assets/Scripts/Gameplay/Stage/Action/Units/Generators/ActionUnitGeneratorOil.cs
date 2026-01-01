@@ -17,6 +17,10 @@ namespace RM_EDU
             {
                 resource = NaturalResources.naturalResource.oil;
             }
+
+            // Uses energy cycles.
+            if (!useEnergyCycles)
+                useEnergyCycles = true;
         }
 
         // Called to kill the unit.
@@ -24,7 +28,7 @@ namespace RM_EDU
         {
             // If the unit can still generate energy...
             // Leave a hazard behind.
-            if (CanGenerateEnergy())
+            if (IsDead() && CanGenerateEnergy())
             {
                 // Give the tile an oil hazard.
                 if (tile != null)
