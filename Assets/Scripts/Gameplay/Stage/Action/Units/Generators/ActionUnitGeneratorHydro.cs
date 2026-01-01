@@ -42,6 +42,14 @@ namespace RM_EDU
             SetFloodTimerToMax();
         }
 
+
+        // Checks if the tile configuration is valid.
+        public override bool UsableTileConfiguration(ActionTile tile)
+        {
+            return base.UsableTileConfiguration(tile);
+        }
+
+
         // Sets the flood timer to its max.
         public void SetFloodTimerToMax()
         {
@@ -173,6 +181,8 @@ namespace RM_EDU
         // Update is called every from, if the MonoBehaviour is enabled
         protected override void Update()
         {
+            base.Update();
+
             // If flooding is enabled.
             if(floodingEnabled)
             {

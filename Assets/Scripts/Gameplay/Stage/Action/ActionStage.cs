@@ -367,6 +367,24 @@ namespace RM_EDU
             get { return metalTiles.Count > 0; }
         }
 
+        // Returns the tile at the provided row and column.
+        // Returns null if values are invalid.
+        public ActionTile GetTile(int row, int column)
+        {
+            // If position valid, return tile. If false, return null.
+            if(ValidMapPosition(row, column))
+                return tiles[row, column];
+            else
+                return null;
+        }
+
+        // Gets a tile in the map using the parameter mapPos.
+        public ActionTile GetTile(Vector2Int mapPos)
+        {
+            return GetTile(mapPos.y, mapPos.x);
+        }
+
+
         // Gets a copy of the list of metal tiles.
         public List<ActionTile> GetListOfMetalTilesCopy()
         {
@@ -377,11 +395,22 @@ namespace RM_EDU
         // Returns 'true' if the provided map position is valid (valid index).
         public bool ValidMapPosition(int row, int column)
         {
+            // If the tiles don't exist, the map position will always be invalid.
+            if (tiles == null)
+                return false;
+
             // Checks x and y for valid positions.
             bool validRow = row >= 0 && row < MapRowCount;
             bool validColumn = column >= 0 && column < MapColumnCount;
 
             return validRow && validColumn;
+        }
+
+        // Checks if the map position is valid.
+        // Keep in mind that (X) is the column and (y) is the row.
+        public bool ValidMapPosition(Vector2Int mapPos)
+        {
+            return ValidMapPosition(mapPos.y, mapPos.x);
         }
 
         // Converts the provided map tile position to local position in world units.

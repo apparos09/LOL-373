@@ -143,6 +143,58 @@ namespace RM_EDU
             return tileType;
         }
 
+        // Returns 'true' if this is a land tile.
+        // If the tile is unknown, it still registers as true.
+        public static bool IsLandTile(actionTile tileType)
+        {
+            // Unknown, land, and metal tiles are land tiles.
+            switch(tileType)
+            {
+                case actionTile.unknown:
+                    Debug.Log("Tile type is unknown.");
+                    return true;
+
+                case actionTile.land:
+                case actionTile.metal:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        // Returns 'true' if this is a land tile.
+        public bool IsLandTile()
+        {
+            return IsLandTile(tileType);
+        }
+
+        // Returns 'true' if this is a water tile.
+        // Unknown tiles still register as true.
+        public static bool IsWaterTile(actionTile tileType)
+        {
+            // Unknown, rive, and sea tiles are water tiles.
+            switch (tileType)
+            {
+                case actionTile.unknown:
+                    Debug.Log("Tile type is unknown.");
+                    return true;
+
+                case actionTile.river:
+                case actionTile.sea:
+                    return true;
+
+                default:
+                    return false;
+            }
+        }
+
+        // Returns 'true' if this is a water tile.
+        public bool IsWaterTile()
+        {
+            return IsWaterTile(tileType);
+        }
+
         // Gets the tile version index.
         public int GetTileVersionIndex()
         {

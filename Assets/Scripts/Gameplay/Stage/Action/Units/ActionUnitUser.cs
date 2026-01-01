@@ -55,7 +55,7 @@ namespace RM_EDU
                 else
                 {
                     // Sets result based on if the tile is usable by its type.
-                    result = UsableTileType(tile) && UsableTileOverlayType(tile);
+                    result = UsableTileType(tile) && UsableTileOverlayType(tile) && UsableTileConfiguration(tile);
                 }
             }
             // The tile doesn't exist, so nothing can be placed there.
@@ -307,6 +307,12 @@ namespace RM_EDU
         public bool UsableTileOverlayType(ActionTile tile)
         {
             return UsableTileOverlayType(tile.tileOverlayType);
+        }
+
+        // Checks if using this tile will be a valid configuration for this unit.
+        public virtual bool UsableTileConfiguration(ActionTile tile)
+        {
+            return true;
         }
 
 

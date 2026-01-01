@@ -22,5 +22,11 @@ namespace RM_EDU
             if (!useWindToGenEnergy)
                 useWindToGenEnergy = true;
         }
+
+        // Checks if the tile configuration is valid.
+        public override bool UsableTileConfiguration(ActionTile tile)
+        {
+            return base.UsableTileConfiguration(tile);
+        }
     }
 }
