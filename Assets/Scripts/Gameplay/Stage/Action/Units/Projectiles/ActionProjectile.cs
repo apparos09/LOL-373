@@ -77,7 +77,7 @@ namespace RM_EDU
 
         // The movement speed. The projectile moves at a fixed speed.
         [Tooltip("The movement speed of a projectile. Projectiles move at a fixed speed.")]
-        public float moveSpeed = 10.0F;
+        public float moveSpeed = 25.0F;
 
         // Valid targets for the projectile.
         // If the list is empty, all units are valid targets.
@@ -203,6 +203,23 @@ namespace RM_EDU
             }
         }
 
+        // Cancles the velocity of the projectile.
+        // If 'checkVelocity' is true, then the velocity is checked for being zero first. If it is zero, no change is done.
+        public void CancelVelocity(bool checkVelocity = true)
+        {
+            // If the velocity should be checked for it not being zero.
+            if (checkVelocity)
+            {
+                if (rigidbody.velocity != Vector2.zero)
+                    rigidbody.velocity = Vector2.zero;
+            }
+            // Do it regardless.
+            else
+            {
+                rigidbody.velocity = Vector2.zero;
+            }
+        }
+
         // Called to ignore the collision of this projectile with it's shooter.
         public void IgnoreCollisionWithShooter(bool ignore)
         {
@@ -316,8 +333,8 @@ namespace RM_EDU
             }
             else
             {
-                // If there game is paused, or if 
-                rigidbody.velocity = Vector2.zero;
+                // If the game is paused or the stage isn't playing, cancel the velocity.
+                CancelVelocity();
             }
         }
 

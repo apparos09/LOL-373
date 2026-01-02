@@ -20,6 +20,9 @@ namespace RM_EDU
         // The movement direction.
         public Vector2 moveDirec = Vector2.right;
 
+        // The movement speed.
+        public float moveSpeed = 25.0F;
+
         // The energy death cost to be applied when the enemy reaches the stage bounds.
         public float energyDeathCost = 0;
 
@@ -44,6 +47,23 @@ namespace RM_EDU
             // Gets the rigidbody if it's not set.
             if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
+        }
+
+        // Cancles the velocity of the enemy retreat.
+        // If 'checkVelocity' is true, then the velocity is checked for being zero first. If it is zero, no change is done.
+        public void CancelVelocity(bool checkVelocity = true)
+        {
+            // If the velocity should be checked for it not being zero.
+            if (checkVelocity)
+            {
+                if (rigidbody.velocity != Vector2.zero)
+                    rigidbody.velocity = Vector2.zero;
+            }
+            // Do it regardless.
+            else
+            {
+                rigidbody.velocity = Vector2.zero;
+            }
         }
 
         // Kils the retreating enemy.
@@ -85,11 +105,20 @@ namespace RM_EDU
             // The stage is playing and the game is unpaused.
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {
+                // Sets the velocity and then clamps it.
+                rigidbody.velocity = moveDirec * moveSpeed;
+                rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeed);
+
                 // If out of the stage bounds, the retreating enemy is now dead.
-                if(!actionManager.actionStage.InStageBounds(transform.position))
+                if (!actionManager.actionStage.InStageBounds(transform.position))
                 {
                     Kill();
                 }
+            }
+            else
+            {
+                // Cancels out the velocity of the enemy if the game is paused or the stage isn't playing.
+                CancelVelocity();
             }
         }
 
