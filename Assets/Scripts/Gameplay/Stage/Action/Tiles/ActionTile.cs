@@ -821,6 +821,12 @@ namespace RM_EDU
             return actionUnitUser == compUnit;
         }
 
+        // Returns the action unit user.
+        public ActionUnitUser GetActionUnitUser()
+        {
+            return actionUnitUser;
+        }
+
         // Sets the action unit.
         public void SetActionUnitUser(ActionUnitUser newUnitUser)
         {
