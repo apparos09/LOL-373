@@ -631,6 +631,10 @@ namespace RM_EDU
             playerUser.ResetPlayer();
             playerEnemy.ResetPlayer();
 
+            // Kills all the projectiles and kills all the retreating enemies.
+            ActionProjectile.KillAllActionProjectiles();
+            EnemyRetreat.KillAllEnemyRetreats();
+
             // Resets the map.
             actionStage.ResetStage();
 

@@ -23,6 +23,9 @@ namespace RM_EDU
         // The rigid body.
         public new Rigidbody2D rigidbody;
 
+        // All the projectiles in the stage.
+        private static List<ActionProjectile> actionProjectiles = new List<ActionProjectile>();
+
         [Header("Attack")]
 
         // If 'true', the tangible component of a target is ignored.
@@ -84,8 +87,16 @@ namespace RM_EDU
         [Tooltip("If true, the projectile will die on contact with a valid target.")]
         public bool dieOnContact = true;
 
+        // Awake is called when the script instance is being loaded.
+        protected virtual void Awake()
+        {
+            // If this projectile isn't in the projectiles list, add it.
+            if (!actionProjectiles.Contains(this))
+                actionProjectiles.Add(this);
+        }
+
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             // If the action manager isn't set, set it.
             if (actionManager == null)
@@ -245,7 +256,7 @@ namespace RM_EDU
         }
 
         // Kills the projectile.
-        public void Kill()
+        protected virtual void Kill()
         {
             // If the shooter is a blaster.
             if(shooterUnit is ActionUnitDefenseBlaster)
@@ -264,8 +275,31 @@ namespace RM_EDU
             Destroy(gameObject);
         }
 
+        // Kills all projectiles in the game world.
+        public static void KillAllActionProjectiles()
+        {
+            // Goes through all the action projectiles, killing each one.
+            for(int i = actionProjectiles.Count - 1;  i >= 0; i--)
+            {
+                // If the projectile exists, kill it.
+                if (actionProjectiles[i] != null)
+                {
+                    // The projectile should remove itself from the projectile list on its own.
+                    actionProjectiles[i].Kill();
+                }
+                else
+                {
+                    // If the projectile is null, it shouldn't be in the list, so remove it.
+                    actionProjectiles.RemoveAt(i);
+                }
+            }
+
+            // All projectiles should be dead now, so clear the list.
+            actionProjectiles.Clear();
+        }
+
         // Update is called once per frame
-        void Update()
+        protected virtual void Update()
         {
             // If the game is playing and the game is unpaused.
             if(actionManager.IsStagePlayingAndGameUnpaused())
@@ -288,10 +322,14 @@ namespace RM_EDU
         }
 
         // This function is called when the MonoBehaviour will be destroyed
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
+            // If this projectile is in the projectile list, remove it.
+            if (actionProjectiles.Contains(this))
+                actionProjectiles.Remove(this);
+
             // The shooter unit exists.
-            if(shooterUnit != null)
+            if (shooterUnit != null)
             {
                 // If the shooter is a blaster.
                 if (shooterUnit is ActionUnitDefenseBlaster)

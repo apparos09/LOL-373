@@ -60,6 +60,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1060931769468509636}
   m_SourcePrefab: {fileID: 100100000, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
+--- !u!1 &1133093146673767100 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1679549278367778716, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
+  m_PrefabInstance: {fileID: 1799041941431346464}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6280970693268046962 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5754763098957996370, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
@@ -82,6 +87,7 @@ MonoBehaviour:
   energy: 0
   airPollution: 0
   unitParent: {fileID: 7631506222874977085}
+  unitProjectileParent: {fileID: 1133093146673767100}
   startingEnergy: 300
   energyAutoGenTimer: 0
   energyAutoGenTimerMax: 5

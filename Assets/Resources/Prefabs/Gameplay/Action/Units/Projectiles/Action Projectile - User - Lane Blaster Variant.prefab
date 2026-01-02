@@ -17,6 +17,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+      propertyPath: ignoreTangible
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
       propertyPath: defaultOneHitKill
       value: 1
       objectReference: {fileID: 0}

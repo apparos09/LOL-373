@@ -12,11 +12,14 @@ namespace RM_EDU
         // The projectile prefab.
         public ActionProjectile projectilePrefab;
 
-        // The parent of the projectile.
-        public GameObject projectileParent;
+        // A game object used to position the projectile when it's first shot.
+        // If this is null, the shooter's object is used.
+        [Tooltip("The starting position of the projectile as an object. If null, the shooter's position is the starting position.")]
+        public GameObject projectileStartPos;
 
         // The offset of the starting position of a fired projectile.
-        [Tooltip("The offset of the starting position of a fired projectile. This offset is based on the shooter's position.")]
+        // This is applied to projectileStartPos's position if that object isn't null.
+        [Tooltip("The offset of the starting position of a fired projectile.")]
         public Vector3 projectileStartPosOffset = Vector3.zero;
 
         // The projectiles fired by this unit.
@@ -40,11 +43,31 @@ namespace RM_EDU
             {
                 projectile = Instantiate(projectilePrefab);
 
-                // Gives the projectile the positon of the shooter plus an offset.
-                projectile.transform.position = transform.position + projectileStartPosOffset;
+                // Sets the projectile's parent.
+                if (owner != null)
+                {
+                    // If the owner's projectile parent is set, use that.
+                    // If the owner has no projectile parent, use the owner's transform.
+                    // This doesn't use the blaster's parent in case the blaster gets destroyed.
+                    projectile.transform.parent = owner.unitProjectileParent != null ? owner.unitProjectileParent.transform : owner.transform;
+                }
 
-                // Sets the projectile parent.
-                projectile.transform.parent = (projectileParent != null) ? projectileParent.transform : transform;
+                // The starting position.
+                Vector3 startPos;
+
+                // If the projecile start position exists, use that plus the offset.
+                if (projectileStartPos != null)
+                {
+                    startPos = projectileStartPos.transform.transform.position + projectileStartPosOffset;
+                }
+                // No projectile start position object, so use shooter's transform plus offset.
+                else
+                {
+                    startPos = transform.position + projectileStartPosOffset;
+                }
+
+                // Sets the starting position.
+                projectile.transform.position = startPos;
 
                 // Sets the shooter and move direction.
                 projectile.shooterUnit = this;
