@@ -660,6 +660,27 @@ namespace RM_EDU
             }
         }
 
+        // Unhighlights all tiles if highlighting is enabled.
+        public void UnhighlightAllTiles()
+        {
+            // If tile highlighting is enabled.
+            if (IsTileHighlightingEnabled)
+            {
+                // Goes through all the rows and columns.
+                for (int r = 0; r < tiles.GetLength(0); r++)
+                {
+                    for (int c = 0; c < tiles.GetLength(1); c++)
+                    {
+                        // The tile exists, so unhighlight it.
+                        if (tiles[r, c] != null)
+                        {
+                            tiles[r, c].UnhighlightTile();
+                        }
+                    }
+                }
+            }
+        }
+
         // Gets a vector representing the provided world position in reference to the map.
         // If a value for an axis is (0), it means the position is within the stage.
         // If it's a 1, it's outside the stage on the positive end of that axis.

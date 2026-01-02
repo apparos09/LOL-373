@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -13,6 +14,9 @@ namespace RM_EDU
         public Vector2 facingDirec = Vector2.right;
 
         // TODO: set facing direction by version.
+
+        // If 'true', the hydro generator is using its restricted configuration.
+        private bool restrictConfig = true;
 
         // The timer used for flooding. When the timer runs out, related tiles are flooded.
         [Tooltip("The countdown timer for nearby tiles being flooded.")]
@@ -46,7 +50,99 @@ namespace RM_EDU
         // Checks if the tile configuration is valid.
         public override bool UsableTileConfiguration(ActionTile tile)
         {
-            return base.UsableTileConfiguration(tile);
+            // If the tile configuration isn't restricted, all configurations are valid.
+            // If the tile is null, this also returns true, since the game can't find any...
+            // Reference tiles for applying the restricted configuration.
+            if (!restrictConfig || tile == null)
+            {
+                return true;
+            }
+
+            // The result to be returned.
+            // Will be set to false if a nearby hydro or wind generator is found.
+            bool result = true;
+
+            // Gets the stage.
+            ActionStage stage = ActionManager.Instance.actionStage;
+
+            // The tile's row and column positions.
+            int tileRow = tile.GetMapRowPosition();
+            int tileCol = tile.GetMapColumnPosition();
+
+            // Gets set to true if this tile is next to a hydro generator.
+            // If it is, don't allow the hydro generator to be placed there.
+            bool nextToHydroInWater = false;
+
+            // Gets set to 'true' if next to a wind generator in the water.
+            bool nextToWindInWater = false;
+
+            // The program only checks up, down, left, and right, so these values can be hard coded.
+            ActionTile tileLeft = null;
+            ActionTile tileRight = null;
+            ActionTile tileUp = null;
+            ActionTile tileDown = null;
+
+            // Setting left.
+            if (stage.ValidMapPosition(tileRow - 1, tileCol))
+                tileLeft = stage.tiles[tileRow - 1, tileCol];
+
+            // Setting right.
+            if (stage.ValidMapPosition(tileRow + 1, tileCol))
+                tileRight = stage.tiles[tileRow + 1, tileCol];
+
+            // Setting up.
+            if (stage.ValidMapPosition(tileRow, tileCol + 1))
+                tileUp = stage.tiles[tileRow, tileCol + 1];
+
+            // Setting down.
+            if (stage.ValidMapPosition(tileRow, tileCol - 1))
+                tileDown = stage.tiles[tileRow, tileCol - 1];
+
+            // Creates a list of tiles to be checked.
+            List<ActionTile> checkTiles = new List<ActionTile>() { tileLeft, tileRight, tileUp, tileDown };
+
+            // Goes through the check tiles.
+            foreach(ActionTile checkTile in checkTiles)
+            {
+                // Checks if the tile exists.
+                if(checkTile != null)
+                {
+                    // Checks if there's an action user, then checks if it's a water tile.
+                    if(checkTile.HasActionUnitUser() && checkTile.IsWaterTile())
+                    {
+                        // Checks if it's a generator.
+                        if(checkTile.actionUnitUser is ActionUnitGenerator)
+                        {
+                            // Convert to generator.
+                            ActionUnitGenerator generator = (ActionUnitGenerator)checkTile.actionUnitUser;
+
+                            // Checks the resource.
+                            // If it's hydro or wind, change the appropriate variables.
+                            switch(generator.resource)
+                            {
+                                case NaturalResources.naturalResource.hydro:
+                                    nextToHydroInWater = true;
+                                    break;
+
+                                case NaturalResources.naturalResource.wind:
+                                    nextToWindInWater = true;
+                                    break;
+                            }
+
+                        }
+                    }
+                }
+
+                // If next to a hydro generator or a wind generator, you can't place the unit here.
+                if(nextToHydroInWater || nextToWindInWater)
+                {
+                    // Result is false, and no more need for checks.
+                    result = false;
+                    break;
+                }
+            }
+
+            return result;
         }
 
 

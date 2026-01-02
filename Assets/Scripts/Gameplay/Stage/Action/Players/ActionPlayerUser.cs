@@ -222,7 +222,8 @@ namespace RM_EDU
                     break;
 
                 case playerUserMode.remove:
-                    ActionUI.Instance.SetSelectedUnitInfoToRemove();
+                    ActionUI.Instance.SetSelectedUnitInfoToRemove(); // Set UI to remove.
+                    ActionManager.Instance.actionStage.UnhighlightAllTiles(); // Makes sure all tiles are unhighlighted.
                     break;
             }
         }

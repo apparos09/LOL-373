@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 namespace RM_EDU
@@ -8,6 +7,9 @@ namespace RM_EDU
     // Action Unit Generator - Wind
     public class ActionUnitGeneratorWind : ActionUnitGenerator
     {
+        // If 'true', the wind generator is using its restricted configuration.
+        private bool restrictConfig = true;
+
         // Start is called just before any of the Update methods is called the first time
         protected override void Start()
         {
@@ -28,6 +30,14 @@ namespace RM_EDU
 
         public override bool UsableTileConfiguration(ActionTile tile)
         {
+            // If the tile configuration isn't restricted, all configurations are valid.
+            // If the tile is null, this also returns true, since the game can't find any...
+            // Reference tiles for applying the restricted configuration.
+            if (!restrictConfig || tile == null)
+            {
+                return true;
+            }
+
             // The result to return.
             bool result;
 
@@ -45,11 +55,11 @@ namespace RM_EDU
                 // Gets set to 'true' if land is found.
                 bool foundLand = false;
 
-                // Gets set to true if the wind generator is next to a hydro generator.
-                // Wind generators shouldn't be allowed near hydro generators...
+                // Gets set to true if the wind generator would be put in water next to a hydro generator.
+                // Wind generators shouldn't be allowed near hydro generators if both are in water...
                 // So if a hydro generator is next to the intended spot for a wind generator...
                 // The wind generator cannot be placed there.
-                bool nextToHydro = false;
+                bool inWaterNextToHydro = false;
 
                 // Goes through every tile that's one space away from the current tile.
                 for(int r = tileRow - 1; r < tileRow + 2; r++) // Row
@@ -84,7 +94,7 @@ namespace RM_EDU
                                  */
 
                                 // If not next to a hydro generator.
-                                if (!nextToHydro)
+                                if (!inWaterNextToHydro)
                                 {
                                     // Checks if this is a position to check for hydro generators (valid position).
                                     // If the hydro generator is in any of these positions...
@@ -99,14 +109,14 @@ namespace RM_EDU
                                             // Checks if the unit user is a hydro generator.
                                             if (stage.tiles[r, c].actionUnitUser is ActionUnitGenerator)
                                             {
-                                                // Gets the generator.
-                                                ActionUnitGenerator generator = stage.tiles[r, c].actionUnitUser as ActionUnitGenerator;
+                                                // Downcasts to the generator.
+                                                ActionUnitGenerator generator = (ActionUnitGenerator)stage.tiles[r, c].actionUnitUser;
 
                                                 // If the generator is a hydro generator, check its position relative...
                                                 // To the current tile.
                                                 if (generator.resource == NaturalResources.naturalResource.hydro)
                                                 {
-                                                    nextToHydro = true;
+                                                    inWaterNextToHydro = true;
                                                 }
                                             }
                                         }
@@ -121,7 +131,7 @@ namespace RM_EDU
                         //     break;
 
                         // If next to a hydro generator, the wind generator can't go here, so break.
-                        if (nextToHydro)
+                        if (inWaterNextToHydro)
                             break;
                     }
 
@@ -131,12 +141,12 @@ namespace RM_EDU
                     //     break;
 
                     // If next to a hydro generator, the wind generator can't go here, so break.
-                    if (nextToHydro)
+                    if (inWaterNextToHydro)
                         break;
                 }
 
                 // If land was found and the wind generator wouldn't be next to a hydro generator, the spot is valid.
-                result = foundLand && !nextToHydro;
+                result = foundLand && !inWaterNextToHydro;
             }
             // Not a water tile, so treat it as usable by default.
             else
