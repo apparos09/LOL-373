@@ -602,61 +602,40 @@ namespace RM_EDU
             return color;
         }
 
-        // Called when the player user has selected a unit.
-        public void OnPlayerUserSelectedUnit()
+        // Returns 'true' if tile highlighting is active.
+        // Highlighting is on whenever the player has a unit selected.
+        public bool IsTileHighlightingActive()
         {
-            // The player user.
-            ActionPlayerUser playerUser = actionManager.playerUser;
-
-            // Called if the player user is selecting a unit.
-            if (playerUser.IsSelectingActionUnitPrefab())
+            // If tile highlighting is off, the highlights are never active.
+            if(IsTileHighlightingEnabled)
             {
-                // If highlighting is enabled.
-                if(IsTileHighlightingEnabled)
-                {
-                    // Goes through all the rows and columns.
-                    for (int r = 0; r < tiles.GetLength(0); r++)
-                    {
-                        for (int c = 0; c < tiles.GetLength(1); c++)
-                        {
-                            // The tile exists.
-                            if (tiles[r, c] != null)
-                            {
-                                tiles[r, c].HighlightTile(playerUser.selectedUnitPrefab);
-                            }
-                        }
-                    }
-                }
-                
+                // If the player is selecting a unit prefab, then tile highlights must be on.
+                return ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab();
+            }
+            else
+            {
+                return false;
             }
         }
 
-        // Called when the player has unselected a unit.
-        public void OnPlayerUserClearedSelectedUnit()
+        // Highlights all the tiles using the provided unit.
+        public void HighlightAllTiles(ActionUnit compUnit)
         {
-            // The player user.
-            ActionPlayerUser playerUser = actionManager.playerUser;
-
-            // Called if the player user is selecting a unit.
-            if (!playerUser.IsSelectingActionUnitPrefab())
+            // If highlighting is enabled.
+            if (IsTileHighlightingEnabled)
             {
-                // If tile highlighting is enabled.
-                if (IsTileHighlightingEnabled)
+                // Goes through all the rows and columns.
+                for (int r = 0; r < tiles.GetLength(0); r++)
                 {
-                    // Goes through all the rows and columns.
-                    for (int r = 0; r < tiles.GetLength(0); r++)
+                    for (int c = 0; c < tiles.GetLength(1); c++)
                     {
-                        for (int c = 0; c < tiles.GetLength(1); c++)
+                        // The tile exists.
+                        if (tiles[r, c] != null)
                         {
-                            // The tile exists.
-                            if (tiles[r, c] != null)
-                            {
-                                tiles[r, c].UnhighlightTile();
-                            }
+                            tiles[r, c].HighlightTile(compUnit);
                         }
                     }
                 }
-
             }
         }
 
@@ -678,6 +657,52 @@ namespace RM_EDU
                         }
                     }
                 }
+            }
+        }
+
+        // Refreshes the highlighted tiles using the player's selected prefab.
+        // If the player has no prefab selected, all tiles are unhighlighted.
+        public void RefreshHighlightedTiles()
+        {
+            // Gets the player user.
+            ActionPlayerUser playerUser = actionManager.playerUser;
+
+            // If the player is selecting a prefab, highlight refresh.
+            if(playerUser.IsSelectingActionUnitPrefab())
+            {
+                HighlightAllTiles(playerUser.selectedUnitPrefab);
+            }
+            // Player doesn't have a prefab, so unhighlight all tiles.
+            else
+            {
+                UnhighlightAllTiles();
+            }
+        }
+
+        // Called when the player user has selected a unit.
+        public void OnPlayerUserSelectedUnit()
+        {
+            // The player user.
+            ActionPlayerUser playerUser = actionManager.playerUser;
+
+            // Called if the player user is selecting a unit.
+            if (playerUser.IsSelectingActionUnitPrefab())
+            {
+                HighlightAllTiles(playerUser.selectedUnitPrefab);
+            }
+        }
+
+        // Called when the player has unselected a unit.
+        public void OnPlayerUserClearedSelectedUnit()
+        {
+            // The player user.
+            ActionPlayerUser playerUser = actionManager.playerUser;
+
+            // Called if the player user is selecting a unit.
+            if (!playerUser.IsSelectingActionUnitPrefab())
+            {
+                // Unhighlights all the tiles.
+                UnhighlightAllTiles();
             }
         }
 

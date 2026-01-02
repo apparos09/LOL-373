@@ -75,7 +75,7 @@ namespace RM_EDU
         private static Color usableColor = Color.yellow;
 
         // The colour used to show that the tile is unusable.
-        private static Color unusableColor = Color.grey;
+        private static Color unusableColor = Color.black;
 
         // The alpha of highlights on the tile.
         private static float highlightAlpha = 0.50F;
@@ -900,8 +900,14 @@ namespace RM_EDU
                     // Instantiate the unit and put it on this tile.
                     // This function also checks if the player user is selecting a tile.
                     if (playerUser.CanSelectedActionUnitUseTile(this))
-                    {                        
+                    {   
+                        // Instantiate the prefab.
                         playerUser.InstantiateSelectedActionUnit(this);
+
+                        // Since the player should still be selecting something, refresh the highlighs.
+                        ActionManager.Instance.actionStage.RefreshHighlightedTiles();
+
+                        // Action performed.
                         performed = true;
                     }
                 }

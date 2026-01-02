@@ -272,6 +272,11 @@ namespace RM_EDU
 
             // Tiles have been flooded.
             floodedTiles = true;
+
+            // If the player is selecting an action prefab, that means the tiles are highlighted.
+            // As such, refresh the highlighted tiles.
+            if (ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab())
+                ActionManager.Instance.actionStage.RefreshHighlightedTiles();
         }
 
         // Update is called every from, if the MonoBehaviour is enabled
