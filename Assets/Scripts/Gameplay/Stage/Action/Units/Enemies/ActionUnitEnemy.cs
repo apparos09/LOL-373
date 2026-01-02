@@ -32,6 +32,7 @@ namespace RM_EDU
         protected bool moveAndAttack = false;
 
         // Gets set to 'true' when a target within range has been found.
+        // NOTE: pretty sure this doesn't do anything anymore since enemies now trigger attacks on contact.
         private bool targetInRange = false;
 
         [HideInInspector]
@@ -102,14 +103,19 @@ namespace RM_EDU
             // Tries to get the component.
             if (collision.TryGetComponent(out userUnit))
             {
-                // A target is in range.
-                targetInRange = true;
-
-                // If the enemy can attack.
-                if (CanAttack())
+                // IF the user unit is tangible, it stop act as a obstruction...
+                // And it can be attacked.
+                if(userUnit.tangible)
                 {
-                    AttackUserUnit(userUnit);
-                }                
+                    // A target is in range.
+                    targetInRange = true;
+
+                    // If the enemy can attack.
+                    if (CanAttack())
+                    {
+                        AttackUserUnit(userUnit);
+                    }
+                }              
             }
         }
 

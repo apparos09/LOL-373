@@ -115,7 +115,24 @@ namespace RM_EDU
             {
                 default:
                 case ActionTile.actionTileOverlay.none:
-                    result = true;
+                    // If the unit is a generator.
+                    if(this is ActionUnitGenerator)
+                    {
+                        // Gets the generator.
+                        ActionUnitGenerator tempGen = (ActionUnitGenerator)this;
+
+                        // Checks if the generator uses energy cycles.
+                        // If it doesn't use energy cycles, it can use this tile.
+                        // If it does use energy cycles, it can't use this tile since there's no...
+                        // Overlay to specify the use of energy cycles.
+                        result = !NaturalResources.UsesEnergyCycles(tempGen.resource);
+                    }
+                    else
+                    {
+                        // Not a generator, so true by default.
+                        result = true;
+                    }
+                        
                     break;
 
                 case ActionTile.actionTileOverlay.unusable:

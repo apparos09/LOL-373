@@ -25,6 +25,12 @@ namespace RM_EDU
 
         [Header("Attack")]
 
+        // If 'true', the tangible component of a target is ignored.
+        [Tooltip("If true, the tangible component of a target is ignored when checking for valid collision.")]
+        public bool ignoreTangible = false;
+
+        [Header("Attack/Power, Factor")]
+
         // The default attack power of the projectile.
         [Tooltip("The default attack power of the projectile.")]
         public float defaultAttackPower = 1.0F;
@@ -33,10 +39,21 @@ namespace RM_EDU
         [Tooltip("The attack power of the shooter.")]
         public float shooterAttackPower = 1.0F;
 
-        // If 'true', the attack power of the shooter is applied to the projectile's attack power...
+        // The attack factor of the projectile.
+        [Tooltip("The attack factor that's applied to the projectile.")]
+        public float defaultAttackFactor = 1.0F;
+
+        // The shooter's attack stat factor.
+        [Tooltip("The attack factor of the shooter, which is the shooter's stat factor.")]
+        public float shooterAttackFactor = 1.0F;
+
+        // If 'true', the attack power and factor of the shooter is applied to the projectile's attack power...
         // Upon collision with a valid target occurring.
-        [Tooltip("If true, use the attack power of the shooter. If false, use the default attack power..")]
-        public bool useAttackPowerOfShooter = true;
+        // If false, the projectile's attack power and factor are used.
+        [Tooltip("If true, use the attack power and attack factor of the shooter. If false, use the default attack power and factor.")]
+        public bool useAttackPowerAndFactorOfShooter = true;
+
+        [Header("Attack/One Hit")]
 
         // The default 'one hit kill' check. If true, the projectile kills its target in one hit.
         [Tooltip("If true, by default the projectile kills the target in one hit.")]
@@ -110,15 +127,16 @@ namespace RM_EDU
         // Updates the shooter's attack values (attack power and one hit kill).
         public void UpdateShooterAttackValues()
         {
-            UpdateShooterAttackPower();
+            UpdateShooterAttackPowerAndFactor();
             UpdateShooterOneHitKill();
             
         }
 
-        // Updates the shooter's attack power.
-        public void UpdateShooterAttackPower()
+        // Updates the shooter's attack power and attack factor.
+        public void UpdateShooterAttackPowerAndFactor()
         {
-            shooterAttackPower = (shooterUnit != null) ? shooterUnit.attackPower * shooterUnit.statFactor : 1;
+            shooterAttackPower = (shooterUnit != null) ? shooterUnit.attackPower * shooterUnit.statFactor : 1.0F;
+            shooterAttackFactor = (shooterUnit != null) ? shooterUnit.statFactor : 1.0F;
         }
 
         // Update's the shooter's one hit kill.
@@ -131,21 +149,27 @@ namespace RM_EDU
         // If 'updateShooter' is true, the shooter's values are updated for the calculations.
         public float CalculateAttackPower(bool updateShooter)
         {
+            // The power to be returned.
+            float power;
+
             // Calculates attack power for the projectile.
-            if (useAttackPowerOfShooter)
+            if (useAttackPowerAndFactorOfShooter)
             {
                 // Updates the shooter's value if requested.
                 if(updateShooter)
-                    UpdateShooterAttackPower();
+                    UpdateShooterAttackPowerAndFactor();
 
-                // Returns the shooter attack power.
-                return shooterAttackPower;
+                // Gets the shooter attack power times its factor.
+                power = shooterAttackPower * shooterAttackFactor;
             }
             // Shooter shouldn't be used.
             else
             {
-                return defaultAttackPower;
+                // Get the default attack power times the default attack factor.
+                power = defaultAttackPower * defaultAttackFactor;
             }
+
+            return power;
         }
 
         // Returns 'true' if the projectile is a one-hit kill based on the current parameters.
@@ -209,7 +233,7 @@ namespace RM_EDU
 
                     // Apply damage using the projectile.
                     // Since the proper attack calculation hasn't been done, apply it.
-                    target.ApplyDamage(damage, true, false);
+                    target.ApplyDamage(damage, false);
                 }
 
                 // If the projectile should die on contact, kill it.

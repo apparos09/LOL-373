@@ -68,6 +68,10 @@ namespace RM_EDU
         [Tooltip("The unit's maximum health. This is NOT effected by statFactor.")]
         public float maxHealth = 100.0F;
 
+        // If 'true', the unit acts as a physical entity, which can determine if other units can get past it or not.
+        [Tooltip("If true, other units should stop when they physically hit this entity. If false, units can go through this entity.")]
+        public bool tangible = true;
+
         // Gets set to 'true' if the unit is vulnerable.
         public bool vulnerable = true;
 
@@ -262,6 +266,8 @@ namespace RM_EDU
             return GetUnitTypeName();
         }
 
+
+        // STATS //
         // Gets the stat rating, using the base stat maximum for comparison.
         public statRating GetStatRating(float stat)
         {
@@ -379,11 +385,43 @@ namespace RM_EDU
             return result;
         }
 
+        // Gets the attack power modified by the stat factor.
+        public float GetAttackPowerStatModified()
+        {
+            return attackPower * statFactor;
+        }
+
+        // Gets the attack speed modified by the stat factor.
+        public float GetAttackSpeedStatModified()
+        {
+            return attackSpeed * statFactor;
+        }
+
+        // Gets the durability stat modified by the stat factor.
+        public float GetDurabilityStatModified()
+        {
+            return durability * statFactor;
+        }
+
+        // Gets the movement speed modified by the stat factor.
+        public float GetMovementSpeedStatModified()
+        {
+            return movementSpeed * statFactor;
+        }
+
+
         // HEALTH / VULNERABLE //
         // Sets the unit's health to its max.
         public void SetHealthToMax()
         {
             health = maxHealth;
+        }
+
+        // Returns 'true' if the unit is tangible.
+        // If it's tangible, it should be treated like a physical entity.
+        public bool IsTangible()
+        {
+            return tangible;
         }
 
         // Returns 'true' if the unit is vulnerable to attack.
@@ -401,9 +439,11 @@ namespace RM_EDU
             return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 10.0F);
         }
 
+
         // TILE //
         // Returns 'true' if the unit can use the tile.
         public abstract bool UsableTile(ActionTile tile);
+
 
         // ATTACK / DAMAGE //
         // Returns 'true' if the entity has the function for attacking.
@@ -438,7 +478,7 @@ namespace RM_EDU
 
             // Applies the power as damage to the target.
             // The attack calculation has already been applied, so don't do it again.
-            target.ApplyDamage(power, false, ignoreVulnerable);
+            target.ApplyDamage(power, ignoreVulnerable);
 
             // Called when a unit has been attacked.
             attacker.OnUnitAttackPerformed(target);
@@ -466,15 +506,8 @@ namespace RM_EDU
             // If the attack is valid, do the calculation.
             if(valid)
             {
-                // NOTE: if this calculation is changed, update the ApplyDamage() function.
-                // 2.0 * statFactor + ((attackPower * 1.85 * statFactor) - (target.durability * 1.15 * target.statFactor))
-                power = (2.0F * statFactor) + ((attackPower * 1.85F * statFactor) - (target.durability * 1.15F * target.statFactor));
-
-                // If the power is negative, set the power to 1.
-                if (power < 0.0F)
-                {
-                    power = 1.0F;
-                }
+                // Calculates the power.
+                power = CalculateDamage(statFactor, attackPower, target.statFactor, target.durability, false);
             }
             else
             {
@@ -485,29 +518,51 @@ namespace RM_EDU
             return power;
         }
 
+        // Calculates damage based on the provided values.
+        // If 'allowNegative' is true, the raw value is returned.
+        // If 'allowNegative' is false, the damage rounds up to 1 if the attackerPower is greater than 0.
+        public static float CalculateDamage(float attackerStatFactor, float attackerPower, float targetStatFactor, float targetDurability, bool allowNegative)
+        {
+            // 2.0 * statFactor + ((attackPower * 1.85 * statFactor) - (target.durability * 1.15 * target.statFactor))
+            // The amount of damage being done.
+            float damage = (2.0F * attackerStatFactor) + 
+                ((attackerPower * 1.85F * attackerStatFactor) - (targetDurability * 1.15F * targetStatFactor));
+
+
+            // If the damage is negative and allowNegative is false...
+            if (damage <= 0.0F && !allowNegative)
+            {
+                // If the attacker power is greater than 0, make sure some damage is done.
+                if(attackerPower > 0)
+                {
+                    // If the attacker power is greater than 0, do at least 1 damage.
+                    damage = 1.0F;
+                }
+                // Attack power is 0 or less, so do no damage.
+                else
+                {
+                    damage = 0.0F;
+                }
+            }
+
+            return damage;
+        }
+
+        // Calculates damage based on attack pwoer and target durability.
+        // The stat factors for the attacker and the target are both 1.
+        public static float CalculateDamage(float attackerPower, float targetDurability, bool allowNegative)
+        {
+            return CalculateDamage(1, attackerPower, 1, targetDurability, allowNegative);
+        }
+
+
         // Apply damage to the unit.
         // applyAttackCalc: if true, the attack calculation is applied to the damage. If false, the damage is applied with no modifications.
         //  - If applying the attack calculation, its assumed that the provided damage is the final attack power as part of that calculation.
         // ignoreVulnerable: if true, the vulnerability of the unit is ignored.
         // This does NOT call OnUnitAttacked.
-        public void ApplyDamage(float damage, bool applyAttackCalc, bool ignoreVulnerable)
+        public void ApplyDamage(float damage, bool ignoreVulnerable)
         {
-            // The power of the damage.
-            float power = damage;
-
-            // If the attack calculation should be applied.
-            if(applyAttackCalc)
-            {
-                // Calculates the power.
-                // This reuses the attack calculation.
-                // TODO: this should be optimized so that the code isn't copied.
-                power = damage - (durability * 1.15F * statFactor);
-
-                // The power is negative, so set it to 1.
-                if (power < 0.0F)
-                    power = 1;
-            }
-
             // If the unit is vulnerable, or if the vulnerability of this unit should be ignored.
             if(vulnerable || ignoreVulnerable)
             {
@@ -563,7 +618,14 @@ namespace RM_EDU
         public virtual void Kill()
         {
             // TODO: add animation.
+            
+            // Set health to none.
             health = 0.0F;
+
+            // Reduce the owner's energy by the death cost.
+            if (owner != null)
+                owner.energy -= energyDeathCost;
+
             OnUnitDeath();
         }
 

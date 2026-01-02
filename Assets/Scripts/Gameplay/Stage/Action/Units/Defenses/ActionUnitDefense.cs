@@ -68,7 +68,7 @@ namespace RM_EDU
                 if(row >= 0 && row < actionManager.actionStage.MapRowCount)
                 {
                     // The defense has a target.
-                    hasTarget = actionManager.actionStage.IsEnemyInRowRightOfPosition(row, transform.position, true);
+                    hasTarget = actionManager.actionStage.IsEnemyInRowRightOfPosition(row, transform.position, true, false);
                 }
 
             }

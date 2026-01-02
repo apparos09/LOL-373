@@ -742,40 +742,86 @@ namespace RM_EDU
             }
         }
 
-        // Returns 'true' if there's an enemy negative to the provided position (left of position).
-        public bool IsEnemyInRowLeftOfPosition(int row, Vector3 refPos, bool includeEqualTo)
+        // Returns 'true' if there's an enemy in the row relative to the reference position.
+        // If refDirec is negative, it checks to the left. If refDirec is positive, it checks to the right.
+        //  - If refDirec is 0, it checks the exact position.
+        // If 'ignoreTangible' is true, the tangible component is ignored. If false, intangible enemies will go undetected.
+        public bool IsEnemyInRowReferencOfPosition(int row, Vector3 refPos, int refDirec, bool includeEqualTo, bool ignoreTangible)
         {
             // Checks if the row is valid.
             if (row >= 0 && row < rowEnemyUnits.Count)
             {
-                // Gets set to true if the enemy is in a negative position (left) compared to the reference pos.
-                bool leftOfPos = false;
+                // Gets set to true if the enemy is in range.
+                bool inRange = false;
 
                 // Goes through all enemies.
                 foreach (ActionUnitEnemy enemy in rowEnemyUnits[row])
                 {
-                    // Checks if the equal to case should be included.
-                    if (includeEqualTo)
+                    // Checks if the enemy is hittable at all.
+                    // If the tangible component should be ignored, the enemy can always be hit.
+                    bool canBeHit = ignoreTangible ? true : enemy.tangible;
+
+                    // If can be hit, check if in line of fire.
+                    if (canBeHit)
                     {
-                        //  The enemy is left of the comparison position.
-                        if (refPos.x >= enemy.transform.position.x)
+                        if(refDirec < 0) // Negative (Left)
                         {
-                            leftOfPos = true;
-                            break;
+                            // Checks if equal to should be included.
+                            if(includeEqualTo)
+                            {
+                                //  The enemy is to the left or equal to the reference position.
+                                if (refPos.x >= enemy.transform.position.x)
+                                {
+                                    inRange = true;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                // The enemy is to the left of the reference position.
+                                if (refPos.x > enemy.transform.position.x)
+                                {
+                                    inRange = true;
+                                    break;
+                                }
+                            }
                         }
-                    }
-                    else
-                    {
-                        //  The enemy is left of the reference position.
-                        if (refPos.x > enemy.transform.position.x)
+                        else if(refDirec > 0) // Positive (Right)
                         {
-                            leftOfPos = true;
-                            break;
+                            // Checks if equal to should be included.
+                            if (includeEqualTo)
+                            {
+                                //  The enemy is to the right or equal to the reference position.
+                                if (refPos.x <= enemy.transform.position.x)
+                                {
+                                    inRange = true;
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                // The enemy is to the right of the reference position.
+                                if (refPos.x < enemy.transform.position.x)
+                                {
+                                    inRange = true;
+                                    break;
+                                }
+                            }
                         }
+                        else // Exact position.
+                        {
+                            // Is in range if the reference position is the same as the enemy position.
+                            if(refPos == enemy.transform.position)
+                            {
+                                inRange = true;
+                                break;
+                            }
+                        }  
                     }
+
                 }
 
-                return leftOfPos;
+                return inRange;
             }
             else
             {
@@ -784,46 +830,19 @@ namespace RM_EDU
             }
         }
 
-        // Returns 'true' if there's an enemy positive to the provided position (right of position).
-        public bool IsEnemyInRowRightOfPosition(int row, Vector3 refPos, bool includeEqualTo)
+
+        // Returns 'true' if there's an enemy negative to the provided position (left of position).
+        public bool IsEnemyInRowLeftOfPosition(int row, Vector3 refPos, bool includeEqualTo, bool ignoreTangible)
         {
-            // Checks if the row is valid.
-            if (row >= 0 && row < rowEnemyUnits.Count)
-            {
-                // Gets set to true if the enemy is in a positive position (right) compared to the comparison pos.
-                bool rightOfPos = false;
+            // Check negative direction (left).
+            return IsEnemyInRowReferencOfPosition(row, refPos, -1, includeEqualTo, ignoreTangible);
+        }
 
-                // Goes through all enemies.
-                foreach(ActionUnitEnemy enemy in rowEnemyUnits[row])
-                {
-                    // Checks if the equal to case should be included.
-                    if(includeEqualTo)
-                    {
-                        //  The enemy is right of the comparison position.
-                        if (refPos.x <= enemy.transform.position.x)
-                        {
-                            rightOfPos = true;
-                            break;
-                        }
-                    }
-                    else
-                    {
-                        //  The enemy is right of the reference position.
-                        if (refPos.x < enemy.transform.position.x)
-                        {
-                            rightOfPos = true;
-                            break;
-                        }
-                    }
-                }
-
-                return rightOfPos;
-            }
-            else
-            {
-                // Row not valid.
-                return false;
-            }
+        // Returns 'true' if there's an enemy positive to the provided position (right of position).
+        public bool IsEnemyInRowRightOfPosition(int row, Vector3 refPos, bool includeEqualTo, bool ignoreTangible)
+        {
+            // Check positive direction (right).
+            return IsEnemyInRowReferencOfPosition(row, refPos, 1, includeEqualTo, ignoreTangible);
         }
 
         // Returns 'true' if the position is in the stage bounds.

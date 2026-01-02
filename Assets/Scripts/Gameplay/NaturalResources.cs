@@ -559,7 +559,7 @@ namespace RM_EDU
             return result;
         }
 
-        // Returns 'true' if the provided resource uses energy cycles.
+        // Returns 'true' if the provided resource uses energy cycles (energy spots)
         // Energy cycles determines how much energy a resource can get out of a tile...
         // Before the generator no longer works. If a generator doesn't use cycles...
         // Then it can get energy infinitely.
@@ -574,13 +574,13 @@ namespace RM_EDU
                 case naturalResource.unknown:
                 case naturalResource.biomass:
                 case naturalResource.hydro:
-                case naturalResource.geothermal:
                 case naturalResource.solar:
                 case naturalResource.wave:
                 case naturalResource.wind:
                     result = false;
                     break;
 
+                case naturalResource.geothermal:
                 case naturalResource.coal:
                 case naturalResource.naturalGas:
                 case naturalResource.nuclear:
