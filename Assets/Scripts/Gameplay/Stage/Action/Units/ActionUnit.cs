@@ -1,9 +1,7 @@
 using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Build;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace RM_EDU
 {
@@ -94,6 +92,9 @@ namespace RM_EDU
 
         // The energy generation speed.
         public float energyGenerationSpeed = 0.0F;
+
+        // The amount of energy used when an attack is performed.
+        public float attackEnergyCost = 0.0F;
 
         // The attack power of the unit.
         public float attackPower = 0.0F;
@@ -457,7 +458,30 @@ namespace RM_EDU
         // This checks if the attack cooldown timer is 0.
         public virtual bool CanAttack()
         {
-            return attackingEnabled && attackCooldownTimer <= 0.0F;
+            // Checks if attacking is enabled.
+            if(attackingEnabled)
+            {
+                // Checks if the cooldown is finished to see if the unit can attack.
+                bool canAttack = attackCooldownTimer <= 0.0F;
+
+                // Used to see if there's energy for the attack (true by default in case there's no owner).
+                bool hasEnergy = true;
+
+                // Check's owner's energy amount.
+                if (owner != null)
+                {
+                    // The owner has energy to perform the attack.
+                    hasEnergy = owner.HasEnergyForAttack(this);
+                }
+
+                // Returns can attack and has energy for attack.
+                return canAttack && hasEnergy;
+            }
+            else
+            {
+                // Attacking isn't enabled.
+                return false;
+            }
         }
 
         // Attacks this unit with another unit.
@@ -579,6 +603,17 @@ namespace RM_EDU
         // If target is null, there was no target.
         public virtual void OnUnitAttackPerformed(ActionUnit target)
         {
+            // If the owner is set.
+            if(owner != null)
+            {
+                // Reduce the owner's energy.
+                owner.energy -= attackEnergyCost;
+
+                // Prevent energy from being negative.
+                if (owner.energy < 0.0F)
+                    owner.energy = 0.0F;
+            }
+
             // Set the attack cooldown timer to the attack speed.
             if(useAttackCooldownTimer)
             {

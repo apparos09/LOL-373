@@ -31,6 +31,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1849280751653751939}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &8028304619842985493
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1614307298090073974}
+  m_Layer: 0
+  m_Name: Projectile Start Position
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1614307298090073974
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028304619842985493}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1849280751653751939}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &7433684422133844323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -97,6 +128,9 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 9115346750531339744, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       insertIndex: -1
+      addedObject: {fileID: 1614307298090073974}
+    - targetCorrespondingSourceObject: {fileID: 9115346750531339744, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      insertIndex: -1
       addedObject: {fileID: 5717164286411412314}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
@@ -128,14 +162,17 @@ MonoBehaviour:
   animator: {fileID: 8194997913235594361}
   collider: {fileID: 3684014631833299890}
   rigidbody: {fileID: 2151022029249442189}
+  owner: {fileID: 0}
   health: 0
   maxHealth: 100
+  tangible: 1
   vulnerable: 1
   statFactor: 1
-  energyCreationCost: 0
+  energyCreationCost: 40
   energyDeathCost: 0
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
+  attackEnergyCost: 0
   attackPower: 60
   attackSpeed: 60
   attackingEnabled: 1
@@ -149,7 +186,7 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
-  projectileParent: {fileID: 1706905028135206088}
+  projectileStartPos: {fileID: 8028304619842985493}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   firedProjectiles: []
 --- !u!4 &1849280751653751939 stripped

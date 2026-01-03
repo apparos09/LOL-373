@@ -74,10 +74,34 @@ namespace RM_EDU
             }
         }
 
+        // Modifies the energy by adding the provided amount.
+        public virtual void IncreaseEnergy(float energyPlus)
+        {
+            // Add energy.
+            energy += energyPlus;
+
+            // Bounds check.
+            if (energy < 0.0F)
+                energy = 0.0F;
+        }
+
+        // Decreses the energy by the provided amount.
+        public virtual void DecreaseEnergy(float energyMinus)
+        {
+            // Send negative energy to increase function.
+            IncreaseEnergy(-energyMinus);
+        }
+
         // Returns 'true' if the player has the energy to create the provided aciton unit.
         public bool HasEnergyToCreateActionUnit(ActionUnit actionUnit)
         {
             return energy >= actionUnit.energyCreationCost;
+        }
+
+        // Returns 'true' if the player has energy for the attack.
+        public bool HasEnergyForAttack(ActionUnit actionUnit)
+        {
+            return energy >= actionUnit.attackEnergyCost;
         }
 
         // Resets the player.

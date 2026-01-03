@@ -392,6 +392,7 @@ namespace RM_EDU
             return list;
         }
 
+
         // Returns 'true' if the provided map position is valid (valid index).
         public bool ValidMapPosition(int row, int column)
         {
@@ -412,6 +413,19 @@ namespace RM_EDU
         {
             return ValidMapPosition(mapPos.y, mapPos.x);
         }
+
+        // Returns 'true' if the row is valid.
+        public bool ValidMapRow(int row)
+        {
+            return row >= 0 && row < MapRowCount;
+        }
+
+        // Returns 'true' if the column is alid
+        public bool ValidMapColumn(int column)
+        {
+            return column >= 0 && column < MapColumnCount;
+        }
+
 
         // Converts the provided map tile position to local position in world units.
         // Argument "mapPos" is the tile position in the map.
@@ -757,6 +771,10 @@ namespace RM_EDU
                 // Goes through all enemies.
                 foreach (ActionUnitEnemy enemy in rowEnemyUnits[row])
                 {
+                    // If the enemy isn't active, move onto the next one.
+                    if (!enemy.isActiveAndEnabled)
+                        continue;
+
                     // Checks if the enemy is hittable at all.
                     // If the tangible component should be ignored, the enemy can always be hit.
                     bool canBeHit = ignoreTangible ? true : enemy.tangible;

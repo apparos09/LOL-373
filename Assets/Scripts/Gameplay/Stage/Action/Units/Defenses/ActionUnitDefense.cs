@@ -9,12 +9,10 @@ namespace RM_EDU
     {
         // [Header("Defense")]
 
-
-
         // // Start is called before the first frame update
-        // void Start()
+        // protected override void Start()
         // {
-        // 
+        //     base.Start();
         // }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -65,7 +63,8 @@ namespace RM_EDU
                 int row = tile.GetMapRowPosition();
 
                 // If the row is valid.
-                if(row >= 0 && row < actionManager.actionStage.MapRowCount)
+                // if(actionManager.actionStage.ValidMapPosition)
+                if(actionManager.actionStage.ValidMapRow(row))
                 {
                     // The defense has a target.
                     hasTarget = actionManager.actionStage.IsEnemyInRowRightOfPosition(row, transform.position, true, false);

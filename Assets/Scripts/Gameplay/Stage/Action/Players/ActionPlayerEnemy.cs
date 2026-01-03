@@ -98,6 +98,17 @@ namespace RM_EDU
             ApplyDifficulty(actionManager.difficulty);
         }
 
+        // Increases the energy by the provided amount.
+        // The decrease function calls this function, so it doesn't need to be overrided.
+        public override void IncreaseEnergy(float energyPlus)
+        {
+            // Call base function.
+            base.IncreaseEnergy(energyPlus);
+
+            // Clamp energy within 0 and max.
+            energy = Mathf.Clamp(energy, 0, energyMax);
+        }
+
         // Gets the energy max.
         public float GetEnergyMax()
         {

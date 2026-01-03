@@ -262,6 +262,9 @@ namespace RM_EDU
                     // Apply damage using the projectile.
                     // Since the proper attack calculation hasn't been done, apply it.
                     target.ApplyDamage(damage, false);
+
+                    // Call the kill function.
+                    target.Kill();
                 }
 
                 // If the projectile should die on contact, kill it.

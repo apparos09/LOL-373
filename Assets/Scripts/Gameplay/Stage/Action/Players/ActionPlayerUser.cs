@@ -154,7 +154,9 @@ namespace RM_EDU
             foreach (NaturalResources.naturalResource resource in resources)
             {
                 // Gets the prefab.
-                ActionUnitGenerator generatorPrefab = ActionUnitPrefabs.Instance.GetGeneratorPrefab((int)resource);
+                // Goes by the resource instead of the index to match with the defense verison of this function.
+                // ActionUnitGenerator generatorPrefab = ActionUnitPrefabs.Instance.GetGeneratorPrefab((int)resource);
+                ActionUnitGenerator generatorPrefab = ActionUnitPrefabs.Instance.GetGeneratorPrefabByResource(resource);
 
                 // Puts the prefab in the generator list and the new list.
                 generatorPrefabs.Add(generatorPrefab);
