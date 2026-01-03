@@ -167,11 +167,11 @@ namespace RM_EDU
             // ...
         }
         
-        // // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)
-        // protected virtual void OnTriggerExit2D(Collider2D collision)
-        // {
-        //     
-        // }
+        // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)
+        protected virtual void OnTriggerExit2D(Collider2D collision)
+        {
+            // ...
+        }
 
         // UNIT TYPE / RATING //
         // Gets the action unit type.
@@ -547,9 +547,9 @@ namespace RM_EDU
         // If 'allowNegative' is false, the damage rounds up to 1 if the attackerPower is greater than 0.
         public static float CalculateDamage(float attackerStatFactor, float attackerPower, float targetStatFactor, float targetDurability, bool allowNegative)
         {
-            // 2.0 * statFactor + ((attackPower * 1.85 * statFactor) - (target.durability * 1.15 * target.statFactor))
+            // 2.0 * statFactor + ((attackPower * 1.80 * statFactor) - (target.durability * 1.20 * target.statFactor))
             // The amount of damage being done.
-            float damage = (2.0F * attackerStatFactor) + 
+            float damage = (5.0F * attackerStatFactor) + 
                 ((attackerPower * 1.85F * attackerStatFactor) - (targetDurability * 1.15F * targetStatFactor));
 
 
@@ -585,7 +585,7 @@ namespace RM_EDU
         //  - If applying the attack calculation, its assumed that the provided damage is the final attack power as part of that calculation.
         // ignoreVulnerable: if true, the vulnerability of the unit is ignored.
         // This does NOT call OnUnitAttacked.
-        public void ApplyDamage(float damage, bool ignoreVulnerable)
+        public virtual void ApplyDamage(float damage, bool ignoreVulnerable)
         {
             // If the unit is vulnerable, or if the vulnerability of this unit should be ignored.
             if(vulnerable || ignoreVulnerable)
@@ -597,6 +597,27 @@ namespace RM_EDU
             // If health is negative, clamp it at 0.
             if (health < 0.0F)
                 health = 0.0F;
+        }
+
+        // Calculates teh attack cooldown time.
+        public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
+        {
+            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpped) / BASE_STAT_MAXIMUM * 5.0F)
+            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 5.0F);
+        }
+
+        // Calculates the attack cooldown time.
+        public virtual float CalculateAttackCooldownTime()
+        {
+            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpped) / BASE_STAT_MAXIMUM * 5.0F)
+            // return 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 5.0F);
+            return CalculateAttackCooldownTime(attackSpeed, BASE_STAT_MAXIMUM);
+        }
+
+        // Calculates and sets the attack cooldown time.
+        public void CalculateAndSetAttackCooldownTime()
+        {
+            attackCooldownTimer = CalculateAttackCooldownTime();
         }
 
         // Called when the unit hasp performed an attack.
@@ -617,8 +638,8 @@ namespace RM_EDU
             // Set the attack cooldown timer to the attack speed.
             if(useAttackCooldownTimer)
             {
-                // Calculates the attack cooldown.
-                attackCooldownTimer = 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 5.0F);
+                // Calculates and sets the attack cooldown.
+                CalculateAndSetAttackCooldownTime();
 
                 // If teh attakc cooldown is negative, set it to 1.
                 if (attackCooldownTimer < 0.0F)

@@ -28,6 +28,11 @@ namespace RM_EDU
 
         [Header("Attack")]
 
+        // If 'true', the shooter is used for attacking the target instead of the projectile.
+        // If 'false', the projectile is used for attacking the target.
+        [Tooltip("If true, the shooter is used for attacking the target instead of the projectile when the projectile makes contact with the target.")]
+        public bool useShooterDirectly = true;
+
         // If 'true', the tangible component of a target is ignored.
         [Tooltip("If true, the tangible component of a target is ignored when checking for valid collision.")]
         public bool ignoreTangible = false;
@@ -158,7 +163,7 @@ namespace RM_EDU
 
         // Calculates the current attack power based on the parameters.
         // If 'updateShooter' is true, the shooter's values are updated for the calculations.
-        public float CalculateAttackPower(bool updateShooter)
+        public virtual float CalculateAttackPower(bool updateShooter)
         {
             // The power to be returned.
             float power;
@@ -236,7 +241,7 @@ namespace RM_EDU
             {
                 // If the shooter exists, use that to attack the target.
                 // This is the more accurate version of applying damage.
-                if (shooterUnit != null)
+                if (useShooterDirectly && shooterUnit != null)
                 {
                     // Attack the target with the shooter object.
                     target.AttackUnit(shooterUnit);

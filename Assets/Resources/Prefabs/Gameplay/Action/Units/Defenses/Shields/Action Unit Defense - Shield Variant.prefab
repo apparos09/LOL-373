@@ -9,8 +9,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: idNumber
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: durability
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: attackingEnabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: energyCreationCost
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Name

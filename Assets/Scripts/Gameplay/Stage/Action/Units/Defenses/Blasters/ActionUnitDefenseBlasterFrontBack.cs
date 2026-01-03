@@ -7,6 +7,17 @@ namespace RM_EDU
     // A action unit blaster that shoots from the front and the back.
     public class ActionUnitDefenseBlasterFrontBack : ActionUnitDefenseBlaster
     {
+        [Header("Blaster/FrontBack")]
+
+        // The projectile start pos in the parent class is for firing forward (right).
+        // The starting position of the projectile if shooting towards the left side. 
+        [Tooltip("Starting position used when firing a projectile to the left (back).")]
+        public GameObject projectileStartPosLeft;
+
+        // The offset of the projectile if it's being fired left.
+        [Tooltip("Offset used when firing a projecitle to the left (back).")]
+        public Vector3 projectileStartPosLeftOffset = Vector3.zero;
+
         // Has a target to the left and a target to the right.
         private bool hasTargetLeft = false;
         private bool hasTargetRight = false;
@@ -89,6 +100,14 @@ namespace RM_EDU
 
                 // Gets the most recently fired projectile.
                 ActionProjectile projectile = firedProjectiles[firedProjectiles.Count - 1];
+
+                // If there's a starting position for the left, use that plus the offset.
+                // If there isn't one, use the shooter's position as the base position and add the offset.
+                if (projectileStartPosLeft != null)
+                    projectile.transform.position = projectileStartPosLeft.transform.position + projectileStartPosLeftOffset;
+                else
+                    projectile.transform.position = transform.position + projectileStartPosLeftOffset;
+
 
                 // If the target is to the left, have the projectile move left.
                 // If the target is to the right, have the projectile move right.

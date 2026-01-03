@@ -1,0 +1,263 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace RM_EDU
+{
+    // A trap, which damages enemies that pass over it.
+    public class ActionUnitDefenseTrap : ActionUnitDefense
+    {      
+        [Header("Trap")]
+
+        // The number of hits that have occurred.
+        public int hitCount = 0;
+
+        // The limit on the number of hits this trap can have before it destroys itself.
+        [Tooltip("The number of hits this trap can take before it destroys itself.")]
+        public float hitLimit = 15;
+
+        // If 'true', the hit limit is enabled. If false, there is no limit, so the hit limit is infinite.
+        [Tooltip("Enables hit limit. If the hit limit isn't being used, the hit limit is considered infinite.")]
+        public bool useHitLimit = true;
+
+        // The amount of energy that the owner gets when a unit is damaged.
+        [Tooltip("The percentage of energy taken for the damage done to an enemy.")]
+        public float damageEnergyPercent = 0.0F;
+
+        // If 'true', when the trap is killed, any targets on the same tile are killed as well.
+        [Tooltip("If true, when this trap reaches it energy limit, all targets on the tile this unit uses are also destroyed.")]
+        public bool killTargetsOnHitLimitReached = true;
+
+        // The list of enemy targets. A unit is added to this list in trigger start and removed in trigger end.
+        [Tooltip("A list of enemy targets. A target is added in trigger start and removed in trigger end.")]
+        protected List<ActionUnitEnemy> enemyTargets = new List<ActionUnitEnemy>();
+
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // The defense is intangible so that enemies aren't blocked by it, and don't get stopped by it.
+            tangible = false;
+        }
+
+        // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
+        protected override void OnTriggerEnter2D(Collider2D collision)
+        {
+            base.OnTriggerEnter2D(collision);
+
+            // Enemy component.
+            ActionUnitEnemy enemy;
+
+            // Gets the enemy.
+            if(collision.TryGetComponent(out enemy))
+            {
+                // Tries to add the enemy to the list.
+                TryAddEnemyTargetToList(enemy);
+            }
+        }
+
+        // OnTriggerStay2D is called once per frame for every Collider2D other that is touching this trigger (2D physics only)
+        protected override void OnTriggerStay2D(Collider2D collision)
+        {
+            // Calls base function.
+            base.OnTriggerStay2D(collision);
+        }
+
+        // OnTriggerExit2D is called when the Collider2D other has stopped touching the trigger (2D physics only)
+        protected override void OnTriggerExit2D(Collider2D collision)
+        {
+            base.OnTriggerExit2D(collision);
+
+            // Enemy component.
+            ActionUnitEnemy enemy;
+
+            // Gets the enemy.
+            if (collision.TryGetComponent(out enemy))
+            {
+                // Try to remove the enemy to the list.
+                TryRemoveEnemyTargetFromList(enemy);
+            }
+        }
+
+        // Returns 'true' if the trap can attack.
+        public override bool CanAttack()
+        {
+            // Checks if the trap can attack and if it has remaining hits.
+            bool canAttack = base.CanAttack();
+            bool hasHits = !HasHitLimtBeenReached();
+
+            return canAttack && hasHits;
+        }
+
+        // Called to perform an attack.
+        public override void PerformAttack()
+        {
+            // Attacks all the enemies.
+            AttackAllEnemiesInList();
+
+            // Calls base.
+            base.PerformAttack();
+        }
+
+        // Called when an attack has been performed.
+        public override void OnUnitAttackPerformed(ActionUnit target)
+        {
+            base.OnUnitAttackPerformed(target);
+        }
+
+        // Returns 'true' if the hit count is below the hit limit.
+        public bool HasHitLimtBeenReached()
+        {
+            // If the hit limit is being used, check if the hit count is...
+            // At or above the limit.
+            // If the hit limit isn't being used, there is no limit to reach.
+            if (useHitLimit)
+                return hitCount >= hitLimit;
+            else
+                return false;
+        }
+
+        // Tries to add an enemy target to the list.
+        public bool TryAddEnemyTargetToList(ActionUnitEnemy enemyUnit)
+        {
+            // If the enemy isn't in the list, add it.
+            if(!enemyTargets.Contains(enemyUnit))
+            {
+                enemyTargets.Add(enemyUnit);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Tries to remove an enemy target from the list.
+        public bool TryRemoveEnemyTargetFromList(ActionUnitEnemy enemyUnit)
+        {
+            // If the enemy is in the list, remove it.
+            if (enemyTargets.Contains(enemyUnit))
+            {
+                enemyTargets.Remove(enemyUnit);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Removes enemies from the list that are null.
+        // If 'nullOnly' is true, dead enemies are kept in the list.
+        public void RemoveDeadAndNullEnemyTargetsFromList(bool nullOnly = false)
+        {
+            // Goes through all enemies.
+            for(int i = enemyTargets.Count - 1; i >= 0; i--)
+            {
+                // If the enemy exists.
+                if (enemyTargets[i] != null)
+                {
+                    // Removes the enemy if it's dead.
+                    if (enemyTargets[i].IsDead() && !nullOnly)
+                    {
+                        enemyTargets.RemoveAt(i);
+                    }
+                }
+                // Removes the enemy since it's null.
+                else
+                {
+                    enemyTargets.RemoveAt(i);
+                }
+            }
+        }
+
+        // Attacks all the enemies in the list.
+        public void AttackAllEnemiesInList()
+        {
+            // Goes through all the enemies in the list, back to front.
+            for(int i = enemyTargets.Count - 1; i >= 0; i--)
+            {
+                // Checks if the enemy exists.
+                if(enemyTargets[i] != null)
+                {
+                    // Attacks the enemy target.
+                    enemyTargets[i].AttackUnit(this);
+
+                    // Adds to the hit count.
+                    hitCount++;
+
+                    // If the hit limit has been reached, stop damaging enemy targets.
+                    if (HasHitLimtBeenReached())
+                        break;
+                }
+                else
+                {
+                    // Remove the enemy target since it's null.
+                    enemyTargets.Remove(enemyTargets[i]);
+                }
+            }
+        }
+
+        // Kills all the enemy targets, which also clears the list.
+        public void KillAllEnemyTargets()
+        {
+            // Goes through all enemies.
+            for (int i = enemyTargets.Count - 1; i >= 0; i--)
+            {
+                // If the enemy isn't null, kill it.
+                if (enemyTargets[i] != null)
+                {
+                    enemyTargets[i].Kill();
+                }
+            }
+
+            // Clear the list.
+            enemyTargets.Clear();
+        }
+
+        // THe kill function.
+        public override void Kill()
+        {
+            // If enemy targets should be killed when the hit limit has been reached...
+            // And the hit limit has been reached, kill all the targets.
+            if(killTargetsOnHitLimitReached && HasHitLimtBeenReached())
+            {
+                KillAllEnemyTargets();
+            }
+
+            // Call kill base afterwards so that the trigger exit function hasn't been called yet.
+            base.Kill();
+        }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+
+            // Stage is active.
+            if(actionManager.IsStagePlayingAndGameUnpaused())
+            {
+                // Checks if the hit limit has been reached.
+                if (HasHitLimtBeenReached())
+                {
+                    // Hit limit reached, so kill the trap.
+                    Kill();
+                }
+                // Still hits left.
+                else
+                {
+                    // Calculates and sets the attack cooldown time...
+                    // If the attack cooldown time is zero or less.
+                    // This is done here so that the trap can damage all its targets...
+                    // In its trigger function.
+                    if (attackCooldownTimer <= 0.0F)
+                    {
+                        CalculateAndSetAttackCooldownTime();
+                    }
+                }
+
+            }
+        }
+    }
+}
