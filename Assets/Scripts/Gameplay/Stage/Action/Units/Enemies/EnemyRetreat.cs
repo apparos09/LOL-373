@@ -21,7 +21,7 @@ namespace RM_EDU
         public Vector2 moveDirec = Vector2.right;
 
         // The movement speed.
-        public float moveSpeed = 25.0F;
+        public float moveSpeed = 15.0F;
 
         // The energy death cost to be applied when the enemy reaches the stage bounds.
         public float energyDeathCost = 0;

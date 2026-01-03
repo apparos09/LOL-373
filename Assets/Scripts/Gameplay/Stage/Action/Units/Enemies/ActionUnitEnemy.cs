@@ -35,16 +35,30 @@ namespace RM_EDU
         // NOTE: pretty sure this doesn't do anything anymore since enemies now trigger attacks on contact.
         private bool targetInRange = false;
 
-        [HideInInspector]
         // If 'true', the enemy unit checks if it's at the end of the map on the left.
         // Since this happens every frame, there should be some tile that's used to enable this function...
         // Upon the enemy unit coming into contact with it.
         protected bool checkForMapLeftBound = false;
 
+        // The prefab for the enemy retreat, which is spawned when the enemy dies.
+        public EnemyRetreat enemyRetreatPrefab;
+
+        // If true, the enemy retreat is used. If false, the enemy dies like normal.
+        [Tooltip("If true, the enemy retreats to their ship when they're destroyed.")]
+        public bool useEnemyRetreat = true;
+
         // Start is called before the first frame update
         protected override void Start()
         {
             base.Start();
+
+            // If the player enemy is null, but the owner is set.
+            if(playerEnemy == null && owner != null)
+            {
+                // If the owner is an action player enemy, downcast it and save it to player enemy.
+                if(owner is ActionPlayerEnemy)
+                    playerEnemy = (ActionPlayerEnemy)owner;
+            }
 
             // Gets the enemy attack in the children.
             if (enemyAttack == null)
@@ -303,7 +317,47 @@ namespace RM_EDU
         // Kills the unit.
         public override void Kill()
         {
-            base.Kill();
+            // If enemy retreat is being used and the enemy retreat prefab is set.
+            if(useEnemyRetreat && enemyRetreatPrefab != null)
+            {
+                // Save the death cost and set the death cost to 0.
+                // This is so that the base Kill() function doesn't reduce the enemy's energy.
+                // The enemy's energy reduction will happen when the enemy retreat...
+                // Returns to the enemy ship.
+
+                // Gets the death cost and temporarily stores it.
+                float tempDeathCost = energyDeathCost;
+                energyDeathCost = 0;
+
+                // Creates the retreat enemy.
+                EnemyRetreat retreat = Instantiate(enemyRetreatPrefab);
+
+                // If the player enemy exists.
+                if(playerEnemy != null)
+                {
+                    // If the player enemy has an enemy retreat parent, use that.
+                    // If it doesn't use the player enemy as the parent.
+                    retreat.transform.parent = playerEnemy.enemyRetreatParent != null ? 
+                        playerEnemy.enemyRetreatParent.transform : playerEnemy.transform;
+                }
+
+                // Sets the retreat's position.
+                retreat.transform.position = transform.position;
+
+                // Sets the energy death cost.
+                retreat.energyDeathCost = tempDeathCost;
+
+                // Calls the base kill function.
+                base.Kill();
+
+                // Restores the death cost to normal.
+                energyDeathCost = tempDeathCost;
+            }
+            else
+            {
+                // Just call base kill.
+                base.Kill();
+            }
         }
 
         // Called when a unit has died/been destroyed.

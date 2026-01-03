@@ -16,6 +16,9 @@ namespace RM_EDU
         // When the enemy runs out of energy, the stage is over.
         private float energyDec = 1.0F;
 
+        // The parent for enemy retreats.
+        public GameObject enemyRetreatParent;
+
         [Header("Enemy/Units")]
 
         // The rate at which enemies are spawned.
@@ -86,7 +89,7 @@ namespace RM_EDU
         // Applies the game difficulty to the enemy.
         public void ApplyDifficulty(int difficulty)
         {
-
+            // TODO: implement.
         }
 
         // Gets the difficulty from the manager and uses that to apply the settings.

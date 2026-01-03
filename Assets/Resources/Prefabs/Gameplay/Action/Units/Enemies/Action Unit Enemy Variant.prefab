@@ -198,7 +198,7 @@ MonoBehaviour:
   vulnerable: 1
   statFactor: 1
   energyCreationCost: 0
-  energyDeathCost: 20
+  energyDeathCost: 5
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
   attackPower: 60
@@ -212,6 +212,8 @@ MonoBehaviour:
   playerEnemy: {fileID: 0}
   movementDirec: {x: -1, y: 0, z: 0}
   enemyAttack: {fileID: 8204392876637201565}
+  enemyRetreatPrefab: {fileID: 4824531729917000575, guid: 37bb43a55bef8124395cd2bd70d5769d, type: 3}
+  useEnemyRetreat: 1
 --- !u!61 &7283594400394210138 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 2267399927797895862, guid: 09943904bff810340a376831cb22bfec, type: 3}
