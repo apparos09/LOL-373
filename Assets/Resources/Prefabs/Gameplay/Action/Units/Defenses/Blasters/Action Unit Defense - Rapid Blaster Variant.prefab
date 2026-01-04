@@ -120,7 +120,7 @@ MonoBehaviour:
   energyDeathCost: 0
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
-  attackEnergyCost: 0
+  attackEnergyCost: 30
   attackPower: 30
   attackSpeed: 20
   attackingEnabled: 1

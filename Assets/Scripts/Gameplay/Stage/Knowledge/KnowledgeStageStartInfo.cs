@@ -12,18 +12,16 @@ namespace RM_EDU
         // The statements in the knowledge stage.
         public List<KnowledgeStatement> statements = new List<KnowledgeStatement>();
 
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
         // Sets the start info from the provided stage.
         public override void SetStartInfo(WorldStage worldStage)
         {
             // If the world stage is not a knowledge stage, do nothing.
             if (worldStage is not WorldKnowledgeStage)
+            {
+                Debug.LogWarning("The provided WorldStage is not a WorldKnowledgeStage.");
                 return;
+            }
+                
 
             // Calls the base function.
             base.SetStartInfo(worldStage);
@@ -37,7 +35,10 @@ namespace RM_EDU
         {
             // If this isn't the right manager type, return.
             if(manager is not KnowledgeManager)
+            {
+                Debug.Log("The provided GameplayManager is not a KnoweldgeManager.");
                 return;
+            }
 
             // Apply the start info.
             base.ApplyStartInfo(manager);

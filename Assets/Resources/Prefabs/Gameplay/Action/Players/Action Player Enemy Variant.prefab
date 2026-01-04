@@ -149,10 +149,11 @@ MonoBehaviour:
   unitProjectileParent: {fileID: 1701011687324225044}
   withholdingAttackEnergy: 0
   energyMax: 300
+  autoEnergyLoss: 1
   enemyRetreatParent: {fileID: 4557514189434322926}
   spawnRate: 1
   spawnTimer: 0
-  spawnTimeMax: 4
+  spawnTimeMax: 5
   enemiesPerSpawnMin: 1
   enemiesPerSpawnMax: 7
   usableEnemyIndexes: 010000000200000003000000

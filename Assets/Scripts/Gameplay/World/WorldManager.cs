@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -46,6 +44,13 @@ namespace RM_EDU
 
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
+
+        [Header("Player")]
+
+        // The ids for the defense units the player can currently use.
+        // The player unlocks more as they progress through the game.
+        [Tooltip("The ids for defense units the player can currently use.")]
+        public List<int> actionDefenseIds = new List<int>();
 
         // Awake is called when the script is being loaded
         protected override void Awake()
@@ -403,22 +408,36 @@ namespace RM_EDU
         {
             // TODO: create start info.
 
+            // A temporary object that will be used for start info.
+            GameObject startInfoObject = null;
+
             // Checks the stage type to see what kind of scene to load.
             if (worldStage is WorldActionStage)
             {
+                // Creates a temporary object and add the action stage start info.
+                startInfoObject = new GameObject("Action Stage Start Info");
+                ActionStageStartInfo assi = startInfoObject.AddComponent<ActionStageStartInfo>();
+
+                // Sets the start info data.
+                assi.SetStartInfo(worldStage);
+
+                // Don't destroy the temporary object. It will be destroyed in the action scene.
+                DontDestroyOnLoad(startInfoObject);
+
+                // Load the scene.
                 LoadActionScene();
             }
             else if(worldStage is WorldKnowledgeStage)
             {
                 // Creates a temporary object and add the knowledge stage start info.
-                GameObject tempObject = new GameObject("Knowledge Stage Start Info");
-                KnowledgeStageStartInfo kssi = tempObject.AddComponent<KnowledgeStageStartInfo>();
+                startInfoObject = new GameObject("Knowledge Stage Start Info");
+                KnowledgeStageStartInfo kssi = startInfoObject.AddComponent<KnowledgeStageStartInfo>();
 
-                // Sets the start info.
+                // Sets the start info data
                 kssi.SetStartInfo(worldStage);
 
-                // Don't destroy the temporary object. It will be destroyed in the action scene.
-                DontDestroyOnLoad(tempObject);
+                // Don't destroy the temporary object. It will be destroyed in the knowledge scene.
+                DontDestroyOnLoad(startInfoObject);
 
                 // Load the scene.
                 LoadKnowledgeScene();

@@ -27,10 +27,13 @@ namespace RM_EDU
         [Header("World")]
         // The world stage data. The index of the array matches up with the index in the world stage list.
         public WorldStage.WorldStageData[] worldStageDatas = new WorldStage.WorldStageData[WorldManager.STAGE_COUNT];
-         
-        // 
-        // [Header("Action")]
-        // 
+
+
+        [Header("Action")]
+
+        // The unlocked defense units for the action stages.
+        public List<int> actionDefenseIds = new List<int>();
+
         
         [Header("Knowledge")]
         
@@ -125,6 +128,20 @@ namespace RM_EDU
             runGameTimer = !paused;
         }
 
+        // Adds action defense units to the list.
+        public void AddActionDefenseUnits(List<int> newIds)
+        {
+            // Goes through the list of new ids.
+            foreach(int newId in newIds)
+            {
+                // If the id isn't already in the list, add it.
+                if(!actionDefenseIds.Contains(newId))
+                    actionDefenseIds.Add(newId);
+            }
+
+            // Sort the defense id list.
+            actionDefenseIds.Sort();
+        }
 
         // Update is called once per frame
         void Update()

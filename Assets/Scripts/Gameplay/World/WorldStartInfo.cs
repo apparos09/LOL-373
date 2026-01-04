@@ -34,9 +34,9 @@ namespace RM_EDU
         public virtual void SetStartInfo(GameplayManager manager)
         {
             // TODO: implement.
-            
+
             // If this is a stage manager, mark that this is coming from a stage.
-            if(manager is ActionManager || manager is KnowledgeManager)
+            if(manager is StageManager)
             {
                 // Gets the stage manager.
                 StageManager stageManager = manager as StageManager;
@@ -69,7 +69,10 @@ namespace RM_EDU
         {
             // If not a world manager, return.
             if (manager is not WorldManager)
+            {
+                Debug.LogWarning("The provided GameplayManager is not a WorldManager.");
                 return;
+            }                
 
             // Convert the manager.
             WorldManager worldManager = manager as WorldManager;

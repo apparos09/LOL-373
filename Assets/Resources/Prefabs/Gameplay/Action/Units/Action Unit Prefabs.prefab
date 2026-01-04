@@ -57,7 +57,7 @@ MonoBehaviour:
   - {fileID: 5159144818120123081, guid: f1213725a7ac29642a1be2b578ca7544, type: 3}
   - {fileID: 2847674788801534402, guid: 158a27e6a4b745943bd9eaea42ae2c03, type: 3}
   defensePrefabs:
-  - {fileID: 0}
+  - {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
   - {fileID: 8963299378571816709, guid: 8fcf8899b6c32024fa36f5ff92e07940, type: 3}
   - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   - {fileID: 4400795511340984922, guid: a983c10bc9a620c4d8fdf6b535f439d4, type: 3}
@@ -77,5 +77,5 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
   - {fileID: 4939435568882342715, guid: 6aa0338d3d7a73247bafed7fac87efeb, type: 3}
-  - {fileID: 7910256586862032315, guid: c386ceaae3a8131489909cae3d6bce41, type: 3}
   - {fileID: 2164300578078681540, guid: 0706944048fc4aa4f900e2930aac8015, type: 3}
+  - {fileID: 7910256586862032315, guid: c386ceaae3a8131489909cae3d6bce41, type: 3}

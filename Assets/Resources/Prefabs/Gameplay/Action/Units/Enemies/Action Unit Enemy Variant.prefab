@@ -188,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
-  idNumber: 1
+  idNumber: 0
   spriteRenderer: {fileID: 8147518098009090336}
   iconSprite: {fileID: 0}
   cardBackgroundSprite: {fileID: 21300000, guid: f27e84b1992d762478cce4d9c6aa514c, type: 3}

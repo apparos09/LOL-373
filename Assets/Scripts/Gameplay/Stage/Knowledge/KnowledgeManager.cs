@@ -806,15 +806,8 @@ namespace RM_EDU
                 }
             }
 
-            // Creates a start info object.
-            GameObject temp = new GameObject("World Start Info");
-            WorldStartInfo startInfo = temp.AddComponent<WorldStartInfo>();
-
-            // Applies the start info.
-            startInfo.SetStartInfo(this);
-
-            // Don't destroy the start info object.
-            DontDestroyOnLoad(startInfo.gameObject);
+            // Generates a world start info object. The function gives it the data.
+            WorldStartInfo startInfo = GenerateWorldStartInfo(true);
 
             // Loads the world scene.
             LoadWorldScene();

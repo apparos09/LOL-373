@@ -67,7 +67,8 @@
 
       "kwd_select": 18,
       "kwd_deselect": 18,
-      "kwd_remove": 18
+      "kwd_remove": 18,
+      "kwd_hold": 18
 
     }
   },
@@ -137,6 +138,7 @@
 
     "kwd_select": "Select",
     "kwd_deselect": "Deselect",
-    "kwd_remove": "Remove"
+    "kwd_remove": "Remove",
+    "kwd_hold": "Hold"
   }
 }

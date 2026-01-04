@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.SceneManagement;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace RM_EDU
 {
@@ -169,11 +170,31 @@ namespace RM_EDU
 
             data.stageType = GetStageType();
             // TODO: review where the game score is being gotten from.
-            data.score = gameScore;
+            data.score = GetStageScore();
 
             data.complete = complete;
 
             return data;
+        }
+
+        // Generates a world start info object.
+        // dontDestroyOnLoad: marks the object as not being destroyed on load if true.
+        public WorldStartInfo GenerateWorldStartInfo(bool dontDestroyOnLoad)
+        {
+            // Creates a start info object and adds the world info component.
+            GameObject startInfoObject = new GameObject("World Start Info");
+            WorldStartInfo startInfo = startInfoObject.AddComponent<WorldStartInfo>();
+
+            // Applies the start info from this manager.
+            startInfo.SetStartInfo(this);
+
+            // If the object shouldn't be destroyed on load, mark the object as such.
+            if(dontDestroyOnLoad)
+            {
+                DontDestroyOnLoad(startInfo.gameObject);
+            }
+
+            return startInfo;
         }
 
         // Update is called once per frame

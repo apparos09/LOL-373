@@ -1,8 +1,6 @@
 using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace RM_EDU
@@ -210,8 +208,8 @@ namespace RM_EDU
             playerUser.SetGeneratorPrefabsFromManager();
             playerUser.SetDefensePrefabsFromManager();
 
-            // Sets the energy to max.
-            playerEnemy.SetEnergyToMax();
+            // Applies the enemy difficulty and resets the values.
+            playerEnemy.ApplyDifficulty(true);
 
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
@@ -658,6 +656,9 @@ namespace RM_EDU
 
             // Open the window.
             // actionUI.SetStageEndWindowActive(true);
+
+            // Generates a world start info object. The function gives it the data.
+            WorldStartInfo startInfo = GenerateWorldStartInfo(true);
 
             // TODO: put this into the UI instead.
             LoadWorldScene();

@@ -29,6 +29,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: attackEnergyCost
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 1136388483422999125, guid: 88601d4c7c3699740a0334c7a95057fd, type: 3}

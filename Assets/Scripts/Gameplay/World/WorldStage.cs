@@ -72,20 +72,20 @@ namespace RM_EDU
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
         protected virtual void OnMouseDown()
         {
-            worldManager.worldUI.OpenStagePrompt(this);
+            WorldManager.Instance.worldUI.OpenStagePrompt(this);
         }
 
         // TODO: add function to check when the object is enabled to refersh text.
         // Returns the index of this stage in the world manager. If -1 is returned, it's not in the world manager stage list.
         public int GetWorldStageIndex()
         {
-            return worldManager.GetWorldStageIndex(this);
+            return WorldManager.Instance.GetWorldStageIndex(this);
         }
 
         // Gets the world area this stage is in.
         public WorldArea GetWorldStageArea()
         {
-            return worldManager.GetWorldStageArea(this);
+            return WorldManager.Instance.GetWorldStageArea(this);
         }
 
         // Gets the stage type.

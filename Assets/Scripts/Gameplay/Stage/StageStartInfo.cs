@@ -40,7 +40,10 @@ namespace RM_EDU
         {
             // If this is not a stage manager, don't do anything.
             if (manager is not StageManager)
+            {
+                Debug.LogWarning("Provided GameplayManager is not a StageManager.");
                 return;
+            }
 
             // Convert the manager.
             StageManager stageManager = (StageManager)manager;

@@ -10,8 +10,8 @@ namespace RM_EDU
     {
         [Header("Enemy")]
         // The maximum amount of energy the enemy has.
-        [Header("The maximum amount of energy the enemy player can have.")]
-        public float energyMax = 120.0F;
+        [Tooltip("The maximum amount of energy the enemy player can have.")]
+        public float energyMax = 300.0F;
 
         // The enemy's decrementation amount, which reduces from the enemy's energy every frame.
         // When the enemy runs out of energy, the stage is over.
@@ -34,23 +34,29 @@ namespace RM_EDU
 
         // The spawn time max.
         // This should change based on the game difficulty.
-        public float spawnTimeMax = 4.0F;
+        public float spawnTimeMax = 5.0F;
 
         // The enemy spawn count minimum. This determines the minimum of enemies to spawn eachi nstance.
         [Tooltip("Minimum number of enemies to spawn at once.")]
-        public int enemiesPerSpawnMin = 1;
+        public int enemiesPerSpawnMin = ENEMIES_PER_SPAWN_MIN_DEFAULT;
+
+        // The default enemies per spawn min.
+        public const int ENEMIES_PER_SPAWN_MIN_DEFAULT = 1;
 
         // The enemy spawn count maximum. This determines the maximum of enemies to spawn each instance.
         [Tooltip("Maximum number of enemies to spawn at once.")]
-        public int enemiesPerSpawnMax = 7;
+        public int enemiesPerSpawnMax = ENEMIES_PER_SPAWN_MAX_DEFAULT;
+
+        // The default enemies per spawn max.
+        public const int ENEMIES_PER_SPAWN_MAX_DEFAULT = 7;
 
         // If 'true', spawning is allowed.
         private bool allowSpawns = true;
 
-        // The list of usable enemies by their indexes in the prefab list.
+        // The list of usable enemies by their ids in the prefab list.
         // The enemy id number should match the index number.
-        [Tooltip("Lists the indexes for usable enemies from the prefab list. These indexes should be the same as the enemy ids in said slots.")]
-        public List<int> usableEnemyIndexes = new List<int>();
+        [Tooltip("Lists the ids for usable enemies from the prefab list..")]
+        public List<int> enemyIds = new List<int>();
 
         // The action enemy units.
         public List<ActionUnitEnemy> spawnedEnemies = new List<ActionUnitEnemy>();
@@ -69,38 +75,170 @@ namespace RM_EDU
                 actionManager.playerEnemy = this;
             }
 
-            // Sets the enemy to max and resets the spwn timer.
+            // Sets the enemy to max, sets the spaw timer to max, and sets to use all enemy prefabs.
             SetEnergyToMax();
-            ResetSpawnTimer();
+            SetSpawnTimerToMax();
 
-            // If the list is empty, fill it with every enemy unit.
-            if(usableEnemyIndexes.Count <= 0)
-            {
-                // For every valid enemy in the list, add the id number as usable.
-                // Note: the enemy at index 0 is a debug enemy that shouldn't be used.
-                // That's why index 0 is skipped.
-                for(int i = 1; i < actionUnitPrefabs.enemyPrefabs.Count; i++)
-                {
-                    // If there is an enemy prefab, get the id number.
-                    if (actionUnitPrefabs.enemyPrefabs[i] != null)
-                    {
-                        // Adds as a usable index.
-                        usableEnemyIndexes.Add(i);
-                    }
-                }
-            }
+            // If there are no usable enemy ids, fill the list with all enemies.
+            if(enemyIds.Count <= 0)
+                SetEnemyPrefabsToAll(false); 
         }
 
         // Applies the game difficulty to the enemy.
-        public void ApplyDifficulty(int difficulty)
+        // resetValues: if true, reset the current values to match the current difficulty.
+        public void ApplyDifficulty(int difficulty, bool resetValues)
         {
-            // TODO: implement.
+            // Clamps the difficulty from 0 to 9.
+            float enemyDiff = Mathf.Clamp(difficulty, 0, 9);
+
+            // Clears the enemy ids.
+            enemyIds.Clear();
+
+            // Checks the enemy difficulty.
+            switch(enemyDiff)
+            {
+                case 1:
+                    energyMax = 200.0F;
+                    spawnTimeMax = 9.0F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 3;
+
+                    enemyIds.Add(1);
+
+                    break;
+
+                case 2:
+                    energyMax = 212.5F;
+                    spawnTimeMax = 8.5F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 3;
+
+                    enemyIds.Add(1);
+
+                    break;
+
+                case 3:
+                    energyMax = 225.0F;
+                    spawnTimeMax = 8.0F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 4;
+
+                    enemyIds.Add(1);
+
+                    break;
+
+                case 4:
+                    energyMax = 237.5F;
+                    spawnTimeMax = 7.5F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 4;
+
+                    enemyIds.Add(1);
+                    enemyIds.Add(2);
+
+                    break;
+
+                case 5:
+                    energyMax = 250.0F;
+                    spawnTimeMax = 7.0F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 5;
+
+                    enemyIds.Add(1);
+                    enemyIds.Add(2);
+
+                    break;
+
+                case 6:
+                    energyMax = 263.5F;
+                    spawnTimeMax = 6.5F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 5;
+
+                    enemyIds.Add(1);
+                    enemyIds.Add(2);
+
+                    break;
+
+                case 7:
+                    energyMax = 275.0F;
+                    spawnTimeMax = 6.0F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 6;
+
+                    enemyIds.Add(1);
+                    enemyIds.Add(2);
+                    enemyIds.Add(3);
+
+                    break;
+
+                case 8:
+                    energyMax = 287.5F;
+                    spawnTimeMax = 5.5F;
+
+                    enemiesPerSpawnMin = 1;
+                    enemiesPerSpawnMax = 6;
+
+                    enemyIds.Add(1);
+                    enemyIds.Add(2);
+                    enemyIds.Add(3);
+
+                    break;
+
+                default: // Max/Main Difficulty
+                case 0:
+                case 9:
+                    // Energy and spawn time.
+                    energyMax = 300.0F;
+                    spawnTimeMax = 5.0F;
+
+                    // Enemies per spawn min and max.
+                    enemiesPerSpawnMin = ENEMIES_PER_SPAWN_MIN_DEFAULT;
+                    enemiesPerSpawnMax = ENEMIES_PER_SPAWN_MAX_DEFAULT;
+
+                    // Give the enemy player all the enemy units.
+                    SetEnemyPrefabsToAll(false);
+                    break;
+            }
+
+            // If values should be reset based on the new difficulty.
+            if(resetValues)
+            {
+                // Sets the values to max.
+                SetEnergyToMax();
+                SetSpawnTimerToMax();
+            }
         }
 
         // Gets the difficulty from the manager and uses that to apply the settings.
-        public void ApplyDifficulty()
+        // If 'resetValues' are true, the relevant parameters are adjusted to their new defaults.
+        public void ApplyDifficulty(bool resetValues)
         {
-            ApplyDifficulty(actionManager.difficulty);
+            ApplyDifficulty(ActionManager.Instance.difficulty, resetValues);
+        }
+
+        // Sets the enemy prefabs from the list
+        public void SetEnemyPrefabs(List<int> newIds)
+        {
+            // Clears the current list.
+            enemyIds.Clear();
+
+            // Sets to the new ids.
+            if (newIds != null)
+                enemyIds = newIds;
+        }
+
+        // Sets the usable enemy prefabs list to include all enemies.
+        public void SetEnemyPrefabsToAll(bool include0)
+        {
+            SetEnemyPrefabs(ActionUnitPrefabs.Instance.GenerateEnemyPrefabIdList(include0));
         }
 
         // Increases the energy by the provided amount.
@@ -162,7 +300,7 @@ namespace RM_EDU
         }
 
         // Resets the spawn timer.
-        public void ResetSpawnTimer()
+        public void SetSpawnTimerToMax()
         {
             spawnTimer = spawnTimeMax;
         }
@@ -195,9 +333,9 @@ namespace RM_EDU
             // While spawns is greater than 0 and the enemy is below the active enemy unit limit.
             while(spawns > 0 && IsBelowActiveEnemyUnitLimit())
             {
-                // Gets the prefab.
-                int prefabIndex = Random.Range(0, usableEnemyIndexes.Count);
-                ActionUnitEnemy prefab = actionUnitPrefabs.GetEnemyPrefab(usableEnemyIndexes[prefabIndex]);
+                // Gets the prefab using the enemy id.
+                int idIndex = Random.Range(0, enemyIds.Count);
+                ActionUnitEnemy prefab = actionUnitPrefabs.GetEnemyPrefabById(enemyIds[idIndex]);
 
                 // Prefab exists.
                 if(prefab != null)
@@ -246,7 +384,7 @@ namespace RM_EDU
 
 
             // Reset the spawn timer.
-            ResetSpawnTimer();
+            SetSpawnTimerToMax();
         }
 
         // Destroys all enemy units.
@@ -283,7 +421,7 @@ namespace RM_EDU
             // Kills all enemy units, sets the energy to max, and resets the spawn timer to max.
             KillAllEnemyUnits();
             SetEnergyToMax();
-            ResetSpawnTimer();
+            SetSpawnTimerToMax();
         }
 
         // Update is called once per frame

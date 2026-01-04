@@ -203,11 +203,41 @@ namespace RM_EDU
             selectedUnit.ClearActionUnitInfo();
         }
 
-        // DESELECT, REMOVE //
         // Deselects the player's selected unit.
-        public void DeselectUnit()
+        public void DeselectSelectedUnit()
         {
             actionManager.playerUser.ClearSelectedActionUnitPrefab();
+        }
+
+        // HOLD //
+        // Returns 'true' if the player user is holding their attack energy.
+        public bool IsUserHoldingAttackEnergy()
+        {
+            return actionManager.playerUser.withholdingAttackEnergy;
+        }
+
+        // Sets whether to withheld energy or not.
+        public void SetHoldUserAttackEnergy(bool value)
+        {
+            actionManager.playerUser.withholdingAttackEnergy = value;
+        }
+
+        // Starts holding the user attack energy.
+        public void StartHoldingUserAttackEnergy()
+        {
+            SetHoldUserAttackEnergy(true);
+        }
+
+        // Stops holding the user attack energy.
+        public void StopHoldingUserAttackEnergy()
+        {
+            SetHoldUserAttackEnergy(false);
+        }
+
+        // Toggle holding acction energy.
+        public void ToggleUserHoldAttackEnergy()
+        {
+            SetHoldUserAttackEnergy(!actionManager.playerUser.withholdingAttackEnergy);
         }
 
         // WINDOWS //

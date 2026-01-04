@@ -270,7 +270,7 @@ namespace RM_EDU
                 return null;
         }
 
-        // Generates the defense prefab ID list. This doesn't include id0
+        // Generates the defense prefab ID list.
         public List<int> GenerateDefensePrefabIdList(bool includeId0, bool includeId1)
         {
             // The list to be returned.
@@ -374,6 +374,42 @@ namespace RM_EDU
                 return Instantiate(prefab);
             else
                 return null;
+        }
+
+        // Generates the enemy prefab ID list.
+        public List<int> GenerateEnemyPrefabIdList(bool includeId0)
+        {
+            // The list to be returned.
+            List<int> list = new List<int>();
+
+            // Goes through all the prefabs.
+            foreach (ActionUnitEnemy enemy in enemyPrefabs)
+            {
+                // If the enemy exists.
+                if (enemy != null)
+                {
+                    // ID isn't in list, so add it.
+                    if (!list.Contains(enemy.idNumber))
+                    {
+                        // Goes through all the id numbers.
+                        switch (enemy.idNumber)
+                        {
+                            default: // Add
+                                list.Add(enemy.idNumber);
+                                break;
+
+                            case 0:
+                                // If ID 0 should be included, add it.
+                                if (includeId0)
+                                    list.Add(enemy.idNumber);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            // Returns the result.
+            return list;
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
