@@ -10,11 +10,16 @@ namespace RM_EDU
     {
         [Header("Enemy")]
         // The maximum amount of energy the enemy has.
+        [Header("The maximum amount of energy the enemy player can have.")]
         public float energyMax = 120.0F;
 
         // The enemy's decrementation amount, which reduces from the enemy's energy every frame.
         // When the enemy runs out of energy, the stage is over.
         private float energyDec = 1.0F;
+
+        // Automatically loses energy at a set rate if true.
+        [Tooltip("If true, the enemy player loses energy automatically as the stage progresses.")]
+        public bool autoEnergyLoss = true;
 
         // The parent for enemy retreats.
         public GameObject enemyRetreatParent;
@@ -289,14 +294,16 @@ namespace RM_EDU
             // If the game is playing and the game is unpaused, run the enemy actions.
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {
-                // Reduces the energy.
-                energy -= energyDec * Time.deltaTime;
+                // If energy should be automatically lost as time progresses.
+                if(autoEnergyLoss)
+                {
+                    // Reduces the energy.
+                    energy -= energyDec * Time.deltaTime;
+                }
 
                 // Bounds check.
-                if (energy < 0)
+                if (energy < 0.0F)
                     energy = 0.0F;
-
-                // TODO: update UI
 
                 // If the enemy has no energy left, the stage is over.
                 if(energy <= 0.0F)
