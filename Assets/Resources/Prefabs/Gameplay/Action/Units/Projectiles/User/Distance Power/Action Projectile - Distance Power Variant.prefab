@@ -61,6 +61,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5737000945249497890}
   m_SourcePrefab: {fileID: 100100000, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+--- !u!212 &2920835005272386918 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 7482362289023853470, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+  m_PrefabInstance: {fileID: 5719100031806656248}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5103713389583035207 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 687462378236978623, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
@@ -80,9 +85,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   shooterUnit: {fileID: 0}
-  spriteRenderer: {fileID: 0}
-  collider: {fileID: 0}
-  rigidbody: {fileID: 0}
+  spriteRenderer: {fileID: 2920835005272386918}
+  collider: {fileID: 7944872884518390476}
+  rigidbody: {fileID: 6311839317751408495}
   useShooterDirectly: 0
   ignoreTangible: 0
   defaultAttackPower: 1
@@ -102,3 +107,13 @@ MonoBehaviour:
   setStartPosOnStart: 1
   attackPowerDistanceMax: 12.799999
   attackPowerAtDistanceMax: 10
+--- !u!50 &6311839317751408495 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 1785249849238120855, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+  m_PrefabInstance: {fileID: 5719100031806656248}
+  m_PrefabAsset: {fileID: 0}
+--- !u!58 &7944872884518390476 stripped
+CircleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 2386776853073937460, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+  m_PrefabInstance: {fileID: 5719100031806656248}
+  m_PrefabAsset: {fileID: 0}

@@ -22,6 +22,10 @@ namespace RM_EDU
         [Tooltip("The offset of the starting position of a fired projectile.")]
         public Vector3 projectileStartPosOffset = Vector3.zero;
 
+        // If 'true', the offset is flipped on the x-axis.
+        [Tooltip("Flips the offset's x-value when applied for getting the projectile's position if true.")]
+        public bool flipOffsetX = false;
+
         // The projectiles fired by this unit.
         public List<ActionProjectile> firedProjectiles = new List<ActionProjectile>();
 
@@ -30,6 +34,35 @@ namespace RM_EDU
         {
             Shoot();
             base.PerformAttack();
+        }
+
+        // Calculates and returns the projectile's starting position.
+        public virtual Vector3 CalculateProjectileStartingPosition()
+        {
+            // The start position to be returned.
+            Vector3 startPos;
+
+            // The offset to be applied.
+            Vector3 offset = projectileStartPosOffset;
+
+            // If the offset should be flipped on the x-axis, flip it.
+            if (flipOffsetX)
+                offset.x = -offset.x;
+
+            // If the projecile start position exists, use that plus the offset.
+            if (projectileStartPos != null)
+            {
+                startPos = projectileStartPos.transform.transform.position + offset;
+            }
+            // No projectile start position object, so use shooter's transform plus offset.
+            else
+            {
+
+                startPos = transform.position + offset;
+            }
+
+            // Returns the starting position.
+            return startPos;
         }
 
         // Shoots a projectile. Returns the projectile if it's been instantiated correctly.
@@ -53,18 +86,7 @@ namespace RM_EDU
                 }
 
                 // The starting position.
-                Vector3 startPos;
-
-                // If the projecile start position exists, use that plus the offset.
-                if (projectileStartPos != null)
-                {
-                    startPos = projectileStartPos.transform.transform.position + projectileStartPosOffset;
-                }
-                // No projectile start position object, so use shooter's transform plus offset.
-                else
-                {
-                    startPos = transform.position + projectileStartPosOffset;
-                }
+                Vector3 startPos = CalculateProjectileStartingPosition();
 
                 // Sets the starting position.
                 projectile.transform.position = startPos;

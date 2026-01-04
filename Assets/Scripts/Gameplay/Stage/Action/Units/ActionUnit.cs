@@ -545,7 +545,7 @@ namespace RM_EDU
         // Calculates damage based on the provided values.
         // If 'allowNegative' is true, the raw value is returned.
         // If 'allowNegative' is false, the damage rounds up to 1 if the attackerPower is greater than 0.
-        public static float CalculateDamage(float attackerStatFactor, float attackerPower, float targetStatFactor, float targetDurability, bool allowNegative)
+        public static float CalculateDamage(float attackerStatFactor, float attackerPower, float targetStatFactor, float targetDurability, bool allowNegative = false)
         {
             // 2.0 * statFactor + ((attackPower * 1.80 * statFactor) - (target.durability * 1.20 * target.statFactor))
             // The amount of damage being done.
@@ -574,7 +574,7 @@ namespace RM_EDU
 
         // Calculates damage based on attack pwoer and target durability.
         // The stat factors for the attacker and the target are both 1.
-        public static float CalculateDamage(float attackerPower, float targetDurability, bool allowNegative)
+        public static float CalculateDamage(float attackerPower, float targetDurability, bool allowNegative = false)
         {
             return CalculateDamage(1, attackerPower, 1, targetDurability, allowNegative);
         }
@@ -598,6 +598,7 @@ namespace RM_EDU
             if (health < 0.0F)
                 health = 0.0F;
         }
+
 
         // Calculates teh attack cooldown time.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
@@ -675,7 +676,7 @@ namespace RM_EDU
         {
             // TODO: add animation.
             
-            // Set health to none.
+            // Set health to zero.
             health = 0.0F;
 
             // Reduce the owner's energy by the death cost.
@@ -722,7 +723,9 @@ namespace RM_EDU
                 // Checks if the unit is dead.
                 if(IsDead())
                 {
-                    OnUnitDeath();
+                    // If it's a proper death, call the Kill() function.
+                    Kill();
+                    // OnUnitDeath();
                 }
 
                 // Check if within stage bounds.

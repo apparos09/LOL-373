@@ -317,6 +317,8 @@ namespace RM_EDU
         // Kills the unit.
         public override void Kill()
         {
+            // Enemy retreat has been moved from 'Kill()' to 'OnUnitDeath()'
+
             // If enemy retreat is being used and the enemy retreat prefab is set.
             if(useEnemyRetreat && enemyRetreatPrefab != null)
             {

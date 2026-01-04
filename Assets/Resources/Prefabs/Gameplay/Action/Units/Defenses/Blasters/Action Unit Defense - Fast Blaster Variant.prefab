@@ -13,6 +13,10 @@ PrefabInstance:
       value: Action Unit Defense - Fast Blaster Variant
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: idNumber
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: durability
       value: 40
       objectReference: {fileID: 0}
@@ -27,7 +31,7 @@ PrefabInstance:
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: projectilePrefab
       value: 
-      objectReference: {fileID: 47731146293403276, guid: 38761c1b46216504990bcc72b99b96cc, type: 3}
+      objectReference: {fileID: 1861831386709414063, guid: 7feca1428507f684f8eb0a1570340b98, type: 3}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: energyCreationCost
       value: 60

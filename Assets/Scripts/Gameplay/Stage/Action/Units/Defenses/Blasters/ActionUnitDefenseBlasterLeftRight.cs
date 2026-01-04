@@ -4,10 +4,10 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // A action unit blaster that shoots from the front and the back.
-    public class ActionUnitDefenseBlasterFrontBack : ActionUnitDefenseBlaster
+    // A action unit blaster that shoots from the front (right) and the back (left).
+    public class ActionUnitDefenseBlasterLeftRight : ActionUnitDefenseBlaster
     {
-        [Header("Blaster/FrontBack")]
+        [Header("Blaster/Left-Right")]
 
         // The projectile start pos in the parent class is for firing forward (right).
         // The starting position of the projectile if shooting towards the left side. 
@@ -18,7 +18,11 @@ namespace RM_EDU
         [Tooltip("Offset used when firing a projecitle to the left (back).")]
         public Vector3 projectileStartPosLeftOffset = Vector3.zero;
 
-        // Has a target to the left and a target to the right.
+        // If 'true', the offset for the left side is flipped.
+        [Tooltip("Flips the offset for the left starting position if true.")]
+        public bool flipOffsetLeftX = false;
+
+        // Has a target to the left (back) and a target to the right (front).
         private bool hasTargetLeft = false;
         private bool hasTargetRight = false;
 
@@ -101,21 +105,44 @@ namespace RM_EDU
                 // Gets the most recently fired projectile.
                 ActionProjectile projectile = firedProjectiles[firedProjectiles.Count - 1];
 
-                // If there's a starting position for the left, use that plus the offset.
-                // If there isn't one, use the shooter's position as the base position and add the offset.
-                if (projectileStartPosLeft != null)
-                    projectile.transform.position = projectileStartPosLeft.transform.position + projectileStartPosLeftOffset;
-                else
-                    projectile.transform.position = transform.position + projectileStartPosLeftOffset;
-
+                // Calculates the starting position for shooting backwards.
+                projectile.transform.position = CalculateProjectileStartingPositionBack();
 
                 // If the target is to the left, have the projectile move left.
-                // If the target is to the right, have the projectile move right.
+                // If the target is to the right, have the projectile move right (default).
                 if (hasTargetLeft)
                     projectile.moveDirec = Vector2.left;
                 else
                     projectile.moveDirec = Vector2.right;
             }
+        }
+
+        // Calculates and returns the projectile's starting position if firing from the back.
+        public virtual Vector3 CalculateProjectileStartingPositionBack()
+        {
+            // The start position to be returned.
+            Vector3 startPos;
+
+            // The offset to be applied (left side).
+            Vector3 offset = projectileStartPosLeftOffset;
+
+            // If the offset should be flipped on the x-axis, flip it.
+            if (flipOffsetLeftX)
+                offset.x = -offset.x;
+
+            // If the starting position object for the left exists, use that.
+            if (projectileStartPosLeft != null)
+            {
+                startPos = projectileStartPosLeft.transform.position + offset;
+            }
+            // Use the base transform position plus the offset.
+            else
+            {
+                startPos = transform.position + offset;
+            }
+                
+            // Return the starting position.
+            return startPos;
         }
     }
 }

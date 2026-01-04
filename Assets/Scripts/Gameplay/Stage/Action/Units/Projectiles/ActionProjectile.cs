@@ -131,6 +131,8 @@ namespace RM_EDU
         protected virtual void OnTriggerEnter2D(Collider2D collision)
         {
             // The unit the collider hit.
+            // Make sure to tell the collider which layers to ignore so that...
+            // Units from the same player don't collide with one another.
             ActionUnit colUnit;
 
             // Tries to get the component.
@@ -258,18 +260,20 @@ namespace RM_EDU
                     bool oneHitKill = IsOneHitKill(false);
 
                     // Power for attack.
-                    float damage = attackPower;
+                    // Does the damage calculation using the calculated attack power.
+                    // Since the stat factor has already been applied for the attack power, the attack power's...
+                    // Stat factor is 1.0.
+                    float damage = ActionUnit.CalculateDamage(1.0F, attackPower, target.statFactor, target.durability, false);
 
                     // If this is a one-hit kill projectile, set damage to target's health.
+                    // You could call the target.Kill() function instead, but this is...
+                    // A more consistent way of applying the damage.
                     if (oneHitKill)
                         damage = target.health;
 
                     // Apply damage using the projectile.
                     // Since the proper attack calculation hasn't been done, apply it.
                     target.ApplyDamage(damage, false);
-
-                    // Call the kill function.
-                    target.Kill();
                 }
 
                 // If the projectile should die on contact, kill it.
@@ -330,7 +334,7 @@ namespace RM_EDU
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {
                 // Sets the velocity and then clamps it.
-                rigidbody.velocity = moveDirec * moveSpeed;
+                rigidbody.velocity = moveDirec.normalized * moveSpeed;
                 rigidbody.velocity = Vector3.ClampMagnitude(rigidbody.velocity, moveSpeed);
 
                 // If not within the stage bounds, destroy this projectile.

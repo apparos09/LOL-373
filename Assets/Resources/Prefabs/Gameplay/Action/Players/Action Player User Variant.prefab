@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1679549278367778716, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 3570217268989316285, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -52,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Player User Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5754763098957996370, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8151503663709160989, guid: 56dd20678d6f2c5489f03f93024d0be9, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -88,6 +100,7 @@ MonoBehaviour:
   airPollution: 0
   unitParent: {fileID: 7631506222874977085}
   unitProjectileParent: {fileID: 1133093146673767100}
+  withholdingAttackEnergy: 0
   startingEnergy: 300
   energyAutoGenTimer: 0
   energyAutoGenTimerMax: 5
