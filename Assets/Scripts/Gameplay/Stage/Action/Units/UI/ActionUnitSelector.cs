@@ -83,6 +83,32 @@ namespace RM_EDU
             SetRow(0);
         }
 
+        // Gets the row count for the unit prefabs 2D array.
+        // Returns -1 if the array is null.
+        public int UnitPrefabsRowCount
+        {
+            get 
+            {
+                if (unitPrefabs != null)
+                    return unitPrefabs.GetLength(0);
+                else
+                    return -1;
+            }
+        }
+
+        // Gets the column count for the unit prefabs 2D array.
+        // Returns -1 if the array is null.
+        public int UnitPrefabsColumnCount
+        {
+            get 
+            {
+                if (unitPrefabs != null)
+                    return unitPrefabs.GetLength(1);
+                else
+                    return -1;
+            }
+        }
+
         // Sets the row.
         public void SetRow(int newRow)
         {
@@ -100,7 +126,7 @@ namespace RM_EDU
             RefreshUnitButtons();
         }
 
-        // Goes to the previous row.
+        // Goes to the previous row (up arrow).
         public void PreviousRow()
         {
             // The new row.
@@ -114,7 +140,7 @@ namespace RM_EDU
             SetRow(newRow);
         }
 
-        // Goes to the next row.
+        // Goes to the next row (down arrow).
         public void NextRow()
         {
             // The new row.
@@ -209,7 +235,9 @@ namespace RM_EDU
                 prevPageButton.interactable = false;
                 nextPageButton.interactable = false;
             }
-               
+
+            // Refreshes the highlights for the unit buttons.
+            RefreshUnitButtonHighlights();
         }
 
         // Refreshes the interactable component of the unit buttons.
@@ -219,6 +247,101 @@ namespace RM_EDU
             foreach(ActionUnitButton unitButton in unitButtons)
             {
                 unitButton.RefreshUnitButtonInteractable();
+            }
+
+            // Refresh the highlights for the unit buttons.
+            RefreshUnitButtonHighlights();
+        }
+
+        // Refreshes the unit button highlights.
+        public void RefreshUnitButtonHighlights()
+        {
+            // Gets the row and column count.
+            int rowCount = UnitPrefabsRowCount;
+            int colCount = UnitPrefabsColumnCount;
+
+            // If the row count is 0, then there's no rows.
+            if (rowCount <= 0)
+                return;
+
+            // Checks the number of columns.
+            if(colCount > 0)
+            {
+                // If the row count is greater than 0
+                if(rowCount > 0)
+                {
+                    // The previous and next row.
+                    // Up arrow is previous, down arrow is next.
+                    // Top highlight is previous, bottom highlight is next.
+                    int row = currUnitPrefabsRow;
+                    int prevRow = currUnitPrefabsRow - 1;
+                    int nextRow = currUnitPrefabsRow + 1;
+
+                    // Loop around to the end of the list if out f bounds.
+                    if (prevRow < 0)
+                        prevRow = rowCount - 1;
+
+                    // Loop around to the start of the list if out of bounds.
+                    if (nextRow >= rowCount)
+                        nextRow = 0;
+
+                    // Gets the player user.
+                    ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
+
+                    // Goes through all the unit buttons.
+                    for(int i = 0; i < unitButtons.Count; i++)
+                    {
+                        // The number of buttons should match with the column count of the unit prefabs array.
+                        ActionUnit topUnit = unitPrefabs[prevRow, i];
+                        ActionUnit bottomUnit = unitPrefabs[nextRow, i];
+
+                        // Sees if the top unit can be created.
+                        bool topUnitAvail;
+                        bool bottomUnitAvail;
+
+                        // If the top unit exists, check if it can be made. If it doesn't exist, set to false.
+                        if (topUnit != null)
+                            topUnitAvail = playerUser.HasEnergyToCreateActionUnit(topUnit);
+                        else
+                            topUnitAvail = false;
+
+                        // If the bottom unit exists, check if it can be made. If it doesn't exist, set to false.
+                        if(bottomUnit != null)
+                            bottomUnitAvail = playerUser.HasEnergyToCreateActionUnit(bottomUnit);
+                        else
+                            bottomUnitAvail = false;
+                        
+                        // Turns the top hihglights on or off.
+                        unitButtons[i].SetHighlightTopOn(topUnitAvail);
+                        unitButtons[i].SetHighlightBottomOn(bottomUnitAvail);
+                    }
+                }
+                else
+                {
+                    // Turn off all the highlights.
+                    SetAllHighlightsOn(false);
+                }
+            }
+            // If there are no columns, turn all the highlights off.
+            else
+            {
+                SetAllHighlightsOn(false);
+            }
+        }
+
+        // Sets all the highlights on if value is true.
+        public void SetAllHighlightsOn(bool value)
+        {
+            // Turns off the highlights.
+            foreach (ActionUnitButton unitButton in unitButtons)
+            {
+                // Unit button exists.
+                if (unitButton != null)
+                {
+                    // Sets the highlights on the top and bottom.
+                    unitButton.SetHighlightTopOn(value);
+                    unitButton.SetHighlightBottomOn(value);
+                }
             }
         }
     }

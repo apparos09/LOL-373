@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3837155213424801269}
   - component: {fileID: 3297141091557842771}
   m_Layer: 5
-  m_Name: Bottom Highlight Image
+  m_Name: Highlight Bottom Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,11 +128,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionUI: {fileID: 0}
   button: {fileID: 1857510620126655577}
+  buttonDefaultImageSprite: {fileID: 0}
   unitIconImage: {fileID: 6110831296171863297}
   unitNameText: {fileID: 157780337576049473}
   energyCostText: {fileID: 6747631995733676449}
-  topHighlightImage: {fileID: 2673281995923293965}
-  bottomHighlightImage: {fileID: 4318980218602592103}
+  highlightTopImage: {fileID: 2673281995923293965}
+  highlightBottomImage: {fileID: 3297141091557842771}
   unitPrefab: {fileID: 0}
 --- !u!1 &5823610448693637954
 GameObject:
@@ -221,7 +222,7 @@ GameObject:
   - component: {fileID: 2829000173063487329}
   - component: {fileID: 2673281995923293965}
   m_Layer: 5
-  m_Name: Top Highlight Image
+  m_Name: Highlight Top Image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -588,17 +589,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &4318980218602592103 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2903022182760034470, guid: 3e56a82eab9ff3849971e708f8e53c7e, type: 3}
-  m_PrefabInstance: {fileID: 1421311104914728897}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!224 &9059953101957053288 stripped

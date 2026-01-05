@@ -31,11 +31,17 @@ namespace RM_EDU
 
         // The highlight on the top of the card, which indicates the card above is usable.
         [Tooltip("An image above the card that indicates the card above the current one is usable.")]
-        public Image topHighlightImage;
+        public Image highlightTopImage;
 
         // The highlight on the bottom of the card, which indicates the card below is usable.
         [Tooltip("An image below the card that indicates the card below the current one is usable.")]
-        public Image bottomHighlightImage;
+        public Image highlightBottomImage;
+
+        // The highlight on color.
+        private Color highlightOnColor = Color.white;
+
+        // The highlight off color.
+        private Color highlightOffColor = Color.grey;
 
         // The unit prefab.
         public ActionUnit unitPrefab;
@@ -151,6 +157,42 @@ namespace RM_EDU
             {
                 button.interactable = false;
             }
+        }
+
+        // The highlight on color.
+        public Color HighlightOnColor
+        {
+            get { return highlightOnColor; }
+        }
+
+        // The highlight off color.
+        public Color HighlightOffColor
+        {
+            get { return highlightOffColor; }
+        }
+
+        // Returns 'true' if the highlight on the top is on.
+        public bool IsHighlightTopOn()
+        {
+            return highlightTopImage.color == highlightOnColor;
+        }
+
+        // Sets the highlight top to its on or off color.
+        public void SetHighlightTopOn(bool value)
+        {
+            highlightTopImage.color = (value) ? highlightOnColor : highlightOffColor;
+        }
+
+        // Returns 'true' if the highlight on the bottom is on.
+        public bool IsHighlightBottomOn()
+        {
+            return highlightBottomImage.color == highlightOnColor;
+        }
+
+        // Sets the highlight bottom to its on or off color.
+        public void SetHighlightBottomOn(bool value)
+        {
+            highlightBottomImage.color = (value) ? highlightOnColor : highlightOffColor;
         }
 
         // Clears the unit button.
