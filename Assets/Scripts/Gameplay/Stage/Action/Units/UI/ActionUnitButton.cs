@@ -171,6 +171,13 @@ namespace RM_EDU
             get { return highlightOffColor; }
         }
 
+        // Sets both the highlights with the same value.
+        public void SetHighlightsOn(bool value)
+        {
+            SetHighlightTopOn(value);
+            SetHighlightBottomOn(value);
+        }
+
         // Returns 'true' if the highlight on the top is on.
         public bool IsHighlightTopOn()
         {
@@ -203,7 +210,7 @@ namespace RM_EDU
             unitNameText.text = "-";
             energyCostText.text = "-";
 
-            // TODO: adjust the highlights.
+            
 
             // The button is no longer interactable.
             button.interactable = false;
