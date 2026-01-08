@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: World Stage Prompt
       objectReference: {fileID: 0}
+    - target: {fileID: 7172347658329024317, guid: 04d8ce22bbee2cc4e901b2890a1515a5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
