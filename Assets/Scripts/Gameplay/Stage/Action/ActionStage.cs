@@ -215,7 +215,9 @@ namespace RM_EDU
                     char tileVersion = tileId.Length == 3 ? char.ToUpper(tileId[2]) : 'A';
 
                     // The tile prefab and the new tile.
+                    // The indexes should match up with the id numbers, but using indexes is faster.
                     ActionTile tilePrefab = actionTilePrefabs.GetActionTilePrefab(tileNumber);
+                    // ActionTile tilePrefab = actionTilePrefabs.GetActionTilePrefabByIdNumber(tileNumber);
                     ActionTile newTile = null;
 
                     // If the tile prefab exists, create the tile.

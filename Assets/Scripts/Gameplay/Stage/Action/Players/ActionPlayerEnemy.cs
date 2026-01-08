@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -333,12 +332,19 @@ namespace RM_EDU
             // While spawns is greater than 0 and the enemy is below the active enemy unit limit.
             while(spawns > 0 && IsBelowActiveEnemyUnitLimit())
             {
+                // Gets the index, which matches up with the ids in the enemyIds list.
+                // The ids should match up with the enemy indexes in the list. It's less safe to do it this way...
+                // But it's faster since a loop doesn't need to be started.
+                int index = enemyIds[Random.Range(0, enemyIds.Count)];
+                ActionUnitEnemy prefab = actionUnitPrefabs.GetEnemyPrefab(index);
+
                 // Gets the prefab using the enemy id.
-                int idIndex = Random.Range(0, enemyIds.Count);
-                ActionUnitEnemy prefab = actionUnitPrefabs.GetEnemyPrefabById(enemyIds[idIndex]);
+                // int idIndex = Random.Range(0, enemyIds.Count);
+                // ActionUnitEnemy prefab = actionUnitPrefabs.GetEnemyPrefabById(enemyIds[idIndex]);
+
 
                 // Prefab exists.
-                if(prefab != null)
+                if (prefab != null)
                 {
                     // Creates the new enemy, making a child of this object by default.
                     ActionUnitEnemy enemyUnit = Instantiate(prefab, transform);

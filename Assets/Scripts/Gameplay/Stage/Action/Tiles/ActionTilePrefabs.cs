@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 namespace RM_EDU
@@ -85,6 +87,8 @@ namespace RM_EDU
             }
         }
 
+        // TILES //
+
         // Gets a prefab. This does NOT instantiate the prefab.
         public ActionTile GetActionTilePrefab(int index)
         {
@@ -99,34 +103,99 @@ namespace RM_EDU
             }
         }
 
+        // Gets the action tile by its id number.
+        public ActionTile GetActionTilePrefabById(int idNumber)
+        {
+            // The action tile to return.
+            ActionTile actionTile = null;
+
+            // Goes through all prefabs.
+            foreach(ActionTile tilePrefab in tilePrefabs)
+            {
+                // Tile exists.
+                if(tilePrefab != null)
+                {
+                    // ID numbers match.
+                    if(tilePrefab.idNumber == idNumber)
+                    {
+                        actionTile = tilePrefab;
+                        break;
+                    }
+                }
+            }
+
+            // Returns the tile.
+            return actionTile;
+        }
+
         // Gets the tile by the tile type.
         public ActionTile GetActionTilePrefabByTileType(ActionTile.actionTile type)
         {
-            return GetActionTilePrefab((int)type);
+            // The action tile to return.
+            ActionTile actionTile = null;
+
+            // Goes through all prefabs.
+            foreach (ActionTile tilePrefab in tilePrefabs)
+            {
+                // Tile exists.
+                if (tilePrefab != null)
+                {
+                    // The types match.
+                    if (tilePrefab.tileType == type)
+                    {
+                        actionTile = tilePrefab;
+                        break;
+                    }
+                }
+            }
+
+            // Returns the tile.
+            return actionTile;
+        }
+
+        // Instantiates the provided tile. If the tile is null, a null object is returned.
+        public ActionTile InstantiateActionTilePrefab(ActionTile tilePrefab)
+        {
+            // The tile to be returned.
+            ActionTile newTile;
+
+            // Checks if it exists.
+            if (tilePrefab != null)
+            {
+                // Instantiates the prefab.
+                newTile = Instantiate(tilePrefab);
+            }
+            else
+            {
+                // Sets to null.
+                newTile = null;
+            }
+
+            return newTile;
         }
 
         // Instantiates and returns a prefab.
         public ActionTile InstantiateActionTilePrefab(int index)
         {
-            // The prefab and the new tile.
-            ActionTile prefab = GetActionTilePrefab(index);
-            ActionTile newTile = null;
+            // Gets the prefab and instantiates it.
+            return InstantiateActionTilePrefab(GetActionTilePrefab(index));
+        }
 
-            // If the prefab isn't equal to null, create an instance.
-            if (prefab != null)
-            {
-                newTile = Instantiate(prefab);
-            }
-
-            // Returns the new tile.
-            return newTile;
+        // Instantiates a tile prefab that was gotten via its id number.
+        public ActionTile InstantiateActionTilePrefabById(int idNumber)
+        {
+            // Gets the prefab and instantiates it.
+            return InstantiateActionTilePrefab(GetActionTilePrefabById(idNumber));
         }
 
         // Instantiates the tile by the tile type.
         public ActionTile InstantiateActionTilePrefabByTileType(ActionTile.actionTile type)
         {
-            return InstantiateActionTilePrefab((int)type);
+            // Gets the prefab and instantiates it.
+            return InstantiateActionTilePrefab(GetActionTilePrefabByTileType(type));
         }
+
+        // OVERLAY SPRITE //
 
         // Gets the overlay sprite based on the index.
         public Sprite GetActionTileOverlaySprite(int index)
