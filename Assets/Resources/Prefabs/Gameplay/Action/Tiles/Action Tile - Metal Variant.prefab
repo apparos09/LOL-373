@@ -53,6 +53,10 @@ PrefabInstance:
       value: Action Tile - Metal Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
+      propertyPath: idNumber
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
       propertyPath: tileType
       value: 4
       objectReference: {fileID: 0}

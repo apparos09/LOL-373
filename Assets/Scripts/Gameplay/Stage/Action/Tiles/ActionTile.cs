@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 namespace RM_EDU
@@ -21,6 +22,10 @@ namespace RM_EDU
 
         // The action manager.
         public ActionManager actionManager;
+
+        // The tile ID number.
+        [Tooltip("The id number of the tile.")]
+        public int idNumber = 0;
 
         // The tile type.
         public actionTile tileType = actionTile.unknown;

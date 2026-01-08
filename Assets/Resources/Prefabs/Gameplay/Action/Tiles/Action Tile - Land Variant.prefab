@@ -53,6 +53,10 @@ PrefabInstance:
       value: Action Tile - Land Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
+      propertyPath: idNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
       propertyPath: tileType
       value: 1
       objectReference: {fileID: 0}
