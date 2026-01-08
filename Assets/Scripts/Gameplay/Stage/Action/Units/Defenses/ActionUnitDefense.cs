@@ -7,7 +7,10 @@ namespace RM_EDU
     // The defense unit for the player.
     public class ActionUnitDefense : ActionUnitUser
     {
-        // [Header("Defense")]
+        [Header("Defense")]
+
+        // The sprite renderer for a platform that can be displayed below the user unit.
+        public SpriteRenderer platformSpriteRenderer;
 
         // // Start is called before the first frame update
         // protected override void Start()

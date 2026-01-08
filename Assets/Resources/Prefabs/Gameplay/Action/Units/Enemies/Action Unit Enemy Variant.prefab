@@ -91,7 +91,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 824763696059470028, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_SortingOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2267399927797895862, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits

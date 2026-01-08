@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 824763696059470028, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_Name
       value: Action Unit Generator Variant
@@ -108,14 +112,17 @@ MonoBehaviour:
   animator: {fileID: 5406913998153414739}
   collider: {fileID: 690021909378568088}
   rigidbody: {fileID: 2840288876026598823}
+  owner: {fileID: 0}
   health: 0
   maxHealth: 100
+  tangible: 1
   vulnerable: 1
   statFactor: 1
   energyCreationCost: 0
   energyDeathCost: 0
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
+  attackEnergyCost: 0
   attackPower: 0
   attackSpeed: 0
   attackingEnabled: 0
@@ -132,6 +139,7 @@ MonoBehaviour:
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0
+  useEnergyCycles: 0
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0

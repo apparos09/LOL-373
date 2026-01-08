@@ -8,6 +8,7 @@ namespace RM_EDU
     public abstract class ActionUnitUser : ActionUnit
     {
         [Header("User")]
+
         // The tiles that are valid to place this unit on.
         // The metal tile is only for the lane blaster, so it's not included by default.
         public List<ActionTile.actionTile> validTiles = new List<ActionTile.actionTile>();
