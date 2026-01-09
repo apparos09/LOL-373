@@ -114,6 +114,7 @@ MonoBehaviour:
   spriteRenderer: {fileID: 6368839386873273574}
   collider: {fileID: 2210020094070389580}
   rigidbody: {fileID: 2842442279350359791}
+  useShooterDirectly: 1
   ignoreTangible: 0
   defaultAttackPower: 1
   shooterAttackPower: 1

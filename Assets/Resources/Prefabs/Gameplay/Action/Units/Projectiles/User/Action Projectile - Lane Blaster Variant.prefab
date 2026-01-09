@@ -26,7 +26,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 687462378236978623, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
       propertyPath: m_Name
-      value: Action Projectile - User - Lane Blaster Variant
+      value: Action Projectile - Lane Blaster Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 2386776853073937460, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+      propertyPath: m_Radius
+      value: 0.65
       objectReference: {fileID: 0}
     - target: {fileID: 5687991169777826106, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68,6 +72,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7482362289023853470, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ce723b36d422ec94992e5ac15f929635, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
