@@ -246,6 +246,10 @@ namespace RM_EDU
                     // Sets the tile version.
                     newTile.tileVersion = tileVersion;
 
+                    // These will be set automatically in the tile Start() functions.
+                    // newTile.setTileVersionSpriteInStart = false;
+                    // newTile.SetSpriteByTileVersion();
+
                     // Sets the map position of the new tile.
                     // Row = Y, Col = X
                     newTile.mapPos.x = c;

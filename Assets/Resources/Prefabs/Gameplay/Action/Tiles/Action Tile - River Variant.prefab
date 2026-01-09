@@ -134,6 +134,10 @@ MonoBehaviour:
   nuclearCycles: 0
   oilCycles: 0
   direction: {x: 1, y: 0}
+  direcLeftSprite: {fileID: 1816147579, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  direcRightSprite: {fileID: 120893903, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  direcUpSprite: {fileID: -2029289856, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  direcDownSprite: {fileID: -2080471704, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
 --- !u!212 &8746709064726744489 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3556415347877725770, guid: 2f61e8189be6372438cc50087be3b316, type: 3}

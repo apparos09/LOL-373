@@ -69,12 +69,16 @@ namespace RM_EDU
         // The tile variant.
         public List<Sprite> tileVersionSprites = new List<Sprite>();
 
+        // Sets the tile verison sprite in start if true.
+        [Tooltip("Automatically sets the tile version sprite in start if true.")]
+        public bool setTileVersionSpriteInStart = true;
+
         // The normal and darkened colours are used to create a checkerboard for the game.
         // The normal tile color.
         private static Color normalColor = Color.white;
 
         // The darkened tile color.
-        private static Color darkenedColor = new Color(0.75F, 0.75F, 0.75F);
+        private static Color darkenedColor = new Color(0.50F, 0.50F, 0.50F);
 
         // The colour used to show that the tile is usable.
         private static Color usableColor = Color.yellow;
@@ -131,6 +135,10 @@ namespace RM_EDU
             SetHighlighted(false, true);
             SetTileOverlayType(defaultTileOverlayType);
 
+            // Sets the sprite by the tile version.
+            if(setTileVersionSpriteInStart)
+                SetSpriteByTileVersion();
+
             // Sets the energy cycles to their default on start.
             SetEnergyCyclesToDefault();
         }
@@ -141,6 +149,8 @@ namespace RM_EDU
             // Tries to perform a player user action.
             TryPerformPlayerUserAction();
         }
+
+        // TILE TYPE //
 
         // Gets the tile type.
         public actionTile GetTileType()
@@ -200,6 +210,8 @@ namespace RM_EDU
             return IsWaterTile(tileType);
         }
 
+        // TILE VERSION //
+
         // Gets the tile version index.
         public int GetTileVersionIndex()
         {
@@ -225,6 +237,48 @@ namespace RM_EDU
             }
 
             return index;
+        }
+
+        // TILE OVERLAY //
+
+        // Gets the tile version.
+        public char GetTileVersion()
+        {
+            return tileVersion;
+        }
+
+        // Gets the tile verison as number in the English alphabet.
+        // If it's not in the alphabet, it returns -1.
+        public int GetTileVersionEnglishAlphabetNumber()
+        {
+            // Gets the result.
+            // This function returns -1 if the provided character isn't an English alphabet number.
+            int result = util.StringHelper.GetEnglishAlphabetLetterNumber(tileVersion);
+
+            // Returns the result.
+            return result;
+        }
+
+        // Sets the sprite by the tile version.
+        public void SetSpriteByTileVersion()
+        {
+            // Gets the version as a number.
+            int verNum = GetTileVersionEnglishAlphabetNumber();
+
+            // If the verison number is greater than 0, it can potentially be used as an index.
+            if(verNum > 0)
+            {
+                // Calculates the index.
+                // Since its the alphabet number, the index is 1 less than that.
+                // e.g., (A) is letter (1), so tile (A) would be at index 0 (1 - 1 = 0).
+                int index = verNum - 1;
+
+                // Set the new sprite.
+                if(index >= 0 && index < tileVersionSprites.Count)
+                {
+                    baseSpriteRenderer.sprite = tileVersionSprites[index];
+                }
+            }
         }
 
         // Returns the tile overlay type.
@@ -319,7 +373,7 @@ namespace RM_EDU
             SetTileOverlayType(defaultTileOverlayType, true);
         }
 
-        // COLOR CHANGES
+        // COLOR CHANGES //
 
         // Gets the tile's base color.
         public Color GetTileBaseColor()
