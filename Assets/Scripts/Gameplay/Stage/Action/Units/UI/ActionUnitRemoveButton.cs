@@ -17,7 +17,7 @@ namespace RM_EDU
         // The card background sprite.
         public Sprite cardBackgroundSprite;
 
-        // The icon im
+        // The icon for the card.
         public Sprite cardIconSprite;
 
         // Start is called before the first frame update
@@ -56,10 +56,56 @@ namespace RM_EDU
             }
         }
 
-        // Update is called once per frame
-        void Update()
+        // Gets the remove card's name.
+        public string GetRemoveCardName()
         {
+            // The name to return.
+            string cardName;
 
+            // Checks if the language file is available.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                string key = GetRemoveCardNameKey();
+                cardName = LOLManager.Instance.GetLanguageText(key);
+            }
+            else
+            {
+                cardName = "Remove";
+            }
+
+            return cardName;
+        }
+
+        // Gets the remove card's name key.
+        public string GetRemoveCardNameKey()
+        {
+            return "kwd_remove";
+        }
+
+        // Gets the display name for the unit's card.
+        public string GetRemoveCardDisplayName()
+        {
+            // The name to return.
+            string displayName;
+
+            // Checks if the language file is available.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                string key = GetRemoveCardDisplayNameKey();
+                displayName = LOLManager.Instance.GetLanguageText(key);
+            }
+            else
+            {
+                displayName = "RMV";
+            }
+
+            return displayName;
+        }
+
+        // Gets the remove card display name key.
+        public string GetRemoveCardDisplayNameKey()
+        {
+            return "kwd_remove_abv";
         }
     }
 }

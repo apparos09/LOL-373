@@ -30,8 +30,8 @@
       "kwd_bgms": 8,
       "kwd_sfxs": 8,
 
-      "kwd_ukn": 18,
-      "kwd_ukn_abv": 3,
+      "kwd_unknown": 18,
+      "kwd_unknown_abv": 3,
       "kwd_reset": 18,
 
       "kwd_worldStage": 18,
@@ -68,6 +68,7 @@
       "kwd_select": 18,
       "kwd_deselect": 18,
       "kwd_remove": 18,
+      "kwd_remove_abv": 3,
       "kwd_hold": 18
 
     }
@@ -102,7 +103,7 @@
     "kwd_sfxs": "SFXs",
 
     "kwd_unknown": "Unknown",
-    "kwd_ukn_abv": "UKN",
+    "kwd_unknown_abv": "UKN",
     "kwd_reset": "Reset",
 
     "kwd_worldStage": "World Stage",
@@ -139,6 +140,7 @@
     "kwd_select": "Select",
     "kwd_deselect": "Deselect",
     "kwd_remove": "Remove",
+    "kwd_remove_abv": "RMV",
     "kwd_hold": "Hold"
   }
 }
