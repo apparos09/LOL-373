@@ -90,7 +90,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 8
   spriteRenderer: {fileID: 8866950658550869557}
-  iconSprite: {fileID: 21300000, guid: 5e3558571a489fe4097fcc7cba53a2c5, type: 3}
+  iconSprite: {fileID: 21300000, guid: 48691372d3832b14899e009c8f1f1945, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 3283883120680360836}
   collider: {fileID: 8000915955422571599}
@@ -98,12 +98,14 @@ MonoBehaviour:
   owner: {fileID: 0}
   health: 0
   maxHealth: 100
+  tangible: 1
   vulnerable: 1
   statFactor: 1
   energyCreationCost: 40
   energyDeathCost: 0
   energyGenerationAmount: 80
   energyGenerationSpeed: 40
+  attackEnergyCost: 0
   attackPower: 0
   attackSpeed: 0
   attackingEnabled: 0
