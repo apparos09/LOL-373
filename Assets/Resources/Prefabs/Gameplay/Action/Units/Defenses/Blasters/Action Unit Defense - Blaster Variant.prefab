@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Projectile Start Position
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 8028304619842985493}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -47,6 +47,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 01ac8769396968f4398509e349b48f28, type: 3}
     - target: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Name
       value: Action Unit Defense - Blaster Variant
@@ -123,7 +127,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 2
   spriteRenderer: {fileID: 2820790240764193224}
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: dee565e80fde1e144827abd7dec8876c, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 8194997913235594361}
   collider: {fileID: 3684014631833299890}
@@ -151,6 +155,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
+  platformSpriteRenderer: {fileID: 2143785946635923706}
   projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
   projectileStartPos: {fileID: 8028304619842985493}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
@@ -159,6 +164,11 @@ MonoBehaviour:
 --- !u!4 &1849280751653751939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9115346750531339744, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 7433684422133844323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2143785946635923706 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8856752449333098905, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
   m_PrefabInstance: {fileID: 7433684422133844323}
   m_PrefabAsset: {fileID: 0}
 --- !u!50 &2151022029249442189 stripped

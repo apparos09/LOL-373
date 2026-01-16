@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: c4756bc722fa25d44a828f7864ef8e8e, type: 3}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -105,7 +109,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 13
   spriteRenderer: {fileID: 5544248910452008005}
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: 6312382c0c25b7841b9bab1b79dc2acf, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1904512382446359028}
   collider: {fileID: 6409865872406881855}
@@ -133,6 +137,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
+  platformSpriteRenderer: {fileID: 8508448896018595191}
   projectilePrefab: {fileID: 1861831386709414063, guid: 7feca1428507f684f8eb0a1570340b98, type: 3}
   projectileStartPos: {fileID: 341728493843485592}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
@@ -144,5 +149,10 @@ MonoBehaviour:
 --- !u!50 &8506635482330184704 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2151022029249442189, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+  m_PrefabInstance: {fileID: 7769928463203814797}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &8508448896018595191 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2143785946635923706, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   m_PrefabInstance: {fileID: 7769928463203814797}
   m_PrefabAsset: {fileID: 0}

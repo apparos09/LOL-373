@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 80fb3aae1819f6046991eed6033c62cc, type: 3}
     - target: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Name
       value: Action Unit Defense - Trap Variant
@@ -96,7 +100,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 6
   spriteRenderer: {fileID: 5149994175010406257}
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: 1989a82ff8725d545af3b13cb722c7de, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1290134522046286528}
   collider: {fileID: 6016033277523262731}
@@ -124,6 +128,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
+  platformSpriteRenderer: {fileID: 9051461572882687555}
   hitCount: 0
   hitLimit: 15
   useHitLimit: 1
@@ -132,5 +137,10 @@ MonoBehaviour:
 --- !u!50 &9044625043006678836 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8858641744088496366, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 537266690884673498}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &9051461572882687555 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 8856752449333098905, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
   m_PrefabInstance: {fileID: 537266690884673498}
   m_PrefabAsset: {fileID: 0}

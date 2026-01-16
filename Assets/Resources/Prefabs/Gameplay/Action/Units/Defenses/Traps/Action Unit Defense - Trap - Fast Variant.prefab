@@ -17,6 +17,10 @@ PrefabInstance:
       value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
+      propertyPath: iconSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 1f1f215988608f34797b6673bc424e25, type: 3}
+    - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: attackPower
       value: 20
       objectReference: {fileID: 0}
@@ -28,6 +32,10 @@ PrefabInstance:
       propertyPath: energyCreationCost
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 5149994175010406257, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aa9cc812dcad5c2438705cb8fd2c6ea9, type: 3}
     - target: {fileID: 7128307505646398400, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: m_Name
       value: Action Unit Defense - Trap - Fast Variant

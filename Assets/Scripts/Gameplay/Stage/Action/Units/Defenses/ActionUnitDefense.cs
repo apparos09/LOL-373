@@ -12,11 +12,14 @@ namespace RM_EDU
         // The sprite renderer for a platform that can be displayed below the user unit.
         public SpriteRenderer platformSpriteRenderer;
 
-        // // Start is called before the first frame update
-        // protected override void Start()
-        // {
-        //     base.Start();
-        // }
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // Updates the platform visibility.
+            UpdatePlatformVisible();
+        }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
         protected override void OnTriggerEnter2D(Collider2D collision)
@@ -48,6 +51,55 @@ namespace RM_EDU
         public override unitType GetUnitType()
         {
             return unitType.defense;
+        }
+
+        // Returns 'true' if the platform is active.
+        public bool IsPlatformVisible()
+        {
+            return platformSpriteRenderer.gameObject.activeSelf;
+        }
+
+        
+        // Sets if the platform should be shown or not.
+        public void SetPlatformVisible(bool value)
+        {
+            platformSpriteRenderer.gameObject.SetActive(value);
+        }
+
+        // Shows the platform sprite.
+        public void ShowPlatform()
+        {
+            SetPlatformVisible(true);
+        }
+
+        // Hides the platform sprite.
+        public void HidePlatform()
+        {
+            SetPlatformVisible(false);
+        }
+
+        // Enables the platform if the unit is on water. Disables it if the unit isn't on water.
+        public void UpdatePlatformVisible()
+        {
+            // Checks if a tile exists.
+            if(tile != null)
+            {
+                // If it's a land tile, don't use the platform.
+                if(tile.IsLandTile())
+                {
+                    SetPlatformVisible(false);
+                }
+                // If it's not a land tile, use the platform.
+                else
+                {
+                    SetPlatformVisible(true);
+                }
+            }
+            else
+            {
+                // Tile doesn't exist, so the platform should be invisible by default.
+                SetPlatformVisible(false);
+            }
         }
 
         // Returns 'true' if the defense unit has a target to attack.

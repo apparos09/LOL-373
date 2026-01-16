@@ -12,7 +12,7 @@ GameObject:
   m_Layer: 0
   m_Name: Projectile Start Position (Left)
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: -5397416234189338067, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -25,7 +25,7 @@ Transform:
   m_GameObject: {fileID: 7942979384664849884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83,6 +83,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 627306348e5efdf47a029f3d87b8a3f3, type: 3}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -115,7 +119,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   idNumber: 3
   spriteRenderer: {fileID: 2722445462588853728}
-  iconSprite: {fileID: 0}
+  iconSprite: {fileID: 21300000, guid: fb31490e1484822409d3a27289669de2, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 8311146069587228753}
   collider: {fileID: 3588625323758653338}
@@ -143,6 +147,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
+  platformSpriteRenderer: {fileID: 2246493071496549586}
   projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
   projectileStartPos: {fileID: 7892313130456758845}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
@@ -154,6 +159,11 @@ MonoBehaviour:
 --- !u!4 &1964857471232305323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849280751653751939, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+  m_PrefabInstance: {fileID: 210935249941095464}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &2246493071496549586 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2143785946635923706, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   m_PrefabInstance: {fileID: 210935249941095464}
   m_PrefabAsset: {fileID: 0}
 --- !u!50 &2248584144125367717 stripped
