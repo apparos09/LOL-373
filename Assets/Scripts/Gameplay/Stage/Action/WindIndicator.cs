@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using static RM_EDU.ActionUnit;
+using util;
 
 namespace RM_EDU
 {
@@ -15,18 +15,31 @@ namespace RM_EDU
 
         // NOTE: this is a temporary display.
 
-        // The image.
-        public Image image;
+        // The display image.
+        public Image displayImage;
 
-        // These colours are used as placeholders.
-        private Color noWindColor = Color.blue;
-        private Color maxWindColor = Color.red;
+        // The bar used to show the wind speed.
+        public ProgressBar speedBar;
+
+        // Colours - unused to simplify the bar.
+        // The minimum and maximum colors for wind.
+        // private Color windMinColor = Color.blue;
+        // private Color windMaxColor = Color.red;
+
+        // Color for if the wind is not enabled.
+        // private Color windDisabledColor = Color.grey;
 
         // If the wind indicator should be updated automatically.
         public bool autoUpdateIndicator = true;
 
         // If the indicator is enabled, update it every frame.
         public bool indicatorEnabled = true;
+
+        //
+        private void Awake()
+        {
+            
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -48,8 +61,16 @@ namespace RM_EDU
                 // Gets the wind rating as a percentage.
                 float t = actionManager.GetCurrentWindRatingAsAPercentage();
 
-                // Lerps between the two colours.
-                image.color = Color.Lerp(noWindColor, maxWindColor, t);
+                // Adjusts the bar based on the provided color.
+                speedBar.SetValueAsPercentage(t);
+
+                // Changes the bar color.
+                // speedBar.fillImage.color = Color.Lerp(windMinColor, windMaxColor, t);
+            }
+            else
+            {
+                // // Sets the color for the wind being disabled.
+                // speedBar.fillImage.color = windDisabledColor;
             }
         }
 
