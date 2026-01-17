@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3565571749838556367, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1501484022, guid: 244ceaf182c0c0a45819ff2b0d614ca8, type: 3}
     - target: {fileID: 7866883268474285435, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -69,6 +73,11 @@ CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 3494469368863057148, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
   m_PrefabInstance: {fileID: 1072071839246674909}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &4583458487760381714 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3565571749838556367, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+  m_PrefabInstance: {fileID: 1072071839246674909}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8745946120620765323 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8628637405587512150, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
@@ -86,10 +95,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43a7329b6a9293e4799e00b72791c959, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightSpriteRenderer: {fileID: 4583458487760381714}
+  lightOnSprite: {fileID: -1501484022, guid: 244ceaf182c0c0a45819ff2b0d614ca8, type: 3}
+  lightOffSprite: {fileID: 1075553253, guid: 244ceaf182c0c0a45819ff2b0d614ca8, type: 3}
   collider: {fileID: 4512073324015095585}
   worldManager: {fileID: 0}
   naturalResources: 
   idNumber: 0
   difficulty: 0
+  time: 0
   score: 0
   complete: 0

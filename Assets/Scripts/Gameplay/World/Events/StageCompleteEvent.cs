@@ -21,6 +21,16 @@ namespace RM_EDU
                 worldStage = GetComponent<WorldStage>();
         }
 
+        // Initializes the event.
+        public override void InitalizeEvent()
+        {
+            // Sets to the light on sprite.
+            worldStage.SetLightSpriteToOnSprite();
+
+            // Call base.
+            base.InitalizeEvent();
+        }
+
         // Updates the event.
         public override void UpdateEvent()
         {
@@ -29,6 +39,16 @@ namespace RM_EDU
             {
                 cleared = true;   
             }
+        }
+
+        // Called when the event is completed.
+        public override void OnEventComplete()
+        {
+            // Sets the light off sprite.
+            worldStage.SetLightSpriteToOffSprite();
+
+            // Call base.
+            base.OnEventComplete();
         }
 
         // Update is called once per frame

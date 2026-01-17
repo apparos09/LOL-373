@@ -33,6 +33,15 @@ namespace RM_EDU
         // Enum for the world stage type.
         public enum stageType { unknown, action, knowledge };
 
+        // The sprite renderer for the stage light.
+        public SpriteRenderer lightSpriteRenderer;
+
+        // The sprite for the light when it's on.
+        public Sprite lightOnSprite;
+
+        // The sprite for the light when it's off.
+        public Sprite lightOffSprite;
+
         // The collider for the world stage.
         public new Collider2D collider;
 
@@ -75,6 +84,41 @@ namespace RM_EDU
             WorldManager.Instance.worldUI.OpenStagePrompt(this);
         }
 
+
+        // LIGHT SPRITE //
+        // Sets the light sprite to on sprite (true) or off sprite (false).
+        public void SetLightSprite(bool on)
+        {
+            // Sets the sprite on/off.
+            lightSpriteRenderer.sprite = on ? lightOnSprite : lightOffSprite;
+        }
+
+        // Returns 'true' if the light sprite is the on sprite.
+        public bool IsLightSpriteOn()
+        {
+            return lightSpriteRenderer.sprite == lightOnSprite;
+        }
+
+        // Sets the light sprite to the on sprite.
+        public void SetLightSpriteToOnSprite()
+        {
+            SetLightSprite(true);
+        }
+
+        // Returns 'true' if the light sprite is the off sprite.
+        public bool IsLightSpriteOff()
+        {
+            return lightSpriteRenderer.sprite == lightOffSprite;
+        }
+
+        // Sets the light sprite to the off sprite.
+        public void SetLightSpriteToOffSprite()
+        {
+            SetLightSprite(false);
+        }
+
+
+        // STAGE INFO //
         // TODO: add function to check when the object is enabled to refersh text.
         // Returns the index of this stage in the world manager. If -1 is returned, it's not in the world manager stage list.
         public int GetWorldStageIndex()

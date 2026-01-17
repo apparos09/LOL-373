@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3565571749838556367, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2071361929, guid: 244ceaf182c0c0a45819ff2b0d614ca8, type: 3}
     - target: {fileID: 7421944655172225121, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
       propertyPath: m_SortingLayer
       value: 1
@@ -73,6 +77,11 @@ CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 3494469368863057148, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
   m_PrefabInstance: {fileID: 3520426336258677888}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &117205209212211279 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 3565571749838556367, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
+  m_PrefabInstance: {fileID: 3520426336258677888}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5144242280119519190 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8628637405587512150, guid: 200336d0e135cc8429d0142c7e4a12c9, type: 3}
@@ -90,6 +99,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0281a14379dfae54883eec4950a7088c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lightSpriteRenderer: {fileID: 117205209212211279}
+  lightOnSprite: {fileID: 2071361929, guid: 244ceaf182c0c0a45819ff2b0d614ca8, type: 3}
+  lightOffSprite: {fileID: 725743614, guid: 244ceaf182c0c0a45819ff2b0d614ca8, type: 3}
   collider: {fileID: 46663796113029244}
   worldManager: {fileID: 0}
   naturalResources: 
