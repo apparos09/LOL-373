@@ -129,7 +129,9 @@ namespace RM_EDU
         // Start is called before the first frame update
         void Start()
         {
-            // ...
+            // Finds the instance if it isn't set.
+            if (titleUI != null)
+                titleUI = TitleUI.Instance;
         }
 
         // Called on the first update frame.

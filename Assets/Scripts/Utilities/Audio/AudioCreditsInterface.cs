@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace util
 {
@@ -41,6 +42,13 @@ namespace util
         // The credit number text, which is a fraction (000/000)
         public TMP_Text creditNumberText;
 
+        [Header("UI/Pages")]
+
+        // The previous credit.
+        public Button prevCreditButton;
+
+        // The next credit.
+        public Button nextCreditButton;
 
 
         // Start is called before the first frame update
@@ -131,6 +139,36 @@ namespace util
             if(creditNumberText != null)
                 creditNumberText.text = (creditIndex + 1).ToString() + "/" + audioCredits.GetCreditCount().ToString();
         }
+        
+        // Updates the credit buttons.
+        public virtual void UpdateCreditButtons()
+        {
+            // Checks if there are credits.
+            if(audioCredits != null)
+            {
+                // If there are audio credits, enable the buttons.
+                if(audioCredits.HasCredits())
+                {
+                    // NOTE: this doesn't check if there's only 1 credit, but since...
+                    // There will always be more than 1 credit, it's unnecessary.
+                    prevCreditButton.interactable = true;
+                    nextCreditButton.interactable = true;
+
+                }
+                // There are no credits, so disable the buttons.
+                else
+                {
+                    prevCreditButton.interactable = false;
+                    nextCreditButton.interactable = false;
+                }
+            }
+            else
+            {
+                // Disable both buttons.
+                prevCreditButton.interactable = false;
+                nextCreditButton.interactable = false;
+            }
+        }
 
         // Updates the credit.
         public void UpdateCredit()
@@ -175,6 +213,11 @@ namespace util
 
             // Updates the page number.
             UpdateCreditNumberText();
+
+            // Updates the page buttons.
+            // This doesn't need to be updated everytime, but this makes sure...
+            // If the credits are changed that the credit page buttons are updated.
+            UpdateCreditButtons();
         }
     }
 }
