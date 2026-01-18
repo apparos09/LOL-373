@@ -26,6 +26,17 @@ namespace RM_EDU
         // The title scene.
         public string titleScene = "TitleScene";
 
+        [Header("Final Texts")]
+
+        // The final score text.
+        public TMP_LabeledValue finalScoreText;
+
+        // The final time text.
+        public TMP_LabeledValue finalTimeText;
+
+        // The energy total text.
+        public TMP_LabeledValue energyTotalText;
+
         // Constructor
         private ResultsUI()
         {

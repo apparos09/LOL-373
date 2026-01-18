@@ -73,7 +73,13 @@
       "kwd_deselect": 18,
       "kwd_remove": 18,
       "kwd_remove_abv": 3,
-      "kwd_block": 18
+      "kwd_block": 18,
+
+      "kwd_finalScore": 18,
+      "kwd_gameTime": 18,
+      "kwd_energyTotal": 18,
+
+      "kwd_finish": 18
 
     }
   },
@@ -149,6 +155,8 @@
     "kwd_deselect": "Deselect",
     "kwd_remove": "Remove",
     "kwd_remove_abv": "RMV",
-    "kwd_hold": "Block"
+    "kwd_hold": "Block",
+
+    "kwd_finish": "Finish"
   }
 }
