@@ -2071,6 +2071,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   tutorialUI: {fileID: 0}
+  gameSettingsUI: {fileID: 0}
+  stageManager: {fileID: 0}
   knowledgeManager: {fileID: 0}
   statements:
   - {fileID: 3218422610074084424}

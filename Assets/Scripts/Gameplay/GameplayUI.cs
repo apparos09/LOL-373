@@ -14,6 +14,9 @@ namespace RM_EDU
         // The tutorial UI.
         public TutorialUI tutorialUI;
 
+        // The game settings UI.
+        public GameSettingsUI gameSettingsUI;
+
         // Awake is called when the script is being loaded
         protected virtual void Awake()
         {
@@ -30,6 +33,14 @@ namespace RM_EDU
             // // If the tutorial UI isn't set, try to find it.
             // if(tutorialUI == null)
             //     tutorialUI = FindObjectOfType<TutorialUI>();
+
+            // If the game settings UI doesn't exist, try to find it.
+            // if(gameSettingsUI == null)
+            //     gameSettingsUI = FindObjectOfType<GameSettingsUI>();
+
+            // Makes sure the settings UI is off.
+            if(gameSettingsUI != null)
+                gameSettingsUI.gameObject.SetActive(false);
         }
 
         // TUTORIAL //

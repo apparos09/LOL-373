@@ -29,7 +29,8 @@ namespace RM_EDU
 
         // TTS
         // The tts volume slider.
-        public Slider ttsVolumeSlider;
+        // Volume control for TTS doesn't work, so this slider isn't used.
+        // public Slider ttsVolumeSlider;
 
 
         [Header("Misc")]
@@ -67,7 +68,7 @@ namespace RM_EDU
             // });
 
             // Current tts volume setting.
-            ttsVolumeSlider.value = gameSettings.TtsVolume;
+            // ttsVolumeSlider.value = gameSettings.TtsVolume; // Unused
 
             // Current muted setting.
             muteToggle.isOn = gameSettings.Mute;
@@ -102,7 +103,7 @@ namespace RM_EDU
                 tutorialToggle.gameObject.SetActive(false);
 
                 // Enable the TTS volume slider and TTS toggle.
-                ttsVolumeSlider.interactable = true;
+                // ttsVolumeSlider.interactable = true; Unused
                 textToSpeechToggle.interactable = true;
             }
             else
@@ -111,7 +112,7 @@ namespace RM_EDU
                 tutorialToggle.gameObject.SetActive(true);
 
                 // Disable the TTS volume slider and toggle.
-                ttsVolumeSlider.interactable = false;
+                // ttsVolumeSlider.interactable = false; // Unused
                 textToSpeechToggle.interactable = false;
             }
 

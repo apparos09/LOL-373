@@ -7,6 +7,7 @@ namespace RM_EDU
     // The stage UI.
     public abstract class StageUI : GameplayUI
     {
+        [Header("Stage UI")]
         // The game will skip these overwritten functions in StageUI and go to GameplayUI instead.
         // Uncomment these functions if actual functionaliy is added.
 
