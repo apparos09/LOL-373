@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8412670185401552062
+--- !u!1 &3384344751088785025
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,9 +8,9 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4149938139192294180}
-  - component: {fileID: 1775631976812098742}
-  - component: {fileID: 644575818381233067}
+  - component: {fileID: 8147284734726884608}
+  - component: {fileID: 2450061112803240604}
+  - component: {fileID: 8458945768105723168}
   m_Layer: 5
   m_Name: Icon Image
   m_TagString: Untagged
@@ -18,40 +18,40 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &4149938139192294180
+--- !u!224 &8147284734726884608
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8412670185401552062}
+  m_GameObject: {fileID: 3384344751088785025}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.25, y: 1.25, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 8374261087349262820}
+  m_Father: {fileID: 3548358869194948073}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 64, y: 64}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1775631976812098742
+--- !u!222 &2450061112803240604
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8412670185401552062}
+  m_GameObject: {fileID: 3384344751088785025}
   m_CullTransparentMesh: 1
---- !u!114 &644575818381233067
+--- !u!114 &8458945768105723168
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8412670185401552062}
+  m_GameObject: {fileID: 3384344751088785025}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0a0d89305e53bc34091c546282ae60b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 695b35e57e254184c939c7d3fe7803c3, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -75,7 +75,7 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1001 &2984020020456147797
+--- !u!1001 &7809323007995658072
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -85,15 +85,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 44812320447357954, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: key
-      value: kwd_remove
+      value: kwd_block
       objectReference: {fileID: 0}
     - target: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_Name
-      value: Action Unit Remove Button (UI) Variant
+      value: Action User Block Button (UI) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2510162268394537624, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_text
-      value: Remove
+      value: Block
       objectReference: {fileID: 0}
     - target: {fileID: 3234275796200221103, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_IsActive
@@ -112,12 +112,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ToggleUserBlockAttackEnergy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.SpeakTextUI, Assembly-CSharp
+      value: RM_EDU.ActionUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: kwd_remove
+      value: kwd_block
+      objectReference: {fileID: 0}
+    - target: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_Pivot.x
@@ -197,7 +205,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -48
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -216,46 +224,47 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4149938139192294180}
+      addedObject: {fileID: 8147284734726884608}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 3604517035233956085}
+      addedObject: {fileID: 491136923867579715}
   m_SourcePrefab: {fileID: 100100000, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
---- !u!114 &1174038030808729301 stripped
+--- !u!224 &3548358869194948073 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
+  m_PrefabInstance: {fileID: 7809323007995658072}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6143493586799014616 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-  m_PrefabInstance: {fileID: 2984020020456147797}
+  m_PrefabInstance: {fileID: 7809323007995658072}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188991347527593430}
+  m_GameObject: {fileID: 7586460067046742491}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &3188991347527593430 stripped
+--- !u!1 &7586460067046742491 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-  m_PrefabInstance: {fileID: 2984020020456147797}
+  m_PrefabInstance: {fileID: 7809323007995658072}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &3604517035233956085
+--- !u!114 &491136923867579715
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188991347527593430}
+  m_GameObject: {fileID: 7586460067046742491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cca415db99e2ce44eabf1aefa6eb59f1, type: 3}
+  m_Script: {fileID: 11500000, guid: e5f6fd8614e19374794003b77c4390fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   actionUI: {fileID: 0}
-  button: {fileID: 1174038030808729301}
-  cardBackgroundSprite: {fileID: 21300000, guid: c479da06b5d92094aa8b0a591b3d6f05, type: 3}
-  cardIconSprite: {fileID: 21300000, guid: 209c882526d7cce49af1a45d4548df43, type: 3}
---- !u!224 &8374261087349262820 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-  m_PrefabInstance: {fileID: 2984020020456147797}
-  m_PrefabAsset: {fileID: 0}
+  button: {fileID: 6143493586799014616}
+  blockIconImage: {fileID: 8458945768105723168}
+  blockActiveSprite: {fileID: 21300000, guid: 1e3aec2795ea2344681c6efeaa29d137, type: 3}
+  blockInactiveSprite: {fileID: 21300000, guid: 695b35e57e254184c939c7d3fe7803c3, type: 3}

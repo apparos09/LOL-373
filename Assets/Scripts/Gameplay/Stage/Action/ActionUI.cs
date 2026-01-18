@@ -209,35 +209,35 @@ namespace RM_EDU
             actionManager.playerUser.ClearSelectedActionUnitPrefab();
         }
 
-        // HOLD //
-        // Returns 'true' if the player user is holding their attack energy.
-        public bool IsUserHoldingAttackEnergy()
+        // ENERGY BLOCK //
+        // Returns 'true' if the player user is blocking their attack energy (defense units cannot use energy if true).
+        public bool IsUserBlockingAttackEnergy()
         {
-            return actionManager.playerUser.withholdingAttackEnergy;
+            return actionManager.playerUser.IsBlockingAttackEnergy();
         }
 
-        // Sets whether to withheld energy or not.
-        public void SetHoldUserAttackEnergy(bool value)
+        // Sets whether to block attack energy or not.
+        public void SetBlockUserAttackEnergy(bool value)
         {
-            actionManager.playerUser.withholdingAttackEnergy = value;
+            actionManager.playerUser.SetBlockingAttackEnergy(value);
         }
 
-        // Starts holding the user attack energy.
-        public void StartHoldingUserAttackEnergy()
+        // Starts blocking the user attack energy.
+        public void BlockUserAttackEnergy()
         {
-            SetHoldUserAttackEnergy(true);
+            SetBlockUserAttackEnergy(true);
         }
 
-        // Stops holding the user attack energy.
-        public void StopHoldingUserAttackEnergy()
+        // Stops blocking the user attack energy.
+        public void UnblockUserAttackEnergy()
         {
-            SetHoldUserAttackEnergy(false);
+            SetBlockUserAttackEnergy(false);
         }
 
-        // Toggle holding acction energy.
-        public void ToggleUserHoldAttackEnergy()
+        // Toggle blocking acction energy.
+        public void ToggleBlockUserAttackEnergy()
         {
-            SetHoldUserAttackEnergy(!actionManager.playerUser.withholdingAttackEnergy);
+            SetBlockUserAttackEnergy(!actionManager.playerUser.blockingAttackEnergy);
         }
 
         // WINDOWS //

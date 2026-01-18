@@ -43,6 +43,8 @@
       "kwd_defense": 18,
       "kwd_enemy": 18,
 
+      "kwd_log": 18,
+
       "nrs_bms": 18,
       "nrs_hdo": 18,
       "nrs_gtl": 18,
@@ -69,7 +71,7 @@
       "kwd_deselect": 18,
       "kwd_remove": 18,
       "kwd_remove_abv": 3,
-      "kwd_hold": 18
+      "kwd_block": 18
 
     }
   },
@@ -115,6 +117,8 @@
     "kwd_defense": "Defense",
     "kwd_enemy": "Enemy",
 
+    "kwd_log": "Log",
+
     "nrs_bms": "Biomass",
     "nrs_hdo": "Hydro",
     "nrs_gtl": "Geothermal",
@@ -141,6 +145,6 @@
     "kwd_deselect": "Deselect",
     "kwd_remove": "Remove",
     "kwd_remove_abv": "RMV",
-    "kwd_hold": "Hold"
+    "kwd_hold": "Block"
   }
 }
