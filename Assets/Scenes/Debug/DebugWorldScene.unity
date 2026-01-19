@@ -207,7 +207,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 396529680}
     m_Modifications:
     - target: {fileID: 1681500283213737267, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_Sprite
@@ -235,15 +235,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -273,6 +273,44 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3582452573284627595, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
   m_PrefabInstance: {fileID: 249589242}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &249589244 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
+  m_PrefabInstance: {fileID: 249589242}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &396529679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 396529680}
+  m_Layer: 0
+  m_Name: World Areas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &396529680
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 396529679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 249589244}
+  - {fileID: 1220276183}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &426274983
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +364,6 @@ MonoBehaviour:
   - {fileID: 1200223460}
   - {fileID: 1828301218}
   - {fileID: 1776672466}
-  actionDefenseIds: 
 --- !u!4 &426274985
 Transform:
   m_ObjectHideFlags: 0
@@ -630,7 +667,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 396529680}
     m_Modifications:
     - target: {fileID: 1681500283213737267, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_Sprite
@@ -658,15 +695,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -694,6 +731,11 @@ PrefabInstance:
 --- !u!4 &1220276182 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3582452573284627595, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
+  m_PrefabInstance: {fileID: 1220276181}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1220276183 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8915084052117367888, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
   m_PrefabInstance: {fileID: 1220276181}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1776672464
@@ -970,5 +1012,4 @@ SceneRoots:
   - {fileID: 3976786164954292977}
   - {fileID: 462830892}
   - {fileID: 426274985}
-  - {fileID: 249589242}
-  - {fileID: 1220276181}
+  - {fileID: 396529680}

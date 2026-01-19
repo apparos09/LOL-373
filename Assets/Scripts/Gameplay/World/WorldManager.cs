@@ -40,17 +40,10 @@ namespace RM_EDU
 
         // If 'true', the state of the game effects the area buttons.
         // If 'false', the area buttons remain on at all times.
-        private bool effectAreaButtons = false;
+        private bool effectAreaButtons = true;
 
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
-
-        [Header("Player")]
-
-        // The ids for the defense units the player can currently use.
-        // The player unlocks more as they progress through the game.
-        [Tooltip("The ids for defense units the player can currently use.")]
-        public List<int> actionDefenseIds = new List<int>();
 
         // Awake is called when the script is being loaded
         protected override void Awake()
@@ -150,7 +143,17 @@ namespace RM_EDU
 
                 // Sets the current area to be the first one.
                 SetCurrentWorldArea(currAreaIndex);
-                
+
+                // If area buttons should be effected.
+                if(effectAreaButtons)
+                {
+                    // Makes sure the world UI's world manager is set.
+                    if (worldUI.worldManager == null)
+                        worldUI.worldManager = this;
+
+                    // Refreshes the world area buttons.
+                    worldUI.RefreshWorldAreaButtons();
+                }
             }
 
             // If the data logger exists.
@@ -196,7 +199,8 @@ namespace RM_EDU
             }
         }
 
-        // GEts the world area at the provided index.
+        // AREA //
+        // Gets the world area at the provided index.
         public WorldArea GetWorldArea(int index)
         {
             // Index validity check.
@@ -298,6 +302,10 @@ namespace RM_EDU
                 }
 
             }
+
+            // Refreshes the world area buttons.
+            if(effectAreaButtons)
+                worldUI.RefreshWorldAreaButtons();
         }
 
         // Gets the current world area index.
@@ -306,6 +314,20 @@ namespace RM_EDU
             return currAreaIndex;
         }
 
+        // Returns 'true' if this is the first world area.
+        public bool IsCurrentWorldAreaFirstArea()
+        {
+            return currAreaIndex == 0;
+        }
+
+        // Returns 'true' if this is the last world area.
+        public bool IsCurrentWorldAreaLastArea()
+        {
+            return currAreaIndex == areas.Count - 1;
+        }
+
+
+        // STAGE //
         // Gets a world stage by its index.
         public WorldStage GetWorldStage(int index)
         {
@@ -382,6 +404,12 @@ namespace RM_EDU
             SetCurrentWorldArea(index);
         }
 
+        // Goes to the previous world area, not allowing wrap arounds.
+        public void PreviousWorldArea()
+        {
+            PreviousWorldArea(false);
+        }
+
         // Goes to the next world area.
         // If 'wrapAround' is true, the game loops around to the other area if it overflows.
         public void NextWorldArea(bool wrapAround)
@@ -395,6 +423,12 @@ namespace RM_EDU
 
             // Set the new area.
             SetCurrentWorldArea(index);
+        }
+
+        // Goes to the next world area, not allowing wrap arounds.
+        public void NextWorldArea()
+        {
+            NextWorldArea(false);
         }
 
         // If area buttons should be effected by the state of the world.

@@ -32,7 +32,7 @@ namespace RM_EDU
         [Header("Action")]
 
         // The unlocked defense units for the action stages.
-        public List<int> actionDefenseIds = new List<int>();
+        public List<int> defenseIds = new List<int>();
 
         
         [Header("Knowledge")]
@@ -135,12 +135,12 @@ namespace RM_EDU
             foreach(int newId in newIds)
             {
                 // If the id isn't already in the list, add it.
-                if(!actionDefenseIds.Contains(newId))
-                    actionDefenseIds.Add(newId);
+                if(!defenseIds.Contains(newId))
+                    defenseIds.Add(newId);
             }
 
             // Sort the defense id list.
-            actionDefenseIds.Sort();
+            defenseIds.Sort();
         }
 
         // Update is called once per frame

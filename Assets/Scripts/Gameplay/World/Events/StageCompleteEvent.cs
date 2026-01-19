@@ -47,6 +47,9 @@ namespace RM_EDU
             // Sets the light off sprite.
             worldStage.SetLightSpriteToOffSprite();
 
+            // Gives the player their rwards.
+            worldStage.GivePlayerRewards();
+
             // Call base.
             base.OnEventComplete();
         }

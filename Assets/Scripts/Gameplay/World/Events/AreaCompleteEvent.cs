@@ -65,7 +65,7 @@ namespace RM_EDU
             if (worldManager.EffectAreaButtons)
             {
                 // The next area button is interactable.
-                worldManager.worldUI.nextAreaButton.interactable = true;
+                worldManager.worldUI.RefreshWorldAreaButtons();
             }
         }
 

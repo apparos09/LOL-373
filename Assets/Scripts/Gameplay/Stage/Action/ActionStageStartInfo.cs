@@ -34,7 +34,7 @@ namespace RM_EDU
             if(DataLogger.Instantiated)
             {
                 actionDefenseIds.Clear();
-                actionDefenseIds.AddRange(DataLogger.Instance.actionDefenseIds);
+                actionDefenseIds.AddRange(DataLogger.Instance.defenseIds);
             }
         }
 

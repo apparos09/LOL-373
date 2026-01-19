@@ -157,7 +157,7 @@ MonoBehaviour:
   calledInit: 0
   calledComplete: 0
   worldManager: {fileID: 0}
-  area: {fileID: 0}
+  area: {fileID: 1862957229837231123}
 --- !u!1 &6595659183828026604
 GameObject:
   m_ObjectHideFlags: 0

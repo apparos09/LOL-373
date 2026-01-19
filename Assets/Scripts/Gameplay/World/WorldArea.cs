@@ -44,6 +44,12 @@ namespace RM_EDU
             }
         }
 
+        // Returns 'true' if the world area has been cleared.
+        public bool IsWorldAreaCleared()
+        {
+            return areaCompleteEvent.cleared;
+        }
+
         // Update is called once per frame
         void Update()
         {

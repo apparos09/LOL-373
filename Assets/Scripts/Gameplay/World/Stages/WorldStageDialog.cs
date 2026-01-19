@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using UnityEditor.SceneManagement;
 using UnityEngine;
 
 namespace RM_EDU
 {
     // The world stage prompt.
-    public class WorldStagePrompt : MonoBehaviour
+    public class WorldStageDialog : MonoBehaviour
     {
         // The world UI.
         public WorldUI worldUI;
@@ -109,7 +108,7 @@ namespace RM_EDU
         public void ClosePrompt()
         {
             ClearWorldStage();
-            worldUI.CloseStagePrompt();
+            worldUI.CloseStageDialog();
             // TODO: implement.
         }
 

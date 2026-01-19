@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace RM_EDU
 {
@@ -33,6 +34,9 @@ namespace RM_EDU
         // Enum for the world stage type.
         public enum stageType { unknown, action, knowledge };
 
+        // The world manager.
+        public WorldManager worldManager;
+
         // The sprite renderer for the stage light.
         public SpriteRenderer lightSpriteRenderer;
 
@@ -45,12 +49,8 @@ namespace RM_EDU
         // The collider for the world stage.
         public new Collider2D collider;
 
-        // The world manager.
-        public WorldManager worldManager;
 
-        // The natural resources the stage uses.
-        public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
-
+        [Header("World Stage/Info")]
         // The stage's ID number.
         public int idNumber = 0;
 
@@ -65,6 +65,16 @@ namespace RM_EDU
 
         // Marker for if the stage is complete.
         public bool complete = false;
+
+        [Header("World Stage/Resources")]
+        // The natural resources the stage uses.
+        [Tooltip("The natural resources for the stage.")]
+        public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
+
+        // The defense units that are unlocked if the player beats the stage.
+        [Tooltip("The ids for defense units that're unlocked if the player completes the stage.")]
+        public List<int> defenseIdRewards = new List<int>();
+
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -81,7 +91,11 @@ namespace RM_EDU
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
         protected virtual void OnMouseDown()
         {
-            WorldManager.Instance.worldUI.OpenStagePrompt(this);
+            // If the pointer isn't over a game object in the UI, allow the mouse function to work.
+            if (!EventSystem.current.IsPointerOverGameObject())
+            {
+                WorldManager.Instance.worldUI.OpenStageDialog(this);
+            }
         }
 
 
@@ -115,6 +129,21 @@ namespace RM_EDU
         public void SetLightSpriteToOffSprite()
         {
             SetLightSprite(false);
+        }
+
+        // REWARDS //
+
+        // Gives the player their rewards.
+        public void GivePlayerRewards()
+        {
+            GiveDefenseUnitsToPlayer();
+        }
+
+        // Gives the player the defense units for this world stage.
+        public void GiveDefenseUnitsToPlayer()
+        {
+            // Adds action defense units to the data logger.
+            DataLogger.Instance.AddActionDefenseUnits(defenseIdRewards);
         }
 
 

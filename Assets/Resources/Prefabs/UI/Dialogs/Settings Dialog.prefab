@@ -851,10 +851,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 689565007281954868}
     m_Modifications:
-    - target: {fileID: 2651743475693386938, guid: 1fb7a94c5167abb47a9e25ef0629f38f, type: 3}
-      propertyPath: m_Color.a
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4742813542576421633, guid: 1fb7a94c5167abb47a9e25ef0629f38f, type: 3}
       propertyPath: m_Name
       value: Raycast Block Panel
