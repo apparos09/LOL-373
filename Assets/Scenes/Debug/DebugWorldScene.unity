@@ -596,6 +596,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1220276182}
     m_Modifications:
+    - target: {fileID: 5091421738382468543, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: requiredStages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5091421738382468543, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: requiredStages.Array.data[0]
+      value: 
+      objectReference: {fileID: 1902176520}
     - target: {fileID: 5144242280119519190, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: m_Name
       value: World Action Stage 1
@@ -786,6 +794,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8688446065975923426, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
+      propertyPath: requiredStages.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8688446065975923426, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
+      propertyPath: requiredStages.Array.data[0]
+      value: 
+      objectReference: {fileID: 1200223460}
     - target: {fileID: 8745946120620765323, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: m_Name
       value: World Knowledge Stage 1

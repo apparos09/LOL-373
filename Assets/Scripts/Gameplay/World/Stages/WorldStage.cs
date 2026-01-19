@@ -41,10 +41,16 @@ namespace RM_EDU
         public SpriteRenderer lightSpriteRenderer;
 
         // The sprite for the light when it's on.
+        [Tooltip("The sprite for when the light is on (bright light).")]
         public Sprite lightOnSprite;
 
         // The sprite for the light when it's off.
+        [Tooltip("The sprite for when the light is off (dimmed light).")]
         public Sprite lightOffSprite;
+
+        // The sprite for when there's no light at all (black).
+        [Tooltip("The sprite for when there's no light at all (black).")]
+        public Sprite lightNoneSprite;
 
         // The collider for the world stage.
         public new Collider2D collider;
@@ -63,7 +69,12 @@ namespace RM_EDU
         // The score for this stage.
         public float score = 0;
 
+        // Checks if the stage is locked. This isn't included in the stage data.
+        [Tooltip("If 'true', the stage is locked and cannot be selected.")]
+        public bool locked = false;
+
         // Marker for if the stage is complete.
+        [Tooltip("If true, the stage is complete, and cannot be selected.")]
         public bool complete = false;
 
         [Header("World Stage/Resources")]
@@ -74,6 +85,14 @@ namespace RM_EDU
         // The defense units that are unlocked if the player beats the stage.
         [Tooltip("The ids for defense units that're unlocked if the player completes the stage.")]
         public List<int> defenseIdRewards = new List<int>();
+
+        [Header("World Stage/Events")]
+
+        // The stage's unlock event.
+        public StageUnlockEvent stageUnlockEvent;
+
+        // The stage's complete event.
+        public StageCompleteEvent stageCompleteEvent;
 
 
         // Start is called before the first frame update
@@ -86,6 +105,14 @@ namespace RM_EDU
             // Gets the world manager.
             if (worldManager == null)
                 worldManager = WorldManager.Instance;
+
+            // If the stage unlock event isn't set, try to get it.
+            if(stageUnlockEvent == null)
+                stageUnlockEvent = GetComponent<StageUnlockEvent>();
+
+            // If the stage complete event isn't set, try to get it.
+            if(stageCompleteEvent == null)
+                stageCompleteEvent = GetComponent<StageCompleteEvent>();
         }
 
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
@@ -95,16 +122,35 @@ namespace RM_EDU
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
-            WorldManager.Instance.worldUI.OpenStageDialog(this);
+            // If the stage is not complete and isn't locked, open the stage dialog.
+            if(!complete && !locked)
+            {
+                WorldManager.Instance.worldUI.OpenStageDialog(this);
+            }
         }
 
 
         // LIGHT SPRITE //
         // Sets the light sprite to on sprite (true) or off sprite (false).
-        public void SetLightSprite(bool on)
+        // <= -1 = off, 0 = none, >= 1 = on.
+        public void SetLightSprite(int value)
         {
-            // Sets the sprite on/off.
-            lightSpriteRenderer.sprite = on ? lightOnSprite : lightOffSprite;
+            // The value is negative, so switch it off.
+            if(value < 0)
+            {
+                lightSpriteRenderer.sprite = lightOffSprite;
+            }
+            // The value is positive, so switch it on.
+            else if(value > 0)
+            {
+                lightSpriteRenderer.sprite = lightOnSprite;
+            }
+            // No value, so set to none.
+            else
+            {
+                lightSpriteRenderer.sprite = lightNoneSprite;
+            }
+
         }
 
         // Returns 'true' if the light sprite is the on sprite.
@@ -116,7 +162,7 @@ namespace RM_EDU
         // Sets the light sprite to the on sprite.
         public void SetLightSpriteToOnSprite()
         {
-            SetLightSprite(true);
+            SetLightSprite(1);
         }
 
         // Returns 'true' if the light sprite is the off sprite.
@@ -128,7 +174,19 @@ namespace RM_EDU
         // Sets the light sprite to the off sprite.
         public void SetLightSpriteToOffSprite()
         {
-            SetLightSprite(false);
+            SetLightSprite(-1);
+        }
+
+        // Returns 'true' if the light sprite is none.
+        public bool IsLightSpriteNone()
+        {
+            return lightSpriteRenderer.sprite == lightNoneSprite;
+        }
+
+        // Sets the light sprite to none.
+        public void SetLightSpriteToNoneSprite()
+        {
+            SetLightSprite(0);
         }
 
         // REWARDS //
@@ -167,10 +225,105 @@ namespace RM_EDU
             return stageType.unknown;
         }
 
+        // LOCK
+        // Returns 'true' if the stage is locked.
+        public bool IsLocked()
+        {
+            return locked;
+        }
+
+        // Sets if the stage is locked.
+        public void SetLocked(bool stageLocked)
+        {
+            // Set value.
+            locked = stageLocked;
+
+            // Checks if the stage is locked.
+            if(locked)
+            {
+                // Now locked, so set the sprite to off.
+                SetLightSpriteToOffSprite();
+            }
+            // Stage is unlocked.
+            else
+            {
+                // Chooses sprite based on if the stage is complete or not.
+                if(complete)
+                {
+                    // Light off if complete.
+                    SetLightSpriteToOffSprite();
+                }
+                else
+                {
+                    // Light on if compelte.
+                    SetLightSpriteToOnSprite();
+                }
+            }
+        }
+
+        // Locks the stage.
+        public void LockStage()
+        {
+            SetLocked(true);
+        }
+
+        // Unlocks the stage.
+        public void UnlockStage()
+        {
+            SetLocked(false);
+        }
+
+
+        // COMPLETE
         // Returns 'true' if the stage is complete.
         public bool IsComplete()
         {
             return complete;
+        }
+
+        // Sets that the stage is complete.
+        public void SetComplete(bool stageComplete)
+        {
+            complete = stageComplete;
+
+            // If the stage is now complete.
+            if(complete)
+            {
+                // If the stage is locked, use the off sprite.
+                if (locked)
+                {
+                    SetLightSpriteToNoneSprite();
+                }
+                // Set the light sprite to off.
+                else
+                {
+                    SetLightSpriteToOffSprite();
+                }
+
+
+                // Give rewards since the stage is complete.
+                GivePlayerRewards();
+            }
+            // If the stage is not complete.
+            else
+            {
+                // If the stage is locked, turn the light off.
+                if(locked)
+                {
+                    SetLightSpriteToNoneSprite();
+                }
+                // Stage is unlocked, but not complete, so set light to on sprite.
+                else
+                {
+                    SetLightSpriteToOnSprite();
+                }
+            }
+        }
+
+        // Refreshes the complete parameter by calling set complete.
+        public void RefreshComplete()
+        {
+            SetComplete(complete);
         }
 
         // Generates the data.

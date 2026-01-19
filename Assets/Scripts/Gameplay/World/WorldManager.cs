@@ -264,42 +264,43 @@ namespace RM_EDU
                 // Move camera.
                 worldCamera.Move(currArea, instantCameraMovement);
 
-                // If the state of the world should effect the area buttons.
-                if(effectAreaButtons)
-                {
-                    // Current area index, prev area index, and next area index.
-                    int currAreaIndex = GetCurrentWorldAreaIndex();
-                    int prevAreaIndex = currAreaIndex - 1;
-                    int nextAreaIndex = currAreaIndex + 1;
-
-                    // Turn on both area buttons to start.
-                    worldUI.prevAreaButton.interactable = true;
-                    worldUI.nextAreaButton.interactable = true;
-
-                    // Previous
-                    // If negative, make the prev button non-interactable.
-                    if (prevAreaIndex < 0)
-                    {
-                        worldUI.prevAreaButton.interactable = false;
-                    }
-                    else
-                    {
-                        // Set button interactable if the previous area has been cleared.
-                        worldUI.prevAreaButton.interactable = areas[prevAreaIndex].areaCompleteEvent.cleared;
-                    }
-
-                    // Next
-                    // If the current area is completed, the next area must be open.
-                    if (nextAreaIndex < areas.Count)
-                    {
-                        worldUI.nextAreaButton.interactable = currArea.areaCompleteEvent.cleared;
-                    }
-                    // If this is the last area in the list, there is no next area to go to.
-                    else
-                    {
-                        worldUI.nextAreaButton.interactable = false;
-                    }
-                }
+                // This is now handled by a function call later in this function.
+                // // If the state of the world should effect the area buttons.
+                // if(effectAreaButtons)
+                // {
+                //     // Current area index, prev area index, and next area index.
+                //     int currAreaIndex = GetCurrentWorldAreaIndex();
+                //     int prevAreaIndex = currAreaIndex - 1;
+                //     int nextAreaIndex = currAreaIndex + 1;
+                // 
+                //     // Turn on both area buttons to start.
+                //     worldUI.prevAreaButton.interactable = true;
+                //     worldUI.nextAreaButton.interactable = true;
+                // 
+                //     // Previous
+                //     // If negative, make the prev button non-interactable.
+                //     if (prevAreaIndex < 0)
+                //     {
+                //         worldUI.prevAreaButton.interactable = false;
+                //     }
+                //     else
+                //     {
+                //         // Set button interactable if the previous area has been cleared.
+                //         worldUI.prevAreaButton.interactable = areas[prevAreaIndex].areaCompleteEvent.cleared;
+                //     }
+                // 
+                //     // Next
+                //     // If the current area is completed, the next area must be open.
+                //     if (nextAreaIndex < areas.Count)
+                //     {
+                //         worldUI.nextAreaButton.interactable = currArea.areaCompleteEvent.cleared;
+                //     }
+                //     // If this is the last area in the list, there is no next area to go to.
+                //     else
+                //     {
+                //         worldUI.nextAreaButton.interactable = false;
+                //     }
+                // }
 
             }
 

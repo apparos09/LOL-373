@@ -8,24 +8,26 @@ namespace RM_EDU
     // An event that's completed when a stage is completed.
     public class StageCompleteEvent : GameEvent
     {
+        [Header("Stage Complete")]
+
         // The world stage.
         public WorldStage worldStage;
 
         // Start is called before the first frame update
         protected override void Start()
         {
-            base.Start();
-
             // If the world stage isn't set, set it.
             if (worldStage == null)
                 worldStage = GetComponent<WorldStage>();
+
+            base.Start();
         }
 
         // Initializes the event.
         public override void InitalizeEvent()
         {
-            // Sets to the light on sprite.
-            worldStage.SetLightSpriteToOnSprite();
+            // Set the stage to not be complete.
+            worldStage.SetComplete(false);
 
             // Call base.
             base.InitalizeEvent();
@@ -44,11 +46,8 @@ namespace RM_EDU
         // Called when the event is completed.
         public override void OnEventComplete()
         {
-            // Sets the light off sprite.
-            worldStage.SetLightSpriteToOffSprite();
-
-            // Gives the player their rwards.
-            worldStage.GivePlayerRewards();
+            // Sets the stage to complete.
+            worldStage.SetComplete(true);
 
             // Call base.
             base.OnEventComplete();
