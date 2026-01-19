@@ -296,7 +296,6 @@ GameObject:
   - component: {fileID: 1510168404905598061}
   - component: {fileID: 3213304342752622016}
   - component: {fileID: 6747631995733676449}
-  - component: {fileID: 2871829522431540210}
   m_Layer: 5
   m_Name: Energy Cost Text (TMP)
   m_TagString: Untagged
@@ -420,20 +419,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &2871829522431540210
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8199933499932622113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fc4c234014f0a2478490cffb2d27971, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: {fileID: 6747631995733676449}
-  key: 
 --- !u!1001 &1421311104914728897
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,6 +467,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 4ff371db62fd0a64d80a19c2bf53e4a2, type: 3}
+    - target: {fileID: 3730063867568323098, guid: 3e56a82eab9ff3849971e708f8e53c7e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3923797563565865115, guid: 3e56a82eab9ff3849971e708f8e53c7e, type: 3}
       propertyPath: m_Name
       value: Button (UI) - Square Variant

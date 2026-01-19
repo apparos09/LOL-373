@@ -91,11 +91,11 @@ namespace RM_EDU
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
         protected virtual void OnMouseDown()
         {
-            // If the pointer isn't over a game object in the UI, allow the mouse function to work.
-            if (!EventSystem.current.IsPointerOverGameObject())
-            {
-                WorldManager.Instance.worldUI.OpenStageDialog(this);
-            }
+            // If the pointer is over a game object in the event system, don't take in inputs.
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
+            WorldManager.Instance.worldUI.OpenStageDialog(this);
         }
 
 

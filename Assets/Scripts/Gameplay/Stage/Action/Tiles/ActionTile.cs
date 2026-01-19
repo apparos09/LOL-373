@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Tilemaps;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace RM_EDU
 {
@@ -146,6 +147,10 @@ namespace RM_EDU
         // OnMouseDown is called when the user has pressed the mouse button while over the GUIElement or Collider
         protected virtual void OnMouseDown()
         {
+            // If the pointer is over a game object in the event system, don't take in inputs.
+            if (EventSystem.current.IsPointerOverGameObject())
+                return;
+
             // Tries to perform a player user action.
             TryPerformPlayerUserAction();
         }
