@@ -40,8 +40,8 @@ namespace RM_EDU
         // The generator selector.
         public ActionUnitSelector generatorUnitSelector;
 
-        // The selected unit.
-        public ActionUnitCard selectedUnit;
+        // The selected unit UI.
+        public ActionUnitSelectedUI selectedUnitUI;
 
         // The defense selector.
         public ActionUnitSelector defenseUnitSelector;
@@ -175,32 +175,32 @@ namespace RM_EDU
         // Sets the selected unit info to the select UI.
         public void SetSelectedUnitInfoToSelect()
         {
-            selectedUnit.ClearActionUnitInfo();
+            selectedUnitUI.ClearActionUnitInfo();
         }
 
         // Sets the selected unit info to the remove UI.
         public void SetSelectedUnitInfoToRemove()
         {
-            selectedUnit.ApplyRemoveActionUnitInfo(removeButton);
+            selectedUnitUI.ApplyRemoveActionUnitInfo(removeButton);
         }
 
         // Updates the selected unit info.
         public void SetSelectedUnitInfo(ActionUnit unit)
         {
-            selectedUnit.ApplyActionUnitInfo(unit);
+            selectedUnitUI.ApplyActionUnitInfo(unit);
         }
 
         // Updates the selected unit info.
         public void SetSelectedUnitInfo(ActionUnitButton unitButton)
         {
-            selectedUnit.ApplyActionUnitInfo(unitButton);
+            selectedUnitUI.ApplyActionUnitInfo(unitButton);
         }
 
         // Clears the selected unit.
         // NOTE: this does not deselect the unit from the player.
         public void ClearSelectedUnitInfo()
         {
-            selectedUnit.ClearActionUnitInfo();
+            selectedUnitUI.ClearActionUnitInfo();
         }
 
         // Deselects the player's selected unit.
