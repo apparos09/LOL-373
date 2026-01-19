@@ -143,6 +143,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 0
+  defType: 1
   platformSpriteRenderer: {fileID: 6801037432176312619}
   projectilePrefab: {fileID: 6423055876177994831, guid: 989f33c9573112749b85881a7f42db92, type: 3}
   projectileStartPos: {fileID: 3226871958145216452}

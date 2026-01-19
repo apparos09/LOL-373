@@ -58,16 +58,26 @@
       "nrs_nlr": 18,
       "nrs_oil": 18,
 
-      "nrs_bms_abv": 18,
-      "nrs_hdo_abv": 18,
-      "nrs_gtl_abv": 18,
-      "nrs_slr_abv": 18,
-      "nrs_wve_abv": 18,
-      "nrs_wnd_abv": 18,
-      "nrs_col_abv": 18,
-      "nrs_ngs_abv": 18,
-      "nrs_nlr_abv": 18,
-      "nrs_oil_abv": 18,
+      "nrs_bms_abv": 3,
+      "nrs_hdo_abv": 3,
+      "nrs_gtl_abv": 3,
+      "nrs_slr_abv": 3,
+      "nrs_wve_abv": 3,
+      "nrs_wnd_abv": 3,
+      "nrs_col_abv": 3,
+      "nrs_ngs_abv": 3,
+      "nrs_nlr_abv": 3,
+      "nrs_oil_abv": 3,
+
+
+      "dfs_bsr": 18,
+      "dfs_shd": 18,
+      "dfs_trp": 18,
+
+      "dfs_bsr_abv": 3,
+      "dfs_shd_abv": 3,
+      "dfs_trp_abv": 3,
+
 
       "kwd_select": 18,
       "kwd_deselect": 18,
@@ -150,6 +160,14 @@
     "nrs_ngs_abv": "NGS",
     "nrs_nlr_abv": "NLR",
     "nrs_oil_abv": "OIL",
+
+    "dfs_bsr": "Blaster",
+    "dfs_shd": "Shield",
+    "dfs_trp": "Trap",
+
+    "dfs_bsr_abv": "BSR",
+    "dfs_shd_abv": "SHD",
+    "dfs_trp_abv": "TRP",
 
     "kwd_select": "Select",
     "kwd_deselect": "Deselect",

@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.tvOS;
 
 namespace RM_EDU
 {
@@ -133,12 +131,37 @@ namespace RM_EDU
             }
         }
 
-        // TYPES //
+        // TYPES, INFO //
         // Gets the unit type.
         public override unitType GetUnitType()
         {
             return unitType.enemy;
         } 
+
+        // Enemy names aren't displayed anywhere.
+        // // Gets the unit name.
+        // public static string GetUnitName(int unitId)
+        // {
+        //     return null;
+        // }
+        // 
+        // // Gets the unit name key.
+        // public static string GetUnitNameKey(int unitId)
+        // {
+        //     return null;
+        // }
+        // 
+        // // Gets the unit name abbreviation.
+        // public static string GetUnitNameAbbreviation(int unitId)
+        // {
+        //     return null;
+        // }
+        // 
+        // // Gets the unit name abbreviation key.
+        // public static string GetUnitNameAbbreviationKey(int unitId)
+        // {
+        //     return null;
+        // }
 
         // MOVEMENT //
         // Returns the row the enemy is in.

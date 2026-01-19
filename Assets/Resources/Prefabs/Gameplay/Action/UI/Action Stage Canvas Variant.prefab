@@ -871,6 +871,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8904956904974979655}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseAllDialogs
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RM_EDU.StageUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1477339777130733488, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 4485853164388015782, guid: 704cac595ebe9554e9f272b763eef5ab, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -1116,6 +1144,34 @@ PrefabInstance:
     - target: {fileID: 2324597876601048928, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8904956904974979655}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OpenSettingsDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RM_EDU.GameplayUI, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4917647371092738129, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 8661664363038878546, guid: 2caece2a5600877429fd3fa3b9f3e3dc, type: 3}
       propertyPath: m_Name
@@ -1886,8 +1942,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   tutorialUI: {fileID: 0}
-  gameSettingsUI: {fileID: 4561367339917724115}
   stageManager: {fileID: 0}
+  settingsDialog: {fileID: 4561367339917724115}
   actionManager: {fileID: 0}
   dayNightIndicator: {fileID: 4603498745723743153}
   playerUserEnergyText: {fileID: 8861003513079438512}

@@ -174,10 +174,15 @@ namespace RM_EDU
 
         // OPENING/CLOSING DIALOGS/WINDOWS
 
-        // Opens the given window.
-        public void OpenDialog(GameObject dialog)
+        // Opens the given dialog.
+        public void OpenDialog(GameObject dialog, bool closeOtherDialogs)
         {
-            CloseAllDialogs();
+            // If 'true', close all the other dialogs.
+            if(closeOtherDialogs)
+            {
+                CloseAllDialogs();
+            }
+
             dialog.SetActive(true);
         }
 
@@ -199,29 +204,25 @@ namespace RM_EDU
         // Opens the title dialog, which closes all the other dialogs.
         public void OpenTitleDialog()
         {
-            CloseAllDialogs();
-            titleDialog.SetActive(true);
+            OpenDialog(titleDialog, true);
         }
 
         // Opens the instructions dialog.
         public void OpenInstructionsDialog()
         {
-            CloseAllDialogs();
-            instructionsDialog.SetActive(true);
+            OpenDialog(instructionsDialog, true);
         }
 
         // Opens the settings dialog.
         public void OpenSettingsDialog()
         {
-            CloseAllDialogs();
-            settingsDialog.gameObject.SetActive(true);
+            OpenDialog(settingsDialog.gameObject, true);
         }
 
         // Opens the licenses dialog.
         public void OpenLicensesDialog()
         {
-            CloseAllDialogs();
-            licensesDialog.gameObject.SetActive(true);
+            OpenDialog(licensesDialog.gameObject, true);
         }
 
         // Other

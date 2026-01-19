@@ -7,7 +7,13 @@ namespace RM_EDU
     // The defense unit for the player.
     public class ActionUnitDefense : ActionUnitUser
     {
+        // The type of the defense unit.
+        public enum defenseType { unknown, blaster, shield, trap }
+
         [Header("Defense")]
+
+        // The type of the defense unit.
+        public defenseType defType = defenseType.unknown;
 
         // The sprite renderer for a platform that can be displayed below the user unit.
         public SpriteRenderer platformSpriteRenderer;
@@ -47,12 +53,160 @@ namespace RM_EDU
             }
         }
 
+        // TYPE, NAMES //
         // Gets the unit type.
         public override unitType GetUnitType()
         {
             return unitType.defense;
         }
 
+        // Gets the display name for the unit's card.
+        public override string GetUnitCardDisplayName()
+        {
+            return GetDefenseTypeAbbreviation(defType);
+        }
+
+        // Gets the defenes type.
+        public static string GetDefenseTypeName(defenseType type)
+        {
+            // The value to return.
+            string value;
+
+            // The LOL SDK has been initialized, so use the key.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // Gets the defense type abbreviation key.
+                string key = GetDefenseTypeNameKey(type);
+
+                // Gets the text.
+                value = LOLManager.GetLanguageTextStatic(key);
+            }
+            else
+            {
+                // Checks the defense type to see what text to use
+                switch (type)
+                {
+                    default:
+                        value = "UKN";
+                        break;
+
+                    case defenseType.blaster:
+                        value = "BSR";
+                        break;
+
+                    case defenseType.shield:
+                        value = "SHD";
+                        break;
+
+                    case defenseType.trap:
+                        value = "TRP";
+                        break;
+                }
+            }
+
+            return value;
+        }
+
+        // Gets the defenes type name key.
+        public static string GetDefenseTypeNameKey(defenseType type)
+        {
+            // The value to return.
+            string value;
+
+            // Checks the unit ID.
+            switch (type)
+            {
+                default:
+                    value = "";
+                    break;
+
+                case defenseType.blaster:
+                    value = "Blaster";
+                    break;
+
+                case defenseType.shield:
+                    value = "Shield";
+                    break;
+
+                case defenseType.trap:
+                    value = "Trap";
+                    break;
+            }
+
+            return value;
+        }
+
+        // Gets the unit name abbreviation.
+        public static string GetDefenseTypeAbbreviation(defenseType type)
+        {
+            // The value to return.
+            string value;
+
+            // If the LOLSDK exists, get the abbreviation from that.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // Gets the defense type abbreviation key.
+                string key = GetDefenseTypeAbbreviationKey(type);
+
+                // Gets the text.
+                value = LOLManager.GetLanguageTextStatic(key);
+            }
+            else
+            {
+                // Checks the defense type to see what text to use
+                switch (type)
+                {
+                    default:
+                        value = "UKN";
+                        break;
+
+                    case defenseType.blaster:
+                        value = "BSR";
+                        break;
+
+                    case defenseType.shield:
+                        value = "SHD";
+                        break;
+
+                    case defenseType.trap:
+                        value = "TRP";
+                        break;
+                }
+            } 
+
+            return value;
+        }
+
+        // Gets the unit name abbreviation key.
+        public static string GetDefenseTypeAbbreviationKey(defenseType type)
+        {
+            // The value to return.
+            string value;
+
+            // Checks the unit ID.
+            switch(type)
+            {
+                default:
+                    value = "";
+                    break;
+
+                case defenseType.blaster:
+                    value = "dfs_bsr_abv";
+                    break;
+
+                case defenseType.shield:
+                    value = "dfs_shd_abv";
+                    break;
+
+                case defenseType.trap:
+                    value = "dfs_trp_abv";
+                    break;
+            }
+
+            return value;
+        }
+
+        // PLATFORM
         // Returns 'true' if the platform is active.
         public bool IsPlatformVisible()
         {

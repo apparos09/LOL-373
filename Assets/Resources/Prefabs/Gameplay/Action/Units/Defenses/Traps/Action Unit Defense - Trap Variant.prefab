@@ -128,6 +128,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
+  defType: 3
   platformSpriteRenderer: {fileID: 9051461572882687555}
   hitCount: 0
   hitLimit: 15
