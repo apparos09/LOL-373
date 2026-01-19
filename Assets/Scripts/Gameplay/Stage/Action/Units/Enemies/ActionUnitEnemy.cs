@@ -131,7 +131,7 @@ namespace RM_EDU
             }
         }
 
-        // TYPES, INFO //
+        // NAMES, TYPES, INFO //
         // Gets the unit type.
         public override unitType GetUnitType()
         {
@@ -139,29 +139,45 @@ namespace RM_EDU
         } 
 
         // Enemy names aren't displayed anywhere.
-        // // Gets the unit name.
-        // public static string GetUnitName(int unitId)
-        // {
-        //     return null;
-        // }
-        // 
-        // // Gets the unit name key.
-        // public static string GetUnitNameKey(int unitId)
-        // {
-        //     return null;
-        // }
-        // 
-        // // Gets the unit name abbreviation.
-        // public static string GetUnitNameAbbreviation(int unitId)
-        // {
-        //     return null;
-        // }
-        // 
-        // // Gets the unit name abbreviation key.
-        // public static string GetUnitNameAbbreviationKey(int unitId)
-        // {
-        //     return null;
-        // }
+        // Gets the enemy type name.
+        public static string GetEnemyTypeName()
+        {
+            // Checks for the LOL SDK.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                return LOLManager.GetLanguageTextStatic(GetEnemyTypeNameKey());
+            }
+            else
+            {
+                return "Enemy";
+            }
+        }
+        
+        // Gets the enemy type name key.
+        public static string GetEnemyTypeNameKey()
+        {
+            return "emy";
+        }
+        
+        // Gets the enemy name abbreviation.
+        public static string GetEnemyTypeNameAbbreviation()
+        {
+            // Checks for the LOL SDK.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                return LOLManager.GetLanguageTextStatic(GetEnemyTypeNameAbbreviationKey());
+            }
+            else
+            {
+                return "emy";
+            }
+        }
+        
+        // Gets the enemy name abbreviation key.
+        public static string GetEnemyTypeNameAbbreviationKey()
+        {
+            return "emy_abv";
+        }
 
         // MOVEMENT //
         // Returns the row the enemy is in.
@@ -336,6 +352,26 @@ namespace RM_EDU
             }
         }
 
+        // SPEED //
+
+        // Calculates the movement speed with the provided stat factor.
+        public static float CalculateMovementSpeed(float statFactor, float movementSpeed)
+        {
+            return movementSpeed / 100.0F * statFactor;
+        }
+
+        // Calculates movement speed with a stat factor of 1.
+        public static float CalculateMovementSpeed(float movementSpeed)
+        {
+            return CalculateMovementSpeed(1, movementSpeed);
+        }
+
+        // Calculates the movement speed using the set values.
+        public float CalculateMovementSpeed()
+        {
+            return CalculateMovementSpeed(statFactor, movementSpeed);
+        }
+
         // KILL / DEATH //
         // Kills the unit.
         public override void Kill()
@@ -436,7 +472,7 @@ namespace RM_EDU
                     if(moveAndAttack || (!moveAndAttack && !triedAttack))
                     {
                         // Calculates the move speed.
-                        float moveSpeedAdjusted = movementSpeed / 100.0F * statFactor;
+                        float moveSpeedAdjusted = CalculateMovementSpeed();
 
                         // Moves the enemy unit. The enemy shoud move at a fixed speed.
                         // Old - Uses translate function.

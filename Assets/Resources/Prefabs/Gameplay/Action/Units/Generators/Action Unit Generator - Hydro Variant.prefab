@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 2
+  unitName: Hydro Generator
+  unitNameKey: aug_hydro_nme
   spriteRenderer: {fileID: 6032254477688619056}
   iconSprite: {fileID: 21300000, guid: 7167151ed7a7b5542b799ab64319e634, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

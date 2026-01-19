@@ -13,6 +13,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: unitName
+      value: Fast Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: durability
       value: 40
       objectReference: {fileID: 0}
@@ -21,8 +25,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 94d8d605687a98545887d6dafe89edd0, type: 3}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: unitNameKey
+      value: aue_enemyFast_nme
+      objectReference: {fileID: 0}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: movementSpeed
-      value: 90
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 5736827563331587179, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: m_LocalPosition.x

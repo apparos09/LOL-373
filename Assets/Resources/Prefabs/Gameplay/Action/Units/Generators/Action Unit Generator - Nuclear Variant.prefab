@@ -104,6 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 9
+  unitName: Nuclear Generator
+  unitNameKey: aug_nuclear_nme
   spriteRenderer: {fileID: 6575261612139626044}
   iconSprite: {fileID: 21300000, guid: 0c565fa27e26b4042b131967e7d34d74, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

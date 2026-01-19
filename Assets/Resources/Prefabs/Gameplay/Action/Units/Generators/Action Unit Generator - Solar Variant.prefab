@@ -84,6 +84,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 4
+  unitName: Solar Generator
+  unitNameKey: aug_solar_nme
   spriteRenderer: {fileID: 2319632060183005838}
   iconSprite: {fileID: 21300000, guid: 9360aae4354b88b49a95a52abd835fdb, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

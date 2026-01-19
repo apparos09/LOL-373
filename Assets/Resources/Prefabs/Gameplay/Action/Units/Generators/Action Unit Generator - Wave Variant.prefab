@@ -89,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 5
+  unitName: Wave Generator
+  unitNameKey: aug_wave_nme
   spriteRenderer: {fileID: 8046253962694201211}
   iconSprite: {fileID: 21300000, guid: ca81bceb10b7a82489d71a7aa28266fb, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

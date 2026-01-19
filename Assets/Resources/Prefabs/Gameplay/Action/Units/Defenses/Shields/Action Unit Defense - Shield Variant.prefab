@@ -17,6 +17,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: unitName
+      value: Basic Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: durability
       value: 80
       objectReference: {fileID: 0}
@@ -24,6 +28,10 @@ PrefabInstance:
       propertyPath: iconSprite
       value: 
       objectReference: {fileID: 21300000, guid: d378094f88f127648abbbf0c700577fc, type: 3}
+    - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: unitNameKey
+      value: aud_shieldStandard_nme
+      objectReference: {fileID: 0}
     - target: {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: attackingEnabled
       value: 0

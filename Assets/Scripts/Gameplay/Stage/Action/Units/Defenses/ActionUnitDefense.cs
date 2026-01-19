@@ -87,19 +87,19 @@ namespace RM_EDU
                 switch (type)
                 {
                     default:
-                        value = "UKN";
+                        value = "Unknown";
                         break;
 
                     case defenseType.blaster:
-                        value = "BSR";
+                        value = "Blaster";
                         break;
 
                     case defenseType.shield:
-                        value = "SHD";
+                        value = "Shield";
                         break;
 
                     case defenseType.trap:
-                        value = "TRP";
+                        value = "Trap";
                         break;
                 }
             }
@@ -117,19 +117,19 @@ namespace RM_EDU
             switch (type)
             {
                 default:
-                    value = "";
+                    value = "kwd_unknown";
                     break;
 
                 case defenseType.blaster:
-                    value = "Blaster";
+                    value = "def_bsr";
                     break;
 
                 case defenseType.shield:
-                    value = "Shield";
+                    value = "def_shd";
                     break;
 
                 case defenseType.trap:
-                    value = "Trap";
+                    value = "def_trp";
                     break;
             }
 
@@ -187,19 +187,19 @@ namespace RM_EDU
             switch(type)
             {
                 default:
-                    value = "";
+                    value = "kwd_unknown_abv";
                     break;
 
                 case defenseType.blaster:
-                    value = "dfs_bsr_abv";
+                    value = "def_bsr_abv";
                     break;
 
                 case defenseType.shield:
-                    value = "dfs_shd_abv";
+                    value = "def_shd_abv";
                     break;
 
                 case defenseType.trap:
-                    value = "dfs_trp_abv";
+                    value = "def_trp_abv";
                     break;
             }
 

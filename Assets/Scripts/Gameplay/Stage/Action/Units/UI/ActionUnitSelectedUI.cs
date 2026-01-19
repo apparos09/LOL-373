@@ -34,7 +34,7 @@ namespace RM_EDU
         {
             selectedUnit.ApplyActionUnitInfo(actionUnit);
 
-            selectedUnitNameText.text = actionUnit.name;
+            selectedUnitNameText.text = actionUnit.unitName;
         }
 
         // Applies information from an action unit button.
@@ -42,7 +42,16 @@ namespace RM_EDU
         {
             selectedUnit.ApplyActionUnitInfo(unitButton);
 
-            selectedUnitNameText.text = unitButton.name;
+            // Checks if the button has a unit prefab.
+            if(unitButton.HasUnitPrefab())
+            {
+                selectedUnitNameText.text = unitButton.unitPrefab.GetUnitNameTranslated();
+            }
+            else
+            {
+                selectedUnitNameText.text = "-";
+            }
+            
         }
 
         // Applies info from the remove button.
@@ -50,7 +59,7 @@ namespace RM_EDU
         {
             selectedUnit.ApplyRemoveActionUnitInfo(removeButton);
 
-            selectedUnitNameText.text = removeButton.name;
+            selectedUnitNameText.text = removeButton.GetRemoveCardName();
         }
 
         // Clears the information displayed for the icon.

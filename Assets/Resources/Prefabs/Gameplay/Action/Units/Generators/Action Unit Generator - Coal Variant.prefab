@@ -89,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 7
+  unitName: Coal Generator
+  unitNameKey: aug_coal_nme
   spriteRenderer: {fileID: 3922976697032012731}
   iconSprite: {fileID: 21300000, guid: 8b9a6c7b11f90fa4ca5c4691e5b20c29, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

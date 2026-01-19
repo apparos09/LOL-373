@@ -70,13 +70,56 @@
       "nrs_oil_abv": 3,
 
 
-      "dfs_bsr": 18,
-      "dfs_shd": 18,
-      "dfs_trp": 18,
+      "def_bsr": 18,
+      "def_shd": 18,
+      "def_trp": 18,
 
-      "dfs_bsr_abv": 3,
-      "dfs_shd_abv": 3,
-      "dfs_trp_abv": 3,
+      "def_bsr_abv": 3,
+      "def_shd_abv": 3,
+      "def_trp_abv": 3,
+
+      "emy": 18,
+      "emy_abv": 3,
+
+
+
+      "aug_biomass_nme": 38,
+      "aug_hydro_nme": 38,
+      "aug_geothermal_nme": 38,
+      "aug_solar_nme": 38,
+      "aug_wave_nme": 38,
+
+      "aug_wind_nme": 38,
+      "aug_coal_nme": 38,
+      "aug_naturalGas_nme": 38,
+      "aug_nuclear_nme": 38,
+      "aug_oil_nme": 38,
+
+
+      "aud_blasterLane_nme": 38,
+      "aud_blasterStandard_nme": 38,
+      "aud_blasterLeftRight_nme": 38,
+      "aud_blasterPhase_nme": 38,
+      "aud_shieldStandard_nme": 38,
+      "aud_energyTrapStandard_nme": 38,
+
+      "aud_blasterFast_nme": 38,
+      "aud_blasterTriple_nme": 38,
+      "aud_blasterDepreciation_nme": 38,
+      "aud_shieldWeak_nme": 38,
+      "aud_energyTrapFast_nme": 38,
+
+      "aud_blasterSlow_nme": 38,
+      "aud_blasterRapid_nme": 38,
+      "aud_blasterAppreciation_nme": 38,
+      "aud_shieldStrong_nme": 38,
+      "aud_energyTrapSlow_nme": 38,
+
+
+      "aue_enemyStandard_nme": 38,
+      "aue_enemyFast_nme": 38,
+      "aue_enemySlow_nme": 38,
+
 
 
       "kwd_select": 18,
@@ -161,13 +204,56 @@
     "nrs_nlr_abv": "NLR",
     "nrs_oil_abv": "OIL",
 
-    "dfs_bsr": "Blaster",
-    "dfs_shd": "Shield",
-    "dfs_trp": "Trap",
+    "def_bsr": "Blaster",
+    "def_shd": "Shield",
+    "def_trp": "Trap",
 
-    "dfs_bsr_abv": "BSR",
-    "dfs_shd_abv": "SHD",
-    "dfs_trp_abv": "TRP",
+    "def_bsr_abv": "BSR",
+    "def_shd_abv": "SHD",
+    "def_trp_abv": "TRP",
+
+    "emy": "Enemy",
+    "emy_abv": "EMY",
+
+
+
+    "aug_biomass_nme": "Biomass Generator",
+    "aug_hydro_nme": "Hydro Generator",
+    "aug_geothermal_nme": "Geothermal Generator",
+    "aug_solar_nme": "Solar Generator",
+    "aug_wave_nme": "Wave Generator",
+
+    "aug_wind_nme": "Wind Generator",
+    "aug_coal_nme": "Coal Generator",
+    "aug_naturalGas_nme": "Natural Gas Generator",
+    "aug_nuclear_nme": "Nuclear Generator",
+    "aug_oil_nme": "Oil Generator",
+
+
+    "aud_blasterLane_nme": "Lane Blaster",
+    "aud_blasterStandard_nme": "Basic Blaster",
+    "aud_blasterLeftRight_nme": "Double-Sided Blaster",
+    "aud_blasterPhase_nme": "Phase Blaster",
+    "aud_shieldStandard_nme": "Basic Shield",
+    "aud_energyTrapStandard_nme": "Basic Energy Trap",
+
+    "aud_blasterFast_nme": "Faster Blaster",
+    "aud_blasterTriple_nme": "Triple Blaster",
+    "aud_blasterDepreciation_nme": "Near Blaster",
+    "aud_shieldWeak_nme": "Flimsy Shield",
+    "aud_energyTrapFast_nme": "Furious Enemy Trap",
+
+    "aud_blasterSlow_nme": "Slower Blaster",
+    "aud_blasterRapid_nme": "Rapid Blaster",
+    "aud_blasterAppreciation_nme": "Far Blaster",
+    "aud_shieldStrong_nme": "Sturdy Shield",
+    "aud_energyTrapSlow_nme": "Steady Enemy Trap",
+
+
+    "aue_enemyStandard_nme": "Basic Enemy",
+    "aue_enemyFast_nme": "Fast Enemy",
+    "aue_enemySlow_nme": "Slow Enemy",
+
 
     "kwd_select": "Select",
     "kwd_deselect": "Deselect",

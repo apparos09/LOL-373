@@ -112,6 +112,12 @@ namespace RM_EDU
             return unitType;
         }
 
+        // Returns 'true' if the unit button has a unit prefab.
+        public bool HasUnitPrefab()
+        {
+            return unitPrefab != null;
+        }
+
         // Applies infromation from the unit prefab.
         public void ApplyUnitPrefabInfo()
         {

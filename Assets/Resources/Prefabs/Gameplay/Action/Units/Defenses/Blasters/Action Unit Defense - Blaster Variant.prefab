@@ -126,6 +126,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 2
+  unitName: Basic Blaster
+  unitNameKey: aud_blasterStandard_nme
   spriteRenderer: {fileID: 2820790240764193224}
   iconSprite: {fileID: 21300000, guid: dee565e80fde1e144827abd7dec8876c, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}

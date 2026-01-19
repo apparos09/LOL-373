@@ -94,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 10
+  unitName: Oil Generator
+  unitNameKey: aug_oil_nme
   spriteRenderer: {fileID: 8877867496329654203}
   iconSprite: {fileID: 21300000, guid: 8ff3a7c2ac35278419f8d3666d3c21e0, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

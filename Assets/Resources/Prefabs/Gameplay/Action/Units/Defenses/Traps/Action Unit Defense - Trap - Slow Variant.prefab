@@ -13,6 +13,10 @@ PrefabInstance:
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
+      propertyPath: unitName
+      value: Steady Energy Trap
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: iconSprite
       value: 
       objectReference: {fileID: 21300000, guid: 4d52f9a338d59b141bffa50a18960124, type: 3}
@@ -23,6 +27,10 @@ PrefabInstance:
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: attackSpeed
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
+      propertyPath: unitNameKey
+      value: aud_energyTrapSlow_nme
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: energyCreationCost

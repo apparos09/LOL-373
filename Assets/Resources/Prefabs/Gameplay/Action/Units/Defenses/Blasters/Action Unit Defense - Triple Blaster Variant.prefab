@@ -75,6 +75,11 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8194997913235594361, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   m_PrefabInstance: {fileID: 7227831744619473670}
   m_PrefabAsset: {fileID: 0}
+--- !u!212 &4858011163393688270 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+  m_PrefabInstance: {fileID: 7227831744619473670}
+  m_PrefabAsset: {fileID: 0}
 --- !u!61 &6300066819534618804 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 3684014631833299890, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
@@ -99,7 +104,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 8
-  spriteRenderer: {fileID: 0}
+  unitName: Triple Blaster
+  unitNameKey: aud_blasterTriple_nme
+  spriteRenderer: {fileID: 4858011163393688270}
   iconSprite: {fileID: 21300000, guid: 0c723d1de68b4884ab0669343f44cf63, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1581908626458310527}

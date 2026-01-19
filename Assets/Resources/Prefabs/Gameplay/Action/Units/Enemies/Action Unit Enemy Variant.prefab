@@ -194,6 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 0
+  unitName: Enemy
+  unitNameKey: emy
   spriteRenderer: {fileID: 8147518098009090336}
   iconSprite: {fileID: 21300000, guid: 93e6d537be6959247abccf4b46f1ed35, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: f27e84b1992d762478cce4d9c6aa514c, type: 3}

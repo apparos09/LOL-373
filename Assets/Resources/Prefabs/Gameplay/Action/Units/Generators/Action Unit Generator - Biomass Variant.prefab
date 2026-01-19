@@ -89,6 +89,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 1
+  unitName: Biomass Generator
+  unitNameKey: aug_biomass_nme
   spriteRenderer: {fileID: 8058976512716701036}
   iconSprite: {fileID: 21300000, guid: c2fa10ec138d1d34f82b6a5f1a3efa77, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

@@ -99,6 +99,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 6
+  unitName: Basic Energy Trap
+  unitNameKey: aud_energyTrapStandard_nme
   spriteRenderer: {fileID: 5149994175010406257}
   iconSprite: {fileID: 21300000, guid: 1989a82ff8725d545af3b13cb722c7de, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}

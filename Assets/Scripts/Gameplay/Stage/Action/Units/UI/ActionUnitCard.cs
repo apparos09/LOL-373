@@ -80,9 +80,9 @@ namespace RM_EDU
             if(removeButton != null)
             {
                 unitCardBackground.sprite = removeButton.cardBackgroundSprite;
-                unitNameText.text = "";
+                unitNameText.text = removeButton.GetRemoveCardDisplayName();
                 unitIconImage.sprite = removeButton.cardIconSprite;
-                energyCostText.text = "";
+                energyCostText.text = "-";
             }
             else
             {

@@ -94,6 +94,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 6
+  unitName: Wind Generator
+  unitNameKey: aug_wind_nme
   spriteRenderer: {fileID: 8288920503193255921}
   iconSprite: {fileID: 21300000, guid: f3380c744821f86418a17aaeafd6155d, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

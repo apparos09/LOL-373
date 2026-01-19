@@ -106,6 +106,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
   idNumber: 0
+  unitName: Generator
+  unitNameKey: kwd_generator
   spriteRenderer: {fileID: 2131954471664586210}
   iconSprite: {fileID: 21300000, guid: 93e6d537be6959247abccf4b46f1ed35, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}

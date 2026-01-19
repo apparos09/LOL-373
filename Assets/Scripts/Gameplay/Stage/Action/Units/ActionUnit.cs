@@ -35,6 +35,12 @@ namespace RM_EDU
         // The ID number of the action unit.
         public int idNumber = 0;
 
+        // The name of the unit.
+        public string unitName = "";
+
+        // The unit name key.
+        public string unitNameKey = "";
+
         // The sprite renderer.
         public SpriteRenderer spriteRenderer;
 
@@ -151,6 +157,17 @@ namespace RM_EDU
             if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
 
+            // If the LOL SDK is initialized.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // The name key exists, so try to get the name.
+                if(unitNameKey != string.Empty)
+                {
+                    // Translate the name.
+                    unitName = LOLManager.GetLanguageTextStatic(unitNameKey);
+                }
+            }
+
             // Sets the health to the max.
             SetHealthToMax();
         }
@@ -173,7 +190,29 @@ namespace RM_EDU
             // ...
         }
 
-        // UNIT TYPE / RATING //
+        // NAME, UNIT TYPE / RATING //
+
+        // Gets the unit name translated.
+        // If the LOLSDK isn't initialized, or the key is empty...
+        // It returns the value saved in unitName.
+        public string GetUnitNameTranslated()
+        {
+            // The result to be returned.
+            string result;
+
+            // LOLManager exists, and the key is set, so grab that.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && unitNameKey != "")
+            {
+                result = LOLManager.GetLanguageTextStatic(unitNameKey);
+            }
+            else
+            {
+                result = unitName;
+            }
+
+            return result;
+        }
+
         // Gets the action unit type.
         public abstract unitType GetUnitType();
 
@@ -599,8 +638,14 @@ namespace RM_EDU
                 health = 0.0F;
         }
 
+        // Calculates the energy creation cost.
+        public static float CalculateAttackEnergyCost(float attackEnergyCost)
+        {
+            // Divide by 10 and round up to the nearest value.
+            return Mathf.Ceil(attackEnergyCost / 10.0F);
+        }
 
-        // Calculates teh attack cooldown time.
+        // Calculates the attack cooldown time.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
         {
             // 1.0F + ((BASE_STAT_MAXIMUM - attackSpped) / BASE_STAT_MAXIMUM * 5.0F)
@@ -629,7 +674,7 @@ namespace RM_EDU
             if(owner != null)
             {
                 // Reduce the owner's energy.
-                owner.energy -= attackEnergyCost;
+                owner.energy -= CalculateAttackEnergyCost(attackEnergyCost);
 
                 // Prevent energy from being negative.
                 if (owner.energy < 0.0F)
