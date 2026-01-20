@@ -1575,10 +1575,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8817331697288849949}
     m_Modifications:
+    - target: {fileID: 500331361947792726, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
     - target: {fileID: 587983853566267310, guid: 139afa904132adf47aed0f2b083db651, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -368
       objectReference: {fileID: 0}
+    - target: {fileID: 2592884828979312084, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
+    - target: {fileID: 2820364593637348540, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
     - target: {fileID: 3447361883761496865, guid: 139afa904132adf47aed0f2b083db651, type: 3}
       propertyPath: m_Name
       value: Defense Unit Selector (Right)
@@ -1675,6 +1687,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6438082923750233966, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
+    - target: {fileID: 8359691801157026919, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1810,10 +1830,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8817331697288849949}
     m_Modifications:
+    - target: {fileID: 500331361947792726, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
     - target: {fileID: 587983853566267310, guid: 139afa904132adf47aed0f2b083db651, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 368
       objectReference: {fileID: 0}
+    - target: {fileID: 2592884828979312084, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
+    - target: {fileID: 2820364593637348540, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
     - target: {fileID: 3447361883761496865, guid: 139afa904132adf47aed0f2b083db651, type: 3}
       propertyPath: m_Name
       value: Generator Unit Selector (Left)
@@ -1910,6 +1942,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6438082923750233966, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
+    - target: {fileID: 8359691801157026919, guid: 139afa904132adf47aed0f2b083db651, type: 3}
+      propertyPath: buttonDefaultImageSprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
