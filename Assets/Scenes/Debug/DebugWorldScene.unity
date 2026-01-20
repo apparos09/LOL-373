@@ -681,6 +681,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: db70acd36877d8f4ebc8c65141de1721, type: 3}
+    - target: {fileID: 1862957229837231123, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
+      propertyPath: stages.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1862957229837231123, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
+      propertyPath: stages.Array.data[0]
+      value: 
+      objectReference: {fileID: 1828301218}
+    - target: {fileID: 1862957229837231123, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
+      propertyPath: stages.Array.data[1]
+      value: 
+      objectReference: {fileID: 1776672466}
     - target: {fileID: 4097012637490816793, guid: 49f1b6671685eb54e93f6f89895089d8, type: 3}
       propertyPath: m_Name
       value: World Area 2

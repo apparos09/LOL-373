@@ -128,6 +128,42 @@ namespace RM_EDU
             runGameTimer = !paused;
         }
 
+        // WORLD
+
+        // Saves data from the provided world stage.
+        // The index
+        public void SaveWorldStageData(WorldStage worldStage)
+        {
+            // Gets the stage's index.
+            int stageIndex = WorldManager.Instance.GetWorldStageIndex(worldStage);
+
+            // If there's an available index.
+            if(stageIndex >= 0 && stageIndex < worldStageDatas.Length)
+            {
+                // Generates world stage data.
+                worldStageDatas[stageIndex] = worldStage.GenerateWorldStageData();
+            }
+            else
+            {
+                Debug.LogError("There's no place in the world data array for the provided world stage.");
+            }
+        }
+
+        // Applies world stage datas to the world.
+        public void ApplyWorldStageDatasToWorld(WorldManager worldManager)
+        {
+            // The stage datas match u pwith the world stages.
+            for(int i = 0; i < worldStageDatas.Length && i < worldManager.stages.Count; i++)
+            {
+                // There is stage data and a stage at the set index.
+                if (worldStageDatas[i] != null && worldManager.stages[i] != null)
+                {
+                    // Applies the world stage data.
+                    worldManager.stages[i].ApplyWorldStageData(worldStageDatas[i]);
+                }
+            }
+        }
+
         // Adds action defense units to the list.
         public void AddActionDefenseUnits(List<int> newIds)
         {

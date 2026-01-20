@@ -97,6 +97,18 @@ namespace RM_EDU
 
                     // Sets the current area to be this world area.
                     worldManager.SetCurrentWorldArea(worldStage.GetWorldStageArea());
+
+                    // If the data logger exists and has been instantiated, give it the world data.
+                    if(DataLogger.Instantiated)
+                    {
+                        // Saves the world stage data.
+                        DataLogger.Instance.SaveWorldStageData(worldStage);
+                    }
+                    else
+                    {
+                        Debug.LogAssertion("The DataLogger does not exist, so the data couldn't be saved.");
+                    }
+
                 }
 
             }

@@ -124,6 +124,9 @@ namespace RM_EDU
         // Initializes the world.
         public void InitializeWorld()
         {
+            // Applies the data logger's world datas to the world.
+            dataLogger.ApplyWorldStageDatasToWorld(this);
+
             // Tries to find the start info.
             WorldStartInfo startInfo = FindObjectOfType<WorldStartInfo>();
 
