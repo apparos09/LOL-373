@@ -607,7 +607,7 @@ namespace RM_EDU
             SetStagePlaying(false);
 
             // Open the end UI.
-            actionUI.SetStageEndWindowActive(true);
+            actionUI.OpenStageEndDialog();
         }
 
         // Returns 'true' if the stage is complete.
@@ -642,11 +642,7 @@ namespace RM_EDU
             playerUser.ResetPlayer();
             playerEnemy.ResetPlayer();
 
-            // Kills all the projectiles and kills all the retreating enemies.
-            ActionProjectile.KillAllActionProjectiles();
-            EnemyRetreat.KillAllEnemyRetreats();
-
-            // Resets the map.
+            // Resets the stage.
             actionStage.ResetStage();
 
             // Updates the UI for the player and enemy.

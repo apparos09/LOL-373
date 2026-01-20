@@ -494,8 +494,11 @@ namespace RM_EDU
         // Resets the player.
         public override void ResetPlayer()
         {
-            // Kills all the user units, resets the energy, and clears the selected prefab.
+            // Kills all the user units and action proejctiles.
             KillAllUserUnits();
+            ActionProjectile.KillAllActionProjectiles();
+
+            // Resets the energy, and clears the selected prefab.
             SetEnergyToStartingEnergy();
             ResetEnergyAutoGenerationTimer();
             ClearSelectedActionUnitPrefab(); // Also sets to "select" mode.

@@ -14,6 +14,9 @@ namespace RM_EDU
         // The stage manager.
         public StageManager stageManager;
 
+        // The options dialog.
+        public GameObject optionsDialog;
+
         // The game settings UI.
         public GameSettingsUI settingsDialog;
 
@@ -80,34 +83,93 @@ namespace RM_EDU
         // Closes all dialog boxes (windows).
         public virtual void CloseAllDialogs()
         {
-            settingsDialog.gameObject.SetActive(false);
+            // Generates a dialog list.
+            List<GameObject> dialogList = GenerateDialogList();
+
+            // Goes through each dialog.
+            foreach(GameObject dialog in dialogList)
+            {
+                // If the dialog exist, close it.
+                if(dialog != null)
+                {
+                    // NOTE: this doesn't use the CloseDialog() function, because that function...
+                    // Checks if any dialogs are open to know if the game should be unpaused.
+                    // This function does the same thing after all dialogs are closed.
+
+                    // CloseDialog(dialog);
+                    dialog.gameObject.SetActive(false);
+                }
+            }
 
             // Unpause the game since all dialogs are closed.
             stageManager.UnpauseGame();
         }
 
+        // Generates a list of dialogs.
+        public virtual List<GameObject> GenerateDialogList()
+        {
+            // The list to return, which is given the dialogs in this script.
+            List<GameObject> dialogList = new List<GameObject>
+            {
+                optionsDialog,
+                settingsDialog.gameObject
+            };
+
+            return dialogList;
+        }
+
         // Returns true if a dialog is open.
         public virtual bool IsDialogOpen()
         {
-            // The dialog
-            bool dialogOpen = false;
+            // Set to see if there's a dialog open.
+            bool result = false;
 
-            if (settingsDialog.gameObject.activeSelf)
+            // Generates a list of dialogs.
+            List<GameObject> dialogList = GenerateDialogList();
+
+            // Goes through all dialogs.
+            foreach(GameObject dialog in  dialogList)
             {
-                dialogOpen = true;
-            }
-            else
-            {
-                dialogOpen = false;
+                // Dialog exists.
+                if(dialog != null)
+                {
+                    // If an active dialog has been found.
+                    if(dialog.activeSelf)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
             }
 
-            return dialogOpen;
+            // Return result.
+            return result;
         }
 
-        // Opens the settings dialog.
-        public void OpenSettingsDialog()
+        // Options
+        // Opens the options dialog.
+        public void OpenOptionsDialog(bool closeOtherDialogs)
         {
-            OpenDialog(settingsDialog.gameObject, true);
+            OpenDialog(optionsDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the options dialog.
+        public void CloseOptionsDialog()
+        {
+            CloseDialog(optionsDialog.gameObject);
+        }
+
+        // Settings
+        // Opens the settings dialog.
+        public void OpenSettingsDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(settingsDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the settings dialog.
+        public void CloseSettingsDialog()
+        {
+            CloseDialog(settingsDialog.gameObject);
         }
 
         // Called to finish the stage.

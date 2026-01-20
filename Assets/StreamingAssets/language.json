@@ -121,7 +121,7 @@
       "aue_enemySlow_nme": 38,
 
 
-
+      "kwd_speed": 18,
       "kwd_select": 18,
       "kwd_deselect": 18,
       "kwd_remove": 18,
@@ -256,6 +256,7 @@
     "aue_enemySlow_nme": "Slow Enemy",
 
 
+    "kwd_speed": "Speed",
     "kwd_select": "Select",
     "kwd_deselect": "Deselect",
     "kwd_remove": "Remove",

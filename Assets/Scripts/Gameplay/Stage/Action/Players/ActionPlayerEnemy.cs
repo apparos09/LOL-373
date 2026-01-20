@@ -424,8 +424,11 @@ namespace RM_EDU
         // Resets the player.
         public override void ResetPlayer()
         {
-            // Kills all enemy units, sets the energy to max, and resets the spawn timer to max.
+            // Kills all enemy units and enemy retreats. 
             KillAllEnemyUnits();
+            EnemyRetreat.KillAllEnemyRetreats();
+
+            // Sets the energy to max, and resets the spawn timer to max.
             SetEnergyToMax();
             SetSpawnTimerToMax();
         }

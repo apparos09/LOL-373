@@ -22,6 +22,9 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The window that shows up when the stage is over.
+        public GameObject stageEndDialog;
+
         [Header("Action/Top Header")]
         // The day night indicator.
         public DayNightIndicator dayNightIndicator;
@@ -31,9 +34,6 @@ namespace RM_EDU
 
         // The wind indicator.
         public WindIndicator windIndicator;
-
-        // The window that shows up when the stage is over.
-        public GameObject stageEndWindow;
 
         [Header("Action/Bottom Header")]
 
@@ -94,8 +94,11 @@ namespace RM_EDU
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
 
-            // Close the stage end window.
-            stageEndWindow.SetActive(false);
+            // Close the options dialog.
+            optionsDialog.SetActive(false);
+
+            // Close the stage end dialog.
+            stageEndDialog.SetActive(false);
         }
 
         // Gets the instance.
@@ -240,21 +243,38 @@ namespace RM_EDU
             SetBlockUserAttackEnergy(!actionManager.playerUser.blockingAttackEnergy);
         }
 
-        // WINDOWS //
-
-        // Opens the stage end window.
-        public void SetStageEndWindowActive(bool active)
+        // DIALOGS //
+        // Generates a list of dialogs.
+        public override List<GameObject> GenerateDialogList()
         {
-            stageEndWindow.SetActive(active);
+            // Gets the base list.
+            List<GameObject> dialogList = base.GenerateDialogList();
+
+            // Adds the rest of the dialogs.
+            dialogList.Add(stageEndDialog);
+
+            return dialogList;
+        }
+
+        // Opens the stage end dialog.
+        public void OpenStageEndDialog()
+        {
+            OpenDialog(stageEndDialog, true);
+        }
+
+        // Closes the stage end dialog.
+        public void CloseStageEndDialog()
+        {
+            CloseDialog(stageEndDialog);
         }
 
         // FINISH
         // Resets the stage.
         public void ResetStage()
         {
-            // Resets the stage and closes the windows.
+            // Resets the stage and closes all dialogs.
             actionManager.ResetStage();
-            SetStageEndWindowActive(false);
+            CloseAllDialogs();
         }
 
 
