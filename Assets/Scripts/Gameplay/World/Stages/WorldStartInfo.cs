@@ -93,7 +93,7 @@ namespace RM_EDU
                     worldStage.score = stageScore;
 
                     // Set if the stage was completed or not.
-                    worldStage.complete = stageCompleted;
+                    worldStage.SetComplete(stageCompleted);
 
                     // Sets the current area to be this world area.
                     worldManager.SetCurrentWorldArea(worldStage.GetWorldStageArea());

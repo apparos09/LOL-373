@@ -846,6 +846,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 249589243}
     m_Modifications:
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: defenseIdRewards.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: defenseIdRewards.Array.data[0]
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: defenseIdRewards.Array.data[1]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: defenseIdRewards.Array.data[2]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: defenseIdRewards.Array.data[3]
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: defenseIdRewards.Array.data[4]
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 5144242280119519190, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: m_Name
       value: World Action Stage 0

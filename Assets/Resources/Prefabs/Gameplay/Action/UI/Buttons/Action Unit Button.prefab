@@ -128,8 +128,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   actionUI: {fileID: 0}
   button: {fileID: 1857510620126655577}
-  buttonDefaultImageSprite: {fileID: 0}
+  buttonDefaultImageSprite: {fileID: 21300000, guid: 4ff371db62fd0a64d80a19c2bf53e4a2, type: 3}
   unitIconImage: {fileID: 6110831296171863297}
+  alpha0Sprite: {fileID: 21300000, guid: bdd637e8ecf094d45bd207a895ae47df, type: 3}
   unitNameText: {fileID: 157780337576049473}
   energyCostText: {fileID: 6747631995733676449}
   highlightTopImage: {fileID: 2673281995923293965}

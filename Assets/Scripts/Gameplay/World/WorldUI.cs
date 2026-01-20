@@ -146,6 +146,10 @@ namespace RM_EDU
         // Refreshes the buttons that're used to jump between areas.
         public void RefreshWorldAreaButtons()
         {
+            // If the world manager isn't set, grab the instance.
+            if (worldManager == null)
+                worldManager = WorldManager.Instance;
+
             // Set the area buttons as interactable by default.
             prevAreaButton.interactable = true;
             nextAreaButton.interactable = true;
@@ -211,6 +215,13 @@ namespace RM_EDU
         public void CloseStageDialog()
         {
             stageDialog.gameObject.SetActive(false);
+        }
+
+        // END
+
+        public void FinishStage()
+        {
+
         }
 
         // Update is called once per frame

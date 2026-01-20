@@ -400,7 +400,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2907831924055794194}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -408,7 +408,7 @@ RectTransform:
   - {fileID: 124721531414453978}
   - {fileID: 4343508624669697813}
   - {fileID: 3869894191667074263}
-  m_Father: {fileID: 3306661983057246600}
+  m_Father: {fileID: 8082171407893338110}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -598,6 +598,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 872893497193180207}
+  - {fileID: 3006683474635250404}
   m_Father: {fileID: 3306661983057246600}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -2040,9 +2041,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8082171407893338110}
-    - targetCorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 3006683474635250404}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8346425053091773463, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1
@@ -2362,11 +2360,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadWorldScene
+      value: FinishStage
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.GameplayUI, Assembly-CSharp
+      value: RM_EDU.ActionUI, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

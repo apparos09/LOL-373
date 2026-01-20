@@ -26,8 +26,8 @@ namespace RM_EDU
         // Initializes the event.
         public override void InitalizeEvent()
         {
-            // Set the stage to not be complete.
-            worldStage.SetComplete(false);
+            // Refreshes the complete parameter.
+            worldStage.RefreshComplete();
 
             // Call base.
             base.InitalizeEvent();

@@ -613,8 +613,21 @@ namespace RM_EDU
         // Returns 'true' if the stage is complete.
         public override bool IsComplete()
         {
-            // TODO: implement
-            return false;
+            // The result to be returned.
+            bool result;
+
+            // If the player enemy exists, check if it has energy.
+            if(playerEnemy != null)
+            {
+                result = !playerEnemy.HasEnergy();
+            }
+            // The player doesn't exist, so consider the game completed.
+            else
+            {
+                result = true;
+            }
+            
+            return result;
         }
 
         // Resets the acion stage.

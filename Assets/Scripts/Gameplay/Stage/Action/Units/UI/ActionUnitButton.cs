@@ -23,6 +23,9 @@ namespace RM_EDU
         // The icon that's on the button.
         public Image unitIconImage;
 
+        // The sprite for having an alpha value of 0.
+        public Sprite alpha0Sprite;
+
         // The name of the unit.
         public TMP_Text unitNameText;
 
@@ -62,7 +65,7 @@ namespace RM_EDU
             if (button != null)
             {
                 // Sets the default image.
-                if (buttonDefaultImageSprite != null)
+                if (buttonDefaultImageSprite == null)
                     buttonDefaultImageSprite = button.image.sprite;
 
                 // Listener for the tutorial toggle.
@@ -211,11 +214,13 @@ namespace RM_EDU
         // Clears the unit button.
         public void ClearUnitButton()
         {
+            // NOTE: an empty image has a white square, so an empty image file is set for it instead.
+
+            // Visual information.
             button.image.sprite = buttonDefaultImageSprite;
-            unitIconImage.sprite = null;
+            unitIconImage.sprite = alpha0Sprite;
             unitNameText.text = "-";
             energyCostText.text = "-";
-
             
 
             // The button is no longer interactable.

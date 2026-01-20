@@ -80,6 +80,12 @@ namespace RM_EDU
             }
         }
 
+        // Returns 'true' if the player has energy.
+        public bool HasEnergy()
+        {
+            return energy > 0.0F;
+        }
+
         // Modifies the energy by adding the provided amount.
         public virtual void IncreaseEnergy(float energyPlus)
         {
