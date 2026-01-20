@@ -172,6 +172,12 @@ namespace RM_EDU
             CloseDialog(settingsDialog.gameObject);
         }
 
+        // Resets the stage by calling the stage manager.
+        public virtual void ResetStage()
+        {
+            stageManager.ResetStage();
+        }
+
         // Called to finish the stage.
         // This just calls the appropriate function in the manager.
         public virtual void FinishStage()

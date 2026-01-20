@@ -143,6 +143,9 @@ namespace RM_EDU
         // Returns 'true' if the stage is complete.
         public abstract bool IsComplete();
 
+        // Resets the stage.
+        public abstract void ResetStage();
+
         // Finishes the stage.
         public virtual void FinishStage()
         {
@@ -150,8 +153,6 @@ namespace RM_EDU
             ResetGameTimer();
             ResetGameTimeScale(true);
             ResetStageTimer();
-
-            // TODO: maybe have the stage timer be seperate from the game timer?
 
             // Stop running the game timer so that the time is measured accurately.
             PauseGameTimer();

@@ -278,7 +278,7 @@ namespace RM_EDU
 
         // FINISH
         // Resets the stage.
-        public void ResetStage()
+        public override void ResetStage()
         {
             // Resets the stage and closes all dialogs.
             actionManager.ResetStage();

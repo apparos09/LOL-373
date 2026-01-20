@@ -744,7 +744,7 @@ namespace RM_EDU
         }
 
         // Resets the acion stage.
-        public void ResetStage()
+        public override void ResetStage()
         {
             // Resets the timers and stage speed. Also refreshes the speed button.
             ResetGameTimerAndStageTimer();

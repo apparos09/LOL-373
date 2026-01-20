@@ -137,6 +137,15 @@ namespace RM_EDU
             knowledgeManager.ClearUnverifiedMatches();
         }
 
+        // Resets the stage.
+        // This function shouldn't be used because the verified correct matches shouldn't be undone...
+        // Once the matches have been done correctly.
+        public override void ResetStage()
+        {
+            knowledgeManager.ResetStage();
+            CloseAllDialogs();
+        }
+
         // Finishes the stage. This should only be called once all statements have been matched correctly.
         public override void FinishStage()
         {

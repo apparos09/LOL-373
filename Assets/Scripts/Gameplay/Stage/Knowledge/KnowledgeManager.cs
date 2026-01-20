@@ -778,6 +778,13 @@ namespace RM_EDU
             return allMatch;
         }
 
+        // Resets the stage.
+        // This function will never be used since matched statements shouldn't be undone.
+        public override void ResetStage()
+        {
+            ResetAllMatches();
+        }
+
         // Finishes the stage. Only call this if the stage is complete.
         public override void FinishStage()
         {
