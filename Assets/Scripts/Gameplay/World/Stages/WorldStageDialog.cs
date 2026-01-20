@@ -108,7 +108,7 @@ namespace RM_EDU
         public void ClosePrompt()
         {
             ClearWorldStage();
-            worldUI.CloseStageDialog();
+            worldUI.CloseWorldStageDialog();
             // TODO: implement.
         }
 

@@ -39,6 +39,9 @@ namespace RM_EDU
         // The tutorials object.
         public Tutorials tutorials;
 
+        // The title scene.
+        public string titleScene = "TitleScene";
+
         // The world scene.
         public string worldScene = "WorldScene";
 
@@ -335,10 +338,27 @@ namespace RM_EDU
             // TODO: implement loading screen.
         }
 
+        // Loads the title scene and checks a member variable for using the loading screen.
+        public void LoadTitleScene()
+        {
+            LoadTitleScene(loadingScreenEnabled);
+        }
+
+        // Loads the title scene.
+        public void LoadTitleScene(bool useLoadingScreen)
+        {
+            // If the data logger exists, destroy it before returning to the tile screen.
+            if (DataLogger.Instantiated)
+                Destroy(DataLogger.Instance.gameObject);
+
+            // Loads the title screen.
+            LoadScene(titleScene, useLoadingScreen);
+        }
+
         // Loads the world scene and checks a member function for using the loading screen.
         public virtual void LoadWorldScene()
         {
-            LoadScene(worldScene, loadingScreenEnabled);
+            LoadWorldScene(loadingScreenEnabled);
         }
 
         // Goes to the world scene.
@@ -350,7 +370,7 @@ namespace RM_EDU
         // Loads the action scene and checks a member function for using the loading screen.
         public virtual void LoadActionScene()
         {
-            LoadScene(actionScene, loadingScreenEnabled);
+            LoadActionScene(loadingScreenEnabled);
         }
 
         // Goes to the action scene.
@@ -362,7 +382,7 @@ namespace RM_EDU
         // Loads the knowledge scene. Uses a loading screen based on a class variable.
         public virtual void LoadKnowledgeScene()
         {
-            LoadScene(knowledgeScene, loadingScreenEnabled);
+            LoadKnowledgeScene(loadingScreenEnabled);
         }
 
         // Goes to the knowledge scene and has the user set if the loading screen should be used.
@@ -374,7 +394,7 @@ namespace RM_EDU
         // Loads the results scene.
         public virtual void LoadResultsScene()
         {
-            LoadScene(resultsScene, loadingScreenEnabled);
+            LoadResultsScene(loadingScreenEnabled);
         }
 
         // Loads the results scene and uses argument to determine if the loading screen should be used.
@@ -383,6 +403,11 @@ namespace RM_EDU
             LoadScene(resultsScene, useLoadingScreen);
         }
 
+        // Quits the game.
+        public virtual void QuitGame()
+        {
+            Application.Quit();
+        }
 
         // Update is called once per frame
         protected virtual void Update()

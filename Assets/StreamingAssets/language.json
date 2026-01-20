@@ -35,6 +35,10 @@
       "kwd_unknown": 18,
       "kwd_unknown_abv": 3,
       "kwd_reset": 18,
+      "kwd_save": 18,
+      "kwd_saveAndContinue": 24,
+      "kwd_saveAndQuit": 24,
+      "kwd_quitWithoutSaving": 24,
 
       "kwd_worldStage": 18,
       "kwd_actionStage": 18,
@@ -171,6 +175,10 @@
     "kwd_unknown_abv": "UKN",
     "kwd_options": "Options",
     "kwd_reset": "Reset",
+    "kwd_save": "Save",
+    "kwd_saveAndContinue": "Save and Continue",
+    "kwd_saveAndQuit": "Save and Quit",
+    "kwd_quitWithoutSaving": "Quit Without Saving",
 
     "kwd_worldStage": "World Stage",
     "kwd_actionStage": "Action Stage",

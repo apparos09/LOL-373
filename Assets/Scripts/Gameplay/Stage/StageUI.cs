@@ -49,6 +49,9 @@ namespace RM_EDU
             // Makes sure the settings UI is off.
             if (settingsDialog != null)
                 settingsDialog.gameObject.SetActive(false);
+
+            // Closes all the dialogs.
+            CloseAllDialogs();
         }
 
         // DIALOGS
@@ -68,7 +71,7 @@ namespace RM_EDU
             stageManager.PauseGame();
         }
 
-        // Closes the given window.
+        // Closes the given dialog.
         public virtual void CloseDialog(GameObject dialog)
         {
             dialog.SetActive(false);

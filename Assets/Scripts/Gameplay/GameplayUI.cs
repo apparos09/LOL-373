@@ -118,6 +118,12 @@ namespace RM_EDU
         }
 
         // SCENES //
+        // Goes to the title scene
+        public void LoadTitleScene()
+        {
+            gameManager.LoadTitleScene();
+        }
+
         // Goes to the world scene.
         public void LoadWorldScene()
         {
@@ -134,6 +140,18 @@ namespace RM_EDU
         public void LoadKnowledgeScene()
         {
             gameManager.LoadKnowledgeScene();
+        }
+
+        // Loads the results scene.
+        public void LoadResultsScene()
+        {
+            gameManager.LoadResultsScene();
+        }
+
+        // Quits the game.
+        public void QuitGame()
+        {
+            gameManager.QuitGame();
         }
 
         // Update is called once per frame

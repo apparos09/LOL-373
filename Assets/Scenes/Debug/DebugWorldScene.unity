@@ -341,12 +341,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dfd738959670c54bb4e6070727115ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
+  gameUI: {fileID: 3976786164954292978}
   gameTimer: 0
   runGameTimer: 1
   gameScore: 0
   mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
+  titleScene: TitleScene
   worldScene: DebugWorldScene
   actionScene: DebugActionScene
   knowledgeScene: DebugKnowledgeScene
@@ -364,6 +365,7 @@ MonoBehaviour:
   - {fileID: 1200223460}
   - {fileID: 1828301218}
   - {fileID: 1776672466}
+  optionsDialog: {fileID: 0}
 --- !u!4 &426274985
 Transform:
   m_ObjectHideFlags: 0
@@ -966,6 +968,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2462422821559919997, guid: 7f423aff4b1d471469c7fa3146e6192b, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 426274984}
     - target: {fileID: 3876972347100261216, guid: 7f423aff4b1d471469c7fa3146e6192b, type: 3}
       propertyPath: m_Name
       value: World Canvas
@@ -1056,6 +1062,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7f423aff4b1d471469c7fa3146e6192b, type: 3}
+--- !u!114 &3976786164954292978 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2462422821559919997, guid: 7f423aff4b1d471469c7fa3146e6192b, type: 3}
+  m_PrefabInstance: {fileID: 3976786164954292977}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b990e69a5cea66e4c95181d031ff7def, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

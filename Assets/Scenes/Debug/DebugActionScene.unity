@@ -152,12 +152,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46b70a0210ae7bf418d1bb25bfa1d497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
+  gameUI: {fileID: 172028541}
   gameTimer: 0
   runGameTimer: 1
   gameScore: 0
   mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
+  titleScene: TitleScene
   worldScene: DebugWorldScene
   actionScene: DebugActionScene
   knowledgeScene: DebugKnowledgeScene
@@ -195,6 +196,17 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &172028541 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8904956904974979655, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
+  m_PrefabInstance: {fileID: 9090741551036630104}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15f8f5454ef89e45bb46423e1a5f4df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &319327436
 GameObject:
   m_ObjectHideFlags: 0
@@ -874,6 +886,18 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8904956904974979655, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 91205895}
+    - target: {fileID: 8904956904974979655, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
+      propertyPath: stageManager
+      value: 
+      objectReference: {fileID: 91205895}
+    - target: {fileID: 8904956904974979655, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
+      propertyPath: actionManager
+      value: 
+      objectReference: {fileID: 91205895}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

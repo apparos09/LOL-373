@@ -101,12 +101,6 @@ namespace RM_EDU
             // Gets the instance.
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
-
-            // Close the options dialog.
-            optionsDialog.SetActive(false);
-
-            // Close the stage end dialog.
-            stageEndDialog.SetActive(false);
         }
 
         // Gets the instance.

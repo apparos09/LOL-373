@@ -45,6 +45,11 @@ namespace RM_EDU
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
 
+        [Header("World/Dialogs")]
+
+        // The options dialog.
+        public GameObject optionsDialog;
+
         // Awake is called when the script is being loaded
         protected override void Awake()
         {
@@ -495,6 +500,32 @@ namespace RM_EDU
             return false;
         }
 
+        // Saves and continues the game.
+        public bool SaveAndContinue()
+        {
+            // Saves the game.
+            bool result = SaveGame();
+
+            // Closes all the dialogs.
+            worldUI.CloseAllDialogs();
+
+            // Returns the result.
+            return result;
+        }
+
+        // Saves and quits the game.
+        public bool SaveAndQuit()
+        {
+            // Saves the game.
+            bool result = SaveGame();
+            
+            // Loads the title screen.
+            LoadTitleScene();
+            
+            // Returns the result.
+            return result;
+        }
+
         // Loads data, and return a 'bool' to show it was successful.
         public bool LoadGame()
         {
@@ -502,6 +533,7 @@ namespace RM_EDU
             return false;
         }
 
+        // COMPLETE
         // Checks if the game is complete.
         public bool IsGameComplete()
         {

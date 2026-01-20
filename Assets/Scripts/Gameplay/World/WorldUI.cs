@@ -29,8 +29,11 @@ namespace RM_EDU
 
         [Header("World/Dialogs")]
 
+        // The options dialog.
+        public GameObject optionsDialog;
+
         // The game settings.
-        public GameSettingsUI settingsUI;
+        public GameSettingsUI settingsDialog;
 
         // The stage prompt.
         public WorldStageDialog stageDialog;
@@ -71,17 +74,8 @@ namespace RM_EDU
                 worldManager = WorldManager.Instance;
             }
 
-            // Turn off the settings UI.
-            if(settingsUI != null)
-            {
-                settingsUI.gameObject.SetActive(false);
-            }
-
-            // Turn off the stage prompt.
-            if(stageDialog != null)
-            {
-                stageDialog.gameObject.SetActive(false);
-            }
+            // Closes all the dialogs.
+            CloseAllDialogs();
         }
 
         // Gets the instance.
@@ -183,45 +177,157 @@ namespace RM_EDU
 
         }
 
-        // DIALOGS //
+        // DIALOGS
+        // Opens the given dialog.
+        public virtual void OpenDialog(GameObject dialog, bool closeOtherDialogs)
+        {
+            // If 'true', close all the other dialogs.
+            if (closeOtherDialogs)
+            {
+                CloseAllDialogs();
+            }
+
+            // Activates the dialog box.
+            dialog.SetActive(true);
+
+            // Pauses the game.
+            worldManager.PauseGame();
+        }
+
+        // Closes the given dialog.
+        public virtual void CloseDialog(GameObject dialog)
+        {
+            dialog.SetActive(false);
+
+            // If no dialogs are open, unpause the game.
+            if (!IsDialogOpen())
+            {
+                worldManager.UnpauseGame();
+            }
+        }
+
+        // Closes all dialog boxes (windows).
+        public virtual void CloseAllDialogs()
+        {
+            // Generates a dialog list.
+            List<GameObject> dialogList = GenerateDialogList();
+
+            // Goes through each dialog.
+            foreach (GameObject dialog in dialogList)
+            {
+                // If the dialog exist, close it.
+                if (dialog != null)
+                {
+                    // NOTE: this doesn't use the CloseDialog() function, because that function...
+                    // Checks if any dialogs are open to know if the game should be unpaused.
+                    // This function does the same thing after all dialogs are closed.
+
+                    // CloseDialog(dialog);
+                    dialog.gameObject.SetActive(false);
+                }
+            }
+
+            // Unpause the game since all dialogs are closed.
+            worldManager.UnpauseGame();
+        }
+
+        // Generates a list of dialogs.
+        public virtual List<GameObject> GenerateDialogList()
+        {
+            // The list to return, which is given the dialogs in this script.
+            List<GameObject> dialogList = new List<GameObject>
+            {
+                optionsDialog,
+                settingsDialog.gameObject
+            };
+
+            return dialogList;
+        }
+
+        // Returns true if a dialog is open.
+        public virtual bool IsDialogOpen()
+        {
+            // Set to see if there's a dialog open.
+            bool result = false;
+
+            // Generates a list of dialogs.
+            List<GameObject> dialogList = GenerateDialogList();
+
+            // Goes through all dialogs.
+            foreach (GameObject dialog in dialogList)
+            {
+                // Dialog exists.
+                if (dialog != null)
+                {
+                    // If an active dialog has been found.
+                    if (dialog.activeSelf)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+            }
+
+            // Return result.
+            return result;
+        }
+
+        // Options
+        // Opens the options dialog.
+        public void OpenOptionsDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(optionsDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the options dialog.
+        public void CloseOptionsDialog()
+        {
+            CloseDialog(optionsDialog.gameObject);
+        }
 
         // Returns 'true' if the settigns dialog is open.
         public bool IsSettingsDialogOpen()
         {
-            return settingsUI.gameObject.activeSelf;
+            return settingsDialog.gameObject.activeSelf;
         }
 
         // Opens the settings dialog.
         public void OpenSettingsDialog()
         {
-            settingsUI.gameObject.SetActive(true);
+            settingsDialog.gameObject.SetActive(true);
         }
 
         // Closes the settings dialog.
         public void CloseSettingsDialog()
         {
-            settingsUI.gameObject.SetActive(false);
+            settingsDialog.gameObject.SetActive(false);
         }
 
         // TODO: expand on these functions.
         // Opens the stage prompt.
-        public void OpenStageDialog(WorldStage worldStage)
+        public void OpenWorldStageDialog(WorldStage worldStage)
         {
             stageDialog.SetWorldStage(worldStage);
             stageDialog.gameObject.SetActive(true);
         }
 
         // Closes the stage prompt.
-        public void CloseStageDialog()
+        public void CloseWorldStageDialog()
         {
             stageDialog.gameObject.SetActive(false);
         }
 
-        // END
-
-        public void FinishStage()
+        // SAVE
+        // Saves and continues the game.
+        public void SaveAndContinue()
         {
+            worldManager.SaveAndContinue();
+        }
 
+        // Saves and quits the game.
+        public void SaveAndQuit()
+        {
+            worldManager.SaveAndQuit();
         }
 
         // Update is called once per frame
