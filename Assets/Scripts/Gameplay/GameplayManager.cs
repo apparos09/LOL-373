@@ -138,16 +138,27 @@ namespace RM_EDU
         }
 
         // Sets the game time scale.
-        public void SetGameTimeScale(float value)
+        public void SetGameTimeScale(float value, bool setCurrentTimeScale)
         {
             gameTimeScale = value;
-            Time.timeScale = gameTimeScale;
+
+            // If the current time scale should be set.
+            if(setCurrentTimeScale)
+            {
+                Time.timeScale = gameTimeScale;
+            }
         }
 
         // Resets the time scale.
-        public void ResetGameTimeScale()
+        // setCurrentTimeScale: sets the current time scale to the reset game time scale if true.
+        public void ResetGameTimeScale(bool setCurrentTimeScale)
         {
-            gameTimeScale = 1.0F;
+            SetGameTimeScale(1.0F, setCurrentTimeScale); 
+        }
+
+        // Sets the current time scale to game time scale.
+        public void SetCurrentTimeScaleToGameTimeScale()
+        {
             Time.timeScale = gameTimeScale;
         }
 
@@ -215,7 +226,7 @@ namespace RM_EDU
                     // If the time scale is 0, reset the time scale.
                     if (gts == 0)
                     {
-                        ResetGameTimeScale();
+                        ResetGameTimeScale(false);
                         gts = GetGameTimeScale();
                     }
 
@@ -387,7 +398,7 @@ namespace RM_EDU
         protected virtual void OnDestroy()
         {
             // Resets the game time scale.
-            ResetGameTimeScale();
+            ResetGameTimeScale(true);
 
             // Return the time scale to normal.
             Time.timeScale = 1.0F;

@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_Name
-      value: Deselect Button (UI) Variant
+      value: Action Unit Deselect Button (UI) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2510162268394537624, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_text
@@ -158,18 +158,6 @@ PrefabInstance:
     - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_SizeDelta.y
       value: 128
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_LocalPosition.x

@@ -1,6 +1,8 @@
+using JetBrains.Annotations;
 using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace RM_EDU
@@ -78,6 +80,12 @@ namespace RM_EDU
 
         // If 'true', the game uses post processing.
         private bool usePostProcessing = true;
+
+        // The fast time scale.
+        public const float STAGE_SPEED_FAST_TIME_SCALE = 1.5F;
+
+        // The slow time scale.
+        public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.75F;
 
         // Constructor
         private ActionManager()
@@ -221,6 +229,111 @@ namespace RM_EDU
             userDefenseIds.Clear();
             userDefenseIds = ActionUnitPrefabs.Instance.GenerateDefensePrefabIdList(false, false);
         }
+
+        // STAGE SPEED
+        // Returns the stage speed, which is the game time scale.
+        public float GetStageSpeed()
+        {
+            return GetGameTimeScale();
+        }
+
+        // Sets the stage speed using the provided factor.
+        // change: -1 = slow, 0 = normal, 1 = fast
+        public void SetStageSpeed(int change)
+        {
+            // Checks if the game is paused.
+            // If the game is paused, don't update the current time scale.
+            bool gamePaused = IsGamePaused();
+
+            // Set to fast speed.
+            if(change > 0)
+            {
+                SetGameTimeScale(STAGE_SPEED_FAST_TIME_SCALE, !gamePaused);
+            }
+            // Set to slow speed.
+            else if(change < 0)
+            {
+                SetGameTimeScale(STAGE_SPEED_SLOW_TIME_SCALE, !gamePaused);
+            }
+            // Set to normal speed.
+            else
+            {
+                ResetGameTimeScale(!gamePaused);
+            }
+        }
+
+        // Gets the stage speed as an integer.
+        public int GetStageSpeedAsInt()
+        {
+            // Gets the game time scale.
+            float gameTimeScale = GetGameTimeScale();
+
+            // The speed int.
+            int speedInt;
+
+            // If the stage speed is fast.
+            if(gameTimeScale == STAGE_SPEED_FAST_TIME_SCALE)
+            {
+                speedInt = 1;
+            }
+            // If the stage speed is slow.
+            else if(gameTimeScale == STAGE_SPEED_SLOW_TIME_SCALE)
+            {
+                speedInt = -1;
+            }
+            // Stage speed is normal or unknown.
+            else
+            {
+                speedInt = 0;
+            }
+
+            return speedInt;
+        }
+
+        // Returns 'true' if the stage speed is normal.
+        public bool IsStageSpeedNormal()
+        {
+            return IsGameTimeScaleNormal();
+        }
+
+        // Sets the stage speed to normal.
+        public void SetStageSpeedNormal()
+        {
+            SetStageSpeed(0);
+        }
+        
+        // Returns true if stage speed is fast.
+        public bool IsStageSpeedFast()
+        {
+            return GetGameTimeScale() == STAGE_SPEED_FAST_TIME_SCALE;
+        }
+
+        // Sets the stage speed to fast.
+        public void SetStageSpeedFast()
+        {
+            SetStageSpeed(1);
+        }
+
+        // Returns true if the stage speed slow.
+        public bool IsStageSpeedSlow()
+        {
+            return GetGameTimeScale() == STAGE_SPEED_SLOW_TIME_SCALE;
+        }
+
+        // Gets the stage speed to slow.
+        public void SetStageSpeedSlow()
+        {
+            SetStageSpeed(-1);
+        }
+
+        // Resets the stage speed.
+        // updateButton: refreshes the speed button if true.
+        public void ResetStageSpeed()
+        {
+            // Resets the game time scale.
+            ResetGameTimeScale(false);
+        }
+
 
         // DAY-NIGHT CYCLE
         // Is the day night function enabled.
@@ -633,8 +746,12 @@ namespace RM_EDU
         // Resets the acion stage.
         public void ResetStage()
         {
-            // Resets the timers, the day-night cycle, and the wind.
+            // Resets the timers and stage speed. Also refreshes the speed button.
             ResetGameTimerAndStageTimer();
+            ResetStageSpeed();
+            actionUI.speedButton.RefreshSpeedIcon();
+
+            // Resets the day-night cycle, and the wind.
             ResetDayNightCycle();
             ResetWind();
 

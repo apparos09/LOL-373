@@ -46,14 +46,22 @@ namespace RM_EDU
         // The defense selector.
         public ActionUnitSelector defenseUnitSelector;
 
-        [Header("Action/Left, Right")]
+        [Header("Action/Left")]
 
-        // The deselect button.
-        public Button deselectButton;
+        // The speed button.
+        public ActionStageSpeedButton speedButton;
 
-        // The remove button.
+        // The unit deselect button.
+        public ActionUnitDeselectButton deselectButton;
+
+        // The unit remove button.
         public ActionUnitRemoveButton removeButton;
-        
+
+        // The energy block button.
+        public ActionUserBlockButton blockButton;
+
+        [Header("Action/Right")]
+
         // The enemy's energy bar.
         public ProgressBar playerEnemyEnergyBar;
 

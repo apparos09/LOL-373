@@ -148,7 +148,7 @@ namespace RM_EDU
         {
             // Reset the game time scale to make sure it's 1.00.
             ResetGameTimer();
-            ResetGameTimeScale();
+            ResetGameTimeScale(true);
             ResetStageTimer();
 
             // TODO: maybe have the stage timer be seperate from the game timer?
