@@ -27,13 +27,9 @@ namespace RM_EDU
             if (gameManager == null)
                 gameManager = FindObjectOfType<GameplayManager>();
 
-            // // If the tutorial UI isn't set, try to find it.
-            // if(tutorialUI == null)
-            //     tutorialUI = FindObjectOfType<TutorialUI>();
-
-            // If the game settings UI doesn't exist, try to find it.
-            // if(gameSettingsUI == null)
-            //     gameSettingsUI = FindObjectOfType<GameSettingsUI>();
+            // If the tutorial UI isn't set, try to find it.
+            if(tutorialUI == null)
+                tutorialUI = FindObjectOfType<TutorialUI>();
         }
 
         // TUTORIAL //

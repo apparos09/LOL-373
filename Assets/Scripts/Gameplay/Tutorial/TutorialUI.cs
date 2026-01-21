@@ -24,7 +24,7 @@ namespace RM_EDU
 
         // The background panel used to block other buttons.
         [Tooltip("Used to cover the screen to block raycasts (mouse/touch inputs)")]
-        public Image backgroundPanel;
+        public Image raycastBlockPanel;
 
         // The tutorial text box.
         public TutorialTextBox textBox;
@@ -67,33 +67,20 @@ namespace RM_EDU
             // Gets the UI instance if it's not set.
             if (gameUI == null)
             {
-                // TODO: grab UI script from area
-
-                // // Checks for the user interfaces to attach.
-                // if (WorldUI.Instantiated)
-                // {
-                //     gameUI = WorldUI.Instance;
-                // }
-                // else if (StageUI.Instantiated)
-                // {
-                //     gameUI = StageUI.Instance;
-                // }
-                // else
-                // {
-                //     Debug.LogWarning("Game UI could not be found.");
-                // }
-
+                gameUI = FindObjectOfType<GameplayUI>();
             }
 
             // Gets the tutorials object.
             if (tutorials == null)
                 tutorials = Tutorials.Instance;
 
-            // If the text box is open, close it.
-            if (textBox.IsVisible())
+            // If the text box is open and there isn't a tutorial running, close it.
+            if (textBox.IsVisible() && !IsTutorialRunning())
             {
-                textBox.Close();
+                // Closes the text box.
+                CloseTextBox();
             }
+
         }
 
         // Gets the instance.
@@ -135,8 +122,8 @@ namespace RM_EDU
         // Is the tutorial active?
         public bool IsTutorialRunning()
         {
-            // If the textbox is isible, then the tutorial is active.
-            return textBox.IsVisible();
+            // If the textbox is visible and there are pages to read, the tutorial is running.
+            return textBox.IsVisible() && textBox.HasPages();
         }
 
         // Starts a tutorial.
@@ -174,16 +161,14 @@ namespace RM_EDU
         public void OnTutorialStart()
         {
             // If there is a background panel, turn it on.
-            if (backgroundPanel != null)
-                backgroundPanel.gameObject.SetActive(true);
+            if (raycastBlockPanel != null)
+                raycastBlockPanel.gameObject.SetActive(true);
         }
 
         // Called when a tutorail ends.
         public void OnTutorialEnd()
         {
-            // If there is no background panel, turn it off.
-            if (backgroundPanel != null)
-                backgroundPanel.gameObject.SetActive(false);
+            RefreshRaycastBlocker();
         }
 
         // TEXT BOX
@@ -203,12 +188,14 @@ namespace RM_EDU
         public void OpenTextBox()
         {
             textBox.Open();
+            ActivateRaycastBlocker();
         }
 
         // Closes the Text Box
         public void CloseTextBox()
         {
             textBox.Close();
+            DeactivateRaycastBlocker();
         }
 
         // Text box operations.
@@ -244,6 +231,56 @@ namespace RM_EDU
 
             // The tutorial has ended.
             tutorials.OnTutorialEnd();
+        }
+
+        // Returns 'true' if the text box is visible.
+        public bool IsTextBoxVisible()
+        {
+            return textBox.IsVisible();
+        }
+
+
+        // RAYCAST BLOCKER //
+
+        // Returns 'true' if the raycast blocker is active.
+        // If the raycast blocker is null, return false.
+        public bool IsRaycastBlockerActive()
+        {
+            if (raycastBlockPanel != null)
+                return raycastBlockPanel.isActiveAndEnabled;
+            else
+                return false;
+        }
+
+        // Sets if the raycast blocker is active or not.
+        public void SetRaycastBlockerActive(bool active)
+        {
+            if (raycastBlockPanel != null)
+                raycastBlockPanel.gameObject.SetActive(active);
+        }
+
+        // Activates the raycast blocker.
+        public void ActivateRaycastBlocker()
+        {
+            SetRaycastBlockerActive(true);
+        }
+
+        // Deactivates the raycast blocker.
+        public void DeactivateRaycastBlocker()
+        {
+            SetRaycastBlockerActive(false);
+        }
+
+        // Toggles the raycast blocker being active.
+        public void ToggleRaycastBlockerActive()
+        {
+            SetRaycastBlockerActive(!IsRaycastBlockerActive());
+        }
+
+        // Refreshes the raycast blocker to make sure it's only enabled if the text box is visible.
+        public void RefreshRaycastBlocker()
+        {
+            SetRaycastBlockerActive(IsTextBoxVisible());
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
