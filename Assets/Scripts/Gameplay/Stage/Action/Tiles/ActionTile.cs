@@ -55,6 +55,12 @@ namespace RM_EDU
         // The animator.
         public Animator animator;
 
+        // The empty animation.
+        public string emptyAnimName = "Empty State";
+
+        // If 'true', animations are used for this tile.
+        protected bool useAnimations = true;
+
         // The highlight sprite renderer.
         [Tooltip("The sprite used to highlight the tile to show if it's usable or not.")]
         public SpriteRenderer highlightSpriteRenderer;
@@ -67,7 +73,7 @@ namespace RM_EDU
         [Tooltip("The base sprite iamge.")]
         public SpriteRenderer baseSpriteRenderer;
 
-        // The tile variant.
+        // The tile variants.
         public List<Sprite> tileVersionSprites = new List<Sprite>();
 
         // Sets the tile verison sprite in start if true.
@@ -131,6 +137,14 @@ namespace RM_EDU
             // Gets the collider.
             if (collider == null)
                 collider = GetComponent<Collider2D>();
+
+            // Tries to get the animator component.
+            if(animator == null)
+                animator = GetComponent<Animator>();
+
+            // If the animator exists, enable/disable it based on if animations should be used.
+            if (animator != null)
+                animator.enabled = useAnimations;
 
             // Turn off highlight and overlay.
             SetHighlighted(false, true);
@@ -244,8 +258,6 @@ namespace RM_EDU
             return index;
         }
 
-        // TILE OVERLAY //
-
         // Gets the tile version.
         public char GetTileVersion()
         {
@@ -267,6 +279,13 @@ namespace RM_EDU
         // Sets the sprite by the tile version.
         public void SetSpriteByTileVersion()
         {
+            // Checks if there are tile version sprites to use.
+            if(tileVersionSprites.Count <= 0)
+            {
+                Debug.LogWarning("There are no tile version sprites to choose from.");
+                return;
+            }
+
             // Gets the version as a number.
             int verNum = GetTileVersionEnglishAlphabetNumber();
 
@@ -286,6 +305,14 @@ namespace RM_EDU
             }
         }
 
+        // Cehcks if animations are being used.
+        public bool UseAnimations
+        {
+            get { return useAnimations; }
+        }
+
+
+        // TILE OVERLAY //
         // Returns the tile overlay type.
         public actionTileOverlay GetTileOverlayType()
         {
@@ -319,6 +346,14 @@ namespace RM_EDU
             {
                 overlaySpriteRenderer.gameObject.SetActive(false);
             }
+
+
+            // Gets the tile overlay alpha and applies it to the tile color.
+            float overlayAlpha = GetTileOverlayAlpha(tileOverlayType);
+            Color overlayColor = overlaySpriteRenderer.color;
+            overlayColor.a = overlayAlpha;
+            overlaySpriteRenderer.color = overlayColor;
+
 
             // If the tile is currently highlighted as usable...
             // And was changed to something that makes the tile unusable...
@@ -378,8 +413,29 @@ namespace RM_EDU
             SetTileOverlayType(defaultTileOverlayType, true);
         }
 
-        // COLOR CHANGES //
+        // Gets the tile overlay alpha value based on the type.
+        public static float GetTileOverlayAlpha(actionTileOverlay type)
+        {
+            // The alpha to return.
+            float alpha;
 
+            // Checks the type.
+            switch(type)
+            {
+                case actionTileOverlay.waterHazard:
+                    alpha = 0.5F;
+                    break;
+
+                default:
+                    alpha = 1.0F;
+                    break;
+            }
+
+            return alpha;
+        }
+
+
+        // COLOR CHANGES //
         // Gets the tile's base color.
         public Color GetTileBaseColor()
         {
@@ -410,6 +466,37 @@ namespace RM_EDU
         public static Color DarkenedColor
         {
             get { return darkenedColor; }
+        }
+
+        // ANIMATION
+
+        // Plays the provided animation.
+        public void PlayAnimation(string animName)
+        {
+            // If the animator exists and a proper animation name was provided, play the provided animation.
+            if(animator != null && animName != "")
+            {
+                // If animations are being used.
+                if(useAnimations)
+                {
+                    animator.Play(animName);
+                }
+                else
+                {
+                    Debug.LogWarning("Animations are disabled.");
+                }
+            }
+            else
+            {
+                Debug.LogError("Animator or animation name not set.");
+            }
+                
+        }
+
+        // Plays the empty animation.
+        public void PlayEmptyAnimation()
+        {
+            PlayAnimation(emptyAnimName);
         }
 
         // HIGHLIGHT

@@ -60,6 +60,9 @@ namespace RM_EDU
         // (0.5, 0.5) is the centre, (1, 1) is the top right corner and (0, 0) is the bottom left corner.
         protected Vector2 mapOrigin = new Vector2(0.5F, 0.5F);
 
+        // If 'true', the tiles are coloured to make a checkerboard that makes the boundaries between tiles clear.
+        private static bool mapCheckerboardEnabled = true;
+
         // The list of metal tiles in the stage.
         private List<ActionTile> metalTiles = new List<ActionTile>();
 
@@ -259,25 +262,32 @@ namespace RM_EDU
                     Vector3 newLocalPos = ConvertMapPositionToWorldUnits(c, r);
                     newTile.transform.localPosition = newLocalPos;
 
-                    // The tile colour.
-                    Color tileColor = Color.white;
 
-                    // Sets the tile's colour, which is used to make a checkerboardp attern.
-                    // The bottom left corner (0, 0) of the map is black (darkenend tile).
-                    if(r % 2 == 0) // Black
+                    // CHECKERBOARD
+                    // If the map checkerboard is enabled, alter the tile colours to make a checkerboard.
+                    if(mapCheckerboardEnabled)
                     {
-                        // 0 = black, 1 = white
-                        tileColor = c % 2 == 0 ? ActionTile.DarkenedColor : ActionTile.NormalColor;
-                    }
-                    else // White
-                    {
-                        // 0 = white, 1 = black
-                        tileColor = c % 2 == 0 ? ActionTile.NormalColor: ActionTile.DarkenedColor;
+                        // The tile colour.
+                        Color tileColor = Color.white;
+
+                        // Sets the tile's colour, which is used to make a checkerboardp attern.
+                        // The bottom left corner (0, 0) of the map is black (darkenend tile).
+                        if (r % 2 == 0) // Black
+                        {
+                            // 0 = black, 1 = white
+                            tileColor = c % 2 == 0 ? ActionTile.DarkenedColor : ActionTile.NormalColor;
+                        }
+                        else // White
+                        {
+                            // 0 = white, 1 = black
+                            tileColor = c % 2 == 0 ? ActionTile.NormalColor : ActionTile.DarkenedColor;
+                        }
+
+                        // Sets the tile colour.
+                        newTile.baseSpriteRenderer.color = tileColor;
                     }
 
-                    // Sets the tile colour.
-                    newTile.baseSpriteRenderer.color = tileColor;
-                    
+
                     // OVERLAY //
                     // If there are overlays, set the tile's default overlay.
                     if(data.overlays != null)
@@ -356,15 +366,21 @@ namespace RM_EDU
         }
 
         // Returns true if the map has been generated.
-        public bool IsStageGenerated
+        public bool StageGenerated
         {
             get { return stageGenerated; }
         }
 
         // Returns 'true' if the stage allows for tile highlighting.
-        public static bool IsTileHighlightingEnabled
+        public static bool TileHighlightingEnabled
         {
             get { return tileHighlightingEnabled; }
+        }
+
+        // Returns 'true' if the map checkerboard is enabled.
+        public static bool IsMapCheckerboardEnabled
+        {
+            get { return mapCheckerboardEnabled; }
         }
 
         // Returns 'true' if the stage has metal tiles.
@@ -627,7 +643,7 @@ namespace RM_EDU
         public bool IsTileHighlightingActive()
         {
             // If tile highlighting is off, the highlights are never active.
-            if(IsTileHighlightingEnabled)
+            if(TileHighlightingEnabled)
             {
                 // If the player is selecting a unit prefab, then tile highlights must be on.
                 return ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab();
@@ -642,7 +658,7 @@ namespace RM_EDU
         public void HighlightAllTiles(ActionUnit compUnit)
         {
             // If highlighting is enabled.
-            if (IsTileHighlightingEnabled)
+            if (TileHighlightingEnabled)
             {
                 // Goes through all the rows and columns.
                 for (int r = 0; r < tiles.GetLength(0); r++)
@@ -663,7 +679,7 @@ namespace RM_EDU
         public void UnhighlightAllTiles()
         {
             // If tile highlighting is enabled.
-            if (IsTileHighlightingEnabled)
+            if (TileHighlightingEnabled)
             {
                 // Goes through all the rows and columns.
                 for (int r = 0; r < tiles.GetLength(0); r++)

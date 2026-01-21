@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6086815689167183318, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: a650d0f81b3267b41b901fc0a50795b7, type: 2}
     m_RemovedComponents:
     - {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
     m_RemovedGameObjects: []
@@ -122,10 +126,16 @@ MonoBehaviour:
   collider: {fileID: 3600626451246123760}
   interactable: 1
   animator: {fileID: 2035864497516729909}
+  emptyAnimName: Empty State
   highlightSpriteRenderer: {fileID: 3833369784411561438}
   overlaySpriteRenderer: {fileID: 9003317530805550303}
   baseSpriteRenderer: {fileID: 8746709064726744489}
-  tileVersionSprites: []
+  tileVersionSprites:
+  - {fileID: 120893903, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  - {fileID: -2029289856, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  - {fileID: 1816147579, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  - {fileID: -2080471704, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  setTileVersionSpriteInStart: 1
   mapPos: {x: -1, y: -1}
   actionUnitUser: {fileID: 0}
   energyCyclesDefault: 30
@@ -134,10 +144,16 @@ MonoBehaviour:
   nuclearCycles: 0
   oilCycles: 0
   direction: {x: 1, y: 0}
+  setDirecByTileVersionInStart: 1
   direcLeftSprite: {fileID: 1816147579, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
   direcRightSprite: {fileID: 120893903, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
   direcUpSprite: {fileID: -2029289856, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
   direcDownSprite: {fileID: -2080471704, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+  setDirecSpriteInStart: 1
+  idleLeftAnimName: Action Tile - River - Flow - Left Animation
+  idleRightAnimName: Action Tile - River - Flow - Right Animation
+  idleUpAnimName: Action Tile - River - Flow - Up Animation
+  idleDownAnimName: Action Tile - River - Flow - Down Animation
 --- !u!212 &8746709064726744489 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 3556415347877725770, guid: 2f61e8189be6372438cc50087be3b316, type: 3}

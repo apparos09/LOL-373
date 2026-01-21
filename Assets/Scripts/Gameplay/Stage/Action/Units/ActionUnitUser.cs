@@ -362,7 +362,7 @@ namespace RM_EDU
                     tile.ClearActionUnitUser();
 
                     // If highlighting is enabled...
-                    if(ActionStage.IsTileHighlightingEnabled)
+                    if(ActionStage.TileHighlightingEnabled)
                     {
                         // If the tile is highlighted, refresh the highlight.
                         if (tempTile.IsHighlighted())

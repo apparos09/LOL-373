@@ -32,6 +32,15 @@ namespace RM_EDU
         [Tooltip("Sets the directional sprite in the start function.")]
         public bool setDirecSpriteInStart = true;
 
+        [Header("Animations")]
+
+        // The idle animations for the directional tile.
+        public string idleLeftAnimName = "";
+        public string idleRightAnimName = "";
+        public string idleUpAnimName = "";
+        public string idleDownAnimName = "";
+
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -46,11 +55,67 @@ namespace RM_EDU
             }
             else
             {
-                // If the directional sprite should be set.
+                // If the directional sprite/animation should be set.
                 if (setDirecSpriteInStart)
-                    SetSpriteByTileDirection();
+                    SetSpriteAndIdleAnimationByTileDirection();
             }
 
+        }
+
+        // Returns 'true' if direction is left.
+        public bool IsDirectionLeft()
+        {
+            return direction.x < 0.0F;
+        }
+
+        // Returns 'true' if direction is right.
+        public bool IsDirectionRight()
+        {
+            return direction.x > 0.0F;
+        }
+
+        // Returns 'true' if direction is up.
+        public bool IsDirectionUp()
+        {
+            return direction.y > 0.0F;
+        }
+
+        // Returns 'true' if direction is down.
+        public bool IsDirectionDown()
+        {
+            return direction.y < 0.0F;
+        }
+
+        // Gets the direction in cardinal form (NSEW). It can only return left, right, up, or down.
+        // Returns (0, 0) if the direction is unknown.
+        public Vector2 CalculateDirectionCardinal()
+        {
+            // The direction to return.
+            Vector2 returnDirec;
+
+            // Checks the direction to see what cardinal direction to return.
+            if (direction.x < 0.0F) // Left
+            {
+                returnDirec = Vector2.left;
+            }
+            else if (direction.x > 0.0F) // Right
+            {
+                returnDirec = Vector2.right;
+            }
+            else if (direction.y > 0.0F) // Up
+            {
+                returnDirec = Vector2.up;
+            }
+            else if (direction.y < 0.0F) // Down
+            {
+                returnDirec = Vector2.down;
+            }
+            else // Unknown
+            {
+                returnDirec = Vector2.zero;
+            }
+
+            return returnDirec;
         }
 
         // Sets the direction by the tile version.
@@ -88,9 +153,12 @@ namespace RM_EDU
             // Sets the new direction.
             direction = newDirec;
 
-            // Updates the sprite.
+            // Updates the sprite and animation.
             if (updateSprite)
-                SetSpriteByTileDirection();
+            {
+                SetSpriteAndIdleAnimationByTileDirection();
+            }
+                
         }
 
         // Sets the sprite by the tile direction.
@@ -98,7 +166,6 @@ namespace RM_EDU
         public void SetSpriteByTileDirection()
         {
             // Checks the direction to see what sprite to set.
-            // TODO: change to use animator.
             if (direction.x < 0.0F) // Left
             {
                 baseSpriteRenderer.sprite = direcLeftSprite;
@@ -123,5 +190,49 @@ namespace RM_EDU
             direction = newDirection;
             SetSpriteByTileDirection();
         }
+
+        // Plays the idle animation by the tile direction.
+        public void PlayIdleAnimationByTileDirection()
+        {
+            // Checks the direction to see what sprite to set.
+            if (direction.x < 0.0F) // Left
+            {
+                PlayAnimation(idleLeftAnimName);
+            }
+            else if (direction.x > 0.0F) // Right
+            {
+                PlayAnimation(idleRightAnimName);
+            }
+            else if (direction.y > 0.0F) // Up
+            {
+                PlayAnimation(idleUpAnimName);
+            }
+            else if (direction.y < 0.0F) // Down
+            {
+                PlayAnimation(idleDownAnimName);
+            }
+        }
+
+        // Sets the idle animation by the provided tile direction. This also overrides the saved direction.
+        public void PlayIdleAnimationByTileDirection(Vector2 newDirection)
+        {
+            direction = newDirection;
+            PlayIdleAnimationByTileDirection();
+        }
+
+        // Sets the sprite and idle animation by the tile direction.
+        public void SetSpriteAndIdleAnimationByTileDirection()
+        {
+            SetSpriteByTileDirection();
+            PlayIdleAnimationByTileDirection();
+        }
+
+        // Sets the sprite and idle animation by the tile direction.
+        public void SetSpriteAndIdleAnimationByTileDirection(Vector2 newDirection)
+        {
+            direction = newDirection;
+            SetSpriteAndIdleAnimationByTileDirection();
+        }
     }
+
 }

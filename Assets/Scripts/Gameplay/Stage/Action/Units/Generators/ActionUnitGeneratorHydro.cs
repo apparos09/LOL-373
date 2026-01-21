@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -31,6 +29,14 @@ namespace RM_EDU
         // If 'true', the hydro generator can flood tiles.
         public bool floodingEnabled = true;
 
+        [Header("Generator/Hydro/Visuals")]
+
+        // The directional sprites.
+        public Sprite direcLeftSprite;
+        public Sprite direcRightSprite;
+        public Sprite direcUpSprite;
+        public Sprite direcDownSprite;
+
         // Start is called just before any of the Update methods is called the first time
         protected override void Start()
         {
@@ -42,11 +48,15 @@ namespace RM_EDU
                 resource = NaturalResources.naturalResource.hydro;
             }
 
+            // Updates the facing direction and sets the sprite.
+            UpdateFacingDirectionByTile(true);
+
             // Sets the flood timer to max.
             SetFloodTimerToMax();
         }
 
 
+        // TILE CONFIGURATION //
         // Checks if the tile configuration is valid.
         public override bool UsableTileConfiguration(ActionTile tile)
         {
@@ -146,6 +156,122 @@ namespace RM_EDU
         }
 
 
+        // FACING DIRECTION //
+        // Returns 'true' if facing left.
+        public bool IsFacingLeft()
+        {
+            return facingDirec.x < 0.0F;
+        }
+
+        // Returns 'true' if facing right.
+        public bool IsFacingRight()
+        {
+            return facingDirec.x > 0.0F;
+        }
+
+        // Returns 'true' if facing up.
+        public bool IsFacingUp()
+        {
+            return facingDirec.y > 0.0F;
+        }
+
+        // Returns 'true' if facing down.
+        public bool IsFacingDown()
+        {
+            return facingDirec.y < 0.0F;
+        }
+
+        // Calculates the cardinal direction.
+        public Vector2 CalculateDirectionCardinal()
+        {
+            // The direction to return.
+            Vector2 returnDirec;
+
+            // Checks the direction to see what cardinal direction to return.
+            if (facingDirec.x < 0.0F) // Left
+            {
+                returnDirec = Vector2.left;
+            }
+            else if (facingDirec.x > 0.0F) // Right
+            {
+                returnDirec = Vector2.right;
+            }
+            else if (facingDirec.y > 0.0F) // Up
+            {
+                returnDirec = Vector2.up;
+            }
+            else if (facingDirec.y < 0.0F) // Down
+            {
+                returnDirec = Vector2.down;
+            }
+            else // Unknown
+            {
+                returnDirec = Vector2.zero;
+            }
+
+            return returnDirec;
+        }
+
+        // Updates the facing direction by the tile the generator is on.
+        public void UpdateFacingDirectionByTile(bool updateSprite = true)
+        {
+            // Checks if tile is set.
+            if(tile != null)
+            {
+                // If the tile is a directional, match the tile direction.
+                if(tile is ActionTileDirectional)
+                {
+                    // Gets the directional tile.
+                    ActionTileDirectional tileDirectional = (ActionTileDirectional)tile;
+
+                    // Gets the tile direc in cardinal form.
+                    Vector2 tileDirec = tileDirectional.CalculateDirectionCardinal();
+
+                    // If the tile direction is zero, set it to right by default.
+                    // If the tile direction is properly set, use it.
+                    facingDirec = (tileDirec == Vector2.zero) ? Vector2.right : tileDirec;
+                }
+                else
+                {
+                    // Right by default.
+                    facingDirec = Vector2.right;
+                }
+            }
+            else
+            {
+                // Set to right by default.
+                facingDirec = Vector2.right;
+            }
+
+            // Updates the sprite.
+            if (updateSprite)
+                UpdateSpriteByFacingDirection();
+        }
+
+        // Sets the sprite by the facing direction.
+        public void UpdateSpriteByFacingDirection()
+        {
+            // Checks the facing direction to know what sprite to use.
+            if(facingDirec.x < 0.0F) // Left
+            {
+                spriteRenderer.sprite = direcLeftSprite;
+            }
+            else if(facingDirec.x > 0.0F) // Right
+            {
+                spriteRenderer.sprite = direcRightSprite;
+            }
+            else if(facingDirec.y > 0.0F) // Up
+            {
+                spriteRenderer.sprite = direcUpSprite;
+            }
+            else if(facingDirec.y < 0.0F) // Down
+            {
+                spriteRenderer.sprite = direcDownSprite;
+            }
+        }
+
+
+        // FLOODING //
         // Sets the flood timer to its max.
         public void SetFloodTimerToMax()
         {
@@ -165,6 +291,13 @@ namespace RM_EDU
             // The tile exists.
             if(tile != null)
             {
+                // Gets the direction in cardinal.
+                Vector2 cardinalDirec = CalculateDirectionCardinal();
+
+                // If the cardinal direction is zero, set it to right by default.
+                if (cardinalDirec == Vector2.zero)
+                    cardinalDirec = Vector2.right;
+
                 // The map position of the tile this generator is on.
                 Vector2Int mapPos = tile.mapPos;
 
@@ -177,7 +310,7 @@ namespace RM_EDU
                 bool mapPosSet = false;
 
                 // Checks if facing the four directions (diagonals are ignored).
-                if(mapPos.x > 0) // Facing Right
+                if(cardinalDirec.x > 0) // Facing Right
                 {
                     // Left-Up, Left, Left-Down
                     mapPos1 = new Vector2Int(mapPos.x - 1, mapPos.y + 1);
@@ -186,7 +319,7 @@ namespace RM_EDU
 
                     mapPosSet = true;
                 }
-                else if(mapPos.x < 0) // Facing Left
+                else if(cardinalDirec.x < 0) // Facing Left
                 {
                     // Right-Up, Right, Right-Down
                     mapPos1 = new Vector2Int(mapPos.x + 1, mapPos.y + 1);
@@ -195,7 +328,7 @@ namespace RM_EDU
 
                     mapPosSet = true;
                 }
-                else if(mapPos.y > 0) // Facing Up
+                else if(cardinalDirec.y > 0) // Facing Up
                 {
                     // Left-Down, Down, Right-Down
                     mapPos1 = new Vector2Int(mapPos.x - 1, mapPos.y - 1);
@@ -204,7 +337,7 @@ namespace RM_EDU
 
                     mapPosSet = true;
                 }
-                else if(mapPos.y < 0) // Facing Down
+                else if(cardinalDirec.y < 0) // Facing Down
                 {
                     // Left-Up, Up, Right-Up
                     mapPos1 = new Vector2Int(mapPos.x - 1, mapPos.y + 1);

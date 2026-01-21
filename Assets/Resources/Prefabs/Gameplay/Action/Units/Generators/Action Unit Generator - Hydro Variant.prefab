@@ -160,3 +160,7 @@ MonoBehaviour:
   floodTimerMax: 25
   floodedTiles: 0
   floodingEnabled: 1
+  direcLeftSprite: {fileID: 885133429, guid: 45d2e9e339f1470479a089a29ee13cef, type: 3}
+  direcRightSprite: {fileID: -258586114, guid: 45d2e9e339f1470479a089a29ee13cef, type: 3}
+  direcUpSprite: {fileID: -2080276251, guid: 45d2e9e339f1470479a089a29ee13cef, type: 3}
+  direcDownSprite: {fileID: 1756027287, guid: 45d2e9e339f1470479a089a29ee13cef, type: 3}
