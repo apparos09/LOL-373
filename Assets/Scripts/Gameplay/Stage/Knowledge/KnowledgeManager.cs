@@ -752,6 +752,13 @@ namespace RM_EDU
             gameScore = CalculateStageScore();
         }
 
+        // Gets the stage energy total.
+        public override float GetStageEnergyTotal()
+        {
+            // TODO: create a rewarded amount of energy for the player passing the stage.
+            return 0;
+        }
+
         // Returns 'true' if the stage is complete.
         public override bool IsComplete()
         {

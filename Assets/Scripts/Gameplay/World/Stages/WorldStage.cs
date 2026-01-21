@@ -27,6 +27,9 @@ namespace RM_EDU
             // The stage score.
             public float score = 0;
 
+            // The energy total for the stage.
+            public float energyTotal = 0;
+
             // Marks if the stage is complete.
             public bool complete = false;
         }
@@ -68,6 +71,10 @@ namespace RM_EDU
 
         // The score for this stage.
         public float score = 0;
+
+        // The total amount of energy generated for this stage.
+        [Tooltip("The total amount of energy generated in this stage.")]
+        public float energyTotal = 0;
 
         // Checks if the stage is locked. This isn't included in the stage data.
         [Tooltip("If 'true', the stage is locked and cannot be selected.")]
@@ -329,14 +336,16 @@ namespace RM_EDU
         // Generates the data.
         public WorldStageData GenerateWorldStageData()
         {
-            // 
+            // The data being generated.
             WorldStageData data = new WorldStageData();
 
+            // The values returned.
             data.worldStageIndex = GetWorldStageIndex();
             data.idNumber = idNumber;
             data.stageType = GetStageType();
             data.time = time;
             data.score = score;
+            data.energyTotal = energyTotal;
             data.complete = complete;
 
             return data;
@@ -353,8 +362,11 @@ namespace RM_EDU
             
             // Set the values.
             idNumber = data.idNumber;
+
             time = data.time;
             score = data.score;
+            energyTotal = data.energyTotal;
+
             complete = data.complete;
         }
 

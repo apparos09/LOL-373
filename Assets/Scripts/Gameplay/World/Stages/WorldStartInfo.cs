@@ -27,6 +27,9 @@ namespace RM_EDU
         // The score.
         public float stageScore = 0;
 
+        // The enegy total.
+        public float stageEnergyTotal = 0;
+
         // Gets set to see if the stage the player is coming back from was completed.
         public bool stageCompleted;
 
@@ -55,6 +58,9 @@ namespace RM_EDU
 
                 // Gets the stage score.
                 stageScore = stageManager.GetStageScore();
+
+                // Gets the stage energy total.
+                stageEnergyTotal = stageManager.GetStageEnergyTotal();
 
                 // Set if the stage is complete.
                 stageCompleted = stageManager.IsComplete();
@@ -91,6 +97,9 @@ namespace RM_EDU
 
                     // Give the stage score.
                     worldStage.score = stageScore;
+
+                    // Gets the stage's energy total.
+                    worldStage.energyTotal = stageEnergyTotal;
 
                     // Set if the stage was completed or not.
                     worldStage.SetComplete(stageCompleted);

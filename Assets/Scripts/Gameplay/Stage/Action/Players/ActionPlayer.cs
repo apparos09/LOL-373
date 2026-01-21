@@ -100,8 +100,12 @@ namespace RM_EDU
         // Decreses the energy by the provided amount.
         public virtual void DecreaseEnergy(float energyMinus)
         {
-            // Send negative energy to increase function.
-            IncreaseEnergy(-energyMinus);
+            // Reduce energy.
+            energy -= energyMinus;
+
+            // Bounds check.
+            if (energy < 0.0F)
+                energy = 0.0F;
         }
 
         // Returns 'true' if the player has the energy to create the provided aciton unit.

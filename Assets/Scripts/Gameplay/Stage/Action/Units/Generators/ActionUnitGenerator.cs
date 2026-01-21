@@ -359,7 +359,7 @@ namespace RM_EDU
                         // Increase the energy of the owner.
                         if (owner != null)
                         {
-                            owner.energy += newEnergy;
+                            owner.IncreaseEnergy(newEnergy);
                             owner.airPollution += newAirPoll;
                         }
                     }

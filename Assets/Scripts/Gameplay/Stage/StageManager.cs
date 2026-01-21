@@ -140,6 +140,9 @@ namespace RM_EDU
             return gameScore;
         }
 
+        // Gets the stage energy total.
+        public abstract float GetStageEnergyTotal();
+
         // Returns 'true' if the stage is complete.
         public abstract bool IsComplete();
 

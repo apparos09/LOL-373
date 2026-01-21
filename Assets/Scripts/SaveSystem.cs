@@ -19,24 +19,27 @@ namespace RM_EDU
         // Gets set to 'true' if the game was completed.
         public bool complete = false;
 
-        // To avoid problems, the tutorial parameter cannot be changed for a saved game.
-        public bool useTutorial = true;
-
         // The game time
         public float gameTime = 0;
 
         // The player's overall score.
         public float gameScore = 0;
 
-        // TODO: Implement.
-        // // The stage data.
-        // public StageData[] stageDatas = new StageData[WorldManager.STAGE_COUNT];
-        // 
+        // The total amount of energy generated for the game.
+        // TODO: set.
+        public float gameEnergy = 0;
+
+        // The current area index.
+        public int currentAreaIndex = 0;
+
+        // The stage data.
+        public WorldStage.WorldStageData[] worldStageDatas = new WorldStage.WorldStageData[WorldManager.STAGE_COUNT];
+
+        // To avoid problems, the tutorial parameter cannot be changed for a saved game.
+        public bool useTutorial = true;
+
         // Tutorial Clears
         public Tutorials.TutorialsData tutorialData;
-         
-        // // Game Mode
-        // public GameplayManager.gameMode gameMode;
     }
 
     // Used to save the game.
@@ -219,7 +222,7 @@ namespace RM_EDU
             // The game manager does not exist if false.
             if (!IsWorldManagerSet())
             {
-                Debug.LogWarning("The Game Manager couldn't be found.");
+                Debug.LogWarning("The WorldManager couldn't be found.");
                 return false;
             }
 

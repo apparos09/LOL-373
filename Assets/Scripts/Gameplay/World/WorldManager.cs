@@ -17,8 +17,12 @@ namespace RM_EDU
         // The stage count.
         public const int STAGE_COUNT = 11;
 
+        // If saving and loading is enabled.
+        // NOTE: set this to true when you have the tutorial set up.
+        private bool savingLoadingEnabled = false;
+
         // If 'true', auto saving is enabled.
-        private bool autoSave = true;
+        private bool autoSavingEnabled = true;
 
         [Header("World")]
 
@@ -141,6 +145,17 @@ namespace RM_EDU
                 // Apply the start info.
                 startInfo.ApplyStartInfo(this);
 
+                // If saving/loading is enabled and auto saving is enabled.
+                if(savingLoadingEnabled && autoSavingEnabled)
+                {
+                    // If the player returned from a stage, and that stage was completed, auto save.
+                    if (startInfo.fromStage && startInfo.stageCompleted)
+                    {
+                        // Auto save the game.
+                        SaveGame();
+                    }
+                }
+
                 // Destroy the start info.
                 Destroy(startInfo.gameObject);
             }
@@ -189,23 +204,241 @@ namespace RM_EDU
         // Generates the save data for the game.
         public EDU_GameData GenerateSaveData()
         {
-            // TODO: implement.
-            return null;
+            // The game data to return.
+            EDU_GameData data = new EDU_GameData();
+
+            // Gets the game score, game time, and game energy.
+            data.gameScore = dataLogger.gameScore;
+            data.gameTime = dataLogger.gameTimer;
+            data.gameEnergy = CalculateEnergyTotal();
+
+            // Gets the world stage data for every stage.
+            for(int i = 0; i < data.worldStageDatas.Length && i < stages.Count; i++)
+            {
+                // The stage exists.
+                if (stages[i] != null)
+                {
+                    data.worldStageDatas[i] = stages[i].GenerateWorldStageData();
+                }
+                // The stage doesn't exist.
+                else
+                {
+                    data.worldStageDatas[i] = null;
+                }
+            }
+
+            // Saves the current area index.
+            data.currentAreaIndex = GetCurrentWorldAreaIndex();
+
+            // Tutorial parameter.
+            data.useTutorial = GameSettings.Instance.UseTutorial;
+
+            // Generates the tutorial data.
+            data.tutorialData = tutorials.GenerateTutorialsData();
+
+            // Saves if the game is complete.
+            data.complete = IsGameComplete();
+
+            // The data is valid.
+            data.valid = true;
+
+            // Returns the result.
+            return data;
+        }
+
+        // Checks if saving and loading is allowed.
+        public bool SavingLoadingEnabled
+        {
+            get 
+            { 
+                return savingLoadingEnabled; 
+            }
         }
 
         // Sets if the game should be auto saving.
-        public bool AutoSave
+        public bool AutoSavingEnabled
         {
             get
             {
-                return autoSave;
-            }
-
-            set
-            {
-                autoSave = value;
+                return autoSavingEnabled;
             }
         }
+
+
+        // Saves the data for the game.
+        public bool SaveGame()
+        {
+            // First checks if saving/loading is enabled.
+            if(!savingLoadingEnabled)
+            {
+                Debug.LogError("Saving and loading data is disabled. Save failed.");
+                return false;
+            }
+
+            // Not needed since the save system is checke for anyway.
+            // // Checks if the LOL Manager and the LOLSDK exists.
+            // if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            // {
+            //     Debug.LogError("The LOLSDK has not been initialized.");
+            //     return false;
+            // }
+
+            // The save system hasn't bene instantiated.
+            if(!SaveSystem.Instantiated)
+            {
+                Debug.LogError("The save system has not been instantiated.");
+                return false;
+            }
+
+            // Gets the save system.
+            SaveSystem saveSystem = SaveSystem.Instance;
+
+            // Sets the world manager for the save system.
+            saveSystem.worldManager = this;
+
+            // Save the game.
+            bool result = saveSystem.SaveGame();
+
+            // Returns the result.
+            return result;
+        }
+
+        // Saves and continues the game.
+        public bool SaveAndContinue()
+        {
+            // Saves the game.
+            bool result = SaveGame();
+
+            // Closes all the dialogs.
+            worldUI.CloseAllDialogs();
+
+            // Returns the result.
+            return result;
+        }
+
+        // Saves and quits the game.
+        public bool SaveAndQuit()
+        {
+            // Saves the game.
+            bool result = SaveGame();
+
+            // Loads the title screen.
+            LoadTitleScene();
+
+            // Returns the result.
+            return result;
+        }
+
+        // Loads data, and return a 'bool' to show it was successful.
+        public bool LoadGame()
+        {
+            // Checks if saving/loading is enabled.
+            if(!savingLoadingEnabled)
+            {
+                Debug.LogError("Saving and loading is disabled. Load failed.");
+                return false;
+            }
+
+            // Cheks if the save system has been instantiated.
+            if (!SaveSystem.Instantiated)
+            {
+                Debug.LogError("The save system hasn't been instantiated. Load failed.");
+                return false;
+            }
+
+            // Gets the save system.
+            SaveSystem saveSystem = SaveSystem.Instance;
+
+            // Sets the world manager for the save system.
+            saveSystem.worldManager = this;
+
+            // Checks if the save system has loaded data.
+            if (!saveSystem.HasLoadedData())
+            {
+                Debug.LogWarning("No data was found to load.");
+                return false;
+            }
+
+            // Gets the loaded data.
+            EDU_GameData data = saveSystem.loadedData;
+
+            // Checks for validity.
+            if(!data.valid)
+            {
+                Debug.LogError("The loaded data was invalid. Load failed.");
+                return false;
+            }
+
+            // Checks if the loaded data is complete.
+            if(data.complete)
+            {
+                Debug.LogWarning("The loaded data is for a completed game. Load failed.");
+                return false;
+            }
+
+            // Load the data.
+            // Gets the game score, game time, and game energy.
+            dataLogger.gameScore = data.gameScore;
+            dataLogger.gameTimer = data.gameTime;
+            // TODO: the energy total should be set with the stage data automatically.
+
+            // Gets the world stage data for every stage.
+            for (int i = 0; i < data.worldStageDatas.Length && i < stages.Count; i++)
+            {
+                // The current data.
+                WorldStage.WorldStageData currData = data.worldStageDatas[i];
+
+                // If the world stage data exists and the stage exists, apply the world data.
+                if (currData != null && stages[i] != null)
+                {
+                    // If the id numbers don't match, make a warning.
+                    if(currData.idNumber != stages[i].idNumber)
+                    {
+                        Debug.LogWarning("The id number of the loaded data doesn't match the stage it's giving the data to.");
+                    }
+
+                    // Applies the world stage data to the stage.
+                    stages[i].ApplyWorldStageData(data.worldStageDatas[i]);
+                }
+            }
+
+            // Saves the current area index.
+            SetCurrentWorldArea(data.currentAreaIndex);
+
+            // Tutorial parameter.
+            GameSettings.Instance.UseTutorial = data.useTutorial;
+
+            // Loads the tutorials data.
+            tutorials.LoadTutorialsData(data.tutorialData);
+
+            // Complete and Valid parameters were already checked.
+
+            // Data set successfully.
+            return true;
+        }
+
+        // WORLD //
+
+        // Calculates the energy total.
+        // TODO: implement.
+        public float CalculateEnergyTotal()
+        {
+            // The energy total to return.
+            float energyTotal = 0;
+
+            // Goes through all stages to get the energy total.
+            foreach(WorldStage stage in stages)
+            {
+                // If the stage exists, add to the energy total.
+                if(stage != null)
+                {
+                    energyTotal += stage.energyTotal;
+                }
+            }
+
+            return energyTotal;
+        }
+
 
         // AREA //
         // Gets the world area at the provided index.
@@ -492,46 +725,6 @@ namespace RM_EDU
             }
         }
 
-        // SAVE/LOAD
-        // Saves the data for the game.
-        public bool SaveGame()
-        {
-            // TODO: implement.
-            return false;
-        }
-
-        // Saves and continues the game.
-        public bool SaveAndContinue()
-        {
-            // Saves the game.
-            bool result = SaveGame();
-
-            // Closes all the dialogs.
-            worldUI.CloseAllDialogs();
-
-            // Returns the result.
-            return result;
-        }
-
-        // Saves and quits the game.
-        public bool SaveAndQuit()
-        {
-            // Saves the game.
-            bool result = SaveGame();
-            
-            // Loads the title screen.
-            LoadTitleScene();
-            
-            // Returns the result.
-            return result;
-        }
-
-        // Loads data, and return a 'bool' to show it was successful.
-        public bool LoadGame()
-        {
-            // TODO: implement.
-            return false;
-        }
 
         // COMPLETE
         // Checks if the game is complete.

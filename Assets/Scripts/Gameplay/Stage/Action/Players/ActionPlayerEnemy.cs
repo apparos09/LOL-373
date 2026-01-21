@@ -445,7 +445,7 @@ namespace RM_EDU
                 if(autoEnergyLoss)
                 {
                     // Reduces the energy.
-                    energy -= energyDec * Time.deltaTime;
+                    DecreaseEnergy(energyDec * Time.deltaTime);
                 }
 
                 // Bounds check.

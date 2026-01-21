@@ -34,6 +34,9 @@ namespace RM_EDU
         // If 'true', the player automatically generates energy.
         private bool energyAutoGenEnabled = true;
 
+        // The total amount of energy generated.
+        public float energyGenTotal = 0.0F;
+
         [Header("User/Units")]
 
         // The generator prefabs the player can use.
@@ -83,6 +86,8 @@ namespace RM_EDU
             ResetEnergyAutoGenerationTimer();
         }
 
+
+        // ENERGY //
         // Sets the starting energy.
         public void SetStartingEnergy(float startingEnergy)
         {
@@ -96,7 +101,7 @@ namespace RM_EDU
         }
 
         // Adds the starting energy to the user's energy.
-        public void AddStartingEnergyToEnery()
+        public void AddStartingEnergyToEnergy()
         {
             energy += startingEnergy;
         }
@@ -105,6 +110,23 @@ namespace RM_EDU
         public bool IsEnergyAutoGenerating()
         {
             return energyAutoGenEnabled;
+        }
+
+        // Resets the energy generation total, setting it to 0.
+        public void ResetEnergyGenerationTotal()
+        {
+            energyGenTotal = 0;
+        }
+
+        // Modifies the energy by adding the provided amount.
+        public override void IncreaseEnergy(float energyPlus)
+        {
+            // Adds to the energy generation total.
+            if(energyPlus >= 0)
+                energyGenTotal += energyPlus;
+
+            // Calls the base function to increase the energy.
+            base.IncreaseEnergy(energyPlus);
         }
 
         // Gets the energy auto generation timer max.
@@ -141,6 +163,8 @@ namespace RM_EDU
             prevUpdateEnergy = energy;
         }
 
+
+        // UNIT PREFABS //
         // Sets the generator prefabs from the provided resources.
         public void SetGeneratorPrefabs(List<NaturalResources.naturalResource> resources)
         {
@@ -498,9 +522,12 @@ namespace RM_EDU
             KillAllUserUnits();
             ActionProjectile.KillAllActionProjectiles();
 
-            // Resets the energy, and clears the selected prefab.
+            // Resets the energy, the auto gen timer, and the energy generation total.
             SetEnergyToStartingEnergy();
             ResetEnergyAutoGenerationTimer();
+            ResetEnergyGenerationTotal();
+
+            // Clears the selected prefab.
             ClearSelectedActionUnitPrefab(); // Also sets to "select" mode.
         }
 
@@ -526,7 +553,7 @@ namespace RM_EDU
                         energyAutoGenTimer = 0.0F;
 
                         // Adds energy.
-                        energy += energyAutoGenAmount;
+                        IncreaseEnergy(energyAutoGenAmount);
 
                         // Set timer to max.
                         ResetEnergyAutoGenerationTimer();
