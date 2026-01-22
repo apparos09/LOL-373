@@ -35,7 +35,7 @@ namespace RM_EDU
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
 
         // Gets set to 'true' if the stage is initialized.
-        private bool stageInitialized = false;
+        protected bool stageInitialized = false;
 
         // Gets set to 'true' when the stage is active/running.
         private bool stagePlaying = false;
@@ -64,9 +64,9 @@ namespace RM_EDU
         }
 
         // Returns 'true' if the stage has been initialized.
-        public bool IsStageInitialized()
+        public bool StageInitialized
         {
-            return stageInitialized;
+            get { return stageInitialized; }
         }
 
         // Sets the natural resource list to the resource type list.

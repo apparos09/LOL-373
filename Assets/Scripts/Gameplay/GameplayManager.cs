@@ -60,9 +60,6 @@ namespace RM_EDU
         // The data logger.
         public DataLogger dataLogger;
 
-        // If 'true', the data logger is used saving and loading data.
-        public bool useDataLogger = true;
-
         // Awake is called when the script is being loaded
         protected virtual void Awake()
         {

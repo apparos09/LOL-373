@@ -53,6 +53,9 @@ namespace RM_EDU
         [Tooltip("The defense ids that are set by default.")]
         public List<int> defaultDefenseIds = new List<int>();
 
+        // Set to 'true' if the world has been initialized.
+        protected bool worldInitialized = false;
+
         [Header("World/Events")]
 
         // The game complete event of the world manager.
@@ -143,17 +146,13 @@ namespace RM_EDU
         // Initializes the world.
         public void InitializeWorld()
         {
-            // If the data logger is being used.
-            if(useDataLogger)
-            {
-                // Gets the data logger instance.
-                // The data logger should already be set.
-                if (dataLogger == null)
-                    dataLogger = DataLogger.Instance;
+            // Gets the data logger instance.
+            // The data logger should already be set.
+            if (dataLogger == null)
+                dataLogger = DataLogger.Instance;
 
-                // Applies the data logger's world datas to the world.
-                dataLogger.ApplyWorldStageDatasToWorld(this);
-            }
+            // Applies the data logger's world datas to the world.
+            dataLogger.ApplyWorldStageDatasToWorld(this);
 
             // Tries to find the start info.
             WorldStartInfo startInfo = FindObjectOfType<WorldStartInfo>();
@@ -198,25 +197,31 @@ namespace RM_EDU
                 }
             }
 
+            // Gives the data logger the default defense ids if there are ones.
+            if (dataLogger.defenseIds.Count <= 0 && defaultDefenseIds.Count > 0)
+            {
+                dataLogger.defenseIds.Clear();
+                dataLogger.defenseIds.AddRange(defaultDefenseIds);
+            }
 
-            // Calcualtes and sets the game score.
+            // Calculates and sets the game score.
             CalculateAndSetGameScore();
 
-            // If the data logger should be used.
-            if (useDataLogger)
-            {
-                // Gives the data logger the default defense ids if there are ones.
-                if (dataLogger.defenseIds.Count <= 0 && defaultDefenseIds.Count > 0)
-                {
-                    dataLogger.defenseIds.Clear();
-                    dataLogger.defenseIds.AddRange(defaultDefenseIds);
-                }
 
-                // Save the game score to the data logger.
-                dataLogger.gameScore = gameScore;
-            }
-            
-            // TODO: add a variable that shows that initialization took place.
+            // Save the game score to the data logger.
+            dataLogger.gameScore = gameScore;
+
+            // Submits progress for the game.
+            SubmitProgress();
+
+            // The world has been intialized.
+            worldInitialized = true;
+        }
+
+        // Returns 'true' if the world has been initialized.
+        public bool WorldInitialized
+        {
+            get { return worldInitialized; }
         }
 
         // SAVING/LOADING
@@ -455,6 +460,15 @@ namespace RM_EDU
             }
 
             return totalScore;
+        }
+
+        // Calculates the game score as an int.
+        public int CalculateGameScoreAsInt()
+        {
+            float scoreFloat = CalculateGameScore();
+            int scoreInt = Mathf.CeilToInt(scoreFloat);
+
+            return scoreInt;
         }
 
         // Calculates and sets the game score.
@@ -770,18 +784,76 @@ namespace RM_EDU
         }
 
 
-        // COMPLETE
+        // PROGRESS, COMPLETE
+        // Gets the game progress.
+        public int GetGameProgress()
+        {
+            // Progress
+            int progress = 0;
+
+            // Increases progress for every defeated challenger.
+            for (int i = 0; i < stages.Count; i++)
+            {
+                // If the stage is compelte, add it to the progress..
+                if (stages[i].IsComplete())
+                    progress++;
+            }
+
+            // Returns the progress.
+            return progress;
+        }
+
+        // Gets the game progress as a percentage.
+        // If the percentage can't be calculated, -1 is returned.
+        public float GetGameProgressAsPercentage()
+        {
+            // Gets the number of cleared stages.
+            int clearedCount = GetGameProgress();
+            float progress = 0;
+
+            // Calculates the amount of progress that has been made.
+            if (stages.Count > 0)
+            {
+                progress = (float)clearedCount / stages.Count;
+            }
+            else // Count is unknown, so just set it to -1.
+            {
+                progress = -1;
+            }
+
+            // Returns the progress.
+            return progress;
+        }
+
+        // Submits the current game progress.
+        public void SubmitProgress()
+        {
+            // If the LOLManager and the SDK have both been initialized, submit the score and game progress.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                LOLManager.Instance.SubmitProgress(CalculateGameScoreAsInt(), GetGameProgress());
+        }
+
+        // Submits the game progress complete.
+        public void SubmitProgressComplete()
+        {
+            // Submits the game score and progress complete.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                LOLManager.Instance.SubmitProgressComplete(CalculateGameScoreAsInt());
+        }
+
         // Checks if the game is complete.
         public bool IsGameComplete()
         {
-            // TODO: implement.
-            return false;
+            return gameCompleteEvent.cleared;
         }
 
         // Called when the game has been completed.
         public void CompleteGame()
         {
             // TODO: create results data
+
+            // Submit progress complete.
+            SubmitProgressComplete();
 
             // Go to the results scene.
             LoadResultsScene();

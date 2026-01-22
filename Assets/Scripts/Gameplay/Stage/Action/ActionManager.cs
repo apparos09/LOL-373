@@ -87,6 +87,9 @@ namespace RM_EDU
         // The slow time scale.
         public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.75F;
 
+        // Gets set to 'true' when the action manager has been initialized.
+        protected bool actionInitialized = false;
+
         // Constructor
         private ActionManager()
         {
@@ -221,6 +224,15 @@ namespace RM_EDU
 
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
+
+            // The action stage has been initialized.
+            actionInitialized = true;
+        }
+
+        // Returns 'true' if the action manager has been initialized.
+        public bool ActionInitialized
+        {
+            get { return actionInitialized; }
         }
 
         // Sets the defense id list to all valid ids.

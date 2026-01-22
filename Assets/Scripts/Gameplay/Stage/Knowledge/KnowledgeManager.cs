@@ -43,6 +43,9 @@ namespace RM_EDU
         [Tooltip("Randomizes a statement if a match failed.")]
         public bool randomizeStatementsOnFail = true;
 
+        // Gets set to 'true' when the knowledge manager has been intialized.
+        protected bool initializedKnowledge = false;
+
         // Constructor
         private KnowledgeManager()
         {
@@ -288,8 +291,8 @@ namespace RM_EDU
                 // Grabs the statement group.
                 KnowledgeStatementList.StatementGroup group = statementGroups[i];
 
-                // If the data logger should be used, use it to take out statements that have already been matched in other stages.
-                if(useDataLogger)
+                // If the data logger has been instantiated, use it to take out statements that have already been matched in other stages.
+                if(DataLogger.Instantiated)
                 {
                     // Creates a list that'll hold the unmatched statements.
                     List<KnowledgeStatementList.Statement> unmatchedList = new List<KnowledgeStatementList.Statement>(group.statements);
@@ -339,6 +342,15 @@ namespace RM_EDU
 
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
+
+            // The knowledge has been initialized.
+            initializedKnowledge = true;
+        }
+
+        // Returns 'true' if the knowledge manager has been initialized.
+        public bool KnowledgeInitialized
+        {
+            get { return initializedKnowledge; }
         }
 
         // Randomizes the statements using the groups.
@@ -446,8 +458,8 @@ namespace RM_EDU
                 // Gets set to 'true' if statements were filled when checking with the data logger.
                 bool filledStatements = false;
 
-                // If the data logger is being used and the data logger has been instantiated, try reusing a statement.
-                if(useDataLogger && DataLogger.Instantiated)
+                // If the data logger has been instantiated, try reusing a statement.
+                if(DataLogger.Instantiated)
                 {
                     // There are statemetns that can be reused.
                     if(dataLogger.matchedStatementDatas.Count > 0)
@@ -586,7 +598,7 @@ namespace RM_EDU
 
                     // Adds the statement to the matched statements list in the data logger so that the player...
                     // Won't get this statement again.
-                    if(useDataLogger)
+                    if(DataLogger.Instantiated)
                     {
                         // Generates the statement data.
                         KnowledgeStatementList.Statement.StatementData data = statement.Statement.GenerateStatementData();
@@ -797,25 +809,21 @@ namespace RM_EDU
         {
             base.FinishStage();
 
-            // If the data logger should be used.
-            if(useDataLogger)
-            {
-                // Gets the instance.
-                if (dataLogger == null)
-                    dataLogger = DataLogger.Instance;
+            // Gets the instance of the data logger if it isn't set.
+            if (dataLogger == null)
+                dataLogger = DataLogger.Instance;
 
-                // Saves all the statements to the data logger.
-                foreach (KnowledgeStatement statement in knowledgeUI.statements)
+            // Saves all the statements to the data logger.
+            foreach (KnowledgeStatement statement in knowledgeUI.statements)
+            {
+                // If the statement is active and enabled.
+                if (statement.isActiveAndEnabled)
                 {
-                    // If the statement is active and enabled.
-                    if(statement.isActiveAndEnabled)
+                    // If the statement isn't null, save it as a used statement since the stage is finished.
+                    if (statement.Statement != null)
                     {
-                        // If the statement isn't null, save it as a used statement since the stage is finished.
-                        if(statement.Statement != null)
-                        {
-                            // Generate the statement data.
-                            dataLogger.matchedStatementDatas.Add(statement.Statement.GenerateStatementData());
-                        }
+                        // Generate the statement data.
+                        dataLogger.matchedStatementDatas.Add(statement.Statement.GenerateStatementData());
                     }
                 }
             }
