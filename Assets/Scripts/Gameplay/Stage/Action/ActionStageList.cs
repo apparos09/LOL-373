@@ -345,15 +345,15 @@ namespace RM_EDU
         // Generates and returns stage data for stage 03 (biomass, hydro).
         public static StageGenerationData GenerateStageData03()
         {
-            // An empty map to use as a base to make other function.
+            // The map only has metal tiles and land tiles.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+                { "04L", "01I", "02D", "01J", "01J", "02B", "01J", "01J", "01J", "02D", "01J", "01J", "02B", "01J", "01K" },
+                { "04H", "01E", "02D", "01F", "01F", "02A", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
+                { "04H", "01E", "02D", "01F", "01F", "01F", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
+                { "04H", "01E", "02D", "01F", "01F", "01F", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
+                { "04H", "01E", "02C", "02D", "01F", "01F", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
+                { "04H", "01E", "01F", "02D", "01F", "01F", "02B", "01F", "01F", "03E", "03F", "03F", "03G", "01F", "01G" },
+                { "04D", "01A", "01B", "02D", "01B", "01B", "02B", "01B", "03I", "03F", "03F", "03F", "03F", "03K", "01C" }
             };
 
             // An empty tile overlay.
@@ -368,7 +368,8 @@ namespace RM_EDU
             };
 
             // Wind array of no wind.
-            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
+                {ActionUnit.statRating.none, ActionUnit.statRating.none, ActionUnit.statRating.none };
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();
