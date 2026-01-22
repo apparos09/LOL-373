@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RM_EDU
@@ -200,8 +201,13 @@ namespace RM_EDU
             // Gives the data logger the default defense ids if there are ones.
             if (dataLogger.defenseIds.Count <= 0 && defaultDefenseIds.Count > 0)
             {
+                // Removes duplicates and sorts the list.
+                List<int> tempList = defaultDefenseIds.Distinct().ToList();
+                tempList.Sort();
+
+                // Adds the default defense untis to the list.
                 dataLogger.defenseIds.Clear();
-                dataLogger.defenseIds.AddRange(defaultDefenseIds);
+                dataLogger.defenseIds.AddRange(tempList);
             }
 
             // Calculates and sets the game score.

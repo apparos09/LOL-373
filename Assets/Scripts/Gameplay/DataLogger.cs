@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RM_EDU
@@ -175,8 +176,27 @@ namespace RM_EDU
                     defenseIds.Add(newId);
             }
 
-            // Sort the defense id list.
-            defenseIds.Sort();
+            // Optimizes the list, sorting it and removing duplicates.
+            OptimizeActionDefenseUnitsList();
+        }
+
+        // Clears the action defense units list.
+        public void ClearActionDefenseUnitsList()
+        {
+            defenseIds.Clear();
+        }
+
+        // Removes duplicates in the action defense units list and sorts it.
+        public void OptimizeActionDefenseUnitsList()
+        {
+            // Removes duplicates and sorts the list.
+            List<int> optList = defenseIds.Distinct().ToList();
+            optList.Sort();
+
+            // Adds the list.
+            defenseIds.Clear();
+            defenseIds.AddRange(optList);
+
         }
 
         // Update is called once per frame

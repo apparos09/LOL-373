@@ -207,8 +207,15 @@ namespace RM_EDU
         // Gives the player the defense units for this world stage.
         public void GiveDefenseUnitsToPlayer()
         {
-            // Adds action defense units to the data logger.
-            DataLogger.Instance.AddActionDefenseUnits(defenseIdRewards);
+            // If there are defense id rewards to give the player.
+            if(defenseIdRewards.Count > 0)
+            {
+                // The data logger.
+                DataLogger dataLogger = DataLogger.Instance;
+
+                // Adds action defense units to the data logger.
+                dataLogger.AddActionDefenseUnits(defenseIdRewards);
+            }
         }
 
 

@@ -33,8 +33,8 @@ namespace RM_EDU
         [Tooltip("If true, the game is paused, which changes the time scale to 0.")]
         private bool gamePaused = false;
 
-        // The mouse touch object.
-        public MouseTouchInput mouseTouch;
+        // The mouse touch object. // Unneeded.
+        // public MouseTouchInput mouseTouch;
 
         // The tutorials object.
         public Tutorials tutorials;

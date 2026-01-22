@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -123,7 +124,7 @@ namespace RM_EDU
             switch(idNumber)
             {
                 default:
-                    data = new StageGenerationData();
+                    data = null;
                     break;
                     
                 case 0:
