@@ -355,39 +355,54 @@ namespace RM_EDU
             overlaySpriteRenderer.color = overlayColor;
 
 
-            // If the tile is currently highlighted as usable...
-            // And was changed to something that makes the tile unusable...
-            // Change the highlight.
-            if (IsHighlightedUsable())
+            // Checks if the tile is highlighted.
+            if(IsHighlighted())
             {
-                // Checks the type.
-                switch(tileOverlayType)
+                // If the player is selecting a unit prefab.
+                if(ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab())
                 {
-                    case actionTileOverlay.waterHazard: // Water
+                    // Checks if this tile is usable.
+                    bool usable = ActionManager.Instance.playerUser.selectedUnitPrefab.UsableTile(this);
 
-                        // If the player user is selecting a prefab.
-                        if(ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab())
-                        {
-                            // Gets the type of the prefab the player user is selecting.
-                            switch (ActionManager.Instance.playerUser.GetSelectedActionUnitPrefabType())
-                            {
-                                // If a generator is being selected, highlight the tile as not usuable...
-                                // Since generators cannot go on this tile.
-                                case ActionUnit.unitType.generator:
-                                    HighlightTile(false);
-                                    break;
-                            }
-                        }
-
-                        break;
-
-                    // If now set to a hazard, unhighlight the tile, since it shouldn't be usable anymore.
-                    case actionTileOverlay.nuclearHazard:
-                    case actionTileOverlay.oilHazard:
-                        HighlightTile(false);
-                        break;
+                    // Changes the highlight based on if this tile is usable or not.
+                    SetHighlighted(true, usable);
                 }
             }
+
+            // OLD - didn't always work. Should be removed if the code above works fine.
+            // // If the tile is currently highlighted as usable...
+            // // And was changed to something that makes the tile unusable...
+            // // Change the highlight.
+            // if (IsHighlightedUsable())
+            // {
+            //     // Checks the type.
+            //     switch(tileOverlayType)
+            //     {
+            //         case actionTileOverlay.waterHazard: // Water
+            // 
+            //             // If the player user is selecting a prefab.
+            //             if(ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab())
+            //             {
+            //                 // Gets the type of the prefab the player user is selecting.
+            //                 switch (ActionManager.Instance.playerUser.GetSelectedActionUnitPrefabType())
+            //                 {
+            //                     // If a generator is being selected, highlight the tile as not usuable...
+            //                     // Since generators cannot go on this tile.
+            //                     case ActionUnit.unitType.generator:
+            //                         HighlightTile(false);
+            //                         break;
+            //                 }
+            //             }
+            // 
+            //             break;
+            // 
+            //         // If now set to a hazard, unhighlight the tile, since it shouldn't be usable anymore.
+            //         case actionTileOverlay.nuclearHazard:
+            //         case actionTileOverlay.oilHazard:
+            //             HighlightTile(false);
+            //             break;
+            //     }
+            // }
         }
 
         // Returns the default tile overlay type.
@@ -622,7 +637,46 @@ namespace RM_EDU
         // Refreshes the highlighted tile.
         public void RefreshHighlightedTile()
         {
-            SetHighlighted(IsHighlighted(), !HasActionUnitUser());
+            // Checks if the tile is suable.
+            bool usable;
+
+            // If the tile has an action unit user, check if this tile is usable.
+            if(HasActionUnitUser())
+            {
+                usable = actionUnitUser.UsableTile(this);
+            }
+            // If the tile has no action unit user, check if the player user as a unit selected.
+            // If so, check if the unit is usable on this tile.
+            else
+            {
+                // Checks if the action manager is instantiated. If it is, check the player user.
+                // This is done to avoid instantiating the action manager after it has been destroyed...
+                // When the scene is unloaded.
+                if(ActionManager.Instantiated)
+                {
+                    // Gets the player user.
+                    ActionPlayerUser playerUser = ActionManager.Instance.playerUser;
+
+                    // Checks if the player is selecting a unit prefab.
+                    if (playerUser.IsSelectingActionUnitPrefab())
+                    {
+                        // Selecting something, so see if it can use the tile.
+                        usable = ActionManager.Instance.playerUser.CanSelectedActionUnitUseTile(this);
+                    }
+                    // Selecting nothing, so set to not usable.
+                    else
+                    {
+                        usable = false;
+                    }
+                }
+                else
+                {
+                    usable = false;
+                }
+            }
+
+            // SetHighlighted(IsHighlighted(), !HasActionUnitUser()); // Old
+            SetHighlighted(IsHighlighted(), usable);
         }
 
         // WORLD
