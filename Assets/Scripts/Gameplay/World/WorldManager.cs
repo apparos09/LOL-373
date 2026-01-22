@@ -49,10 +49,14 @@ namespace RM_EDU
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
 
-        [Header("World/Dialogs")]
+        // The default defense ids that the player has.
+        [Tooltip("The defense ids that are set by default.")]
+        public List<int> defaultDefenseIds = new List<int>();
 
-        // The options dialog.
-        public GameObject optionsDialog;
+        [Header("World/Events")]
+
+        // The game complete event of the world manager.
+        public GameCompleteEvent gameCompleteEvent;
 
         // Awake is called when the script is being loaded
         protected override void Awake()
@@ -74,6 +78,12 @@ namespace RM_EDU
             if(worldCamera == null)
             {
                 worldCamera = Camera.main.GetComponent<WorldCamera>();
+            }
+
+            // If the game complete event isn't set, try to grab the component.
+            if(gameCompleteEvent == null)
+            {
+                gameCompleteEvent = GetComponent<GameCompleteEvent>();
             }
 
             // Finds all the stages in the scene if the list has none.
@@ -133,8 +143,17 @@ namespace RM_EDU
         // Initializes the world.
         public void InitializeWorld()
         {
-            // Applies the data logger's world datas to the world.
-            dataLogger.ApplyWorldStageDatasToWorld(this);
+            // If the data logger is being used.
+            if(useDataLogger)
+            {
+                // Gets the data logger instance.
+                // The data logger should already be set.
+                if (dataLogger == null)
+                    dataLogger = DataLogger.Instance;
+
+                // Applies the data logger's world datas to the world.
+                dataLogger.ApplyWorldStageDatasToWorld(this);
+            }
 
             // Tries to find the start info.
             WorldStartInfo startInfo = FindObjectOfType<WorldStartInfo>();
@@ -179,22 +198,22 @@ namespace RM_EDU
                 }
             }
 
-            // If the data logger exists.
-            if (dataLogger != null)
-            {
-                // Reset.
-                dataLogger.gameScore = 0;
 
-                // Goes through all stages.
-                for (int i = 0; i < stages.Count; i++)
+            // Calcualtes and sets the game score.
+            CalculateAndSetGameScore();
+
+            // If the data logger should be used.
+            if (useDataLogger)
+            {
+                // Gives the data logger the default defense ids if there are ones.
+                if (dataLogger.defenseIds.Count <= 0 && defaultDefenseIds.Count > 0)
                 {
-                    // Stage exists.
-                    if (stages[i] != null)
-                    {
-                        // Adds the score to the data logger.
-                        dataLogger.gameScore += stages[i].score;
-                    }
+                    dataLogger.defenseIds.Clear();
+                    dataLogger.defenseIds.AddRange(defaultDefenseIds);
                 }
+
+                // Save the game score to the data logger.
+                dataLogger.gameScore = gameScore;
             }
             
             // TODO: add a variable that shows that initialization took place.
@@ -419,8 +438,33 @@ namespace RM_EDU
 
         // WORLD //
 
+        // Calculates the game score.
+        public float CalculateGameScore()
+        {
+            float totalScore = 0.0F;
+
+            // Goes through all stages.
+            for (int i = 0; i < stages.Count; i++)
+            {
+                // Stage exists.
+                if (stages[i] != null)
+                {
+                    // Adds the score to the data logger.
+                    totalScore += stages[i].score;
+                }
+            }
+
+            return totalScore;
+        }
+
+        // Calculates and sets the game score.
+        public void CalculateAndSetGameScore()
+        {
+            float score = CalculateGameScore();
+            gameScore = score;
+        }
+
         // Calculates the energy total.
-        // TODO: implement.
         public float CalculateEnergyTotal()
         {
             // The energy total to return.

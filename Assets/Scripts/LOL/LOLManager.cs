@@ -27,7 +27,7 @@ namespace RM_EDU
         public TextToSpeech textToSpeech;
 
         // The maximum progress points for the game.
-        const int MAX_PROGRESS = WorldManager.STAGE_COUNT; // Same as the stage count.
+        const int PROGRESS_MAX = WorldManager.STAGE_COUNT; // Same as the stage count.
 
         // private constructor so that only one accessibility object exists.
         private LOLManager()
@@ -172,17 +172,17 @@ namespace RM_EDU
             }
 
             // Clamps the current progress.
-            currentProgress = Mathf.Clamp(currentProgress, 0, MAX_PROGRESS);
+            currentProgress = Mathf.Clamp(currentProgress, 0, PROGRESS_MAX);
 
             // Submit the progress.
-            LOLSDK.Instance.SubmitProgress(score, currentProgress, MAX_PROGRESS);
+            LOLSDK.Instance.SubmitProgress(score, currentProgress, PROGRESS_MAX);
         }
 
         // Submits progress to show that the game is complete.
         public void SubmitProgressComplete(int score)
         {
             // Submits the final score.
-           SubmitProgress(score, MAX_PROGRESS);
+           SubmitProgress(score, PROGRESS_MAX);
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

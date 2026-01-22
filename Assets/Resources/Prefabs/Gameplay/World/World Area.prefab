@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 003cdf3d1db86554e80bc6a0d488071a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  eventName: 
+  eventName: Area Complete
   eventNumber: 0
   eventId: 
   eventTag: 

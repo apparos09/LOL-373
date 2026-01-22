@@ -124,6 +124,7 @@ MonoBehaviour:
   difficulty: 0
   time: 0
   score: 0
+  energyTotal: 0
   locked: 0
   complete: 0
   naturalResources: 

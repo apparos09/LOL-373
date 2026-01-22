@@ -132,6 +132,13 @@ namespace RM_EDU
             // Finds the instance if it isn't set.
             if (titleUI != null)
                 titleUI = TitleUI.Instance;
+
+            // If the data logger exists, destroy it.
+            // This is to account for going from the gameplay scenes to the title scene.
+            if(DataLogger.Instantiated)
+            {
+                Destroy(DataLogger.Instance.gameObject);
+            }
         }
 
         // Called on the first update frame.
