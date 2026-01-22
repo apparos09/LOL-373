@@ -121,15 +121,15 @@ namespace RM_EDU
                     break;
 
                 case defenseType.blaster:
-                    value = "def_bsr";
+                    value = "def_bsr_nme";
                     break;
 
                 case defenseType.shield:
-                    value = "def_shd";
+                    value = "def_shd_nme";
                     break;
 
                 case defenseType.trap:
-                    value = "def_trp";
+                    value = "def_trp_nme";
                     break;
             }
 
@@ -191,15 +191,15 @@ namespace RM_EDU
                     break;
 
                 case defenseType.blaster:
-                    value = "def_bsr_abv";
+                    value = "def_bsr_nme_abv";
                     break;
 
                 case defenseType.shield:
-                    value = "def_shd_abv";
+                    value = "def_shd_nme_abv";
                     break;
 
                 case defenseType.trap:
-                    value = "def_trp_abv";
+                    value = "def_trp_nme_abv";
                     break;
             }
 

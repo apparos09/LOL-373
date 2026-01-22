@@ -156,7 +156,7 @@ namespace RM_EDU
         // Gets the enemy type name key.
         public static string GetEnemyTypeNameKey()
         {
-            return "emy";
+            return "emy_nme";
         }
         
         // Gets the enemy name abbreviation.
@@ -169,14 +169,14 @@ namespace RM_EDU
             }
             else
             {
-                return "emy";
+                return "EMY";
             }
         }
         
         // Gets the enemy name abbreviation key.
         public static string GetEnemyTypeNameAbbreviationKey()
         {
-            return "emy_abv";
+            return "emy_nme_abv";
         }
 
         // MOVEMENT //

@@ -151,8 +151,8 @@ namespace RM_EDU
                         switch(tempGen.resource)
                         {
                             case NaturalResources.naturalResource.biomass:
-                            case NaturalResources.naturalResource.hydro:
                             case NaturalResources.naturalResource.geothermal:
+                            case NaturalResources.naturalResource.hydro:
                             case NaturalResources.naturalResource.solar:
                             case NaturalResources.naturalResource.wave:
                             case NaturalResources.naturalResource.wind:

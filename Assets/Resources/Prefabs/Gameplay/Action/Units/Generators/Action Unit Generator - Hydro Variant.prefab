@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
-  idNumber: 2
+  idNumber: 3
   unitName: Hydro Generator
   unitNameKey: aug_hydro_nme
   spriteRenderer: {fileID: 6032254477688619056}
@@ -147,7 +147,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
-  resource: 2
+  resource: 3
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

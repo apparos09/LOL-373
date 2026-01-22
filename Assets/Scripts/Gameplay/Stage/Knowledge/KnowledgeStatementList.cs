@@ -315,95 +315,94 @@ namespace RM_EDU
             // Renewable
             // Biomass
             biomassGroup = new StatementGroup(NaturalResources.naturalResource.biomass);
-            biomassGroup.statements.Add(new Statement(0, "Biomass 0"));
-            biomassGroup.statements.Add(new Statement(1, "Biomass 1"));
-            biomassGroup.statements.Add(new Statement(2, "Biomass 2"));
-            biomassGroup.statements.Add(new Statement(3, "Biomass 3"));
-            biomassGroup.statements.Add(new Statement(4, "Biomass 4"));
+            biomassGroup.statements.Add(new Statement(0, "Biomass 0", "kst_bms_00"));
+            biomassGroup.statements.Add(new Statement(1, "Biomass 1", "kst_bms_01"));
+            biomassGroup.statements.Add(new Statement(2, "Biomass 2", "kst_bms_02"));
+            biomassGroup.statements.Add(new Statement(3, "Biomass 3", "kst_bms_03"));
+            biomassGroup.statements.Add(new Statement(4, "Biomass 4", "kst_bms_04"));
             biomassGroup.SetAllStatementsToGroupResource();
-
-
-            // Hydro
-            hydroGroup = new StatementGroup(NaturalResources.naturalResource.hydro);
-            hydroGroup.statements.Add(new Statement(0, "Hydro 0"));
-            hydroGroup.statements.Add(new Statement(1, "Hydro 1"));
-            hydroGroup.statements.Add(new Statement(2, "Hydro 2"));
-            hydroGroup.statements.Add(new Statement(3, "Hydro 3"));
-            hydroGroup.statements.Add(new Statement(4, "Hydro 4"));
-            hydroGroup.SetAllStatementsToGroupResource();
 
             // Geothermal
             geothermalGroup = new StatementGroup(NaturalResources.naturalResource.geothermal);
-            geothermalGroup.statements.Add(new Statement(0, "Geothermal 0"));
-            geothermalGroup.statements.Add(new Statement(1, "Geothermal 1"));
-            geothermalGroup.statements.Add(new Statement(2, "Geothermal 2"));
-            geothermalGroup.statements.Add(new Statement(3, "Geothermal 3"));
-            geothermalGroup.statements.Add(new Statement(4, "Geothermal 4"));
+            geothermalGroup.statements.Add(new Statement(0, "Geothermal 0", "kst_gtl_00"));
+            geothermalGroup.statements.Add(new Statement(1, "Geothermal 1", "kst_gtl_01"));
+            geothermalGroup.statements.Add(new Statement(2, "Geothermal 2", "kst_gtl_02"));
+            geothermalGroup.statements.Add(new Statement(3, "Geothermal 3", "kst_gtl_03"));
+            geothermalGroup.statements.Add(new Statement(4, "Geothermal 4", "kst_gtl_04"));
             geothermalGroup.SetAllStatementsToGroupResource();
+
+            // Hydro
+            hydroGroup = new StatementGroup(NaturalResources.naturalResource.hydro);
+            hydroGroup.statements.Add(new Statement(0, "Hydro 0", "kst_hdo_00"));
+            hydroGroup.statements.Add(new Statement(1, "Hydro 1", "kst_hdo_01"));
+            hydroGroup.statements.Add(new Statement(2, "Hydro 2", "kst_hdo_02"));
+            hydroGroup.statements.Add(new Statement(3, "Hydro 3", "kst_hdo_03"));
+            hydroGroup.statements.Add(new Statement(4, "Hydro 4", "kst_hdo_04"));
+            hydroGroup.SetAllStatementsToGroupResource();
 
             // Solar
             solarGroup = new StatementGroup(NaturalResources.naturalResource.solar);
-            solarGroup.statements.Add(new Statement(0, "Solar 0"));
-            solarGroup.statements.Add(new Statement(1, "Solar 1"));
-            solarGroup.statements.Add(new Statement(2, "Solar 2"));
-            solarGroup.statements.Add(new Statement(3, "Solar 3"));
-            solarGroup.statements.Add(new Statement(4, "Solar 4"));
+            solarGroup.statements.Add(new Statement(0, "Solar 0", "kst_slr_00"));
+            solarGroup.statements.Add(new Statement(1, "Solar 1", "kst_slr_01"));
+            solarGroup.statements.Add(new Statement(2, "Solar 2", "kst_slr_02"));
+            solarGroup.statements.Add(new Statement(3, "Solar 3", "kst_slr_03"));
+            solarGroup.statements.Add(new Statement(4, "Solar 4", "kst_slr_04"));
             solarGroup.SetAllStatementsToGroupResource();
 
             // Wave
             waveGroup = new StatementGroup(NaturalResources.naturalResource.wave);
-            waveGroup.statements.Add(new Statement(0, "Wave 0"));
-            waveGroup.statements.Add(new Statement(1, "Wave 1"));
-            waveGroup.statements.Add(new Statement(2, "Wave 2"));
-            waveGroup.statements.Add(new Statement(3, "Wave 3"));
-            waveGroup.statements.Add(new Statement(4, "Wave 4"));
+            waveGroup.statements.Add(new Statement(0, "Wave 0", "kst_wve_00"));
+            waveGroup.statements.Add(new Statement(1, "Wave 1", "kst_wve_01"));
+            waveGroup.statements.Add(new Statement(2, "Wave 2", "kst_wve_02"));
+            waveGroup.statements.Add(new Statement(3, "Wave 3", "kst_wve_03"));
+            waveGroup.statements.Add(new Statement(4, "Wave 4", "kst_wve_04"));
             waveGroup.SetAllStatementsToGroupResource();
 
             // Wind
             windGroup = new StatementGroup(NaturalResources.naturalResource.wind);
-            windGroup.statements.Add(new Statement(0, "Wind 0"));
-            windGroup.statements.Add(new Statement(1, "Wind 1"));
-            windGroup.statements.Add(new Statement(2, "Wind 2"));
-            windGroup.statements.Add(new Statement(3, "Wind 3"));
-            windGroup.statements.Add(new Statement(4, "Wind 4"));
+            windGroup.statements.Add(new Statement(0, "Wind 0", "kst_wnd_00"));
+            windGroup.statements.Add(new Statement(1, "Wind 1", "kst_wnd_01"));
+            windGroup.statements.Add(new Statement(2, "Wind 2", "kst_wnd_02"));
+            windGroup.statements.Add(new Statement(3, "Wind 3", "kst_wnd_03"));
+            windGroup.statements.Add(new Statement(4, "Wind 4", "kst_wnd_04"));
             windGroup.SetAllStatementsToGroupResource();
 
             // Non-renewable
             // Coal
             coalGroup = new StatementGroup(NaturalResources.naturalResource.coal);
-            coalGroup.statements.Add(new Statement(0, "Coal 0"));
-            coalGroup.statements.Add(new Statement(1, "Coal 1"));
-            coalGroup.statements.Add(new Statement(2, "Coal 2"));
-            coalGroup.statements.Add(new Statement(3, "Coal 3"));
-            coalGroup.statements.Add(new Statement(4, "Coal 4"));
+            coalGroup.statements.Add(new Statement(0, "Coal 0", "kst_col_00"));
+            coalGroup.statements.Add(new Statement(1, "Coal 1", "kst_col_01"));
+            coalGroup.statements.Add(new Statement(2, "Coal 2", "kst_col_02"));
+            coalGroup.statements.Add(new Statement(3, "Coal 3", "kst_col_03"));
+            coalGroup.statements.Add(new Statement(4, "Coal 4", "kst_col_04"));
             coalGroup.SetAllStatementsToGroupResource();
-
-            // Oil
-            oilGroup = new StatementGroup(NaturalResources.naturalResource.oil);
-            oilGroup.statements.Add(new Statement(0, "Oil 0"));
-            oilGroup.statements.Add(new Statement(1, "Oil 1"));
-            oilGroup.statements.Add(new Statement(2, "Oil 2"));
-            oilGroup.statements.Add(new Statement(3, "Oil 3"));
-            oilGroup.statements.Add(new Statement(4, "Oil 4"));
-            oilGroup.SetAllStatementsToGroupResource();
 
             // Natural Gas
             naturalGasGroup = new StatementGroup(NaturalResources.naturalResource.naturalGas);
-            naturalGasGroup.statements.Add(new Statement(0, "Natural Gas 0"));
-            naturalGasGroup.statements.Add(new Statement(1, "Natural Gas 1"));
-            naturalGasGroup.statements.Add(new Statement(2, "Natural Gas 2"));
-            naturalGasGroup.statements.Add(new Statement(3, "Natural Gas 3"));
-            naturalGasGroup.statements.Add(new Statement(4, "Natural Gas 4"));
+            naturalGasGroup.statements.Add(new Statement(0, "Natural Gas 0", "kst_ngs_00"));
+            naturalGasGroup.statements.Add(new Statement(1, "Natural Gas 1", "kst_ngs_01"));
+            naturalGasGroup.statements.Add(new Statement(2, "Natural Gas 2", "kst_ngs_02"));
+            naturalGasGroup.statements.Add(new Statement(3, "Natural Gas 3", "kst_ngs_03"));
+            naturalGasGroup.statements.Add(new Statement(4, "Natural Gas 4", "kst_ngs_04"));
             naturalGasGroup.SetAllStatementsToGroupResource();
 
             // Nuclear
             nuclearGroup = new StatementGroup(NaturalResources.naturalResource.nuclear);
-            nuclearGroup.statements.Add(new Statement(0, "Nuclear 0"));
-            nuclearGroup.statements.Add(new Statement(1, "Nuclear 1"));
-            nuclearGroup.statements.Add(new Statement(2, "Nuclear 2"));
-            nuclearGroup.statements.Add(new Statement(3, "Nuclear 3"));
-            nuclearGroup.statements.Add(new Statement(4, "Nuclear 4"));
+            nuclearGroup.statements.Add(new Statement(0, "Nuclear 0", "kst_nlr_00"));
+            nuclearGroup.statements.Add(new Statement(1, "Nuclear 1", "kst_nlr_01"));
+            nuclearGroup.statements.Add(new Statement(2, "Nuclear 2", "kst_nlr_02"));
+            nuclearGroup.statements.Add(new Statement(3, "Nuclear 3", "kst_nlr_03"));
+            nuclearGroup.statements.Add(new Statement(4, "Nuclear 4", "kst_nlr_04"));
             nuclearGroup.SetAllStatementsToGroupResource();
+
+            // Oil
+            oilGroup = new StatementGroup(NaturalResources.naturalResource.oil);
+            oilGroup.statements.Add(new Statement(0, "Oil 0", "kst_oil_00"));
+            oilGroup.statements.Add(new Statement(1, "Oil 1", "kst_oil_01"));
+            oilGroup.statements.Add(new Statement(2, "Oil 2", "kst_oil_02"));
+            oilGroup.statements.Add(new Statement(3, "Oil 3", "kst_oil_03"));
+            oilGroup.statements.Add(new Statement(4, "Oil 4", "kst_oil_04"));
+            oilGroup.SetAllStatementsToGroupResource();
 
             // All the groups have been generated.
             groupsGenerated = true;
@@ -432,12 +431,12 @@ namespace RM_EDU
                     group = biomassGroup;
                     break;
 
-                case NaturalResources.naturalResource.hydro:
-                    group = hydroGroup;
-                    break;
-
                 case NaturalResources.naturalResource.geothermal:
                     group = geothermalGroup;
+                    break;
+
+                case NaturalResources.naturalResource.hydro:
+                    group = hydroGroup;
                     break;
 
                 case NaturalResources.naturalResource.solar:

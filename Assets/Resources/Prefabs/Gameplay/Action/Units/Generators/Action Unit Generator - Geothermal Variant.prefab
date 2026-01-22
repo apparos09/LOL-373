@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
-  idNumber: 3
+  idNumber: 2
   unitName: Geothermal Generator
   unitNameKey: aug_geothermal_nme
   spriteRenderer: {fileID: 7476519495157278778}
@@ -120,7 +120,7 @@ MonoBehaviour:
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
-  resource: 3
+  resource: 2
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

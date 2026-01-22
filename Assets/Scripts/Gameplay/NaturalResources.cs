@@ -10,7 +10,7 @@ namespace RM_EDU
     {
         // Natural Resource Enum.
         // Ordered by renewable then nonrenewable, then alphabetically.
-        public enum naturalResource { unknown, biomass, hydro, geothermal, solar, wave, wind, coal, naturalGas, nuclear, oil }
+        public enum naturalResource { unknown, biomass, geothermal, hydro, solar, wave, wind, coal, naturalGas, nuclear, oil }
 
         // The singleton instance.
         private static NaturalResources instance;
@@ -98,8 +98,8 @@ namespace RM_EDU
             {
                 naturalResource.unknown,
                 naturalResource.biomass,
-                naturalResource.hydro, 
                 naturalResource.geothermal, 
+                naturalResource.hydro, 
                 naturalResource.solar, 
                 naturalResource.wave, 
                 naturalResource.wind, 
@@ -146,12 +146,12 @@ namespace RM_EDU
                         result = "Biomass";
                         break;
 
-                    case naturalResource.hydro:
-                        result = "Hydro";
-                        break;
-
                     case naturalResource.geothermal:
                         result = "Geothermal";
+                        break;
+
+                    case naturalResource.hydro:
+                        result = "Hydro";
                         break;
 
                     case naturalResource.solar:
@@ -206,43 +206,43 @@ namespace RM_EDU
                     break;
 
                 case naturalResource.biomass:
-                    result = "nrs_bms";
-                    break;
-
-                case naturalResource.hydro:
-                    result = "nrs_hdo";
+                    result = "nrs_bms_nme";
                     break;
 
                 case naturalResource.geothermal:
-                    result = "nrs_gtl";
+                    result = "nrs_gtl_nme";
+                    break;
+
+                case naturalResource.hydro:
+                    result = "nrs_hdo_nme";
                     break;
 
                 case naturalResource.solar:
-                    result = "nrs_slr";
+                    result = "nrs_slr_nme";
                     break;
 
                 case naturalResource.wave:
-                    result = "nrs_wve";
+                    result = "nrs_wve_nme";
                     break;
 
                 case naturalResource.wind:
-                    result = "nrs_wnd";
+                    result = "nrs_wnd_nme";
                     break;
 
                 case naturalResource.coal:
-                    result = "nrs_col";
+                    result = "nrs_col_nme";
                     break;
 
                 case naturalResource.naturalGas:
-                    result = "nrs_ngs";
+                    result = "nrs_ngs_nme";
                     break;
 
                 case naturalResource.nuclear:
-                    result = "nrs_nlr";
+                    result = "nrs_nlr_nme";
                     break;
 
                 case naturalResource.oil:
-                    result = "nrs_oil";
+                    result = "nrs_oil_nme";
                     break;
 
                 default:
@@ -281,12 +281,12 @@ namespace RM_EDU
                         result = "BMS";
                         break;
 
-                    case naturalResource.hydro:
-                        result = "HDO";
-                        break;
-
                     case naturalResource.geothermal:
                         result = "GTL";
+                        break;
+
+                    case naturalResource.hydro:
+                        result = "HDO";
                         break;
 
                     case naturalResource.solar:
@@ -341,43 +341,43 @@ namespace RM_EDU
                     break;
 
                 case naturalResource.biomass:
-                    result = "nrs_bms_abv";
-                    break;
-
-                case naturalResource.hydro:
-                    result = "nrs_hdo_abv";
+                    result = "nrs_bms_nme_abv";
                     break;
 
                 case naturalResource.geothermal:
-                    result = "nrs_gtl_abv";
+                    result = "nrs_gtl_nme_abv";
+                    break;
+
+                case naturalResource.hydro:
+                    result = "nrs_hdo_nme_abv";
                     break;
 
                 case naturalResource.solar:
-                    result = "nrs_slr_abv";
+                    result = "nrs_slr_nme_abv";
                     break;
 
                 case naturalResource.wave:
-                    result = "nrs_wve_abv";
+                    result = "nrs_wve_nme_abv";
                     break;
 
                 case naturalResource.wind:
-                    result = "nrs_wnd_abv";
+                    result = "nrs_wnd_nme_abv";
                     break;
 
                 case naturalResource.coal:
-                    result = "nrs_col_abv";
+                    result = "nrs_col_nme_abv";
                     break;
 
                 case naturalResource.naturalGas:
-                    result = "nrs_ngs_abv";
+                    result = "nrs_ngs_nme_abv";
                     break;
 
                 case naturalResource.nuclear:
-                    result = "nrs_nlr_abv";
+                    result = "nrs_nlr_nme_abv";
                     break;
 
                 case naturalResource.oil:
-                    result = "nrs_oil_abv";
+                    result = "nrs_oil_nme_abv";
                     break;
 
                 default:
@@ -408,11 +408,11 @@ namespace RM_EDU
                     color = Color.white;
                     break;
 
-                case naturalResource.hydro:
+                case naturalResource.geothermal:
                     color = Color.white;
                     break;
 
-                case naturalResource.geothermal:
+                case naturalResource.hydro:
                     color = Color.white;
                     break;
 
@@ -458,8 +458,8 @@ namespace RM_EDU
             switch(res)
             {
                 case naturalResource.biomass:
-                case naturalResource.hydro:
                 case naturalResource.geothermal:
+                case naturalResource.hydro:
                 case naturalResource.solar:
                 case naturalResource.wave:
                 case naturalResource.wind:
@@ -491,8 +491,8 @@ namespace RM_EDU
             switch (res)
             {
                 case naturalResource.biomass:
-                case naturalResource.hydro:
                 case naturalResource.geothermal:
+                case naturalResource.hydro:
                 case naturalResource.solar:
                 case naturalResource.wave:
                 case naturalResource.wind:
@@ -523,6 +523,7 @@ namespace RM_EDU
             switch (res)
             {
                 case naturalResource.biomass:
+                case naturalResource.geothermal:
                     result = false;
                     break;
 
@@ -530,8 +531,7 @@ namespace RM_EDU
                     // Can cause the breakdown of plants which releases methane into the atmosphere.
                     result = true;
                     break;
-
-                case naturalResource.geothermal:
+                
                 case naturalResource.solar:
                 case naturalResource.wave:
                 case naturalResource.wind:
