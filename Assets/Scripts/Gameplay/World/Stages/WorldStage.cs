@@ -357,7 +357,7 @@ namespace RM_EDU
             // If the world index, id number, or stage type don't match, display a message.
             if(data.worldStageIndex != GetWorldStageIndex() || idNumber != data.idNumber || data.stageType != GetStageType())
             {
-                Debug.LogAssertion("The ID number or id number don't match. Id number changed to match data.");
+                Debug.LogWarning("The id number or stage type doesn't match. Id number changed to match data.");
             }
             
             // Set the values.

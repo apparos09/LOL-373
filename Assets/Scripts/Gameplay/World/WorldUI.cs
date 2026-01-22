@@ -36,6 +36,8 @@ namespace RM_EDU
         public GameSettingsUI settingsDialog;
 
         // The stage prompt.
+        // NOTE: this is different from the other dialogs since it's part of the world map...
+        // And not a dedicated button on the header.
         public WorldStageDialog stageDialog;
 
 
@@ -234,6 +236,8 @@ namespace RM_EDU
         // Generates a list of dialogs.
         public virtual List<GameObject> GenerateDialogList()
         {
+            // NOTE: the stage dialog isn't included since it's not a menu dialog.
+
             // The list to return, which is given the dialogs in this script.
             List<GameObject> dialogList = new List<GameObject>
             {
@@ -273,6 +277,12 @@ namespace RM_EDU
         }
 
         // Options
+        // Returns 'true' if the options dialog is open.
+        public bool IsOptionsDialogOpen()
+        {
+            return optionsDialog.gameObject.activeSelf;
+        }
+
         // Opens the options dialog.
         public void OpenOptionsDialog(bool closeOtherDialogs)
         {
@@ -292,9 +302,9 @@ namespace RM_EDU
         }
 
         // Opens the settings dialog.
-        public void OpenSettingsDialog()
+        public void OpenSettingsDialog(bool closeOtherDialogs)
         {
-            settingsDialog.gameObject.SetActive(true);
+            OpenDialog(settingsDialog.gameObject, closeOtherDialogs);
         }
 
         // Closes the settings dialog.
@@ -303,7 +313,12 @@ namespace RM_EDU
             settingsDialog.gameObject.SetActive(false);
         }
 
-        // TODO: expand on these functions.
+        // Returns 'true' if the stage dialog is open.
+        public bool IsWorldStageDialogOpen()
+        {
+            return stageDialog.gameObject.activeSelf;
+        }
+
         // Opens the stage prompt.
         public void OpenWorldStageDialog(WorldStage worldStage)
         {
@@ -328,6 +343,12 @@ namespace RM_EDU
         public void SaveAndQuit()
         {
             worldManager.SaveAndQuit();
+        }
+
+        // Quit without saving.
+        public void QuitWithoutSaving()
+        {
+            worldManager.QuitWithoutSaving();
         }
 
         // Update is called once per frame

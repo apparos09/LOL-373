@@ -346,11 +346,24 @@ namespace RM_EDU
             // Saves the game.
             bool result = SaveGame();
 
+            // Closes all the dialogs.
+            worldUI.CloseAllDialogs();
+
             // Loads the title screen.
             LoadTitleScene();
 
             // Returns the result.
             return result;
+        }
+
+        // Quit the game without saving.
+        public void QuitWithoutSaving()
+        {
+            // Closes all the dialogs.
+            worldUI.CloseAllDialogs();
+
+            // Loads the title scene.
+            LoadTitleScene();
         }
 
         // Loads data, and return a 'bool' to show it was successful.
