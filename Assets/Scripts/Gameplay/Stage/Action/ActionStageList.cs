@@ -506,6 +506,46 @@ namespace RM_EDU
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "03I", "03J", "03K", "01J", "01K" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "03E", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "01F", "03I", "03J", "03K", "01F", "01F", "01F", "01F", "03E", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "01F", "03E", "03F", "03G", "01F", "01F", "01F", "01F", "03E", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "01F", "03E", "03F", "03G", "01F", "01F", "01F", "01F", "03A", "03B", "03C", "01F", "01G" },
+                { "04H", "01E", "01F", "03E", "03F", "03G", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04D", "01A", "01B", "03A", "03B", "03C", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
+            };
+
+            // An empty tile overlay.
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 0, 4, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 4, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0 },
+                { 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 4 },
+                { 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0 },
+                { 0, 0, 4, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 4, 0 },
+                { 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 4, 0, 0, 0, 0, 3, 0, 0, 4, 0, 0, 0, 0, 4 }
+            };
+
+            // Wind array of no wind.
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
+                { ActionUnit.statRating.none, ActionUnit.statRating.none, ActionUnit.statRating.none};
+
+            // The data object to return.
+            StageGenerationData data = new StageGenerationData();
+
+            // Setting data.
+            data.map = map;
+            data.overlays = overlays;
+            data.windRatings = windRatings;
+
+            return data;
+        }
+
+        // Generates and returns stage data for stage 08 (unused).
+        public static StageGenerationData GenerateStageData08()
+        {
+            // An empty map to use as a base to make other function.
+            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
                 { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
                 { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
                 { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
@@ -540,72 +580,34 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 08 (unused).
-        public static StageGenerationData GenerateStageData08()
-        {
-            // An empty map to use as a base to make other function.
-            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
-            };
-
-            // An empty tile overlay.
-            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-            };
-
-            // Wind array of no wind.
-            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
-
-            // The data object to return.
-            StageGenerationData data = new StageGenerationData();
-
-            // Setting data.
-            data.map = map;
-            data.overlays = overlays;
-            data.windRatings = windRatings;
-
-            return data;
-        }
-
         // Generates and returns stage data for stage 09 (wave, nuclear, biomass, natural gas).
         public static StageGenerationData GenerateStageData09()
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+                { "04L", "01I", "01J", "01J", "03I", "03J", "03J", "03J", "03J", "03J", "03K", "01J", "01J", "01J", "01K" },
+                { "04H", "01E", "01F", "01F", "03E", "03F", "03F", "03F", "03F", "03F", "03G", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "03E", "03F", "03F", "03F", "03F", "03F", "03G", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "03E", "03F", "03F", "03F", "03F", "03F", "03G", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "03E", "03F", "03F", "03F", "03F", "03F", "03G", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "03E", "03F", "03F", "03F", "03F", "03F", "03G", "01F", "01F", "01F", "01G" },
+                { "04D", "01A", "01B", "01B", "03A", "03B", "03B", "03B", "03B", "03B", "03C", "01B", "01B", "01B", "01C" }
             };
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6, 0, 5, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 4, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 3, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 5, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                { 0, 4, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5, 0, 6, 0 }
             };
 
             // Wind array of no wind.
-            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
+            { ActionUnit.statRating.low, ActionUnit.statRating.medium, ActionUnit.statRating.high};
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();
@@ -623,13 +625,13 @@ namespace RM_EDU
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04D", "01A", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
             };
 
             // An empty tile overlay.
@@ -662,28 +664,29 @@ namespace RM_EDU
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+                { "04L", "01I", "03I", "03J", "03K", "01J", "01J", "01J", "01J", "01J", "03I", "03J", "03K", "01J", "01K" },
+                { "04H", "01E", "03E", "03F", "03F", "02C", "02C", "02C", "02C", "02C", "03F", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "03E", "03F", "03G", "01F", "01F", "01F", "01F", "01F", "03E", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "03E", "03F", "03G", "01F", "01F", "01F", "01F", "01F", "03E", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "03E", "03F", "03G", "01F", "01F", "01F", "01F", "01F", "03E", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "03E", "03F", "03F", "02A", "02A", "02A", "02A", "02A", "03F", "03F", "03G", "01F", "01G" },
+                { "04D", "01A", "03A", "03B", "03C", "01B", "01B", "01B", "01B", "01B", "03A", "03B", "03C", "01B", "01C" }
             };
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 2, 0, 0, 0, 2, 0, 0, 0, 6, 0, 0, 0, 5, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 3, 0, 0, 0, 3, 0, 4, 0, 5, 0, 0, 0, 4, 0 },
+                { 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0 },
+                { 0, 4, 0, 0, 0, 5, 0, 4, 0, 3, 0, 0, 0, 3, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                { 0, 5, 0, 0, 0, 6, 0, 0, 0, 2, 0, 0, 0, 2, 0 }
             };
 
             // Wind array of no wind.
-            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
+                { ActionUnit.statRating.veryLow, ActionUnit.statRating.medium, ActionUnit.statRating.veryHigh};
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();

@@ -330,9 +330,30 @@ namespace RM_EDU
         // Loads a scene, which checks if a loading screen should be used.
         public virtual void LoadScene(string scene, bool useLoadingScreen)
         {
-            SceneManager.LoadScene(scene);
+            // If the loading screen should be used and the loading scene is instantiated.
+            if(useLoadingScreen && LoadingSceneCanvas.Instantiated)
+            {
+                // Gets the instance.
+                LoadingSceneCanvas loadingSceneCanvas = LoadingSceneCanvas.Instance;
 
-            // TODO: implement loading screen.
+                // Checks if the loading graphic is being used.
+                // If not, use a normal scene load.
+                if(loadingSceneCanvas.IsUsingLoadingGraphic())
+                {
+                    // Loading Screen
+                    loadingSceneCanvas.LoadScene(scene);
+                }
+                else
+                {
+                    // Normal
+                    SceneManager.LoadScene(scene);
+                }
+            }
+            else
+            {
+                // Normal scene load.
+                SceneManager.LoadScene(scene);
+            }
         }
 
         // Loads the title scene and checks a member variable for using the loading screen.
