@@ -82,10 +82,10 @@ namespace RM_EDU
         private bool usePostProcessing = true;
 
         // The fast time scale.
-        public const float STAGE_SPEED_FAST_TIME_SCALE = 1.5F;
+        public const float STAGE_SPEED_FAST_TIME_SCALE = 2.0F;
 
         // The slow time scale.
-        public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.75F;
+        public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.5F;
 
         // Gets set to 'true' when the action manager has been initialized.
         protected bool actionInitialized = false;

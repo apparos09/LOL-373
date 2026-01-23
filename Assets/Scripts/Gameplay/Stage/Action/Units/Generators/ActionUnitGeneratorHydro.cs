@@ -68,9 +68,18 @@ namespace RM_EDU
                 return true;
             }
 
-            // The result to be returned.
+            // The result to be returned. Result 1 and 2 will be checked to make this final result.
+            bool finalResult;
+
+            // Determines what checks should be done.
+            bool runCheck1 = true;
+            bool runCheck2 = true;
+
+            // Will be set to 'false' if the hydro generator does not have land on both sides.
+            bool result1 = true;
+
             // Will be set to false if a nearby hydro or wind generator is found.
-            bool result = true;
+            bool result2 = true;
 
             // Gets the stage.
             ActionStage stage = ActionManager.Instance.actionStage;
@@ -79,80 +88,150 @@ namespace RM_EDU
             int tileRow = tile.GetMapRowPosition();
             int tileCol = tile.GetMapColumnPosition();
 
-            // Gets set to true if this tile is next to a hydro generator.
-            // If it is, don't allow the hydro generator to be placed there.
-            bool nextToHydroInWater = false;
-
-            // Gets set to 'true' if next to a wind generator in the water.
-            bool nextToWindInWater = false;
-
-            // The program only checks up, down, left, and right, so these values can be hard coded.
-            ActionTile tileLeft = null;
-            ActionTile tileRight = null;
-            ActionTile tileUp = null;
-            ActionTile tileDown = null;
-
-            // Setting left.
-            if (stage.ValidMapPosition(tileRow - 1, tileCol))
-                tileLeft = stage.tiles[tileRow - 1, tileCol];
-
-            // Setting right.
-            if (stage.ValidMapPosition(tileRow + 1, tileCol))
-                tileRight = stage.tiles[tileRow + 1, tileCol];
-
-            // Setting up.
-            if (stage.ValidMapPosition(tileRow, tileCol + 1))
-                tileUp = stage.tiles[tileRow, tileCol + 1];
-
-            // Setting down.
-            if (stage.ValidMapPosition(tileRow, tileCol - 1))
-                tileDown = stage.tiles[tileRow, tileCol - 1];
-
-            // Creates a list of tiles to be checked.
-            List<ActionTile> checkTiles = new List<ActionTile>() { tileLeft, tileRight, tileUp, tileDown };
-
-            // Goes through the check tiles.
-            foreach(ActionTile checkTile in checkTiles)
+            // RESULT 1 - See if there's land on both sides of the requested position.
+            if(runCheck1)
             {
-                // Checks if the tile exists.
-                if(checkTile != null)
+                // The tile direction.
+                Vector2 tileDirec;
+
+                int t1Row, t1Col;
+                int t2Row, t2Col;
+
+                // Checks if the tile is directional or not.
+                if(tile is ActionTileDirectional)
                 {
-                    // Checks if there's an action user, then checks if it's a water tile.
-                    if(checkTile.HasActionUnitUser() && checkTile.IsWaterTile())
-                    {
-                        // Checks if it's a generator.
-                        if(checkTile.actionUnitUser is ActionUnitGenerator)
-                        {
-                            // Convert to generator.
-                            ActionUnitGenerator generator = (ActionUnitGenerator)checkTile.actionUnitUser;
+                    // Get direction.
+                    tileDirec = (tile as ActionTileDirectional).CalculateDirectionCardinal();
 
-                            // Checks the resource.
-                            // If it's hydro or wind, change the appropriate variables.
-                            switch(generator.resource)
-                            {
-                                case NaturalResources.naturalResource.hydro:
-                                    nextToHydroInWater = true;
-                                    break;
-
-                                case NaturalResources.naturalResource.wind:
-                                    nextToWindInWater = true;
-                                    break;
-                            }
-
-                        }
-                    }
+                    // If none, face right by default.
+                    if (tileDirec == Vector2.zero)
+                        tileDirec = Vector2.right;
+                }
+                else
+                {
+                    // Face right.
+                    tileDirec = Vector2.right;
                 }
 
-                // If next to a hydro generator or a wind generator, you can't place the unit here.
-                if(nextToHydroInWater || nextToWindInWater)
+                // Checks the direction to see what tiles to select.
+                if(tileDirec.y > 0 || tileDirec.y < 0) // Facing Up or Down
                 {
-                    // Result is false, and no more need for checks.
-                    result = false;
-                    break;
+                    // Tile to the left.
+                    t1Row = tileRow;
+                    t1Col = tileCol - 1;
+
+                    // Tile to the right.
+                    t2Row = tileRow;
+                    t2Col = tileCol + 1;
                 }
+                else // Facing Left or Right
+                {
+                    // Tile above.
+                    t1Row = tileRow + 1;
+                    t1Col = tileCol;
+
+                    // Tile below.
+                    t2Row = tileRow - 1;
+                    t2Col = tileCol;
+                }
+
+                // Gets the nearby tiles.
+                ActionTile tile1 = stage.ValidMapPosition(t1Row, t1Col) ? stage.GetTile(t1Row, t1Col) : null;
+                ActionTile tile2 = stage.ValidMapPosition(t2Row, t2Col) ? stage.GetTile(t2Row, t2Col) : null;
+
+                // Checks the two tiles.
+                // If the tile is null, it returns true by default.
+                bool tile1Check = tile1 != null ? tile1.IsLandTile() : true;
+                bool til2Check = tile2 != null ? tile2.IsLandTile() : true;
+
+                // If both tile checks are valid, this result is true.
+                result1 = tile1Check && til2Check;
             }
 
-            return result;
+
+            // RESULT 2 - See that there's no nearby generators that would stop the hydro generator from being placed.
+            if(runCheck2)
+            {
+                // Gets set to true if this tile is next to a hydro generator.
+                // If it is, don't allow the hydro generator to be placed there.
+                bool nextToHydroInWater = false;
+
+                // Gets set to 'true' if next to a wind generator in the water.
+                bool nextToWindInWater = false;
+
+                // The program only checks up, down, left, and right, so these values can be hard coded.
+                ActionTile tileLeft = null;
+                ActionTile tileRight = null;
+                ActionTile tileUp = null;
+                ActionTile tileDown = null;
+
+                // Setting left.
+                if (stage.ValidMapPosition(tileRow - 1, tileCol))
+                    tileLeft = stage.tiles[tileRow - 1, tileCol];
+
+                // Setting right.
+                if (stage.ValidMapPosition(tileRow + 1, tileCol))
+                    tileRight = stage.tiles[tileRow + 1, tileCol];
+
+                // Setting up.
+                if (stage.ValidMapPosition(tileRow, tileCol + 1))
+                    tileUp = stage.tiles[tileRow, tileCol + 1];
+
+                // Setting down.
+                if (stage.ValidMapPosition(tileRow, tileCol - 1))
+                    tileDown = stage.tiles[tileRow, tileCol - 1];
+
+                // Creates a list of tiles to be checked.
+                List<ActionTile> checkTiles = new List<ActionTile>() { tileLeft, tileRight, tileUp, tileDown };
+
+                // Goes through the check tiles.
+                foreach (ActionTile checkTile in checkTiles)
+                {
+                    // Checks if the tile exists.
+                    if (checkTile != null)
+                    {
+                        // Checks if there's an action user, then checks if it's a water tile.
+                        if (checkTile.HasActionUnitUser() && checkTile.IsWaterTile())
+                        {
+                            // Checks if it's a generator.
+                            if (checkTile.actionUnitUser is ActionUnitGenerator)
+                            {
+                                // Convert to generator.
+                                ActionUnitGenerator generator = (ActionUnitGenerator)checkTile.actionUnitUser;
+
+                                // Checks the resource.
+                                // If it's hydro or wind, change the appropriate variables.
+                                switch (generator.resource)
+                                {
+                                    case NaturalResources.naturalResource.hydro:
+                                        nextToHydroInWater = true;
+                                        break;
+
+                                    case NaturalResources.naturalResource.wind:
+                                        nextToWindInWater = true;
+                                        break;
+                                }
+
+                            }
+                        }
+                    }
+
+                    // If next to a hydro generator or a wind generator, you can't place the unit here.
+                    if (nextToHydroInWater || nextToWindInWater)
+                    {
+                        // Result is false, and no more need for checks.
+                        result2 = false;
+                        break;
+                    }
+                }
+            }
+            
+
+            // Calculates the final result.
+            finalResult = result1 && result2;
+
+            // Returns the result.
+            return finalResult;
         }
 
 
