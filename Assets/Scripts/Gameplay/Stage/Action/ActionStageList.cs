@@ -342,7 +342,7 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 03 (biomass, hydro).
+        // Generates and returns stage data for stage 03 (geothermal, hydro).
         public static StageGenerationData GenerateStageData03()
         {
             // The map only has metal tiles and land tiles.
@@ -352,19 +352,19 @@ namespace RM_EDU
                 { "04H", "01E", "02D", "01F", "01F", "01F", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
                 { "04H", "01E", "02D", "01F", "01F", "01F", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
                 { "04H", "01E", "02C", "02D", "01F", "01F", "02B", "01F", "01F", "02D", "01F", "01F", "02B", "01F", "01G" },
-                { "04H", "01E", "01F", "02D", "01F", "01F", "02B", "01F", "01F", "03E", "03F", "03F", "03G", "01F", "01G" },
+                { "04H", "01E", "01F", "02D", "01F", "01F", "02B", "01F", "01F", "03E", "03J", "03J", "03G", "01F", "01G" },
                 { "04D", "01A", "01B", "02D", "01B", "01B", "02B", "01B", "03I", "03F", "03F", "03F", "03F", "03K", "01C" }
             };
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                { 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 },
+                { 0, 0, 0, 2, 0, 0, 0, 0, 2, 0, 2, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 },
+                { 0, 0, 0, 2, 0, 2, 0, 0, 2, 0, 2, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 2, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0 }
             };
 
             // Wind array of no wind.
@@ -421,7 +421,7 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 05 (solar, coal, wind, oil, biomass, hydro).
+        // Generates and returns stage data for stage 05 (solar, coal, wind, oil, geothermal, hydro).
         public static StageGenerationData GenerateStageData05()
         {
             // An empty map to use as a base to make other function.
@@ -439,9 +439,9 @@ namespace RM_EDU
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
                 { 0, 0, 0, 0, 3, 0, 6, 0, 3, 0, 6, 0, 0, 0, 0 },
                 { 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0 },
                 { 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 2, 0, 2, 0, 2, 0, 2, 0, 0, 0, 0 },
                 { 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0 },
                 { 0, 0, 0, 0, 6, 0, 3, 0, 6, 0, 3, 0, 0, 0, 0 }
             };
@@ -466,28 +466,29 @@ namespace RM_EDU
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+                { "04L", "01I", "01K", "03I", "03N", "03N", "03N", "03J", "03J", "03N", "03N", "03N", "03K", "01I", "01K" },
+                { "04H", "01E", "01G", "03H", "01I", "01J", "01K", "03E", "03G", "01I", "01J", "01K", "03H", "01E", "01G" },
+                { "04H", "01E", "01G", "03H", "01E", "01F", "01G", "03E", "03G", "01A", "01B", "01C", "03H", "01E", "01G" },
+                { "04H", "01E", "01G", "03H", "01E", "01F", "01G", "03E", "03F", "03J", "03J", "03J", "03G", "01E", "01G" },
+                { "04H", "01E", "01G", "03H", "01E", "01F", "01G", "03E", "03F", "03F", "03F", "03F", "03G", "01E", "01G" },
+                { "04H", "01E", "01G", "03H", "01A", "01B", "01C", "03E", "03F", "03F", "03F", "03F", "03G", "01E", "01G" },
+                { "04D", "01A", "01C", "03A", "03N", "03N", "03N", "03B", "03B", "03B", "03B", "03B", "03C", "01A", "01C" }
             };
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 5, 0, 5, 0, 0, 5, 0, 0, 0, 0, 5 },
+                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5 },
+                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5 },
+                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
             };
 
             // Wind array of no wind.
-            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
+            { ActionUnit.statRating.medium, ActionUnit.statRating.veryLow, ActionUnit.statRating.veryHigh};
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();
@@ -500,18 +501,18 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 07 (geothermal, natural gas).
+        // Generates and returns stage data for stage 07 (biomass, natural gas).
         public static StageGenerationData GenerateStageData07()
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" },
-                { "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A", "00A" }
+                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04D", "01A", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
             };
 
             // An empty tile overlay.
@@ -578,7 +579,7 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 09 (wave, nuclear, geothermal, natural gas).
+        // Generates and returns stage data for stage 09 (wave, nuclear, biomass, natural gas).
         public static StageGenerationData GenerateStageData09()
         {
             // An empty map to use as a base to make other function.

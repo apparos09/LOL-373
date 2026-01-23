@@ -304,7 +304,7 @@ PrefabInstance:
       objectReference: {fileID: 172028541}
     - target: {fileID: 4243355073232322581, guid: ab38d455426586744978a60e45742b25, type: 3}
       propertyPath: idNumber
-      value: 5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 4243355073232322581, guid: ab38d455426586744978a60e45742b25, type: 3}
       propertyPath: playerUser
