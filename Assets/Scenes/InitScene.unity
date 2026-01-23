@@ -418,15 +418,25 @@ MonoBehaviour:
   lastSave:
     valid: 0
     complete: 0
-    useTutorial: 1
     gameTime: 0
     gameScore: 0
+    gameEnergy: 0
+    currentAreaIndex: 0
+    useTutorial: 1
+    tutorialData:
+      clearedIntroTutorial: 0
+      clearedFirstStageTutorial: 0
   loadedData:
     valid: 0
     complete: 0
-    useTutorial: 1
     gameTime: 0
     gameScore: 0
+    gameEnergy: 0
+    currentAreaIndex: 0
+    useTutorial: 1
+    tutorialData:
+      clearedIntroTutorial: 0
+      clearedFirstStageTutorial: 0
   worldManager: {fileID: 0}
   feedbackText: {fileID: 0}
 --- !u!1 &1201852760
