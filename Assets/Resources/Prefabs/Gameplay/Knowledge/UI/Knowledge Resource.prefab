@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -46}
-  m_SizeDelta: {x: 0, y: -92}
+  m_AnchoredPosition: {x: 0, y: -38}
+  m_SizeDelta: {x: -16, y: -94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8605045532432312369
 CanvasRenderer:
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 24
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 22
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -183,9 +183,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35824b4a2e7b3e442aa02ce210ecef31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  button: {fileID: 8692685359541737090}
+  buttonColorsCopy:
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
   resource: 0
   attachedStatement: {fileID: 0}
-  button: {fileID: 8692685359541737090}
   resourceText: {fileID: 7157670302591326618}
   matchText: {fileID: 2785203053439819813}
 --- !u!1001 &5818653993650936898
@@ -196,6 +204,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 187479066730606440}
     m_Modifications:
+    - target: {fileID: 744694881726015998, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 95db881c5b59e2044b29a6fc4e1c3d4b, type: 3}
+    - target: {fileID: 744694881726015998, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Color.b
+      value: 0.62041366
+      objectReference: {fileID: 0}
+    - target: {fileID: 744694881726015998, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 744694881726015998, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Color.r
+      value: 0.5226415
+      objectReference: {fileID: 0}
     - target: {fileID: 1470436684491121091, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Name
       value: Button (UI) - Short Variant
@@ -212,17 +236,33 @@ PrefabInstance:
       propertyPath: m_text
       value: Knowledge Resource
       objectReference: {fileID: 0}
+    - target: {fileID: 3716918630251316696, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3716918630251316696, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 24
+      objectReference: {fileID: 0}
     - target: {fileID: 4441308131116445423, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Name
       value: Resource Text (TMP)
       objectReference: {fileID: 0}
     - target: {fileID: 4666181678639492033, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666181678639492033, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -40
+      value: -61
+      objectReference: {fileID: 0}
+    - target: {fileID: 4666181678639492033, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4666181678639492033, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 23.5
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Pivot.x

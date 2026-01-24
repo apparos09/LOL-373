@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -46}
-  m_SizeDelta: {x: 0, y: -92}
+  m_AnchoredPosition: {x: 0, y: -38}
+  m_SizeDelta: {x: -16, y: -94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8477984332105492069
 CanvasRenderer:
@@ -92,12 +92,12 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22
+  m_fontSize: 24
   m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 22
+  m_fontSizeMax: 24
   m_fontStyle: 0
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -183,8 +183,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26746d7363f4e8b438482e3e438516b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachedResource: {fileID: 0}
   button: {fileID: 7953860339629387337}
+  buttonColorsCopy:
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
+  attachedResource: {fileID: 0}
   statementText: {fileID: 8473084709445149009}
   matchText: {fileID: 8765125859996393695}
 --- !u!1001 &6599281126908521562
@@ -199,6 +207,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button (UI) - Medium Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 1712422700093940013, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: aac966bc567514443898931686acbaaf, type: 3}
+    - target: {fileID: 1712422700093940013, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712422700093940013, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8236077
+      objectReference: {fileID: 0}
+    - target: {fileID: 1712422700093940013, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_Color.r
+      value: 0.73018867
+      objectReference: {fileID: 0}
     - target: {fileID: 2320687949726967356, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_Name
       value: Statement Text (TMP)
@@ -206,6 +230,14 @@ PrefabInstance:
     - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_text
       value: Knowledge Statement
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_fontSize
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_fontSizeMax
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_Colors.m_SelectedColor.g
@@ -296,12 +328,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -40
+      value: -60
+      objectReference: {fileID: 0}
+    - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 20
+      value: 24
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
