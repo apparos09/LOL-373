@@ -70,9 +70,18 @@ namespace RM_EDU
                 gameUI = FindObjectOfType<GameplayUI>();
             }
 
-            // Gets the tutorials object.
+            // Gets the tutorials object isn't set, instantiate it.
+            // This doesn't check if Tutorials is instantiated since the Tutorials class doesn't use a prefab.
             if (tutorials == null)
+            {
                 tutorials = Tutorials.Instance;
+            }
+
+            // If the tutorials UI is not set, set it to this.
+            if(tutorials.tutorialsUI == null)
+            {
+                tutorials.tutorialsUI = this;
+            }
 
             // If the text box is open and there isn't a tutorial running, close it.
             if (textBox.IsVisible() && !IsTutorialRunning())
@@ -80,7 +89,6 @@ namespace RM_EDU
                 // Closes the text box.
                 CloseTextBox();
             }
-
         }
 
         // Gets the instance.

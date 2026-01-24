@@ -25,11 +25,25 @@ namespace RM_EDU
         {
             // If the game manager isn't set, try to find it.
             if (gameManager == null)
+            {
                 gameManager = FindObjectOfType<GameplayManager>();
+            }
 
-            // If the tutorial UI isn't set, try to find it.
-            if(tutorialUI == null)
-                tutorialUI = FindObjectOfType<TutorialUI>();
+            // If the tutorial UI isn't set and is instantiated, get the instance.
+            if(tutorialUI == null && TutorialUI.Instantiated)
+            {
+                tutorialUI = TutorialUI.Instance;
+            }
+                
+            // If the tutorial UI is set.
+            if(tutorialUI != null)
+            {
+                // The gameUI object isn't set, so give it this.
+                if(tutorialUI.gameUI == null)
+                {
+                    tutorialUI.gameUI = this;
+                }
+            }
         }
 
         // TUTORIAL //

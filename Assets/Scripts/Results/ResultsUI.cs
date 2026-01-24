@@ -21,7 +21,7 @@ namespace RM_EDU
         public ResultsManager resultsManager;
 
         // The loading screen canvas.
-        public LoadingSceneCanvas loadingScreen;
+        public LoadingSceneCanvas loadingSceneCanvas;
 
         // The title scene.
         public string titleScene = "TitleScene";
@@ -73,10 +73,16 @@ namespace RM_EDU
                 resultsManager = ResultsManager.Instance;
             }
 
-            // If the loading screen isn't set, try to find it.
-            if(loadingScreen == null)
+            // If the loading screen isn't set and it has been instantiated, get the instance..
+            if(loadingSceneCanvas == null && LoadingSceneCanvas.Instantiated)
             {
-                loadingScreen = FindObjectOfType<LoadingSceneCanvas>();
+                loadingSceneCanvas = LoadingSceneCanvas.Instance;
+            }
+
+            // If the tutorial UI exists (which it shouldn't since the game is over), destroy it.
+            if(TutorialUI.Instantiated)
+            {
+                Destroy(TutorialUI.Instance.gameObject);
             }
         }
 
@@ -130,9 +136,9 @@ namespace RM_EDU
             // }
 
             // If the loading screen is being used.
-            if (loadingScreen.IsUsingLoadingGraphic())
+            if (loadingSceneCanvas.IsUsingLoadingGraphic())
             {
-                loadingScreen.LoadScene(titleScene);
+                loadingSceneCanvas.LoadScene(titleScene);
             }
             else
             {

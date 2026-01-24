@@ -103,34 +103,19 @@ namespace RM_EDU
         // Start is called before the first frame update
         void Start()
         {
-            // Gets the game manager object.
+            // Gets the game manager object if it isn't set.
             if (gameManager == null)
             {
-                // TODO: grab the game manager
-
-                // // Checks for the user interfaces to attach.
-                // if (WorldManager.Instantiated)
-                // {
-                //     gameManager = WorldManager.Instance;
-                // }
-                // else if (StageManager.Instantiated)
-                // {
-                //     gameManager = StageManager.Instance;
-                // }
-                // else
-                // {
-                //     // Tries to find the object.
-                //     gameManager = FindObjectOfType<GameplayManager>();
-                // 
-                //     // Not set, so state a warning.
-                //     if (gameManager == null)
-                //         Debug.LogWarning("Game manager could not be found.");
-                // }
+                gameManager = FindObjectOfType<GameplayManager>();
             }
 
-            // Gets the tutorials object.
-            if (tutorialsUI == null)
+            // Gets the tutorials UI object if it exists.
+            // Notably, TutorialUI checks for Tutorials as well, and will save itself...
+            // To that object if this check fails.
+            if (tutorialsUI == null && TutorialUI.Instantiated)
+            {
                 tutorialsUI = TutorialUI.Instance;
+            }   
 
             // Don't destroy this game object.
             DontDestroyOnLoad(gameObject);
@@ -195,9 +180,14 @@ namespace RM_EDU
                 gameManager = FindObjectOfType<GameplayManager>();
             }
 
-            // Try to get the tutorials UI again.
-            if (tutorialsUI == null)
+            // Try to get the tutorials UI again if it has been instantiated.
+            // Since the tutorial object might be going into a scene that will end up destroying it...
+            // No message is printed to show that there's no TutorialUI object if TutorialUI...
+            // Hasn't been instantiated.
+            if (tutorialsUI == null && TutorialUI.Instantiated)
+            {
                 tutorialsUI = TutorialUI.Instance;
+            }
         }
 
         // Checks if a tutorial is running.

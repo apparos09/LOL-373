@@ -76,6 +76,12 @@ namespace RM_EDU
                 resultsUI = ResultsUI.Instance;
             }
 
+            // If the tutorials object still exists, destroy it.
+            if(Tutorials.Instantiated)
+            {
+                Destroy(Tutorials.Instance.gameObject);
+            }
+
             // TODO: get data from data logger and then destroy it.
 
             // TODO: maybe move this to another function, or destroy the data logger once you get the data from it.

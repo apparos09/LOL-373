@@ -90,32 +90,45 @@ namespace RM_EDU
                 }
             }
 
-            // TODO: add in when tutorial is created.
             // Sets the tutorials object.
-            // if (tutorials == null)
-            //     tutorials = Tutorials.Instance;
-            // 
-            // 
-            // // If the gameUI is set, check for the tutorial text box.
-            // if (gameUI != null)
-            // {
-            //     // If the tutorial is set.
-            //     if(gameUI.tutorialUI != null)
-            //     {
-            //         // If the tutorial text box is set...
-            //         if (gameUI.tutorialUI.textBox != null)
-            //         {
-            //             // Adds the callbakcs from the tutorial text box.
-            //             // I don't think I need to remove them.
-            //             gameUI.AddTutorialTextBoxCallbacks(this);
-            //         }
-            //     }
-            // }
-        }
+            if (tutorials == null)
+            {
+                tutorials = Tutorials.Instance;
+            }
 
-        // WINDOWS
-        // TODO: create.
-        // public abstract void CloseAllWindows();
+            // If the tutorials object doesn't have a game manager, give it this.
+            if (tutorials.gameManager == null)
+            {
+                tutorials.gameManager = this;
+            }
+            
+
+            // If the gameUI and tutorials is set, check for the tutorial text box.
+            if (gameUI != null && tutorials != null)
+            {
+                // IF the tutorial UI isn't set.
+                if(gameUI.tutorialUI == null)
+                {
+                    // The tutorial UI has been instantiated, so get the instance.
+                    if (TutorialUI.Instantiated)
+                    {
+                        gameUI.tutorialUI = TutorialUI.Instance;
+                    }
+                }
+
+                // If the gameUI has the tutorial UI.
+                if (gameUI.tutorialUI != null)
+                {
+                    // If the tutorial text box has been set...
+                    if (gameUI.tutorialUI.textBox != null)
+                    {
+                        // Adds the callback from the tutorial text box.
+                        // You probably don't need to remove them.
+                        gameUI.AddTutorialTextBoxCallbacks(this);
+                    }
+                }
+            }
+        }
 
         // GAME TIME
         // Gets the game timer.
