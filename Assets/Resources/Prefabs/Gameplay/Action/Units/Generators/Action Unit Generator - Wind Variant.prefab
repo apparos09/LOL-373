@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Generator - Wind Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cf68bfa2bd5d71541943989681d14a26, type: 2}
     m_RemovedComponents:
     - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []

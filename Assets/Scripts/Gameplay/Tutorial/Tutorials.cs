@@ -13,7 +13,10 @@ namespace RM_EDU
         public class TutorialsData
         {
             public bool clearedIntroTutorial;
-            public bool clearedFirstStageTutorial;
+            public bool clearedFirstActionStageTutorial;
+            public bool clearedFirstKnowledgeStageTutorial;
+            public bool clearedFirstStageCompletedTutorial;
+
 
             // TODO: Add
         }
@@ -50,27 +53,9 @@ namespace RM_EDU
         [Header("Tutorials")]
 
         public bool clearedIntroTutorial;
-        public bool clearedFirstStageTutorial;
-
-        public bool clearedHiddenMultiplesTutorial;
-        public bool clearedBarrierTutorial;
-        public bool clearedSurfaceTutorial;
-
-        public bool clearedPuzzleButtonsTutorial;
-        public bool clearedPuzzleSwapTutorial;
-        public bool clearedPuzzleSlideTutorial;
-        public bool clearedPuzzlePathTutorial;
-
-        public bool clearedFirstWinTutorial;
-        public bool clearedMixStageTutorial;
-
-        public bool clearedLengthImperialTutorial;
-        public bool clearedWeightImperialTutorial;
-        public bool clearedTimeTutorial;
-
-        public bool clearedLengthMetricTutorial;
-        public bool clearedWeightMetricTutorial;
-        public bool clearedCapacityTutorial;
+        public bool clearedFirstActionStageTutorial;
+        public bool clearedFirstKnowledgeStageTutorial;
+        public bool clearedFirstStageCompletedTutorial;
 
         // Constructor
         private Tutorials()
@@ -258,7 +243,9 @@ namespace RM_EDU
             TutorialsData data = new TutorialsData();
 
             data.clearedIntroTutorial = clearedIntroTutorial;
-            data.clearedFirstStageTutorial = clearedFirstStageTutorial;
+            data.clearedFirstActionStageTutorial = clearedFirstActionStageTutorial;
+            data.clearedFirstKnowledgeStageTutorial = clearedFirstKnowledgeStageTutorial;
+            data.clearedFirstStageCompletedTutorial = clearedFirstStageCompletedTutorial;
 
             return data;
         }
@@ -267,7 +254,9 @@ namespace RM_EDU
         public void LoadTutorialsData(TutorialsData data)
         {
             clearedIntroTutorial = data.clearedIntroTutorial;
-            clearedFirstStageTutorial = data.clearedFirstStageTutorial;
+            clearedFirstActionStageTutorial = data.clearedFirstActionStageTutorial;
+            clearedFirstKnowledgeStageTutorial = data.clearedFirstKnowledgeStageTutorial;
+            clearedFirstStageCompletedTutorial = data.clearedFirstStageCompletedTutorial;
         }
 
 

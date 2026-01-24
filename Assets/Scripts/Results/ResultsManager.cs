@@ -133,7 +133,7 @@ namespace RM_EDU
         // {
         //     resultsUI.ApplyResultsData(data);
         // }
-        // 
+        
         // Goes to the title scene.
         public void ToTitleScene()
         {
@@ -150,12 +150,11 @@ namespace RM_EDU
                     SceneManager.LoadScene(titleScene);
                 }
             }
-            // No loading screen, so load the screen
+            // No loading screen, so load the scene normally.
             else
             {
                 SceneManager.LoadScene(titleScene);
             }
-            
         }
 
         // Update is called once per frame

@@ -20,9 +20,6 @@ namespace RM_EDU
         // The results manager.
         public ResultsManager resultsManager;
 
-        // The loading screen canvas.
-        public LoadingSceneCanvas loadingSceneCanvas;
-
         // The title scene.
         public string titleScene = "TitleScene";
 
@@ -73,12 +70,6 @@ namespace RM_EDU
                 resultsManager = ResultsManager.Instance;
             }
 
-            // If the loading screen isn't set and it has been instantiated, get the instance..
-            if(loadingSceneCanvas == null && LoadingSceneCanvas.Instantiated)
-            {
-                loadingSceneCanvas = LoadingSceneCanvas.Instance;
-            }
-
             // If the tutorial UI exists (which it shouldn't since the game is over), destroy it.
             if(TutorialUI.Instantiated)
             {
@@ -125,25 +116,7 @@ namespace RM_EDU
         // Goes to the title scene.
         public void ToTitleScene()
         {
-            // // If the loading screen is being used.
-            // if (LoadingScreenCanvas.Instance.IsUsingLoadingScreen())
-            // {
-            //     LoadingScreenCanvas.Instance.LoadScene(titleScene);
-            // }
-            // else
-            // {
-            //     SceneManager.LoadScene(titleScene);
-            // }
-
-            // If the loading screen is being used.
-            if (loadingSceneCanvas.IsUsingLoadingGraphic())
-            {
-                loadingSceneCanvas.LoadScene(titleScene);
-            }
-            else
-            {
-                SceneManager.LoadScene(titleScene);
-            }
+            resultsManager.ToTitleScene();
         }
 
         // Call this function to complete the game. This is called by the "finish" button.
