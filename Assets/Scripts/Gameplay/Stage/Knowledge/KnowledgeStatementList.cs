@@ -68,6 +68,16 @@ namespace RM_EDU
                 this.resource = resource;
             }
 
+            // Generates the identification text for the statement, which displays...
+            // The statement's ID number and what resource it belongs to.
+            // This is "[Resource] [ID Number]" (e.g., 'Oil 2').
+            public string GenerateIdText()
+            {
+                // "[Resource Name] [ID Number]"
+                string result = NaturalResources.GetNaturalResourceName(resource) + " " + idNumber.ToString();
+                return result;
+            }
+
             // Generates the statement data. The group resource is the same as the statement's resource.
             public StatementData GenerateStatementData()
             {

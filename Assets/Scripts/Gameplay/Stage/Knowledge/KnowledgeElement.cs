@@ -2,13 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 
 namespace RM_EDU
 {
     // An element used for the knowledge stage.
     public abstract class KnowledgeElement : MonoBehaviour
     {
+        // The knowledge UI.
+        public KnowledgeUI knowledgeUI;
+
         // The button.
         public Button button;
 
@@ -19,6 +21,10 @@ namespace RM_EDU
         // Start is called before the first frame update
         protected virtual void Start()
         {
+            // If the knowledge UI is null, get the instance.
+            if (knowledgeUI == null)
+                knowledgeUI = KnowledgeUI.Instance;
+
             // Adds a Select() call on the button.
             if (button != null)
             {

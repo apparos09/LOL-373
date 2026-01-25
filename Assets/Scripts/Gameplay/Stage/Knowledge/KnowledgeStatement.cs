@@ -24,6 +24,9 @@ namespace RM_EDU
         // The match text, which is changed to show what the knowledge statement is attached to.
         public TMP_Text matchText;
 
+        // If 'true', the identification text is used, which reveals the answer.
+        private bool useIdText = false;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -35,6 +38,12 @@ namespace RM_EDU
             {
                 SetStatement(KnowledgeStatementList.GenerateTestStatement());
             }
+        }
+
+        // If 'true', the id text is shown instead of the statement text.
+        public bool UseIdText
+        {
+            get { return useIdText; }
         }
 
         // Called when the statement has been selected.
@@ -75,7 +84,7 @@ namespace RM_EDU
         public void SetStatement(KnowledgeStatementList.Statement statement)
         {
             this.statement = statement;
-            statementText.text = statement.text;
+            statementText.text = (useIdText) ? statement.GenerateIdText() : statement.text;
         }
 
         // Checks if the statement is attached to a resource.
