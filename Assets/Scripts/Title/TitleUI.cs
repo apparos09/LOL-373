@@ -104,9 +104,15 @@ namespace RM_EDU
                     // Gets the save system.
                     SaveSystem saveSystem = LOLManager.Instance.saveSystem;
 
+                    // If using the LOL System
+                    // NOTE: the data isn't loaded until the continue button is pressed.
+                    // As such, the continue button is made interactable even though the save system...
+                    // Has no data loaded yet.
+                    continueButton.interactable = true;
+
                     // If there is loaded data, make the continue button interactable.
                     // If there is no loaded data, make the continue button non-interactable.
-                    continueButton.interactable = saveSystem.HasLoadedData();
+                    // continueButton.interactable = saveSystem.HasLoadedData();
 
                     // Sets the feedback text.
                     saveSystem.feedbackText = saveText;
@@ -123,8 +129,28 @@ namespace RM_EDU
             }
             else
             {
-                // Enable the continue button and show the quit button.
+                // NOTE: the continue button is disabled because the local saved data is cleared after it's used...
+                // TO load the game. As such, if the player loads in a saved game using local data, then backs out...
+                // Of the game, the data is gone, meaning the player cannot load that data a second time.
+                // You could have it use the last save data, but the data saved to the server would always...
+                // Be used instead of that if it's available, even if the last save data is ahead of the server data.
+                // It's easier just to keep the continue button completely disabled.
+
+                // Enable the continue button if the save system exists and it has data.
+                // Disable it otherwise.
+                // if(SaveSystem.Instantiated)
+                // {
+                //     continueButton.interactable = SaveSystem.Instance.HasLoadedData();
+                // }
+                // else
+                // {
+                //     continueButton.interactable = false;
+                // }
+
+                // Keep continue button disabled.
                 continueButton.interactable = false;
+
+                // Show the quit button.
                 quitButton.gameObject.SetActive(true);
             }
 

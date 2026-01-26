@@ -11,8 +11,6 @@ namespace RM_EDU
         // The facing direction of the hydro generator.
         public Vector2 facingDirec = Vector2.right;
 
-        // TODO: set facing direction by version.
-
         // If 'true', the hydro generator is using its restricted configuration.
         private bool restrictConfig = true;
 

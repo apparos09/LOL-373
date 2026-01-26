@@ -449,6 +449,47 @@ namespace RM_EDU
             return alpha;
         }
 
+        // Returns 'true' if the tile has an overlay hazard.
+        public bool HasTileOverlayHazard()
+        {
+            // Result to be returned.
+            bool result;
+
+            // Checks if it's one of the hazard overlays.
+            switch(tileOverlayType)
+            {
+                default:
+                    result = false;
+                    break;
+
+                case actionTileOverlay.waterHazard:
+                case actionTileOverlay.nuclearHazard:
+                case actionTileOverlay.oilHazard:
+                    result = true;
+                    break;
+            }
+
+            // Return result.
+            return result;
+        }
+
+        // Returns true if the tile overlay is a water hazard.
+        public bool HasTileOverlayWaterHazard()
+        {
+            return tileOverlayType == actionTileOverlay.waterHazard;
+        }
+
+        // Returns 'true' if the tile has a nuclear hazard.
+        public bool HasTileOverlayNuclearHazard()
+        {
+            return tileOverlayType == actionTileOverlay.nuclearHazard;
+        }
+
+        // Returns 'true' if the tile has an oil hazard.
+        public bool HasTileOverlayOilHazard()
+        {
+            return tileOverlayType == actionTileOverlay.oilHazard;
+        }
 
         // COLOR CHANGES //
         // Gets the tile's base color.

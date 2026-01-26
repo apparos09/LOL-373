@@ -26,8 +26,7 @@ namespace RM_EDU
         public float gameScore = 0;
 
         // The total amount of energy generated for the game.
-        // TODO: set.
-        public float gameEnergy = 0;
+        public float gameEnergyTotal = 0;
 
         // The current area index.
         public int currentAreaIndex = 0;
@@ -205,17 +204,22 @@ namespace RM_EDU
             return true;
         }
 
+        // Returns 'true' if the game has last save data.
+        public bool HasLastSaveData()
+        {
+            return lastSave != null;
+        }
+
         // Sets the last bit of saved data to the loaded data object.
         public void SetLastSaveAsLoadedData()
         {
             loadedData = lastSave;
         }
 
-        // Clears out the last save and the loaded data object.
-        public void ClearLoadedAndLastSaveData()
+        // Clears the last save data.
+        public void ClearLastSaveData()
         {
             lastSave = null;
-            loadedData = null;
         }
 
         // Saves data.
@@ -339,6 +343,13 @@ namespace RM_EDU
         // Removes the loaded data.
         public void ClearLoadedData()
         {
+            loadedData = null;
+        }
+
+        // Clears out the last save and the loaded data object.
+        public void ClearLoadedAndLastSaveData()
+        {
+            lastSave = null;
             loadedData = null;
         }
 

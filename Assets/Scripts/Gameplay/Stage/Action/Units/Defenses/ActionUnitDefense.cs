@@ -238,8 +238,8 @@ namespace RM_EDU
             // Checks if a tile exists.
             if(tile != null)
             {
-                // If it's a land tile, don't use the platform.
-                if(tile.IsLandTile())
+                // If it's a land tile and the tile doesn't have a water hazard, don't use the platform.
+                if(tile.IsLandTile() && !tile.HasTileOverlayWaterHazard())
                 {
                     SetPlatformVisible(false);
                 }

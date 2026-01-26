@@ -135,7 +135,6 @@ namespace RM_EDU
         // WORLD
 
         // Saves data from the provided world stage.
-        // The index
         public void SaveWorldStageData(WorldStage worldStage)
         {
             // Gets the stage's index.
@@ -153,10 +152,26 @@ namespace RM_EDU
             }
         }
 
+        // Saves all stage datas from the provided world manager.
+        public void SaveWorldStageDatas(WorldManager worldManager)
+        {
+            // Goes through each stage.
+            for (int i = 0; i < worldManager.stages.Count; i++)
+            {
+                // There is a stage in the world manager's list, so save its data.
+                if (worldManager.stages[i] != null)
+                {
+                    // Saves the world stage data.
+                    SaveWorldStageData(worldManager.stages[i]);
+                }
+            }
+        }
+
+
         // Applies world stage datas to the world.
         public void ApplyWorldStageDatasToWorld(WorldManager worldManager)
         {
-            // The stage datas match u pwith the world stages.
+            // The stage datas match up with the world stages.
             for(int i = 0; i < worldStageDatas.Length && i < worldManager.stages.Count; i++)
             {
                 // There is stage data and a stage at the set index.

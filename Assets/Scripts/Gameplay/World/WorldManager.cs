@@ -172,14 +172,18 @@ namespace RM_EDU
             }
 
             // If save data was loaded in, don't load the data from the data logger.
-            // Make sure the save data was cleared after it was loaded.
-            if(!saveDataLoaded)
+            if(saveDataLoaded)
+            {
+                // Save all the world datas since they've now been added from the save manager.
+                dataLogger.SaveWorldStageDatas(this);
+            }
+            // Save data not loaded, so use the data logger.
+            else
             {
                 // Applies the data logger's world datas to the world.
                 dataLogger.ApplyWorldStageDatasToWorld(this);
             }
-
-
+            
             // Tries to find the start info.
             WorldStartInfo startInfo = FindObjectOfType<WorldStartInfo>();
 
@@ -205,11 +209,16 @@ namespace RM_EDU
             }
             else
             {
-                // The current area index.
-                currAreaIndex = 0;
+                // If save data wasn't loaded, and no start info was used...
+                // Go to the first area.
+                if(!saveDataLoaded)
+                {
+                    // The current area index.
+                    currAreaIndex = 0;
 
-                // Sets the current area to be the first one.
-                SetCurrentWorldArea(currAreaIndex);
+                    // Sets the current area to be the first one.
+                    SetCurrentWorldArea(currAreaIndex);
+                }
 
                 // If area buttons should be effected.
                 if(effectAreaButtons)
@@ -269,7 +278,7 @@ namespace RM_EDU
             // Gets the game score, game time, and game energy.
             data.gameScore = dataLogger.gameScore;
             data.gameTime = dataLogger.gameTimer;
-            data.gameEnergy = CalculateEnergyTotal();
+            data.gameEnergyTotal = CalculateEnergyTotal();
 
             // Gets the world stage data for every stage.
             for(int i = 0; i < data.worldStageDatas.Length && i < stages.Count; i++)
@@ -402,7 +411,7 @@ namespace RM_EDU
         }
 
         // Loads data, and return a 'bool' to show it was successful.
-        // clearDataAfterLoad: if true, the data is cleared from the save system after it's loaded.
+        // clearDataAfterLoad: if true, the loaded data is cleared from the save system after it's loaded.
         //  - This only happens if the data was loaded properly.
         public bool LoadGame(bool clearDataAfterLoad)
         {
@@ -494,6 +503,7 @@ namespace RM_EDU
             // If the data should be cleared after it's been loaded...
             if(clearDataAfterLoad)
             {
+                // Clear the loaded and last saved data.
                 saveSystem.ClearLoadedAndLastSaveData();
             }
 
