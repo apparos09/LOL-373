@@ -89,7 +89,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_Name
-      value: Log Button (UI) Variant
+      value: Info Log Button (UI) Variant
       objectReference: {fileID: 0}
     - target: {fileID: 2510162268394537624, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_text
@@ -101,7 +101,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: kwd_log
+      value: kwd_infoLog
       objectReference: {fileID: 0}
     - target: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       propertyPath: m_Pivot.x

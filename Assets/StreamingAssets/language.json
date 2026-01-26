@@ -45,11 +45,11 @@
       "kwd_knowledgeStage": 18,
       "kwd_unknownStage": 18,
 
+      "kwd_infoLog": 18,
+
       "kwd_generator": 18,
       "kwd_defense": 18,
       "kwd_enemy": 18,
-
-      "kwd_log": 18,
 
       "nrs_bms_nme": 18,
       "nrs_gtl_nme": 18,
@@ -249,11 +249,11 @@
     "kwd_knowledgeStage": "Knowledge Stage",
     "kwd_unknownStage": "Unknown Stage",
 
+    "kwd_infoLog": "Info Log",
+
     "kwd_generator": "Generator",
     "kwd_defense": "Defense",
     "kwd_enemy": "Enemy",
-
-    "kwd_log": "Log",
 
     "nrs_bms_nme": "Biomass",
     "nrs_gtl_nme": "Geothermal",

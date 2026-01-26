@@ -35,9 +35,13 @@ namespace RM_EDU
         // The game settings.
         public GameSettingsUI settingsDialog;
 
+        // The info log dialog.
+        public InfoLog infoLogDialog;
+
         // The stage prompt.
         // NOTE: this is different from the other dialogs since it's part of the world map...
         // And not a dedicated button on the header.
+        [Tooltip("The dialog for a selected world stage. This is seperate from the other dialogs.")]
         public WorldStageDialog stageDialog;
 
 
@@ -242,7 +246,8 @@ namespace RM_EDU
             List<GameObject> dialogList = new List<GameObject>
             {
                 optionsDialog,
-                settingsDialog.gameObject
+                settingsDialog.gameObject,
+                infoLogDialog.gameObject
             };
 
             return dialogList;
@@ -295,6 +300,7 @@ namespace RM_EDU
             CloseDialog(optionsDialog.gameObject);
         }
 
+        // Settings
         // Returns 'true' if the settigns dialog is open.
         public bool IsSettingsDialogOpen()
         {
@@ -310,9 +316,29 @@ namespace RM_EDU
         // Closes the settings dialog.
         public void CloseSettingsDialog()
         {
-            settingsDialog.gameObject.SetActive(false);
+            CloseDialog(settingsDialog.gameObject);
         }
 
+        // Info Log
+        // Returns 'true' if the info log dialog is open.
+        public bool IsInfoLogDialogOpen()
+        {
+            return infoLogDialog.gameObject.activeSelf;
+        }
+
+        // Opens the info log dialog.
+        public void OpenInfoLogDialogDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(infoLogDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the info log dialog.
+        public void CloseInfoLogDialog()
+        {
+            CloseDialog(infoLogDialog.gameObject);
+        }
+
+        // World Stage
         // Returns 'true' if the stage dialog is open.
         public bool IsWorldStageDialogOpen()
         {

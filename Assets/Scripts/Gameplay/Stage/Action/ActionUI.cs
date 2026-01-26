@@ -22,6 +22,9 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The info log dialog.
+        public InfoLog infoLogDialog;
+
         // The window that shows up when the stage is over.
         public GameObject stageEndDialog;
 
@@ -139,6 +142,7 @@ namespace RM_EDU
             }
         }
 
+        // PLAYER UI
         // Updates the player user's UI.
         public void UpdatePlayerUserUI()
         {
@@ -253,9 +257,28 @@ namespace RM_EDU
             List<GameObject> dialogList = base.GenerateDialogList();
 
             // Adds the rest of the dialogs.
+            dialogList.Add(infoLogDialog.gameObject);
             dialogList.Add(stageEndDialog);
 
             return dialogList;
+        }
+
+        // Returns 'true' if the info log is open.
+        public bool IsInfoLogDialogOpen()
+        {
+            return infoLogDialog.gameObject.activeSelf;
+        }
+
+        // Opens the info log dialog.
+        public void OpenInfoLogDialogDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(infoLogDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the info log dialog.
+        public void CloseInfoLogDialog()
+        {
+            CloseDialog(infoLogDialog.gameObject);
         }
 
         // Opens the stage end dialog.

@@ -99,7 +99,7 @@ namespace RM_EDU
             // If the world stage isn't equal to null, start the stage.
             if(worldStage != null)
             {
-                worldUI.worldManager.StartStage(worldStage);
+                WorldManager.Instance.StartStage(worldStage);
             }
             
         }
@@ -112,10 +112,10 @@ namespace RM_EDU
             // TODO: implement.
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // // Update is called once per frame
+        // void Update()
+        // {
+        // 
+        // }
     }
 }

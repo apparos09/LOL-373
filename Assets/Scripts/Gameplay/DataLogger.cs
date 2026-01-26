@@ -32,6 +32,9 @@ namespace RM_EDU
 
         [Header("Action")]
 
+        // The natural resources that the player has used.
+        public List<NaturalResources.naturalResource> usedResources = new List<NaturalResources.naturalResource>();
+
         // The unlocked defense units for the action stages.
         public List<int> defenseIds = new List<int>();
 
@@ -164,6 +167,44 @@ namespace RM_EDU
                 }
             }
         }
+
+        // NATURAL RESOURCES //
+        // Adds natural resources to the list.
+        public void AddUsedNaturalResources(List<NaturalResources.naturalResource> newResources)
+        {
+            // Goes through the list of new resources.
+            foreach (NaturalResources.naturalResource newRes in newResources)
+            {
+                // The new resource isn't in the list, so add it to the list.
+                if(!usedResources.Contains(newRes))
+                    usedResources.Add(newRes);
+            }
+
+            // Optimizes the list, sorting it and removing duplicates.
+            OptimizeUsedNaturalResourcesList();
+        }
+
+        // Clears the action defense units list.
+        public void ClearUsedNaturalResourcesList()
+        {
+            usedResources.Clear();
+        }
+
+        // Removes duplicates in the natural resources list and sorts it.
+        public void OptimizeUsedNaturalResourcesList()
+        {
+            // Removes duplicates and sorts the list.
+            List<NaturalResources.naturalResource> optList = usedResources.Distinct().ToList();
+            optList.Sort();
+
+            // Adds the list.
+            usedResources.Clear();
+            usedResources.AddRange(optList);
+
+        }
+
+
+        // DEFENSE //
 
         // Adds action defense units to the list.
         public void AddActionDefenseUnits(List<int> newIds)

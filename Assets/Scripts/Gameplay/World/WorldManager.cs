@@ -237,6 +237,10 @@ namespace RM_EDU
             // The game data to return.
             EDU_GameData data = new EDU_GameData();
 
+            // If the data logger isn't set, grab the instance.
+            if (dataLogger == null)
+                dataLogger = DataLogger.Instance;
+
             // Gets the game score, game time, and game energy.
             data.gameScore = dataLogger.gameScore;
             data.gameTime = dataLogger.gameTimer;
@@ -420,6 +424,10 @@ namespace RM_EDU
             }
 
             // Load the data.
+            // Gets the data logger if it's not set.
+            if (dataLogger == null)
+                dataLogger = DataLogger.Instance;
+
             // Gets the game score, game time, and game energy.
             dataLogger.gameScore = data.gameScore;
             dataLogger.gameTimer = data.gameTime;
@@ -759,7 +767,8 @@ namespace RM_EDU
         // Starts the provided stage.
         public void StartStage(WorldStage worldStage)
         {
-            // TODO: create start info.
+            // Adds the natural resources from the world stage to used list.
+            dataLogger.AddUsedNaturalResources(worldStage.naturalResources);
 
             // A temporary object that will be used for start info.
             GameObject startInfoObject = null;
