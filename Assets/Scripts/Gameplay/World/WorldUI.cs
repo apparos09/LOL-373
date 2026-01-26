@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -44,6 +45,10 @@ namespace RM_EDU
         [Tooltip("The dialog for a selected world stage. This is seperate from the other dialogs.")]
         public WorldStageDialog stageDialog;
 
+        [Header("Other")]
+
+        // Text that's used for saving.
+        public TMP_Text saveText;
 
         // Awake is called when the script is being loaded
         protected override void Awake()
@@ -78,6 +83,19 @@ namespace RM_EDU
             if(worldManager == null)
             {
                 worldManager = WorldManager.Instance;
+            }
+
+            // The save text exists.
+            if(saveText != null)
+            {
+                // Blank out text.
+                saveText.text = string.Empty;
+
+                // If the save system is instantiated, set the save text as the feedback text.
+                if (SaveSystem.Instantiated)
+                {
+                    SaveSystem.Instance.feedbackText = saveText;
+                }
             }
 
             // Closes all the dialogs.

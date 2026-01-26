@@ -40,6 +40,7 @@
       "kwd_saveAndQuit": 24,
       "kwd_quitWithoutSaving": 24,
 
+      "kwd_world": 18,
       "kwd_worldStage": 18,
       "kwd_actionStage": 18,
       "kwd_knowledgeStage": 18,
@@ -244,6 +245,7 @@
     "kwd_saveAndQuit": "Save and Quit",
     "kwd_quitWithoutSaving": "Quit Without Saving",
 
+    "kwd_world": "World",
     "kwd_worldStage": "World Stage",
     "kwd_actionStage": "Action Stage",
     "kwd_knowledgeStage": "Knowledge Stage",

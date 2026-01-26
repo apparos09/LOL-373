@@ -56,7 +56,7 @@ namespace RM_EDU
                 instanced = true;
 
                 // This object should not be destroyed.
-                DontDestroyOnLoad(this);
+                DontDestroyOnLoad(gameObject);
 
                 // The LOLSDK version is the one you use.
                 // It is automatically being used already, but I wanted to make a note of this...

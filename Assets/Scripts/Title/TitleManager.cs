@@ -85,8 +85,6 @@ namespace RM_EDU
                     // It doesn't effect anything, but it's jarring visually.
                     // As such, the Update loop keeps them both on.
 
-                    // TODO: maybe search for the title UI instance?
-
                     // Set up the game initializations.
                     if (titleUI.newGameButton != null && titleUI.continueButton != null)
                         lolManager.saveSystem.Initialize(titleUI.newGameButton, titleUI.continueButton);
@@ -221,8 +219,8 @@ namespace RM_EDU
         // Starts a new game.
         public void StartNewGame()
         {
-            // Clear out the loaded data and last save if the LOLSDK has been initialized.
-            LOLManager.Instance.saveSystem.ClearLoadedAndLastSaveData();
+            // Clear out the loaded data and last save if the save system has been initialized.
+            ClearLastSaveAndLoadedData();
 
             // Start the game.
             StartGame();
@@ -246,13 +244,16 @@ namespace RM_EDU
 
 
         // Clears out the save.
-        // TODO: This is only for testing, and the button for this should not be shown in the final game.
-        public void ClearSave()
+        public void ClearLastSaveAndLoadedData()
         {
-            LOLManager.Instance.saveSystem.lastSave = null;
-            LOLManager.Instance.saveSystem.loadedData = null;
+            // If the save system has been instantiated, clear the save.
+            if(SaveSystem.Instantiated)
+            {
+                SaveSystem.Instance.lastSave = null;
+                SaveSystem.Instance.loadedData = null;
 
-            titleUI.continueButton.interactable = false;
+                titleUI.continueButton.interactable = false;
+            }
         }
 
         // Quits the game (will not be used in LOL version).

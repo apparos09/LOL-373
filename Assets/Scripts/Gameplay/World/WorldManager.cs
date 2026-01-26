@@ -20,7 +20,7 @@ namespace RM_EDU
 
         // If saving and loading is enabled.
         // NOTE: set this to true when you have the tutorial set up.
-        private bool savingLoadingEnabled = false;
+        private bool savingLoadingEnabled = true;
 
         // If 'true', auto saving is enabled.
         private bool autoSavingEnabled = true;
@@ -152,8 +152,33 @@ namespace RM_EDU
             if (dataLogger == null)
                 dataLogger = DataLogger.Instance;
 
-            // Applies the data logger's world datas to the world.
-            dataLogger.ApplyWorldStageDatasToWorld(this);
+
+            // Loading Data
+            // Gets set to true if save data was loaded.
+            bool saveDataLoaded = false;
+
+            // If there's save data to load in, try to load it in.
+            if(SaveSystem.Instantiated)
+            {
+                // If the save system has loaded data, load the game.
+                if(SaveSystem.Instance.HasLoadedData())
+                {
+                    // Loads the game.
+                    saveDataLoaded = LoadGame(true);
+
+                    // Calls again in case the function was unsuccessful.
+                    SaveSystem.Instance.ClearLoadedAndLastSaveData();
+                }
+            }
+
+            // If save data was loaded in, don't load the data from the data logger.
+            // Make sure the save data was cleared after it was loaded.
+            if(!saveDataLoaded)
+            {
+                // Applies the data logger's world datas to the world.
+                dataLogger.ApplyWorldStageDatasToWorld(this);
+            }
+
 
             // Tries to find the start info.
             WorldStartInfo startInfo = FindObjectOfType<WorldStartInfo>();
@@ -377,7 +402,9 @@ namespace RM_EDU
         }
 
         // Loads data, and return a 'bool' to show it was successful.
-        public bool LoadGame()
+        // clearDataAfterLoad: if true, the data is cleared from the save system after it's loaded.
+        //  - This only happens if the data was loaded properly.
+        public bool LoadGame(bool clearDataAfterLoad)
         {
             // Checks if saving/loading is enabled.
             if(!savingLoadingEnabled)
@@ -463,6 +490,12 @@ namespace RM_EDU
             tutorials.LoadTutorialsData(data.tutorialData);
 
             // Complete and Valid parameters were already checked.
+
+            // If the data should be cleared after it's been loaded...
+            if(clearDataAfterLoad)
+            {
+                saveSystem.ClearLoadedAndLastSaveData();
+            }
 
             // Data set successfully.
             return true;

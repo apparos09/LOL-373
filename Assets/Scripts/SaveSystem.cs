@@ -189,11 +189,13 @@ namespace RM_EDU
         // Checks if the world manager has been set.
         private bool IsWorldManagerSet()
         {
-            // Tries to set the world manager.
-            if (worldManager == null)
+            // Tries to set the world manager if it isn't saved, but it has been instantiated.
+            if (worldManager == null && WorldManager.Instantiated)
+            {
                 worldManager = WorldManager.Instance;
+            }
 
-            // Game manager does not exist.
+            // Checks if the world manager has been set and returns the result.
             if (worldManager == null)
             {
                 Debug.LogWarning("The World Manager couldn't be found.");
@@ -235,6 +237,9 @@ namespace RM_EDU
             // Stores the most recent save.
             lastSave = savedData;
 
+            // Sets the last save as the loaded data.
+            SetLastSaveAsLoadedData();
+
             // If the instance has been initialized.
             if (LOLSDK.Instance.IsInitialized)
             {
@@ -252,6 +257,7 @@ namespace RM_EDU
 
                 // Send the save state.
                 LOLSDK.Instance.SaveState(savedData);
+
                 success = true;
             }
             else // Not initialized.
@@ -307,7 +313,8 @@ namespace RM_EDU
         }
 
         // Checks if the game has loaded data.
-        public bool HasLoadedData()
+        // checkValid: if 'true', the data is checked for validity. If the data is invalid, this returns false.
+        public bool HasLoadedData(bool checkValid = true)
         {
             // Used to see if the data is available.
             bool result;
@@ -316,7 +323,8 @@ namespace RM_EDU
             if (loadedData != null) // Exists.
             {
                 // Checks to see if the data is valid.
-                result = loadedData.valid;
+                // If validity isn't being checked, return true regardless.
+                result = (checkValid) ? loadedData.valid : true;
             }
             else // No data.
             {
