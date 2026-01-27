@@ -12,6 +12,9 @@ namespace RM_EDU
         // Ordered by renewable then nonrenewable, then alphabetically.
         public enum naturalResource { unknown, biomass, geothermal, hydro, solar, wave, wind, coal, naturalGas, nuclear, oil }
 
+        // The number of natural resource types.
+        public const int NATURAL_RESOURCE_COUNT = 11;
+
         // The singleton instance.
         private static NaturalResources instance;
 

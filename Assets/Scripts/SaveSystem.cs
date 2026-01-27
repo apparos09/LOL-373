@@ -28,11 +28,20 @@ namespace RM_EDU
         // The total amount of energy generated for the game.
         public float gameEnergyTotal = 0;
 
+        // The total amount of air pollution for the game.
+        public float gameAirPollution = 0;
+
         // The current area index.
         public int currentAreaIndex = 0;
 
-        // The stage data.
+        // The stage datas.
         public WorldStage.WorldStageData[] worldStageDatas = new WorldStage.WorldStageData[WorldManager.STAGE_COUNT];
+
+        // The used resources. If the bool is true, then the resource has been used. If false, ith asn't been used.
+        public bool[] usedResources = new bool[NaturalResources.NATURAL_RESOURCE_COUNT];
+
+        // The defense ids. A true value means the id that lines up with the index is unlocked. False menas locked.
+        public bool[] defenseIds = new bool[ActionUnitDefense.DEFENSE_ID_COUNT];
 
         // To avoid problems, the tutorial parameter cannot be changed for a saved game.
         public bool useTutorial = true;

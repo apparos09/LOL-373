@@ -29,16 +29,14 @@ namespace RM_EDU
         // The world stage data. The index of the array matches up with the index in the world stage list.
         public WorldStage.WorldStageData[] worldStageDatas = new WorldStage.WorldStageData[WorldManager.STAGE_COUNT];
 
-
-        [Header("Action")]
-
         // The natural resources that the player has used.
         public List<NaturalResources.naturalResource> usedResources = new List<NaturalResources.naturalResource>();
+
+        [Header("Action")]
 
         // The unlocked defense units for the action stages.
         public List<int> defenseIds = new List<int>();
 
-        
         [Header("Knowledge")]
         
         // The list of statements the player has matched correctly.
@@ -182,6 +180,41 @@ namespace RM_EDU
                 }
             }
         }
+
+        // Gets the energy total from the stage datas.
+        public float GetWorldStageDatasEnergyTotal()
+        {
+            // The energy total to return.
+            float energyTotal = 0;
+
+            // Goes through all the stage datas.
+            foreach(WorldStage.WorldStageData worldStageData in worldStageDatas)
+            {
+                // The data exists, so add to the total.
+                if (worldStageData != null)
+                    energyTotal += worldStageData.energyTotal;
+            }
+
+            return energyTotal;
+        }
+
+        // Gets the air pollution total from the stage datas.
+        public float GetWorldStageDatasAirPollutionTotal()
+        {
+            // The air pollution total to return.
+            float airPollutionTotal = 0;
+
+            // Goes through all the stage datas.
+            foreach (WorldStage.WorldStageData worldStageData in worldStageDatas)
+            {
+                // The data exists, so add to the total.
+                if (worldStageData != null)
+                    airPollutionTotal += worldStageData.airPollution;
+            }
+
+            return airPollutionTotal;
+        }
+
 
         // NATURAL RESOURCES //
         // Adds natural resources to the list.

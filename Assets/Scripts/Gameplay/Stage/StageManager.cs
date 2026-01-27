@@ -143,6 +143,12 @@ namespace RM_EDU
         // Gets the stage energy total.
         public abstract float GetStageEnergyTotal();
 
+        // Gets the stage's air pollution amount, which only pertains to the action stage.
+        public virtual float GetStageAirPollution()
+        {
+            return 0.0F;
+        }
+
         // Returns 'true' if the stage is complete.
         public abstract bool IsComplete();
 

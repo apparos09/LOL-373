@@ -152,22 +152,25 @@ namespace RM_EDU
             if (dataLogger == null)
                 dataLogger = DataLogger.Instance;
 
+            // The save system.
+            // If instantiated, get the instance. If not instantiated, set to null.
+            SaveSystem saveSystem = SaveSystem.Instantiated ? SaveSystem.Instance : null;
 
             // Loading Data
             // Gets set to true if save data was loaded.
             bool saveDataLoaded = false;
 
             // If there's save data to load in, try to load it in.
-            if(SaveSystem.Instantiated)
+            if(saveSystem != null)
             {
                 // If the save system has loaded data, load the game.
-                if(SaveSystem.Instance.HasLoadedData())
+                if(saveSystem.HasLoadedData())
                 {
                     // Loads the game.
                     saveDataLoaded = LoadGame(true);
 
                     // Calls again in case the function was unsuccessful.
-                    SaveSystem.Instance.ClearLoadedAndLastSaveData();
+                    saveSystem.ClearLoadedAndLastSaveData();
                 }
             }
 
@@ -201,6 +204,11 @@ namespace RM_EDU
                     {
                         // Auto save the game.
                         SaveGame();
+
+                        // If the save system is set, that means it's been instantiated.
+                        // Clears the loaded data so that it doesn't take priority over the data logger.
+                        if (saveSystem != null)
+                            saveSystem.ClearLoadedAndLastSaveData();
                     }
                 }
 
@@ -275,13 +283,19 @@ namespace RM_EDU
             if (dataLogger == null)
                 dataLogger = DataLogger.Instance;
 
-            // Gets the game score, game time, and game energy.
+            // Gets the game score, game time, game energy, and game air pollution.
             data.gameScore = dataLogger.gameScore;
             data.gameTime = dataLogger.gameTimer;
             data.gameEnergyTotal = CalculateEnergyTotal();
+            data.gameAirPollution = CalculateAirPollutionTotal();
 
+            // Saves the current area index.
+            data.currentAreaIndex = GetCurrentWorldAreaIndex();
+
+
+            // World Stages
             // Gets the world stage data for every stage.
-            for(int i = 0; i < data.worldStageDatas.Length && i < stages.Count; i++)
+            for (int i = 0; i < data.worldStageDatas.Length && i < stages.Count; i++)
             {
                 // The stage exists.
                 if (stages[i] != null)
@@ -295,8 +309,28 @@ namespace RM_EDU
                 }
             }
 
-            // Saves the current area index.
-            data.currentAreaIndex = GetCurrentWorldAreaIndex();
+            // Natural Resources
+            // Sets the natural resource as used or unused.
+            for(int i = 0; i < data.usedResources.Length; i++)
+            {
+                // The resource number.
+                NaturalResources.naturalResource resNum = (NaturalResources.naturalResource)i;
+
+                // Checks the used resources list in the data logger to see if it contains the resource.
+                // If it does, mark that the resource has been used. If it doesn't, mark that it hasn't been used.
+                data.usedResources[i] = dataLogger.usedResources.Contains(resNum) ? true : false;
+            }
+
+            // Defense Ids
+            // Sets the defense ids locked or unlocked.
+            for (int i = 0; i < data.defenseIds.Length; i++)
+            {
+                // The value (i) matches up with the defense id. The game checks if the defense id...
+                // Is in the data logger's defense ids list. If it is, this defense is unlocked.
+                // If it isn't, it's locked.
+                data.defenseIds[i] = dataLogger.defenseIds.Contains(i) ? true : false;
+            }
+
 
             // Tutorial parameter.
             data.useTutorial = GameSettings.Instance.UseTutorial;
@@ -467,8 +501,10 @@ namespace RM_EDU
             // Gets the game score, game time, and game energy.
             dataLogger.gameScore = data.gameScore;
             dataLogger.gameTimer = data.gameTime;
-            // TODO: the energy total should be set with the stage data automatically.
+            // TODO: maybe store the energy total and air pollution somewhere? Right now they're summed from the stages.
 
+
+            // World Stages
             // Gets the world stage data for every stage.
             for (int i = 0; i < data.worldStageDatas.Length && i < stages.Count; i++)
             {
@@ -488,6 +524,54 @@ namespace RM_EDU
                     stages[i].ApplyWorldStageData(data.worldStageDatas[i]);
                 }
             }
+
+            // Natural Resources
+            // Clear the used resources.
+            dataLogger.usedResources.Clear();
+
+            // Sets which natural resources have been used.
+            for (int i = 0; i < data.usedResources.Length; i++)
+            {
+                // If the resource has been used.
+                if(data.usedResources[i])
+                {
+                    // Converts the resource number.
+                    NaturalResources.naturalResource resNum = (NaturalResources.naturalResource)i;
+                
+                    // If the used resources list doesn't contain this resource, add it.
+                    if(!dataLogger.usedResources.Contains(resNum))
+                    {
+                        dataLogger.usedResources.Add(resNum);
+                    }
+                }
+            }
+
+            // Optimizes the used natural resources list.
+            dataLogger.OptimizeUsedNaturalResourcesList();
+
+            // Defense Ids
+            // Clears the data logger.
+            dataLogger.defenseIds.Clear();
+
+            // Unlocks defense units based on the active values in the data's id list.
+            for (int i = 0; i < data.defenseIds.Length; i++)
+            {
+                // If the defense id is marked as unlocked.
+                if (data.defenseIds[i])
+                {
+                    // If the data logger's defense ids list doesn't contain the id...
+                    // Add it, as it is unlocked.
+                    if(!dataLogger.defenseIds.Contains(i))
+                    {
+                        dataLogger.defenseIds.Add(i);
+                    }
+                }
+            }
+
+            // Optimize the data logger's defense units id list.
+            dataLogger.OptimizeActionDefenseUnitsList();
+
+
 
             // Saves the current area index.
             SetCurrentWorldArea(data.currentAreaIndex);
@@ -565,6 +649,25 @@ namespace RM_EDU
             }
 
             return energyTotal;
+        }
+
+        // Calculates the air pollution total.
+        public float CalculateAirPollutionTotal()
+        {
+            // The air pollution total to return.
+            float airPollutionTotal = 0;
+
+            // Goes through all stages to get the air pollution total.
+            foreach (WorldStage stage in stages)
+            {
+                // If the stage exists, add to the air pollution.
+                if (stage != null)
+                {
+                    airPollutionTotal += stage.airPollution;
+                }
+            }
+
+            return airPollutionTotal;
         }
 
 
@@ -921,7 +1024,8 @@ namespace RM_EDU
         // Called when the game has been completed.
         public void CompleteGame()
         {
-            // TODO: create results data
+            // Save all the world datas for the results scene.
+            dataLogger.SaveWorldStageDatas(this);
 
             // Submit progress complete.
             SubmitProgressComplete();

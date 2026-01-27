@@ -10,6 +10,9 @@ namespace RM_EDU
         // The type of the defense unit.
         public enum defenseType { unknown, blaster, shield, trap }
 
+        // The total number of defense IDs.
+        public const int DEFENSE_ID_COUNT = 17;
+
         [Header("Defense")]
 
         // The type of the defense unit.

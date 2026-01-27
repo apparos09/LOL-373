@@ -27,8 +27,11 @@ namespace RM_EDU
         // The score.
         public float stageScore = 0;
 
-        // The enegy total.
+        // The energy total.
         public float stageEnergyTotal = 0;
+
+        // The air pollution generated in this stage.
+        public float stageAirPollution = 0;
 
         // Gets set to see if the stage the player is coming back from was completed.
         public bool stageCompleted;
@@ -61,6 +64,9 @@ namespace RM_EDU
 
                 // Gets the stage energy total.
                 stageEnergyTotal = stageManager.GetStageEnergyTotal();
+
+                // Gets the stage air pollution.
+                stageAirPollution = stageManager.GetStageAirPollution();
 
                 // Set if the stage is complete.
                 stageCompleted = stageManager.IsComplete();
@@ -100,6 +106,9 @@ namespace RM_EDU
 
                     // Gets the stage's energy total.
                     worldStage.energyTotal = stageEnergyTotal;
+
+                    // Sets the stage's air pollution.
+                    worldStage.airPollution = stageAirPollution;
 
                     // Set if the stage was completed or not.
                     worldStage.SetComplete(stageCompleted);

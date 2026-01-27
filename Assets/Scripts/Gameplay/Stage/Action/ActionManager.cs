@@ -742,6 +742,12 @@ namespace RM_EDU
             return playerUser.energyGenTotal;
         }
 
+        // Gets the stage air pollution.
+        public override float GetStageAirPollution()
+        {
+            return playerUser.airPollution;
+        }
+
         // Returns 'true' if the stage is complete.
         public override bool IsComplete()
         {

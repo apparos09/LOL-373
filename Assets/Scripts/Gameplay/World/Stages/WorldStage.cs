@@ -30,6 +30,9 @@ namespace RM_EDU
             // The energy total for the stage.
             public float energyTotal = 0;
 
+            // The air pollution for the stage.
+            public float airPollution = 0;
+
             // Marks if the stage is complete.
             public bool complete = false;
         }
@@ -75,6 +78,10 @@ namespace RM_EDU
         // The total amount of energy generated for this stage.
         [Tooltip("The total amount of energy generated in this stage.")]
         public float energyTotal = 0;
+
+        // The amount of air pollution generated in this stage (action stage only).
+        [Tooltip("The air pollution generated in this stage (action stage only).")]
+        public float airPollution = 0;
 
         // Checks if the stage is locked. This isn't included in the stage data.
         [Tooltip("If 'true', the stage is locked and cannot be selected.")]
@@ -350,9 +357,12 @@ namespace RM_EDU
             data.worldStageIndex = GetWorldStageIndex();
             data.idNumber = idNumber;
             data.stageType = GetStageType();
+
             data.time = time;
             data.score = score;
             data.energyTotal = energyTotal;
+            data.airPollution = airPollution;
+
             data.complete = complete;
 
             return data;
@@ -373,6 +383,7 @@ namespace RM_EDU
             time = data.time;
             score = data.score;
             energyTotal = data.energyTotal;
+            airPollution = data.airPollution;
 
             complete = data.complete;
         }
@@ -380,7 +391,7 @@ namespace RM_EDU
         // Update is called once per frame
         protected virtual void Update()
         {
-
+            // ...
         }
     }
 }
