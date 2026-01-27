@@ -130,10 +130,10 @@ namespace RM_EDU
             // Gets the key for translation.
             string key = GetNaturalResourceNameKey(res);
 
-            // If the LOL manager has been initialized and the key exists.
+            // If the LOL SDK has been initialized and the key exists.
             if(LOLManager.IsLOLSDKInitialized() && key != "")
             {
-                result = LOLManager.Instance.GetLanguageText(key);
+                result = LOLManager.GetLanguageTextStatic(key);
             }
             // Either the LOL SDK isn't initialized or the key is empty, so manually fill the values.
             else
@@ -265,10 +265,10 @@ namespace RM_EDU
             // Gets the key for translation.
             string key = GetNaturalResourceNameAbbreviationKey(res);
 
-            // If the LOL manager has been initialized and the key exists.
+            // If the LOL SDK has been initialized and the key exists.
             if (LOLManager.IsLOLSDKInitialized() && key != "")
             {
-                result = LOLManager.Instance.GetLanguageText(key);
+                result = LOLManager.GetLanguageTextStatic(key);
             }
             // Either the LOL SDK isn't initialized or the key is empty, so manually fill the values.
             else
@@ -391,13 +391,146 @@ namespace RM_EDU
             return result;
         }
 
+        // Gets the natural resource description.
+        public static string GetNaturalResourceDescription(naturalResource res)
+        {
+            // The result to be returned.
+            string result;
+
+            // Gets the key for translation.
+            string key = GetNaturalResourceDescriptionKey(res);
+
+            // If the LOL SDK has been initialized and the key exists.
+            if (LOLManager.IsLOLSDKInitialized() && key != "")
+            {
+                result = LOLManager.GetLanguageTextStatic(key);
+            }
+            // Either the LOL SDK isn't initialized or the key is empty, so manually fill the values.
+            else
+            {
+                // Checks the resource type to know what name abbreviation to return.
+                switch (res)
+                {
+                    case naturalResource.unknown:
+                        result = "Unknown";
+                        break;
+
+                    case naturalResource.biomass:
+                        result = "[BIOMASS]";
+                        break;
+
+                    case naturalResource.geothermal:
+                        result = "[GEOTHERMAL]";
+                        break;
+
+                    case naturalResource.hydro:
+                        result = "[HYDRO]";
+                        break;
+
+                    case naturalResource.solar:
+                        result = "[SOLAR]";
+                        break;
+
+                    case naturalResource.wave:
+                        result = "[WAVE]";
+                        break;
+
+                    case naturalResource.wind:
+                        result = "[WIND]";
+                        break;
+
+                    case naturalResource.coal:
+                        result = "[COAL]";
+                        break;
+
+                    case naturalResource.naturalGas:
+                        result = "[NATURAL GAS]";
+                        break;
+
+                    case naturalResource.nuclear:
+                        result = "[NUCLEAR]]";
+                        break;
+
+                    case naturalResource.oil:
+                        result = "[OIL]";
+                        break;
+
+                    default:
+                        result = string.Empty;
+                        break;
+                }
+            }
+
+
+            return result;
+        }
+
+        // Gets the key for the natural resource description, which is used for the language file.
+        public static string GetNaturalResourceDescriptionKey(naturalResource res)
+        {
+            // The result to be returned.
+            string result;
+
+            // Checks the resource type to know what key to return.
+            switch (res)
+            {
+                case naturalResource.unknown:
+                    result = "kwd_unknown"; // Uses keyword "Unknown".
+                    break;
+
+                case naturalResource.biomass:
+                    result = "nrs_bms_dsc";
+                    break;
+
+                case naturalResource.geothermal:
+                    result = "nrs_gtl_dsc";
+                    break;
+
+                case naturalResource.hydro:
+                    result = "nrs_hdo_dsc";
+                    break;
+
+                case naturalResource.solar:
+                    result = "nrs_slr_dsc";
+                    break;
+
+                case naturalResource.wave:
+                    result = "nrs_wve_dsc";
+                    break;
+
+                case naturalResource.wind:
+                    result = "nrs_wnd_dsc";
+                    break;
+
+                case naturalResource.coal:
+                    result = "nrs_col_dsc";
+                    break;
+
+                case naturalResource.naturalGas:
+                    result = "nrs_ngs_dsc";
+                    break;
+
+                case naturalResource.nuclear:
+                    result = "nrs_nlr_dsc";
+                    break;
+
+                case naturalResource.oil:
+                    result = "nrs_oil_dsc";
+                    break;
+
+                default:
+                    result = string.Empty;
+                    break;
+            }
+
+            return result;
+        }
+
         // Gets the color assigned to this natural resource.
         public static Color GetNaturalResourceColor(naturalResource res)
         {
             // The color to be returned.
             Color color;
-
-            // TODO: implement.
 
             // Checks the resource type to know what key to return.
             switch (res)
@@ -408,43 +541,43 @@ namespace RM_EDU
                     break;
 
                 case naturalResource.biomass:
-                    color = Color.white;
+                    color = new Color(0.055F, 0.631F, 0.216F);
                     break;
 
                 case naturalResource.geothermal:
-                    color = Color.white;
+                    color = new Color(0.945F, 0.118F, 0.024F);
                     break;
 
                 case naturalResource.hydro:
-                    color = Color.white;
+                    color = new Color(0.09F, 0.176F, 0.839F);
                     break;
 
                 case naturalResource.solar:
-                    color = Color.white;
+                    color = new Color(1.0F, 0.588F, 0.0F);
                     break;
 
                 case naturalResource.wave:
-                    color = Color.white;
+                    color = new Color(0.051F, 0.757F, 0.98F);
                     break;
 
                 case naturalResource.wind:
-                    color = Color.white;
+                    color = new Color(0.749F, 1.0F, 1.0F);
                     break;
 
                 case naturalResource.coal:
-                    color = Color.white;
+                    color = new Color(0.259F, 0.275F, 0.333F);
                     break;
 
                 case naturalResource.naturalGas:
-                    color = Color.white;
+                    color = new Color(1.0F, 1.0F, 0.0F);
                     break;
 
                 case naturalResource.nuclear:
-                    color = Color.white;
+                    color = new Color(0.553F, 1.0F, 0.0F);
                     break;
 
                 case naturalResource.oil:
-                    color = Color.white;
+                    color = new Color(0.259F, 0.102F, 0.094F);
                     break;
             }
 

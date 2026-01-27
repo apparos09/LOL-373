@@ -26,6 +26,14 @@ namespace RM_EDU
         // The text that gets changed to show what statmenet this resource is matched with.
         public TMP_Text matchText;
 
+        // If 'true', the resource colour is used instead of the button's base color.
+        private bool useResourceColor = false;
+
+        // The mix amount for the resource colour. The resource colour is lerped with the colour white...
+        // To set the button color.
+        // The higher the value, the stronger the resource color is in the new color.
+        private float resourceColorMix = 0.333F;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -54,11 +62,34 @@ namespace RM_EDU
             SetButtonToSelectedColor();
         }
 
+        // Returns 'true' if this button is set to use the resource color.
+        public bool UseResourceColor
+        {
+            get { return useResourceColor; }
+        }
+
+        // Gets the resource color mix amount.
+        public float ResourceColorMix
+        {
+            get { return resourceColorMix; }
+        }
+
         // Sets the resource and the display text.
         public void SetResource(NaturalResources.naturalResource resource)
         {
             this.resource = resource;
             resourceText.text = NaturalResources.GetNaturalResourceName(resource);
+
+            // If the resource color should be used.
+            if(useResourceColor && buttonImage != null)
+            {
+                // Gets the resource colour, and mixes it with white to get the new colour.
+                Color resColor = NaturalResources.GetNaturalResourceColor(resource);
+                Color newColor = Color.Lerp(Color.white, resColor, resourceColorMix);
+
+                // Sets the new colour.
+                buttonImage.color = newColor;
+            }
         }
 
         // Checks if the resource is attached to a statement.

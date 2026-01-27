@@ -183,7 +183,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35824b4a2e7b3e442aa02ce210ecef31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knowledgeUI: {fileID: 0}
   button: {fileID: 8692685359541737090}
+  buttonImage: {fileID: 6527320005265880508}
   buttonColorsCopy:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
     m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
@@ -357,6 +359,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
   m_PrefabInstance: {fileID: 5818653993650936898}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6527320005265880508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 744694881726015998, guid: 77f1817714185a741937f2deb494834e, type: 3}
+  m_PrefabInstance: {fileID: 5818653993650936898}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7157670302591326618 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3716918630251316696, guid: 77f1817714185a741937f2deb494834e, type: 3}

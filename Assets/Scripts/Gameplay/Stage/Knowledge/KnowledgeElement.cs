@@ -14,6 +14,9 @@ namespace RM_EDU
         // The button.
         public Button button;
 
+        // The button image.
+        public Image buttonImage;
+
         // A copy of the button's color block on start.
         [HideInInspector]
         public ColorBlock buttonColorsCopy;
@@ -28,6 +31,10 @@ namespace RM_EDU
             // Adds a Select() call on the button.
             if (button != null)
             {
+                // If the button image isn't set, get it from the button.
+                if (buttonImage == null)
+                    buttonImage = button.gameObject.GetComponent<Image>();
+
                 // Listener for the tutorial toggle.
                 button.onClick.AddListener(delegate
                 {

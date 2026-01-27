@@ -13,6 +13,9 @@ namespace RM_EDU
         // The animator for the enemy attack.
         public Animator animator;
 
+        // The target the enemy attack is being applied to.
+        // public ActionUnit target;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -24,6 +27,20 @@ namespace RM_EDU
             if(animator == null)
                 animator = GetComponent<Animator>();
         }
+
+        // TARGET
+
+        // // Returns 'true' if the enemy attack has a target.
+        // public bool HasTarget()
+        // {
+        //     return target != null;
+        // }
+        // 
+        // // Sets the new target.
+        // public void SetTarget(ActionUnit newTarget, bool updatePos = true)
+        // {
+        //     target = newTarget;
+        // }
 
         // POSITIONING
         // Sets to the target position.

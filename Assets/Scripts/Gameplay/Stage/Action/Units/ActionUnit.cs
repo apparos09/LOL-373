@@ -41,6 +41,12 @@ namespace RM_EDU
         // The unit name key.
         public string unitNameKey = "";
 
+        // The unit description.
+        public string unitDesc = "";
+
+        // The unit description key.
+        public string unitDescKey = "";
+
         // The sprite renderer.
         public SpriteRenderer spriteRenderer;
 
@@ -190,7 +196,7 @@ namespace RM_EDU
             // ...
         }
 
-        // NAME, UNIT TYPE / RATING //
+        // NAME, DESCRIPTION, UNIT TYPE / RATING //
 
         // Gets the unit name translated.
         // If the LOLSDK isn't initialized, or the key is empty...
@@ -200,14 +206,33 @@ namespace RM_EDU
             // The result to be returned.
             string result;
 
-            // LOLManager exists, and the key is set, so grab that.
-            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && unitNameKey != "")
+            // LOL SDK Initialized and the key is set, so get the translated text
+            if (LOLManager.IsLOLSDKInitialized() && unitNameKey != "")
             {
                 result = LOLManager.GetLanguageTextStatic(unitNameKey);
             }
             else
             {
                 result = unitName;
+            }
+
+            return result;
+        }
+
+        // Gets the unit description translated.
+        public string GetUnitDescriptionTranslated()
+        {
+            // The result to be returned.
+            string result;
+
+            // LOL SDK Initialized and the key is set, so get the translated text.
+            if (LOLManager.IsLOLSDKInitialized() && unitDescKey != "")
+            {
+                result = LOLManager.GetLanguageTextStatic(unitDescKey);
+            }
+            else
+            {
+                result = unitDesc;
             }
 
             return result;
