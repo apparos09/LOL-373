@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -40,6 +39,9 @@ namespace RM_EDU
 
         // The prefab for the enemy retreat, which is spawned when the enemy dies.
         public EnemyRetreat enemyRetreatPrefab;
+
+        // If 'true', the action unit enemy uses the enemy attack.
+        public bool useEnemyAttack = true;
 
         // If true, the enemy retreat is used. If false, the enemy dies like normal.
         [Tooltip("If true, the enemy retreats to their ship when they're destroyed.")]
@@ -325,26 +327,41 @@ namespace RM_EDU
         // Returns 'true' if the enemy attack object is active.
         public bool IsEnemyAttackActive()
         {
-            return enemyAttack.isActiveAndEnabled;
+            // If the enemy attack exists, check it as active and enabled.
+            if (enemyAttack != null)
+            {
+                return enemyAttack.isActiveAndEnabled;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // Activates the enemy attack and targets the provided unit.
         public void ActivateEnemyAttack(ActionUnit targetUnit)
         {
             enemyAttack.gameObject.SetActive(true);
-            enemyAttack.transform.position = targetUnit.transform.position;
+            enemyAttack.SetTarget(targetUnit);
         }
 
         // Deactivates the enemy attack.
         public void DeactivateEnemyAttack()
         {
-            enemyAttack.transform.position = Vector3.zero;
+            enemyAttack.gameObject.SetActive(true);
+            enemyAttack.ClearTarget(true);
             enemyAttack.gameObject.SetActive(false);
         }
 
         // Attacks the provivided user unit.
         public void AttackUserUnit(ActionUnitUser target)
         {
+            // If the enemy attack is being used and the enemy attack isn't active.
+            if (useEnemyAttack && !IsEnemyAttackActive())
+            {
+                ActivateEnemyAttack(target);
+            }
+
             // The target exists, so attack.
             if(target != null)
             {
