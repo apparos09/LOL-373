@@ -47,6 +47,8 @@
       "kwd_unknownStage": 18,
 
       "kwd_infoLog": 18,
+      "kwd_entries": 18,
+      "kwd_info": 18,
 
 
       "kwd_naturalResource": 18,
@@ -262,6 +264,8 @@
     "kwd_unknownStage": "Unknown Stage",
 
     "kwd_infoLog": "Info Log",
+    "kwd_entries": "Entries",
+    "kwd_info": "Info",
 
 
     "kwd_naturalResource": "Natural Resource",

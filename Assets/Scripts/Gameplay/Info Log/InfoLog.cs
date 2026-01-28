@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -41,11 +40,10 @@ namespace RM_EDU
         // The current entry.
         protected InfoLogEntry currEntry = null;
 
+        // TODO: don't clear the current entries if no changes have happened.
+
         // The list of current entries loaded.
         protected List<InfoLogEntry> currEntries = new List<InfoLogEntry>();
-
-        // The current entry index.
-        protected int currEntryIndex = 0;
 
         // Resource entries.
         protected List<InfoLogEntry> resourceEntries = new List<InfoLogEntry>();
@@ -75,6 +73,9 @@ namespace RM_EDU
         // The entry buttons.
         public List<InfoLogEntryButton> entryButtons = new List<InfoLogEntryButton>();
 
+        // The entry button page index.
+        protected int entryButtonPageIndex = 0;
+
         // The previous entry page button.
         public Button prevEntryPageButton;
 
@@ -85,6 +86,13 @@ namespace RM_EDU
 
         // The info icon image.
         public Image infoIconImage;
+
+        // The default icon sprite for the info log.
+        public Sprite defaultIconSprite;
+
+        // A sprite that's a single, empty image.
+        [Tooltip("An empty image sprite.")]
+        public Sprite alpha0Sprite;
 
         // The info name text.
         public TMP_Text infoNameText;
@@ -109,6 +117,8 @@ namespace RM_EDU
                 UpdateEntryInfoLists();
             }
                 
+            // Clears the info by default.
+            ClearInfo();
         }
 
         // This function is called when the object becomes enabled and active.
@@ -205,7 +215,12 @@ namespace RM_EDU
             // Natural Resources
             foreach(NaturalResources.naturalResource resource in resourceList)
             {
-                resourceEntries.Add(NaturalResources.GenerateInfoLogEntry(resource));
+                // resourceEntries.Add(NaturalResources.GenerateInfoLogEntry(resource));
+
+                // Use default image.
+                InfoLogEntry newEntry = NaturalResources.GenerateInfoLogEntry(resource);
+                newEntry.iconSprite = defaultIconSprite; // TODO: replace with proper image.
+                resourceEntries.Add(newEntry);
             }
 
             // Generator and Defense
@@ -289,11 +304,11 @@ namespace RM_EDU
             // Sets the category name.
             categoryText.text = GetCurrentCategoryName();
 
-            // The current entry index.
-            currEntryIndex = 0;
-
             // Updates the current entry list.
             UpdateCurrentEntryListByCategory();
+
+            // Sets the entry buttons page index to 0.
+            SetEntryButtonsPageIndex(0);
         }
 
 
@@ -441,7 +456,7 @@ namespace RM_EDU
         }
 
 
-        // ENTRIES, INFO
+        // ENTRIES
         // Updates the list using the current category.
         public void UpdateCurrentEntryListByCategory(bool updateButtons = true)
         {
@@ -475,12 +490,11 @@ namespace RM_EDU
             
         }
 
-
         // Updates the entry buttons.
         public void UpdateEntryButtons()
         {
             // The entry index.
-            int entryIndex = currEntryIndex;
+            int entryIndex = GetCurrentEntryIndexInEntryButtonsPages();
 
             // The button index.
             int buttonIndex = 0;
@@ -529,6 +543,89 @@ namespace RM_EDU
             }
         }
 
+        // Get Entry Button Pages
+        // Gets the entry button page count.
+        public int GetEntryButtonsPageCount()
+        {
+            // The entry count.
+            int entryCount = currEntries.Count;
+
+            // The entry button count.
+            int entryButtonCount = entryButtons.Count;
+
+            // The number of entry pages.
+            int entryPages;
+
+            // If there are no buttons, there's only one page.
+            if (entryButtonCount > 0)
+                entryPages = Mathf.CeilToInt((float)entryCount / entryButtons.Count);
+            else
+                entryPages = 1;
+
+            // Returns the number of pages.
+            return entryPages;
+        }
+
+        // Gets the entry buttons page index.
+        public int GetEntryButtonsPageIndex()
+        {
+            return entryButtonPageIndex;
+        }
+
+        // Sets the entry buttons page using the provided index.
+        public void SetEntryButtonsPageIndex(int pageIndex)
+        {
+            // Gets the entry buttons page count.
+            int pageCount = GetEntryButtonsPageCount();
+
+            // Clamps the page index within the proper bounds.
+            entryButtonPageIndex = Mathf.Clamp(pageIndex, 0, pageCount - 1);
+
+            // Updates the entry buttons.
+            UpdateEntryButtons();
+        }
+
+        // Gets the current entry index in the entry buttons pages.
+        public int GetCurrentEntryIndexInEntryButtonsPages()
+        {
+            // Calculates the current entry index based on the number of buttons.
+            // e.g., if there's 5 buttons and 3 pages, each page can display up to 5 entries.
+            //  - On page 2 (index 1), the current entry index would be 5.
+            //  - Page 0 would display entries (0-4), and Page 1 would display entries (5-9).
+            return entryButtonPageIndex * entryButtons.Count;
+        }
+
+        // Goes to the previous entry buttons page.
+        public void PreviousEntryButtonsPage()
+        {
+            // Page count and index.
+            int pageCount = GetEntryButtonsPageCount();
+            int pageIndex = entryButtonPageIndex - 1;
+
+            // Bounds check.
+            if (pageIndex < 0)
+                pageIndex = pageCount - 1;
+
+            // Set the page.
+            SetEntryButtonsPageIndex(pageIndex);
+        }
+
+        // Goes to the next entry buttons page.
+        public void NextEntryButtonsPage()
+        {
+            // Page count and index.
+            int pageCount = GetEntryButtonsPageCount();
+            int pageIndex = entryButtonPageIndex + 1;
+
+            // Bounds check.
+            if (pageIndex >= pageCount)
+                pageIndex = 0;
+
+            // Set the page.
+            SetEntryButtonsPageIndex(pageIndex);
+        }
+
+        // INFO
         // Sets the info using the provided entry.
         public void SetInfo(InfoLogEntry entry)
         {
@@ -555,7 +652,7 @@ namespace RM_EDU
 
             infoNameText.text = "";
             infoDescText.text = "";
-            infoIconImage.sprite = null;
+            infoIconImage.sprite = alpha0Sprite;
         }
 
 
