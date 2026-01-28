@@ -526,6 +526,22 @@ namespace RM_EDU
             return result;
         }
 
+        // Generates an info log entry for the provided resource.
+        public static InfoLog.InfoLogEntry GenerateInfoLogEntry(naturalResource resource)
+        {
+            // The entry.
+            InfoLog.InfoLogEntry entry = new InfoLog.InfoLogEntry();
+
+            // Setting values.
+            entry.name = GetNaturalResourceName(resource);
+            entry.description = GetNaturalResourceDescription(resource);
+            entry.iconSprite = null;
+
+            // TODO: create a list of icons for natural resources.
+
+            return entry;
+        }
+
         // Gets the color assigned to this natural resource.
         public static Color GetNaturalResourceColor(naturalResource res)
         {

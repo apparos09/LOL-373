@@ -465,7 +465,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2283596801142859828}
   - component: {fileID: 6162613197203745115}
-  - component: {fileID: 6476668277904547673}
   m_Layer: 5
   m_Name: Info Log Dialog
   m_TagString: Untagged
@@ -511,6 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52604ddcab89a8f4caf2b69e866ef61e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameUI: {fileID: 0}
   dataLogger: {fileID: 0}
   categoryText: {fileID: 4076433671674370078}
   prevCategoryButton: {fileID: 2867170766915542694}
@@ -526,18 +526,6 @@ MonoBehaviour:
   infoIconImage: {fileID: 4822306236585554113}
   infoNameText: {fileID: 5266958754774711357}
   infoDescText: {fileID: 6264337962764597880}
---- !u!114 &6476668277904547673
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2256394765377942766}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ea1d98acb811834486ff838dada7ad8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &3100828883908819308
 GameObject:
   m_ObjectHideFlags: 0
@@ -1674,6 +1662,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: Previous Category Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6162613197203745115}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: PreviousCategory
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RM_EDU.InfoLog, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6823050334902580250, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1890,6 +1906,34 @@ PrefabInstance:
     - target: {fileID: 4757749248475574053, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_Name
       value: Next Category Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 6162613197203745115}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: NextCategory
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RM_EDU.InfoLog, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

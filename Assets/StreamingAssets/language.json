@@ -48,9 +48,19 @@
 
       "kwd_infoLog": 18,
 
+
+      "kwd_naturalResource": 18,
+      "kwd_naturalResources": 18,
+      "kwd_resource": 18,
+      "kwd_resources": 18,
+
       "kwd_generator": 18,
+      "kwd_generators": 18,
       "kwd_defense": 18,
+      "kwd_defenses": 18,
       "kwd_enemy": 18,
+      "kwd_enemies": 18,
+
 
       "nrs_bms_nme": 18,
       "nrs_gtl_nme": 18,
@@ -253,9 +263,19 @@
 
     "kwd_infoLog": "Info Log",
 
+
+    "kwd_naturalResource": "Natural Resource",
+    "kwd_naturalResources": "Natural Resources",
+    "kwd_resource": "Resource",
+    "kwd_resources": "Resources",
+
     "kwd_generator": "Generator",
+    "kwd_generators": "Generators",
     "kwd_defense": "Defense",
+    "kwd_defenses": "Defenses",
     "kwd_enemy": "Enemy",
+    "kwd_enemies": "Enemies",
+
 
     "nrs_bms_nme": "Biomass",
     "nrs_gtl_nme": "Geothermal",

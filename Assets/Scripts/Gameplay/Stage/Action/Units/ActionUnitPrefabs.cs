@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -90,6 +91,8 @@ namespace RM_EDU
             }
         }
 
+        // TODO: the get prefab functions should use generic unit lists and cite them instead...
+        // Of citing a unique function per list.
         // Gets the prefab.
         protected ActionUnit GetPrefab(ActionUnit.unitType unitType, int index)
         {
@@ -114,6 +117,36 @@ namespace RM_EDU
 
                 case ActionUnit.unitType.enemy:
                     prefab = GetEnemyPrefab(index);
+                    break;
+            }
+
+            return prefab;
+        }
+
+        // Gets the prefab by its id.
+        public ActionUnit GetPrefabById(ActionUnit.unitType unitType, int id)
+        {
+            // The prefab.
+            ActionUnit prefab;
+
+            // Gets the prefab based on the provided tpye.
+            switch (unitType)
+            {
+                case ActionUnit.unitType.unknown:
+                default:
+                    prefab = null;
+                    break;
+
+                case ActionUnit.unitType.generator:
+                    prefab = GetGeneratorPrefabById(id);
+                    break;
+
+                case ActionUnit.unitType.defense:
+                    prefab = GetDefensePrefabById(id);
+                    break;
+
+                case ActionUnit.unitType.enemy:
+                    prefab = GetEnemyPrefabById(id);
                     break;
             }
 
@@ -194,6 +227,27 @@ namespace RM_EDU
             {
                 return null;
             }
+        }
+
+        // Gets a generator prefab by its id. This does NOT instantiate the prefab.
+        public ActionUnitGenerator GetGeneratorPrefabById(int id)
+        {
+            // Goes through all the prefabs.
+            foreach (ActionUnitGenerator generator in generatorPrefabs)
+            {
+                // Generator exists.
+                if (generator != null)
+                {
+                    // Generator id matches provided id.
+                    if (generator.idNumber == id)
+                    {
+                        return generator;
+                    }
+                }
+            }
+
+            // None found.
+            return null;
         }
 
         // Gets the generator prefab using the resource it represents.

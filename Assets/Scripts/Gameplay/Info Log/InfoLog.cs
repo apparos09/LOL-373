@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
@@ -9,6 +10,19 @@ namespace RM_EDU
     // Stores and shows information relevant to the game.
     public class InfoLog : MonoBehaviour
     {
+        // An info log entry.
+        public class InfoLogEntry
+        {
+            // The name of the info entry.
+            public string name;
+
+            // The description of the info entry.
+            public string description;
+
+            // The icon sprite for the info log entry.
+            public Sprite iconSprite;
+        }
+
         // The info log categories.
         public enum infoLogCategory { resources, generators, defenses }
 
@@ -24,14 +38,23 @@ namespace RM_EDU
         // The current category.
         protected infoLogCategory currCategory = infoLogCategory.resources;
 
-        // The resources.
-        // public List<NaturalResources.naturalResource> resourceList = new List<NaturalResources.naturalResource>();
+        // The current entry.
+        protected InfoLogEntry currEntry = null;
 
-        // The resource list as integers.
-        public List<int> resourceListInt = new List<int>();
+        // The list of current entries loaded.
+        protected List<InfoLogEntry> currEntries = new List<InfoLogEntry>();
 
-        // The defense ids.
-        public List<int> defenseIdList = new List<int>();
+        // The current entry index.
+        protected int currEntryIndex = 0;
+
+        // Resource entries.
+        protected List<InfoLogEntry> resourceEntries = new List<InfoLogEntry>();
+
+        // Generator entries.
+        protected List<InfoLogEntry> generatorEntries = new List<InfoLogEntry>();
+
+        // Defense entires.
+        protected List<InfoLogEntry> defenseEntries = new List<InfoLogEntry>();
 
         // Gets set to 'true' if the entry lists have been updated.
         private bool entryListsUpdated = false;
@@ -84,7 +107,6 @@ namespace RM_EDU
             if (!entryListsUpdated)
             {
                 UpdateEntryInfoLists();
-                SetCurrentCategory(infoLogCategory.resources);
             }
                 
         }
@@ -92,13 +114,19 @@ namespace RM_EDU
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            UpdateEntryInfoLists();
+            // TODO: dynamically update based on changes to the generators or defense ids.
+            // The lists haven't been updated, so update them.
+            if(!entryListsUpdated)
+            {
+                UpdateEntryInfoLists();
+            }
+            
         }
 
         // This function is called when the behaviour becomes disabled or inactive.
         private void OnDisable()
         {
-            ClearEntryInfoLists();
+            // ClearEntryInfoLists();
         }
 
         // ENTRIES //
@@ -123,13 +151,14 @@ namespace RM_EDU
                 Debug.LogWarning("The Action Unit Prefabs list hasn't been instantiated.");
             }
 
-            // The reosurce list, which is used to create the resource int list.
+            // The list of resources being used.
             List<NaturalResources.naturalResource> resourceList = new List<NaturalResources.naturalResource>();
 
-            // Clears the lists.
-            // resourceList.Clear(); // Unneeded.
-            resourceListInt.Clear();
-            defenseIdList.Clear();
+            // The list of generator ids, which are the resources converted to integers.
+            List<int> generatorIdList = new List<int>();
+
+            // The list of defense ids being used.
+            List<int> defenseIdList = new List<int>();
 
             // If the data logger has natural resources, get those.
             if(dataLogger.HasUsedNaturalResources())
@@ -148,14 +177,14 @@ namespace RM_EDU
                 // Converts the resoures to integers for ids.
                 for(int i = 0; i < resourceList.Count; i++)
                 {
-                    resourceListInt.Add((int)resourceList[i]);
+                    generatorIdList.Add((int)resourceList[i]);
                 }
             }
             else
             {
                 // Generates a list of all generator units.
                 if (actionUnitPrefabs != null)
-                    resourceListInt.AddRange(actionUnitPrefabs.GenerateGeneratorPrefabIdList(false));
+                    generatorIdList.AddRange(actionUnitPrefabs.GenerateGeneratorPrefabIdList(false));
             }
 
             // If the data logger has defense ids, use those.
@@ -171,16 +200,73 @@ namespace RM_EDU
                     defenseIdList.AddRange(actionUnitPrefabs.GenerateDefensePrefabIdList(false, true));
             }
 
+
+            // Creating Entries
+            // Natural Resources
+            foreach(NaturalResources.naturalResource resource in resourceList)
+            {
+                resourceEntries.Add(NaturalResources.GenerateInfoLogEntry(resource));
+            }
+
+            // Generator and Defense
+            if(actionUnitPrefabs != null)
+            {
+                // Generator Units
+                // Clears the generator entries.
+                generatorEntries.Clear();
+
+                // Gets the generator information.
+                foreach (int generatorId in generatorIdList)
+                {
+                    // Gets the prefab. The id should match the index.
+                    ActionUnitGenerator generatorPrefab = actionUnitPrefabs.GetGeneratorPrefab(generatorId);
+
+                    // Get the info log entry.
+                    if(generatorPrefab != null)
+                        generatorEntries.Add(generatorPrefab.GenerateInfoLogEntry());
+                }
+
+
+                // Defense Units
+                // Clears the current entries.
+                defenseEntries.Clear();
+
+                // Gets the defense information.
+                foreach (int defenseId in defenseIdList)
+                {
+                    // Gets the prefab. The id should match the index.
+                    ActionUnitDefense defensePrefab = actionUnitPrefabs.GetDefensePrefab(defenseId);
+
+                    // Get the info log entry.
+                    if (defensePrefab != null)
+                        defenseEntries.Add(defensePrefab.GenerateInfoLogEntry());
+                }
+
+            }
+
             // The entry lists have been updated.
             entryListsUpdated = true;
+
+            // Sets the current category.
+            SetCurrentCategory(currCategory);
         }
 
         // clears the entry info lists.
         public void ClearEntryInfoLists()
         {
-            // resourceList.Clear(); // Unneeded.
-            resourceListInt.Clear();
-            defenseIdList.Clear();
+            // Clears the current entries.
+            currEntries.Clear();
+
+            // Clears the entries.
+            resourceEntries.Clear();
+            generatorEntries.Clear();
+            defenseEntries.Clear();
+
+            // Updates the buttons.
+            UpdateEntryButtons();
+
+            // Clears the info.
+            ClearInfo();
 
             // The lists have been cleared, so now they must be updated.
             entryListsUpdated = false;
@@ -197,9 +283,17 @@ namespace RM_EDU
         // Sets the current category.
         public void SetCurrentCategory(infoLogCategory newCategory)
         {
+            // Set the new category.
             currCategory = newCategory;
 
-            // TODO: change the current list.
+            // Sets the category name.
+            categoryText.text = GetCurrentCategoryName();
+
+            // The current entry index.
+            currEntryIndex = 0;
+
+            // Updates the current entry list.
+            UpdateCurrentEntryListByCategory();
         }
 
 
@@ -247,6 +341,223 @@ namespace RM_EDU
             SetCurrentCategory((infoLogCategory)nextCategoryInt);
 
         }
+
+        // Gets the category name.
+        public static string GetCategoryName(infoLogCategory category)
+        {
+            // The result to return.
+            string result;
+
+            // Checks if the LOL SDK has been initialized.
+            if(LOLManager.IsLOLSDKInitialized())
+            {
+                // Gets the key.
+                string key = GetCategoryNameKey(category);
+
+                // Gets the translated text.
+                if (key != "")
+                {
+                    result = LOLManager.GetLanguageTextStatic(key);
+                }
+                // Blank since the key couldn't be found.
+                else
+                {
+                    result = "";
+                }
+
+            }
+            else
+            {
+                // Resulting category name.
+                switch (category)
+                {
+                    default:
+                        result = "Unknown";
+                        break;
+
+                    case infoLogCategory.resources:
+                        result = "Natural Resources";
+                        break;
+
+                    case infoLogCategory.generators:
+                        result = "Generators";
+                        break;
+
+                    case infoLogCategory.defenses:
+                        result = "Defenses";
+                        break;
+                }
+            }
+
+            return result;
+        }
+
+        // Gets the name of the current category.
+        public string GetCurrentCategoryName()
+        {
+            return GetCategoryName(currCategory);
+        }
+
+        // Gets the category name key.
+        public static string GetCategoryNameKey(infoLogCategory category)
+        {
+            // The key.
+            string key;
+
+            // Key to return.
+            switch(category)
+            {
+                default:
+                    key = "kwd_unknown";
+                    break;
+
+                case infoLogCategory.resources:
+                    key = "kwd_naturalResources";
+                    break;
+
+                case infoLogCategory.generators:
+                    key = "kwd_generators";
+                    break;
+
+                case infoLogCategory.defenses:
+                    key = "kwd_defenses";
+                    break;
+
+            }
+
+            return key;
+        }
+
+        // Gets the name key of the current category.
+        public string GetCurrentCategoryNameKey()
+        {
+            return GetCategoryNameKey(currCategory);
+        }
+
+        // Updates the category text with the current category name.
+        public void UpdateCategoryText()
+        {
+            categoryText.text = GetCurrentCategoryName();
+        }
+
+
+        // ENTRIES, INFO
+        // Updates the list using the current category.
+        public void UpdateCurrentEntryListByCategory(bool updateButtons = true)
+        {
+            // TODO: maybe use a reference to the lists instead of copying them?
+
+            // Clears the current entries.
+            currEntries.Clear();
+
+            // Checks the current category to set the current list.
+            switch(currCategory)
+            {
+                default:
+                case infoLogCategory.resources:
+                    currEntries.AddRange(resourceEntries);
+                    break;
+
+                case infoLogCategory.generators:
+                    currEntries.AddRange(generatorEntries);
+                    break;
+
+                case infoLogCategory.defenses:
+                    currEntries.AddRange(defenseEntries);
+                    break;
+            }
+
+            // If buttons should be updated.
+            if(updateButtons)
+            {
+                UpdateEntryButtons();
+            }
+            
+        }
+
+
+        // Updates the entry buttons.
+        public void UpdateEntryButtons()
+        {
+            // The entry index.
+            int entryIndex = currEntryIndex;
+
+            // The button index.
+            int buttonIndex = 0;
+
+            // While the button index and entry index are within the bounds.
+            while(buttonIndex < entryButtons.Count && entryIndex < currEntries.Count)
+            {
+                // Use the current button and entry.
+                if(buttonIndex < entryButtons.Count && entryIndex < currEntries.Count)
+                {
+                    // Gets the button.
+                    InfoLogEntryButton entryButton = entryButtons[buttonIndex];
+
+                    // Gets the entry.
+                    InfoLogEntry entry = currEntries[entryIndex];
+
+                    // Applies the entry to the entry button.
+                    entryButton.ApplyEntryInfo(entry);
+
+                    // Increases the button index and entry index.
+                    buttonIndex++;
+                    entryIndex++;
+                }
+                // No buttons left, so break.
+                else
+                {
+                    break;
+                }
+            }
+
+            // While there are buttons left, clear the buttons.
+            while(buttonIndex < entryButtons.Count)
+            {
+                entryButtons[buttonIndex].ClearEntryInfo();
+                buttonIndex++;
+            }
+        }
+
+        // Clears the entry buttons.
+        public void ClearEntryButtons()
+        {
+            // Clears all the entry buttons.
+            foreach(InfoLogEntryButton entryButton in entryButtons)
+            {
+                entryButton.ClearEntryInfo();
+            }
+        }
+
+        // Sets the info using the provided entry.
+        public void SetInfo(InfoLogEntry entry)
+        {
+            // Sets the current entry.
+            currEntry = entry;
+
+            // If the entry exists.
+            if(currEntry != null)
+            {
+                infoNameText.text = entry.name;
+                infoDescText.text = entry.description;
+                infoIconImage.sprite = entry.iconSprite;
+            }
+            else
+            {
+                ClearInfo();
+            }
+        }
+
+        // Clears the info.
+        public void ClearInfo()
+        {
+            currEntry = null;
+
+            infoNameText.text = "";
+            infoDescText.text = "";
+            infoIconImage.sprite = null;
+        }
+
 
         // // Update is called once per frame
         // void Update()

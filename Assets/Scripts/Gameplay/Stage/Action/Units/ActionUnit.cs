@@ -331,6 +331,17 @@ namespace RM_EDU
             return GetUnitTypeName();
         }
 
+        // Generates an info log entry for this unit.
+        public InfoLog.InfoLogEntry GenerateInfoLogEntry()
+        {
+            // Creates an entry and sets the values.
+            InfoLog.InfoLogEntry entry = new InfoLog.InfoLogEntry();
+            entry.name = GetUnitNameTranslated();
+            entry.description = GetUnitDescriptionTranslated();
+            entry.iconSprite = iconSprite;
+
+            return entry;
+        }
 
         // STATS //
         // Gets the stat rating, using the base stat maximum for comparison.
