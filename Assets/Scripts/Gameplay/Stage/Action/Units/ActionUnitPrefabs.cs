@@ -138,6 +138,48 @@ namespace RM_EDU
             return actionUnit;
         }
 
+        // Generates an id list using the provided action unit list.
+        protected static List<int> GenerateActionUnitIdList(List<ActionUnit> unitList, bool includeId0, bool includeId1)
+        {
+            // The list to be returned.
+            List<int> list = new List<int>();
+
+            // Goes through all the units in the provided unit list.
+            foreach (ActionUnit unit in unitList)
+            {
+                // If the unit exists.
+                if (unit != null)
+                {
+                    // ID isn't in list, so add it.
+                    if (!list.Contains(unit.idNumber))
+                    {
+                        // Checks the unit's id number.
+                        switch (unit.idNumber)
+                        {
+                            default: // Add
+                                list.Add(unit.idNumber);
+                                break;
+
+                            case 0:
+                                // If ID 0 should be included, add it.
+                                if (includeId0)
+                                    list.Add(unit.idNumber);
+                                break;
+
+                            case 1:
+                                // If ID 1 should be included, add it.
+                                if (includeId1)
+                                    list.Add(unit.idNumber);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            // Returns the result.
+            return list;
+        }
+
 
         // GENERATOR //
         // Gets a generator prefab. This does NOT instantiate the prefab.
@@ -208,36 +250,43 @@ namespace RM_EDU
         // Generates a list of generator prefab ids.
         public List<int> GenerateGeneratorPrefabIdList(bool includeId0)
         {
-            // The list to be returned.
-            List<int> list = new List<int>();
+            // Creates a unit list and adds the generator prefabs.
+            List<ActionUnit> unitList = new List<ActionUnit>();
+            unitList.AddRange(generatorPrefabs);
 
-            // Goes through all the prefabs.
-            foreach (ActionUnitGenerator generator in generatorPrefabs)
-            {
-                // If the generator exists.
-                if (generator != null)
-                {
-                    // ID isn't in list, so add it.
-                    if (!list.Contains(generator.idNumber))
-                    {
-                        switch (generator.idNumber)
-                        {
-                            default: // Add
-                                list.Add(generator.idNumber);
-                                break;
+            // Uses the generic action unit id list generator function.
+            return GenerateActionUnitIdList(unitList, includeId0, true);
 
-                            case 0:
-                                // If ID 0 should be included, add it.
-                                if (includeId0)
-                                    list.Add(generator.idNumber);
-                                break;
-                        }
-                    }
-                }
-            }
-
-            // Returns the result.
-            return list;
+            // // The list to be returned.
+            // List<int> list = new List<int>();
+            // 
+            // // Goes through all the prefabs.
+            // foreach (ActionUnitGenerator generator in generatorPrefabs)
+            // {
+            //     // If the generator exists.
+            //     if (generator != null)
+            //     {
+            //         // ID isn't in list, so add it.
+            //         if (!list.Contains(generator.idNumber))
+            //         {
+            //             switch (generator.idNumber)
+            //             {
+            //                 default: // Add
+            //                     list.Add(generator.idNumber);
+            //                     break;
+            // 
+            //                 case 0:
+            //                     // If ID 0 should be included, add it.
+            //                     if (includeId0)
+            //                         list.Add(generator.idNumber);
+            //                     break;
+            //             }
+            //         }
+            //     }
+            // }
+            // 
+            // // Returns the result.
+            // return list;
         }
 
 
@@ -308,42 +357,49 @@ namespace RM_EDU
         // Generates the defense prefab ID list.
         public List<int> GenerateDefensePrefabIdList(bool includeId0, bool includeId1)
         {
-            // The list to be returned.
-            List<int> list = new List<int>();
+            // Creates a unit list and adds the defense prefabs.
+            List<ActionUnit> unitList = new List<ActionUnit>();
+            unitList.AddRange(defensePrefabs);
 
-            // Goes through all the prefabs.
-            foreach(ActionUnitDefense defense in  defensePrefabs)
-            {
-                // If the defense exists.
-                if(defense != null)
-                { 
-                    // ID isn't in list, so add it.
-                    if(!list.Contains(defense.idNumber))
-                    {
-                        switch(defense.idNumber)
-                        {
-                            default: // Add
-                                list.Add(defense.idNumber);
-                                break;
+            // Uses the generic action unit id list generator function.
+            return GenerateActionUnitIdList(unitList, includeId0, includeId1);
 
-                            case 0:
-                                // If ID 0 should be included, add it.
-                                if(includeId0)
-                                    list.Add(defense.idNumber);
-                                break;
-
-                            case 1:
-                                // If ID 1 should be included, add it.
-                                if(includeId1)
-                                    list.Add(defense.idNumber);
-                                break;
-                        }
-                    }
-                }
-            }
-
-            // Returns the result.
-            return list;
+            // // The list to be returned.
+            // List<int> list = new List<int>();
+            // 
+            // // Goes through all the prefabs.
+            // foreach(ActionUnitDefense defense in  defensePrefabs)
+            // {
+            //     // If the defense exists.
+            //     if(defense != null)
+            //     { 
+            //         // ID isn't in list, so add it.
+            //         if(!list.Contains(defense.idNumber))
+            //         {
+            //             switch(defense.idNumber)
+            //             {
+            //                 default: // Add
+            //                     list.Add(defense.idNumber);
+            //                     break;
+            // 
+            //                 case 0:
+            //                     // If ID 0 should be included, add it.
+            //                     if(includeId0)
+            //                         list.Add(defense.idNumber);
+            //                     break;
+            // 
+            //                 case 1:
+            //                     // If ID 1 should be included, add it.
+            //                     if(includeId1)
+            //                         list.Add(defense.idNumber);
+            //                     break;
+            //             }
+            //         }
+            //     }
+            // }
+            // 
+            // // Returns the result.
+            // return list;
         }
 
 
@@ -414,37 +470,44 @@ namespace RM_EDU
         // Generates the enemy prefab ID list.
         public List<int> GenerateEnemyPrefabIdList(bool includeId0)
         {
-            // The list to be returned.
-            List<int> list = new List<int>();
+            // Creates a unit list and adds the enemy prefabs.
+            List<ActionUnit> unitList = new List<ActionUnit>();
+            unitList.AddRange(enemyPrefabs);
 
-            // Goes through all the prefabs.
-            foreach (ActionUnitEnemy enemy in enemyPrefabs)
-            {
-                // If the enemy exists.
-                if (enemy != null)
-                {
-                    // ID isn't in list, so add it.
-                    if (!list.Contains(enemy.idNumber))
-                    {
-                        // Goes through all the id numbers.
-                        switch (enemy.idNumber)
-                        {
-                            default: // Add
-                                list.Add(enemy.idNumber);
-                                break;
+            // Uses the generic action unit id list generator function.
+            return GenerateActionUnitIdList(unitList, includeId0, true);
 
-                            case 0:
-                                // If ID 0 should be included, add it.
-                                if (includeId0)
-                                    list.Add(enemy.idNumber);
-                                break;
-                        }
-                    }
-                }
-            }
-
-            // Returns the result.
-            return list;
+            // // The list to be returned.
+            // List<int> list = new List<int>();
+            // 
+            // // Goes through all the prefabs.
+            // foreach (ActionUnitEnemy enemy in enemyPrefabs)
+            // {
+            //     // If the enemy exists.
+            //     if (enemy != null)
+            //     {
+            //         // ID isn't in list, so add it.
+            //         if (!list.Contains(enemy.idNumber))
+            //         {
+            //             // Goes through all the id numbers.
+            //             switch (enemy.idNumber)
+            //             {
+            //                 default: // Add
+            //                     list.Add(enemy.idNumber);
+            //                     break;
+            // 
+            //                 case 0:
+            //                     // If ID 0 should be included, add it.
+            //                     if (includeId0)
+            //                         list.Add(enemy.idNumber);
+            //                     break;
+            //             }
+            //         }
+            //     }
+            // }
+            // 
+            // // Returns the result.
+            // return list;
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
