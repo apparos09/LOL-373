@@ -217,6 +217,13 @@ namespace RM_EDU
 
 
         // NATURAL RESOURCES //
+
+        // Returns true if there are natural resources.
+        public bool HasUsedNaturalResources()
+        {
+            return usedResources.Count > 0;
+        }
+
         // Adds natural resources to the list.
         public void AddUsedNaturalResources(List<NaturalResources.naturalResource> newResources)
         {
@@ -253,6 +260,12 @@ namespace RM_EDU
 
 
         // DEFENSE //
+        // Returns 'true' if there are action defense units.
+        public bool HasActionDefenseUnits()
+        {
+            return defenseIds.Count > 0;
+        }
+
 
         // Adds action defense units to the list.
         public void AddActionDefenseUnits(List<int> newIds)

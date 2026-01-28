@@ -56,6 +56,48 @@ namespace RM_EDU
             }
         }
 
+
+        // Use the one in the Action Unit Prefabs class.
+        // // Generate ID List
+        // // Returns the defense id list based on the DEFENSE_ID_COUNT.
+        // // includeId0: determines if ID 0 should be included.
+        // public static List<int> GenerateDefenseIdList(bool includeId0)
+        // {
+        //     // The list to return.
+        //     List<int> list = new List<int>();
+        // 
+        //     // The id number.
+        //     int id = 0;
+        // 
+        //     // While the id number is less than the defense id count.
+        //     while(id < DEFENSE_ID_COUNT)
+        //     {
+        //         // Checks id.
+        //         switch(id)
+        //         {
+        //             case 0: // ID = 0
+        //                 // If id0 should be included, add it.
+        //                 if(includeId0)
+        //                 {
+        //                     list.Add(id);
+        //                 }
+        // 
+        //                 break;
+        // 
+        //             default: // OTHER
+        //                 list.Add(id);
+        //                 break;
+        //         }
+        // 
+        //         // Increase the ID.
+        //         id++;
+        //     }
+        // 
+        //     // Returns the list.
+        //     return list;
+        // }
+
+
         // TYPE, NAMES //
         // Gets the unit type.
         public override unitType GetUnitType()

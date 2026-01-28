@@ -205,6 +205,41 @@ namespace RM_EDU
                 return null;
         }
 
+        // Generates a list of generator prefab ids.
+        public List<int> GenerateGeneratorPrefabIdList(bool includeId0)
+        {
+            // The list to be returned.
+            List<int> list = new List<int>();
+
+            // Goes through all the prefabs.
+            foreach (ActionUnitGenerator generator in generatorPrefabs)
+            {
+                // If the generator exists.
+                if (generator != null)
+                {
+                    // ID isn't in list, so add it.
+                    if (!list.Contains(generator.idNumber))
+                    {
+                        switch (generator.idNumber)
+                        {
+                            default: // Add
+                                list.Add(generator.idNumber);
+                                break;
+
+                            case 0:
+                                // If ID 0 should be included, add it.
+                                if (includeId0)
+                                    list.Add(generator.idNumber);
+                                break;
+                        }
+                    }
+                }
+            }
+
+            // Returns the result.
+            return list;
+        }
+
 
         // DEFENSE //
         // Gets a defense prefab. This does NOT instantiate the prefab.
