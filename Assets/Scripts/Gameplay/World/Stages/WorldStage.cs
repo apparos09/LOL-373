@@ -203,6 +203,30 @@ namespace RM_EDU
             SetLightSprite(0);
         }
 
+        // RESOURCES
+        // Gets the resources for this stage as a string.
+        public string ResourcesToString()
+        {
+            // Value to be returned.
+            string value = "";
+
+            // Goes through all the resources.
+            for(int i = 0; i < naturalResources.Count; i++)
+            {
+                // Gets the resource.
+                NaturalResources.naturalResource res = naturalResources[i];
+
+                // Add to the value.
+                value += NaturalResources.GetNaturalResourceName(res);
+
+                // If there's another entry, space out entries.
+                if (i + 1 < naturalResources.Count)
+                    value += ", ";
+            }
+
+            return value;
+        }
+
         // REWARDS //
 
         // Gives the player their rewards.

@@ -22,6 +22,8 @@ namespace RM_EDU
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        // The natural resource symbols.
+        public List<Sprite> naturalResourceSymbols =new List<Sprite>();
 
         // Constructor
         private NaturalResources()
@@ -524,6 +526,29 @@ namespace RM_EDU
             }
 
             return result;
+        }
+
+        // Gets the natural resource sprite. The resource number shoud match up with the sprite index value.
+        public Sprite GetNaturalResourceSymbol(naturalResource resource)
+        {
+            // The symbol sprite.
+            Sprite symbolSprite;
+
+            // The index, which is taken by converting the resource number.
+            int index = (int)resource;
+
+            // Uses the sprite list to get the sprite.
+            if(index >= 0 && index < naturalResourceSymbols.Count)
+            {
+                symbolSprite = naturalResourceSymbols[index];
+            }
+            // Index invalid, so set to null.
+            else
+            {
+                symbolSprite = null;
+            }
+
+            return symbolSprite;
         }
 
         // Generates an info log entry for the provided resource.

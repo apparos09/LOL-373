@@ -57,6 +57,12 @@ namespace RM_EDU
         // Gets set to 'true' if the entry lists have been updated.
         private bool entryListsUpdated = false;
 
+        // If 'true', the entry lists are cleared when the info log is closed.
+        private bool clearEntryListsOnDisable = true;
+
+        // If 'true', all entries are unlocked automatically.
+        private bool unlockAllEntries = false;
+
         [Header("Category Section")]
 
         // The category text.
@@ -72,6 +78,9 @@ namespace RM_EDU
 
         // The entry buttons.
         public List<InfoLogEntryButton> entryButtons = new List<InfoLogEntryButton>();
+
+        // The entry button page text.
+        public TMP_Text entryButtonsPageText;
 
         // The entry button page index.
         protected int entryButtonPageIndex = 0;
@@ -136,7 +145,17 @@ namespace RM_EDU
         // This function is called when the behaviour becomes disabled or inactive.
         private void OnDisable()
         {
-            // ClearEntryInfoLists();
+            // If the entry lists should be cleared when the info log is disabled.
+            if(clearEntryListsOnDisable)
+            {
+                ClearEntryInfoLists();
+            }
+        }
+
+        // If 'true', all entries are unlocked automatically.
+        public bool UnlockAllEntries
+        {
+            get { return unlockAllEntries; }
         }
 
         // ENTRIES //
@@ -171,7 +190,7 @@ namespace RM_EDU
             List<int> defenseIdList = new List<int>();
 
             // If the data logger has natural resources, get those.
-            if(dataLogger.HasUsedNaturalResources())
+            if(!unlockAllEntries && dataLogger.HasUsedNaturalResources())
             {
                 resourceList.AddRange(dataLogger.usedResources);
             }
@@ -182,7 +201,7 @@ namespace RM_EDU
             }
 
             // There are resources, so grab the generators.
-            if(resourceList.Count > 0)
+            if(!unlockAllEntries && resourceList.Count > 0)
             {
                 // Converts the resoures to integers for ids.
                 for(int i = 0; i < resourceList.Count; i++)
@@ -198,7 +217,7 @@ namespace RM_EDU
             }
 
             // If the data logger has defense ids, use those.
-            if (dataLogger.HasActionDefenseUnits())
+            if (!unlockAllEntries && dataLogger.HasActionDefenseUnits())
             {
                 defenseIdList.AddRange(dataLogger.defenseIds);
             }
@@ -219,7 +238,16 @@ namespace RM_EDU
 
                 // Use default image.
                 InfoLogEntry newEntry = NaturalResources.GenerateInfoLogEntry(resource);
-                newEntry.iconSprite = defaultIconSprite; // TODO: replace with proper image.
+
+                // If the Natural Resources class has been instantiated, get the symbol.
+                // Since this is a sprite, the class must be instantiated beforehand.
+                if(NaturalResources.Instantiated)
+                    newEntry.iconSprite = NaturalResources.Instance.GetNaturalResourceSymbol(resource);
+
+                // If the icon sprite is null, use the default sprite icon.
+                if(newEntry.iconSprite == null)
+                    newEntry.iconSprite = defaultIconSprite; // TODO: replace with proper image.
+                
                 resourceEntries.Add(newEntry);
             }
 
@@ -266,7 +294,7 @@ namespace RM_EDU
             SetCurrentCategory(currCategory);
         }
 
-        // clears the entry info lists.
+        // clears the entry info lists, which also clears the info.
         public void ClearEntryInfoLists()
         {
             // Clears the current entries.
@@ -531,6 +559,19 @@ namespace RM_EDU
                 entryButtons[buttonIndex].ClearEntryInfo();
                 buttonIndex++;
             }
+
+            // If the entry buttons page count is greater than 1, activate the page buttons.
+            if(GetEntryButtonsPageCount() > 1)
+            {
+                prevEntryPageButton.interactable = true;
+                nextEntryPageButton.interactable = true;
+            }
+            // Deactivate page buttons.
+            else
+            {
+                prevEntryPageButton.interactable = false;
+                nextEntryPageButton.interactable = false;
+            }
         }
 
         // Clears the entry buttons.
@@ -581,6 +622,9 @@ namespace RM_EDU
             // Clamps the page index within the proper bounds.
             entryButtonPageIndex = Mathf.Clamp(pageIndex, 0, pageCount - 1);
 
+            // Updates the entry buttons page text.
+            entryButtonsPageText.text = (entryButtonPageIndex + 1).ToString() + "/" + pageCount.ToString();
+
             // Updates the entry buttons.
             UpdateEntryButtons();
         }
@@ -592,7 +636,12 @@ namespace RM_EDU
             // e.g., if there's 5 buttons and 3 pages, each page can display up to 5 entries.
             //  - On page 2 (index 1), the current entry index would be 5.
             //  - Page 0 would display entries (0-4), and Page 1 would display entries (5-9).
-            return entryButtonPageIndex * entryButtons.Count;
+            int entryIndex = entryButtonPageIndex * entryButtons.Count;
+
+            // Clamp within the bounds.
+            entryIndex = Mathf.Clamp(entryIndex, 0, entryButtons.Count - 1);
+
+            return entryIndex;
         }
 
         // Goes to the previous entry buttons page.

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace RM_EDU
@@ -16,25 +17,17 @@ namespace RM_EDU
 
         [Header("UI")]
 
-        // The title text object.
-        public TMP_Text titleText;
+        // The stage type text.
+        public TMP_Text stageTypeText;
 
-        // Strings
-        // World Stage
-        private string worldStageStr = "World Stage";
-        private string worldStageKey = "kwd_worldStage";
+        // The resources text.
+        public TMP_Text resourcesText;
 
-        // Action Stage
-        private string actionStageStr = "Action Stage";
-        private string actionStageKey = "kwd_actionStage";
-
-        // Knowledge Stage
-        private string knowledgeStageStr = "Knowledge Stage";
-        private string knowledgeStageKey = "kwd_knowledgeStage";
-
-        // Unknown
-        private string unknownStageStr = "Unknown Stage";
-        private string unknownStageKey = "kwd_unknownStage";
+        // Stage Name Keys
+        public const string WORLD_STAGE_KEY = "kwd_worldStage";
+        public const string ACTION_STAGE_KEY = "kwd_actionStage";
+        public const string KNOWLEDGE_STAGE_KEY = "kwd_knowledgeStage";
+        public const string UNKNOWN_STAGE_KEY = "kwd_unknownStage";
 
         // Start is called before the first frame update
         void Start()
@@ -44,16 +37,64 @@ namespace RM_EDU
             {
                 worldUI = WorldUI.Instance;
             }
+        }
 
-            // If the LOL SDK is initialized, translate the strings.
-            if(LOLManager.Instantiated && LOLManager.IsLOLSDKInitialized())
+        // Gets the stage name translated. Returns empty string if LOLSDK isn't initialized or the key is blank.
+        private string GetStageNameTranslated(string key)
+        {
+            // Checks if the LOL SDK is initialized.
+            if (LOLManager.IsLOLSDKInitialized() && key != "")
             {
-                worldStageStr = LOLManager.Instance.GetLanguageText(worldStageKey);
-                actionStageStr = LOLManager.Instance.GetLanguageText(actionStageKey);
-                knowledgeStageStr = LOLManager.Instance.GetLanguageText(knowledgeStageKey);
-                unknownStageStr = LOLManager.Instance.GetLanguageText(unknownStageKey);
+                return LOLManager.GetLanguageTextStatic(key);
+            }
+            else
+            {
+                return "";
             }
         }
+
+        // Gets the world stage string.
+        public string GetWorldStageString()
+        {
+            if (LOLManager.IsLOLSDKInitialized())
+                return GetStageNameTranslated(WORLD_STAGE_KEY);
+            else
+                return "World Stage";
+        }
+
+        // Gets the action stage string.
+        public string GetActionStageString()
+        {
+            if (LOLManager.IsLOLSDKInitialized())
+                return GetStageNameTranslated(ACTION_STAGE_KEY);
+            else
+                return "Action Stage";
+        }
+
+        // Gets the knowledge stage string.
+        public string GetKnowledgeStageString()
+        {
+            if (LOLManager.IsLOLSDKInitialized())
+                return GetStageNameTranslated(KNOWLEDGE_STAGE_KEY);
+            else
+                return "Knowledge Stage";
+        }
+
+        // Gets the unknown stage string.
+        public string GetUnknownStageString()
+        {
+            if (LOLManager.IsLOLSDKInitialized())
+                return GetStageNameTranslated(UNKNOWN_STAGE_KEY);
+            else
+                return "Unknown Stage";
+        }
+
+        // Returns 'true' if the world stage.
+        public bool HasWorldStage()
+        {
+            return worldStage != null;
+        }
+
 
         // Sets the world stage.
         public void SetWorldStage(WorldStage worldStage)
@@ -63,34 +104,36 @@ namespace RM_EDU
             // Checks if the world stage is an action stage.
             if(worldStage is WorldActionStage)
             {
-                titleText.text = actionStageStr;
+                stageTypeText.text = GetActionStageString();
             }
             // Checks if a world stage is a knowledge stage.
             else if(worldStage is WorldKnowledgeStage)
             {
-                titleText.text = knowledgeStageStr;
+                stageTypeText.text = GetKnowledgeStageString();
             }
-            // Don't know what stage it is.
+            // Don't know what stage it is., so set it as unknown.
             else
             {
-                titleText.text = unknownStageStr;
+                stageTypeText.text = GetUnknownStageString();
             }
 
-        }
-
-        // Sets the world stage, and asks if the prompt should be opened.
-        public void SetWorldStage(WorldStage worldStage, bool openPrompt)
-        {
-            // Sets the world stage.
-            SetWorldStage(worldStage);
-
-            // TODO: open prompt.
+            // If the world stage exists, get the resources as a string.
+            if(worldStage != null)
+            {
+                resourcesText.text = worldStage.ResourcesToString();
+            }
+            else
+            {
+                resourcesText.text = "-";
+            }
         }
 
         // Clears the world stage.
         public void ClearWorldStage()
         {
             worldStage = null;
+            stageTypeText.text = GetWorldStageString();
+            resourcesText.text = "-";
         }
 
         // Called to start the stage.
@@ -104,12 +147,24 @@ namespace RM_EDU
             
         }
 
-        // Back out of the prompt.
-        public void ClosePrompt()
+        // Opens the dialog using the current world stage by calling the world UI.
+        public void OpenDialog()
+        {
+            // Opens the world stage dialog.
+            WorldUI.Instance.OpenWorldStageDialog(worldStage);
+        }
+
+        // Opens the dialog given the provided world stage.
+        public void OpenDialog(WorldStage worldStage)
+        {
+            WorldUI.Instance.OpenWorldStageDialog(worldStage);
+        }
+
+        // Closes the dialog.
+        public void CloseDialog()
         {
             ClearWorldStage();
-            worldUI.CloseWorldStageDialog();
-            // TODO: implement.
+            WorldUI.Instance.CloseWorldStageDialog();
         }
 
         // // Update is called once per frame
