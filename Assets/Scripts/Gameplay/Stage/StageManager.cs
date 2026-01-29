@@ -140,6 +140,21 @@ namespace RM_EDU
             return gameScore;
         }
 
+        // Calculates the stage score.
+        public abstract float CalculateStageScore();
+
+        // Calculates and sets the game score.
+        public void CalculateAndSetGameScore()
+        {
+            gameScore = CalculateStageScore();
+        }
+
+        // Resets the stage score.
+        public void ResetStageScore()
+        {
+            gameScore = 0;
+        }
+
         // Gets the stage energy total.
         public abstract float GetStageEnergyTotal();
 
@@ -153,7 +168,12 @@ namespace RM_EDU
         public abstract bool IsComplete();
 
         // Resets the stage.
-        public abstract void ResetStage();
+        public virtual void ResetStage()
+        {
+            // Resets the tiem and the score.
+            ResetGameTimerAndStageTimer();
+            ResetStageScore();
+        }
 
         // Finishes the stage.
         public virtual void FinishStage()

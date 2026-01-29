@@ -118,6 +118,10 @@ namespace RM_EDU
         // The tutorials UI.
         public TutorialUI tutorialsUI;
 
+        // If 'true', the tutorials object is set to not be destroyed on load in the Start().
+        [Tooltip("If true, DontDestroyOnLoad(gameObject) is called in Start().")]
+        public bool dontDestroyOnLoadInStart = true;
+
         // // If 'true', the tutorials object constantly checks for starting tutorials.
         // [Tooltip("Constant check for tutorial start.")]
         // public bool constantTutorialStartCheck = true;
@@ -183,7 +187,8 @@ namespace RM_EDU
             }   
 
             // Don't destroy this game object.
-            DontDestroyOnLoad(gameObject);
+            if(dontDestroyOnLoadInStart)
+                DontDestroyOnLoad(gameObject);
         }
 
 

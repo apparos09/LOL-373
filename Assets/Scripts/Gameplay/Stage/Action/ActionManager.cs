@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using LoLSDK;
+using System.Buffers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -247,6 +248,22 @@ namespace RM_EDU
         public float GetStageSpeed()
         {
             return GetGameTimeScale();
+        }
+
+        // Calculates the stage score.
+        public override float CalculateStageScore()
+        {
+            // The points base.
+            float basePoints = 500;
+
+            // Bonus for the user winning, and their amount of kills.
+            float userWonBonus = PlayerUserWon() ? 500 : 0;
+            float killBonus = playerUser.kills * 50.0F;
+
+            // Total score.
+            float score = basePoints + userWonBonus + killBonus;
+
+            return score;
         }
 
         // Sets the stage speed using the provided factor.
@@ -743,6 +760,9 @@ namespace RM_EDU
         {
             SetStagePlaying(false);
 
+            // Calculates the game score.
+            CalculateAndSetGameScore();
+
             // Open the end UI.
             actionUI.OpenStageEndDialog();
         }
@@ -783,8 +803,9 @@ namespace RM_EDU
         // Resets the acion stage.
         public override void ResetStage()
         {
-            // Resets the timers and stage speed. Also refreshes the speed button.
-            ResetGameTimerAndStageTimer();
+            base.ResetStage();
+
+            // Resets stage speed. Also refreshes the speed button.
             ResetStageSpeed();
             actionUI.speedButton.RefreshSpeedIcon();
 

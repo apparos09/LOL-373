@@ -424,6 +424,8 @@ namespace RM_EDU
         // Resets the player.
         public override void ResetPlayer()
         {
+            base.ResetPlayer();
+
             // Kills all enemy units and enemy retreats. 
             KillAllEnemyUnits();
             EnemyRetreat.KillAllEnemyRetreats();

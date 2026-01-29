@@ -666,7 +666,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 274085256841670817, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: key
-      value: kwd_energyTotal
+      value: kwd_gameEnergyTotal
       objectReference: {fileID: 0}
     - target: {fileID: 5256255412335708055, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_Pivot.x
@@ -750,11 +750,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5742420476798662559, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_Name
-      value: Energy Total
+      value: Game Energy Total
       objectReference: {fileID: 0}
     - target: {fileID: 9006426568367406274, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_text
-      value: Energy Total
+      value: Game Energy Total
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1251,7 +1251,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 274085256841670817, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: key
-      value: kwd_finalScore
+      value: kwd_gameScore
       objectReference: {fileID: 0}
     - target: {fileID: 5256255412335708055, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_Pivot.x
@@ -1335,11 +1335,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5742420476798662559, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_Name
-      value: Final Score
+      value: Game Score
       objectReference: {fileID: 0}
     - target: {fileID: 9006426568367406274, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_text
-      value: Final Score
+      value: Game Score
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

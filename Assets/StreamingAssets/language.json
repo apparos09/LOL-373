@@ -151,10 +151,10 @@
       "asg_msg_userWon": 100,
       "asg_msg_userLost": 100,
 
-      "kwd_stageTime": 100,
-      "kwd_stageScore": 100,
-      "kwd_stageEnergyTotal": 100,
-      "kwd_stageAirPollution": 100,
+      "kwd_time": 18,
+      "kwd_score": 18,
+      "kwd_energyTotal": 18,
+      "kwd_airPollution": 18,
 
 
       "kst_bms_00": 100,
@@ -219,9 +219,9 @@
 
 
 
-      "kwd_finalScore": 18,
+      "kwd_gameScore": 18,
       "kwd_gameTime": 18,
-      "kwd_energyTotal": 18,
+      "kwd_gameEnergyTotal": 18,
 
       "kwd_finish": 18
 
@@ -377,10 +377,10 @@
     "asg_msg_userWon": "You've won! The enemies have run out of power!",
     "asg_msg_userLost": "The enemies have made it into the base!",
 
-    "kwd_stageTime": "Stage Time",
-    "kwd_stageScore": "Stage Score",
-    "kwd_stageEnergyTotal": "Stage Energy Total",
-    "kwd_stageAirPollution": "Stage Air Pollution",
+    "kwd_time": "Time",
+    "kwd_score": "Score",
+    "kwd_energyTotal": "Energy Total",
+    "kwd_airPollution": "Air Pollution",
 
 
     "kst_bms_00": "Biomass 0",
@@ -443,9 +443,9 @@
     "kst_oil_03": "Oil 3",
     "kst_oil_04": "Oil 4",
 
-    "kwd_finalScore": "Final Score",
+    "kwd_gameScore": "Game Score",
     "kwd_gameTime": "Game Time",
-    "kwd_energyTotal": "Energy Total",
+    "kwd_gameEnergyTotal": "Game Energy Total",
 
 
     "kwd_finish": "Finish"

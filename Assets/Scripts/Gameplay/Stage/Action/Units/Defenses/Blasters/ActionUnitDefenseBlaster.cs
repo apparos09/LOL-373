@@ -91,7 +91,8 @@ namespace RM_EDU
                 // Sets the starting position.
                 projectile.transform.position = startPos;
 
-                // Sets the shooter and move direction.
+                // Sets the owner, shooter and move direction.
+                projectile.owner = owner;
                 projectile.shooterUnit = this;
                 projectile.moveDirec = Vector2.right;
 

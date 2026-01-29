@@ -734,7 +734,7 @@ namespace RM_EDU
         }
 
         // Calculates the stage score.
-        public float CalculateStageScore()
+        public override float CalculateStageScore()
         {
             // The local score.
             float localScore = 0.0F;
@@ -756,12 +756,6 @@ namespace RM_EDU
             // TODO: expand.
 
             return localScore;
-        }
-
-        // Calculates and sets the game score.
-        public void CalculateAndSetGameScore()
-        {
-            gameScore = CalculateStageScore();
         }
 
         // Gets the stage energy total.
@@ -801,6 +795,8 @@ namespace RM_EDU
         // This function will never be used since matched statements shouldn't be undone.
         public override void ResetStage()
         {
+            base.ResetStage();
+
             ResetAllMatches();
         }
 

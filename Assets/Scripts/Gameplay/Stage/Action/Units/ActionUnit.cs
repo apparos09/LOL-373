@@ -745,7 +745,20 @@ namespace RM_EDU
             // If the unit is now dead, call the kill function.
             if(health <= 0.0F)
             {
+                // If the attacker isn't null.
+                if(attacker != null)
+                {
+                    // If the attacker has an owner, add to its kill count.
+                    if (attacker.owner != null)
+                    {
+                        attacker.owner.kills++;
+                    }
+                }
+
+                // Health is zero.
                 health = 0.0F;
+
+                // Call kill.
                 Kill();
             }
         }

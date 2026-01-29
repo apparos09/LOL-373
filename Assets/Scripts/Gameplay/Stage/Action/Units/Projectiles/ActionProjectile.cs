@@ -10,10 +10,7 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
-        // The action unit that fired the projectile.
-        // If null, then assume no one fired this unit.
-        public ActionUnit shooterUnit;
-
+        
         // The sprite renderer of the action projectile.
         public SpriteRenderer spriteRenderer;
 
@@ -22,6 +19,14 @@ namespace RM_EDU
 
         // The rigid body.
         public new Rigidbody2D rigidbody;
+
+        // The owner of this projectile.
+        public ActionPlayer owner;
+
+        // The action unit that fired the projectile.
+        // If null, then assume no one fired this unit.
+        public ActionUnit shooterUnit;
+
 
         // All the projectiles in the stage.
         private static List<ActionProjectile> actionProjectiles = new List<ActionProjectile>();
@@ -125,6 +130,14 @@ namespace RM_EDU
                 // Update the shooter attack values.
                 UpdateShooterAttackValues();
             }
+
+            // If the owner is null and the shooter unit isn't...
+            // Set the owner from the shooterUnit.
+            if (owner == null && shooterUnit != null)
+            {
+                owner = shooterUnit.owner;
+            }
+                
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -274,10 +287,33 @@ namespace RM_EDU
                     // Apply damage using the projectile.
                     // Since the proper attack calculation hasn't been done, apply it.
                     target.ApplyDamage(damage, false);
+
+                    // Adds to the owner's kill count.
+                    // Checks if the owner is set so that the kill count can be adjusted.
+                    // If the shooter was used directly, the functions called in that case handle...
+                    // The kill count change.
+                    if(owner != null)
+                    {
+                        // Checks if the target exists.
+                        if (target != null)
+                        {
+                            // If the target is dead, add to the owner's kill count.
+                            if (target.IsDead())
+                            {
+                                owner.kills++;
+                            }
+                        }
+                        // The target doesn't exist, so consider it dead.
+                        else
+                        {
+                            owner.kills++;
+                        }
+                    }
+                    
                 }
 
                 // If the projectile should die on contact, kill it.
-                if(dieOnContact)
+                if (dieOnContact)
                 {
                     Kill();
                 }
