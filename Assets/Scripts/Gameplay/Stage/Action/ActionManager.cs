@@ -713,6 +713,17 @@ namespace RM_EDU
 
 
         // PLAYERS
+        // If the player enemy has no energy, the player has won.
+        public bool PlayerUserWon()
+        {
+            return !playerEnemy.HasEnergy();
+        }
+
+        // If the player enemy has enemy, the player has lost.
+        public bool PlayerEnemyWon()
+        {
+            return playerEnemy.HasEnergy();
+        }
 
         // Called on the death of the user.
         public void OnPlayerUserDeath()
@@ -726,6 +737,7 @@ namespace RM_EDU
             OnStageOver();
         }
 
+        // STAGE OVER
         // Called when the stage is over.
         public void OnStageOver()
         {

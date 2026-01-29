@@ -25,8 +25,8 @@ namespace RM_EDU
         // The info log dialog.
         public InfoLog infoLogDialog;
 
-        // The window that shows up when the stage is over.
-        public GameObject stageEndDialog;
+        // The dialog that shows up when the stage is over.
+        public ActionStageEndDialog stageEndDialog;
 
         [Header("Action/Top Header")]
         // The day night indicator.
@@ -258,7 +258,7 @@ namespace RM_EDU
 
             // Adds the rest of the dialogs.
             dialogList.Add(infoLogDialog.gameObject);
-            dialogList.Add(stageEndDialog);
+            dialogList.Add(stageEndDialog.gameObject);
 
             return dialogList;
         }
@@ -284,13 +284,14 @@ namespace RM_EDU
         // Opens the stage end dialog.
         public void OpenStageEndDialog()
         {
-            OpenDialog(stageEndDialog, true);
+            OpenDialog(stageEndDialog.gameObject, true);
+            stageEndDialog.AutoSetStageEndOutcome();
         }
 
         // Closes the stage end dialog.
         public void CloseStageEndDialog()
         {
-            CloseDialog(stageEndDialog);
+            CloseDialog(stageEndDialog.gameObject);
         }
 
         // FINISH

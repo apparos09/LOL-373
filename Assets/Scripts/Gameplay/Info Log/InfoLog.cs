@@ -15,8 +15,14 @@ namespace RM_EDU
             // The name of the info entry.
             public string name;
 
+            // The name key.
+            public string nameKey;
+
             // The description of the info entry.
             public string description;
+
+            // The description key.
+            public string descriptionKey;
 
             // The icon sprite for the info log entry.
             public Sprite iconSprite;
@@ -337,6 +343,18 @@ namespace RM_EDU
 
             // Sets the entry buttons page index to 0.
             SetEntryButtonsPageIndex(0);
+
+            // If text-to-speech should be used.
+            if(LOLManager.IsTextToSpeechUsableAndEnabled())
+            {
+                // Gets the speak key.
+                string speakKey = GetCurrentCategoryNameKey();
+
+                // Speak the text.
+                if (speakKey != "")
+                    SpeakText(speakKey);
+            }
+
         }
 
 
@@ -687,6 +705,13 @@ namespace RM_EDU
                 infoNameText.text = entry.name;
                 infoDescText.text = entry.description;
                 infoIconImage.sprite = entry.iconSprite;
+
+                // If text-to-speech is usable and enabled.
+                if(entry.descriptionKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+                {
+                    // Read the description.
+                    SpeakText(entry.descriptionKey);
+                }
             }
             else
             {
@@ -704,6 +729,16 @@ namespace RM_EDU
             infoIconImage.sprite = alpha0Sprite;
         }
 
+        // TEXT-TO-SPEECH
+        // Speaks text if Text-to-Speech is usable and enabled.
+        public void SpeakText(string key)
+        {
+            // If text-to-speech is usable and enabled, speak the text.
+            if(key != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+            {
+                LOLManager.Instance.SpeakText(key);
+            }
+        }
 
         // // Update is called once per frame
         // void Update()

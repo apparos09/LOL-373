@@ -559,7 +559,9 @@ namespace RM_EDU
 
             // Setting values.
             entry.name = GetNaturalResourceName(resource);
+            entry.nameKey = GetNaturalResourceNameKey(resource);
             entry.description = GetNaturalResourceDescription(resource);
+            entry.descriptionKey = GetNaturalResourceDescriptionKey(resource);
             entry.iconSprite = null;
 
             // TODO: create a list of icons for natural resources.

@@ -80,6 +80,14 @@ namespace RM_EDU
             // If defs is not set, try to set it.
             if(defs == null)
                 defs = SharedState.LanguageDefs;
+
+            // If the save system is null but it has been instantiated, get the instance.
+            if (saveSystem == null && SaveSystem.Instantiated)
+                saveSystem = SaveSystem.Instance;
+
+            // If the text-to-speech is null but it has been instantiated, get the instance.
+            if (textToSpeech == null && TextToSpeech.Instantiated)
+                textToSpeech = TextToSpeech.Instance;
         }
 
         // Returns the instance of the accessibility.
@@ -91,7 +99,7 @@ namespace RM_EDU
                 if (instance == null)
                 {
                     // Makes a new settings object.
-                    GameObject go = new GameObject("LOL Manager");
+                    GameObject go = new GameObject("LOL Manager (singleton)");
 
                     // Adds the instance component to the new object.
                     instance = go.AddComponent<LOLManager>();
@@ -150,6 +158,29 @@ namespace RM_EDU
                 return languageDefs[key];
             else
                 return "";
+        }
+
+        // Returns true if text-to-speech is usable.
+        public static bool IsTextToSpeechUsable()
+        {
+            // The LOL SDK must be initialized and text-to-speech must be instantiated.
+            return IsLOLSDKInitialized() && TextToSpeech.Instantiated;
+        }
+
+        // Returns 'true' if text-to-speech is enabled.
+        public static bool IsTextToSpeechEnabled()
+        {
+            // Checks game settings to see if text-to-speech is enabled.
+            if (GameSettings.Instantiated)
+                return GameSettings.Instance.UseTextToSpeech;
+            else
+                return false;
+        }
+
+        // Returns 'true' if text-to-speech is usable and enabled.
+        public static bool IsTextToSpeechUsableAndEnabled()
+        {
+            return IsTextToSpeechUsable() && IsTextToSpeechEnabled();
         }
 
         // Speaks the text.

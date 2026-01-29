@@ -334,10 +334,14 @@ namespace RM_EDU
         // Generates an info log entry for this unit.
         public InfoLog.InfoLogEntry GenerateInfoLogEntry()
         {
-            // Creates an entry and sets the values.
+            // Creates an entry.
             InfoLog.InfoLogEntry entry = new InfoLog.InfoLogEntry();
+
+            // Sets the values.
             entry.name = GetUnitNameTranslated();
+            entry.nameKey = unitNameKey;
             entry.description = GetUnitDescriptionTranslated();
+            entry.descriptionKey = unitDescKey;
             entry.iconSprite = iconSprite;
 
             return entry;
