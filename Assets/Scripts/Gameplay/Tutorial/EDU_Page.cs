@@ -55,8 +55,11 @@ namespace RM_EDU
             // If the LOL Manager is instantiated...
             if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
-                string newText = LOLManager.Instance.GetLanguageText(languageKey);
-                text = newText;
+                // Gets the new text.
+                string newText = LOLManager.GetLanguageTextStatic(languageKey);
+
+                // If the new text is not null, use it. If the new text is null, use an empty string.
+                text = (newText != null) ? newText : string.Empty;
             }
         }
 
@@ -97,11 +100,11 @@ namespace RM_EDU
         // Speaks the text for the tutorial page.
         public void SpeakText()
         {
-
-            // If the LOL SDK is initialized, and TTS is on.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && GameSettings.Instance.UseTextToSpeech)
+            // If the LOL SDK is initialized, TTS is available, TTS is on.
+            if (LOLManager.IsTextToSpeechUsableAndEnabled() && speakKey != string.Empty)
             {
                 LOLManager.Instance.SpeakText(speakKey);
+                // TextToSpeech.Instance.SpeakText(speakKey);
             }
         }
 

@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,16 +8,90 @@ namespace RM_EDU
     // The script for the tutorials.
     public class Tutorials : MonoBehaviour
     {
+        // The tutorial data.
         [System.Serializable]
         public class TutorialsData
         {
-            public bool clearedIntroTutorial;
-            public bool clearedFirstActionStageTutorial;
-            public bool clearedFirstKnowledgeStageTutorial;
-            public bool clearedFirstStageCompletedTutorial;
+            // Main
+            public bool clearedIntroTutorial = false;
+            public bool clearedFirstActionTutorial = false;
+            public bool clearedFirstActionCompleteTutorial = false;
+            public bool clearedFirstKnowledgeTutorial = false;
+            public bool clearedFirstKnowledgeCompleteTutorial = false;
+            public bool clearedFirstAreaComplete = false;
+            public bool clearedFinalAreaStart = false;
 
+            // Natural Resources
+            public bool clearedBiomassTutorial = false;
+            public bool clearedGeothermalTutorial = false;
+            public bool clearedHydroTutorial = false;
+            public bool clearedSolarTutorial = false;
+            public bool clearedWaveTutorial = false;
+            public bool clearedWindTutorial = false;
 
-            // TODO: Add
+            public bool clearedCoalTutorial = false;
+            public bool clearedNaturalGasTutorial = false;
+            public bool clearedNuclearTutorial = false;
+            public bool clearedOilTutorial = false;
+
+            // Copies the tutorial data.
+            public TutorialsData Copy()
+            {
+                // The copied data.
+                TutorialsData copyData = new TutorialsData();
+
+                // Main
+                copyData.clearedIntroTutorial = clearedIntroTutorial;
+                copyData.clearedFirstActionTutorial = clearedFirstActionTutorial;
+                copyData.clearedFirstActionCompleteTutorial = clearedFirstActionCompleteTutorial;
+                copyData.clearedFirstKnowledgeTutorial = clearedFirstKnowledgeTutorial;
+                copyData.clearedFirstKnowledgeCompleteTutorial = clearedFirstKnowledgeCompleteTutorial;
+                copyData.clearedFirstAreaComplete = clearedFirstAreaComplete;
+                copyData.clearedFinalAreaStart = clearedFinalAreaStart;
+
+                // Natural Resources
+                copyData.clearedBiomassTutorial = clearedBiomassTutorial;
+                copyData.clearedGeothermalTutorial = clearedGeothermalTutorial;
+                copyData.clearedHydroTutorial = clearedHydroTutorial;
+                copyData.clearedSolarTutorial = clearedSolarTutorial;
+                copyData.clearedWaveTutorial = clearedWaveTutorial;
+                copyData.clearedWindTutorial = clearedWindTutorial;
+
+                copyData.clearedCoalTutorial = clearedCoalTutorial;
+                copyData.clearedNaturalGasTutorial = clearedNaturalGasTutorial;
+                copyData.clearedNuclearTutorial = clearedNuclearTutorial;
+                copyData.clearedOilTutorial = clearedOilTutorial;
+
+                // Resulting data.
+                return copyData;
+            }
+
+            // Pastes the values from the provided data to this object.
+            public void Paste(TutorialsData pasteData)
+            {
+                // Main
+                clearedIntroTutorial = pasteData.clearedIntroTutorial;
+                clearedFirstActionTutorial = pasteData.clearedFirstActionTutorial;
+                clearedFirstActionCompleteTutorial = pasteData.clearedFirstActionCompleteTutorial;
+                clearedFirstKnowledgeTutorial = pasteData.clearedFirstKnowledgeTutorial;
+                clearedFirstKnowledgeCompleteTutorial = pasteData.clearedFirstKnowledgeCompleteTutorial;
+                clearedFirstAreaComplete = pasteData.clearedFirstAreaComplete;
+                clearedFinalAreaStart = pasteData.clearedFinalAreaStart;
+
+                // Natural Resources
+                clearedBiomassTutorial = pasteData.clearedBiomassTutorial;
+                clearedGeothermalTutorial = pasteData.clearedGeothermalTutorial;
+                clearedHydroTutorial = pasteData.clearedHydroTutorial;
+                clearedSolarTutorial = pasteData.clearedSolarTutorial;
+                clearedWaveTutorial = pasteData.clearedWaveTutorial;
+                clearedWindTutorial = pasteData.clearedWindTutorial;
+
+                clearedCoalTutorial = pasteData.clearedCoalTutorial;
+                clearedNaturalGasTutorial = pasteData.clearedNaturalGasTutorial;
+                clearedNuclearTutorial = pasteData.clearedNuclearTutorial;
+                clearedOilTutorial = pasteData.clearedOilTutorial;
+            }
+
         }
 
         // The tutorial types 
@@ -52,10 +125,8 @@ namespace RM_EDU
 
         [Header("Tutorials")]
 
-        public bool clearedIntroTutorial;
-        public bool clearedFirstActionStageTutorial;
-        public bool clearedFirstKnowledgeStageTutorial;
-        public bool clearedFirstStageCompletedTutorial;
+        // The tutorial data.
+        private TutorialsData data = new TutorialsData();
 
         // Constructor
         private Tutorials()
@@ -81,6 +152,10 @@ namespace RM_EDU
             // Run code for initialization.
             if (!instanced)
             {
+                // If the data doesn't exist, create an object.
+                if(data == null)
+                    data = new TutorialsData();
+
                 instanced = true;
             }
         }
@@ -99,7 +174,12 @@ namespace RM_EDU
             // To that object if this check fails.
             if (tutorialsUI == null && TutorialUI.Instantiated)
             {
+                // The tutorial UI.
                 tutorialsUI = TutorialUI.Instance;
+
+                // Set the UI to use this tutorial.
+                if (tutorialsUI.tutorials == null)
+                    tutorialsUI.tutorials = this;
             }   
 
             // Don't destroy this game object.
@@ -175,6 +255,13 @@ namespace RM_EDU
             }
         }
 
+        // Gets the tutorials data.
+        public TutorialsData Data
+        {
+            get { return data; }
+        }
+
+        // TUTORIAL FUNCTIONS
         // Checks if a tutorial is running.
         public bool IsTutorialRunning()
         {
@@ -215,6 +302,11 @@ namespace RM_EDU
             // UI end function.
             tutorialsUI.OnTutorialEnd();
 
+            // TODO: see if this function should be called when the textbox is closed.
+            // // If the game manager hasn't been set, try to find it.
+            // if (gameManager == null)
+            //     gameManager = FindObjectOfType<GameplayManager>();
+
             // Unfreeze the game if the game is not paused.
             if (!gameManager.IsGamePaused())
             {
@@ -237,30 +329,43 @@ namespace RM_EDU
 
 
         // TUTORIAL DATA
-        // Generates the tutorials data.
-        public TutorialsData GenerateTutorialsData()
+        // Generates a copy of the tutorials data.
+        public TutorialsData GenerateTutorialsDataCopy()
         {
-            TutorialsData data = new TutorialsData();
-
-            data.clearedIntroTutorial = clearedIntroTutorial;
-            data.clearedFirstActionStageTutorial = clearedFirstActionStageTutorial;
-            data.clearedFirstKnowledgeStageTutorial = clearedFirstKnowledgeStageTutorial;
-            data.clearedFirstStageCompletedTutorial = clearedFirstStageCompletedTutorial;
+            // The data.
+            TutorialsData copy = data.Copy();
 
             return data;
         }
 
         // Sets the tutorials data.
-        public void LoadTutorialsData(TutorialsData data)
+        public void LoadTutorialsData(TutorialsData newData)
         {
-            clearedIntroTutorial = data.clearedIntroTutorial;
-            clearedFirstActionStageTutorial = data.clearedFirstActionStageTutorial;
-            clearedFirstKnowledgeStageTutorial = data.clearedFirstKnowledgeStageTutorial;
-            clearedFirstStageCompletedTutorial = data.clearedFirstStageCompletedTutorial;
+            // If the data doesn't exist, create it.
+            if (data == null)
+                data = new TutorialsData();
+
+            data.Paste(newData);
         }
 
+        // Loads the tutorial debug data.
+        public void LoadTutorialsDebugData()
+        {
+            // The debug data.
+            TutorialsData debugData = new TutorialsData();
 
-        // Tutorial Loader
+            // Load the debug data.
+            LoadTutorialsData(debugData);
+        }
+
+        // Resets the tutorials data.
+        public void ResetTutorialsData()
+        {
+            TutorialsData newData = new TutorialsData();
+            data.Paste(newData);
+        }
+
+        // TUTORIAL LOADING
 
         // Loads the tutorial
         private void LoadTutorial(ref List<Page> pages, bool startTutorial = true)
@@ -279,12 +384,6 @@ namespace RM_EDU
                 tutorialsUI.LoadPages(ref pages, false);
             }
         }
-
-        // // Loads the tutorial of the provided type.
-        // public void LoadTutorial(tutorialType tutorial)
-        // {
-        //     // ...
-        // }
 
 
         // Load the tutorial (template)
@@ -320,6 +419,8 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
+
+        // MAIN
         // Loads the intro tutorial.
         public void LoadIntroTutorial(bool startTutorial = true)
         {
@@ -327,19 +428,272 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("Welcome to the Meteor Strike Team (MST)! We track down meteors and destroy them before they hit the Earth's surface, which we do by converting larger measurement units into smaller measurement units. This is the world area, which is where you select stages, view unit information, change the game settings, and save your game. I'm Reteor...", "trl_intro_00"),
-                new EDU_Page("And I'm Astrite! When you select a stage, the units you'll be working with will be displayed. Once this information is given, it's added to the 'units info menu', which can be viewed using the 'units info button'. With all that explained, please select the available stage to start destroying meteors!", "trl_intro_01"),
+                new EDU_Page("...", "trl_intro_00"),
+                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
-            clearedIntroTutorial = true;
+            data.clearedIntroTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Update is called once per frame
-        void Update()
+        // Loads the first action tutorial.
+        public void LoadFirstActionTutorial(bool startTutorial = true)
         {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_firstAction_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
 
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
         }
+
+        // Loads the first action complete tutorial.
+        public void LoadFirstActionCompleteTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_firstActionComplete_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionCompleteTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first knowledge tutorial.
+        public void LoadFirstKnowledgeTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_firstKnowledge_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstKnowledgeTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first knowledge complete tutorial.
+        public void LoadFirstKnowledgeCompleteTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_firstKnowledgeComplete_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstKnowledgeCompleteTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first area complete tutorial.
+        public void LoadFirstAreaCompleteTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_firstAreaComplete_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstAreaComplete = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the final area start tutorial.
+        public void LoadFinalAreaStartTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_finalAreaStart_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFinalAreaStart = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+
+        // Natural Resources
+        // Loads the biomass tutorial.
+        public void LoadBiomassTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_biomass_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedBiomassTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the geothermal tutorial.
+        public void LoadGeothermalTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_geothermal_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedGeothermalTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the hydro tutorial.
+        public void LoadHydroTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_hydro_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedHydroTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the solar tutorial.
+        public void LoadSolarTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_solar_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedSolarTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the wave tutorial.
+        public void LoadWaveTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_wave_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedWaveTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the wind tutorial.
+        public void LoadWindTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_wind_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedWindTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the coal tutorial.
+        public void LoadCoalTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_coal_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedCoalTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the naturalgas tutorial.
+        public void LoadNaturalGasTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_naturalGas_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedNaturalGasTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the nuclear tutorial.
+        public void LoadNuclearTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_nuclear_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedNuclearTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the oil tutorial.
+        public void LoadOilTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("...", "trl_oil_00"),
+                // new EDU_Page("...", "trl_intro_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedOilTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
     }
 }

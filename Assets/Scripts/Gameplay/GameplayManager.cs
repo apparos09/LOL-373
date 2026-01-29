@@ -39,6 +39,9 @@ namespace RM_EDU
         // The tutorials object.
         public Tutorials tutorials;
 
+        // Returns 'true' if tutorials enabled.
+        private bool tutorialsEnabled = false;
+
         // The title scene.
         public string titleScene = "TitleScene";
 
@@ -59,6 +62,9 @@ namespace RM_EDU
 
         // The data logger.
         public DataLogger dataLogger;
+
+        // If 'true', late start has been called.
+        protected bool calledLateStart = false;
 
         // Awake is called when the script is being loaded
         protected virtual void Awake()
@@ -128,6 +134,18 @@ namespace RM_EDU
                     }
                 }
             }
+        }
+
+        // A function called the first time Update(0 is called, which happens after Start() was called.
+        public virtual void LateStart()
+        {
+            calledLateStart = true;
+        }
+
+        // If 'true', late start has been called.
+        public bool CalledLateStart
+        {
+            get { return calledLateStart; }
         }
 
         // GAME TIME
@@ -269,36 +287,61 @@ namespace RM_EDU
 
         // TUTORIAL //
         // Checks if the game is using the tutorial.
-        public bool IsUsingTutorial()
+        public bool IsUsingTutorials()
         {
             // The result.
             bool result;
 
-            // If the game settings is instantiated.
-            if (GameSettings.Instantiated)
+            // If the tutorial UI isn't instantiated, the tutorial isn't being used.
+            // The tutorial UI uses a prefab, so it can't be instantiated on its own.
+            if(!TutorialUI.Instantiated)
             {
-                result = GameSettings.Instance.UseTutorial;
-            }
-            else
-            {
-                // Not instantiated, so return false by default.
-                result = false;
+                Debug.LogWarning("The TutorialUI hasn't been instantiated.");
+                return false;
             }
 
+            // If the tutorials object is null, instantiate it.
+            if (tutorials == null)
+                tutorials = Tutorials.Instance;
+
+            // Checks if tutorials are enabled at all.
+            if(tutorialsEnabled)
+            {
+                // If the game settings is instantiated, check if tutorials are being used.
+                if (GameSettings.Instantiated)
+                {
+                    // Returns 'true' if the game settings is set to use the tutorials...
+                    // And the tutorials are enabled.
+                    result = GameSettings.Instance.UseTutorials;
+                }
+                else
+                {
+                    // Game settings not instantiated, so return false by default.
+                    result = false;
+                }
+
+                // NOTE: if testing tutorials, uncomment line below to ignore result.
+                // return true;
+            }
+            // Tutorials not enabled, so return false automatically.
+            else
+            {
+                result = false;
+            }
 
             return result;
         }
 
         // Set if the tutorial will be used.
-        public void SetUsingTutorial(bool value)
+        public void SetUsingTutorials(bool value)
         {
-            GameSettings.Instance.UseTutorial = value;
+            GameSettings.Instance.UseTutorials = value;
         }
 
-        // Returns 'true' if the tutorial is available to be activated.
-        public bool IsTutorialAvailable()
+        // Returns 'true' if a tutorial is active.
+        public bool IsTutorialActive()
         {
-            return gameUI.IsTutorialAvailable();
+            return gameUI.IsTutorialActive();
         }
 
         // Checks if the text box is open.
@@ -443,6 +486,10 @@ namespace RM_EDU
         // Update is called once per frame
         protected virtual void Update()
         {
+            // If late start hasn't been called, call it.
+            if(!calledLateStart)
+                LateStart();
+
             // The game isn't paused, add to the game time.
             if (runGameTimer && !IsGamePaused())
             {

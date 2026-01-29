@@ -108,6 +108,23 @@ namespace RM_EDU
             InitializeWorld();
         }
 
+        // The late start function.
+        public override void LateStart()
+        {
+            base.LateStart();
+
+            // If tutorials are being used and a tutorial isn't active.
+            if(IsUsingTutorials() && !IsTutorialActive())
+            {
+                // If the intro tutorial hasn't been cleared, trigger it.
+                if(!tutorials.Data.clearedIntroTutorial)
+                {
+                    tutorials.LoadIntroTutorial();
+                }
+
+            }
+        }
+
         // Gets the instance.
         public static WorldManager Instance
         {
@@ -333,10 +350,10 @@ namespace RM_EDU
 
 
             // Tutorial parameter.
-            data.useTutorial = GameSettings.Instance.UseTutorial;
+            data.useTutorial = GameSettings.Instance.UseTutorials;
 
             // Generates the tutorial data.
-            data.tutorialData = tutorials.GenerateTutorialsData();
+            data.tutorialData = tutorials.GenerateTutorialsDataCopy();
 
             // Saves if the game is complete.
             data.complete = IsGameComplete();
@@ -577,7 +594,7 @@ namespace RM_EDU
             SetCurrentWorldArea(data.currentAreaIndex);
 
             // Tutorial parameter.
-            GameSettings.Instance.UseTutorial = data.useTutorial;
+            GameSettings.Instance.UseTutorials = data.useTutorial;
 
             // Loads the tutorials data.
             tutorials.LoadTutorialsData(data.tutorialData);

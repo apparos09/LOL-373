@@ -83,7 +83,7 @@ namespace RM_EDU
             // });
 
             // Current tutorial toggle setting.
-            tutorialToggle.isOn = gameSettings.UseTutorial;
+            tutorialToggle.isOn = gameSettings.UseTutorials;
 
             // // Listener for the tutorial toggle.
             // tutorialToggle.onValueChanged.AddListener(delegate
@@ -143,7 +143,7 @@ namespace RM_EDU
         // On the tutorial changes.
         public void OnTutorialChange(Toggle toggle)
         {
-            gameSettings.UseTutorial = toggle.isOn;
+            gameSettings.UseTutorials = toggle.isOn;
         }
 
         // On the bgm volume change.

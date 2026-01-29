@@ -54,7 +54,7 @@ namespace RM_EDU
             Application.runInBackground = false; // Don't run in the background.
 
             // Use the tutorial by default.
-            GameSettings.Instance.UseTutorial = true;
+            GameSettings.Instance.UseTutorials = true;
 
             // LOL Initialization
             // Create the WebGL (or mock) object

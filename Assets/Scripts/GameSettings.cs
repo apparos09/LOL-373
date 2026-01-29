@@ -172,8 +172,8 @@ namespace RM_EDU
             }
         }
 
-        // If the tutorial should be used.
-        public bool UseTutorial
+        // If the tutorials should be used.
+        public bool UseTutorials
         {
             get { return useTutorial; }
 

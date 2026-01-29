@@ -82,10 +82,11 @@ namespace RM_EDU
             return tutorialUI.textBox.IsVisible() && tutorialUI.textBox.IsVisibleInHierachy();
         }
 
-        // Returns 'true' if the tutorial can be started.
-        public bool IsTutorialAvailable()
+        // Returns 'true' if a tutorial is active.
+        public bool IsTutorialActive()
         {
-            return !IsTutorialTextBoxOpen();
+            // NOTE: the text box should only be open if a tutorial is active.
+            return IsTutorialTextBoxOpen();
         }
 
         // Checks if the tutorial is running.
