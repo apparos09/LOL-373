@@ -20,10 +20,22 @@ namespace RM_EDU
             return headerText.text;
         }
 
+        // Sets the header text string.
+        public void SetHeaderTextString(string newStr)
+        {
+            headerText.text = newStr;
+        }
+
         // Gets the value text string.
         public string GetValueTextString()
         {
             return valueText.text;
+        }
+
+        // Sets the value text string.
+        public void SetValueTextString(string newStr)
+        {
+            valueText.text = newStr;
         }
 
         // Clears the text.

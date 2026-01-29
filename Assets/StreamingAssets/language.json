@@ -43,7 +43,9 @@
 
       "kwd_world": 18,
       "kwd_worldStage": 18,
+      "kwd_action": 18,
       "kwd_actionStage": 18,
+      "kwd_knowledge": 18,
       "kwd_knowledgeStage": 18,
       "kwd_unknownStage": 18,
 
@@ -270,7 +272,9 @@
 
     "kwd_world": "World",
     "kwd_worldStage": "World Stage",
+    "kwd_action": "Action",
     "kwd_actionStage": "Action Stage",
+    "kwd_knowledge": "Knowledge",
     "kwd_knowledgeStage": "Knowledge Stage",
     "kwd_unknownStage": "Unknown Stage",
 

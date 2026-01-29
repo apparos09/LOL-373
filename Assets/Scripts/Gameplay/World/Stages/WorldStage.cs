@@ -264,10 +264,93 @@ namespace RM_EDU
             return WorldManager.Instance.GetWorldStageArea(this);
         }
 
+        // STAGE TYPE
         // Gets the stage type.
         public virtual stageType GetStageType()
         {
             return stageType.unknown;
+        }
+
+        // Gets the world stage type name.
+        public string GetStageTypeName()
+        {
+            return GetStageTypeName(GetStageType());
+        }
+
+        // Gets the stage type name.
+        public static string GetStageTypeName(stageType type)
+        {
+            // The result to be returned.
+            string result;
+
+            // If the LOL SDK is intialized, translate the name.
+            if (LOLManager.IsLOLSDKInitialized())
+            {
+                // Gets the key.
+                string key = GetStageTypeNameKey(type);
+
+                // Gets the result.
+                result = LOLManager.GetLanguageTextStatic(key);
+
+                // Set the result to empty string if it's null.
+                if (result == null)
+                    result = "";
+            }
+            // Raw value.
+            else
+            {
+                // Checks the type.
+                switch (type)
+                {
+                    default:
+                        result = "World";
+                        break;
+
+                    case stageType.unknown:
+                        result = "Unknown";
+                        break;
+
+                    case stageType.action:
+                        result = "Action";
+                        break;
+
+                    case stageType.knowledge:
+                        result = "Knowledge";
+                        break;
+                }
+            }
+
+            // Returns the result.
+            return result;
+        }
+
+        // Gets the stage type name key.
+        public static string GetStageTypeNameKey(stageType type)
+        {
+            // The key to be return.
+            string key;
+
+            // The stage type.
+            switch (type)
+            {
+                default:
+                    key = "kwd_world";
+                    break;
+
+                case stageType.unknown:
+                    key = "kwd_unknown";
+                    break;
+
+                case stageType.action:
+                    key = "kwd_action";
+                    break;
+
+                case stageType.knowledge:
+                    key = "kwd_knowledge";
+                    break;
+            }
+
+            return key;
         }
 
         // LOCK

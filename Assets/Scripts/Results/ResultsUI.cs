@@ -34,6 +34,11 @@ namespace RM_EDU
         // The energy total text.
         public TMP_LabeledValue energyTotalText;
 
+        [Header("Stage Infos")]
+
+        // The results stage infos.
+        public List<ResultsStageInfo> resultsStageInfos = new List<ResultsStageInfo>();
+
         // Constructor
         private ResultsUI()
         {
