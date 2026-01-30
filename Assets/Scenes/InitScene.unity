@@ -420,23 +420,59 @@ MonoBehaviour:
     complete: 0
     gameTime: 0
     gameScore: 0
-    gameEnergy: 0
+    gameEnergyTotal: 0
+    gameAirPollution: 0
     currentAreaIndex: 0
+    usedResources: 0000000000000000000000
+    defenseIds: 0000000000000000000000000000000000
     useTutorial: 1
     tutorialData:
       clearedIntroTutorial: 0
-      clearedFirstStageTutorial: 0
+      clearedFirstActionTutorial: 0
+      clearedFirstActionCompleteTutorial: 0
+      clearedFirstKnowledgeTutorial: 0
+      clearedFirstKnowledgeCompleteTutorial: 0
+      clearedFirstAreaComplete: 0
+      clearedFinalAreaStart: 0
+      clearedBiomassTutorial: 0
+      clearedGeothermalTutorial: 0
+      clearedHydroTutorial: 0
+      clearedSolarTutorial: 0
+      clearedWaveTutorial: 0
+      clearedWindTutorial: 0
+      clearedCoalTutorial: 0
+      clearedNaturalGasTutorial: 0
+      clearedNuclearTutorial: 0
+      clearedOilTutorial: 0
   loadedData:
     valid: 0
     complete: 0
     gameTime: 0
     gameScore: 0
-    gameEnergy: 0
+    gameEnergyTotal: 0
+    gameAirPollution: 0
     currentAreaIndex: 0
+    usedResources: 0000000000000000000000
+    defenseIds: 0000000000000000000000000000000000
     useTutorial: 1
     tutorialData:
       clearedIntroTutorial: 0
-      clearedFirstStageTutorial: 0
+      clearedFirstActionTutorial: 0
+      clearedFirstActionCompleteTutorial: 0
+      clearedFirstKnowledgeTutorial: 0
+      clearedFirstKnowledgeCompleteTutorial: 0
+      clearedFirstAreaComplete: 0
+      clearedFinalAreaStart: 0
+      clearedBiomassTutorial: 0
+      clearedGeothermalTutorial: 0
+      clearedHydroTutorial: 0
+      clearedSolarTutorial: 0
+      clearedWaveTutorial: 0
+      clearedWindTutorial: 0
+      clearedCoalTutorial: 0
+      clearedNaturalGasTutorial: 0
+      clearedNuclearTutorial: 0
+      clearedOilTutorial: 0
   worldManager: {fileID: 0}
   feedbackText: {fileID: 0}
 --- !u!1 &1201852760
@@ -678,6 +714,10 @@ PrefabInstance:
     - target: {fileID: 2313557839083139210, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010290503441839930, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

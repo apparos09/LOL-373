@@ -49,7 +49,7 @@ Animator:
   m_GameObject: {fileID: 7010290503441839930}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: eb696ec3ff08bc44f81f5abbb6e6f0ba, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9bab22ee70af62c4e8e79add90212fdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loadingSceneCanvas: {fileID: 5451428446592041378}
   nextScene: 
   asyncLoader: {fileID: 1541191896698628721}
   loadNextScene: 1
@@ -344,7 +345,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8346425053091773463, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 9008522575736487373}
+      addedObject: {fileID: 5451428446592041378}
   m_SourcePrefab: {fileID: 100100000, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
 --- !u!224 &36072130020608311 stripped
 RectTransform:
@@ -356,7 +357,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8346425053091773463, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
   m_PrefabInstance: {fileID: 8876573598967280771}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9008522575736487373
+--- !u!114 &5451428446592041378
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -365,12 +366,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 647280249758451860}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cca6c8db9404e34688f1cf1d9badee7, type: 3}
+  m_Script: {fileID: 11500000, guid: 514eea653fa959644a4530887067baac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 3257084062168813467}
   loadingGraphic: {fileID: 6692645050288662967}
-  dontDestroyOnLoad: 1
+  dontDestroyOnLoadOnStart: 1
 --- !u!223 &3257084062168813467 stripped
 Canvas:
   m_CorrespondingSourceObject: {fileID: 6204992831646776088, guid: 905c49eb48498144fa557a9ab8699543, type: 3}

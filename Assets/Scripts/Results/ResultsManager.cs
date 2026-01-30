@@ -164,12 +164,12 @@ namespace RM_EDU
         public void ToTitleScene()
         {
             // If the loading scene canvas exists, see if the loading graphic should be used.
-            if(LoadingSceneCanvas.Instantiated)
+            if(EDU_LoadingSceneCanvas.Instantiated)
             {
                 // If the loading screen is being used.
-                if (LoadingSceneCanvas.Instance.IsUsingLoadingGraphic())
+                if (EDU_LoadingSceneCanvas.Instance.IsUsingLoadingGraphic())
                 {
-                    LoadingSceneCanvas.Instance.LoadScene(titleScene);
+                    EDU_LoadingSceneCanvas.Instance.LoadScene(titleScene);
                 }
                 else
                 {

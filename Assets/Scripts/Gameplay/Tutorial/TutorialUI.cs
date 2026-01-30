@@ -83,12 +83,12 @@ namespace RM_EDU
                 tutorials.tutorialsUI = this;
             }
 
-            // // If the text box is open and there isn't a tutorial running, close it.
-            // if (textBox.IsVisible() && !IsTutorialRunning())
-            // {
-            //     // Closes the text box.
-            //     CloseTextBox();
-            // }
+            // If the text box is active and there isn't a tutorial running, close it.
+            if (textBox.IsBoxObjectActiveSelf() && !IsTutorialRunning())
+            {
+                // Closes the text box.
+                CloseTextBox();
+            }
         }
 
         // Gets the instance.

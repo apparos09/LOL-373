@@ -40,7 +40,7 @@ namespace RM_EDU
         public Tutorials tutorials;
 
         // Returns 'true' if tutorials enabled.
-        private bool tutorialsEnabled = true;
+        private bool tutorialsEnabled = false;
 
         // The title scene.
         public string titleScene = "TitleScene";
@@ -387,10 +387,10 @@ namespace RM_EDU
         public virtual void LoadScene(string scene, bool useLoadingScreen)
         {
             // If the loading screen should be used and the loading scene is instantiated.
-            if(useLoadingScreen && LoadingSceneCanvas.Instantiated)
+            if(useLoadingScreen && EDU_LoadingSceneCanvas.Instantiated)
             {
                 // Gets the instance.
-                LoadingSceneCanvas loadingSceneCanvas = LoadingSceneCanvas.Instance;
+                EDU_LoadingSceneCanvas loadingSceneCanvas = EDU_LoadingSceneCanvas.Instance;
 
                 // Checks if the loading graphic is being used.
                 // If not, use a normal scene load.

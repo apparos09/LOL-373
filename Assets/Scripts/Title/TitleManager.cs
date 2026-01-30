@@ -198,12 +198,12 @@ namespace RM_EDU
             DontDestroyOnLoad(dataLogger);
 
             // If the loading screen has been instnatiated.
-            if (LoadingSceneCanvas.Instantiated)
+            if (EDU_LoadingSceneCanvas.Instantiated)
             {
                 // If the loading screen is being used, use it to load the scene.
-                if (LoadingSceneCanvas.Instance.IsUsingLoadingGraphic())
+                if (EDU_LoadingSceneCanvas.Instance.IsUsingLoadingGraphic())
                 {
-                    LoadingSceneCanvas.Instance.LoadScene(startScene);
+                    EDU_LoadingSceneCanvas.Instance.LoadScene(startScene);
                 }
                 else // The loading screen is not being used, so load the scene without it.
                 {
