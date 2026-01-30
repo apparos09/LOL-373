@@ -42,15 +42,24 @@ namespace RM_EDU
         // Applies the world stage data.
         public void ApplyWorldStageData(WorldStage.WorldStageData data)
         {
-            // Values.
-            // The id number starts at 0, hence the +1.
-            stageNumber.valueText.text = (data.idNumber + 1).ToString();
+            // If the data exists, get the info.
+            if(data != null)
+            {
+                // Values.
+                // The id number starts at 0, hence the +1.
+                stageNumber.valueText.text = (data.idNumber + 1).ToString();
 
-            // Values (Continued)
-            stageType.valueText.text = WorldStage.GetStageTypeName(data.stageType);
-            stageTime.valueText.text = StringFormatter.FormatTime(data.time, false, true, false);
-            stageScore.valueText.text = Mathf.CeilToInt(data.score).ToString();
-            stageEnergyTotal.valueText.text = Mathf.CeilToInt(data.energyTotal).ToString();
+                // Values (Continued)
+                stageType.valueText.text = WorldStage.GetStageTypeName(data.stageType);
+                stageTime.valueText.text = StringFormatter.FormatTime(data.time, false, true, false);
+                stageScore.valueText.text = Mathf.CeilToInt(data.score).ToString();
+                stageEnergyTotal.valueText.text = Mathf.CeilToInt(data.energyTotal).ToString();
+            }
+            // Data is null, so clear the world stage data.
+            else
+            {
+                ClearWorldStageData();
+            }
         }
 
         // Clears the world stage data.

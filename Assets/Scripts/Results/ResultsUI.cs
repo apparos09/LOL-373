@@ -26,13 +26,13 @@ namespace RM_EDU
         [Header("Final Texts")]
 
         // The final score text.
-        public TMP_LabeledValue finalScoreText;
+        public TMP_LabeledValue gameScore;
 
         // The final time text.
-        public TMP_LabeledValue finalTimeText;
+        public TMP_LabeledValue gameTime;
 
         // The energy total text.
-        public TMP_LabeledValue energyTotalText;
+        public TMP_LabeledValue gameEnergyTotal;
 
         [Header("Stage Infos")]
 
@@ -118,6 +118,36 @@ namespace RM_EDU
             }
         }
 
+        // Applies the results data for the UI.
+        public void ApplyResultsData(DataLogger dataLogger)
+        {
+            // Game Values
+            gameTime.valueText.text = StringFormatter.FormatTime(dataLogger.gameTimer, true, true, false);
+            gameScore.valueText.text = Mathf.CeilToInt(dataLogger.gameScore).ToString();
+            gameEnergyTotal.valueText.text = Mathf.CeilToInt(dataLogger.GetWorldStageDatasEnergyTotal()).ToString();
+
+            // Stage Infos
+            for (int i = 0; i < resultsStageInfos.Count && i < dataLogger.worldStageDatas.Length; i++)
+            {
+                resultsStageInfos[i].ApplyWorldStageData(dataLogger.worldStageDatas[i]);
+            }
+        }
+
+        // Clear the results data.
+        public void ClearResultsData()
+        {
+            // Game Values
+            gameTime.valueText.text = "-";
+            gameScore.valueText.text = "-";
+            gameEnergyTotal.valueText.text = "-";
+
+            // Stage Infos
+            for (int i = 0; i < resultsStageInfos.Count; i++)
+            {
+                resultsStageInfos[i].ClearWorldStageData();
+            }
+        }
+
         // Goes to the title scene.
         public void ToTitleScene()
         {
@@ -148,11 +178,11 @@ namespace RM_EDU
         }
 
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // // Update is called once per frame
+        // void Update()
+        // {
+        // 
+        // }
 
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()

@@ -55,21 +55,6 @@ namespace RM_EDU
         // Start is called before the first frame update
         void Start()
         {
-            // TODO: implement results data.
-
-            // // Looks for the result data.
-            // ResultsData data = FindObjectOfType<ResultsData>();
-            // 
-            // // Applies the results data.
-            // if (data != null)
-            // {
-            //     // Applies the data.
-            //     ApplyResultsData(data);
-            // 
-            //     // Destroys the object.
-            //     Destroy(data.gameObject);
-            // }
-
             // If this isn't set, get the instance.
             if(resultsUI == null)
             {
@@ -82,13 +67,24 @@ namespace RM_EDU
                 Destroy(Tutorials.Instance.gameObject);
             }
 
-            // TODO: get data from data logger and then destroy it.
 
-            // TODO: maybe move this to another function, or destroy the data logger once you get the data from it.
-            // If the data logger has been instantiated, destroy it.
+            // If the data logger has been instantiated, apply the data and then destroy it.
             if (DataLogger.Instantiated)
             {
-                Destroy(DataLogger.Instance.gameObject);
+                // Gets the instance.
+                DataLogger dataLogger = DataLogger.Instance;
+
+                // Applies the results data.
+                ApplyResultsData(dataLogger);
+
+                // Destroy.
+                Destroy(dataLogger.gameObject);
+            }
+            else
+            {
+                // Either apply the test data or clear the data.
+                // ApplyResultsTestData();
+                ClearResultsData();
             }
         }
 
@@ -128,12 +124,42 @@ namespace RM_EDU
             }
         }
 
-        // // Applies the results data.
-        // public void ApplyResultsData(ResultsData data)
-        // {
-        //     resultsUI.ApplyResultsData(data);
-        // }
-        
+        // Applies the results data using the provided data logger.
+        public void ApplyResultsData(DataLogger dataLogger)
+        {
+            // If the data logger exists, apply the data.
+            if (dataLogger != null)
+            {
+                resultsUI.ApplyResultsData(dataLogger);
+            }
+            // Data doesn't exist, so clear it.
+            else
+            {
+                ClearResultsData();
+            }
+        }
+
+        // Applies debug data to the results manager.
+        public void ApplyResultsTestData()
+        {
+            // Creates a data logger.
+            DataLogger dataLogger = DataLogger.Instance;
+
+            // TODO: give test values.
+
+            // Apply results data.
+            ApplyResultsData(dataLogger);
+
+            // Destroy the logger.
+            Destroy(dataLogger.gameObject);
+        }
+
+        // Clears the results data.
+        public void ClearResultsData()
+        {
+            resultsUI.ClearResultsData();
+        }
+
         // Goes to the title scene.
         public void ToTitleScene()
         {
