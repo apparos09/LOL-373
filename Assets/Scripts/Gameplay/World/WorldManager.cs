@@ -116,13 +116,14 @@ namespace RM_EDU
             // If tutorials are being used and a tutorial isn't active.
             if(IsUsingTutorials() && !IsTutorialActive())
             {
-                tutorials.LoadTutorialTest();
+                // Test tutorial.
+                // tutorials.LoadTutorialTest();
 
-                // // If the intro tutorial hasn't been cleared, trigger it.
-                // if(!tutorials.Data.clearedIntroTutorial)
-                // {
-                //     tutorials.LoadIntroTutorial();
-                // }
+                // If the intro tutorial hasn't been cleared, trigger it.
+                if(!tutorials.Data.clearedIntroTutorial)
+                {
+                    tutorials.LoadIntroTutorial();
+                }
 
             }
         }
@@ -230,6 +231,44 @@ namespace RM_EDU
                             saveSystem.ClearLoadedAndLastSaveData();
                     }
                 }
+
+                // Check for tutorials in Late Start.
+                // // If tutorials are being used.
+                // if (IsUsingTutorials())
+                // {
+                //     // Set to true if tutorials should be checked.
+                //     bool checkTutorials = tutorials.Data.clearedFirstActionCompleteTutorial || 
+                //         tutorials.Data.clearedFirstKnowledgeCompleteTutorial;
+                // 
+                //     // If the start info came from a stage, and the stage was completed.
+                //     if (checkTutorials && startInfo.fromStage && startInfo.stageCompleted)
+                //     {
+                //         // Gets the return stage.
+                //         WorldStage returnStage = GetWorldStage(startInfo.worldStageIndex);
+                // 
+                //         // Gets the stage type.
+                //         switch(returnStage.GetStageType())
+                //         {
+                //             case WorldStage.stageType.action:
+                //                 
+                //                 // Trigger action stage complete tutorial.
+                //                 if(!tutorials.Data.clearedFirstActionCompleteTutorial)
+                //                 {
+                //                     tutorials.LoadFirstActionCompleteTutorial();
+                //                 }
+                //                 break;
+                // 
+                //             case WorldStage.stageType.knowledge:
+                //                 // Trigger knowledge stage complete tutorial.
+                //                 if (!tutorials.Data.clearedFirstKnowledgeCompleteTutorial)
+                //                 {
+                //                     tutorials.LoadFirstKnowledgeCompleteTutorial();
+                //                 }
+                // 
+                //                 break;
+                //         }
+                //     }
+                // }
 
                 // Destroy the start info.
                 Destroy(startInfo.gameObject);
@@ -975,6 +1014,8 @@ namespace RM_EDU
                 return;
             }
         }
+
+        // 
 
 
         // PROGRESS, COMPLETE

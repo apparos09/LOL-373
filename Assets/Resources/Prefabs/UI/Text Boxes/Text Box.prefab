@@ -297,7 +297,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81883889f9a3a19499f6795c8de28dd0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxObject: {fileID: 952491558892814450}
+  boxObject: {fileID: 2953457486092765849}
+  boxVisual: {fileID: 2953457486092765849}
   boxText: {fileID: 7502630389405431001}
   autoNext: 0
   autoNextTimerMax: 5

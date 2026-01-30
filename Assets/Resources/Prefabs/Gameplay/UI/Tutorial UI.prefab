@@ -380,6 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxObject: {fileID: 8940941043124392247}
+  boxVisual: {fileID: 8940941043124392247}
   boxText: {fileID: 4392946942442434423}
   autoNext: 0
   autoNextTimerMax: 5

@@ -51,7 +51,7 @@ namespace RM_EDU
         public void StartTutorial(List<Page> pages)
         {
             // Loads the pages, sets the index to 0, and closes the textbox.
-            if (tutorialUI.textBox.IsVisible())
+            if (tutorialUI.textBox.IsBoxObjectActiveSelf())
             {
                 // Close the textbox.
                 tutorialUI.textBox.Close();
@@ -66,20 +66,20 @@ namespace RM_EDU
         // On Tutorial Start
         public virtual void OnTutorialStart()
         {
-            Debug.Log("GameplayUI: OnTutorialStart");
+            // Debug.Log("GameplayUI: OnTutorialStart");
         }
 
         // On Tutorial End
         public virtual void OnTutorialEnd()
         {
-            Debug.Log("GameplayUI: OnTutorialEnd");
+            // Debug.Log("GameplayUI: OnTutorialEnd");
         }
 
         // Checks if the tutorial text box is open.
         public bool IsTutorialTextBoxOpen()
         {
             // Checks if it's visible normally, and in the hierachy.
-            return tutorialUI.textBox.IsVisible() && tutorialUI.textBox.IsVisibleInHierachy();
+            return tutorialUI.textBox.IsBoxObjectActiveSelf() && tutorialUI.textBox.IsBoxObjectActiveInHierachy();
         }
 
         // Returns 'true' if a tutorial is active.

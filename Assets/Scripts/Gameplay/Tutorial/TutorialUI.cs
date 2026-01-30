@@ -131,8 +131,9 @@ namespace RM_EDU
         public bool IsTutorialRunning()
         {
             // If the textbox is visible and there are pages to read, the tutorial is running.
-            return textBox.IsVisible() && textBox.HasPages();
+            return textBox.IsBoxObjectActiveSelf() && textBox.HasPages();
         }
+
 
         // Starts a tutorial.
         public void StartTutorial()
@@ -242,9 +243,21 @@ namespace RM_EDU
         }
 
         // Returns 'true' if the text box is visible.
-        public bool IsTextBoxVisible()
+        public bool IsTextBoxActive()
         {
-            return textBox.IsVisible();
+            return textBox.IsBoxObjectActiveSelf();
+        }
+
+        // Returns 'true' if the text box visual is active.
+        public bool IsTextBoxVisualActive()
+        {
+            return textBox.IsBoxVisualActiveSelf();
+        }
+
+        // Returns 'true' if the text box and the text box visual is active.
+        public bool IsTextBoxAndVisualActive()
+        {
+            return textBox.IsBoxObjectAndVisualActiveSelves();
         }
 
 
@@ -288,7 +301,7 @@ namespace RM_EDU
         // Refreshes the raycast blocker to make sure it's only enabled if the text box is visible.
         public void RefreshRaycastBlocker()
         {
-            SetRaycastBlockerActive(IsTextBoxVisible());
+            SetRaycastBlockerActive(IsTextBoxActive());
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
