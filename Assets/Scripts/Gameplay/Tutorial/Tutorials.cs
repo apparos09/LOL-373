@@ -307,10 +307,9 @@ namespace RM_EDU
             // UI end function.
             tutorialsUI.OnTutorialEnd();
 
-            // TODO: see if this function should be called when the textbox is closed.
             // // If the game manager hasn't been set, try to find it.
-            // if (gameManager == null)
-            //     gameManager = FindObjectOfType<GameplayManager>();
+            if (gameManager == null)
+                gameManager = FindObjectOfType<GameplayManager>();
 
             // Unfreeze the game if the game is not paused.
             if (!gameManager.IsGamePaused())

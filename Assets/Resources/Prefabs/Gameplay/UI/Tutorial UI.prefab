@@ -346,11 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &6476103044491221980 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 952491558892814450, guid: d89bb3eda2122ff46994510f9d6be968, type: 3}
-  m_PrefabInstance: {fileID: 6118231828058135470}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &7385915288300403185 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3632251763473605215, guid: d89bb3eda2122ff46994510f9d6be968, type: 3}
@@ -384,7 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cbdf2cc285ee90479556d6e640a98db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boxObject: {fileID: 6476103044491221980}
+  boxObject: {fileID: 8940941043124392247}
   boxText: {fileID: 4392946942442434423}
   autoNext: 0
   autoNextTimerMax: 5
@@ -402,4 +397,4 @@ MonoBehaviour:
   DisableControlsIfAnimSkipDisabled: 1
   charsPerLoad: 1
   textSpeed: 0
-  tutorialUI: {fileID: 0}
+  tutorialUI: {fileID: 2211305606249259944}

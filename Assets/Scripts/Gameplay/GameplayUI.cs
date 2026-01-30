@@ -66,13 +66,13 @@ namespace RM_EDU
         // On Tutorial Start
         public virtual void OnTutorialStart()
         {
-            // ...
+            Debug.Log("GameplayUI: OnTutorialStart");
         }
 
         // On Tutorial End
         public virtual void OnTutorialEnd()
         {
-            // ...
+            Debug.Log("GameplayUI: OnTutorialEnd");
         }
 
         // Checks if the tutorial text box is open.

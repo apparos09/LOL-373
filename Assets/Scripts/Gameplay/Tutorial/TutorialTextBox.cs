@@ -8,6 +8,7 @@ namespace RM_EDU
     // The tutorial text box.
     public class TutorialTextBox : TextBox
     {
+        [Header("Tutorials")]
         // The UI for the tutorial.
         public TutorialUI tutorialUI;
 
@@ -16,9 +17,9 @@ namespace RM_EDU
         {
             base.Start();
 
-            // If the tutorial UI isn't set, try to find it.
-            if(tutorialUI == null)
-                tutorialUI = FindObjectOfType<TutorialUI>();
+            // If the tutorial UI isn't set, get the instance.
+            if (tutorialUI == null)
+                tutorialUI = TutorialUI.Instance;
         }
 
         // // Update is called once per frame

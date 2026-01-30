@@ -83,12 +83,12 @@ namespace RM_EDU
                 tutorials.tutorialsUI = this;
             }
 
-            // If the text box is open and there isn't a tutorial running, close it.
-            if (textBox.IsVisible() && !IsTutorialRunning())
-            {
-                // Closes the text box.
-                CloseTextBox();
-            }
+            // // If the text box is open and there isn't a tutorial running, close it.
+            // if (textBox.IsVisible() && !IsTutorialRunning())
+            // {
+            //     // Closes the text box.
+            //     CloseTextBox();
+            // }
         }
 
         // Gets the instance.
@@ -223,7 +223,7 @@ namespace RM_EDU
         {
             // NOTE: this may not be needed.
             // // The tutorial has ended (at least for now), so allow the game to move again.
-           // tutorials.OnTutorialEnd();
+           tutorials.OnTutorialEnd();
         }
 
         // Called when the text box is finished.

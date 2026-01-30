@@ -116,11 +116,13 @@ namespace RM_EDU
             // If tutorials are being used and a tutorial isn't active.
             if(IsUsingTutorials() && !IsTutorialActive())
             {
-                // If the intro tutorial hasn't been cleared, trigger it.
-                if(!tutorials.Data.clearedIntroTutorial)
-                {
-                    tutorials.LoadIntroTutorial();
-                }
+                tutorials.LoadTutorialTest();
+
+                // // If the intro tutorial hasn't been cleared, trigger it.
+                // if(!tutorials.Data.clearedIntroTutorial)
+                // {
+                //     tutorials.LoadIntroTutorial();
+                // }
 
             }
         }
