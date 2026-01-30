@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Generator - Geothermal Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ad53ca412843dbc429db246cfbabe657, type: 2}
+    - target: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 405284360726760347}
     m_RemovedComponents:
     - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []
@@ -65,6 +73,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 405284360726760347}
   m_SourcePrefab: {fileID: 100100000, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+--- !u!114 &366830208316690030 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 8815751833671591384}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4779813838197324939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3557527286372310411 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
@@ -91,13 +110,16 @@ MonoBehaviour:
   idNumber: 2
   unitName: Geothermal Generator
   unitNameKey: aug_geothermal_nme
+  unitDesc: 
+  unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 7476519495157278778}
   iconSprite: {fileID: 21300000, guid: be8e26ed8f4a26b44966c55e9e168e0c, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 3557527286372310411}
+  unitAnimations: {fileID: 366830208316690030}
   collider: {fileID: 8341973627121527360}
   rigidbody: {fileID: 6718645217935847551}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1
@@ -128,6 +150,7 @@ MonoBehaviour:
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
+  energyGenAnim: Action Unit - Blue Flash Animation
 --- !u!50 &6718645217935847551 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2840288876026598823, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}

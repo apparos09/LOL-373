@@ -108,13 +108,16 @@ MonoBehaviour:
   idNumber: 0
   unitName: Generator
   unitNameKey: kwd_generator
+  unitDesc: 
+  unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 2131954471664586210}
   iconSprite: {fileID: 21300000, guid: 93e6d537be6959247abccf4b46f1ed35, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 5406913998153414739}
+  unitAnimations: {fileID: 9169585801609554870}
   collider: {fileID: 690021909378568088}
   rigidbody: {fileID: 2840288876026598823}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1
@@ -145,8 +148,20 @@ MonoBehaviour:
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
+  energyGenAnim: Action Unit - Blue Flash Animation
 --- !u!95 &5406913998153414739 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}
   m_PrefabInstance: {fileID: 1649477988873198894}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &9169585801609554870 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
+  m_PrefabInstance: {fileID: 1649477988873198894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4035956208484555091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

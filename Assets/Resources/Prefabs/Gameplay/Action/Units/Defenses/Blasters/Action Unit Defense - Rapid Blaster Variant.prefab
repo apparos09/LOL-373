@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c4756bc722fa25d44a828f7864ef8e8e, type: 3}
+    - target: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 1973138774349668337}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -79,6 +83,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8194997913235594361, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   m_PrefabInstance: {fileID: 7769928463203814797}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3325892921977078289 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+  m_PrefabInstance: {fileID: 7769928463203814797}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7594617634994794740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &5544248910452008005 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
@@ -110,13 +125,16 @@ MonoBehaviour:
   idNumber: 13
   unitName: Rapid Blaster
   unitNameKey: aud_blasterRapid_nme
+  unitDesc: 
+  unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 5544248910452008005}
   iconSprite: {fileID: 21300000, guid: 6312382c0c25b7841b9bab1b79dc2acf, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1904512382446359028}
+  unitAnimations: {fileID: 3325892921977078289}
   collider: {fileID: 6409865872406881855}
   rigidbody: {fileID: 8506635482330184704}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1

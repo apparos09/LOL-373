@@ -56,6 +56,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 0c723d1de68b4884ab0669343f44cf63, type: 3}
+    - target: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 1485422332268029956}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -75,6 +79,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 8194997913235594361, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
   m_PrefabInstance: {fileID: 7227831744619473670}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2431327616302458010 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+  m_PrefabInstance: {fileID: 7227831744619473670}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7421860615308187263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &4858011163393688270 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
@@ -106,13 +121,16 @@ MonoBehaviour:
   idNumber: 8
   unitName: Triple Blaster
   unitNameKey: aud_blasterTriple_nme
+  unitDesc: 
+  unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 4858011163393688270}
   iconSprite: {fileID: 21300000, guid: 0c723d1de68b4884ab0669343f44cf63, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1581908626458310527}
+  unitAnimations: {fileID: 2431327616302458010}
   collider: {fileID: 6300066819534618804}
   rigidbody: {fileID: 8761644836624669323}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1

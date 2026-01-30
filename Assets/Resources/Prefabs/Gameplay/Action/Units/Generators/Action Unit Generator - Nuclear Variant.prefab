@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Generator - Nuclear Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b94f65cb02f123d46b90adefd7d94030, type: 2}
+    - target: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 5159144818120123081}
     m_RemovedComponents:
     - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []
@@ -70,6 +78,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
   m_PrefabInstance: {fileID: 5104334103399347166}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4149738742919239784 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 5104334103399347166}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9139109981856377485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &5712059216436968518 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 690021909378568088, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
@@ -106,13 +125,16 @@ MonoBehaviour:
   idNumber: 9
   unitName: Nuclear Generator
   unitNameKey: aug_nuclear_nme
+  unitDesc: 
+  unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 6575261612139626044}
   iconSprite: {fileID: 21300000, guid: 0c565fa27e26b4042b131967e7d34d74, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 999530221839502221}
+  unitAnimations: {fileID: 4149738742919239784}
   collider: {fileID: 5712059216436968518}
   rigidbody: {fileID: 7042652890708092537}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1
@@ -143,3 +165,4 @@ MonoBehaviour:
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
+  energyGenAnim: Action Unit - Blue Flash Animation

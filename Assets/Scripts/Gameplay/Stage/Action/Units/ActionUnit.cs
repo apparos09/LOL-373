@@ -47,6 +47,11 @@ namespace RM_EDU
         // The unit description key.
         public string unitDescKey = "";
 
+        // The owner of this unit.
+        public ActionPlayer owner;
+
+        [Header("Visuals")]
+
         // The sprite renderer.
         public SpriteRenderer spriteRenderer;
 
@@ -62,14 +67,13 @@ namespace RM_EDU
         // The animations for the action unit.
         public ActionUnitAnimations unitAnimations;
 
+        [Header("Physics")]
+
         // The collider.
         public new Collider2D collider;
 
         // The rigid body.
         public new Rigidbody2D rigidbody;
-
-        // The owner of this unit.
-        public ActionPlayer owner;
 
         [Header("Health")]
 
@@ -164,6 +168,7 @@ namespace RM_EDU
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
 
+            // Visuals
             // Gets the animator.
             if(animator == null)
                 animator = GetComponent<Animator>();
@@ -172,6 +177,7 @@ namespace RM_EDU
             if (unitAnimations == null)
                 unitAnimations = GetComponent<ActionUnitAnimations>();
 
+            // Physics
             // Gets the collider.
             if(collider == null)
                 collider = GetComponent<Collider2D>();
@@ -180,6 +186,7 @@ namespace RM_EDU
             if (rigidbody == null)
                 rigidbody = GetComponent<Rigidbody2D>();
 
+            // Other
             // If the LOL SDK is initialized.
             if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {

@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b1c0e73aca914064bbf510e861bde946, type: 2}
+    - target: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 5969299565369339548}
     m_RemovedComponents:
     - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []
@@ -69,6 +73,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 5969299565369339548}
   m_SourcePrefab: {fileID: 100100000, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+--- !u!114 &937290298525571896 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 8232867345936052366}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5351294447146461661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &4127604691639666909 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
@@ -97,13 +112,14 @@ MonoBehaviour:
   unitNameKey: aug_biomass_nme
   unitDesc: 
   unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 8058976512716701036}
   iconSprite: {fileID: 21300000, guid: c2fa10ec138d1d34f82b6a5f1a3efa77, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 4127604691639666909}
+  unitAnimations: {fileID: 937290298525571896}
   collider: {fileID: 8922324095560941334}
   rigidbody: {fileID: 6137208461938746665}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1
@@ -134,6 +150,7 @@ MonoBehaviour:
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
+  energyGenAnim: Action Unit - Blue Flash Animation
 --- !u!50 &6137208461938746665 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2840288876026598823, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}

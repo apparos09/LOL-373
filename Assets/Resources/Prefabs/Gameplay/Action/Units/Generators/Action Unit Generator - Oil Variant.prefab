@@ -56,6 +56,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Unit Generator - Oil Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: f7a5a85118ed67f4f9731a732c51d0b4, type: 2}
+    - target: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 2847674788801534402}
     m_RemovedComponents:
     - {fileID: 6074401612692501123, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
     m_RemovedGameObjects: []
@@ -65,6 +73,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2847674788801534402}
   m_SourcePrefab: {fileID: 100100000, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+--- !u!114 &1865147258338511343 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9169585801609554870, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 7395680489239519833}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6818490454798613258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &3290877449728809482 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
@@ -96,13 +115,16 @@ MonoBehaviour:
   idNumber: 10
   unitName: Oil Generator
   unitNameKey: aug_oil_nme
+  unitDesc: 
+  unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 8877867496329654203}
   iconSprite: {fileID: 21300000, guid: 8ff3a7c2ac35278419f8d3666d3c21e0, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: 3fc29e0d574a831479c1543b8c8f68cb, type: 3}
   animator: {fileID: 3290877449728809482}
+  unitAnimations: {fileID: 1865147258338511343}
   collider: {fileID: 8012413351518252481}
   rigidbody: {fileID: 4740046956056262654}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1
@@ -133,6 +155,7 @@ MonoBehaviour:
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
+  energyGenAnim: Action Unit - Blue Flash Animation
 --- !u!61 &8012413351518252481 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 690021909378568088, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
