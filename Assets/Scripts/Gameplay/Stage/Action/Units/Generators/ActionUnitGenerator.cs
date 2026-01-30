@@ -1,8 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace RM_EDU
 {
@@ -44,6 +42,11 @@ namespace RM_EDU
         // If 'true', the generator can only generate a certain amount of energy.
         [Tooltip("Is true if the generator has an energy generation limit.")]
         public bool useEnergyGenLimit = false;
+
+        [Header("Generator/Animations")]
+
+        // The animation for energy generation.
+        public string energyGenAnim = "Action Unit - Blue Flash Animation";
 
         // Start is called before the first frame update
         protected override void Start()
@@ -283,6 +286,13 @@ namespace RM_EDU
                 OnEnergyGenerationLimitReached();
             }
 
+            // If animations are available and enabled, play animations.
+            if(IsAnimationsAvailableAndEnabled())
+            {
+                // Play the energy generation animation.
+                PlayEnergyGenerationAnimation();
+            }
+
             return energy;
         }
 
@@ -320,6 +330,7 @@ namespace RM_EDU
 
         }
 
+        // KILL / DEATH
         // Kills the unit.
         public override void Kill()
         {
@@ -330,6 +341,26 @@ namespace RM_EDU
         public override void OnUnitDeath()
         {
             base.OnUnitDeath();
+        }
+
+        // ANIMATIONS //
+        // Called when an overlay animation has started.
+        // public void OnOverlayAnimationStart()
+        // {
+        //     // ...
+        // }
+        // 
+        // // Called when an overlay animation has ended.
+        // public void OnOverlayAnimationEnd()
+        // {
+        // 
+        // }
+
+        // Plays the energy generation animation.
+        public void PlayEnergyGenerationAnimation()
+        {  
+            if(animator != null && energyGenAnim != "")
+                animator.Play(energyGenAnim);
         }
 
         // Update is called once per frame

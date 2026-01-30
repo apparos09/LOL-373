@@ -148,6 +148,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 1020483345052379991}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -164,6 +168,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}
   m_PrefabInstance: {fileID: 5439947482585149543}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2511431481117591295 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
+  m_PrefabInstance: {fileID: 5439947482585149543}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7320624136933962778}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &4615263141650489515 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 824763696059470028, guid: 09943904bff810340a376831cb22bfec, type: 3}
@@ -195,10 +210,13 @@ MonoBehaviour:
   idNumber: 0
   unitName: Defense
   unitNameKey: kwd_defense
+  unitDesc: 
+  unitDescKey: 
   spriteRenderer: {fileID: 4615263141650489515}
   iconSprite: {fileID: 0}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1626850282260206874}
+  unitAnimations: {fileID: 2511431481117591295}
   collider: {fileID: 6055651898615620305}
   rigidbody: {fileID: 8858641744088496366}
   owner: {fileID: 0}

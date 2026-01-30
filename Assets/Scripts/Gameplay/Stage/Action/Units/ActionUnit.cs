@@ -59,6 +59,9 @@ namespace RM_EDU
         // The animator.
         public Animator animator;
 
+        // The animations for the action unit.
+        public ActionUnitAnimations unitAnimations;
+
         // The collider.
         public new Collider2D collider;
 
@@ -142,6 +145,12 @@ namespace RM_EDU
         // This also doesn't account for applying the statFactor value to a stat.
         public const float BASE_STAT_MAXIMUM = 100.0F;
 
+        // The empty state animation.
+        public const string EMPTY_STATE_ANIM = "Empty State";
+
+        // If 'true', animations are enabled.
+        private bool animationsEnabled = true;
+
         // Awake is called when the script instance is being loaded
         protected virtual void Awake()
         {
@@ -154,6 +163,14 @@ namespace RM_EDU
             // Gets the action manager instance.
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
+
+            // Gets the animator.
+            if(animator == null)
+                animator = GetComponent<Animator>();
+
+            // Gets the unit animations.
+            if (unitAnimations == null)
+                unitAnimations = GetComponent<ActionUnitAnimations>();
 
             // Gets the collider.
             if(collider == null)
@@ -795,6 +812,38 @@ namespace RM_EDU
         public bool IsDead()
         {
             return health <= 0.0F;
+        }
+
+        // ANIMATIONS
+        // Returns 'true' if animations are enabled.
+        public bool AnimationsEnabled
+        {
+            get { return animationsEnabled; }
+        }
+
+        // Returns 'true' if animation is available and enabled.
+        public bool IsAnimationsAvailableAndEnabled()
+        {
+            return animator != null && animationsEnabled;
+        }
+
+        // Plays the empty state animation.
+        public void PlayEmptyStateAnimation(int layer)
+        {
+            if(animator != null && EMPTY_STATE_ANIM != "")
+                animator.Play(EMPTY_STATE_ANIM, layer);
+        }
+
+        // Plays the empty state animation on the base layer.
+        public virtual void PlayEmptyStateAnimationBaseLayer()
+        {
+            PlayEmptyStateAnimation(0);
+        }
+
+        // Plays the empty state animation on the overlay layer.
+        public virtual void PlayEmptyStateAnimationOverlayLayer()
+        {
+            PlayEmptyStateAnimation(1);
         }
 
         // Update is called once per frame

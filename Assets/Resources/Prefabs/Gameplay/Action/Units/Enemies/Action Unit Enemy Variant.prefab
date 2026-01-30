@@ -149,6 +149,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 620184031015233443}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -160,6 +164,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 620184031015233443}
   m_SourcePrefab: {fileID: 100100000, guid: 09943904bff810340a376831cb22bfec, type: 3}
+--- !u!114 &1425139096633560948 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
+  m_PrefabInstance: {fileID: 8819150591845906924}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6090393955839212945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &2850429345959189649 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}
@@ -196,10 +211,13 @@ MonoBehaviour:
   idNumber: 0
   unitName: Enemy
   unitNameKey: emy
+  unitDesc: 
+  unitDescKey: 
   spriteRenderer: {fileID: 8147518098009090336}
   iconSprite: {fileID: 21300000, guid: 93e6d537be6959247abccf4b46f1ed35, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: f27e84b1992d762478cce4d9c6aa514c, type: 3}
   animator: {fileID: 2850429345959189649}
+  unitAnimations: {fileID: 1425139096633560948}
   collider: {fileID: 7283594400394210138}
   rigidbody: {fileID: 5471115357671747941}
   owner: {fileID: 0}
@@ -225,6 +243,7 @@ MonoBehaviour:
   movementDirec: {x: -1, y: 0, z: 0}
   enemyAttack: {fileID: 8204392876637201565}
   enemyRetreatPrefab: {fileID: 4824531729917000575, guid: 37bb43a55bef8124395cd2bd70d5769d, type: 3}
+  useEnemyAttack: 1
   useEnemyRetreat: 1
 --- !u!61 &7283594400394210138 stripped
 BoxCollider2D:

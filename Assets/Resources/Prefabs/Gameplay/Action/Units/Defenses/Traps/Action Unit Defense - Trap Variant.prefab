@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2511431481117591295, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 1345667675349863645}
     - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -70,6 +74,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 1626850282260206874, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
   m_PrefabInstance: {fileID: 537266690884673498}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2715288586523760933 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2511431481117591295, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+  m_PrefabInstance: {fileID: 537266690884673498}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7128307505646398400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &5149994175010406257 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
@@ -101,10 +116,13 @@ MonoBehaviour:
   idNumber: 6
   unitName: Basic Energy Trap
   unitNameKey: aud_energyTrapStandard_nme
+  unitDesc: 
+  unitDescKey: 
   spriteRenderer: {fileID: 5149994175010406257}
   iconSprite: {fileID: 21300000, guid: 1989a82ff8725d545af3b13cb722c7de, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1290134522046286528}
+  unitAnimations: {fileID: 2715288586523760933}
   collider: {fileID: 6016033277523262731}
   rigidbody: {fileID: 9044625043006678836}
   owner: {fileID: 0}
