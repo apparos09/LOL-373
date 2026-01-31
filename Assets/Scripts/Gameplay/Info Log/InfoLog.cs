@@ -63,8 +63,10 @@ namespace RM_EDU
         // Gets set to 'true' if the entry lists have been updated.
         private bool entryListsUpdated = false;
 
-        // If 'true', the entry lists are cleared when the info log is closed.
-        private bool clearEntryListsOnDisable = true;
+        // If 'true', the info log is reset (cleared) on disable.
+        // TODO: maybe turn this off? The entry lists probably won't be updated more than once outisde of a stage...
+        // Only do this if the number of resources or defense ids changes between openings.
+        private bool resetInfoLogOnDisable = true;
 
         // If 'true', all entries are unlocked automatically.
         private bool unlockAllEntries = false;
@@ -139,11 +141,16 @@ namespace RM_EDU
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            // TODO: dynamically update based on changes to the generators or defense ids.
             // The lists haven't been updated, so update them.
             if(!entryListsUpdated)
             {
                 UpdateEntryInfoLists();
+            }
+            // The lists were already updated, but see if they need a refresh.
+            // This only updates the lists if the list elements have changed.
+            else
+            {
+                TryRefreshInfoLog();
             }
             
         }
@@ -151,10 +158,10 @@ namespace RM_EDU
         // This function is called when the behaviour becomes disabled or inactive.
         private void OnDisable()
         {
-            // If the entry lists should be cleared when the info log is disabled.
-            if(clearEntryListsOnDisable)
+            // If the info log should be reset when the info log is disabled.
+            if(resetInfoLogOnDisable)
             {
-                ClearEntryInfoLists();
+                ResetInfoLog();
             }
         }
 
@@ -332,6 +339,14 @@ namespace RM_EDU
         // Sets the current category.
         public void SetCurrentCategory(infoLogCategory newCategory)
         {
+            // Read the TTS if it's available.
+            SetCurrentCategory(newCategory, true);
+        }
+
+        // Sets the current category.
+        // speakCategory: if true, the category name is read with TTS if TTS is available.
+        public void SetCurrentCategory(infoLogCategory newCategory, bool speakCategory)
+        {
             // Set the new category.
             currCategory = newCategory;
 
@@ -344,8 +359,10 @@ namespace RM_EDU
             // Sets the entry buttons page index to 0.
             SetEntryButtonsPageIndex(0);
 
-            // If text-to-speech should be used.
-            if(LOLManager.IsTextToSpeechUsableAndEnabled())
+            // If TTS should be used to read the category...
+            // Text-to-speech is usable, and text-to-speech is enabled...
+            // Read the category.
+            if (speakCategory && LOLManager.IsTextToSpeechUsableAndEnabled())
             {
                 // Gets the speak key.
                 string speakKey = GetCurrentCategoryNameKey();
@@ -354,7 +371,6 @@ namespace RM_EDU
                 if (speakKey != "")
                     SpeakText(speakKey);
             }
-
         }
 
 
@@ -372,6 +388,13 @@ namespace RM_EDU
 
             // Sets the current category.
             SetCurrentCategory(newCategoryEnum);
+        }
+
+        // Resets the current category, making it 0.
+        public void ResetCurrentCategory()
+        {
+            // Since the category is being reset, don't read its name with TTS.
+            SetCurrentCategory(0, false);
         }
 
         // Goes to the previous category.
@@ -545,29 +568,34 @@ namespace RM_EDU
             // The button index.
             int buttonIndex = 0;
 
-            // While the button index and entry index are within the bounds.
-            while(buttonIndex < entryButtons.Count && entryIndex < currEntries.Count)
+            // If entry index is -1, then that means there are no entries to show.
+            // If that's the case, don't load any entries.
+            if(entryIndex >= 0)
             {
-                // Use the current button and entry.
-                if(buttonIndex < entryButtons.Count && entryIndex < currEntries.Count)
+                // While the button index and entry index are within the bounds.
+                while (buttonIndex < entryButtons.Count && entryIndex < currEntries.Count)
                 {
-                    // Gets the button.
-                    InfoLogEntryButton entryButton = entryButtons[buttonIndex];
+                    // Use the current button and entry.
+                    if (buttonIndex < entryButtons.Count && entryIndex < currEntries.Count)
+                    {
+                        // Gets the button.
+                        InfoLogEntryButton entryButton = entryButtons[buttonIndex];
 
-                    // Gets the entry.
-                    InfoLogEntry entry = currEntries[entryIndex];
+                        // Gets the entry.
+                        InfoLogEntry entry = currEntries[entryIndex];
 
-                    // Applies the entry to the entry button.
-                    entryButton.ApplyEntryInfo(entry);
+                        // Applies the entry to the entry button.
+                        entryButton.ApplyEntryInfo(entry);
 
-                    // Increases the button index and entry index.
-                    buttonIndex++;
-                    entryIndex++;
-                }
-                // No buttons left, so break.
-                else
-                {
-                    break;
+                        // Increases the button index and entry index.
+                        buttonIndex++;
+                        entryIndex++;
+                    }
+                    // No buttons left, so break.
+                    else
+                    {
+                        break;
+                    }
                 }
             }
 
@@ -656,8 +684,10 @@ namespace RM_EDU
             //  - Page 0 would display entries (0-4), and Page 1 would display entries (5-9).
             int entryIndex = entryButtonPageIndex * entryButtons.Count;
 
-            // Clamp within the bounds.
-            entryIndex = Mathf.Clamp(entryIndex, 0, entryButtons.Count - 1);
+            // Clamp within the bounds of the current entries list (minus 1 because index).
+            // Originally it was 'entryIndex = Mathf.Clamp(entryIndex, 0, entryButtons.Count);'...
+            // But that was an error.
+            entryIndex = Mathf.Clamp(entryIndex, 0, currEntries.Count - 1);
 
             return entryIndex;
         }
@@ -727,6 +757,37 @@ namespace RM_EDU
             infoNameText.text = "";
             infoDescText.text = "";
             infoIconImage.sprite = alpha0Sprite;
+        }
+
+        // INFO LOG (General)
+        // Refreshes the info log.
+        public void RefreshInfoLog()
+        {
+            // Resets the info log.
+            ResetInfoLog();
+
+            // Updates the entry info lists.
+            UpdateEntryInfoLists();
+        }
+
+        // Refreshes the info log if the information has changed.
+        // If the information hasn't changed, then the refresh isn't done.
+        public bool TryRefreshInfoLog()
+        {
+            // TODO: implement.
+            return false;
+        }
+
+        // Resets the info log, clearing the information.
+        public void ResetInfoLog()
+        {
+            // Clears the entry info lists.
+            // Also updates the entry buttons.
+            ClearEntryInfoLists();
+
+            // Resets the current category.
+            // This updates the entry buttons again, but that should be fine.
+            ResetCurrentCategory();
         }
 
         // TEXT-TO-SPEECH
