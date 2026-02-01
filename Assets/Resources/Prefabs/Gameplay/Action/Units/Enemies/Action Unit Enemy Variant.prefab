@@ -163,6 +163,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
       insertIndex: -1
       addedObject: {fileID: 620184031015233443}
+    - targetCorrespondingSourceObject: {fileID: 6109650057116392062, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6617456965282813944}
   m_SourcePrefab: {fileID: 100100000, guid: 09943904bff810340a376831cb22bfec, type: 3}
 --- !u!114 &1425139096633560948 stripped
 MonoBehaviour:
@@ -180,6 +183,32 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}
   m_PrefabInstance: {fileID: 8819150591845906924}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &3362567036968936338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6109650057116392062, guid: 09943904bff810340a376831cb22bfec, type: 3}
+  m_PrefabInstance: {fileID: 8819150591845906924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6617456965282813944
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3362567036968936338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ad5980da07ac948b335205cf25d32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useLocalPosition: 1
+  resetPosition: {x: 0, y: 0, z: 0}
+  autoSetResetPosition: 1
+  highPosition: {x: 0, y: 0.125, z: 0}
+  lowPosition: {x: 0, y: -0.125, z: 0}
+  autoSetHighLowPos: 0
+  basePosOffset: 1
+  speed: 0.75
+  floatEnabled: 1
 --- !u!50 &5471115357671747941 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3570972780639013001, guid: 09943904bff810340a376831cb22bfec, type: 3}
@@ -213,6 +242,7 @@ MonoBehaviour:
   unitNameKey: emy
   unitDesc: 
   unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 8147518098009090336}
   iconSprite: {fileID: 21300000, guid: 93e6d537be6959247abccf4b46f1ed35, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: f27e84b1992d762478cce4d9c6aa514c, type: 3}
@@ -220,7 +250,6 @@ MonoBehaviour:
   unitAnimations: {fileID: 1425139096633560948}
   collider: {fileID: 7283594400394210138}
   rigidbody: {fileID: 5471115357671747941}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1
