@@ -64,9 +64,10 @@ namespace RM_EDU
         private bool entryListsUpdated = false;
 
         // If 'true', the info log is reset (cleared) on disable.
-        // TODO: maybe turn this off? The entry lists probably won't be updated more than once outisde of a stage...
-        // Only do this if the number of resources or defense ids changes between openings.
-        private bool resetInfoLogOnDisable = true;
+        // If 'false', the game does some quick checks to see if the unlocked resources and defense ids...
+        // Have changed, which if so causes the info log to reset. If these checks notice no changes...
+        // The info log is left as is.
+        private bool resetInfoLogOnDisable = false;
 
         // If 'true', all entries are unlocked automatically.
         private bool unlockAllEntries = false;
@@ -141,18 +142,17 @@ namespace RM_EDU
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            // The lists haven't been updated, so update them.
-            if(!entryListsUpdated)
-            {
-                UpdateEntryInfoLists();
-            }
-            // The lists were already updated, but see if they need a refresh.
+            // The lists are marked as already been updated, so see if they need a refresh.
             // This only updates the lists if the list elements have changed.
-            else
+            if (entryListsUpdated)
             {
                 TryRefreshInfoLog();
             }
-            
+            // The lists haven't been updated, so update them.
+            else
+            {
+                UpdateEntryInfoLists();
+            }
         }
 
         // This function is called when the behaviour becomes disabled or inactive.
@@ -233,6 +233,15 @@ namespace RM_EDU
             if (!unlockAllEntries && dataLogger.HasActionDefenseUnits())
             {
                 defenseIdList.AddRange(dataLogger.defenseIds);
+
+                // Defense 1 (Lane Blaster) isn't given as an option to the player, since those units...
+                // Are placed automatically.
+                // However, they should be in the defense id list, so that id is insrted regardless.
+                if(!defenseIdList.Contains(1))
+                {
+                    // Inserts the id at the beginning of the list.
+                    defenseIdList.Insert(0, 1);
+                }
             }
             // No defense ids in data logger list, so grab all defense ids.
             else
@@ -242,6 +251,11 @@ namespace RM_EDU
                     defenseIdList.AddRange(actionUnitPrefabs.GenerateDefensePrefabIdList(false, true));
             }
 
+            // Sorts all three lists to make sure the order stays consistent.
+            // Probably unnecessary.
+            resourceList.Sort();
+            generatorIdList.Sort();
+            defenseIdList.Sort();
 
             // Creating Entries
             // Natural Resources
@@ -774,8 +788,54 @@ namespace RM_EDU
         // If the information hasn't changed, then the refresh isn't done.
         public bool TryRefreshInfoLog()
         {
-            // TODO: implement.
-            return false;
+            // The result to return. Set to true if the info log was refreshed.
+            bool refreshed;
+
+            // If the entry lists are marked as updated, check for a refresh.
+            if(entryListsUpdated)
+            {
+                // If the data loggger exists, check for changes.
+                if (DataLogger.Instantiated)
+                {
+                    // Gets the instance.
+                    DataLogger dataLogger = DataLogger.Instance;
+
+                    // Checks if the resource count and defense id counts have changed.
+                    // Since the lane blaster is included in the info log, but isn't selectable by the player...
+                    // A plus 1 is done to the defense id count from the data logger.
+                    bool resCountSame = generatorEntries.Count == dataLogger.usedResources.Count;
+                    bool defCountSame = defenseEntries.Count == (dataLogger.defenseIds.Count + 1);
+
+                    // Notably, if the lists were changed but kept their counts consistent, the game...
+                    // Would consider the lists unchanged. However, this case should never happen...
+                    // So leaving it like this should be fine.
+                    // If the counts have remained unchanged, don't refresh.
+                    if (resCountSame && defCountSame)
+                    {
+                        refreshed = false;
+                    }
+                    // Some of these counts have changed, so refresh.
+                    else
+                    {
+                        RefreshInfoLog();
+                        refreshed = true;
+                    }
+                }
+                // Data logger doesn't exist, so refresh anyway.
+                else
+                {
+                    RefreshInfoLog();
+                    refreshed = true;
+                }
+            }
+            // The enty lists haven't been updated, so refresh.
+            else
+            {
+                RefreshInfoLog();
+                refreshed = true;
+            }
+
+            return refreshed;
         }
 
         // Resets the info log, clearing the information.
