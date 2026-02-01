@@ -13,6 +13,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: unitDesc
+      value: A basic enemy that travels from the enemy ship to the Energy Defense
+        Unit base.
+      objectReference: {fileID: 0}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitName
       value: Basic Enemy
       objectReference: {fileID: 0}
@@ -24,6 +29,10 @@ PrefabInstance:
       propertyPath: iconSprite
       value: 
       objectReference: {fileID: 21300000, guid: 9d702a69a4d33bf4e80956463f251a55, type: 3}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: unitDescKey
+      value: aue_enemyStandard_dsc
+      objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitNameKey
       value: aue_enemyStandard_nme
@@ -74,7 +83,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6090393955839212945, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: m_Name
-      value: Action Unit Enemy - Normal Variant
+      value: Action Unit Enemy - Standard Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8147518098009090336, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: m_Sprite

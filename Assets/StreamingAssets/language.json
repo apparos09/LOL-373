@@ -67,78 +67,106 @@
       "kwd_enemies": 18,
 
 
-      "nrs_bms_nme": 18,
-      "nrs_gtl_nme": 18,
-      "nrs_hdo_nme": 18,
-      "nrs_slr_nme": 18,
-      "nrs_wve_nme": 18,
-      "nrs_wnd_nme": 18,
-      "nrs_col_nme": 18,
-      "nrs_ngs_nme": 18,
-      "nrs_nlr_nme": 18,
-      "nrs_oil_nme": 18,
 
+      "nrs_bms_nme": 18,
       "nrs_bms_nme_abv": 3,
+      "nrs_bms_dsc": 270,
+
+      "nrs_gtl_nme": 18,
       "nrs_gtl_nme_abv": 3,
+      "nrs_gtl_dsc": 270,
+
+      "nrs_hdo_nme": 18,
       "nrs_hdo_nme_abv": 3,
+      "nrs_hdo_dsc": 270,
+
+      "nrs_slr_nme": 18,
       "nrs_slr_nme_abv": 3,
+      "nrs_slr_dsc": 270,
+
+      "nrs_wve_nme": 18,
       "nrs_wve_nme_abv": 3,
+      "nrs_wve_dsc": 270,
+
+      "nrs_wnd_nme": 18,
       "nrs_wnd_nme_abv": 3,
+      "nrs_wnd_dsc": 270,
+
+      "nrs_col_nme": 18,
       "nrs_col_nme_abv": 3,
+      "nrs_col_dsc": 270,
+
+      "nrs_ngs_nme": 18,
       "nrs_ngs_nme_abv": 3,
+      "nrs_ngs_dsc": 270,
+
+      "nrs_nlr_nme": 18,
       "nrs_nlr_nme_abv": 3,
+      "nrs_nlr_dsc": 270,
+
+      "nrs_oil_nme": 18,
       "nrs_oil_nme_abv": 3,
+      "nrs_oil_dsc": 270,
+
 
 
       "def_bsr_nme": 18,
-      "def_shd_nme": 18,
-      "def_trp_nme": 18,
-
       "def_bsr_nme_abv": 3,
+
+      "def_shd_nme": 18,
       "def_shd_nme_abv": 3,
+
+      "def_trp_nme": 18,
       "def_trp_nme_abv": 3,
+
 
       "emy_nme": 18,
       "emy_nme_abv": 3,
 
 
 
-      "aug_biomass_nme": 38,
-      "aug_geothermal_nme": 38,
-      "aug_hydro_nme": 38,
-      "aug_solar_nme": 38,
-      "aug_wave_nme": 38,
+      "aug_biomass_nme": 36,
+      "aug_geothermal_nme": 36,
+      "aug_hydro_nme": 36,
+      "aug_solar_nme": 36,
+      "aug_wave_nme": 36,
 
-      "aug_wind_nme": 38,
-      "aug_coal_nme": 38,
-      "aug_naturalGas_nme": 38,
-      "aug_nuclear_nme": 38,
-      "aug_oil_nme": 38,
-
-
-      "aud_blasterLane_nme": 38,
-      "aud_blasterStandard_nme": 38,
-      "aud_blasterLeftRight_nme": 38,
-      "aud_blasterPhase_nme": 38,
-      "aud_shieldStandard_nme": 38,
-      "aud_energyTrapStandard_nme": 38,
-
-      "aud_blasterFast_nme": 38,
-      "aud_blasterTriple_nme": 38,
-      "aud_blasterDepreciation_nme": 38,
-      "aud_shieldWeak_nme": 38,
-      "aud_energyTrapFast_nme": 38,
-
-      "aud_blasterSlow_nme": 38,
-      "aud_blasterRapid_nme": 38,
-      "aud_blasterAppreciation_nme": 38,
-      "aud_shieldStrong_nme": 38,
-      "aud_energyTrapSlow_nme": 38,
+      "aug_wind_nme": 36,
+      "aug_coal_nme": 36,
+      "aug_naturalGas_nme": 36,
+      "aug_nuclear_nme": 36,
+      "aug_oil_nme": 36,
 
 
-      "aue_enemyStandard_nme": 38,
-      "aue_enemyFast_nme": 38,
-      "aue_enemySlow_nme": 38,
+      "aud_blasterLane_nme": 36,
+      "aud_blasterStandard_nme": 36,
+      "aud_blasterLeftRight_nme": 36,
+      "aud_blasterPhase_nme": 36,
+      "aud_shieldStandard_nme": 36,
+      "aud_energyTrapStandard_nme": 36,
+
+      "aud_blasterFast_nme": 36,
+      "aud_blasterTriple_nme": 36,
+      "aud_blasterDepreciation_nme": 36,
+      "aud_shieldWeak_nme": 36,
+      "aud_energyTrapFast_nme": 36,
+
+      "aud_blasterSlow_nme": 36,
+      "aud_blasterRapid_nme": 36,
+      "aud_blasterAppreciation_nme": 36,
+      "aud_shieldStrong_nme": 36,
+      "aud_energyTrapSlow_nme": 36,
+
+
+      "aue_enemyStandard_nme": 36,
+      "aue_enemyStandard_dsc": 36,
+
+      "aue_enemyFast_nme": 36,
+      "aue_enemyFast_dsc": 36,
+
+      "aue_enemySlow_nme": 36,
+      "aue_enemySlow_dsc": 36,
+
 
 
       "kwd_speed": 18,
@@ -288,6 +316,8 @@
     "kwd_resource": "Resource",
     "kwd_resources": "Resources",
 
+
+
     "kwd_generator": "Generator",
     "kwd_generators": "Generators",
     "kwd_defense": "Defense",
@@ -296,39 +326,61 @@
     "kwd_enemies": "Enemies",
 
 
-    "nrs_bms_nme": "Biomass",
-    "nrs_gtl_nme": "Geothermal",
-    "nrs_hdo_nme": "Hydro",
-    "nrs_slr_nme": "Solar",
-    "nrs_wve_nme": "Wave",
-    "nrs_wnd_nme": "Wind",
-    "nrs_col_nme": "Coal",
-    "nrs_ngs_nme": "Natural Gas",
-    "nrs_nlr_nme": "Nuclear",
-    "nrs_oil_nme": "Oil",
 
+    "nrs_bms_nme": "Biomass",
     "nrs_bms_nme_abv": "BMS",
+    "nrs_bms_dsc": "[BIOMASS DESCRIPTION]",
+
+    "nrs_gtl_nme": "Geothermal",
     "nrs_gtl_nme_abv": "GTL",
+    "nrs_gtl_dsc": "[GEOTHERMAL DESCRIPTION]",
+
+    "nrs_hdo_nme": "Hydro",
     "nrs_hdo_nme_abv": "HDO",
+    "nrs_hdo_dsc": "[HYDRO DESCRIPTION]",
+
+    "nrs_slr_nme": "Solar",
     "nrs_slr_nme_abv": "SLR",
+    "nrs_slr_dsc": "[SOLAR DESCRIPTION]",
+
+    "nrs_wve_nme": "Wave",
     "nrs_wve_nme_abv": "WVE",
+    "nrs_wve_dsc": "[WAVE DESCRIPTION]",
+
+    "nrs_wnd_nme": "Wind",
     "nrs_wnd_nme_abv": "WND",
+    "nrs_wnd_dsc": "[WIND DESCRIPTION]",
+
+    "nrs_col_nme": "Coal",
     "nrs_col_nme_abv": "COL",
+    "nrs_col_dsc": "[COAL DESCRIPTION]",
+
+    "nrs_ngs_nme": "Natural Gas",
     "nrs_ngs_nme_abv": "NGS",
+    "nrs_ngs_dsc": "[NATURAL GAS DESCRIPTION]",
+
+    "nrs_nlr_nme": "Nuclear",
     "nrs_nlr_nme_abv": "NLR",
+    "nrs_nlr_dsc": "[NUCLEAR DESCRIPTION]",
+
+    "nrs_oil_nme": "Oil",
     "nrs_oil_nme_abv": "OIL",
+    "nrs_oil_dsc": "[OIL DESCRIPTION]",
+
+
 
     "def_bsr_nme": "Blaster",
-    "def_shd_nme": "Shield",
-    "def_trp_nme": "Trap",
-
     "def_bsr_nme_abv": "BSR",
+
+    "def_shd_nme": "Shield",
     "def_shd_nme_abv": "SHD",
+
+    "def_trp_nme": "Trap",
     "def_trp_nme_abv": "TRP",
+
 
     "emy_nme": "Enemy",
     "emy_nme_abv": "EMY",
-
 
 
     "aug_biomass_nme": "Biomass Generator",
@@ -365,8 +417,14 @@
 
 
     "aue_enemyStandard_nme": "Basic Enemy",
+    "aue_enemyStandard_dsc": "A basic enemy that travels from the enemy ship to the Energy Defense Unit base.",
+
     "aue_enemyFast_nme": "Fast Enemy",
+    "aue_enemyFast_dsc": "A faster, weaker version of the basic enemy.",
+
     "aue_enemySlow_nme": "Slow Enemy",
+    "aue_enemySlow_dsc": "A slower, stronger version of the basic enemy.",
+
 
 
     "kwd_speed": "Speed",
