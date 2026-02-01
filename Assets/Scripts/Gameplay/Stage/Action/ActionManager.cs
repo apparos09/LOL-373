@@ -260,10 +260,32 @@ namespace RM_EDU
             float userWonBonus = PlayerUserWon() ? 500 : 0;
             float killBonus = playerUser.kills * 50.0F;
 
-            // Total score.
-            float score = basePoints + userWonBonus + killBonus;
+            // Reduce for air pollution.
+            float pollutionDeduction = 0;
+            
+            // If the player user has generated air pollution, calculate a reduction.
+            if(playerUser.airPollution > 0)
+            {
+                // For every 100 points of air pollution, deduct 10 points.
+                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 100.0F) * 10.0F;
+            }
 
-            return score;
+            // Calculates the bonus. If the bonus is less than 0, make it 0.
+            float bonusPoints = userWonBonus + killBonus - pollutionDeduction;
+
+            // If the bonus is negative, set the bonus to 0.
+            if (bonusPoints < 0)
+                bonusPoints = 0.0F;
+
+            // Final score.
+            float finalScore = basePoints + bonusPoints;
+
+            // If the final score is less than 0, make it 0.
+            if (finalScore < 0)
+                finalScore = 0.0F;
+
+            // Return the final score.
+            return finalScore;
         }
 
         // Sets the stage speed using the provided factor.

@@ -47,14 +47,17 @@ namespace RM_EDU
         public SpriteRenderer lightSpriteRenderer;
 
         // The sprite for the light when it's on.
+        // This sprite is used for when the stage is unlocked and not cleared.
         [Tooltip("The sprite for when the light is on (bright light).")]
         public Sprite lightOnSprite;
 
         // The sprite for the light when it's off.
+        // This sprite is used for when the stage is unlocked and cleared.
         [Tooltip("The sprite for when the light is off (dimmed light).")]
         public Sprite lightOffSprite;
 
         // The sprite for when there's no light at all (black).
+        // This sprite is used for when the stage is locked.
         [Tooltip("The sprite for when there's no light at all (black).")]
         public Sprite lightNoneSprite;
 
@@ -369,8 +372,9 @@ namespace RM_EDU
             // Checks if the stage is locked.
             if(locked)
             {
-                // Now locked, so set the sprite to off.
-                SetLightSpriteToOffSprite();
+                // Now locked, so set the sprite to none.
+                // SetLightSpriteToOffSprite();
+                SetLightSpriteToNoneSprite();
             }
             // Stage is unlocked.
             else
@@ -383,7 +387,7 @@ namespace RM_EDU
                 }
                 else
                 {
-                    // Light on if compelte.
+                    // Light on if incomplete.
                     SetLightSpriteToOnSprite();
                 }
             }
