@@ -50,17 +50,23 @@ namespace RM_EDU
         // Start tutorial
         public void StartTutorial(List<Page> pages)
         {
+            // TODO: see if loading multiple pages into one tutorial is fine. If it isn't, change it back.
+
             // Loads the pages, sets the index to 0, and closes the textbox.
-            if (tutorialUI.textBox.IsBoxObjectActiveSelf())
-            {
-                // Close the textbox.
-                tutorialUI.textBox.Close();
-            }
+            // Closes the textbox.
+            // if (tutorialUI.textBox.IsBoxObjectActiveSelf())
+            // {
+            //     // Close the textbox.
+            //     tutorialUI.textBox.Close();
+            // }
 
             // Load the pages.
-            tutorialUI.LoadPages(ref pages, true);
+            tutorialUI.LoadPages(ref pages, false); // Changed to not clear pages.
             tutorialUI.textBox.CurrentPageIndex = 0;
-            tutorialUI.textBox.Open();
+
+            // If the text box isn't open, open it.
+            if(!tutorialUI.textBox.IsBoxObjectActiveSelf())
+                tutorialUI.textBox.Open();
         }
 
         // On Tutorial Start

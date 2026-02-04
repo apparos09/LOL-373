@@ -17,6 +17,8 @@
 
       "kwd_back": 28,
 
+      "ttl_instructions_dsc": null,
+
       "kwd_volume": 28,
       "kwd_bgmVolume": 70,
       "kwd_sfxVolume": 70,
@@ -273,6 +275,8 @@
     "kwd_quit": "Quit",
 
     "kwd_back": "Back",
+
+    "ttl_instructions_dsc": "Use the mouse or touch controls to interact with game elements. This game has three gameplay areas: world, action, and knowledge. In the world area, you can view information using the info log and select stages. In an action stage, you place generators to generate energy and create defenses to fight off enemies. In a knowledge stage, you match statements with the natural resources they apply to. Once all action and knowledge stages are completed, the game is finished.",
 
     "kwd_volume": "Volume",
     "kwd_bgmVolume": "Background Music (BGM) Volume",
