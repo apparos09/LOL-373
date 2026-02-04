@@ -46,12 +46,10 @@ namespace RM_EDU
             if(data != null)
             {
                 // Values.
-                // The id number starts at 0, hence the +1.
-                stageNumber.valueText.text = (data.idNumber + 1).ToString();
-
-                // Values (Continued)
+                stageNumber.valueText.text = (data.idNumber).ToString();
                 stageType.valueText.text = WorldStage.GetStageTypeName(data.stageType);
                 stageTime.valueText.text = StringFormatter.FormatTime(data.time, false, true, false);
+
                 stageScore.valueText.text = Mathf.CeilToInt(data.score).ToString();
                 stageEnergyTotal.valueText.text = Mathf.CeilToInt(data.energyTotal).ToString();
             }

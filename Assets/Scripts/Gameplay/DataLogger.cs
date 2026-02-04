@@ -37,6 +37,9 @@ namespace RM_EDU
         // The unlocked defense units for the action stages.
         public List<int> defenseIds = new List<int>();
 
+        // The energy start bonus the player gets.
+        public float energyStartBonus = 0.0F;
+
         [Header("Knowledge")]
         
         // The list of statements the player has matched correctly.

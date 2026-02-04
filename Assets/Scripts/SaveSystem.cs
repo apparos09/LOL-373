@@ -43,6 +43,9 @@ namespace RM_EDU
         // The defense ids. A true value means the id that lines up with the index is unlocked. False menas locked.
         public bool[] defenseIds = new bool[ActionUnitDefense.DEFENSE_ID_COUNT];
 
+        // The starting energy bonus, which is used for action stages.
+        public float energyStartBonus = 0.0F;
+
         // To avoid problems, the tutorial parameter cannot be changed for a saved game.
         public bool useTutorial = true;
 

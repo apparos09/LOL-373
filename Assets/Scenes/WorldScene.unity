@@ -1475,7 +1475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: defenseIdRewards.Array.size

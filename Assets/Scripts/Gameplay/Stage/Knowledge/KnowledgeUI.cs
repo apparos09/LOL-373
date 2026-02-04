@@ -26,10 +26,15 @@ namespace RM_EDU
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
 
+        // The knowledge stage end dialog.
+        public KnowledgeStageEndDialog stageEndDialog;
+
         // The butto used to verify the statements.
         public Button verifyButton;
 
         // The finish button.
+        // NOTE: this is part of the stage end dialog window, so saving the button here...
+        // Isn't really needed anymore, but it's already integrated into the code.
         public Button finishButton;
 
         // Constructor
@@ -135,6 +140,31 @@ namespace RM_EDU
         public void ClearUnverifiedMatches()
         {
             knowledgeManager.ClearUnverifiedMatches();
+        }
+
+        // DIALOGS //
+        // Generates a list of dialogs.
+        public override List<GameObject> GenerateDialogList()
+        {
+            // Gets the base list.
+            List<GameObject> dialogList = base.GenerateDialogList();
+
+            dialogList.Add(stageEndDialog.gameObject);
+
+            return dialogList;
+        }
+
+        // Opens the stage end dialog.
+        public void OpenStageEndDialog()
+        {
+            OpenDialog(stageEndDialog.gameObject, true);
+            stageEndDialog.UpdateStageEndStats();
+        }
+
+        // Closes the stage end dialog.
+        public void CloseStageEndDialog()
+        {
+            CloseDialog(stageEndDialog.gameObject);
         }
 
         // Resets the stage.

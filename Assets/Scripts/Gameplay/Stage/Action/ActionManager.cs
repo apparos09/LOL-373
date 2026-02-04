@@ -216,6 +216,14 @@ namespace RM_EDU
             // Generates the map using the id number.
             actionStage.GenerateStage(idNumber);
 
+            // Sets the player's starting energy.
+            // If the data logger exists, use it to check for bonus energy.
+            if(DataLogger.Instantiated)
+            {
+                playerUser.energyStartBonus = DataLogger.Instance.energyStartBonus;
+                playerUser.SetEnergyToStartingEnergy();
+            }
+
             // Sets the generator and defense prefabs.
             playerUser.SetGeneratorPrefabsFromManager();
             playerUser.SetDefensePrefabsFromManager();
@@ -776,19 +784,6 @@ namespace RM_EDU
             OnStageOver();
         }
 
-        // STAGE OVER
-        // Called when the stage is over.
-        public void OnStageOver()
-        {
-            SetStagePlaying(false);
-
-            // Calculates the game score.
-            CalculateAndSetGameScore();
-
-            // Open the end UI.
-            actionUI.OpenStageEndDialog();
-        }
-
         // Gets the stage's energy total.
         public override float GetStageEnergyTotal()
         {
@@ -800,6 +795,16 @@ namespace RM_EDU
         public override float GetStageAirPollution()
         {
             return playerUser.airPollution;
+        }
+
+        // STAGE OVER
+        // Called when the stage is over.
+        public override void OnStageOver()
+        {
+            base.OnStageOver();
+
+            // Open the end UI.
+            actionUI.OpenStageEndDialog();
         }
 
         // Returns 'true' if the stage is complete.
@@ -862,6 +867,12 @@ namespace RM_EDU
 
             // Open the window.
             // actionUI.SetStageEndWindowActive(true);
+
+            // Sets the energy start bonus to 0.
+            if (DataLogger.Instantiated)
+            {
+                DataLogger.Instance.energyStartBonus = 0.0F;
+            }
 
             // Generates a world start info object. The function gives it the data.
             WorldStartInfo startInfo = GenerateWorldStartInfo(true);

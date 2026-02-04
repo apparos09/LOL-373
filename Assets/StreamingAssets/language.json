@@ -249,7 +249,7 @@
       "kst_oil_03": 100,
       "kst_oil_04": 100,
 
-
+      "kwd_energyBonus": 18,
 
       "kwd_gameScore": 18,
       "kwd_gameTime": 18,
@@ -508,6 +508,8 @@
     "kst_oil_02": "Oil 2",
     "kst_oil_03": "Oil 3",
     "kst_oil_04": "Oil 4",
+
+    "kwd_energyBonus": "Energy Bonus",
 
     "kwd_gameScore": "Game Score",
     "kwd_gameTime": "Game Time",

@@ -16,7 +16,13 @@ namespace RM_EDU
         [Header("User")]
 
         // The energy the player user starts with.
-        public float startingEnergy = 300.0F;
+        public float energyStart = 300.0F;
+
+        // The bonus energy the player gets on start.
+        public float energyStartBonus = 0.0F;
+
+        // If 'true', the starting energy bonus is applied.
+        private bool applyEnergyBonus = true;
 
         // The energy the player had on the previous update.
         // Used to see if the player's energy has changed between updates.
@@ -88,22 +94,51 @@ namespace RM_EDU
 
 
         // ENERGY //
-        // Sets the starting energy.
-        public void SetStartingEnergy(float startingEnergy)
+        // Returns 'true' if the player has starting energy.
+        public bool HasEnergyStart()
         {
-            this.startingEnergy = startingEnergy;
+            return energyStart > 0;
+        }
+
+        // Returns 'true' if the player user has an energy start bonus.
+        public bool HasEnergyStartBonus()
+        {
+            return energyStartBonus > 0;
         }
 
         // Sets the user's energy to their starting energy.
+        // applyBonus: determines if the energy start bonus should be applied as well.
+        public void SetEnergyToStartingEnergy(bool applyBonus)
+        {
+            // If the energy bonus should be applied, apply it.
+            if (applyBonus)
+            {
+                energy = energyStart + energyStartBonus;
+            }
+            // Sets energy to starting energy without bonus.
+            else
+            {
+                energy = energyStart;
+            }
+        }
+
+        // Sets the user's energy to their starting energy plus the bonus energy.
         public void SetEnergyToStartingEnergy()
         {
-            energy = startingEnergy;
+            SetEnergyToStartingEnergy(applyEnergyBonus);
         }
+
 
         // Adds the starting energy to the user's energy.
         public void AddStartingEnergyToEnergy()
         {
-            energy += startingEnergy;
+            energy += energyStart;
+        }
+
+        // Adds the starting energy and bonus energy to current energy.
+        public void AddStartingAndBonusEnergyToEnergy()
+        {
+            energy += energyStart + energyStartBonus;
         }
 
         // Returns 'true' if the energy auto generates.

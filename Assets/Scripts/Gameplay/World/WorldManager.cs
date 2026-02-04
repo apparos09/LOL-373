@@ -124,8 +124,10 @@ namespace RM_EDU
                 {
                     tutorials.LoadIntroTutorial();
                 }
-
             }
+
+            // Refreshes the world area buttons in case they aren't active properly.
+            worldUI.RefreshWorldAreaButtons();
         }
 
         // Gets the instance.
@@ -389,6 +391,8 @@ namespace RM_EDU
                 data.defenseIds[i] = dataLogger.defenseIds.Contains(i) ? true : false;
             }
 
+            // Starting Energy Bonus
+            data.energyStartBonus = dataLogger.energyStartBonus;
 
             // Tutorial parameter.
             data.useTutorial = GameSettings.Instance.UseTutorials;
@@ -629,10 +633,11 @@ namespace RM_EDU
             // Optimize the data logger's defense units id list.
             dataLogger.OptimizeActionDefenseUnitsList();
 
-
-
             // Saves the current area index.
             SetCurrentWorldArea(data.currentAreaIndex);
+
+            // Energy start bonus.
+            dataLogger.energyStartBonus = data.energyStartBonus;
 
             // Tutorial parameter.
             GameSettings.Instance.UseTutorials = data.useTutorial;

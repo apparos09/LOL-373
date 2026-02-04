@@ -43,6 +43,10 @@ namespace RM_EDU
         [Tooltip("Randomizes a statement if a match failed.")]
         public bool randomizeStatementsOnFail = true;
 
+        // The number of verification attempts, which determines the energy bonus.
+        [Tooltip("The number of verification attempts.")]
+        public int verifyAttempts = 0;
+
         // Gets set to 'true' when the knowledge manager has been intialized.
         protected bool initializedKnowledge = false;
 
@@ -340,6 +344,9 @@ namespace RM_EDU
             // Randomizes the statements.
             RandomizeStatements(false);
 
+            // Sets verification attempts to 0.
+            verifyAttempts = 0;
+
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
 
@@ -617,14 +624,11 @@ namespace RM_EDU
                     resource.button.interactable = false;
                 }
 
+                // The finish button is interactable.
                 knowledgeUI.finishButton.interactable = true;
 
-                // Pause the stage timer since the stage is finished.
-                PauseGameTimer();
-
-                // Calculates and sets the game score.
-                // TODO: move this function call to a more appropriate place.
-                CalculateAndSetGameScore();
+                // Calls function to indicate that the stage is over.
+                OnStageOver();
             }
             // Not all matching.
             else
@@ -638,7 +642,11 @@ namespace RM_EDU
                     RandomizeStatements(false);
                 }
             }
+
+            // Increases the verification attempts count.
+            verifyAttempts++;
             
+            // Returns result of all statements matching.
             return allMatch;
         }
 
@@ -722,6 +730,15 @@ namespace RM_EDU
             knowledgeUI.finishButton.interactable = false;
         }
 
+        // Called when the stage is over.
+        public override void OnStageOver()
+        {
+            base.OnStageOver();
+
+            // Open the end UI.
+            knowledgeUI.OpenStageEndDialog();
+        }
+
         // Returns the stage score.
         public override float GetStageScore()
         {
@@ -736,8 +753,8 @@ namespace RM_EDU
         // Calculates the stage score.
         public override float CalculateStageScore()
         {
-            // The local score.
-            float localScore = 0.0F;
+            // The local base score.
+            float scoreBase = 0.0F;
 
             // Goes through all the statements.
             foreach(KnowledgeStatement statement in KnowledgeUI.Instance.statements)
@@ -748,28 +765,114 @@ namespace RM_EDU
                     // If the statement is matched correctly, add it to the local score.
                     if(statement.IsAttachmentMatchedCorrectly())
                     {
-                        localScore += 50.0F;
+                        scoreBase += 50.0F;
                     }
                 }
             }
 
-            // TODO: expand.
+            // A bonus applied to the local score.
+            float scoreBonus;
 
-            return localScore;
+            // The energy bonus.
+            float energyBonus;
+
+            // Checks the number of verification attempts.
+            switch(verifyAttempts)
+            {
+                case 5: // 5 attempts.
+                    scoreBonus = 50.0F;
+                    energyBonus = 50.0F;
+                    break;
+
+                case 4: // 4 attempts
+                    scoreBonus = 100.0F;
+                    energyBonus = 75.0F;
+                    break;
+
+                case 3: // 3 attempts
+                    scoreBonus = 150.0F;
+                    energyBonus = 100.0F;
+                    break;
+
+                case 2: // 2 attempts
+                    scoreBonus = 200.0F;
+                    energyBonus = 125.0F;
+                    break;
+
+                case 1: // 1 attempt (lowest).
+                case 0: // 0 attempts (not possible).
+                    scoreBonus = 250.0F;
+                    energyBonus = 150.0F;
+                    break;
+
+                default: // No bonus.
+                    scoreBonus = 0.0F;
+                    energyBonus = 0.0F;
+                    break;
+            }
+
+            // Calculates the local score total score.
+            float scoreTotal = scoreBase + scoreBonus;
+
+            // If the data logger exists, set the energy bonus.
+            if(DataLogger.Instantiated)
+            {
+                DataLogger.Instance.energyStartBonus = energyBonus;
+            }    
+            
+            // Returns the local score total.
+            return scoreTotal;
         }
 
         // Gets the stage energy total.
         public override float GetStageEnergyTotal()
         {
-            // TODO: create a rewarded amount of energy for the player passing the stage.
-            return 0;
+            // Returns the energy bonus.
+            return CalculateEnergyBonus();
+        }
+
+        // Calculates the current energy bonus.
+        public float CalculateEnergyBonus()
+        {
+            // The energy bonus.
+            float energyBonus;
+
+            // Checks the number of verification attempts.
+            switch (verifyAttempts)
+            {
+                case 5: // 5 attempts.
+                    energyBonus = 50.0F;
+                    break;
+
+                case 4: // 4 attempts
+                    energyBonus = 75.0F;
+                    break;
+
+                case 3: // 3 attempts
+                    energyBonus = 100.0F;
+                    break;
+
+                case 2: // 2 attempts
+                    energyBonus = 125.0F;
+                    break;
+
+                case 1: // 1 attempt (lowest).
+                case 0: // 0 attempts (not possible).
+                    energyBonus = 150.0F;
+                    break;
+
+                default: // No bonus.
+                    energyBonus = 0.0F;
+                    break;
+            }
+
+            // Returns the energy bonus.
+            return energyBonus;
         }
 
         // Returns 'true' if the stage is complete.
         public override bool IsComplete()
         {
-            // TODO: save the complete status to a variable.
-
             // Gets set to false if not all matching.
             bool allMatch = true;
 
@@ -797,7 +900,11 @@ namespace RM_EDU
         {
             base.ResetStage();
 
+            // Resets all matches.
             ResetAllMatches();
+
+            // Sets verification attempts to 0.
+            verifyAttempts = 0;
         }
 
         // Finishes the stage. Only call this if the stage is complete.
@@ -823,6 +930,9 @@ namespace RM_EDU
                     }
                 }
             }
+
+            // Calculates the energy bonus and sets it to the data logger.
+            dataLogger.energyStartBonus = CalculateEnergyBonus();
 
             // Generates a world start info object. The function gives it the data.
             WorldStartInfo startInfo = GenerateWorldStartInfo(true);

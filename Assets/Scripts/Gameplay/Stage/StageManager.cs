@@ -165,6 +165,16 @@ namespace RM_EDU
         // Returns 'true' if the stage is complete.
         public abstract bool IsComplete();
 
+        // Called when the stage is over.
+        public virtual void OnStageOver()
+        {
+            // Stage no longer playing.
+            SetStagePlaying(false);
+
+            // Calculates the game score.
+            CalculateAndSetGameScore();
+        }
+
         // Resets the stage.
         public virtual void ResetStage()
         {

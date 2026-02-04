@@ -1,0 +1,51 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using util;
+
+namespace RM_EDU
+{
+    // The knowledge stage end dialog.
+    public class KnowledgeStageEndDialog : MonoBehaviour
+    {
+        // The knowledge UI.
+        public KnowledgeUI knowledgeUI;
+
+        [Header("Stats")]
+
+        // The stage time.
+        public TMP_LabeledValue stageTime;
+
+        // The stage score.
+        public TMP_LabeledValue stageScore;
+
+        // The stage user energy total.
+        public TMP_LabeledValue stageEnergyBonus;
+
+        // Start is called before the first frame update
+        void Start()
+        {
+            // Gets the UI instance.
+            if (knowledgeUI == null)
+                knowledgeUI = KnowledgeUI.Instance;
+        }
+
+        // Updates the stage end stats.
+        public void UpdateStageEndStats()
+        {
+            // Gets the knowledge manager instance.
+            KnowledgeManager knowledgeManager = KnowledgeManager.Instance;
+
+            // Updates the values.
+            stageTime.valueText.text = StringFormatter.FormatTime(knowledgeManager.stageTimer, false, true, false);
+            stageScore.valueText.text = Mathf.CeilToInt(knowledgeManager.GetStageScore()).ToString();
+            stageEnergyBonus.valueText.text = Mathf.CeilToInt(knowledgeManager.CalculateEnergyBonus()).ToString();
+        }
+
+        // Called to finish the stage.
+        public void FinishStage()
+        {
+            KnowledgeUI.Instance.FinishStage();
+        }
+    }
+}
