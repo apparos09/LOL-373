@@ -222,6 +222,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.5226415
       objectReference: {fileID: 0}
+    - target: {fileID: 1288014189901964098, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1470436684491121091, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Name
       value: Button (UI) - Short Variant

@@ -133,8 +133,6 @@ namespace RM_EDU
                 unitNameText.text = unitPrefab.GetUnitCardDisplayName();
                 energyCostText.text = unitPrefab.energyCreationCost.ToString();
 
-                // TODO: adjust the highlights.
-
                 // Refresh the unit button to set the interactable.
                 RefreshUnitButtonInteractable();
             }

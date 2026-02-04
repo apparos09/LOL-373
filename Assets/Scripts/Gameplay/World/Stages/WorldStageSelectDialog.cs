@@ -1,13 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.Collections.LowLevel.Unsafe;
 using UnityEngine;
 
 namespace RM_EDU
 {
-    // The world stage prompt.
-    public class WorldStageDialog : MonoBehaviour
+    // The world stage select dialog..
+    public class WorldStageSelectDialog : MonoBehaviour
     {
         // The world UI.
         public WorldUI worldUI;
@@ -151,20 +150,20 @@ namespace RM_EDU
         public void OpenDialog()
         {
             // Opens the world stage dialog.
-            WorldUI.Instance.OpenWorldStageDialog(worldStage);
+            WorldUI.Instance.OpenWorldStageRewardDialog(worldStage);
         }
 
         // Opens the dialog given the provided world stage.
         public void OpenDialog(WorldStage worldStage)
         {
-            WorldUI.Instance.OpenWorldStageDialog(worldStage);
+            WorldUI.Instance.OpenWorldStageRewardDialog(worldStage);
         }
 
         // Closes the dialog.
         public void CloseDialog()
         {
             ClearWorldStage();
-            WorldUI.Instance.CloseWorldStageDialog();
+            WorldUI.Instance.CloseWorldStageRewardDialog();
         }
 
         // // Update is called once per frame

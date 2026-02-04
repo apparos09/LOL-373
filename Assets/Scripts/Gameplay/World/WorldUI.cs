@@ -39,11 +39,18 @@ namespace RM_EDU
         // The info log dialog.
         public InfoLog infoLogDialog;
 
-        // The stage prompt.
+        // The stage select dialog.
         // NOTE: this is different from the other dialogs since it's part of the world map...
         // And not a dedicated button on the header.
         [Tooltip("The dialog for a selected world stage. This is seperate from the other dialogs.")]
-        public WorldStageDialog stageDialog;
+        public WorldStageSelectDialog stageSelectDialog;
+
+        // The stage reward dialog.
+        [Tooltip("The dialog that appears when the player gets rewards from a world stage. This is seperate from the other dialogs.")]
+        public WorldStageRewardsDialog stageRewardDialog;
+
+        // The stage reward dialog.
+
 
         [Header("Other")]
 
@@ -356,24 +363,43 @@ namespace RM_EDU
             CloseDialog(infoLogDialog.gameObject);
         }
 
-        // World Stage
+        // World Stage Select
         // Returns 'true' if the stage dialog is open.
-        public bool IsWorldStageDialogOpen()
+        public bool IsWorldStageSelectDialogOpen()
         {
-            return stageDialog.gameObject.activeSelf;
+            return stageSelectDialog.gameObject.activeSelf;
         }
 
         // Opens the stage prompt.
-        public void OpenWorldStageDialog(WorldStage worldStage)
+        public void OpenWorldStageSelectDialog(WorldStage worldStage)
         {
-            stageDialog.SetWorldStage(worldStage);
-            stageDialog.gameObject.SetActive(true);
+            stageSelectDialog.SetWorldStage(worldStage);
+            stageSelectDialog.gameObject.SetActive(true);
         }
 
         // Closes the stage prompt.
-        public void CloseWorldStageDialog()
+        public void CloseWorldStageSelectDialog()
         {
-            stageDialog.gameObject.SetActive(false);
+            stageSelectDialog.gameObject.SetActive(false);
+        }
+
+        // World Stage Reward
+        // Returns 'true' if the stage dialog is open.
+        public bool IsWorldStageRewardDialogOpen()
+        {
+            return stageRewardDialog.gameObject.activeSelf;
+        }
+
+        // Opens the stage reward dialog.
+        public void OpenWorldStageRewardDialog(WorldStage worldStage)
+        {
+            stageRewardDialog.gameObject.SetActive(true);
+        }
+
+        // Closes the stage reward dialog.
+        public void CloseWorldStageRewardDialog()
+        {
+            stageRewardDialog.gameObject.SetActive(false);
         }
 
         // SAVE

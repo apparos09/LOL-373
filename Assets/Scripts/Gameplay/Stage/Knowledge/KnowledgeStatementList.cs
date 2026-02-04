@@ -320,8 +320,6 @@ namespace RM_EDU
         // Generates the groups.
         public void GenerateGroups()
         {
-            // TODO: add language keys.
-
             // Renewable
             // Biomass
             biomassGroup = new StatementGroup(NaturalResources.naturalResource.biomass);

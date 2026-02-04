@@ -209,6 +209,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button (UI) - Medium Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 885517283239816081, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1712422700093940013, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -275,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 512
+      value: 640
       objectReference: {fileID: 0}
     - target: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.y
