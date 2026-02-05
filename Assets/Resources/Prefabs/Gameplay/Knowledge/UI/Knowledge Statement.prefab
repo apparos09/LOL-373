@@ -35,7 +35,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: -38.5}
-  m_SizeDelta: {x: -20, y: -95}
+  m_SizeDelta: {x: -24, y: -95}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8477984332105492069
 CanvasRenderer:
@@ -253,6 +253,22 @@ PrefabInstance:
       propertyPath: m_Colors.m_SelectedColor.r
       value: 0.5568628
       objectReference: {fileID: 0}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2571351150588148413}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SpeakText
+      objectReference: {fileID: 0}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: RM_EDU.KnowledgeStatement, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -335,7 +351,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -20
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.y

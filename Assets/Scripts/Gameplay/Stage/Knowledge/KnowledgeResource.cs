@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using static RM_EDU.KnowledgeStatementList;
 
 namespace RM_EDU
 {
@@ -90,6 +89,12 @@ namespace RM_EDU
                 // Sets the new colour.
                 buttonImage.color = newColor;
             }
+        }
+
+        // Gets the resource name key.
+        public string GetResourceNameKey()
+        {
+            return NaturalResources.GetNaturalResourceNameKey(resource);
         }
 
         // Checks if the resource is attached to a statement.
@@ -194,6 +199,23 @@ namespace RM_EDU
             else
             {
                 return false;
+            }
+        }
+
+        // Read the resource text. Only does so if text to speech is enabled.
+        public override void SpeakText()
+        {
+            // If TTS is enabled, read the button.
+            if(IsTextToSpeechEnabled())
+            {
+                // Gets the key.
+                string key = GetResourceNameKey();
+
+                // Key exists, so speak the text.
+                if(key != "")
+                {
+                    LOLManager.Instance.SpeakText(key);
+                }
             }
         }
 

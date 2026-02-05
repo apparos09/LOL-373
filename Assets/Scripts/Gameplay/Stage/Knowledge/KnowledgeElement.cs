@@ -71,6 +71,44 @@ namespace RM_EDU
             button.colors = cb;
         }
 
+        // Returns 'true' if text-to-speech is enabled.
+        public bool IsTextToSpeechEnabled()
+        {
+            // Checks if tts is available and enabled.
+            bool ttsAvail;
+            bool ttsEnabled;
+
+            // If the LOL Manager is initialized and text-to-speech is instantiated...
+            // The TTS is available.
+            if(LOLManager.IsLOLSDKInitialized() && TextToSpeech.Instantiated)
+            {
+                ttsAvail = true;
+            }
+            else
+            {
+                ttsAvail = false;
+            }
+
+            // If the game settings is instantiated, check if TTS is enabled.
+            if (GameSettings.Instantiated)
+            {
+                ttsEnabled = GameSettings.Instance.UseTextToSpeech;
+            }
+            else
+            {
+                ttsEnabled = false;
+            }
+
+            // The result to return.
+            bool result = ttsAvail && ttsEnabled;
+
+            // Returns 'true' if TTS is enabled.
+            return result;
+        }
+
+        // Read the text for TTS. Only does so if text to speech is enabled.
+        public abstract void SpeakText();
+
         // Update is called once per frame
         protected virtual void Update()
         {

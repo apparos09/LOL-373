@@ -87,6 +87,16 @@ namespace RM_EDU
             statementText.text = (useIdText) ? statement.GenerateIdText() : statement.text;
         }
 
+        // Gets the statement key. Returns "" if the statement isn't set.
+        public string GetStatementKey()
+        {
+            // Checks if the statement exists.
+            if (statement != null)
+                return statement.key;
+            else
+                return "";
+        }
+
         // Checks if the statement is attached to a resource.
         public bool IsAttachedToResource()
         {
@@ -181,6 +191,23 @@ namespace RM_EDU
             else
             {
                 return false;
+            }
+        }
+
+        // Read the statement text. Only does so if text to speech is enabled.
+        public override void SpeakText()
+        {
+            // If TTS is enabled, read the button.
+            if (IsTextToSpeechEnabled() && statement != null)
+            {
+                // Gets the key.
+                string key = statement.key;
+
+                // Key exists, so speak the text for it.
+                if (key != "")
+                {
+                    LOLManager.Instance.SpeakText(key);
+                }
             }
         }
 
