@@ -545,16 +545,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 659617139574673495}
+    - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: StartStage
+      value: CloseDialog
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.WorldStagePrompt, Assembly-CSharp
+      value: RM_EDU.WorldStageRewardsDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName

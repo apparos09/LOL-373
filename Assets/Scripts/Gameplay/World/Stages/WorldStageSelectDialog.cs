@@ -150,20 +150,20 @@ namespace RM_EDU
         public void OpenDialog()
         {
             // Opens the world stage dialog.
-            WorldUI.Instance.OpenWorldStageRewardDialog(worldStage);
+            WorldUI.Instance.OpenWorldStageSelectDialog(worldStage);
         }
 
         // Opens the dialog given the provided world stage.
         public void OpenDialog(WorldStage worldStage)
         {
-            WorldUI.Instance.OpenWorldStageRewardDialog(worldStage);
+            WorldUI.Instance.OpenWorldStageSelectDialog(worldStage);
         }
 
         // Closes the dialog.
         public void CloseDialog()
         {
             ClearWorldStage();
-            WorldUI.Instance.CloseWorldStageRewardDialog();
+            WorldUI.Instance.CloseWorldStageSelectDialog();
         }
 
         // // Update is called once per frame

@@ -249,6 +249,7 @@
       "kst_oil_03": 100,
       "kst_oil_04": 100,
 
+      "kwd_verify": 18,
       "kwd_energyBonus": 18,
       "kwd_rewards": 18,
 
@@ -510,6 +511,7 @@
     "kst_oil_03": "Oil 3",
     "kst_oil_04": "Oil 4",
 
+    "kwd_verify": "Verify",
     "kwd_energyBonus": "Energy Bonus",
     "kwd_rewards": "Rewards",
 

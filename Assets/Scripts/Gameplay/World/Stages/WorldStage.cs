@@ -142,7 +142,7 @@ namespace RM_EDU
             // If the stage is not complete and isn't locked, open the stage dialog.
             if(!complete && !locked)
             {
-                WorldManager.Instance.worldUI.OpenWorldStageRewardDialog(this);
+                WorldManager.Instance.worldUI.OpenWorldStageSelectDialog(this);
             }
         }
 

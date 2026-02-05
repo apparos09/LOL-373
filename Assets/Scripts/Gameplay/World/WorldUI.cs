@@ -28,6 +28,11 @@ namespace RM_EDU
         // The next area button.
         public Button nextAreaButton;
 
+        [Header("World/Header")]
+
+        // The energy bonus.
+        public TMP_LabeledValue energyStartBonus;
+
         [Header("World/Dialogs")]
 
         // The options dialog.
@@ -104,6 +109,9 @@ namespace RM_EDU
                     SaveSystem.Instance.feedbackText = saveText;
                 }
             }
+
+            // Updates the energy start bonus display.
+            UpdateEnergyStartBonusDisplay();
 
             // Closes all the dialogs.
             CloseAllDialogs();
@@ -206,6 +214,21 @@ namespace RM_EDU
                 nextAreaButton.interactable = currArea.IsWorldAreaCleared();
             }
 
+        }
+
+        // Top Header
+        // Updates the energy bonus text.
+        public void UpdateEnergyStartBonusDisplay()
+        {
+            // Checks if teh data logger exists.
+            if(DataLogger.Instantiated)
+            {
+                energyStartBonus.valueText.text = Mathf.CeilToInt(DataLogger.Instance.energyStartBonus).ToString();
+            }
+            else
+            {
+                energyStartBonus.valueText.text = "-";
+            }
         }
 
         // DIALOGS
@@ -370,14 +393,14 @@ namespace RM_EDU
             return stageSelectDialog.gameObject.activeSelf;
         }
 
-        // Opens the stage prompt.
+        // Opens the stage select dialog.
         public void OpenWorldStageSelectDialog(WorldStage worldStage)
         {
             stageSelectDialog.SetWorldStage(worldStage);
             stageSelectDialog.gameObject.SetActive(true);
         }
 
-        // Closes the stage prompt.
+        // Closes the stage select dialog.
         public void CloseWorldStageSelectDialog()
         {
             stageSelectDialog.gameObject.SetActive(false);
@@ -391,7 +414,7 @@ namespace RM_EDU
         }
 
         // Opens the stage reward dialog.
-        public void OpenWorldStageRewardDialog(WorldStage worldStage)
+        public void OpenWorldStageRewardDialog()
         {
             stageRewardDialog.gameObject.SetActive(true);
         }

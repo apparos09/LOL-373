@@ -315,9 +315,11 @@ namespace RM_EDU
             // Calculates and sets the game score.
             CalculateAndSetGameScore();
 
-
             // Save the game score to the data logger.
             dataLogger.gameScore = gameScore;
+
+            // Updates teh energy start bonus display.
+            worldUI.UpdateEnergyStartBonusDisplay();
 
             // Submits progress for the game.
             SubmitProgress();
