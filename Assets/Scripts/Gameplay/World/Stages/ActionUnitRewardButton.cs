@@ -68,6 +68,9 @@ namespace RM_EDU
                     Select();
                 });
             }
+
+            // Applies the prefab info.
+            ApplyUnitPrefabInfo();
         }
 
         // Called when the button has been pressed.
@@ -89,14 +92,14 @@ namespace RM_EDU
         }
 
         // Sets the prefab.
-        public void SetPrefab(ActionUnit newPrefab)
+        public void SetUnitPrefab(ActionUnit newPrefab)
         {
             unitPrefab = newPrefab;
-            ApplyPrefabInfo();
+            ApplyUnitPrefabInfo();
         }
 
         // Applies the prefab information.
-        public void ApplyPrefabInfo()
+        public void ApplyUnitPrefabInfo()
         {
             // Checks if the prefab exists.
             if (unitPrefab != null)
@@ -113,26 +116,25 @@ namespace RM_EDU
             // The prefab is null, so clear the unit button.
             else
             {
-                ClearPrefabInfo();
+                ClearUnitPrefabInfo();
             }
         }
 
         // Applies the prefab info.
-        public void ApplyPrefabInfo(ActionUnit newPrefab)
+        public void ApplyUnitPrefabInfo(ActionUnit newPrefab)
         {
             unitPrefab = newPrefab;
-            ApplyPrefabInfo();
+            ApplyUnitPrefabInfo();
         }
 
         // Clears the prefab information.
-        public void ClearPrefabInfo()
+        public void ClearUnitPrefabInfo()
         {
             // Visual information.
             button.image.sprite = buttonDefaultImageSprite;
             unitIconImage.sprite = alpha0Sprite;
             unitNameText.text = "-";
             energyCostText.text = "-";
-
 
             // The button is no longer interactable.
             button.interactable = false;

@@ -414,9 +414,10 @@ namespace RM_EDU
         }
 
         // Opens the stage reward dialog.
-        public void OpenWorldStageRewardDialog()
+        public void OpenWorldStageRewardDialog(WorldStage worldStage)
         {
             stageRewardDialog.gameObject.SetActive(true);
+            stageRewardDialog.LoadRewardsInfo(worldStage);
         }
 
         // Closes the stage reward dialog.

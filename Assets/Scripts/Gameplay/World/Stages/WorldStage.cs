@@ -103,6 +103,9 @@ namespace RM_EDU
         [Tooltip("The ids for defense units that're unlocked if the player completes the stage.")]
         public List<int> defenseIdRewards = new List<int>();
 
+        // If 'true', the rewards dialog is used.
+        protected bool useRewardsDialog = true;
+
         [Header("World Stage/Events")]
 
         // The stage's unlock event.
@@ -235,6 +238,35 @@ namespace RM_EDU
         // Gives the player their rewards.
         public void GivePlayerRewards()
         {
+            // If the rewards dialog should be used.
+            if(useRewardsDialog)
+            {
+                // TODO: this probably isn't efficient. Find a better method.
+
+                // Sees if there's world start info.
+                WorldStartInfo info = FindObjectOfType<WorldStartInfo>();
+
+                // There's world start info.
+                if(info != null)
+                {
+                    // Returning from a stage.
+                    if(info.fromStage)
+                    {
+                        // If the stage the player returned from is THIS stage...
+                        // Use the reward dialog.
+                        if(WorldManager.Instance.GetWorldStage(info.worldStageIndex) == this)
+                        {
+                            // Open the rewards dialog and give it this stage.
+                            WorldUI.Instance.OpenWorldStageRewardDialog(this);
+                        }
+                    }
+                }
+
+                // // Open the rewards dialog and give it this stage.
+                // WorldUI.Instance.OpenWorldStageRewardDialog(this);
+            }
+
+            // Give the player their defense units.
             GiveDefenseUnitsToPlayer();
         }
 
