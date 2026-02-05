@@ -542,7 +542,10 @@ namespace RM_EDU
                     }
                 }
                     
-            }   
+            }
+
+            // Clears the current selection.
+            ClearCurrentSelection();
         }
 
         // Verifies the matches to see if they're correct.
@@ -643,6 +646,9 @@ namespace RM_EDU
                 }
             }
 
+            // CLear the current selection.
+            ClearCurrentSelection();
+
             // Increases the verification attempts count.
             verifyAttempts++;
             
@@ -724,6 +730,9 @@ namespace RM_EDU
                 resource.button.interactable = true;
                 resource.SetButtonToNormalColor();
             }
+
+            // Clears the current selection.
+            ClearCurrentSelection();
 
             // Verify button is interactable, but the finish button isn't.
             knowledgeUI.verifyButton.interactable = true;

@@ -26,6 +26,12 @@ namespace RM_EDU
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
 
+        // The info log button.
+        public Button infoLogButton;
+
+        // The info log dialog.
+        public InfoLog infoLogDialog;
+
         // The knowledge stage end dialog.
         public KnowledgeStageEndDialog stageEndDialog;
 
@@ -134,6 +140,11 @@ namespace RM_EDU
         public void VerifyMatches()
         {
             knowledgeManager.VerifyMatches();
+
+            // If the info log button is off, make it interactable since a verification attempt...
+            // Has been made.
+            if (!infoLogButton.interactable)
+                infoLogButton.interactable = true;
         }
 
         // Clears all unverified matches.
@@ -149,9 +160,33 @@ namespace RM_EDU
             // Gets the base list.
             List<GameObject> dialogList = base.GenerateDialogList();
 
+            // Adds the rest of the dialogs.
+            dialogList.Add(infoLogDialog.gameObject);
             dialogList.Add(stageEndDialog.gameObject);
 
             return dialogList;
+        }
+
+        // Returns 'true' if the info log is open.
+        public bool IsInfoLogDialogOpen()
+        {
+            return infoLogDialog.gameObject.activeSelf;
+        }
+
+        // Opens the info log dialog.
+        public void OpenInfoLogDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(infoLogDialog.gameObject, closeOtherDialogs);
+
+            // Randomize statements, and make the info log button non-interactable.
+            knowledgeManager.RandomizeStatements();
+            infoLogButton.interactable = false;
+        }
+
+        // Closes the info log dialog.
+        public void CloseInfoLogDialog()
+        {
+            CloseDialog(infoLogDialog.gameObject);
         }
 
         // Opens the stage end dialog.

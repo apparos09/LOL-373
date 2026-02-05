@@ -2378,7 +2378,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1051042819609998617, guid: 00e39db1faaa4a24b9d8f53d3772a2de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: OpenInfoLogDialogDialog
+      value: OpenInfoLogDialog
       objectReference: {fileID: 0}
     - target: {fileID: 1051042819609998617, guid: 00e39db1faaa4a24b9d8f53d3772a2de, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

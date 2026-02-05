@@ -270,7 +270,7 @@ namespace RM_EDU
         }
 
         // Opens the info log dialog.
-        public void OpenInfoLogDialogDialog(bool closeOtherDialogs)
+        public void OpenInfoLogDialog(bool closeOtherDialogs)
         {
             OpenDialog(infoLogDialog.gameObject, closeOtherDialogs);
         }
