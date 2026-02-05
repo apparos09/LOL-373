@@ -236,38 +236,40 @@ namespace RM_EDU
         // REWARDS //
 
         // Gives the player their rewards.
-        public void GivePlayerRewards()
+        // showRewards: determines if the rewards should be shown to the player.
+        public void GivePlayerRewards(bool showRewards)
         {
-            // If the rewards dialog should be used.
-            if(useRewardsDialog)
+            // If the rewards dialog should be used...
+            // And there was a request to show rewards.
+            if(useRewardsDialog && showRewards)
             {
-                // TODO: this probably isn't efficient. Find a better method.
+                // Gets the world UI.
+                WorldUI worldUI = WorldUI.Instance;
 
-                // Sees if there's world start info.
-                WorldStartInfo info = FindObjectOfType<WorldStartInfo>();
-
-                // There's world start info.
-                if(info != null)
+                // Checks if the rewards dialog is open already.
+                if(worldUI.IsWorldStageRewardsDialogOpen())
                 {
-                    // Returning from a stage.
-                    if(info.fromStage)
+                    // The loaded world stage isn't this stage, so replace it with this stage.
+                    if(worldUI.stageRewardsDialog.worldStage != this)
                     {
-                        // If the stage the player returned from is THIS stage...
-                        // Use the reward dialog.
-                        if(WorldManager.Instance.GetWorldStage(info.worldStageIndex) == this)
-                        {
-                            // Open the rewards dialog and give it this stage.
-                            WorldUI.Instance.OpenWorldStageRewardDialog(this);
-                        }
+                        worldUI.OpenWorldStageRewardsDialog(this);
                     }
                 }
-
-                // // Open the rewards dialog and give it this stage.
-                // WorldUI.Instance.OpenWorldStageRewardDialog(this);
+                else
+                {
+                    // Open the rewards dialog and give it this stage.
+                    worldUI.OpenWorldStageRewardsDialog(this);
+                }
             }
 
             // Give the player their defense units.
             GiveDefenseUnitsToPlayer();
+        }
+
+        // Gives the player their rewards, but doesn't show them the rewards.
+        public void GivePlayerRewards()
+        {
+            GivePlayerRewards(false);
         }
 
         // Gives the player the defense units for this world stage.
@@ -445,8 +447,10 @@ namespace RM_EDU
             return complete;
         }
 
-        // Sets that the stage is complete.
-        public void SetComplete(bool stageComplete)
+        // Sets if the stage is complete.
+        // stageComplete: determines if the stage is complete.
+        // showRewards: determines if the rewards should be shown to the player if applicable.
+        public void SetComplete(bool stageComplete, bool showRewards)
         {
             complete = stageComplete;
 
@@ -466,7 +470,7 @@ namespace RM_EDU
 
 
                 // Give rewards since the stage is complete.
-                GivePlayerRewards();
+                GivePlayerRewards(showRewards);
             }
             // If the stage is not complete.
             else
@@ -482,6 +486,12 @@ namespace RM_EDU
                     SetLightSpriteToOnSprite();
                 }
             }
+        }
+
+        // Sets the stage complete parameter, and doesn't show rewards.
+        public void SetComplete(bool stageComplete)
+        {
+            SetComplete(stageComplete, false);
         }
 
         // Refreshes the complete parameter by calling set complete.

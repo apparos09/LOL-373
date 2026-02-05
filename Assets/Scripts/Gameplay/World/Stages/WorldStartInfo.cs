@@ -110,7 +110,9 @@ namespace RM_EDU
                     worldStage.airPollution = stageAirPollution;
 
                     // Set if the stage was completed or not.
-                    worldStage.SetComplete(stageCompleted);
+                    // If the stage was completed, show the player their rewards if applicable.
+                    // The same bool can be used for the completion and show rewards parameters.
+                    worldStage.SetComplete(stageCompleted, stageCompleted);
 
                     // Sets the current area to be this world area.
                     worldManager.SetCurrentWorldArea(worldStage.GetWorldStageArea());

@@ -311,7 +311,7 @@ namespace RM_EDU
         // Closes the dialog.
         public void CloseDialog()
         {
-            WorldUI.Instance.CloseWorldStageRewardDialog();
+            WorldUI.Instance.CloseWorldStageRewardsDialog();
         }
     }
 }

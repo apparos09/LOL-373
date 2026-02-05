@@ -52,7 +52,7 @@ namespace RM_EDU
 
         // The stage reward dialog.
         [Tooltip("The dialog that appears when the player gets rewards from a world stage. This is seperate from the other dialogs.")]
-        public WorldStageRewardsDialog stageRewardDialog;
+        public WorldStageRewardsDialog stageRewardsDialog;
 
         // The stage reward dialog.
 
@@ -408,22 +408,22 @@ namespace RM_EDU
 
         // World Stage Reward
         // Returns 'true' if the stage dialog is open.
-        public bool IsWorldStageRewardDialogOpen()
+        public bool IsWorldStageRewardsDialogOpen()
         {
-            return stageRewardDialog.gameObject.activeSelf;
+            return stageRewardsDialog.gameObject.activeSelf;
         }
 
         // Opens the stage reward dialog.
-        public void OpenWorldStageRewardDialog(WorldStage worldStage)
+        public void OpenWorldStageRewardsDialog(WorldStage worldStage)
         {
-            stageRewardDialog.gameObject.SetActive(true);
-            stageRewardDialog.LoadRewardsInfo(worldStage);
+            stageRewardsDialog.gameObject.SetActive(true);
+            stageRewardsDialog.LoadRewardsInfo(worldStage);
         }
 
         // Closes the stage reward dialog.
-        public void CloseWorldStageRewardDialog()
+        public void CloseWorldStageRewardsDialog()
         {
-            stageRewardDialog.gameObject.SetActive(false);
+            stageRewardsDialog.gameObject.SetActive(false);
         }
 
         // SAVE

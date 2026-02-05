@@ -1422,7 +1422,7 @@ MonoBehaviour:
   settingsDialog: {fileID: 6009812634636893440}
   infoLogDialog: {fileID: 8400158653124419843}
   stageSelectDialog: {fileID: 2344112202134844928}
-  stageRewardDialog: {fileID: 6586532364854755246}
+  stageRewardsDialog: {fileID: 6586532364854755246}
   saveText: {fileID: 1987237035703683881}
 --- !u!224 &4446877280303409859 stripped
 RectTransform:
