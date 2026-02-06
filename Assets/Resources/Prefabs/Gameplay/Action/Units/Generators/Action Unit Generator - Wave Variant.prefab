@@ -110,8 +110,10 @@ MonoBehaviour:
   idNumber: 5
   unitName: Wave Generator
   unitNameKey: aug_wave_nme
-  unitDesc: 
-  unitDescKey: 
+  unitDesc: A renewable generator that generates energy using ocean waves. It can
+    only be placed in the sea. The wave strength is determined by the wind speed.
+    If there's no wind, there's no waves.
+  unitDescKey: aug_wave_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8046253962694201211}
   iconSprite: {fileID: 21300000, guid: ca81bceb10b7a82489d71a7aa28266fb, type: 3}

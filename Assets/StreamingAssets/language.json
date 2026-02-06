@@ -128,16 +128,34 @@
 
 
       "aug_biomass_nme": 36,
+      "aug_biomass_dsc": 270,
+
       "aug_geothermal_nme": 36,
+      "aug_geothermal_dsc": 270,
+
       "aug_hydro_nme": 36,
+      "aug_hydro_dsc": 270,
+
       "aug_solar_nme": 36,
+      "aug_solar_dsc": 270,
+
       "aug_wave_nme": 36,
+      "aug_wave_dsc": 270,
 
       "aug_wind_nme": 36,
+      "aug_wind_dsc": 270,
+
       "aug_coal_nme": 36,
+      "aug_coal_dsc": 270,
+
       "aug_naturalGas_nme": 36,
+      "aug_naturalGas_dsc": 270,
+
       "aug_nuclear_nme": 36,
+      "aug_nuclear_dsc": 270,
+
       "aug_oil_nme": 36,
+      "aug_oil_dsc": 270,
 
 
       "aud_blasterLane_nme": 36,
@@ -161,13 +179,13 @@
 
 
       "aue_enemyStandard_nme": 36,
-      "aue_enemyStandard_dsc": 36,
+      "aue_enemyStandard_dsc": 270,
 
       "aue_enemyFast_nme": 36,
-      "aue_enemyFast_dsc": 36,
+      "aue_enemyFast_dsc": 270,
 
       "aue_enemySlow_nme": 36,
-      "aue_enemySlow_dsc": 36,
+      "aue_enemySlow_dsc": 270,
 
 
 
@@ -390,17 +408,37 @@
     "emy_nme_abv": "EMY",
 
 
+
     "aug_biomass_nme": "Biomass Generator",
+    "aug_biomass_dsc": "A renewable generator that burns plant materials to generate energy. This generator can be placed anywhere on land.",
+
     "aug_geothermal_nme": "Geothermal Generator",
+    "aug_geothermal_dsc": "A renewable generator that uses the Earth's internal heat for generating energy. This generator can only be placed on geothermal source tiles.",
+
     "aug_hydro_nme": "Hydro Generator",
+    "aug_hydro_dsc": "A renewable generator that uses the flow of water to generate energy. This generator can only be placed in rivers and cannot be placed right next to another hydro generator. It also cannot be placed next to a wind generator that's in the water. If this generator generates energy for too long, it floods the tiles behind it, destroying any generator and defense units in those tiles. This generator also generates a small amount of air pollution.",
+
     "aug_solar_nme": "Solar Generator",
+    "aug_solar_dsc": "A renewable generator that generates energy using sunlight. This generator can only be placed on land. This generator cannot produce energy at night.",
+
     "aug_wave_nme": "Wave Generator",
+    "aug_wave_dsc": "A renewable generator that generates energy using ocean waves. It can only be placed in the sea. The wave strength is determined by the wind speed. If there's no wind, there's no waves.",
 
     "aug_wind_nme": "Wind Generator",
+    "aug_wind_dsc": "A renewable generator that generates energy using wind. This generator can be placed on land or on water tiles close to land. The energy generation speed is determined by the wind speed. If there's no wind, no energy is generated.",
+
     "aug_coal_nme": "Coal Generator",
+    "aug_coal_dsc": "A non-renewable generator that generates energy using coal. This generator can only be used on coal source tiles and creates air pollution.",
+
     "aug_naturalGas_nme": "Natural Gas Generator",
+    "aug_naturalGas_dsc": "A non-renewable generator that generates energy using natural gas. This generator can be placed on coal, oil, and natural gas source spots.",
+
     "aug_nuclear_nme": "Nuclear Generator",
+    "aug_nuclear_dsc": "A non-renewable generator that generates energy by splitting uranium atoms. This generator can only be placed on nuclear source tiles. Once all the nuclear resources are depleted in a spot, this generator is destroyed automatically. If the nuclear generator is destroyed by an enemy before it's finished, it will leave nuclear waste in its place. Nothing can be placed on a tile that has nuclear waste.",
+
     "aug_oil_nme": "Oil Generator",
+    "aug_oil_dsc": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots. If the oil generator is destroyed by an enemy before it's finished, it will leave an oil spill in its place. No units can be placed on a tile that has an oil spill.",
+
 
 
     "aud_blasterLane_nme": "Lane Blaster",

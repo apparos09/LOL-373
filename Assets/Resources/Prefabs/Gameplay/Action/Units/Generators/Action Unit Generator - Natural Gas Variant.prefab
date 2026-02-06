@@ -115,8 +115,9 @@ MonoBehaviour:
   idNumber: 8
   unitName: Natural Gas Generator
   unitNameKey: aug_naturalGas_nme
-  unitDesc: 
-  unitDescKey: 
+  unitDesc: A non-renewable generator that generates energy using natural gas. This
+    generator can be placed on coal, oil, and natural gas source spots.
+  unitDescKey: aug_naturalGas_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8866950658550869557}
   iconSprite: {fileID: 21300000, guid: 48691372d3832b14899e009c8f1f1945, type: 3}

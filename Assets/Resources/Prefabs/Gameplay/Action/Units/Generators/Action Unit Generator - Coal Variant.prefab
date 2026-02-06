@@ -99,8 +99,9 @@ MonoBehaviour:
   idNumber: 7
   unitName: Coal Generator
   unitNameKey: aug_coal_nme
-  unitDesc: 
-  unitDescKey: 
+  unitDesc: A non-renewable generator that generates energy using coal. This generator
+    can only be used on coal source tiles and creates air pollution.
+  unitDescKey: aug_coal_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 3922976697032012731}
   iconSprite: {fileID: 21300000, guid: 8b9a6c7b11f90fa4ca5c4691e5b20c29, type: 3}
