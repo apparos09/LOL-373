@@ -8,6 +8,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1626850282260206874, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 2730aa1a2e15aba4fb43e57fb7161e62, type: 2}
+    - target: {fileID: 2511431481117591295, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: deathAnim
+      value: Action Unit Defense - Trap - Death Animation
+      objectReference: {fileID: 0}
     - target: {fileID: 2511431481117591295, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: actionUnit
       value: 
@@ -118,6 +126,7 @@ MonoBehaviour:
   unitNameKey: aud_energyTrapStandard_nme
   unitDesc: 
   unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 5149994175010406257}
   iconSprite: {fileID: 21300000, guid: 1989a82ff8725d545af3b13cb722c7de, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
@@ -125,7 +134,6 @@ MonoBehaviour:
   unitAnimations: {fileID: 2715288586523760933}
   collider: {fileID: 6016033277523262731}
   rigidbody: {fileID: 9044625043006678836}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 0

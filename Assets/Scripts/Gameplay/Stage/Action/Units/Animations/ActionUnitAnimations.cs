@@ -21,6 +21,9 @@ namespace RM_EDU
         // The empty state animation.
         public string emptyStateAnim = "Empty State";
 
+        // The death animation.
+        public string deathAnim = "Action Unit - Death Animation";
+
         // The explosion animation.
         public string explosionAnim = "Action Unit - Explosion Animation";
 
@@ -44,8 +47,10 @@ namespace RM_EDU
         // Plays an animation.
         public void PlayAnimation(string animationName)
         {
-            // If animations are enabled, play the animation.
-            if (actionUnit.AnimationsEnabled)
+            // TODO: check if animation is playing.
+
+            // If animations are enabled and there's an animation, play the animation.
+            if (actionUnit.AnimationsEnabled && animationName != "")
             {
                 animator.Play(animationName);
             }
@@ -78,6 +83,32 @@ namespace RM_EDU
         public virtual void PlayEmptyStateAnimationOverlayLayer()
         {
             PlayEmptyStateAnimation(1);
+        }
+
+        // DEATH
+        // Returns 'true' if the action unit has a death animation.
+        public bool HasDeathAnimation()
+        {
+            return deathAnim != "";
+        }
+
+        // Plays the death animation.
+        public void PlayDeathAnimation()
+        {
+            PlayAnimation(deathAnim);
+        }
+
+        // Called when the death animation starts.
+        public void OnDeathAnimationStart()
+        {
+            // NOTE: make sure the death animation turns off the collider.
+        }
+
+        // Called when the death animation ends.
+        public void OnDeathAnimationEnd()
+        {
+            PlayEmptyStateAnimation(1);
+            actionUnit.OnUnitDeath();
         }
 
         // EXPLOSION

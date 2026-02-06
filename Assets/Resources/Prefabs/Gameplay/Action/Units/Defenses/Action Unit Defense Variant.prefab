@@ -148,6 +148,14 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6436548784185539043, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 6436548784185539043, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_Color.r
+      value: 0.18431373
+      objectReference: {fileID: 0}
     - target: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: actionUnit
       value: 
@@ -212,6 +220,7 @@ MonoBehaviour:
   unitNameKey: kwd_defense
   unitDesc: 
   unitDescKey: 
+  owner: {fileID: 0}
   spriteRenderer: {fileID: 4615263141650489515}
   iconSprite: {fileID: 0}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
@@ -219,7 +228,6 @@ MonoBehaviour:
   unitAnimations: {fileID: 2511431481117591295}
   collider: {fileID: 6055651898615620305}
   rigidbody: {fileID: 8858641744088496366}
-  owner: {fileID: 0}
   health: 0
   maxHealth: 100
   tangible: 1

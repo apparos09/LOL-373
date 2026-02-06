@@ -67,6 +67,9 @@ namespace RM_EDU
         // The animations for the action unit.
         public ActionUnitAnimations unitAnimations;
 
+        // If 'true', the death animation is enabled. Off by default.
+        protected bool deathAnimationEnabled = false;
+
         // If 'true', animations are enabled.
         private bool animationsEnabled = true;
 
@@ -803,7 +806,17 @@ namespace RM_EDU
             if (owner != null)
                 owner.energy -= energyDeathCost;
 
-            OnUnitDeath();
+            // If animations are enabled, the death animation is enabled, there is a death animation.
+            if(animationsEnabled && deathAnimationEnabled && unitAnimations.HasDeathAnimation())
+            {
+                // Play the death animation.
+                unitAnimations.PlayDeathAnimation();
+            }
+            else
+            {
+                // Skip death animation.
+                OnUnitDeath();
+            }
         }
 
         // Called when a unit has died/been destroyed.
@@ -848,6 +861,18 @@ namespace RM_EDU
         public virtual void PlayEmptyStateAnimationOverlayLayer()
         {
             unitAnimations.PlayEmptyStateAnimationOverlayLayer();
+        }
+
+        // Returns 'true' if the death animation is enabled.
+        public bool IsDeathAnimationEnabled()
+        {
+            return deathAnimationEnabled;
+        }
+
+        // Plays the death animation.
+        public virtual void PlayDeathAnimation()
+        {
+            unitAnimations.PlayDeathAnimation();
         }
 
         // Update is called once per frame

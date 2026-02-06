@@ -39,6 +39,9 @@ namespace RM_EDU
 
             // The defense is intangible so that enemies aren't blocked by it, and don't get stopped by it.
             tangible = false;
+
+            // Enable the death animation.
+            deathAnimationEnabled = true;
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
