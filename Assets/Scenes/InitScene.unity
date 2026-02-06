@@ -425,6 +425,7 @@ MonoBehaviour:
     currentAreaIndex: 0
     usedResources: 0000000000000000000000
     defenseIds: 0000000000000000000000000000000000
+    energyStartBonus: 0
     useTutorial: 1
     tutorialData:
       clearedIntroTutorial: 0
@@ -454,6 +455,7 @@ MonoBehaviour:
     currentAreaIndex: 0
     usedResources: 0000000000000000000000
     defenseIds: 0000000000000000000000000000000000
+    energyStartBonus: 0
     useTutorial: 1
     tutorialData:
       clearedIntroTutorial: 0
@@ -703,20 +705,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game Loading Screen Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 647280249758451860, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 2313557839083139210, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2313557839083139210, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2313557839083139210, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7010290503441839930, guid: 99035bbad558e634fa4706c8a60840dd, type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

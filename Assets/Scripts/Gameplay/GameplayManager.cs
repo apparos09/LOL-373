@@ -376,6 +376,25 @@ namespace RM_EDU
             gameUI.OnTutorialEnd();
         }
 
+        // LOADING SCREEN
+        // Returns 'true' if the loading screen is available.
+        public bool IsLoadingScreenAvailable()
+        {
+            return EDU_LoadingSceneCanvas.Instantiated;
+        }
+
+        // Returns 'true' if the loading screen is enabled.
+        public bool IsLoadingScreenEnabled()
+        {
+            return loadingScreenEnabled;
+        }
+
+        // Returns 'true'if loading screen is available and enabled.
+        public bool IsLoadingScreenAvailableAndEnabled()
+        {
+            return EDU_LoadingSceneCanvas.Instantiated && loadingScreenEnabled;
+        }
+
         // SCENES
         // Loads the scene and cheks the loading screen member variable to see if the loading screen should be used.
         public virtual void LoadScene(string scene)
@@ -386,8 +405,8 @@ namespace RM_EDU
         // Loads a scene, which checks if a loading screen should be used.
         public virtual void LoadScene(string scene, bool useLoadingScreen)
         {
-            // If the loading screen should be used and the loading scene is instantiated.
-            if(useLoadingScreen && EDU_LoadingSceneCanvas.Instantiated)
+            // If the loading screen should be used and the loading scene is available.
+            if(useLoadingScreen && IsLoadingScreenAvailableAndEnabled())
             {
                 // Gets the instance.
                 EDU_LoadingSceneCanvas loadingSceneCanvas = EDU_LoadingSceneCanvas.Instance;
