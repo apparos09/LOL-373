@@ -67,6 +67,9 @@ namespace RM_EDU
         // The animations for the action unit.
         public ActionUnitAnimations unitAnimations;
 
+        // If 'true', animations are enabled.
+        private bool animationsEnabled = true;
+
         [Header("Physics")]
 
         // The collider.
@@ -149,11 +152,6 @@ namespace RM_EDU
         // This also doesn't account for applying the statFactor value to a stat.
         public const float BASE_STAT_MAXIMUM = 100.0F;
 
-        // The empty state animation.
-        public const string EMPTY_STATE_ANIM = "Empty State";
-
-        // If 'true', animations are enabled.
-        private bool animationsEnabled = true;
 
         // Awake is called when the script instance is being loaded
         protected virtual void Awake()
@@ -837,20 +835,19 @@ namespace RM_EDU
         // Plays the empty state animation.
         public void PlayEmptyStateAnimation(int layer)
         {
-            if(animator != null && EMPTY_STATE_ANIM != "")
-                animator.Play(EMPTY_STATE_ANIM, layer);
+            unitAnimations.PlayEmptyStateAnimation(layer);
         }
 
         // Plays the empty state animation on the base layer.
         public virtual void PlayEmptyStateAnimationBaseLayer()
         {
-            PlayEmptyStateAnimation(0);
+            unitAnimations.PlayEmptyStateAnimationBaseLayer();
         }
 
         // Plays the empty state animation on the overlay layer.
         public virtual void PlayEmptyStateAnimationOverlayLayer()
         {
-            PlayEmptyStateAnimation(1);
+            unitAnimations.PlayEmptyStateAnimationOverlayLayer();
         }
 
         // Update is called once per frame

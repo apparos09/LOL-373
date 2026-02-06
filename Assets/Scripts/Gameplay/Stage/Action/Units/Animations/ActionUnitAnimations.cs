@@ -16,6 +16,13 @@ namespace RM_EDU
         // The action unit this animations script belongs to.
         public ActionUnit actionUnit;
 
+        [Header("Animations")]
+
+        // The empty state animation.
+        public string emptyStateAnim = "Empty State";
+
+        // The explosion animation.
+        public string explosionAnim = "Action Unit - Explosion Animation";
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -34,24 +41,62 @@ namespace RM_EDU
 
         }
 
-        // TODO: play the animations directly instead of citing action unit?
+        // Plays an animation.
+        public void PlayAnimation(string animationName)
+        {
+            // If animations are enabled, play the animation.
+            if (actionUnit.AnimationsEnabled)
+            {
+                animator.Play(animationName);
+            }
+        }
 
+        // Plays the provided animation for the given layer.
+        public void PlayAnimation(string animationName, int layer)
+        {
+            // If animations are enabled, play the animation.
+            if(actionUnit.AnimationsEnabled)
+            {
+                animator.Play(animationName, layer);
+            } 
+        }
+
+        // EMPTY
         // Plays the empty state animation.
         public void PlayEmptyStateAnimation(int layer)
         {
-            actionUnit.PlayEmptyStateAnimation(layer);
+            PlayAnimation(emptyStateAnim, layer);
         }
 
         // Plays the empty state animation on the base layer.
         public virtual void PlayEmptyStateAnimationBaseLayer()
         {
-            actionUnit.PlayEmptyStateAnimationBaseLayer();
+            PlayEmptyStateAnimation(0);
         }
 
         // Plays the empty state animation on the overlay layer.
         public virtual void PlayEmptyStateAnimationOverlayLayer()
         {
-            actionUnit.PlayEmptyStateAnimationOverlayLayer();
+            PlayEmptyStateAnimation(1);
+        }
+
+        // EXPLOSION
+        // Plays the explosion animation.
+        public void PlayExplosionAnimation()
+        {
+            animator.Play(explosionAnim);
+        }
+
+        // Called when the explosion animation starts.
+        public void OnExplosionAnimationStart()
+        {
+            // ...
+        }
+
+        // Called when the explosion animation ends.
+        public void OnExplosionAnimationEnd()
+        {
+            PlayEmptyStateAnimation(1);
         }
 
         // // Update is called once per frame
