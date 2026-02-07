@@ -18,8 +18,8 @@ namespace RM_EDU
             public bool clearedFirstActionCompleteTutorial = false;
             public bool clearedFirstKnowledgeTutorial = false;
             public bool clearedFirstKnowledgeCompleteTutorial = false;
-            public bool clearedFirstAreaComplete = false;
-            public bool clearedFinalAreaStart = false;
+            public bool clearedFirstAreaCompleteTutorial = false;
+            public bool clearedFinalAreaTutorial = false;
 
             // Natural Resources
             public bool clearedBiomassTutorial = false;
@@ -46,8 +46,8 @@ namespace RM_EDU
                 copyData.clearedFirstActionCompleteTutorial = clearedFirstActionCompleteTutorial;
                 copyData.clearedFirstKnowledgeTutorial = clearedFirstKnowledgeTutorial;
                 copyData.clearedFirstKnowledgeCompleteTutorial = clearedFirstKnowledgeCompleteTutorial;
-                copyData.clearedFirstAreaComplete = clearedFirstAreaComplete;
-                copyData.clearedFinalAreaStart = clearedFinalAreaStart;
+                copyData.clearedFirstAreaCompleteTutorial = clearedFirstAreaCompleteTutorial;
+                copyData.clearedFinalAreaTutorial = clearedFinalAreaTutorial;
 
                 // Natural Resources
                 copyData.clearedBiomassTutorial = clearedBiomassTutorial;
@@ -75,8 +75,8 @@ namespace RM_EDU
                 clearedFirstActionCompleteTutorial = pasteData.clearedFirstActionCompleteTutorial;
                 clearedFirstKnowledgeTutorial = pasteData.clearedFirstKnowledgeTutorial;
                 clearedFirstKnowledgeCompleteTutorial = pasteData.clearedFirstKnowledgeCompleteTutorial;
-                clearedFirstAreaComplete = pasteData.clearedFirstAreaComplete;
-                clearedFinalAreaStart = pasteData.clearedFinalAreaStart;
+                clearedFirstAreaCompleteTutorial = pasteData.clearedFirstAreaCompleteTutorial;
+                clearedFinalAreaTutorial = pasteData.clearedFinalAreaTutorial;
 
                 // Natural Resources
                 clearedBiomassTutorial = pasteData.clearedBiomassTutorial;
@@ -432,8 +432,10 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_intro_00"),
-                // new EDU_Page("...", "trl_intro_01"),
+                new EDU_Page("Welcome to the Energy Defense Unit (EDU)! For this training exercise, you'll be doing a simulation where you defend Earth's bases from alien invaders! The aliens are here to take Earth's natural resources, so you must use said resources to defend Earth. Once the aliens are fended off at every base, the simulation is complete.", "trl_intro_00"),
+                new EDU_Page("The game is split two stage types: action and knowledge. Action stages are where you fight off the aliens, and knowledge stages are where you're evaluated on your natural resource knowledge. Some stages can be completed before others, but all stages must be cleared to complete the simulation.", "trl_intro_01"),
+                new EDU_Page("From left to right on the top are the info log button, the energy bonus display, and the options button. The info log allows you to lookup information on natural resources, generators, and defenses that you've encountered. The energy bonus display shows how much bonus starting energy you have, which is applied in action stages. Finally, the options button opens the options menu, which allows you to adjust the game's settings, save your game, and return to the title screen.", "trl_intro_02"),
+                new EDU_Page("More simulation elements will be explained as they become relevant. With all that said, please select your first stage!", "trl_intro_03"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -448,8 +450,13 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_firstAction_00"),
-                // new EDU_Page("...", "trl_intro_01"),
+                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of power, you win. The enemy side loses power automatically, but defeating an enemy makes the enemy side lose power faster. The enemy's energy amount is displayed with the bar on the right.", "trl_firstAction_00"),
+                new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, destroying all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstAction_01"),
+                new EDU_Page("To fight off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstAction_02"),
+                new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units in their lane. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstAction_03"),
+                new EDU_Page("On the top is the info log button, the day-night indicator, your energy points, the wind indicator, and the options button. The info log button opens the info log, which gives you information on the units that you've encountered. The day-night indicator shows the time of day, the energy points display shows how much energy you have, and the wind indicator shows the current wind speed. The options button opens the options menu, which allows you to change the game's settings, reset the stage, and return to the world area.", "trl_firstAction_04"),
+                new EDU_Page("On the bottom are your generator units on the left side and your defense units on the right side. When you select a unit, it will show in the middle of the bottom area. If you have enough energy to create the unit, the selected unit will be created when you select a valid tile.", "trl_firstAction_05"),
+                new EDU_Page("To the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove any of your created units. Finally, the energy block button stops your defense units from using energy. With all this explained, time to start the stage!", "trl_firstAction_06"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -464,8 +471,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_firstActionComplete_00"),
-                // new EDU_Page("...", "trl_intro_01"),
+                new EDU_Page("You've completed the first action stage! When you unlock an action stage, you'll sometimes unlock new defense units. To see what defense units you have and what they do, open the info log.", "trl_firstActionComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -481,7 +487,8 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_firstKnowledge_00"),
-                // new EDU_Page("...", "trl_intro_01"),
+                new EDU_Page("...", "trl_firstKnowledge_01"),
+                new EDU_Page("...", "trl_firstKnowledge_02"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -497,7 +504,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_firstKnowledgeComplete_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -513,27 +519,25 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_firstAreaComplete_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
-            data.clearedFirstAreaComplete = true;
+            data.clearedFirstAreaCompleteTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
         // Loads the final area start tutorial.
-        public void LoadFinalAreaStartTutorial(bool startTutorial = true)
+        public void LoadFinalAreaTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_finalAreaStart_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
-            data.clearedFinalAreaStart = true;
+            data.clearedFinalAreaTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
@@ -547,7 +551,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_biomass_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -563,7 +566,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_geothermal_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -579,7 +581,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_hydro_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -595,7 +596,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_solar_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -611,7 +611,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_wave_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -627,7 +626,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_wind_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -643,7 +641,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_coal_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -659,7 +656,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_naturalGas_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -675,7 +671,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_nuclear_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -691,7 +686,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("...", "trl_oil_00"),
-                // new EDU_Page("...", "trl_intro_01"),
             };
 
             // Sets the bool and loads the tutorial.

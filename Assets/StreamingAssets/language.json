@@ -303,6 +303,55 @@
       "kwd_rewards": 18,
 
 
+
+      "trl_intro_00": 640,
+      "trl_intro_01": 640,
+      "trl_intro_02": 640,
+      "trl_intro_03": 640,
+
+      "trl_firstAction_00": 640,
+      "trl_firstAction_01": 640,
+      "trl_firstAction_02": 640,
+      "trl_firstAction_03": 640,
+      "trl_firstAction_04": 640,
+      "trl_firstAction_05": 640,
+      "trl_firstAction_06": 640,
+
+      "trl_firstActionComplete_00": 640,
+
+      "trl_firstKnowledge_00": 640,
+      "trl_firstKnowledge_01": 640,
+      "trl_firstKnowledge_02": 640,
+
+      "trl_firstKnowledgeComplete_00": 640,
+
+      "trl_firstAreaComplete_00": 640,
+
+      "trl_finalArea_00": 640,
+
+      "trl_biomass_00": 640,
+
+      "trl_geothermal_00": 640,
+
+      "trl_hydro_00": 640,
+
+      "trl_solar_00": 640,
+
+      "trl_wave_00": 640,
+
+      "trl_wind_00": 640,
+
+      "trl_coal_00": 640,
+
+      "trl_naturalGas_00": 640,
+
+      "trl_nuclear_00": 640,
+      "trl_nuclear_01": 640,
+
+      "trl_oil_00": 640,
+
+
+
       "kwd_gameScore": 18,
       "kwd_gameTime": 18,
       "kwd_gameEnergyTotal": 18,
@@ -614,6 +663,55 @@
     "kwd_verify": "Verify",
     "kwd_energyBonus": "Energy Bonus",
     "kwd_rewards": "Rewards",
+
+
+
+    "trl_intro_00": "Welcome to the Energy Defense Unit (EDU)! For this training exercise, you'll be doing a simulation where you defend Earth's bases from alien invaders! The aliens are here to take Earth's natural resources, so you must use said resources to defend Earth. Once the aliens are fended off at every base, the simulation is complete.",
+    "trl_intro_01": "The game is split two stage types: action and knowledge. Action stages are where you fight off the aliens, and knowledge stages are where you're evaluated on your natural resource knowledge. Some stages can be completed before others, but all stages must be cleared to complete the simulation.",
+    "trl_intro_02": "From left to right on the top are the info log button, the energy bonus display, and the options button. The info log allows you to lookup information on natural resources, generators, and defenses that you've encountered. The energy bonus display shows how much bonus starting energy you have, which is applied in action stages. Finally, the options button opens the options menu, which allows you to adjust the game's settings, save your game, and return to the title screen.",
+    "trl_intro_03": "More simulation elements will be explained as they become relevant. With all that said, please select your first stage!",
+
+    "trl_firstAction_00": "This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of power, you win. The enemy side loses power automatically, but defeating an enemy makes the enemy side lose power faster. The enemy's energy amount is displayed with the bar on the right.",
+    "trl_firstAction_01": "On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, destroying all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.",
+    "trl_firstAction_02": "To fight off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.",
+    "trl_firstAction_03": "As for defense units, they attack enemies in their lane and/or defend units in their lane. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.",
+    "trl_firstAction_04": "On the top is the info log button, the day-night indicator, your energy points, the wind indicator, and the options button. The info log button opens the info log, which gives you information on the units that you've encountered. The day-night indicator shows the time of day, the energy points display shows how much energy you have, and the wind indicator shows the current wind speed. The options button opens the options menu, which allows you to change the game's settings, reset the stage, and return to the world area.",
+    "trl_firstAction_05": "On the bottom are your generator units on the left side and your defense units on the right side. When you select a unit, it will show in the middle of the bottom area. If you have enough energy to create the unit, the selected unit will be created when you select a valid tile.",
+    "trl_firstAction_06": "To the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove any of your created units. Finally, the energy block button stops your defense units from using energy. With all this explained, time to start the stage!",
+
+    "trl_firstActionComplete_00": "You've completed the first action stage! When you unlock an action stage, you'll sometimes unlock new defense units. To see what defense units you have and what they do, open the info log.",
+
+    "trl_firstKnowledge_00": "This is a knowledge stage! In knowledge stages, you must match statements with the natural resources they apply to. Once you've made connections, select the verify button to check your answers. When verification is performed, all correctly matched statements and resources are taken out of the stage, and all remaining statements are randomized to new ones. Once all the statements have been matched correctly, the stage is complete.",
+    "trl_firstKnowledge_01": "On the top left is the info log button and on the top right is the options button. The info log allows you to review information on natural resources. However, if you open the info log, the remaining statements will be randomized, and the info log will be locked. The info log will be unlocked once you perform another verification check. As for the options button, it opens the options menu, which allows you to adjust the game's settings, reset the stage, and return to the world area.",
+    "trl_firstKnowledge_02": "You can get a starting energy bonus for the next action stage based on how many verifications it took for you to complete the current knowledge stage. If you perform too many verifications, you won't get a bonus. With all that explained, time to start the stage!",
+
+    "trl_firstKnowledgeComplete_00": "You've completed your first knowledge stage! If you got an energy bonus, it'll be displayed at the top of the screen.",
+
+    "trl_firstAreaComplete_00": "You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the on-screen arrow buttons.",
+
+    "trl_finalArea_00": "This is the final area! Once you clear all the stages in this area, the simulation is complete.",
+
+    "trl_biomass_00": "This stage uses the renewable resource biomass. Biomass entails burning plant and/or waste materials to spin a turbine to generate energy. For the biomass generator, it can be placed anywhere on land, generates energy regularly, and produces no air pollution.",
+    
+    "trl_geothermal_00": "This stage uses the renewable resource geothermal. Geothermal power uses the Earth's internal heat to produce hot water and/or steam to spin a turbine to generate energy. The geothermal generator can only be placed on geothermal spots and produces no air pollution.",
+    
+    "trl_hydro_00": "This stage uses the renewable resource hydro. Hydropower uses the flow of water to turn a turbine to generate energy. Hydro generators can only be placed on rivers and cannot be placed next to certain generator types. Hydro generators produce small amounts of pollution and will flood the areas behind them if they run for too long.",
+    
+    "trl_solar_00": "This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight to electricity, which can only be done during the day. Solar generators can be placed anywhere on land and produce no air pollution but only generate energy during the daytime.",
+    
+    "trl_wave_00": "This stage uses the renewable resource wave. Wave power uses the movement of waves to turn turbines to generate energy. High wind areas have the most potential for using wave energy, and no energy is generated if there's no waves. The wave generators can only be placed in sea tiles, generate energy based on the wind speed, and produce no air pollution.",
+    
+    "trl_wind_00": "This stage uses the renewable resource wind. Wind is used to spin wind turbines to generate energy. Wind turbines can be placed on land or offshore and produce no electricity when there's no wind. Wind generators can be placed on land or in water tiles close to land and create no air pollution. The amount of energy a wind turbine generates is based on the wind speed.",
+    
+    "trl_coal_00": "This stage uses coal, which is a non-renewable resource that's fed to a furnace to heat water. This water then produces steam, which is used to spin a turbine to generate energy. Coal produces toxic chemicals when burned and can release toxic minerals if mined on the surface. Coal generators can only be placed on coal spots, generate energy for a limited time, and create air pollution.",
+
+    "trl_naturalGas_00": "This stage uses the non-renewable resource natural gas, which is burned to produce gases to spin a turbine to generate energy. Natural gas is often found with coal or oil, is highly flammable, must have its poisonous elements removed before being burned, and releases pollutants when burned. Natural gas generators generate energy for a limited time, produce air pollution, and can be placed on natural gas, oil, or coal spots.",
+
+    "trl_nuclear_00": "This stage uses the non-renewable resource nuclear. Nuclear power involves splitting uranium atoms to produce heat to boil water, which then produces steam to spin a turbine to generate energy. This reaction produces no pollution, but it creates radioactive waste, which must be stored away to prevent harm to people and/or the environment.",
+    "trl_nuclear_01": "Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, and produce no air pollution. Nuclear generators are automatically destroyed upon depleting their resources, but if destroyed by an enemy, they leave nuclear waste. No units can be placed on a tile that has nuclear waste.",
+
+    "trl_oil_00": "This stage uses the non-renewable resource oil, which is burned to produce steam to turn a turbine to generate energy. Oil can be mined on land or at sea, but drilling for oil in the ocean can cause an oil spill if done improperly. Oil generators can only be placed on oil spots, generate energy for a limited time, and cause an oil spill if an enemy destroys them before they're finished. No units can be placed on a spot with an oil spill.",
+
 
 
     "kwd_gameScore": "Game Score",
