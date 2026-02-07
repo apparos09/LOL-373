@@ -32,9 +32,14 @@ namespace RM_EDU
         // Applies information from action unit.
         public void ApplyActionUnitInfo(ActionUnit actionUnit)
         {
+            // Applys the unit info to the selected unit.
             selectedUnit.ApplyActionUnitInfo(actionUnit);
 
+            // Sets the name.
             selectedUnitNameText.text = actionUnit.unitName;
+
+            // Reads the unit name key.
+            SpeakText(actionUnit.unitNameKey);
         }
 
         // Applies information from an action unit button.
@@ -46,6 +51,9 @@ namespace RM_EDU
             if(unitButton.HasUnitPrefab())
             {
                 selectedUnitNameText.text = unitButton.unitPrefab.GetUnitNameTranslated();
+
+                // Reads the unit name key.
+                SpeakText(unitButton.unitPrefab.unitNameKey);
             }
             else
             {
@@ -68,6 +76,29 @@ namespace RM_EDU
             selectedUnit.ClearActionUnitInfo();
 
             selectedUnitNameText.text = "-";
+        }
+
+        // Speaks the provided text key.
+        public void SpeakText(string key)
+        {
+            // Key is set.
+            if(key != "")
+            {
+                // Checks if the instances exist: LOL SDK, Text-to-Speech, and GameSettings.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && TextToSpeech.Instantiated && GameSettings.Instantiated)
+                {
+                    // Gets the instances.
+                    GameSettings gameSettings = GameSettings.Instance;
+                    LOLManager lolManager = LOLManager.Instance;
+
+                    // Checks if TTS should be used.
+                    if (gameSettings.UseTextToSpeech)
+                    {
+                        // Grabs the LOL Manager to trigger text-to-speech.
+                        lolManager.textToSpeech.SpeakText(key);
+                    }
+                }
+            }
         }
 
     }

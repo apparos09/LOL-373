@@ -51,8 +51,17 @@ namespace RM_EDU
             // If the player exists, give it this unit prefab.
             if (playerUser != null)
             {
-                // Give the player the selected prefab.
-                playerUser.SetToRemoveMode();
+                // If the player is in remove mode, turn it off.
+                if(playerUser.InRemoveMode())
+                {
+                    playerUser.DisableRemoveMode();
+                }
+                // If the player isn't in remove mode, turn it on.
+                else
+                {
+                    // Give the player the selected prefab.
+                    playerUser.EnableRemoveMode();
+                }
             }
         }
 

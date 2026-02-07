@@ -40,7 +40,7 @@ namespace RM_EDU
         public Tutorials tutorials;
 
         // Returns 'true' if tutorials enabled.
-        private bool tutorialsEnabled = false;
+        private bool tutorialsEnabled = true;
 
         // The title scene.
         public string titleScene = "TitleScene";
@@ -393,6 +393,29 @@ namespace RM_EDU
         public bool IsLoadingScreenAvailableAndEnabled()
         {
             return EDU_LoadingSceneCanvas.Instantiated && loadingScreenEnabled;
+        }
+
+        // Returns true if the game is loading.
+        public bool IsLoading()
+        {
+            // If the loading screen is disabled, it's not loading.
+            if(loadingScreenEnabled)
+            {
+                // Checks if the loading screen canvas exists.
+                if(EDU_LoadingSceneCanvas.Instantiated)
+                {
+                    // Returns 'true' if the loading graphic is currently being used.
+                    return EDU_LoadingSceneCanvas.Instance.loadingGraphic.IsLoading;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
         }
 
         // SCENES

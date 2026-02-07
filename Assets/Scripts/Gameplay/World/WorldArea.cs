@@ -44,8 +44,41 @@ namespace RM_EDU
             }
         }
 
+        // Checks if all stages in the area are complete. If so, the area is complete.
+        // If the area has no stages, this returns true.
+        public bool IsComplete()
+        {
+            // The result to be returned.
+            bool result = true;
+
+            // Checks if stages exist.
+            if(stages.Count > 0)
+            {
+                // Goes through all stages.
+                for(int i = 0; i < stages.Count; i++)
+                {
+                    // Stage exists.
+                    if (stages[i] != null)
+                    {
+                        // If an incomplete area has been found, the area isn't complete.
+                        if (!stages[i].IsComplete())
+                        {
+                            result = false;
+                            break;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                result = true;
+            }
+
+            return result;
+        }
+
         // Returns 'true' if the world area has been cleared.
-        public bool IsWorldAreaCleared()
+        public bool IsWorldAreaEventCleared()
         {
             return areaCompleteEvent.cleared;
         }

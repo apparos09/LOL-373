@@ -486,9 +486,9 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_firstKnowledge_00"),
-                new EDU_Page("...", "trl_firstKnowledge_01"),
-                new EDU_Page("...", "trl_firstKnowledge_02"),
+                new EDU_Page("This is a knowledge stage! In knowledge stages, you must match statements with the natural resources they apply to. Once you've made connections, select the verify button to check your answers. When verification is performed, all correctly matched statements and resources are taken out of the stage, and all remaining statements are randomized to new ones. Once all the statements have been matched correctly, the stage is complete.", "trl_firstKnowledge_00"),
+                new EDU_Page("On the top left is the info log button and on the top right is the options button. The info log allows you to review information on natural resources. However, if you open the info log, the remaining statements will be randomized, and the info log will be locked. The info log will be unlocked once you perform another verification check. As for the options button, it opens the options menu, which allows you to adjust the game's settings, reset the stage, and return to the world area.", "trl_firstKnowledge_01"),
+                new EDU_Page("You can get a starting energy bonus for the next action stage based on how many verifications it took for you to complete the current knowledge stage. If you perform too many verifications, you won't get a bonus. With all that explained, time to start the stage!", "trl_firstKnowledge_02"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -503,7 +503,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_firstKnowledgeComplete_00"),
+                new EDU_Page("You've completed your first knowledge stage! If you got an energy bonus, it'll be displayed at the top of the screen.", "trl_firstKnowledgeComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -518,7 +518,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_firstAreaComplete_00"),
+                new EDU_Page("You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the on-screen arrow buttons.", "trl_firstAreaComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -533,7 +533,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_finalAreaStart_00"),
+                new EDU_Page("This is the final area! Once you clear all the stages in this area, the simulation is complete.", "trl_finalArea_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -550,7 +550,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_biomass_00"),
+                new EDU_Page("This stage uses the renewable resource biomass. Biomass entails burning plant and/or waste materials to spin a turbine to generate energy. For the biomass generator, it can be placed anywhere on land, generates energy regularly, and produces no air pollution.", "trl_biomass_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -565,7 +565,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_geothermal_00"),
+                new EDU_Page("This stage uses the renewable resource geothermal. Geothermal power uses the Earth's internal heat to produce hot water and/or steam to spin a turbine to generate energy. The geothermal generator can only be placed on geothermal spots and produces no air pollution.", "trl_geothermal_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -580,7 +580,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_hydro_00"),
+                new EDU_Page("This stage uses the renewable resource hydro. Hydropower uses the flow of water to turn a turbine to generate energy. Hydro generators can only be placed on rivers and cannot be placed next to certain generator types. Hydro generators produce small amounts of pollution and will flood the areas behind them if they run for too long.", "trl_hydro_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -595,7 +595,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_solar_00"),
+                new EDU_Page("This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight to electricity, which can only be done during the day. Solar generators can be placed anywhere on land and produce no air pollution but only generate energy during the daytime.", "trl_solar_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -610,7 +610,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_wave_00"),
+                new EDU_Page("This stage uses the renewable resource wave. Wave power uses the movement of waves to turn turbines to generate energy. High wind areas have the most potential for using wave energy, and no energy is generated if there's no waves. The wave generators can only be placed in sea tiles, generate energy based on the wind speed, and produce no air pollution.", "trl_wave_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -625,7 +625,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_wind_00"),
+                new EDU_Page("This stage uses the renewable resource wind. Wind is used to spin wind turbines to generate energy. Wind turbines can be placed on land or offshore and produce no electricity when there's no wind. Wind generators can be placed on land or in water tiles close to land and create no air pollution. The amount of energy a wind turbine generates is based on the wind speed.", "trl_wind_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -640,7 +640,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_coal_00"),
+                new EDU_Page("This stage uses coal, which is a non-renewable resource that's fed to a furnace to heat water. This water then produces steam, which is used to spin a turbine to generate energy. Coal produces toxic chemicals when burned and can release toxic minerals if mined on the surface. Coal generators can only be placed on coal spots, generate energy for a limited time, and create air pollution.", "trl_coal_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -655,7 +655,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_naturalGas_00"),
+                new EDU_Page("This stage uses the non-renewable resource natural gas, which is burned to produce gases to spin a turbine to generate energy. Natural gas is often found with coal or oil, is highly flammable, must have its poisonous elements removed before being burned, and releases pollutants when burned. Natural gas generators generate energy for a limited time, produce air pollution, and can be placed on natural gas, oil, or coal spots.", "trl_naturalGas_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -670,7 +670,8 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_nuclear_00"),
+                new EDU_Page("This stage uses the non-renewable resource nuclear. Nuclear power involves splitting uranium atoms to produce heat to boil water, which then produces steam to spin a turbine to generate energy. This reaction produces no pollution, but it creates radioactive waste, which must be stored away to prevent harm to people and/or the environment.", "trl_nuclear_00"),
+                new EDU_Page("Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, and produce no air pollution. Nuclear generators are automatically destroyed upon depleting their resources, but if destroyed by an enemy, they leave nuclear waste. No units can be placed on a tile that has nuclear waste.", "trl_nuclear_01"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -685,7 +686,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("...", "trl_oil_00"),
+                new EDU_Page("This stage uses the non-renewable resource oil, which is burned to produce steam to turn a turbine to generate energy. Oil can be mined on land or at sea, but drilling for oil in the ocean can cause an oil spill if done improperly. Oil generators can only be placed on oil spots, generate energy for a limited time, and cause an oil spill if an enemy destroys them before they're finished. No units can be placed on a spot with an oil spill.", "trl_oil_00"),
             };
 
             // Sets the bool and loads the tutorial.

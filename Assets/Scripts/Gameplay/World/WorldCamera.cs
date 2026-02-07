@@ -110,6 +110,9 @@ namespace RM_EDU
             if (instant)
             {
                 SetPosition(newPos);
+
+                // Movement finished.
+                OnMovementFinished();
             }
             else
             {
@@ -153,6 +156,13 @@ namespace RM_EDU
             }
         }
 
+        // Called when the camera's movement has been finished.
+        public void OnMovementFinished()
+        {
+            // The world camera is now in the current area and is done moving for now.
+            WorldManager.Instance.OnWorldCameraInCurrentArea();
+        }
+
         // Update is called once per frame
         void Update()
         {
@@ -176,6 +186,9 @@ namespace RM_EDU
                 {
                     // No longer in transition.
                     inTransition = false;
+
+                    // Movement finished.
+                    OnMovementFinished();
                 }
             }
         }

@@ -201,7 +201,7 @@ namespace RM_EDU
 
             // NEXT
             // If this is the last area, disable the next button.
-            if (worldManager.IsCurrentWorldAreaLastArea())
+            if (worldManager.IsCurrentWorldAreaFinalArea())
             {
                 nextAreaButton.interactable = false;
             }
@@ -211,7 +211,7 @@ namespace RM_EDU
                 WorldArea currArea = worldManager.GetCurrentWorldArea();
 
                 // If the area is cleared, allow going to the next area.
-                nextAreaButton.interactable = currArea.IsWorldAreaCleared();
+                nextAreaButton.interactable = currArea.IsWorldAreaEventCleared();
             }
 
         }

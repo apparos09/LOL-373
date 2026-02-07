@@ -57,6 +57,10 @@ namespace RM_EDU
         // Set to 'true' if the world has been initialized.
         protected bool worldInitialized = false;
 
+        // Gets set to 'true' when tutorials have been checked. Checks for tutorials in Update().
+        [Tooltip("Becomes true when tutorials have been checked. Set to false to check for tutorials in Update().")]
+        public bool checkedTutorials = false;
+
         [Header("World/Events")]
 
         // The game complete event of the world manager.
@@ -106,6 +110,9 @@ namespace RM_EDU
 
             // Initializes the world.
             InitializeWorld();
+
+            // Will be made false in late start to make sure everything else is set.
+            checkedTutorials = true;
         }
 
         // The late start function.
@@ -113,21 +120,11 @@ namespace RM_EDU
         {
             base.LateStart();
 
-            // If tutorials are being used and a tutorial isn't active.
-            if(IsUsingTutorials() && !IsTutorialActive())
-            {
-                // Test tutorial.
-                // tutorials.LoadTutorialTest();
-
-                // If the intro tutorial hasn't been cleared, trigger it.
-                if(!tutorials.Data.clearedIntroTutorial)
-                {
-                    tutorials.LoadIntroTutorial();
-                }
-            }
-
             // Refreshes the world area buttons in case they aren't active properly.
             worldUI.RefreshWorldAreaButtons();
+
+            // Check for some tutorials.
+            checkedTutorials = false;
         }
 
         // Gets the instance.
@@ -660,6 +657,118 @@ namespace RM_EDU
             return true;
         }
 
+        // TUTORIALS //
+        // Called when a tutorial is ended.
+        public override void OnTutorialEnd()
+        {
+            base.OnTutorialEnd();
+
+            // Check for new tutorials in the next update.
+            checkedTutorials = false;
+        }
+
+        // Checks if any tutorials need to be activated.
+        public void CheckTutorials()
+        {
+            // If tutorials are being used and a tutorial isn't active.
+            if (IsUsingTutorials() && !IsTutorialActive())
+            {
+                // Gets set to true when a tutorial has started.
+                bool startedTutorial = false;
+
+                // Test tutorial.
+                // tutorials.LoadTutorialTest();
+
+                // If the intro tutorial hasn't been cleared, trigger it.
+                if (!startedTutorial && !tutorials.Data.clearedIntroTutorial)
+                {
+                    tutorials.LoadIntroTutorial();
+                    startedTutorial = true;
+                }
+
+                // Checks if the player has cleared their first action stage.
+                if(!startedTutorial && !tutorials.Data.clearedFirstActionCompleteTutorial)
+                {
+                    // Checks all stages.
+                    for(int i = 0; i < stages.Count; i++)
+                    {
+                        // Stage exists.
+                        if (stages[i] != null)
+                        {
+                            // Is an action stage.
+                            if (stages[i].GetStageType() == WorldStage.stageType.action)
+                            {
+                                // If the stage is complete.
+                                if (stages[i].IsComplete())
+                                {
+                                    tutorials.LoadFirstActionCompleteTutorial();
+                                    startedTutorial = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Checks if the player has cleared their first knowledge stage.
+                if (!startedTutorial && !tutorials.Data.clearedFirstKnowledgeCompleteTutorial)
+                {
+                    // Checks all stages.
+                    for (int i = 0; i < stages.Count; i++)
+                    {
+                        // Stage exists.
+                        if (stages[i] != null)
+                        {
+                            // Is a knowledge stage.
+                            if (stages[i].GetStageType() == WorldStage.stageType.knowledge)
+                            {
+                                // If the stage is complete.
+                                if (stages[i].IsComplete())
+                                {
+                                    tutorials.LoadFirstKnowledgeCompleteTutorial();
+                                    startedTutorial = true;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                // Checks if the player has cleared the first area.
+                if (!startedTutorial && !tutorials.Data.clearedFirstAreaCompleteTutorial)
+                {
+                    // There are areas.
+                    if(areas.Count > 0)
+                    {
+                        // Area 1 (index 0) exists.
+                        if (areas[0] != null)
+                        {
+                            // If the first area is complete.
+                            if (areas[0].IsComplete())
+                            {
+                                tutorials.LoadFirstAreaCompleteTutorial();
+                                startedTutorial = true;
+                            }
+                        }
+                    }
+                }
+
+                // Checks if the player has started the final area.
+                if (!startedTutorial && !tutorials.Data.clearedFinalAreaTutorial)
+                {
+                    // If the current area is the final area, run the final area tutorial.
+                    if (areas.IndexOf(GetCurrentWorldArea()) == areas.Count - 1)
+                    {
+                        tutorials.LoadFinalAreaTutorial();
+                        startedTutorial = true;
+                    }
+                }
+            }
+
+            // Tutorials have been checked.
+            checkedTutorials = true;
+        }
+
         // WORLD //
 
         // Calculates the game score.
@@ -859,11 +968,22 @@ namespace RM_EDU
         }
 
         // Returns 'true' if this is the last world area.
-        public bool IsCurrentWorldAreaLastArea()
+        public bool IsCurrentWorldAreaFinalArea()
         {
             return currAreaIndex == areas.Count - 1;
         }
 
+        // Called when the world camera has finished moving to the current area.
+        public void OnWorldCameraInCurrentArea()
+        {
+            // If any of the area-specific tutorials haven't been cleared...
+            // Check for them.
+            if(!tutorials.Data.clearedFirstAreaCompleteTutorial || 
+                !tutorials.Data.clearedFinalAreaTutorial)
+            {
+                checkedTutorials = false;
+            }
+        }
 
         // STAGE //
         // Gets a world stage by its index.
@@ -1105,6 +1225,13 @@ namespace RM_EDU
         protected override void Update()
         {
             base.Update();
+
+            // If tutorials need to be checked, the game isn't paused, and the game isn't loading...
+            // So check for tutorials.
+            if(!checkedTutorials && !IsGamePaused() && !IsLoading())
+            {
+                CheckTutorials();
+            }
         }
     }
 }

@@ -2302,10 +2302,10 @@ PrefabInstance:
       addedObject: {fileID: 891921284534592609}
     - targetCorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 2112547300758416181}
+      addedObject: {fileID: 8082171407893338110}
     - targetCorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8082171407893338110}
+      addedObject: {fileID: 2112547300758416181}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 8346425053091773463, guid: 905c49eb48498144fa557a9ab8699543, type: 3}
       insertIndex: -1

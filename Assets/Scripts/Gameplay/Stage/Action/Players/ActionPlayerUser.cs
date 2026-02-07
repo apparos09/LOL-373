@@ -296,7 +296,7 @@ namespace RM_EDU
         }
 
         // Sets the player to select mode.
-        public void SetToSelectMode()
+        public void EnableSelectMode()
         {
             SetPlayerUserMode(playerUserMode.select);
         }
@@ -308,9 +308,16 @@ namespace RM_EDU
         }
 
         // Sets to remove mode.
-        public void SetToRemoveMode()
+        public void EnableRemoveMode()
         {
             SetPlayerUserMode(playerUserMode.remove);
+        }
+
+        // Disables remove mode.
+        public void DisableRemoveMode()
+        {
+            // Clears the selected prefab and changes to select mode.
+            ClearSelectedActionUnitPrefab();
         }
 
         // SELECT / INSTANTIATE
@@ -357,7 +364,7 @@ namespace RM_EDU
         public void SetSelectedActionUnitPrefab(ActionUnit unitPrefab)
         {
             // Set to select mode.
-            SetToSelectMode();
+            EnableSelectMode();
 
             // Set prefab.
             selectedUnitPrefab = unitPrefab;
@@ -383,7 +390,7 @@ namespace RM_EDU
         public void ClearSelectedActionUnitPrefab()
         {
             // Set to select mode.
-            SetToSelectMode();
+            EnableSelectMode();
 
             // Clear selected prefab.
             selectedUnitPrefab = null;

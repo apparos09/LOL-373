@@ -352,12 +352,15 @@
 
 
 
+      "kwd_results": 18,
+
       "kwd_gameScore": 18,
       "kwd_gameTime": 18,
       "kwd_gameEnergyTotal": 18,
+      "kwd_number": 18,
+      "kwd_type": 18,
 
       "kwd_finish": 18
-
     }
   },
   "en": {
@@ -692,17 +695,17 @@
     "trl_finalArea_00": "This is the final area! Once you clear all the stages in this area, the simulation is complete.",
 
     "trl_biomass_00": "This stage uses the renewable resource biomass. Biomass entails burning plant and/or waste materials to spin a turbine to generate energy. For the biomass generator, it can be placed anywhere on land, generates energy regularly, and produces no air pollution.",
-    
+
     "trl_geothermal_00": "This stage uses the renewable resource geothermal. Geothermal power uses the Earth's internal heat to produce hot water and/or steam to spin a turbine to generate energy. The geothermal generator can only be placed on geothermal spots and produces no air pollution.",
-    
+
     "trl_hydro_00": "This stage uses the renewable resource hydro. Hydropower uses the flow of water to turn a turbine to generate energy. Hydro generators can only be placed on rivers and cannot be placed next to certain generator types. Hydro generators produce small amounts of pollution and will flood the areas behind them if they run for too long.",
-    
+
     "trl_solar_00": "This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight to electricity, which can only be done during the day. Solar generators can be placed anywhere on land and produce no air pollution but only generate energy during the daytime.",
-    
+
     "trl_wave_00": "This stage uses the renewable resource wave. Wave power uses the movement of waves to turn turbines to generate energy. High wind areas have the most potential for using wave energy, and no energy is generated if there's no waves. The wave generators can only be placed in sea tiles, generate energy based on the wind speed, and produce no air pollution.",
-    
+
     "trl_wind_00": "This stage uses the renewable resource wind. Wind is used to spin wind turbines to generate energy. Wind turbines can be placed on land or offshore and produce no electricity when there's no wind. Wind generators can be placed on land or in water tiles close to land and create no air pollution. The amount of energy a wind turbine generates is based on the wind speed.",
-    
+
     "trl_coal_00": "This stage uses coal, which is a non-renewable resource that's fed to a furnace to heat water. This water then produces steam, which is used to spin a turbine to generate energy. Coal produces toxic chemicals when burned and can release toxic minerals if mined on the surface. Coal generators can only be placed on coal spots, generate energy for a limited time, and create air pollution.",
 
     "trl_naturalGas_00": "This stage uses the non-renewable resource natural gas, which is burned to produce gases to spin a turbine to generate energy. Natural gas is often found with coal or oil, is highly flammable, must have its poisonous elements removed before being burned, and releases pollutants when burned. Natural gas generators generate energy for a limited time, produce air pollution, and can be placed on natural gas, oil, or coal spots.",
@@ -714,10 +717,13 @@
 
 
 
+    "kwd_results": "Results",
+
     "kwd_gameScore": "Game Score",
     "kwd_gameTime": "Game Time",
     "kwd_gameEnergyTotal": "Game Energy Total",
-
+    "kwd_number": "Number",
+    "kwd_type": "Type",
 
     "kwd_finish": "Finish"
   }
