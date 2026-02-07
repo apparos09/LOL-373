@@ -398,7 +398,7 @@ namespace RM_EDU
         {
             // The result to be returned.
             string result;
-
+            
             // Gets the key for translation.
             string key = GetNaturalResourceDescriptionKey(res);
 
@@ -418,43 +418,43 @@ namespace RM_EDU
                         break;
 
                     case naturalResource.biomass:
-                        result = "[BIOMASS]";
+                        result = "A renewable resource that burns plant materials such as wood and grains to turn a turbine to generate energy. Waste materials can also be used. Along with generating energy, biomass materials can be used to make biofuel, which can be used for cars and trucks. Plants can be grown for biomass, which can consume the carbon dioxide created by biomass activities, reducing gases being released into the air. However, once a plant is used for biomass energy, it cannot be used for other activities.";
                         break;
 
                     case naturalResource.geothermal:
-                        result = "[GEOTHERMAL]";
+                        result = "A renewable resource that uses the Earth's internal heat to produce hot water and/or steam to turn a turbine to generate energy. These resources are obtained via drilling wells, and water can be pumped into these wells to use a geothermal spot perpetually. Geothermal energy can only be obtained from underground heat sources close enough to the Earth's surface to make power plants viable. Steam from geothermal wells can have unwanted mineral byproducts, and geothermal activities can cause earthquakes.";
                         break;
 
                     case naturalResource.hydro:
-                        result = "[HYDRO]";
+                        result = "A renewable resource that generates energy by having reservoir water flow through a dam to turn a turbine. Hydropower doesn't use fuel, doesn't use up water, and causes little pollution. However, the dam can cause flooding upstream and slow the release of silt downstream. Flooding can potentially cause harmful chemicals to be released from vegetation being destroyed, and the reduction of silt can cause areas to become more vulnerable to rising sea levels and coastal storms.";
                         break;
 
                     case naturalResource.solar:
-                        result = "[SOLAR]";
+                        result = "A renewable resource that generates energy from sunlight by using solar panels, which are composed of solar cells. Solar panels can only generate energy during the day, but they produce no pollution when in operation. Solar panels can be placed in fields, attached to buildings, or be mounted on structures.";
                         break;
 
                     case naturalResource.wave:
-                        result = "[WAVE]";
+                        result = "A renewable resource that uses waves and tides to generate energy. A narrow bay or estuary may need to be closed off to use wave power plants. Waves are most prominent in areas with high wind, and no energy can be generated if there's no waves.  Wave plants are constructed to withstand corrosive seawater and costal storms. This is a clean resource, but wave structures are costly to install and maintain.";
                         break;
 
                     case naturalResource.wind:
-                        result = "[WIND]";
+                        result = "A renewable resource that uses wind to turn turbines to generate energy. Wind can be harnessed practically anywhere, but no energy can be generated if there's no wind. Wind turbines produce no pollutants but can be expensive and wear out quickly.";
                         break;
 
                     case naturalResource.coal:
-                        result = "[COAL]";
+                        result = "A non-renewable fossil fuel resource that's crushed into powder and fed to a furnace to produce heat. This heat is used to boil water to make steam, which turns a turbine to produce energy. When burned, coal releases carbon dioxide and potentially other harmful minerals into the air. Coal is formed from plant waste in swamps over the course of millions of years. Coal can be mined underground or on the surface. Surface mining is safer for miners but releases harmful materials into the atmosphere, such as sulfur. Sulfur can combine with water and air to make sulfuric acid, which can damage environments.";
                         break;
 
                     case naturalResource.naturalGas:
-                        result = "[NATURAL GAS]";
+                        result = "A non-renewable fossil fuel resource that's burned to produce steam or hot gases to spin a turbine to generate energy. It can also be used for heating or cooking. Natural gas can often be found along with coal or oil in underground deposits, but it forms at a higher temperature than oil. It's mostly methane and must have its water and poisonous chemicals removed before it can be burned. While it burns cleaner and releases less carbon dioxide than other fossil fuels, it still emits pollutants. It's also highly flammable, so natural gas leaks can cause explosions.";
                         break;
 
                     case naturalResource.nuclear:
-                        result = "[NUCLEAR]]";
+                        result = "A non-renewable resource that involves splitting the nucleus of an atom to produce heat, which is used to boil water. This boiled water produces steam, which then spins a turbine to generate energy. These atoms come from uranium, which is concentrated into fuel rods and has its atoms split using tiny particles. These particles must be controlled, otherwise they'll trigger a dangerous explosion. If there are no accidents, only steam is produced, which causes no pollution. However, this process does create radioactive waste, which can remain dangerous for hundreds to thousands of years. Radioactive waste must be securely stored to prevent damage to living things and the environment.";
                         break;
 
                     case naturalResource.oil:
-                        result = "[OIL]";
+                        result = "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. Oil is a black or dark brown liquid that's found in rock layers in the Earth's crust. It's formed from dead organic material that's buried under sediments that's kept away from oxygen and subjected to both high heat and pressure. After millions of years pass, said organic material becomes oil. Oil can be mined on land and at sea, though drilling for oil in the ocean can cause a spill if not done properly. Raw oil starts out as crude oil, which contains a mixture of various hydrocarbons. The crude oil is refined via heating to separate it into different components, which boil at different temperatures. These components can be used for various purposes such as gasoline, and when burned, release toxic chemicals into the air.";
                         break;
 
                     default:

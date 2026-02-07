@@ -211,6 +211,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4843918142943169958}
   - component: {fileID: 6629102428175861357}
+  - component: {fileID: 6980153859485058585}
   m_Layer: 5
   m_Name: Action Stage End Dialog
   m_TagString: Untagged
@@ -270,6 +271,20 @@ MonoBehaviour:
   worldButton: {fileID: 3655671713693319014}
   resetButton: {fileID: 4271682222588923044}
   finishButton: {fileID: 6978328104120731250}
+--- !u!114 &6980153859485058585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4817267107009639760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd24ea5e708a9a4419056b262a271fc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  key: kwd_stageOver
+  speakTextOnStart: 1
 --- !u!1 &6201730138537757116
 GameObject:
   m_ObjectHideFlags: 0

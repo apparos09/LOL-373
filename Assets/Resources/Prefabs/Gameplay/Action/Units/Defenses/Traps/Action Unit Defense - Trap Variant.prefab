@@ -124,8 +124,10 @@ MonoBehaviour:
   idNumber: 6
   unitName: Basic Energy Trap
   unitNameKey: aud_energyTrapStandard_nme
-  unitDesc: 
-  unitDescKey: 
+  unitDesc: An energy trap that drains energy from enemies that pass over it and
+    gives a portion of it to the player. When the trap reaches its energy limit,
+    it explodes, destroying all enemies in its range in the process.
+  unitDescKey: aud_energyTrapStandard_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 5149994175010406257}
   iconSprite: {fileID: 21300000, guid: 1989a82ff8725d545af3b13cb722c7de, type: 3}

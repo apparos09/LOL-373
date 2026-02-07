@@ -271,8 +271,12 @@ namespace RM_EDU
             // If the reward button has a prefab.
             if(rewardButton.HasUnitPrefab())
             {
+                // Name and description.
                 selectedRewardUnit.headerText.text = rewardButton.unitPrefab.GetUnitNameTranslated();
                 selectedRewardUnit.valueText.text = rewardButton.unitPrefab.GetUnitDescriptionTranslated();
+
+                // Tries speaking the unit prefab's description.
+                SpeakText(rewardButton.unitPrefab.unitDescKey);
             }
             // No prefab, so clear.
             else
@@ -312,6 +316,25 @@ namespace RM_EDU
         public void CloseDialog()
         {
             WorldUI.Instance.CloseWorldStageRewardsDialog();
+        }
+
+        // Speaks the reward text.
+        public void SpeakText(string key)
+        {
+            // If the key exists.
+            if(key != "")
+            {
+                // The LOL Manager has been initialized, TTS is instantiated, and GameSettings is instantiated.
+                if (LOLManager.IsLOLSDKInitialized() && TextToSpeech.Instantiated && GameSettings.Instantiated)
+                {
+                    // If text-to-speech is enabled.
+                    if(GameSettings.Instance.UseTextToSpeech)
+                    {
+                        LOLManager.Instance.SpeakText(key);
+                    }
+                }
+            }
+            
         }
     }
 }

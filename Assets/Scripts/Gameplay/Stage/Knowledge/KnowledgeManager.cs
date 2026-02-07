@@ -940,8 +940,12 @@ namespace RM_EDU
                 }
             }
 
-            // Calculates the energy bonus and sets it to the data logger.
-            dataLogger.energyStartBonus = CalculateEnergyBonus();
+            // Makes sure the energy start bonus isn't negative.
+            if (dataLogger.energyStartBonus < 0)
+                dataLogger.energyStartBonus = 0;
+
+            // Calculates the energy bonus and addss it to the data logger.
+            dataLogger.energyStartBonus += CalculateEnergyBonus();
 
             // Generates a world start info object. The function gives it the data.
             WorldStartInfo startInfo = GenerateWorldStartInfo(true);

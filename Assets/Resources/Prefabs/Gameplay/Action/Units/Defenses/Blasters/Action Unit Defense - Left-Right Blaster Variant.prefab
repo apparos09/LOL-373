@@ -124,8 +124,8 @@ MonoBehaviour:
   idNumber: 3
   unitName: Double-Sided Blaster
   unitNameKey: aud_blasterLeftRight_nme
-  unitDesc: 
-  unitDescKey: 
+  unitDesc: A blaster that fires at enemies in front of it and behind it.
+  unitDescKey: aud_blasterLeftRight_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 2722445462588853728}
   iconSprite: {fileID: 21300000, guid: fb31490e1484822409d3a27289669de2, type: 3}

@@ -2439,6 +2439,10 @@ PrefabInstance:
       propertyPath: stages.Array.data[10]
       value: 
       objectReference: {fileID: 2130001371}
+    - target: {fileID: 4291855123468607345, guid: 170d71dee1d009d49b2feb67b0c2807b, type: 3}
+      propertyPath: defaultDefenseIds.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -38,6 +38,13 @@ namespace RM_EDU
             }
         }
 
+        // This function is called when the object becomes enabled and active
+        private void OnEnable()
+        {
+            // Tries to speak the stage type using TTS.
+            SpeakStageType();   
+        }
+
         // Gets the stage name translated. Returns empty string if LOLSDK isn't initialized or the key is blank.
         private string GetStageNameTranslated(string key)
         {
@@ -164,6 +171,53 @@ namespace RM_EDU
         {
             ClearWorldStage();
             WorldUI.Instance.CloseWorldStageSelectDialog();
+        }
+
+        // SPEAK TEXT
+        // Uses TTS to speak the stage type.
+        public void SpeakStageType()
+        {
+            // If the LOL Manager has been initialized, TTS is instantiated, and GameSettings is instantiated.
+            if (LOLManager.IsLOLSDKInitialized() && TextToSpeech.Instantiated && GameSettings.Instantiated)
+            {
+                // If text-to-speech is enabled, try to speak the text.
+                if (GameSettings.Instance.UseTextToSpeech)
+                {
+                    // The key to be used for speaking.
+                    string key = "";
+
+                    // Checks if the world stage exists.
+                    if(worldStage != null)
+                    {
+                        // Checks the stage type to know what key to use.
+                        switch(worldStage.GetStageType())
+                        {
+                            default:
+                            case WorldStage.stageType.unknown:
+                                key = UNKNOWN_STAGE_KEY;
+                                break;
+
+                            case WorldStage.stageType.action:
+                                key = ACTION_STAGE_KEY;
+                                break;
+
+                            case WorldStage.stageType.knowledge:
+                                key = KNOWLEDGE_STAGE_KEY;
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        key = WORLD_STAGE_KEY;
+                    }
+
+                    // If the key is set, speak the text.
+                    if(key != "")
+                    {
+                        LOLManager.Instance.SpeakText(key);
+                    }
+                }
+            }
         }
 
         // // Update is called once per frame

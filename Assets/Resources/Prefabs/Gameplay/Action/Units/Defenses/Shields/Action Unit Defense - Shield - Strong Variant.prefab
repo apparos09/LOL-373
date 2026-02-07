@@ -13,6 +13,10 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4435047156542007297, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
+      propertyPath: unitDesc
+      value: A stronger version of Basic Shield.
+      objectReference: {fileID: 0}
+    - target: {fileID: 4435047156542007297, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: unitName
       value: Sturdy Shield
       objectReference: {fileID: 0}
@@ -24,6 +28,10 @@ PrefabInstance:
       propertyPath: iconSprite
       value: 
       objectReference: {fileID: 21300000, guid: ce999dfc6aaa07141b22ea6db2c62b18, type: 3}
+    - target: {fileID: 4435047156542007297, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
+      propertyPath: unitDescKey
+      value: aud_shieldStrong_dsc
+      objectReference: {fileID: 0}
     - target: {fileID: 4435047156542007297, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: unitNameKey
       value: aud_shieldStrong_nme

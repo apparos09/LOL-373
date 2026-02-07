@@ -158,24 +158,55 @@
       "aug_oil_dsc": 270,
 
 
+
       "aud_blasterLane_nme": 36,
+      "aud_blasterLane_dsc": 270,
+
       "aud_blasterStandard_nme": 36,
+      "aud_blasterStandard_dsc": 270,
+
       "aud_blasterLeftRight_nme": 36,
+      "aud_blasterLeftRight_dsc": 270,
+
       "aud_blasterPhase_nme": 36,
+      "aud_blasterPhase_dsc": 270,
+
       "aud_shieldStandard_nme": 36,
+      "aud_shieldStandard_dsc": 270,
+
       "aud_energyTrapStandard_nme": 36,
+      "aud_energyTrapStandard_dsc": 270,
 
       "aud_blasterFast_nme": 36,
+      "aud_blasterFast_dsc": 270,
+
       "aud_blasterTriple_nme": 36,
+      "aud_blasterTriple_dsc": 270,
+
       "aud_blasterDepreciation_nme": 36,
+      "aud_blasterDepreciation_dsc": 270,
+
       "aud_shieldWeak_nme": 36,
+      "aud_shieldWeak_dsc": 270,
+
       "aud_energyTrapFast_nme": 36,
+      "aud_energyTrapFast_dsc": 270,
 
       "aud_blasterSlow_nme": 36,
+      "aud_blasterSlow_dsc": 270,
+
       "aud_blasterRapid_nme": 36,
+      "aud_blasterRapid_dsc": 270,
+
       "aud_blasterAppreciation_nme": 36,
+      "aud_blasterAppreciation_dsc": 270,
+
       "aud_shieldStrong_nme": 36,
+      "aud_shieldStrong_dsc": 270,
+
       "aud_energyTrapSlow_nme": 36,
+      "aud_energyTrapSlow_dsc": 270,
+
 
 
       "aue_enemyStandard_nme": 36,
@@ -354,43 +385,43 @@
 
     "nrs_bms_nme": "Biomass",
     "nrs_bms_nme_abv": "BMS",
-    "nrs_bms_dsc": "[BIOMASS DESCRIPTION]",
+    "nrs_bms_dsc": "A renewable resource that burns plant materials such as wood and grains to turn a turbine to generate energy. Waste materials can also be used. Along with generating energy, biomass materials can be used to make biofuel, which can be used for cars and trucks. Plants can be grown for biomass, which can consume the carbon dioxide created by biomass activities, reducing gases being released into the air. However, once a plant is used for biomass energy, it cannot be used for other activities.",
 
     "nrs_gtl_nme": "Geothermal",
     "nrs_gtl_nme_abv": "GTL",
-    "nrs_gtl_dsc": "[GEOTHERMAL DESCRIPTION]",
+    "nrs_gtl_dsc": "A renewable resource that uses the Earth's internal heat to produce hot water and/or steam to turn a turbine to generate energy. These resources are obtained via drilling wells, and water can be pumped into these wells to use a geothermal spot perpetually. Geothermal energy can only be obtained from underground heat sources close enough to the Earth's surface to make power plants viable. Steam from geothermal wells can have unwanted mineral byproducts, and geothermal activities can cause earthquakes.",
 
     "nrs_hdo_nme": "Hydro",
     "nrs_hdo_nme_abv": "HDO",
-    "nrs_hdo_dsc": "[HYDRO DESCRIPTION]",
+    "nrs_hdo_dsc": "A renewable resource that generates energy by having reservoir water flow through a dam to turn a turbine. Hydropower doesn't use fuel, doesn't use up water, and causes little pollution. However, the dam can cause flooding upstream and slow the release of silt downstream. Flooding can potentially cause harmful chemicals to be released from vegetation being destroyed, and the reduction of silt can cause areas to become more vulnerable to rising sea levels and coastal storms.",
 
     "nrs_slr_nme": "Solar",
     "nrs_slr_nme_abv": "SLR",
-    "nrs_slr_dsc": "[SOLAR DESCRIPTION]",
+    "nrs_slr_dsc": "A renewable resource that generates energy from sunlight by using solar panels, which are composed of solar cells. Solar panels can only generate energy during the day, but they produce no pollution when in operation. Solar panels can be placed in fields, attached to buildings, or be mounted on structures.",
 
     "nrs_wve_nme": "Wave",
     "nrs_wve_nme_abv": "WVE",
-    "nrs_wve_dsc": "[WAVE DESCRIPTION]",
+    "nrs_wve_dsc": "A renewable resource that uses waves and tides to generate energy. A narrow bay or estuary may need to be closed off to use wave power plants. Waves are most prominent in areas with high wind, and no energy can be generated if there's no waves.  Wave plants are constructed to withstand corrosive seawater and costal storms. This is a clean resource, but wave structures are costly to install and maintain.",
 
     "nrs_wnd_nme": "Wind",
     "nrs_wnd_nme_abv": "WND",
-    "nrs_wnd_dsc": "[WIND DESCRIPTION]",
+    "nrs_wnd_dsc": "A renewable resource that uses wind to turn turbines to generate energy. Wind can be harnessed practically anywhere, but no energy can be generated if there's no wind. Wind turbines produce no pollutants but can be expensive and wear out quickly.",
 
     "nrs_col_nme": "Coal",
     "nrs_col_nme_abv": "COL",
-    "nrs_col_dsc": "[COAL DESCRIPTION]",
+    "nrs_col_dsc": "A non-renewable fossil fuel resource that's crushed into powder and fed to a furnace to produce heat. This heat is used to boil water to make steam, which turns a turbine to produce energy. When burned, coal releases carbon dioxide and potentially other harmful minerals into the air. Coal is formed from plant waste in swamps over the course of millions of years. Coal can be mined underground or on the surface. Surface mining is safer for miners but releases harmful materials into the atmosphere, such as sulfur. Sulfur can combine with water and air to make sulfuric acid, which can damage environments.",
 
     "nrs_ngs_nme": "Natural Gas",
     "nrs_ngs_nme_abv": "NGS",
-    "nrs_ngs_dsc": "[NATURAL GAS DESCRIPTION]",
+    "nrs_ngs_dsc": "A non-renewable fossil fuel resource that's burned to produce steam or hot gases to spin a turbine to generate energy. It can also be used for heating or cooking. Natural gas can often be found along with coal or oil in underground deposits, but it forms at a higher temperature than oil. It's mostly methane and must have its water and poisonous chemicals removed before it can be burned. While it burns cleaner and releases less carbon dioxide than other fossil fuels, it still emits pollutants. It's also highly flammable, so natural gas leaks can cause explosions.",
 
     "nrs_nlr_nme": "Nuclear",
     "nrs_nlr_nme_abv": "NLR",
-    "nrs_nlr_dsc": "[NUCLEAR DESCRIPTION]",
+    "nrs_nlr_dsc": "A non-renewable resource that involves splitting the nucleus of an atom to produce heat, which is used to boil water. This boiled water produces steam, which then spins a turbine to generate energy. These atoms come from uranium, which is concentrated into fuel rods and has its atoms split using tiny particles. These particles must be controlled, otherwise they'll trigger a dangerous explosion. If there are no accidents, only steam is produced, which causes no pollution. However, this process does create radioactive waste, which can remain dangerous for hundreds to thousands of years. Radioactive waste must be securely stored to prevent damage to living things and the environment.",
 
     "nrs_oil_nme": "Oil",
     "nrs_oil_nme_abv": "OIL",
-    "nrs_oil_dsc": "[OIL DESCRIPTION]",
+    "nrs_oil_dsc": "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. Oil is a black or dark brown liquid that's found in rock layers in the Earth's crust. It's formed from dead organic material that's buried under sediments that's kept away from oxygen and subjected to both high heat and pressure. After millions of years pass, said organic material becomes oil. Oil can be mined on land and at sea, though drilling for oil in the ocean can cause a spill if not done properly. Raw oil starts out as crude oil, which contains a mixture of various hydrocarbons. The crude oil is refined via heating to separate it into different components, which boil at different temperatures. These components can be used for various purposes such as gasoline, and when burned, release toxic chemicals into the air.",
 
 
 
@@ -442,23 +473,53 @@
 
 
     "aud_blasterLane_nme": "Lane Blaster",
+    "aud_blasterLane_dsc": "A blaster that destroys all enemies in its lane upon an enemy interacting with it. Once a shot is fired, this blaster is destroyed.",
+
     "aud_blasterStandard_nme": "Basic Blaster",
+    "aud_blasterStandard_dsc": "A blaster that fires at enemies in front of it in its own lane.",
+
     "aud_blasterLeftRight_nme": "Double-Sided Blaster",
+    "aud_blasterLeftRight_dsc": "A blaster that fires at enemies in front of it and behind it.",
+
     "aud_blasterPhase_nme": "Phase Blaster",
+    "aud_blasterPhase_dsc": "A blaster that fires a shot that goes through multiple targets.",
+
     "aud_shieldStandard_nme": "Basic Shield",
+    "aud_shieldStandard_dsc": "A shield that can be used to block enemies and defend units that're behind it.",
+
     "aud_energyTrapStandard_nme": "Basic Energy Trap",
+    "aud_energyTrapStandard_dsc": "An energy trap that drains energy from enemies that pass over it and gives a portion of it to the player. When the trap reaches its energy limit, it explodes, destroying all enemies in its range in the process.",
 
     "aud_blasterFast_nme": "Faster Blaster",
+    "aud_blasterFast_dsc": "A faster version of Basic Blaster.",
+
     "aud_blasterTriple_nme": "Triple Blaster",
+    "aud_blasterTriple_dsc": "A blaster that shoots three shots at once, with each shot going at a different angle.",
+
     "aud_blasterDepreciation_nme": "Near Blaster",
+    "aud_blasterDepreciation_dsc": "A blaster that does more damage the closer the target is.",
+
     "aud_shieldWeak_nme": "Flimsy Shield",
+    "aud_shieldWeak_dsc": "A weaker version of Basic Shield.",
+
     "aud_energyTrapFast_nme": "Furious Enemy Trap",
+    "aud_energyTrapFast_dsc": "An energy trap that explodes almost instantly when an enemy passes over it, destroying all enemies in its range upon exploding.",
 
     "aud_blasterSlow_nme": "Slower Blaster",
+    "aud_blasterSlow_dsc": "A slower version of Basic Blaster.",
+
     "aud_blasterRapid_nme": "Rapid Blaster",
+    "aud_blasterRapid_dsc": "A blaster that can fire one to three shots in quick succession before needing to recharge.",
+
     "aud_blasterAppreciation_nme": "Far Blaster",
+    "aud_blasterAppreciation_dsc": "A blaster that does more damage the farther a target is.",
+
     "aud_shieldStrong_nme": "Sturdy Shield",
+    "aud_shieldStrong_dsc": "A stronger version of Basic Shield.",
+
     "aud_energyTrapSlow_nme": "Steady Enemy Trap",
+    "aud_energyTrapSlow_dsc": "An energy trap that causes damage slower than Basic Energy Trap but causes more damage per hit.",
+
 
 
     "aue_enemyStandard_nme": "Basic Enemy",

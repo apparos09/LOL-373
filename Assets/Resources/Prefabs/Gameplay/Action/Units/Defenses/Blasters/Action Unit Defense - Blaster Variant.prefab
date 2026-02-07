@@ -132,8 +132,8 @@ MonoBehaviour:
   idNumber: 2
   unitName: Basic Blaster
   unitNameKey: aud_blasterStandard_nme
-  unitDesc: 
-  unitDescKey: 
+  unitDesc: A blaster that fires at enemies in front of it in its own lane.
+  unitDescKey: aud_blasterStandard_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 2820790240764193224}
   iconSprite: {fileID: 21300000, guid: dee565e80fde1e144827abd7dec8876c, type: 3}
