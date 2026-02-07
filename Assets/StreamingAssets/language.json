@@ -590,7 +590,7 @@
     "kwd_deselect": "Deselect",
     "kwd_remove": "Remove",
     "kwd_remove_abv": "RMV",
-    "kwd_hold": "Block",
+    "kwd_block": "Block",
 
     "kwd_stageOver": "Stage Over",
     "asg_msg_stageOver": "The stage is over!",

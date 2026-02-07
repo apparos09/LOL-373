@@ -214,6 +214,8 @@ MonoBehaviour:
   actionUI: {fileID: 0}
   button: {fileID: 3758023161568717998}
   iconImage: {fileID: 3626100860883603094}
+  speedUp: 1
+  slowDown: 0
   speedSlowIconSprite: {fileID: 21300000, guid: 1de57e52418884c488f4784d781197bb, type: 3}
   speedNormalIconSprite: {fileID: 21300000, guid: 19350ea83b2b6b04dae26e28257d2630, type: 3}
   speedFastIconSprite: {fileID: 21300000, guid: 7172dd16254bb774c8a55847ee08cd51, type: 3}

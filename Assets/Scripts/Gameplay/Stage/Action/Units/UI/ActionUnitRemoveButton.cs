@@ -14,11 +14,15 @@ namespace RM_EDU
         // The unit remove button.
         public Button button;
 
+        // The speak key UI.
+        public SpeakTextUI speakKeyUI;
+
         // The card background sprite.
         public Sprite cardBackgroundSprite;
 
         // The icon for the card.
         public Sprite cardIconSprite;
+
 
         // Start is called before the first frame update
         void Start()
@@ -30,6 +34,10 @@ namespace RM_EDU
             // Setting the button if it's null.
             if(button == null)
                 button = GetComponent<Button>();
+
+            // Sets the speak key UI if null.
+            if (speakKeyUI == null)
+                speakKeyUI = GetComponent<SpeakTextUI>();
 
             // Adds a Select() call on the button.
             if (button != null)
@@ -54,12 +62,13 @@ namespace RM_EDU
                 // If the player is in remove mode, turn it off.
                 if(playerUser.InRemoveMode())
                 {
+                    // Turn remove mode off.
                     playerUser.DisableRemoveMode();
                 }
                 // If the player isn't in remove mode, turn it on.
                 else
                 {
-                    // Give the player the selected prefab.
+                    // Turn remove mode on.
                     playerUser.EnableRemoveMode();
                 }
             }
