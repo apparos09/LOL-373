@@ -72,43 +72,43 @@
 
       "nrs_bms_nme": 18,
       "nrs_bms_nme_abv": 3,
-      "nrs_bms_dsc": 270,
+      "nrs_bms_dsc": 960,
 
       "nrs_gtl_nme": 18,
       "nrs_gtl_nme_abv": 3,
-      "nrs_gtl_dsc": 270,
+      "nrs_gtl_dsc": 960,
 
       "nrs_hdo_nme": 18,
       "nrs_hdo_nme_abv": 3,
-      "nrs_hdo_dsc": 270,
+      "nrs_hdo_dsc": 960,
 
       "nrs_slr_nme": 18,
       "nrs_slr_nme_abv": 3,
-      "nrs_slr_dsc": 270,
+      "nrs_slr_dsc": 960,
 
       "nrs_wve_nme": 18,
       "nrs_wve_nme_abv": 3,
-      "nrs_wve_dsc": 270,
+      "nrs_wve_dsc": 960,
 
       "nrs_wnd_nme": 18,
       "nrs_wnd_nme_abv": 3,
-      "nrs_wnd_dsc": 270,
+      "nrs_wnd_dsc": 960,
 
       "nrs_col_nme": 18,
       "nrs_col_nme_abv": 3,
-      "nrs_col_dsc": 270,
+      "nrs_col_dsc": 960,
 
       "nrs_ngs_nme": 18,
       "nrs_ngs_nme_abv": 3,
-      "nrs_ngs_dsc": 270,
+      "nrs_ngs_dsc": 960,
 
       "nrs_nlr_nme": 18,
       "nrs_nlr_nme_abv": 3,
-      "nrs_nlr_dsc": 270,
+      "nrs_nlr_dsc": 960,
 
       "nrs_oil_nme": 18,
       "nrs_oil_nme_abv": 3,
-      "nrs_oil_dsc": 270,
+      "nrs_oil_dsc": 960,
 
 
 
@@ -128,95 +128,95 @@
 
 
       "aug_biomass_nme": 36,
-      "aug_biomass_dsc": 270,
+      "aug_biomass_dsc": 960,
 
       "aug_geothermal_nme": 36,
-      "aug_geothermal_dsc": 270,
+      "aug_geothermal_dsc": 960,
 
       "aug_hydro_nme": 36,
-      "aug_hydro_dsc": 270,
+      "aug_hydro_dsc": 960,
 
       "aug_solar_nme": 36,
-      "aug_solar_dsc": 270,
+      "aug_solar_dsc": 960,
 
       "aug_wave_nme": 36,
-      "aug_wave_dsc": 270,
+      "aug_wave_dsc": 960,
 
       "aug_wind_nme": 36,
-      "aug_wind_dsc": 270,
+      "aug_wind_dsc": 960,
 
       "aug_coal_nme": 36,
-      "aug_coal_dsc": 270,
+      "aug_coal_dsc": 960,
 
       "aug_naturalGas_nme": 36,
-      "aug_naturalGas_dsc": 270,
+      "aug_naturalGas_dsc": 960,
 
       "aug_nuclear_nme": 36,
-      "aug_nuclear_dsc": 270,
+      "aug_nuclear_dsc": 960,
 
       "aug_oil_nme": 36,
-      "aug_oil_dsc": 270,
+      "aug_oil_dsc": 960,
 
 
 
       "aud_blasterLane_nme": 36,
-      "aud_blasterLane_dsc": 270,
+      "aud_blasterLane_dsc": 280,
 
       "aud_blasterStandard_nme": 36,
-      "aud_blasterStandard_dsc": 270,
+      "aud_blasterStandard_dsc": 280,
 
       "aud_blasterLeftRight_nme": 36,
-      "aud_blasterLeftRight_dsc": 270,
+      "aud_blasterLeftRight_dsc": 280,
 
       "aud_blasterPhase_nme": 36,
-      "aud_blasterPhase_dsc": 270,
+      "aud_blasterPhase_dsc": 280,
 
       "aud_shieldStandard_nme": 36,
-      "aud_shieldStandard_dsc": 270,
+      "aud_shieldStandard_dsc": 280,
 
       "aud_energyTrapStandard_nme": 36,
-      "aud_energyTrapStandard_dsc": 270,
+      "aud_energyTrapStandard_dsc": 280,
 
       "aud_blasterFast_nme": 36,
-      "aud_blasterFast_dsc": 270,
+      "aud_blasterFast_dsc": 280,
 
       "aud_blasterTriple_nme": 36,
-      "aud_blasterTriple_dsc": 270,
+      "aud_blasterTriple_dsc": 280,
 
       "aud_blasterDepreciation_nme": 36,
-      "aud_blasterDepreciation_dsc": 270,
+      "aud_blasterDepreciation_dsc": 280,
 
       "aud_shieldWeak_nme": 36,
-      "aud_shieldWeak_dsc": 270,
+      "aud_shieldWeak_dsc": 280,
 
       "aud_energyTrapFast_nme": 36,
-      "aud_energyTrapFast_dsc": 270,
+      "aud_energyTrapFast_dsc": 280,
 
       "aud_blasterSlow_nme": 36,
-      "aud_blasterSlow_dsc": 270,
+      "aud_blasterSlow_dsc": 280,
 
       "aud_blasterRapid_nme": 36,
-      "aud_blasterRapid_dsc": 270,
+      "aud_blasterRapid_dsc": 280,
 
       "aud_blasterAppreciation_nme": 36,
-      "aud_blasterAppreciation_dsc": 270,
+      "aud_blasterAppreciation_dsc": 280,
 
       "aud_shieldStrong_nme": 36,
-      "aud_shieldStrong_dsc": 270,
+      "aud_shieldStrong_dsc": 280,
 
       "aud_energyTrapSlow_nme": 36,
-      "aud_energyTrapSlow_dsc": 270,
+      "aud_energyTrapSlow_dsc": 280,
 
 
 
       "aue_enemyStandard_nme": 36,
-      "aue_enemyStandard_dsc": 270,
+      "aue_enemyStandard_dsc": 280,
 
       "aue_enemyFast_nme": 36,
-      "aue_enemyFast_dsc": 270,
+      "aue_enemyFast_dsc": 280,
 
       "aue_enemySlow_nme": 36,
-      "aue_enemySlow_dsc": 270,
+      "aue_enemySlow_dsc": 280,
 
 
 
@@ -465,10 +465,10 @@
     "aug_naturalGas_dsc": "A non-renewable generator that generates energy using natural gas. This generator can be placed on coal, oil, and natural gas source spots.",
 
     "aug_nuclear_nme": "Nuclear Generator",
-    "aug_nuclear_dsc": "A non-renewable generator that generates energy by splitting uranium atoms. This generator can only be placed on nuclear source tiles. Once all the nuclear resources are depleted in a spot, this generator is destroyed automatically. If the nuclear generator is destroyed by an enemy before it's finished, it will leave nuclear waste in its place. Nothing can be placed on a tile that has nuclear waste.",
+    "aug_nuclear_dsc": "A non-renewable generator that generates energy by splitting uranium atoms. This generator can only be placed on nuclear source tiles. Once all the nuclear resources are depleted in a spot, this generator is destroyed automatically. If the nuclear generator is destroyed by an enemy before it's finished, it will leave nuclear waste. Nothing can be placed on a tile that has nuclear waste.",
 
     "aug_oil_nme": "Oil Generator",
-    "aug_oil_dsc": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots. If the oil generator is destroyed by an enemy before it's finished, it will leave an oil spill in its place. No units can be placed on a tile that has an oil spill.",
+    "aug_oil_dsc": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots. If the oil generator is destroyed by an enemy before it's finished, it will leave an oil spill. No units can be placed on a tile that has an oil spill.",
 
 
 

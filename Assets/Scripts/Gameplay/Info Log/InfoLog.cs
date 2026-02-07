@@ -118,6 +118,9 @@ namespace RM_EDU
         // The info description text.
         public TMP_Text infoDescText;
 
+        // The info description scroll view.
+        public ScrollRect infoDescScrollView;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -750,8 +753,11 @@ namespace RM_EDU
                 infoDescText.text = entry.description;
                 infoIconImage.sprite = entry.iconSprite;
 
+                // Sets the scroll view value to the top.
+                infoDescScrollView.verticalScrollbar.value = 1;
+
                 // If text-to-speech is usable and enabled.
-                if(entry.descriptionKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+                if (entry.descriptionKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
                 {
                     // Read the description.
                     SpeakText(entry.descriptionKey);
@@ -771,6 +777,9 @@ namespace RM_EDU
             infoNameText.text = "";
             infoDescText.text = "";
             infoIconImage.sprite = alpha0Sprite;
+
+            // Sets the scroll view value to the top.
+            infoDescScrollView.verticalScrollbar.value = 1;
         }
 
         // INFO LOG (General)

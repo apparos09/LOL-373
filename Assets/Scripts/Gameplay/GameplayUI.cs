@@ -61,7 +61,7 @@ namespace RM_EDU
             // }
 
             // Load the pages.
-            tutorialUI.LoadPages(ref pages, false); // Changed to not clear pages.
+            tutorialUI.LoadPages(ref pages, true); // Clears pages.
             tutorialUI.textBox.CurrentPageIndex = 0;
 
             // If the text box isn't open, open it.
