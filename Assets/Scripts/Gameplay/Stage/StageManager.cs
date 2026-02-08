@@ -41,6 +41,10 @@ namespace RM_EDU
         // NOTE: this is not called in the Start() function of StageManager() since some other things...
         // Need to be initialized first.
 
+        // Gets set to 'true' when tutorials have been checked. Checks for tutorials in Update().
+        [Tooltip("Becomes true when tutorials have been checked. Set to false to check for tutorials in Update().")]
+        public bool checkedTutorials = false;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -50,7 +54,17 @@ namespace RM_EDU
             if (stageUI == null)
                 stageUI = FindObjectOfType<StageUI>();
 
-            
+            // Will be set to false in late start to check tutorials.
+            checkedTutorials = true;
+        }
+
+        // Late start.
+        protected override void LateStart()
+        {
+            base.LateStart();
+
+            // Check for tutorials.
+            checkedTutorials = false;
         }
 
         // Initializes the stage.
@@ -67,6 +81,111 @@ namespace RM_EDU
             get { return stageInitialized; }
         }
 
+        // TUTORIALS //
+        // Called when a tutorial is ended.
+        public override void OnTutorialEnd()
+        {
+            // Check for tutorials.
+            checkedTutorials = false;
+        }
+
+        // Checks for tutorials.
+        public virtual void CheckTutorials()
+        {
+            // Uses tutorials and tutorial isn't active.
+            if (IsUsingTutorials() && !IsTutorialActive())
+            {
+                // Gets set to true when a tutorial has started.
+                bool startedTutorial = false;
+
+                // Biomass
+                if(!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.biomass) && 
+                    !tutorials.Data.clearedBiomassTutorial)
+                {
+                    tutorials.LoadBiomassTutorial();
+                    startedTutorial = true;
+                }
+
+                // Geothermal
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.geothermal) && 
+                    !tutorials.Data.clearedGeothermalTutorial)
+                {
+                    tutorials.LoadGeothermalTutorial();
+                    startedTutorial = true;
+                }
+
+                // Hydro
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.hydro) &&
+                    !tutorials.Data.clearedHydroTutorial)
+                {
+                    tutorials.LoadHydroTutorial();
+                    startedTutorial = true;
+                }
+
+                // Solar
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.solar) &&
+                    !tutorials.Data.clearedSolarTutorial)
+                {
+                    tutorials.LoadSolarTutorial();
+                    startedTutorial = true;
+                }
+
+                // Wave
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.wave) &&
+                    !tutorials.Data.clearedWaveTutorial)
+                {
+                    tutorials.LoadWaveTutorial();
+                    startedTutorial = true;
+                }
+
+                // Wind
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.wind) &&
+                    !tutorials.Data.clearedWindTutorial)
+                {
+                    tutorials.LoadWindTutorial();
+                    startedTutorial = true;
+                }
+
+                // Coal
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.coal) &&
+                    !tutorials.Data.clearedCoalTutorial)
+                {
+                    tutorials.LoadCoalTutorial();
+                    startedTutorial = true;
+                }
+
+                // Natural Gas
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.naturalGas) &&
+                    !tutorials.Data.clearedNaturalGasTutorial)
+                {
+                    tutorials.LoadNaturalGasTutorial();
+                    startedTutorial = true;
+                }
+
+                // Nuclear
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.nuclear) &&
+                    !tutorials.Data.clearedNuclearTutorial)
+                {
+                    tutorials.LoadNuclearTutorial();
+                    startedTutorial = true;
+                }
+
+                // Oil
+                if (!startedTutorial && naturalResources.Contains(NaturalResources.naturalResource.oil) &&
+                    !tutorials.Data.clearedOilTutorial)
+                {
+                    tutorials.LoadOilTutorial();
+                    startedTutorial = true;
+                }
+
+            }
+
+            // Tutorials have been checked.
+            checkedTutorials = true;
+        }
+
+
+        // NATURAL RESOURCES //
         // Sets the natural resource list to the resource type list.
         public virtual void SetNaturalResourceListToTypeList(bool includeUnknown = false)
         {
@@ -74,6 +193,7 @@ namespace RM_EDU
             naturalResources = NaturalResources.GenerateNaturalResourceTypeList(includeUnknown);
         }
 
+        // STAGE //
         // Returns 'true' if the stage is playing.
         public bool IsStagePlaying()
         {
@@ -244,6 +364,13 @@ namespace RM_EDU
             if(IsStagePlayingAndGameUnpaused())
             {
                 stageTimer += Time.deltaTime;
+            }
+
+            // If tutorials need to be checked, the game isn't paused, and the game isn't loading...
+            // So check for tutorials.
+            if (!checkedTutorials && !IsGamePaused() && !IsLoading())
+            {
+                CheckTutorials();
             }
         }
     }

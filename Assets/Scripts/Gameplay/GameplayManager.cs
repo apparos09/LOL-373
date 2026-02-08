@@ -137,7 +137,7 @@ namespace RM_EDU
         }
 
         // A function called the first time Update(0 is called, which happens after Start() was called.
-        public virtual void LateStart()
+        protected virtual void LateStart()
         {
             calledLateStart = true;
         }

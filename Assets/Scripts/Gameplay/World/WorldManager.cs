@@ -116,7 +116,7 @@ namespace RM_EDU
         }
 
         // The late start function.
-        public override void LateStart()
+        protected override void LateStart()
         {
             base.LateStart();
 

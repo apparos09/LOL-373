@@ -244,6 +244,29 @@ namespace RM_EDU
             get { return actionInitialized; }
         }
 
+        // TUTORIALS
+        // Checks for tutorials.
+        public override void CheckTutorials()
+        {
+            // Check for action specific tutorials.
+            if (IsUsingTutorials() && !IsTutorialActive())
+            {
+                // Gets set to true when a tutorial has started.
+                bool startedTutorial = false;
+
+                // First Action Stage
+                if (!startedTutorial && !tutorials.Data.clearedFirstActionTutorial)
+                {
+                    tutorials.LoadFirstActionTutorial();
+                    startedTutorial = true;
+                }
+            }
+
+            // Calls base to check for resource tutorials.
+            base.CheckTutorials();
+        }
+
+        // DEFENSE IDS
         // Sets the defense id list to all valid ids.
         public void SetDefenseIdListToAllValidIds()
         {

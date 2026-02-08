@@ -360,6 +360,29 @@ namespace RM_EDU
             get { return initializedKnowledge; }
         }
 
+        // TUTORIALS
+        // Checks for tutorials.
+        public override void CheckTutorials()
+        {
+            // Check for knowledge specific tutorials.
+            if (IsUsingTutorials() && !IsTutorialActive())
+            {
+                // Gets set to true when a tutorial has started.
+                bool startedTutorial = false;
+
+                // First Knowledge Stage
+                if (!startedTutorial && !tutorials.Data.clearedFirstKnowledgeTutorial)
+                {
+                    tutorials.LoadFirstKnowledgeTutorial();
+                    startedTutorial = true;
+                }
+            }
+
+            // Calls base to check for resource tutorials.
+            base.CheckTutorials();
+        }
+
+        // RANDOMIZE
         // Randomizes the statements using the groups.
         // If 'includeInactive' is true, inactive statements and resources are included.
         public void RandomizeStatements(bool includeInactive = false)
