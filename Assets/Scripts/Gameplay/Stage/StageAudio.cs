@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace RM_EDU
 {
-    // Audio for the title area.
-    public class TitleAudio : EDU_GameAudio
+    // Audio for stages.
+    public class StageAudio : EDU_GameAudio
     {
         // // Start is called before the first frame update
         // void Start()
