@@ -25,6 +25,17 @@ namespace RM_EDU
         [Tooltip("Turns this object off if it has no target.")]
         public bool autoInactiveIfNoTarget = true;
 
+        [Header("Animations")]
+
+        // The empty state animations.
+        public string emptyStateAnim = "Empty State";
+
+        // The pulsing animation.
+        public string pulsingAnim = "Enemy Attack - Pulsing Animation";
+
+        // Plays the pulsing animation in start if true.
+        public bool playPulsingInStart = true;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -35,6 +46,12 @@ namespace RM_EDU
             // Sets animator if not set already.
             if(animator == null)
                 animator = GetComponent<Animator>();
+
+            // If the pulsing animation should be played.
+            if(playPulsingInStart)
+            {
+                PlayPulsingAnimation();
+            }
         }
 
         // TARGET
@@ -118,6 +135,41 @@ namespace RM_EDU
             {
                 transform.position = Vector3.zero;
             }
+        }
+
+        // ANIMATION
+        // Plays an animation.
+        public void PlayAnimation(string animationName)
+        {
+            // TODO: check if animation is playing.
+            // Animation name exists.
+            if (animationName != "")
+            {
+                animator.Play(animationName);
+            }
+        }
+
+        // Plays the provided animation for the given layer.
+        public void PlayAnimation(string animationName, int layer)
+        {
+            // TODO: check if animation is playing.
+            // Animation name is set.
+            if (animationName != "")
+            {
+                animator.Play(animationName, layer);
+            }
+        }
+
+        // Plays the empty animation.
+        public void PlayEmptyStateAnimation()
+        {
+            PlayAnimation(emptyStateAnim);
+        }
+
+        // Plays the pulsing animation.
+        public void PlayPulsingAnimation()
+        {
+            PlayAnimation(pulsingAnim);
         }
 
         // // Update is called once per frame

@@ -60,7 +60,7 @@ namespace RM_EDU
         public void PlayAnimation(string animationName, int layer)
         {
             // If animations are enabled, play the animation.
-            if(actionUnit.AnimationsEnabled)
+            if(actionUnit.AnimationsEnabled && animationName != "")
             {
                 animator.Play(animationName, layer);
             } 
