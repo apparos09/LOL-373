@@ -7,6 +7,13 @@ namespace RM_EDU
     // Audio for the title area.
     public class TitleAudio : EDU_GameAudio
     {
+        // The singleton instance.
+        private static TitleAudio instance;
+
+        // Gets set to 'true' when the singleton has been instanced.
+        // This isn't needed, but it helps with the clarity.
+        private static bool instanced = false;
+
         [Header("Title")]
 
         // The title bgm.
@@ -21,6 +28,11 @@ namespace RM_EDU
         // If 'true', the bgm is played in start.
         public bool playBgmInStart = true;
 
+        // Constructor
+        private TitleAudio()
+        {
+            // ...
+        }
 
         // Start is called before the first frame update
         protected override void Start()
@@ -38,16 +50,62 @@ namespace RM_EDU
             }
         }
 
+        // Gets the instance.
+        public static TitleAudio Instance
+        {
+            get
+            {
+                // Checks if the instance exists.
+                if (instance == null)
+                {
+                    // Tries to find the instance.
+                    instance = FindAnyObjectByType<TitleAudio>(FindObjectsInactive.Include);
+
+
+                    // The instance doesn't already exist.
+                    if (instance == null)
+                    {
+                        // Generate the instance.
+                        GameObject go = new GameObject("TitleAudio (singleton)");
+                        instance = go.AddComponent<TitleAudio>();
+                    }
+
+                }
+
+                // Return the instance.
+                return instance;
+            }
+        }
+
+        // Returns 'true' if the object has been instanced.
+        public static bool Instantiated
+        {
+            get
+            {
+                return instanced;
+            }
+        }
+
         // Plays the title BGM.
         public void PlayTitleBgm()
         {
             PlayBackgroundMusic(titleBgm, titleBgmClipStart, titleBgmClipEnd);
         }
-        
+
         // // Update is called once per frame
         // void Update()
         // {
         // 
         // }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected virtual void OnDestroy()
+        {
+            // If the saved instance is being deleted, set 'instanced' to false.
+            if (instance == this)
+            {
+                instanced = false;
+            }
+        }
     }
 }
