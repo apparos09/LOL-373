@@ -9,8 +9,8 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
-      propertyPath: hitCount
-      value: 13
+      propertyPath: hitLimit
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: idNumber

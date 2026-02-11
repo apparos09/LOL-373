@@ -20,9 +20,9 @@ namespace RM_EDU
         [Tooltip("Enables hit limit. If the hit limit isn't being used, the hit limit is considered infinite.")]
         public bool useHitLimit = true;
 
-        // The amount of energy that the owner gets when a unit is damaged.
-        [Tooltip("The percentage of energy taken for the damage done to an enemy.")]
-        public float damageEnergyPercent = 0.0F;
+        // The amount of energy that the owner gets when a unit is damaged. By default it's 25%.
+        [Tooltip("The percentage of energy taken for the damage done to an enemy (0.00 -> 0%).")]
+        public float damageEnergyPercent = 0.25F;
 
         // If 'true', when the trap is killed, any targets on the same tile are killed as well.
         [Tooltip("If true, when this trap reaches it energy limit, all targets on the tile this unit uses are also destroyed.")]
@@ -31,6 +31,11 @@ namespace RM_EDU
         // The list of enemy targets. A unit is added to this list in trigger start and removed in trigger end.
         [Tooltip("A list of enemy targets. A target is added in trigger start and removed in trigger end.")]
         protected List<ActionUnitEnemy> enemyTargets = new List<ActionUnitEnemy>();
+
+        [Header("Trap/Animaitons")]
+
+        // The animation for energy generation.
+        public string energyGenAnim = "Action Unit - Flash - Blue Animation";
 
         // Start is called before the first frame update
         protected override void Start()
@@ -178,14 +183,61 @@ namespace RM_EDU
         // Attacks all the enemies in the list.
         public void AttackAllEnemiesInList()
         {
+            // The sum of the energy gained from the attacks.
+            float energyGainSum = 0.0F;
+
             // Goes through all the enemies in the list, back to front.
             for(int i = enemyTargets.Count - 1; i >= 0; i--)
             {
                 // Checks if the enemy exists.
                 if(enemyTargets[i] != null)
                 {
+                    // The enemy's health before and after the attack.
+                    float healthBefore = enemyTargets[i].health;
+                    float healthAfter = 0;
+
+                    // The difference in health amounts, and the energy gained.
+                    float healthDiff;
+                    float energyGain;
+
                     // Attacks the enemy target.
                     enemyTargets[i].AttackUnit(this);
+
+                    // Checks that i is still less than the energy targets count.
+                    if(i < enemyTargets.Count)
+                    {
+                        // If the enemy still exists, get its health afterwards.
+                        // If the enemy doesn't exist, assume the enemy's full health is 0.
+                        healthAfter = (enemyTargets[i] != null) ? enemyTargets[i].health : 0;
+                    }
+                    // (i) isn't less than the enemy targets count, meaning the list has been adjusted.
+                    else
+                    {
+                        // Assume the enemy lost all its health.
+                        healthAfter = 0;
+                    }
+
+                    // Bounds check for health before.
+                    if(healthBefore < 0)
+                        healthBefore = 0;
+
+                    // Bounds check for health after.
+                    if(healthAfter < 0)
+                        healthAfter = 0;
+
+                    // Calculates the different in health to see how muc damage was done.
+                    healthDiff = healthBefore - healthAfter;
+
+                    // Calculates the energy gain by taking a percentage of the damage (health difference).
+                    energyGain = healthDiff * damageEnergyPercent;
+
+                    // Bounds check for energy gain.
+                    if(energyGain < 0)
+                        energyGain = 0;
+
+
+                    // Add to the energy gain sum.
+                    energyGainSum += energyGain;
 
                     // Adds to the hit count.
                     hitCount++;
@@ -199,6 +251,18 @@ namespace RM_EDU
                     // Remove the enemy target since it's null.
                     enemyTargets.Remove(enemyTargets[i]);
                 }
+            }
+
+
+            // If the onwer is set and the energy gain sum is greater than 0...
+            // Add it to the owner's energy.
+            if(owner != null && energyGainSum > 0)
+            {
+                // Increase energy.
+                owner.IncreaseEnergy(energyGainSum);
+
+                // Play the energy generation animation.
+                PlayEnergyGenerationAnimation();
             }
         }
 
@@ -232,6 +296,15 @@ namespace RM_EDU
             // Call kill base afterwards so that the trigger exit function hasn't been called yet.
             base.Kill();
         }
+
+        // ANIMATIONS
+        // Plays the energy generation animation.
+        public void PlayEnergyGenerationAnimation()
+        {
+            if (animator != null && energyGenAnim != "")
+                animator.Play(energyGenAnim);
+        }
+
 
         // Update is called once per frame
         protected override void Update()

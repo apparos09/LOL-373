@@ -163,7 +163,7 @@ MonoBehaviour:
   hitCount: 0
   hitLimit: 15
   useHitLimit: 1
-  damageEnergyPercent: 0
+  damageEnergyPercent: 0.25
   killTargetsOnHitLimitReached: 1
 --- !u!50 &9044625043006678836 stripped
 Rigidbody2D:
