@@ -61,6 +61,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
+      propertyPath: energyCyclesDefault
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2356950983744757008, guid: 2f61e8189be6372438cc50087be3b316, type: 3}
       propertyPath: tileVersionSprites.Array.size
       value: 16
       objectReference: {fileID: 0}

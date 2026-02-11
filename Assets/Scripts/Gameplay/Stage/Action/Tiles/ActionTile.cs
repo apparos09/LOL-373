@@ -112,7 +112,7 @@ namespace RM_EDU
         // Energy source they get from the tile.
 
         // The default number of energy cycles for this tile.
-        public int energyCyclesDefault = 30;
+        public int energyCyclesDefault = 10;
 
         // The number of coal cycles allowed.
         public int coalCycles = 0;

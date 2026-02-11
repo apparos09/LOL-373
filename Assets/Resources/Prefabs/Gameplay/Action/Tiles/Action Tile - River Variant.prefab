@@ -138,7 +138,7 @@ MonoBehaviour:
   setTileVersionSpriteInStart: 1
   mapPos: {x: -1, y: -1}
   actionUnitUser: {fileID: 0}
-  energyCyclesDefault: 30
+  energyCyclesDefault: 10
   coalCycles: 0
   naturalGasCycles: 0
   nuclearCycles: 0

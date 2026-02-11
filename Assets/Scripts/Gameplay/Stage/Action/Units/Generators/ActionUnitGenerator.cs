@@ -324,11 +324,11 @@ namespace RM_EDU
                 // Play the energy generation animation.
                 PlayEnergyGenerationAnimation();
 
-                // If the energy clip isn't null, set the wait timer...
-                // To the clip's length, plus some extra time to be safe.
+                // If the energy clip isn't null, set the wait timer to the clip's length...
+                // Divided by animator speed, plus some extra time to be safe.
                 if(energyGenClip != null)
                 {
-                    energyGenAnimWaitTimer = energyGenClip.length * animator.speed + 1.0F;
+                    energyGenAnimWaitTimer = energyGenClip.length / animator.speed + 0.5F;
                 }
                 else
                 {

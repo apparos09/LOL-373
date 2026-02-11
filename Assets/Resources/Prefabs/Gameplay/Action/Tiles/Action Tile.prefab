@@ -124,13 +124,15 @@ MonoBehaviour:
   collider: {fileID: 8777409888098926867}
   interactable: 1
   animator: {fileID: 6086815689167183318}
+  emptyAnimName: Empty State
   highlightSpriteRenderer: {fileID: 9010221699124483645}
   overlaySpriteRenderer: {fileID: 3803946226529072956}
   baseSpriteRenderer: {fileID: 3556415347877725770}
   tileVersionSprites: []
+  setTileVersionSpriteInStart: 1
   mapPos: {x: -1, y: -1}
   actionUnitUser: {fileID: 0}
-  energyCyclesDefault: 30
+  energyCyclesDefault: 10
   coalCycles: 0
   naturalGasCycles: 0
   nuclearCycles: 0
