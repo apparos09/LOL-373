@@ -7,6 +7,12 @@ namespace RM_EDU
     // Action Unit Generator - Nuclear
     public class ActionUnitGeneratorNuclear : ActionUnitGenerator
     {
+        [Header("Nuclear")]
+
+        // Kills the generator if it's no longer usable (no energy cycles left).
+        [Tooltip("If the generator can't generate anymore energy, kill it.")]
+        public bool killOnUnusable = true;
+
         // Start is called just before any of the Update methods is called the first time
         protected override void Start()
         {
@@ -43,10 +49,14 @@ namespace RM_EDU
         {
             base.Update();
 
-            // If the generator can't generate energy anymore, destroy it.
-            if(!CanGenerateEnergy())
+            // If the nuclear generator isn't usable.
+            if(killOnUnusable)
             {
-                Kill();
+                // If the generator can't generate energy anymore, destroy it.
+                if (!CanGenerateEnergy())
+                {
+                    Kill();
+                }
             }
         }
     }
