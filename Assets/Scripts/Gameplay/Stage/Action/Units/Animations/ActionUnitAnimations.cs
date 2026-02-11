@@ -21,6 +21,15 @@ namespace RM_EDU
         // The empty state animation.
         public string emptyStateAnim = "Empty State";
 
+        // Animation for the unit becoming usable.
+        public string usableAnim = "Action Unit - Usable Animation";
+
+        // Animation for the unit becoming unusable.
+        public string unusableAnim = "Action Unit - Unusable Animation";
+
+        // Plays the flash blue animation.
+        public string flashBlueAnim = "Action Unit - Flash - Blue Animation";
+
         // The death animation.
         public string deathAnim = "Action Unit - Death Animation";
 
@@ -83,6 +92,27 @@ namespace RM_EDU
         public virtual void PlayEmptyStateAnimationOverlayLayer()
         {
             PlayEmptyStateAnimation(1);
+        }
+
+        // USABLE / UNUSABLE
+        // Plays the usable animaiton.
+        public void PlayUsableAnimation()
+        {
+            PlayAnimation(usableAnim);
+        }
+
+        // Plays the unusuable animation.
+        public void PlayUnusableAnimation()
+        {
+            PlayAnimation(unusableAnim);
+        }
+
+        // FLASH
+
+        // Plays the flash blue animation.
+        public void PlayFlashBlueAnimation()
+        {
+            PlayAnimation(flashBlueAnim);
         }
 
         // DEATH

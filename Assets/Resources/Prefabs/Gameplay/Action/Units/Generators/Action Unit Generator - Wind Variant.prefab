@@ -169,7 +169,7 @@ MonoBehaviour:
   energyGenerationTotal: 0
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
-  energyGenAnim: Action Unit - Blue Flash Animation
+  energyGenAnim: Action Unit - Flash - Blue Animation
 --- !u!61 &7425700527384149387 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 690021909378568088, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}

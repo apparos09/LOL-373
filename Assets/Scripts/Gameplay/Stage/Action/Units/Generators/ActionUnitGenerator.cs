@@ -46,7 +46,7 @@ namespace RM_EDU
         [Header("Generator/Animations")]
 
         // The animation for energy generation.
-        public string energyGenAnim = "Action Unit - Blue Flash Animation";
+        public string energyGenAnim = "Action Unit - Flash - Blue Animation";
 
         // Start is called before the first frame update
         protected override void Start()
