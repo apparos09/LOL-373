@@ -149,6 +149,7 @@ MonoBehaviour:
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
   energyGenAnim: Action Unit - Flash - Blue Animation
+  energyGenClip: {fileID: 7400000, guid: b3c8621e61951db40940e323ad9f5d5c, type: 2}
 --- !u!95 &5406913998153414739 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}

@@ -48,6 +48,13 @@ namespace RM_EDU
         // The animation for energy generation.
         public string energyGenAnim = "Action Unit - Flash - Blue Animation";
 
+        // The energy generation clip.
+        public AnimationClip energyGenClip;
+
+        // A timer that's used to wait for the energy generation animation to finish.
+        // This is done to see if the usable/unsuable animation should be played.
+        protected float energyGenAnimWaitTimer = 0.0F;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -58,6 +65,21 @@ namespace RM_EDU
 
             // Generates shouldn't attack anything.
             attackingEnabled = false;
+
+            // if animations are enabled.
+            if(AnimationsEnabled)
+            {
+                // If energy can be generated, play the usable animation.
+                if(CanGenerateEnergy())
+                {
+                    PlayUsableAnimation();
+                }
+                // If energy can't be generated, play the unusable animation.
+                else
+                {
+                    PlayUnusableAnimation();
+                }
+            }
         }
 
         // Gets the unit type.
@@ -291,6 +313,18 @@ namespace RM_EDU
             {
                 // Play the energy generation animation.
                 PlayEnergyGenerationAnimation();
+
+                // If the energy clip isn't null, set the wait timer...
+                // To the clip's length, plus some extra time to be safe.
+                if(energyGenClip != null)
+                {
+                    energyGenAnimWaitTimer = energyGenClip.length * animator.speed + 1.0F;
+                }
+                else
+                {
+                    // Do nothing.
+                    energyGenAnimWaitTimer = 0.0F;
+                }
             }
 
             return energy;
@@ -363,6 +397,18 @@ namespace RM_EDU
                 animator.Play(energyGenAnim);
         }
 
+        // Plays the usable animation.
+        public void PlayUsableAnimation()
+        {
+            unitAnimations.PlayUsableAnimation();
+        }
+
+        // Plays the unusable animation.
+        public void PlayUnusableAnimation()
+        {
+            unitAnimations.PlayUnusableAnimation();
+        }
+
         // Update is called once per frame
         protected override void Update()
         {
@@ -399,6 +445,30 @@ namespace RM_EDU
                 {
                     // Keep the timer at max if no energy can be generated.
                     energyGenerationTimer = GetEnergyGenerationTimerMax();
+
+                    // If the wait timer is greater than 0, reduce timer.
+                    if(energyGenAnimWaitTimer > 0)
+                    {
+                        energyGenAnimWaitTimer -= Time.deltaTime;
+
+                        // Wait timer is 0 or less.
+                        if (energyGenAnimWaitTimer <= 0)
+                        {
+                            energyGenAnimWaitTimer = 0.0F;
+
+                            // If the generator can generate energy, so play usable animation.
+                            if(CanGenerateEnergy())
+                            {
+                                PlayUsableAnimation();
+                            }
+                            // Can't generate energy, so play unusable animation.
+                            else
+                            {
+                                PlayUnusableAnimation();
+                            }
+                        }
+
+                    }
                 }
             }
         }

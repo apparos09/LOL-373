@@ -183,6 +183,7 @@ MonoBehaviour:
   energyGenerationLimit: -1
   useEnergyGenLimit: 0
   energyGenAnim: Action Unit - Flash - Blue Animation
+  energyGenClip: {fileID: 7400000, guid: b3c8621e61951db40940e323ad9f5d5c, type: 2}
   facingDirec: {x: 1, y: 0}
   floodTimer: 0
   floodTimerMax: 25
