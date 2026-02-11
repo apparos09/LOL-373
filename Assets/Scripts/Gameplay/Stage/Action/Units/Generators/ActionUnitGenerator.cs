@@ -55,6 +55,10 @@ namespace RM_EDU
         // This is done to see if the usable/unsuable animation should be played.
         protected float energyGenAnimWaitTimer = 0.0F;
 
+        // Checks if the generator is marked as usable (true) or unusable (false).
+        // Used for checking animations.
+        protected bool markedUsable = true;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -116,6 +120,12 @@ namespace RM_EDU
         public static string GetNaturalResourceNameAbbreviationKey(NaturalResources.naturalResource resource)
         {
             return NaturalResources.GetNaturalResourceNameAbbreviationKey(resource);
+        }
+
+        // Returns 'true' if the generator is marked usable.
+        public bool MarkedUsable
+        {
+            get { return markedUsable; }
         }
 
         // Gets the maximum of the energy generation timer.
@@ -401,12 +411,14 @@ namespace RM_EDU
         public void PlayUsableAnimation()
         {
             unitAnimations.PlayUsableAnimation();
+            markedUsable = true;
         }
 
         // Plays the unusable animation.
         public void PlayUnusableAnimation()
         {
             unitAnimations.PlayUnusableAnimation();
+            markedUsable = false;
         }
 
         // Update is called once per frame
@@ -467,7 +479,15 @@ namespace RM_EDU
                                 PlayUnusableAnimation();
                             }
                         }
-
+                    }
+                    else
+                    {
+                        // If the generator is currently marked as usable even though it can't generate energy...
+                        // Play the unusuable animation, which will mark it as unusuable.
+                        if(markedUsable)
+                        {
+                            PlayUnusableAnimation();
+                        }
                     }
                 }
             }
