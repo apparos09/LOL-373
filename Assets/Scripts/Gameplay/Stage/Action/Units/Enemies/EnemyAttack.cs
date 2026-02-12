@@ -26,6 +26,9 @@ namespace RM_EDU
         [Tooltip("Turns this object off if it has no target.")]
         public bool autoInactiveIfNoTarget = true;
 
+        // Gets set to true when start has been called.
+        private bool calledStart = false;
+
         [Header("Animations")]
 
         // The empty state animations.
@@ -34,19 +37,18 @@ namespace RM_EDU
         // The pulsing animation.
         public string pulsingAnim = "Enemy Attack - Pulsing Animation";
 
-        // Plays the pulsing animation in start if true.
-        public bool playPulsingInStart = true;
+        // If the pulsing animaiton should be used. If so, it's played in start.
+        [Tooltip("If true, the pulsing animation is used, and is played in start.")]
+        public bool usePulseAnim = true;
 
         [Header("Audio")]
 
-        // The personal audio source control.
-        public AudioSourceControl personalAudioControl;
-
-        // Checks if the personal audio control should be used.
-        public bool usePersonalAudioControl = false;
-
         // The pulsing sound effect.
         public AudioClip pulsingSfx;
+
+        // If 'true', the pulsing sound effect is looped. If false, it plays in one shot.
+        [Tooltip("If true, loop the pulsing sound effect. If false, play it in one shot.")]
+        public bool loopPulsingSfx = true;
 
         // Start is called before the first frame update
         void Start()
@@ -59,17 +61,41 @@ namespace RM_EDU
             if(animator == null)
                 animator = GetComponent<Animator>();
 
-            // If the personal audio control exists and the game settings have been instantiated...
-            // Adjust the audio levels.
-            if(personalAudioControl != null && GameSettings.Instantiated)
-            {
-                GameSettings.Instance.AdjustAudio(personalAudioControl);
-            }
-
             // If the pulsing animation should be played.
-            if(playPulsingInStart)
+            if(usePulseAnim)
             {
                 PlayPulsingAnimation();
+            }
+
+            // Start has been called.
+            calledStart = true;
+        }
+
+        // This function is called when the object becomes enabled and active.
+        private void OnEnable()
+        {
+            // Start has been called.
+            if (calledStart)
+            {
+                // If the pulse sound effect should be played on loop.
+                if (ActionAudio.Instantiated && usePulseAnim && loopPulsingSfx)
+                {
+                    ActionAudio.Instance.PlayEnemyAttackSfx();
+                }
+            }
+        }
+
+        // This function is called when the behaviour becomes disabled or inactive.
+        private void OnDisable()
+        {
+            // Start has been called.
+            if(calledStart)
+            {
+                // If the pulse sound effect was playing on loop.
+                if (ActionAudio.Instantiated && usePulseAnim && loopPulsingSfx)
+                {
+                    ActionAudio.Instance.StopEnemyAttackSfx(false);
+                }
             }
         }
 
@@ -189,26 +215,16 @@ namespace RM_EDU
         public void PlayPulsingAnimation()
         {
             PlayAnimation(pulsingAnim);
-        }
 
-        // AUDIO
-        // Stops the personal audio source.
-        public void StopPersonalAudioSource()
-        {
-            // Personal audio control exists.
-            if(personalAudioControl != null)
+            // If the pulsing sound effect should be looped, play it.
+            if(loopPulsingSfx)
             {
-                // Audio source is set.
-                if (personalAudioControl.audioSource != null)
-                {
-                    // Stops the audio source.
-                    personalAudioControl.audioSource.Stop();
-                }
+                PlayPulsingSfxAuto();
             }
         }
 
         // Plays the pulsing sound effect.
-        public void PlayPulsingSfx()
+        public void PlayPulsingSfx(bool loop)
         {
             // Checks if sound can be played.
             bool playSound;
@@ -220,32 +236,42 @@ namespace RM_EDU
             }
             else
             {
+                // Check if the action audio exists.
                 playSound = ActionAudio.Instantiated;
             }
 
             // If the sound should be played, play it.
             if(playSound)
             {
-                // Set to true if audio has been played.
-                bool playedAudio = false;
-
-                // Personal audio control exists and it should be used.
-                if(usePersonalAudioControl && personalAudioControl != null)
+                // Determiens if the sound effect should be looped or not.
+                // Loop
+                if(loop)
                 {
-                    // Audio source control is set, use it.
-                    if(personalAudioControl.audioSource != null)
-                    {
-                        personalAudioControl.audioSource.PlayOneShot(pulsingSfx);
-                        playedAudio = true;
-                    }
+                    ActionAudio.Instance.PlayEnemyAttackSfx();
                 }
-
-                // If the sound wasn't played, use Action Audio.
-                if(!playedAudio)
+                // One Shot
+                else
                 {
                     ActionAudio.Instance.PlaySoundEffectWorld(pulsingSfx);
                 }
             }
+        }
+
+        // Plays the pulsing sound effect with auto loop settings.
+        public void PlayPulsingSfxAuto()
+        {
+            PlayPulsingSfx(loopPulsingSfx);
+        }
+
+        // Play the pulsing sound effect as a loop.
+        public void PlayPulsingSfxLoop()
+        {
+            PlayPulsingSfx(true);
+        }
+
+        public void PlayPulsingSfxOneShot()
+        {
+            PlayPulsingSfx(false);
         }
 
         // // Update is called once per frame
@@ -295,6 +321,26 @@ namespace RM_EDU
                 }
                     
             }
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        private void OnDestroy()
+        {
+            // If start has been called.
+            if(calledStart)
+            {
+                // If action audio is instantied, the pulsing animation is being used, and the sound effect is being looped.
+                if (ActionAudio.Instantiated && usePulseAnim && loopPulsingSfx)
+                {
+                    // Send a stop call.
+                    // If this object is disabled, that means OnDisable hasn't called it.
+                    if (!isActiveAndEnabled)
+                    {
+                        ActionAudio.Instance.StopEnemyAttackSfx(false);
+                    }
+                }
+            }
+
         }
 
     }

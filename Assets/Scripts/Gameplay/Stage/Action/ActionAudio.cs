@@ -16,6 +16,9 @@ namespace RM_EDU
 
         [Header("Action")]
 
+        // The action manager.
+        public ActionManager actionManager;
+
         // The enemy attack audio source (loops).
         public AudioSource enemyAttackSource;
 
@@ -24,6 +27,9 @@ namespace RM_EDU
         // When there are no more calls, the source is stopped.
         [Tooltip("Tracks how many play calls have been made for enemy attack. Decreases for every stop call.")]
         public int enemyAttackPlayCalls;
+
+        // Set to true if the enemy attack source is marked as being paused.
+        private bool enemyAttackSourceMarkedPaused = false;
 
         // Constructor
         private ActionAudio()
@@ -34,6 +40,8 @@ namespace RM_EDU
         // Awake is called when the script is being loaded
         protected override void Awake()
         {
+            base.Awake();
+
             // If the instance hasn't been set, set it to this object.
             if (instance == null)
             {
@@ -54,12 +62,18 @@ namespace RM_EDU
         }
 
 
-        // // Start is called before the first frame update
-        // void Start()
-        // {
-        // 
-        // }
-        // 
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // Sets the instance.
+            if (actionManager == null)
+            {
+                actionManager = ActionManager.Instance;
+            }
+        }
+        
 
         // Gets the instance.
         public static ActionAudio Instance
@@ -100,10 +114,13 @@ namespace RM_EDU
         // Plays the enemy attack.
         public void PlayEnemyAttackSfx()
         {
-            // Play the enemy attack
-            if(!enemyAttackSource.isPlaying)
+            // Play the enemy attack if it isn't playing and it isn't paused.
+            if(!enemyAttackSource.isPlaying && !enemyAttackSourceMarkedPaused)
             {
                 enemyAttackSource.Play();
+
+                // Since it's now playing, it's not paused.
+                enemyAttackSourceMarkedPaused = false;
             }
 
             // Increase the number of calls.
@@ -123,6 +140,7 @@ namespace RM_EDU
 
                 // Stops the audio source.
                 enemyAttackSource.Stop();
+                enemyAttackSourceMarkedPaused = false;
             }
             else
             {
@@ -134,15 +152,84 @@ namespace RM_EDU
                 {
                     enemyAttackPlayCalls = 0;
                     enemyAttackSource.Stop();
+                    enemyAttackSourceMarkedPaused = false;
                 }
             }
         }
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
+        // Sets the enemy attack SFX paused.
+        public void SetEnemyAttackSfxPaused(bool paused)
+        {
+            // Pause
+            if(paused)
+            {
+                enemyAttackSource.Pause();
+                enemyAttackSourceMarkedPaused = true;
+            }
+            // Unpause
+            else
+            {
+                // Unpause the enemy attack.
+                enemyAttackSource.UnPause();
+                enemyAttackSourceMarkedPaused = false;
+
+                // If there aren't any calls, stop the attack sound effect.
+                if (enemyAttackPlayCalls <= 0)
+                    StopEnemyAttackSfx(true);
+            }
+        }
+
+        // Pauses the enemy attack SFX.
+        public void PauseEnemyAttackSfx()
+        {
+            SetEnemyAttackSfxPaused(true);
+        }
+
+        // Unpauses the enemy attack SFX.
+        public void UnpauseEnemyAttackSfx()
+        {
+            SetEnemyAttackSfxPaused(false);
+        }
+
+        // Called when the stage is being reset.
+        public override void ResetStage()
+        {
+            base.ResetStage();
+
+            // Stops the enemy attack audio source.
+            StopEnemyAttackSfx(true);
+        }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+
+            // Safety Check
+            // If the enemy attack source is playing.
+            if (enemyAttackSource.isPlaying)
+            {
+                // If the game is paused and the attack source isn't marked as paused.
+                if(actionManager.IsGamePaused() && !enemyAttackSourceMarkedPaused)
+                {
+                    PauseEnemyAttackSfx();
+                }
+
+                // No spawned enemies, so stop the attack source.
+                if (actionManager.playerEnemy.spawnedEnemies.Count <= 0)
+                {
+                    StopEnemyAttackSfx(true);
+                }
+            }
+            else
+            {
+                // If the game isn't paused but the enemy attack source is paused, unpause it.
+                if(!actionManager.IsGamePaused() && enemyAttackSourceMarkedPaused)
+                {
+                    UnpauseEnemyAttackSfx();
+                }
+            }
+        }
 
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()

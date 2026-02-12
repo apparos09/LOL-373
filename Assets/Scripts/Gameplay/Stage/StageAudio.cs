@@ -74,7 +74,7 @@ namespace RM_EDU
         }
 
         // Called when the stage is being reset.
-        public void ResetStage()
+        public virtual void ResetStage()
         {
             // TODO: restart BGM?
             sfxWorldSource.Stop();
