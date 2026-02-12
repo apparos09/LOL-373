@@ -53,9 +53,10 @@ MonoBehaviour:
   sfxWorldSource: {fileID: 3652559335429260194}
   sfxUISource: {fileID: 7013497908450806185}
   vceSource: {fileID: 348386285445040504}
-  buttonUISfx: {fileID: 0}
-  sliderUISfx: {fileID: 0}
-  toggleUISfx: {fileID: 0}
+  autoSetUIAudios: 1
+  buttonUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
+  toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
 --- !u!1 &2496946446778926813
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +232,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -470,7 +471,7 @@ GameObject:
   - component: {fileID: 6455446664411055554}
   - component: {fileID: 348386285445040504}
   m_Layer: 0
-  m_Name: VCE World Audio Source
+  m_Name: VCE Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

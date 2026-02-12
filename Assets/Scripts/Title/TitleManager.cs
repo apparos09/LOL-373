@@ -128,8 +128,16 @@ namespace RM_EDU
         void Start()
         {
             // Finds the instance if it isn't set.
-            if (titleUI != null)
+            if (titleUI == null)
+            {
                 titleUI = TitleUI.Instance;
+            }
+                
+            // Finds the instance of the title audio.
+            if (titleAudio == null)
+            {
+                titleAudio = TitleAudio.Instance;
+            }
 
             // If the data logger exists, destroy it.
             // This is to account for going from the gameplay scenes to the title scene.

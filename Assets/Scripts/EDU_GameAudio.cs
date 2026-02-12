@@ -16,6 +16,10 @@ namespace RM_EDU
 
         [Header("EDU")]
 
+        // If 'true', the UI Audios are automatically set in Awake. Ignores objects that already have audio sources.
+        [Tooltip("Automatically sets all UI Element Audios in Awake(). Ignores objects that already have audio sources.")]
+        public bool autoSetUIAudios = true;
+
         // The button (UI) SFX.
         public AudioClip buttonUISfx;
 
@@ -24,6 +28,29 @@ namespace RM_EDU
 
         // The toggle (UI) SFX. This should be the same as the button SFX.
         public AudioClip toggleUISfx;
+
+        // Awake is called when the script instance is being loaded
+        protected override void Awake()
+        {
+            base.Awake();
+
+            // If the UI Audios should be automatically set.
+            if(autoSetUIAudios)
+            {
+                // Finds all the UI audios.
+                UIElementAudio[] audios = FindObjectsOfType<UIElementAudio>(true);
+
+                // Goes through all the audios.
+                foreach(UIElementAudio audio in audios)
+                {
+                    // If the audio doesn't have a source, set it to the UI source.
+                    if(audio.audioSource == null)
+                    {
+                        audio.audioSource = sfxUISource;
+                    }
+                }
+            }
+        }
 
         // Start is called before the first frame update
         protected override void Start()

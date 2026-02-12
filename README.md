@@ -1,16 +1,13 @@
 # LOL-373
 A repository for a contracted project.
 
-# Audio Credits
-This file specifies the audio credits for the project.
-
 ## Background Music (BGMs)
 These are the background music (BGM) credits.
 
 ### Title
 * Name: Inspiration and Success
-* Artist: Rafael Krux 
-* Website: Orchestralis.net 
+* Artist: Rafael Krux
+* Website: Orchestralis.net
 * Link: https://music.orchestralis.net/track/28566398
 * Copyright:
 	* 'Inspiration and Success' by Rafael Krux (orchestralis.net)
@@ -66,12 +63,12 @@ These are the background music (BGM) credits.
 
 
 ### Knowledge Stage Theme 2
-* Name: Mesmerizing Galaxy 
+* Name: Mesmerizing Galaxy
 * Artist: Kevin MacLeod
 * Website: Incompetech
 * Link: https://incompetech.com/music/royalty-free/music.html
 * Copyright:
-	* "Mesmerizing Galaxy " Kevin MacLeod (incompetech.com)
+	* "Mesmerizing Galaxy" Kevin MacLeod (incompetech.com)
 	* Licensed under Creative Commons: By Attribution 4.0 License
 	* http://creativecommons.org/licenses/by/4.0/
 
@@ -84,7 +81,7 @@ These are the background music (BGM) credits.
 * Copyright:
 	* "Andreas Theme" Kevin MacLeod (incompetech.com)
 	* Licensed under Creative Commons: By Attribution 4.0 License
-	* http://creativecommons.org/licenses/by/4.0/ 
+	* http://creativecommons.org/licenses/by/4.0/
 
 
 ### Game Results
@@ -95,7 +92,7 @@ These are the background music (BGM) credits.
 * Copyright:
 	* "Morning" Kevin MacLeod (incompetech.com)
 	* Licensed under Creative Commons: By Attribution 4.0 License
-	* http://creativecommons.org/licenses/by/4.0/ 
+	* http://creativecommons.org/licenses/by/4.0/
 
 
 
@@ -156,6 +153,7 @@ These are rest of the credits for the game's sound effects.
 #### Action - Action Defense Generator - Hydro - Flood
 * Name: Water Splash
 * Artist: Mike Koenig
+* Website: SoundBible
 * Link: https://soundbible.com/1460-Water-Splash.html
 * Copyright:
 	* "Water Splash"

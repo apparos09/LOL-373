@@ -30,6 +30,9 @@ namespace RM_EDU
         // The world UI.
         public WorldUI worldUI;
 
+        // The world audio.
+        public WorldAudio worldAudio;
+
         // The world camera.
         public WorldCamera worldCamera;
 
@@ -79,7 +82,15 @@ namespace RM_EDU
 
             // Gets the world UI instance.
             if (worldUI == null)
+            {
                 worldUI = WorldUI.Instance;
+            }
+
+            // Gets the world audio instance.
+            if(worldAudio == null)
+            {
+                worldAudio = WorldAudio.Instance;
+            }
 
             // If the world camera isn't set, try to get the world camera...
             // From the main camera.

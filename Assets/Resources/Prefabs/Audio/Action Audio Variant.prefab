@@ -61,6 +61,22 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3258761481573270316}
   m_SourcePrefab: {fileID: 100100000, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+--- !u!114 &1235528709555244066 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6832325066900028198, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 5761284396380649220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7806d7a94ad6abf428619e9d41718a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &3359899254379462317 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7013497908450806185, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 5761284396380649220}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &4850187869384258304 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 917438589003514884, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
@@ -78,17 +94,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8833412350dc0ea438da8a7555973910, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 0}
-  bgmLooper: {fileID: 0}
-  sfxWorldSource: {fileID: 0}
-  sfxUISource: {fileID: 0}
-  vceSource: {fileID: 0}
-  buttonUISfx: {fileID: 0}
-  sliderUISfx: {fileID: 0}
-  toggleUISfx: {fileID: 0}
-  stageBgm01: {fileID: 0}
+  bgmSource: {fileID: 6176493740879438032}
+  bgmLooper: {fileID: 1235528709555244066}
+  sfxWorldSource: {fileID: 9026426411439142054}
+  sfxUISource: {fileID: 3359899254379462317}
+  vceSource: {fileID: 5413756495199551100}
+  buttonUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
+  toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  stageBgm01: {fileID: 8300000, guid: 86145a65cd0500f4a9cda675eb1f77c6, type: 3}
   stageBgm01ClipStart: 0
-  stageBgm01ClipEnd: 0
-  stageBgm02: {fileID: 0}
+  stageBgm01ClipEnd: 95.994
+  stageBgm02: {fileID: 8300000, guid: 9c1ff02b88430a640ad414755bab3862, type: 3}
   stageBgm02ClipStart: 0
-  stageBgm02ClipEnd: 0
+  stageBgm02ClipEnd: 92.376
+--- !u!82 &5413756495199551100 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 348386285445040504, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 5761284396380649220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &6176493740879438032 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1892463984037992404, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 5761284396380649220}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &9026426411439142054 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3652559335429260194, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 5761284396380649220}
+  m_PrefabAsset: {fileID: 0}

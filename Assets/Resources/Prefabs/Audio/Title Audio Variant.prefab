@@ -61,6 +61,27 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2742254139835599256}
   m_SourcePrefab: {fileID: 100100000, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+--- !u!114 &2014550525881183616 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6832325066900028198, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 4982199951005832870}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7806d7a94ad6abf428619e9d41718a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &2625782498315738895 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7013497908450806185, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 4982199951005832870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4751828733054820318 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 348386285445040504, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 4982199951005832870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5305013845933265570 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 917438589003514884, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
@@ -78,15 +99,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf4ad57749549a54fac4b8146287dc4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 0}
-  bgmLooper: {fileID: 0}
-  sfxWorldSource: {fileID: 0}
-  sfxUISource: {fileID: 0}
-  vceSource: {fileID: 0}
-  buttonUISfx: {fileID: 0}
-  sliderUISfx: {fileID: 0}
-  toggleUISfx: {fileID: 0}
-  titleBgm: {fileID: 0}
-  titleBgmClipStart: 0
-  titleBgmClipEnd: 0
+  bgmSource: {fileID: 6874522189092471154}
+  bgmLooper: {fileID: 2014550525881183616}
+  sfxWorldSource: {fileID: 8616559439658849540}
+  sfxUISource: {fileID: 2625782498315738895}
+  vceSource: {fileID: 4751828733054820318}
+  autoSetUIAudios: 1
+  buttonUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
+  toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  titleBgm: {fileID: 8300000, guid: 99a2a7bb0bb388c46b37d80f3f5bf60e, type: 3}
+  titleBgmClipStart: 21.01
+  titleBgmClipEnd: 54.737
   playBgmInStart: 1
+--- !u!82 &6874522189092471154 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1892463984037992404, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 4982199951005832870}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &8616559439658849540 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3652559335429260194, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 4982199951005832870}
+  m_PrefabAsset: {fileID: 0}

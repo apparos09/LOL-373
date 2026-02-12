@@ -61,6 +61,27 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3339816317947368459}
   m_SourcePrefab: {fileID: 100100000, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+--- !u!114 &464515643041293537 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6832325066900028198, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 6386950856146952135}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7806d7a94ad6abf428619e9d41718a08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &4177074114187744878 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 7013497908450806185, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 6386950856146952135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &4818957161588197395 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1892463984037992404, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 6386950856146952135}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6059703799047412675 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 917438589003514884, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
@@ -78,15 +99,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c45ebb31431f724e9a2c49d36e4e1be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmSource: {fileID: 0}
-  bgmLooper: {fileID: 0}
-  sfxWorldSource: {fileID: 0}
-  sfxUISource: {fileID: 0}
-  vceSource: {fileID: 0}
-  buttonUISfx: {fileID: 0}
-  sliderUISfx: {fileID: 0}
-  toggleUISfx: {fileID: 0}
-  worldBgm: {fileID: 0}
+  bgmSource: {fileID: 4818957161588197395}
+  bgmLooper: {fileID: 464515643041293537}
+  sfxWorldSource: {fileID: 7643592269236821093}
+  sfxUISource: {fileID: 4177074114187744878}
+  vceSource: {fileID: 6662713418771191487}
+  autoSetUIAudios: 1
+  buttonUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
+  toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  worldBgm: {fileID: 8300000, guid: 10aaad302c69ebc4988bc5d3def4f984, type: 3}
   worldBgmClipStart: 0
-  worldBgmClipEnd: 0
+  worldBgmClipEnd: 42.666
   playBgmInStart: 1
+--- !u!82 &6662713418771191487 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 348386285445040504, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 6386950856146952135}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7643592269236821093 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3652559335429260194, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}
+  m_PrefabInstance: {fileID: 6386950856146952135}
+  m_PrefabAsset: {fileID: 0}

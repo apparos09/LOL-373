@@ -61,6 +61,12 @@ namespace RM_EDU
                 resultsUI = ResultsUI.Instance;
             }
 
+            // If this isn't set, get the instance.
+            if(resultsAudio == null)
+            {
+                resultsAudio = ResultsAudio.Instance;
+            }
+
             // If the tutorials object still exists, destroy it.
             if(Tutorials.Instantiated)
             {
