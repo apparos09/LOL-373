@@ -87,10 +87,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
-  shooterUnit: {fileID: 0}
   spriteRenderer: {fileID: 0}
   collider: {fileID: 0}
   rigidbody: {fileID: 0}
+  owner: {fileID: 0}
+  shooterUnit: {fileID: 0}
   useShooterDirectly: 0
   ignoreTangible: 0
   defaultAttackPower: 1

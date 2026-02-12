@@ -705,6 +705,16 @@ namespace RM_EDU
             // If health is negative, clamp it at 0.
             if (health < 0.0F)
                 health = 0.0F;
+
+            // Called when the unit has been damaged.
+            OnUnitDamaged(damage);
+        }
+
+        // Called when the unit has been damaged.
+        // Provides the amount of damage that was calculated.
+        public virtual void OnUnitDamaged(float damage)
+        {
+            // ...
         }
 
         // Calculates the energy creation cost.
@@ -920,6 +930,7 @@ namespace RM_EDU
         }
 
         // Plays the unit destroyed sfx.
+        // TODO: if this is used it should be called by a death animation.
         public void PlayUnitDestroyedSfx()
         {
             if(CanPlayAudio())

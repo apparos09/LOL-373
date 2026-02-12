@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace RM_EDU
@@ -50,7 +48,13 @@ namespace RM_EDU
         [Header("Enemy/Audio")]
 
         // The attack sound effect.
-        public AudioClip attackSfx;
+        public AudioClip unitAttackSfx;
+
+        // The damaged sound effect.
+        public AudioClip unitDamagedSfx;
+
+        // Uses the damaged sound effect if true.
+        protected bool useDamagedSfx = true;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -374,6 +378,39 @@ namespace RM_EDU
             }
         }
 
+        // Called when the unit has been damaged.
+        public override void OnUnitDamaged(float damage)
+        {
+            base.OnUnitDamaged(damage);
+
+            // If the damaged SFX should be used.
+            if (useDamagedSfx)
+            {
+                // If some damage was done, play the SFX.
+                if(damage > 0)
+                {
+                    PlayUnitDamagedSfx();
+                }
+            }
+        }
+
+        // Called when the unit has been attacked.
+        public override void OnUnitAttacked(ActionUnit attacker)
+        {
+            base.OnUnitAttacked(attacker);
+
+            // NOTE: moved to OnUnitDamaged since some forms of damage don't...
+            // End up coming from an atacker.
+
+            // // But you probably don't need to account for that.
+            // // If the damaged sound effect should be used, use it.
+            // if(useDamagedSfx)
+            // {
+            //     PlayUnitDamagedSfx();
+            // }
+        }
+
+
         // SPEED //
 
         // Calculates the movement speed with the provided stat factor.
@@ -462,12 +499,22 @@ namespace RM_EDU
 
         // AUDIO
         // Plays the attack sound effect.
-        public void PlayAttackSfx()
+        public void PlayUnitAttackSfx()
         {
             // If audio can be played.
             if(CanPlayAudio())
             {
-                ActionAudio.Instance.PlaySoundEffectWorld(attackSfx);
+                ActionAudio.Instance.PlaySoundEffectWorld(unitAttackSfx);
+            }
+        }
+
+        // Plays the damaged sfx.
+        public void PlayUnitDamagedSfx()
+        {
+            // If the damaged SFX can be used, play it.
+            if (CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(unitDamagedSfx);
             }
         }
 
