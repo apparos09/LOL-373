@@ -43,7 +43,7 @@ namespace RM_EDU
         public Tutorials tutorials;
 
         // Returns 'true' if tutorials enabled.
-        private bool tutorialsEnabled = true;
+        private bool tutorialsEnabled = true; // Set to false when testing other functions.
 
         // The title scene.
         public string titleScene = "TitleScene";

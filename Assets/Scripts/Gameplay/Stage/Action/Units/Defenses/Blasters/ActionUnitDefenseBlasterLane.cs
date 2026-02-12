@@ -13,9 +13,6 @@ namespace RM_EDU
         [Tooltip("Kills this unit once an attack has been performed.")]
         public bool killOnAttackPerformed = true;
 
-        // The blaster shot sfx.
-        public AudioClip shotSfx;
-
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -25,6 +22,9 @@ namespace RM_EDU
             // Once a shot is triggered, the lane blaster destroys itself.
             vulnerable = false;
             attackingEnabled = false;
+
+            // Use the shot sound effect.
+            useShotSfx = true;
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -48,9 +48,6 @@ namespace RM_EDU
         {
             base.OnUnitAttackPerformed();
 
-            // Play the shot sound effect.
-            PlayShotSfx();
-
             // If unit should be killed.
             if(killOnAttackPerformed)
             {
@@ -73,16 +70,6 @@ namespace RM_EDU
             }
 
             base.OnUnitDeath();
-        }
-
-        // AUDIO //
-        // Plays the shot sound effect.
-        public void PlayShotSfx()
-        {
-            if(CanPlayAudio())
-            {
-                ActionAudio.Instance.PlaySoundEffectWorld(shotSfx);
-            }
         }
 
         // Update is called once per frame

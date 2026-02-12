@@ -2,6 +2,7 @@ using Microsoft.Win32.SafeHandles;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using util;
 
 namespace RM_EDU
 {
@@ -36,6 +37,17 @@ namespace RM_EDU
         // Plays the pulsing animation in start if true.
         public bool playPulsingInStart = true;
 
+        [Header("Audio")]
+
+        // The personal audio source control.
+        public AudioSourceControl personalAudioControl;
+
+        // Checks if the personal audio control should be used.
+        public bool usePersonalAudioControl = false;
+
+        // The pulsing sound effect.
+        public AudioClip pulsingSfx;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -46,6 +58,13 @@ namespace RM_EDU
             // Sets animator if not set already.
             if(animator == null)
                 animator = GetComponent<Animator>();
+
+            // If the personal audio control exists and the game settings have been instantiated...
+            // Adjust the audio levels.
+            if(personalAudioControl != null && GameSettings.Instantiated)
+            {
+                GameSettings.Instance.AdjustAudio(personalAudioControl);
+            }
 
             // If the pulsing animation should be played.
             if(playPulsingInStart)
@@ -170,6 +189,63 @@ namespace RM_EDU
         public void PlayPulsingAnimation()
         {
             PlayAnimation(pulsingAnim);
+        }
+
+        // AUDIO
+        // Stops the personal audio source.
+        public void StopPersonalAudioSource()
+        {
+            // Personal audio control exists.
+            if(personalAudioControl != null)
+            {
+                // Audio source is set.
+                if (personalAudioControl.audioSource != null)
+                {
+                    // Stops the audio source.
+                    personalAudioControl.audioSource.Stop();
+                }
+            }
+        }
+
+        // Plays the pulsing sound effect.
+        public void PlayPulsingSfx()
+        {
+            // Checks if sound can be played.
+            bool playSound;
+
+            // If the unit enemy is set, see if it can use sound.
+            if(unitEnemy != null)
+            {
+                playSound = unitEnemy.CanPlayAudio();
+            }
+            else
+            {
+                playSound = ActionAudio.Instantiated;
+            }
+
+            // If the sound should be played, play it.
+            if(playSound)
+            {
+                // Set to true if audio has been played.
+                bool playedAudio = false;
+
+                // Personal audio control exists and it should be used.
+                if(usePersonalAudioControl && personalAudioControl != null)
+                {
+                    // Audio source control is set, use it.
+                    if(personalAudioControl.audioSource != null)
+                    {
+                        personalAudioControl.audioSource.PlayOneShot(pulsingSfx);
+                        playedAudio = true;
+                    }
+                }
+
+                // If the sound wasn't played, use Action Audio.
+                if(!playedAudio)
+                {
+                    ActionAudio.Instance.PlaySoundEffectWorld(pulsingSfx);
+                }
+            }
         }
 
         // // Update is called once per frame

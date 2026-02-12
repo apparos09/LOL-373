@@ -29,11 +29,31 @@ namespace RM_EDU
         // The projectiles fired by this unit.
         public List<ActionProjectile> firedProjectiles = new List<ActionProjectile>();
 
+        // The blaster shot sfx.
+        public AudioClip shotSfx;
+
+        // If 'true', the shot sound effect is used.
+        // By default, this sound effect isn't used.
+        protected bool useShotSfx = false;
+
         // Performs an attack.
         public override void PerformAttack()
         {
             Shoot();
             base.PerformAttack();
+        }
+
+        // Called when an attack ahs been performed.
+        public override void OnUnitAttackPerformed()
+        {
+            base.OnUnitAttackPerformed();
+
+            // If the shot sound effect should be used, play it.
+            if(useShotSfx)
+            {
+                // Play the shot sound effect.
+                PlayShotSfx();
+            }
         }
 
         // Calculates and returns the projectile's starting position.
@@ -116,5 +136,14 @@ namespace RM_EDU
             }
         }
 
+        // AUDIO //
+        // Plays the shot sound effect.
+        public void PlayShotSfx()
+        {
+            if (CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(shotSfx);
+            }
+        }
     }
 }

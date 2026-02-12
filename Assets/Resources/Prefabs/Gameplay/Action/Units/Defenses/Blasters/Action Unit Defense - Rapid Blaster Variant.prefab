@@ -165,6 +165,7 @@ MonoBehaviour:
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  shotSfx: {fileID: 8300000, guid: f69afc9c519d1f145a770456555350da, type: 3}
   shotCount: 0
   shotCountMax: 3
   shotRapidDelay: 0.125

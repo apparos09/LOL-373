@@ -14,6 +14,17 @@ namespace RM_EDU
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        [Header("Action")]
+
+        // The enemy attack audio source (loops).
+        public AudioSource enemyAttackSource;
+
+        // The number of calls that have happened for the enemy attack source.
+        // Calling play increments this, and calling stop decrements this.
+        // When there are no more calls, the source is stopped.
+        [Tooltip("Tracks how many play calls have been made for enemy attack. Decreases for every stop call.")]
+        public int enemyAttackPlayCalls;
+
         // Constructor
         private ActionAudio()
         {
@@ -83,6 +94,47 @@ namespace RM_EDU
             get
             {
                 return instanced;
+            }
+        }
+
+        // Plays the enemy attack.
+        public void PlayEnemyAttackSfx()
+        {
+            // Play the enemy attack
+            if(!enemyAttackSource.isPlaying)
+            {
+                enemyAttackSource.Play();
+            }
+
+            // Increase the number of calls.
+            enemyAttackPlayCalls++;
+        }
+
+        // Stops the enemy attack SFX if no one is using it anymore.
+        // ignoreCalls: if true, the enemy attack is stopped and calls are set.
+        // - If false, the call count is decreased. If there are no more calls, the SFX is stopped.
+        public void StopEnemyAttackSfx(bool ignoreCalls)
+        {
+            // Checks if calls should be ignored.
+            if(ignoreCalls)
+            {
+                // No more calls.
+                enemyAttackPlayCalls = 0;
+
+                // Stops the audio source.
+                enemyAttackSource.Stop();
+            }
+            else
+            {
+                // Reduce calls.
+                enemyAttackPlayCalls--;
+
+                // If true, stop the sound.
+                if (enemyAttackPlayCalls <= 0)
+                {
+                    enemyAttackPlayCalls = 0;
+                    enemyAttackSource.Stop();
+                }
             }
         }
 

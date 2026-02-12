@@ -171,6 +171,7 @@ MonoBehaviour:
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  shotSfx: {fileID: 8300000, guid: f69afc9c519d1f145a770456555350da, type: 3}
 --- !u!4 &1849280751653751939 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 9115346750531339744, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}

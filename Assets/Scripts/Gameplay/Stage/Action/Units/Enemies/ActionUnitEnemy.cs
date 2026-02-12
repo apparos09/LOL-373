@@ -47,6 +47,11 @@ namespace RM_EDU
         [Tooltip("If true, the enemy retreats to their ship when they're destroyed.")]
         public bool useEnemyRetreat = true;
 
+        [Header("Enemy/Audio")]
+
+        // The attack sound effect.
+        public AudioClip attackSfx;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -453,6 +458,17 @@ namespace RM_EDU
             // Tries to remove the unit from its row list.
             // This automatically checks if the row list contains this.
             TryRemoveFromRowList();
+        }
+
+        // AUDIO
+        // Plays the attack sound effect.
+        public void PlayAttackSfx()
+        {
+            // If audio can be played.
+            if(CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(attackSfx);
+            }
         }
 
         // Update is called once per frame

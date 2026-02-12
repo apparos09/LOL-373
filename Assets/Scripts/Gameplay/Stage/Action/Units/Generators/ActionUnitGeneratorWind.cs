@@ -7,6 +7,16 @@ namespace RM_EDU
     // Action Unit Generator - Wind
     public class ActionUnitGeneratorWind : ActionUnitGenerator
     {
+        [Header("Wind")]
+
+        // The sprite for the wind on land.
+        [Tooltip("The sprite for the wind generator when on land.")]
+        public Sprite landSprite;
+
+        // The sprite for the wind on water.
+        [Tooltip("The sprite for the wind generator when in the sea.")]
+        public Sprite waterSprite;
+
         // If 'true', the wind generator is using its restricted configuration.
         private bool restrictConfig = true;
 
@@ -23,7 +33,17 @@ namespace RM_EDU
 
             // Uses the wind to generate energy.
             if(!useWindToGenEnergy)
+            {
                 useWindToGenEnergy = true;
+            }
+
+            // The tile is set.
+            if(tile != null)
+            {
+                // If it's a land tile, use the land sprite.
+                // If it's wa ter tile, use the water sprite.
+               spriteRenderer.sprite = tile.IsLandTile() ? landSprite : waterSprite;
+            }
         }
 
         // Checks if the tile configuration is valid.
