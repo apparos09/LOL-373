@@ -72,8 +72,8 @@ namespace RM_EDU
         // The stage's difficulty.
         public int difficulty = 0;
 
-        // The song number.
-        public int songNumber = 0;
+        // The bgm number.
+        public int bgmNumber = 0;
 
         // The time the stage took (in seconds).
         public float time = 0;

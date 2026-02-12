@@ -155,6 +155,10 @@ namespace RM_EDU
         // This also doesn't account for applying the statFactor value to a stat.
         public const float BASE_STAT_MAXIMUM = 100.0F;
 
+        [Header("Audio")]
+
+        // The destroyed sound effect.
+        public AudioClip unitDestroyedSfx;
 
         // Awake is called when the script instance is being loaded
         protected virtual void Awake()
@@ -913,6 +917,15 @@ namespace RM_EDU
             }
             
             return result;
+        }
+
+        // Plays the unit destroyed sfx.
+        public void PlayUnitDestroyedSfx()
+        {
+            if(CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(unitDestroyedSfx);
+            }
         }
 
         // Update is called once per frame

@@ -388,7 +388,7 @@ MonoBehaviour:
   idNumber: 0
   naturalResources: 0100000002000000030000000400000005000000060000000700000008000000090000000a000000
   difficulty: 0
-  songNumber: 0
+  bgmNumber: 0
   statements: []
 --- !u!1 &1551752995
 GameObject:
@@ -558,6 +558,10 @@ PrefabInstance:
       propertyPath: gameUI
       value: 
       objectReference: {fileID: 8571943728979938662}
+    - target: {fileID: 3350018551270934893, guid: 198340dc894778a418caae44211ef47a, type: 3}
+      propertyPath: bgmNumber
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3350018551270934893, guid: 198340dc894778a418caae44211ef47a, type: 3}
       propertyPath: worldScene
       value: DebugWorldScene

@@ -14,20 +14,29 @@ namespace RM_EDU
         public AudioClip stageBgm01;
 
         // The start of the stage 01 bgm loop.
-        public float stageBgm01ClipStart;
+        public float stageBgm01LoopStart;
 
         // The ned of the stage 01 bgm loop.
-        public float stageBgm01ClipEnd;
+        public float stageBgm01LoopEnd;
 
         // THEME 2 (FINAL BGM)
         // The stage 02 bgm.
         public AudioClip stageBgm02;
 
         // The start of the stage 02 bgm loop.
-        public float stageBgm02ClipStart;
+        public float stageBgm02LoopStart;
 
         // The ned of the stage 02 bgm loop.
-        public float stageBgm02ClipEnd;
+        public float stageBgm02LoopEnd;
+
+        // The stage results.
+        public AudioClip stageResults;
+
+        // Stage results loop start.
+        public float stageResultsLoopStart;
+
+        // Stage results loop end.
+        public float stageResultsLoopEnd;
 
 
         // // Start is called before the first frame update
@@ -36,6 +45,12 @@ namespace RM_EDU
         // 
         // }
         // 
+
+        // Returns the stage BGM count.
+        public virtual int GetStageBgmCount()
+        {
+            return 2;
+        }
 
         // Plays the stage BGM based on the number.
         // 0 = Stop
@@ -52,13 +67,19 @@ namespace RM_EDU
                     break;
 
                 case 1:
-                    PlayBackgroundMusic(stageBgm01, stageBgm01ClipStart, stageBgm01ClipEnd);
+                    PlayBackgroundMusic(stageBgm01, stageBgm01LoopStart, stageBgm01LoopEnd);
                     break;
 
                 case 2:
-                    PlayBackgroundMusic(stageBgm02, stageBgm02ClipStart, stageBgm02ClipEnd);
+                    PlayBackgroundMusic(stageBgm02, stageBgm02LoopStart, stageBgm02LoopEnd);
                     break;
             }
+        }
+
+        // Returns true if the BGM is set to BGM 01.
+        public bool IsStageBgm01Set()
+        {
+            return bgmSource.clip == stageBgm01;
         }
 
         // Plays stage bgm 01.
@@ -67,16 +88,29 @@ namespace RM_EDU
             PlayStageBgm(1);
         }
 
+        // Returns true if the BGM is set to BGM 02.
+        public bool IsStageBgm02Set()
+        {
+            return bgmSource.clip == stageBgm02;
+        }
+
         // Play stage bgm 02.
         public void PlayStageBgm02()
         {
             PlayStageBgm(2);
         }
 
+        // Plays the stage results.
+        public void PlayStageResultsBgm()
+        {
+            PlayBackgroundMusic(stageResults, stageResultsLoopStart, stageResultsLoopEnd);
+        }
+
         // Called when the stage is being reset.
         public virtual void ResetStage()
         {
-            // TODO: restart BGM?
+            // NOTE: restarting the BGM is handled in the manage it's relevant to.
+
             sfxWorldSource.Stop();
         }
 

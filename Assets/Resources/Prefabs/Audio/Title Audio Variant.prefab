@@ -69,7 +69,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7806d7a94ad6abf428619e9d41718a08, type: 3}
+  m_Script: {fileID: 11500000, guid: 62f7b328314474049a1d088337ea94e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!82 &2625782498315738895 stripped
@@ -109,8 +109,8 @@ MonoBehaviour:
   sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   titleBgm: {fileID: 8300000, guid: 99a2a7bb0bb388c46b37d80f3f5bf60e, type: 3}
-  titleBgmClipStart: 21.01
-  titleBgmClipEnd: 54.737
+  titleBgmLoopStart: 21.01
+  titleBgmLoopEnd: 54.737
   playBgmInStart: 1
 --- !u!82 &6874522189092471154 stripped
 AudioSource:

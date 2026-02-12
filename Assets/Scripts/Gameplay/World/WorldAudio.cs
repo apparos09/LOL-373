@@ -21,10 +21,10 @@ namespace RM_EDU
         public AudioClip worldBgm;
 
         // The start of the world BGM loop.
-        public float worldBgmClipStart;
+        public float worldBgmLoopStart;
 
         // The ned of the world BGM loop.
-        public float worldBgmClipEnd;
+        public float worldBgmLoopEnd;
 
         // If 'true', the bgm is played in start.
         public bool playBgmInStart = true;
@@ -63,8 +63,8 @@ namespace RM_EDU
             base.Start();
 
             // Clamp the start and end values.
-            worldBgmClipStart = Mathf.Clamp(worldBgmClipStart, 0.0F, worldBgm.length);
-            worldBgmClipEnd = Mathf.Clamp(worldBgmClipEnd, 0.0F, worldBgm.length);
+            worldBgmLoopStart = Mathf.Clamp(worldBgmLoopStart, 0.0F, worldBgm.length);
+            worldBgmLoopEnd = Mathf.Clamp(worldBgmLoopEnd, 0.0F, worldBgm.length);
 
             // If the BGM should be played in start, play it.
             if (playBgmInStart)
@@ -112,7 +112,7 @@ namespace RM_EDU
         // Plays the world BGM.
         public void PlayWorldBgm()
         {
-            PlayBackgroundMusic(worldBgm, worldBgmClipStart, worldBgmClipEnd);
+            PlayBackgroundMusic(worldBgm, worldBgmLoopStart, worldBgmLoopEnd);
         }
 
         // // Update is called once per frame

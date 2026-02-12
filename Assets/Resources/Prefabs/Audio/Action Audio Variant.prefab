@@ -251,11 +251,14 @@ MonoBehaviour:
   sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   stageBgm01: {fileID: 8300000, guid: 86145a65cd0500f4a9cda675eb1f77c6, type: 3}
-  stageBgm01ClipStart: 0
-  stageBgm01ClipEnd: 95.994
+  stageBgm01LoopStart: 0
+  stageBgm01LoopEnd: 95.994
   stageBgm02: {fileID: 8300000, guid: 9c1ff02b88430a640ad414755bab3862, type: 3}
-  stageBgm02ClipStart: 0
-  stageBgm02ClipEnd: 92.376
+  stageBgm02LoopStart: 0
+  stageBgm02LoopEnd: 92.376
+  stageResults: {fileID: 8300000, guid: ffa4b4e96da81ef4cb41e9ffe5deb236, type: 3}
+  stageResultsLoopStart: 1.354
+  stageResultsLoopEnd: 12.013
   actionManager: {fileID: 0}
   enemyAttackSource: {fileID: 4153624060882948546}
   enemyAttackPlayCalls: 0

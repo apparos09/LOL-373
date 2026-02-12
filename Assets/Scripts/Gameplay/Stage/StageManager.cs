@@ -33,8 +33,12 @@ namespace RM_EDU
         // The stage's difficulty.
         public int difficulty = 0;
 
-        // The stage's song number.
-        public int songNumber = 0;
+        // The stage's BGM number. If the BGM number is out of bounds, it's clamped. 0 = no BGM.
+        [Tooltip("The BGM to be played. Value is clamped if outside of bounds. 0 = no BGM.")]
+        public int bgmNumber = 0;
+
+        // If 'true', the BGM is restarted if the stage is reset.
+        private bool restartStageBgmOnReset = true;
 
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
@@ -85,8 +89,13 @@ namespace RM_EDU
         // Initializes the stage.
         public virtual void InitializeStage()
         {
+            // Plays the BGM.
+            PlayStageBgm();
+
+            // Stage is initialized.
             stageInitialized = true;
 
+            // Stage is playing.
             stagePlaying = true;
         }
 
@@ -94,6 +103,93 @@ namespace RM_EDU
         public bool StageInitialized
         {
             get { return stageInitialized; }
+        }
+
+        // AUDIO //
+        // Returns 'true' if one of the stage BGMs are playing.
+        public virtual bool IsStageBgmSet()
+        {
+            bool result;
+
+            // If the stage audio isn't null.
+            if (stageAudio != null)
+            {
+                // If either BGMs are set, return true.
+                result = stageAudio.IsStageBgm01Set() || stageAudio.IsStageBgm02Set();
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        // Returns 'true' if a stage BGM is currently playing.
+        public virtual bool IsStageBgmPlaying()
+        {
+            bool result;
+
+            // Checks if stage audio exists.
+            if (stageAudio != null)
+            {
+                // Returns 'true' if a stage BGM is set and the BGM source is playing.
+                result = IsStageBgmSet() && stageAudio.bgmSource.isPlaying;
+            }
+            else
+            {
+                result = false;
+            }
+
+            return result;
+
+        }
+
+        // Plays the BGM.
+        public void PlayStageBgm()
+        {
+            // Stage audio is set.
+            if (stageAudio != null)
+            {
+                // Clamps the BGM number.
+                bgmNumber = Mathf.Clamp(bgmNumber, 0, stageAudio.GetStageBgmCount());
+
+                // Plays the stage BGM. Note that this might be overwritten.
+                stageAudio.PlayStageBgm(bgmNumber);
+            }
+        }
+
+        // Stops the BGM.
+        public void StopStageBgm()
+        {
+            // Stage audio is set.
+            if(stageAudio != null)
+            {
+                stageAudio.StopBackgroundMusic();
+            }
+        }
+
+        // Restarts the stage BGM.
+        public void RestartStageBgm()
+        {
+            // The stage audio is set.
+            if(stageAudio != null)
+            {
+                // Stops and plays the BGM so that the BGM is set.
+                StopStageBgm();
+                PlayStageBgm();
+            }
+        }
+
+        // Plays the stage results BGM.
+        public void PlayStageResultsBgm()
+        {
+            // Stage audio is set.
+            if(stageAudio != null)
+            {
+                // Play the results BGM.
+                stageAudio.PlayStageResultsBgm();
+            }
         }
 
         // TUTORIALS //
@@ -308,6 +404,18 @@ namespace RM_EDU
 
             // Calculates the game score.
             CalculateAndSetGameScore();
+
+            // Play the stage results BGM if there's BGM playing.
+            if(stageAudio != null)
+            {
+                // If the stage was set to have music, play the results BGM.
+                // If the stage has no music, the BGM source isn't playing.
+                // If it isn't playing, don't play the results BGM.
+                if(stageAudio.bgmSource.isPlaying)
+                {
+                    PlayStageResultsBgm();
+                }
+            }
         }
 
         // Resets the stage.
@@ -319,6 +427,22 @@ namespace RM_EDU
 
             // Call reset stage on stage audio.
             stageAudio.ResetStage();
+
+            // If the stage BGM should be restarted.
+            if(restartStageBgmOnReset)
+            {
+                RestartStageBgm();
+            }
+            else
+            {
+                // Checks if the stage BGM is playing.
+                // If it isn't, restart the BGM.
+                if(!IsStageBgmPlaying())
+                {
+                    RestartStageBgm();
+                }
+            }
+
         }
 
         // Finishes the stage.

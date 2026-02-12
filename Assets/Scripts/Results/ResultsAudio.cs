@@ -21,10 +21,10 @@ namespace RM_EDU
         public AudioClip resultsBgm;
 
         // The start of the results BGM loop.
-        public float resultsBgmClipStart;
+        public float resultsBgmLoopStart;
 
         // The ned of the results BGM loop.
-        public float resultsBgmClipEnd;
+        public float resultsBgmLoopEnd;
 
         // If 'true', the bgm is played in start.
         public bool playBgmInStart = true;
@@ -63,8 +63,8 @@ namespace RM_EDU
             base.Start();
 
             // Clamp the start and end values.
-            resultsBgmClipStart = Mathf.Clamp(resultsBgmClipStart, 0.0F, resultsBgm.length);
-            resultsBgmClipEnd = Mathf.Clamp(resultsBgmClipEnd, 0.0F, resultsBgm.length);
+            resultsBgmLoopStart = Mathf.Clamp(resultsBgmLoopStart, 0.0F, resultsBgm.length);
+            resultsBgmLoopEnd = Mathf.Clamp(resultsBgmLoopEnd, 0.0F, resultsBgm.length);
 
             // If the BGM should be played in start, play it.
             if (playBgmInStart)
@@ -112,7 +112,7 @@ namespace RM_EDU
         // Plays the results BGM.
         public void PlayResultsBgm()
         {
-            PlayBackgroundMusic(resultsBgm, resultsBgmClipStart, resultsBgmClipEnd);
+            PlayBackgroundMusic(resultsBgm, resultsBgmLoopStart, resultsBgmLoopEnd);
         }
 
         // // Update is called once per frame

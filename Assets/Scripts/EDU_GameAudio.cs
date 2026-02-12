@@ -90,6 +90,18 @@ namespace RM_EDU
             // GameSettings.Instance.AdjustAllAudioLevels();
         }
 
+        // Restarts the BGM source if it's currently playing.
+        // This isn't applied if there's no audio clip.
+        public void RestartBackgroundMusic()
+        {
+            // The BGM source is playing and it has an audio clip.
+            if(bgmSource.isPlaying && bgmSource.clip != null)
+            {
+                bgmSource.Stop();
+                bgmSource.Play();
+            }
+        }
+
         // Plays the button menu SFX.
         public void PlayButtonUISfx()
         {

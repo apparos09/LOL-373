@@ -325,6 +325,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
       value: 2
       objectReference: {fileID: 0}
@@ -489,6 +493,10 @@ PrefabInstance:
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: idNumber
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
@@ -700,6 +708,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
       value: 1
       objectReference: {fileID: 0}
@@ -897,6 +909,10 @@ PrefabInstance:
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
       value: 4
       objectReference: {fileID: 0}
@@ -1012,6 +1028,10 @@ PrefabInstance:
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: idNumber
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
+      propertyPath: bgmNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
@@ -1555,6 +1575,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
+      propertyPath: bgmNumber
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
       value: 7
       objectReference: {fileID: 0}
@@ -1742,6 +1766,10 @@ PrefabInstance:
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: idNumber
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
@@ -1951,6 +1979,10 @@ PrefabInstance:
       value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
       value: 5
       objectReference: {fileID: 0}
@@ -2102,6 +2134,10 @@ PrefabInstance:
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: idNumber
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
+      propertyPath: bgmNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
@@ -2551,6 +2587,10 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
       value: 3
       objectReference: {fileID: 0}
@@ -2690,6 +2730,10 @@ PrefabInstance:
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: idNumber
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
+      propertyPath: bgmNumber
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: difficulty
