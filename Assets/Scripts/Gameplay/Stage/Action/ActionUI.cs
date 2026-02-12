@@ -35,6 +35,9 @@ namespace RM_EDU
         // The player user energy text.
         public TMP_Text playerUserEnergyText;
 
+        // The player user air pollution text.
+        public TMP_Text playerUserAirPollutionText;
+
         // The wind indicator.
         public WindIndicator windIndicator;
 
@@ -149,12 +152,17 @@ namespace RM_EDU
             // Gets the user.
             ActionPlayerUser playerUser = actionManager.playerUser;
 
-            // If the player exists, update the energy text.
+            // If the player exists, update the energy and air pollution text.
             if(playerUser != null)
             {
                 playerUserEnergyText.text = Mathf.Floor(playerUser.energy).ToString();
-
-
+                playerUserAirPollutionText.text = Mathf.Floor(playerUser.airPollution).ToString();
+            }
+            // The player user couldn't be found, so clear the text.
+            else
+            {
+                playerUserEnergyText.text = "-";
+                playerUserAirPollutionText.text = "-";
             }
         }
 

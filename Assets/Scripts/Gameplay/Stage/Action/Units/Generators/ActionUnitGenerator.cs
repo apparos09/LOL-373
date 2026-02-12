@@ -449,7 +449,7 @@ namespace RM_EDU
                         if (owner != null)
                         {
                             owner.IncreaseEnergy(newEnergy);
-                            owner.airPollution += newAirPoll;
+                            owner.IncreaseAirPollution(newAirPoll);
                         }
                     }
                 }

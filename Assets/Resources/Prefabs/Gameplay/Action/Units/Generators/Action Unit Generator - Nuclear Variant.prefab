@@ -157,6 +157,7 @@ MonoBehaviour:
   durability: 100
   movementSpeed: 0
   airPollution: 0
+  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
@@ -171,3 +172,4 @@ MonoBehaviour:
   useEnergyGenLimit: 0
   energyGenAnim: Action Unit - Flash - Blue Animation
   energyGenClip: {fileID: 7400000, guid: b3c8621e61951db40940e323ad9f5d5c, type: 2}
+  killOnUnusable: 1

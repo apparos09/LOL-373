@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -85,6 +86,8 @@ namespace RM_EDU
             }
         }
 
+
+        // ENERGY //
         // Returns 'true' if the player has energy.
         public bool HasEnergy()
         {
@@ -141,6 +144,39 @@ namespace RM_EDU
             }
 
             return result;                
+        }
+
+        // AIR POLLUTION //
+        // Returns 'ture' if the user has air pollution.
+        public bool HasAirPollution()
+        {
+            return airPollution > 0;
+        }
+
+        // Increases the air pollution by the provided amount.
+        public void IncreaseAirPollution(float increase)
+        {
+            airPollution += increase;
+
+            // Bounds check.
+            if (airPollution < 0)
+                airPollution = 0;
+        }
+
+        // Decreases the air pollution by the provided amount.
+        public void DecreaseAirPollution(float decrease)
+        {
+            airPollution -= decrease;
+
+            // Bounds check.
+            if(airPollution < 0)
+                airPollution = 0;
+        }
+
+        // Resets the air pollution amount.
+        public void ResetAirPollution()
+        {
+            airPollution = 0;
         }
 
         // KILLS
@@ -200,6 +236,7 @@ namespace RM_EDU
         // Resets the player.
         public virtual void ResetPlayer()
         {
+            ResetAirPollution();
             ResetKills();
         }
 
