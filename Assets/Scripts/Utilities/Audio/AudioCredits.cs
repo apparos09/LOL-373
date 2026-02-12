@@ -42,12 +42,6 @@ namespace util
             // TODO: load in the audio references.
         }
 
-        // Returns true if there are credits.
-        public bool HasCredits()
-        {
-            return audioCredits.Count > 0;
-        }
-
         // Returns the page count for the audio references.
         public int GetCreditCount()
         {
