@@ -12,6 +12,9 @@ namespace RM_EDU
         // The game UI.
         public GameplayUI gameUI;
 
+        // The game audio.
+        public GameAudio gameAudio;
+
         // The game speed.
         // This is only used for the Action Stages.
         private float gameTimeScale = 1.0F;
@@ -77,7 +80,16 @@ namespace RM_EDU
         {
             // If the game UI isn't set, try to find it.
             if (gameUI == null)
+            {
                 gameUI = FindObjectOfType<GameplayUI>();
+            }
+
+            // If the game audio isn't set, try to find it.
+            if(gameAudio == null)
+            {
+                gameAudio = FindObjectOfType<GameAudio>();
+            }
+                
 
             // If the data logger isn't set, get the instance.
             if (dataLogger == null)

@@ -14,6 +14,17 @@ namespace RM_EDU
         // This isn't needed, but it helps with the clarity.
         private static bool instanced = false;
 
+        // [Header("Knowledge")]
+        // 
+        // // Sound effect for the statement button.
+        // public AudioClip statementButtonSfx;
+        // 
+        // // Sound effect for the resource butotn.
+        // public AudioClip resourceButtonSfx;
+        // 
+        // // Sound effect for the verify button.
+        // public AudioClip verifyButtonSfx;
+
         // Constructor
         private KnowledgeAudio()
         {
@@ -63,10 +74,22 @@ namespace RM_EDU
             }
         }
 
-        // // Update is called once per frame
-        // void Update()
+        // // Plays the statement button sound effect.
+        // public void PlayStatementButtonSfx()
         // {
+        //     PlaySoundEffect(statementButtonSfx, false);
+        // }
         // 
+        // // Plays the resource button sound effect.
+        // public void PlayResourceButtonSfx()
+        // {
+        //     PlaySoundEffect(resourceButtonSfx, false);
+        // }
+        // 
+        // // Plays the verify button sound effect.
+        // public void PlayVerifyButtonSfx()
+        // {
+        //     PlaySoundEffect(verifyButtonSfx, false);
         // }
 
         // This function is called when the MonoBehaviour will be destroyed.

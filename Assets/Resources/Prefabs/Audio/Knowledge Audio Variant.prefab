@@ -83,6 +83,7 @@ MonoBehaviour:
   sfxWorldSource: {fileID: 4309362531827653097}
   sfxUISource: {fileID: 7505638045901427682}
   vceSource: {fileID: 984078583962702643}
+  autoSetUIAudios: 1
   buttonUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
@@ -92,6 +93,9 @@ MonoBehaviour:
   stageBgm02: {fileID: 8300000, guid: fa987a4585b92e54f9c1be0180a048e9, type: 3}
   stageBgm02ClipStart: 0
   stageBgm02ClipEnd: 34.399
+  statementButtonSfx: {fileID: 8300000, guid: 23d1695ff9aa858408513bbb734513f0, type: 3}
+  resourceButtonSfx: {fileID: 8300000, guid: 71b2883a067ee434cbc4077cc4cc2659, type: 3}
+  verifyButtonSfx: {fileID: 8300000, guid: 339acf82c366ac64495aa758974e23a2, type: 3}
 --- !u!82 &984078583962702643 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 348386285445040504, guid: 4047d383a5788ec4891385f6e2d8f842, type: 3}

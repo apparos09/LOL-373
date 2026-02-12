@@ -162,6 +162,7 @@ GameObject:
   - component: {fileID: 2934418357161413677}
   - component: {fileID: 760554473719918355}
   - component: {fileID: 6290257033459134566}
+  - component: {fileID: 5836493129987934003}
   m_Layer: 5
   m_Name: Button (UI)
   m_TagString: Untagged
@@ -295,3 +296,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c73d6fa36da50499e87e60660eeff4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5836493129987934003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3928440292174365712}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 206de04b62f2ce743bdf36d063bb0ef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  audioClip: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  button: {fileID: 760554473719918355}

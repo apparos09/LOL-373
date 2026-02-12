@@ -67,9 +67,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6713282113239205980}
   - component: {fileID: 7013497908450806185}
+  - component: {fileID: 6675455935267329526}
   m_Layer: 0
   m_Name: SFX UI Audio Source
-  m_TagString: Untagged
+  m_TagString: SFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,6 +186,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6675455935267329526
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496946446778926813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2eddc4aac811445ae0ab6323e7c7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 7013497908450806185}
+  maxVolume: 1
+  autoSetMaxVolume: 0
 --- !u!1 &3000527124551054439
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,10 +211,11 @@ GameObject:
   m_Component:
   - component: {fileID: 4969136112933199911}
   - component: {fileID: 1892463984037992404}
+  - component: {fileID: 2460591236883259220}
   - component: {fileID: 6832325066900028198}
   m_Layer: 0
   m_Name: BGM Audio Source
-  m_TagString: Untagged
+  m_TagString: BGM
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +247,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -314,6 +331,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2460591236883259220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3000527124551054439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2eddc4aac811445ae0ab6323e7c7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 1892463984037992404}
+  maxVolume: 0.8
+  autoSetMaxVolume: 0
 --- !u!114 &6832325066900028198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,9 +374,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3121815581405619547}
   - component: {fileID: 3652559335429260194}
+  - component: {fileID: 2939222141958024054}
   m_Layer: 0
   m_Name: SFX World Audio Source
-  m_TagString: Untagged
+  m_TagString: SFX
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -460,6 +493,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2939222141958024054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6843330121085839808}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2eddc4aac811445ae0ab6323e7c7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 3652559335429260194}
+  maxVolume: 1
+  autoSetMaxVolume: 0
 --- !u!1 &7472074671161193139
 GameObject:
   m_ObjectHideFlags: 0
@@ -470,9 +518,10 @@ GameObject:
   m_Component:
   - component: {fileID: 6455446664411055554}
   - component: {fileID: 348386285445040504}
+  - component: {fileID: 8813584295726021715}
   m_Layer: 0
   m_Name: VCE Audio Source
-  m_TagString: Untagged
+  m_TagString: VCE
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -588,3 +637,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8813584295726021715
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7472074671161193139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2eddc4aac811445ae0ab6323e7c7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 348386285445040504}
+  maxVolume: 1
+  autoSetMaxVolume: 0

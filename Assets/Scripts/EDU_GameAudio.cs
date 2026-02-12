@@ -85,8 +85,9 @@ namespace RM_EDU
         {
             calledLateStart = true;
 
+            // NOTE: may be unneeded.
             // Adjusts all the audio levels.
-            GameSettings.Instance.AdjustAllAudioLevels();
+            // GameSettings.Instance.AdjustAllAudioLevels();
         }
 
         // Plays the button menu SFX.

@@ -20,6 +20,9 @@ namespace RM_EDU
         // The difficulty, which goes from 1-9. A difficulty of (0) is the default value.
         public int difficulty = 0;
 
+        // The sound number. 0 = none, 1 = BGM 1, 2 = BGM 2
+        public int songNumber = 0;
+
         // Sets the start info.
         public virtual void SetStartInfo(WorldStage worldStage)
         {
@@ -27,8 +30,9 @@ namespace RM_EDU
             worldStageIndex = worldStage.GetWorldStageIndex();
             idNumber = worldStage.idNumber;
 
-            // Set the difficulty.
+            // Set the difficulty and song.
             difficulty = worldStage.difficulty;
+            songNumber = worldStage.songNumber;
 
             // Set the resources.
             naturalResources.Clear();
@@ -52,8 +56,9 @@ namespace RM_EDU
             stageManager.worldStageIndex = worldStageIndex;
             stageManager.idNumber = idNumber;
 
-            // Sets the difficulty.
+            // Sets the difficulty and song number.
             stageManager.difficulty = difficulty;
+            stageManager.songNumber = songNumber;
 
             // Gives it the natural resources.
             stageManager.naturalResources = naturalResources;

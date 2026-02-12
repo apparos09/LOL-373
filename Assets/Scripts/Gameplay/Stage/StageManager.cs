@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using util;
 
 namespace RM_EDU
 {
@@ -15,6 +16,9 @@ namespace RM_EDU
         // The stage user interface.
         public StageUI stageUI;
 
+        // The stage audio.
+        public StageAudio stageAudio;
+
         // The timer for the stage. This is scaled with delta time since it's tied to game events.
         // This is effected by the time scale and is reset if the stage starts over.
         [Tooltip("The stage timer, which is used for some stage events. This is effected by time scale and reset if the stage starts over.")]
@@ -28,6 +32,9 @@ namespace RM_EDU
 
         // The stage's difficulty.
         public int difficulty = 0;
+
+        // The stage's song number.
+        public int songNumber = 0;
 
         // The natural resources that will be used.
         public List<NaturalResources.naturalResource> naturalResources = new List<NaturalResources.naturalResource>();
@@ -52,7 +59,15 @@ namespace RM_EDU
 
             // Finds the stage ui if it isn't set.
             if (stageUI == null)
+            {
                 stageUI = FindObjectOfType<StageUI>();
+            }
+
+            // If the stage audio isn't set, try to find it.
+            if (stageAudio == null)
+            {
+                stageAudio = FindObjectOfType<StageAudio>();
+            }
 
             // Will be set to false in late start to check tutorials.
             checkedTutorials = true;
