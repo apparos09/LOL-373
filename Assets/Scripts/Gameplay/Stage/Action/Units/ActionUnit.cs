@@ -875,6 +875,46 @@ namespace RM_EDU
             unitAnimations.PlayDeathAnimation();
         }
 
+        // AUDIO //
+        // Returns 'true' if the unit can play audio. This is for the world only.
+        public bool CanPlayAudio()
+        {
+            // The result to return.
+            bool result;
+
+            // The action audio has been instantiated.
+            if (ActionAudio.Instantiated)
+            {
+                // The SFX world source is active and enabled.
+                if(ActionAudio.Instance.sfxWorldSource.isActiveAndEnabled)
+                {
+                    // The owner exists.
+                    if (owner != null)
+                    {
+                        // The owner's audio is enabled.
+                        result = owner.IsAudioEnabled();
+                    }
+                    // Owner not set, so assume audio can be played.
+                    else
+                    {
+                        result = true;
+                    }
+                }
+                // SFX World Source is active and enabled.
+                else
+                {
+                    result = false;
+                }
+            }
+            // Action audio isn't available.
+            else
+            {
+                result = false;
+            }
+            
+            return result;
+        }
+
         // Update is called once per frame
         virtual protected void Update()
         {

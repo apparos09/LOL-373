@@ -29,6 +29,33 @@ namespace RM_EDU
         // If 'true', the bgm is played in start.
         public bool playBgmInStart = true;
 
+        // Constructor
+        private ResultsAudio()
+        {
+            // ...
+        }
+
+        // Awake is called when the script is being loaded
+        protected override void Awake()
+        {
+            // If the instance hasn't been set, set it to this object.
+            if (instance == null)
+            {
+                instance = this;
+            }
+            // If the instance isn't this, destroy the game object.
+            else if (instance != this)
+            {
+                Destroy(gameObject);
+                return;
+            }
+
+            // Run code for initialization.
+            if (!instanced)
+            {
+                instanced = true;
+            }
+        }
 
         // Start is called before the first frame update
         protected override void Start()

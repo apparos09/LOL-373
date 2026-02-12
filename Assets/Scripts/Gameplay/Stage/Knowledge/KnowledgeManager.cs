@@ -23,6 +23,9 @@ namespace RM_EDU
         // The knowledge UI.
         public KnowledgeUI knowledgeUI = null;
 
+        // The knowledge audio.
+        public KnowledgeAudio knowledgeAudio = null;
+
         // The selected knowledge statement.
         public KnowledgeStatement selectedStatement = null;
 
@@ -87,7 +90,15 @@ namespace RM_EDU
 
             // Sets the knowledge UI if it isn't already set.
             if(knowledgeUI == null)
+            {
                 knowledgeUI = KnowledgeUI.Instance;
+            }
+                
+            // If the knowledge audio isn't set, grab the instance.
+            if(knowledgeAudio == null)
+            {
+                knowledgeAudio = KnowledgeAudio.Instance;
+            }
 
             // If the knowledge statement list is not set, try to get the instance.
             // This also instantiates the object if it hasn't been instantiated already.

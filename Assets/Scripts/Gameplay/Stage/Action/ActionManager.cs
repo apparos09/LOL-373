@@ -23,6 +23,9 @@ namespace RM_EDU
         // The action UI.
         public ActionUI actionUI;
 
+        // The action audio.
+        public ActionAudio actionAudio;
+
         // The action stage list.
         public ActionStageList actionStageList;
 
@@ -130,6 +133,12 @@ namespace RM_EDU
             if(actionUI == null)
             {
                 actionUI = ActionUI.Instance;
+            }
+
+            // Gets the action audio instance.
+            if(actionAudio == null)
+            {
+                actionAudio = ActionAudio.Instance;
             }
 
             // Gets the action stage list.
@@ -855,6 +864,25 @@ namespace RM_EDU
         {
             base.ResetStage();
 
+            // The audio world source and the old enabled parameter.
+            AudioSource sfxWorldSource;
+            bool sfxWorldEnabledTemp;
+
+            // If the aciton audio exists, get the source and disable it.
+            if(actionAudio != null)
+            {
+                sfxWorldSource = actionAudio.sfxWorldSource;
+                sfxWorldEnabledTemp = actionAudio.sfxWorldSource.enabled;
+                actionAudio.sfxWorldSource.enabled = false;
+            }
+            // Source couldn't be found.
+            else
+            {
+                sfxWorldSource = null;
+                sfxWorldEnabledTemp = true;
+            }
+
+
             // Resets stage speed. Also refreshes the speed button.
             ResetStageSpeed();
             actionUI.speedButton.RefreshSpeedIcon();
@@ -877,6 +905,12 @@ namespace RM_EDU
             // Set the selectors for the player user to row 0.
             actionUI.generatorUnitSelector.SetRow(0);
             actionUI.defenseUnitSelector.SetRow(0);
+
+            // If the SFX audio source exists, restore the old enabled value.
+            if(sfxWorldSource != null)
+            {
+                sfxWorldSource.enabled = sfxWorldEnabledTemp;
+            }
 
             // Sets that the stage is playing.
             SetStagePlaying(true);

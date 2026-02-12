@@ -37,6 +37,11 @@ namespace RM_EDU
         // The animation for energy generation.
         public string energyGenAnim = "Action Unit - Flash - Blue Animation";
 
+        [Header("Trap/Audio")]
+
+        // The explosion audio for the trap.
+        public AudioClip explosionSfx;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -303,6 +308,16 @@ namespace RM_EDU
         {
             if (animator != null && energyGenAnim != "")
                 animator.Play(energyGenAnim);
+        }
+
+        // AUDIO
+        // Plays the explosion sound effect.
+        public void PlayExplosionSfx()
+        {
+            if(CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(explosionSfx);
+            }
         }
 
 

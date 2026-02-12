@@ -415,7 +415,16 @@ namespace RM_EDU
                 // If this unit can be removed by the player user.
                 if(IsRemovableByUser())
                 {
+                    // Play the removed sound.
+                    playerUser.PlayUnitRemovedSfx();
+
+                    // Disables the death animation when killing, then puts it back to original setting.
+                    bool deathAnimTemp = deathAnimationEnabled;
+                    deathAnimationEnabled = false;
                     Kill();
+                    deathAnimationEnabled = deathAnimTemp;
+
+                    // Action performed.
                     performed = true;
                 }
             }

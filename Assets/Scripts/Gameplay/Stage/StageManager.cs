@@ -316,6 +316,9 @@ namespace RM_EDU
             // Resets the tiem and the score.
             ResetGameTimerAndStageTimer();
             ResetStageScore();
+
+            // Call reset stage on stage audio.
+            stageAudio.ResetStage();
         }
 
         // Finishes the stage.

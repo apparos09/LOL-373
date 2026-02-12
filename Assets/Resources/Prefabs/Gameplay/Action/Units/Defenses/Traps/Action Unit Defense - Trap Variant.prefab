@@ -165,6 +165,8 @@ MonoBehaviour:
   useHitLimit: 1
   damageEnergyPercent: 0.25
   killTargetsOnHitLimitReached: 1
+  energyGenAnim: Action Unit - Flash - Blue Animation
+  explosionSfx: {fileID: 8300000, guid: 3e0b40778ee5b704dbeecf6cd91d8000, type: 3}
 --- !u!50 &9044625043006678836 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8858641744088496366, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}

@@ -73,6 +73,13 @@ namespace RM_EDU
             PlayStageBgm(2);
         }
 
+        // Called when the stage is being reset.
+        public void ResetStage()
+        {
+            // TODO: restart BGM?
+            sfxWorldSource.Stop();
+        }
+
         // // Update is called once per frame
         // void Update()
         // {

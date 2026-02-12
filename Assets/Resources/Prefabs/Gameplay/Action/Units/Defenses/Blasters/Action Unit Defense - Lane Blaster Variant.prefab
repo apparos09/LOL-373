@@ -171,6 +171,8 @@ MonoBehaviour:
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  killOnAttackPerformed: 1
+  shotSfx: {fileID: 8300000, guid: 6ec4596f160ae13478b03b860c60a84d, type: 3}
 --- !u!212 &6801037432176312619 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 2143785946635923706, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}

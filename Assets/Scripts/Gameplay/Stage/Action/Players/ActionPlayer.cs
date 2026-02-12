@@ -34,6 +34,9 @@ namespace RM_EDU
         [Tooltip("If true, the player is blocking energy that's used for attacks, preventing defenses that use energy from attacking.")]
         public bool blockingAttackEnergy = false;
 
+        // If audio is enabled for this player.
+        protected bool audioEnabled = true;
+
         // Start is called before the first frame update
         protected virtual void Start()
         {
@@ -182,6 +185,14 @@ namespace RM_EDU
         public void ToggleBlockingAttackEnergy()
         {
             SetBlockingAttackEnergy(!blockingAttackEnergy);
+        }
+
+
+        // AUDIO //
+        // If 'true', the audio is enabled.
+        public bool IsAudioEnabled()
+        {
+            return audioEnabled;
         }
 
 

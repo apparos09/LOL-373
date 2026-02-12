@@ -96,11 +96,11 @@ namespace RM_EDU
                 actionTilePrefabs = ActionTilePrefabs.Instance;
 
             // Gets the instance.
-            if(actionStageList == null)
+            if (actionStageList == null)
                 actionStageList = ActionStageList.Instance;
 
             // If the map should be generated in the Start() function.
-            if(generateMapOnStart)
+            if (generateMapOnStart)
             {
                 GenerateStage();
             }
@@ -115,7 +115,7 @@ namespace RM_EDU
         // Gets the map size.
         public Vector2 MapSize
         {
-            get 
+            get
             {
                 // return mapSize; 
                 // (row, col) = (y, x)
@@ -178,7 +178,7 @@ namespace RM_EDU
             ActionStageList.StageGenerationData data = ActionStageList.GenerateStageMap(idNumber);
 
             // The data doesn't exist.
-            if(data == null)
+            if (data == null)
             {
                 Debug.LogError("Data could not be found.");
                 return;
@@ -188,7 +188,7 @@ namespace RM_EDU
             string[,] map = data.map;
 
             // The map doesn't exist.
-            if(map == null)
+            if (map == null)
             {
                 Debug.LogError("No map data was found.");
                 return;
@@ -197,12 +197,33 @@ namespace RM_EDU
             // Clears the list of metal tiles.
             metalTiles.Clear();
 
+
+            // The sfx world source and a temporary variable for getting the enabled value.
+            AudioSource sfxWorldSource;
+            bool sfxWorldEnabledTemp;
+
+            // If the action audio is instantiated, get the sfx source.
+            if (ActionAudio.Instantiated)
+            {
+                // Get the audio source, mute it, and save the mute value.
+                // This is done to make sure no sounds are played when the stage is generated.
+                sfxWorldSource = ActionAudio.Instance.sfxWorldSource;
+                sfxWorldEnabledTemp = sfxWorldSource.enabled;
+                sfxWorldSource.enabled = false;
+            }
+            else
+            {
+                sfxWorldSource = null;
+                sfxWorldEnabledTemp = true;
+            }
+
+
             // Goes through all the rows and columns, generating the tiles.
             // Row
-            for(int r = 0; r < map.GetLength(0); r++)
+            for (int r = 0; r < map.GetLength(0); r++)
             {
                 // Column
-                for(int c = 0; c < map.GetLength(1); c++)
+                for (int c = 0; c < map.GetLength(1); c++)
                 {
                     // The tile id from the map.
                     // Format: ##A (Number-Number-Letter).
@@ -240,10 +261,10 @@ namespace RM_EDU
 
                         // Next.
                         continue;
-                    }    
+                    }
 
                     // Applies the parent.
-                    if(tileParent != null)
+                    if (tileParent != null)
                         newTile.transform.parent = tileParent.transform;
 
                     // Sets the tile version.
@@ -265,7 +286,7 @@ namespace RM_EDU
 
                     // CHECKERBOARD
                     // If the map checkerboard is enabled, alter the tile colours to make a checkerboard.
-                    if(mapCheckerboardEnabled)
+                    if (mapCheckerboardEnabled)
                     {
                         // The tile colour.
                         Color tileColor = Color.white;
@@ -290,7 +311,7 @@ namespace RM_EDU
 
                     // OVERLAY //
                     // If there are overlays, set the tile's default overlay.
-                    if(data.overlays != null)
+                    if (data.overlays != null)
                     {
                         // Gets the new overlay, clamping it within valid values.
                         ActionTile.actionTileOverlay newOverlay =
@@ -304,7 +325,7 @@ namespace RM_EDU
                     if (tiles[r, c] != null)
                     {
                         Destroy(tiles[r, c].gameObject);
-                        tiles[r, c] = null; 
+                        tiles[r, c] = null;
                     }
 
 
@@ -322,14 +343,14 @@ namespace RM_EDU
 
             // WIND //
             // If there's winds, use them for the stage.
-            if(data.windRatings != null)
+            if (data.windRatings != null)
             {
                 // Save the wind ratings.
                 ActionManager.Instance.windRatings = data.windRatings;
             }
 
             // Put a lane blaster on the far left edge of the map.
-            if(useLaneBlasters)
+            if (useLaneBlasters)
             {
                 // Create hte lane blasters in row 0.
                 CreateLaneBlastersInRow0(true);
@@ -339,10 +360,10 @@ namespace RM_EDU
             if (rowEnemyUnits.Count > 0)
             {
                 // Clears all the lists.
-                foreach(List<ActionUnitEnemy> list in rowEnemyUnits)
+                foreach (List<ActionUnitEnemy> list in rowEnemyUnits)
                 {
                     // Destroys all enemies in the list, before clearing it.
-                    for(int i = list.Count - 1; i >= 0; i--)
+                    for (int i = list.Count - 1; i >= 0; i--)
                     {
                         list[i].OnUnitDeath();
                     }
@@ -354,11 +375,17 @@ namespace RM_EDU
 
             // Clear the list of enemy row unit lists.
             rowEnemyUnits.Clear();
-            
+
             // Make a list for every row.
-            for(int n = 0; n < map.GetLength(0); n++)
+            for (int n = 0; n < map.GetLength(0); n++)
             {
                 rowEnemyUnits.Add(new List<ActionUnitEnemy>());
+            }
+
+            // If the sfx world source was successfully gotten, switch the enabled parameter back.
+            if(sfxWorldSource != null)
+            {
+                sfxWorldSource.enabled = sfxWorldEnabledTemp;
             }
 
             // The map has now been generated.
@@ -394,7 +421,7 @@ namespace RM_EDU
         public ActionTile GetTile(int row, int column)
         {
             // If position valid, return tile. If false, return null.
-            if(ValidMapPosition(row, column))
+            if (ValidMapPosition(row, column))
                 return tiles[row, column];
             else
                 return null;
@@ -643,7 +670,7 @@ namespace RM_EDU
         public bool IsTileHighlightingActive()
         {
             // If tile highlighting is off, the highlights are never active.
-            if(TileHighlightingEnabled)
+            if (TileHighlightingEnabled)
             {
                 // If the player is selecting a unit prefab, then tile highlights must be on.
                 return ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab();
@@ -704,7 +731,7 @@ namespace RM_EDU
             ActionPlayerUser playerUser = actionManager.playerUser;
 
             // If the player is selecting a prefab, highlight refresh.
-            if(playerUser.IsSelectingActionUnitPrefab())
+            if (playerUser.IsSelectingActionUnitPrefab())
             {
                 HighlightAllTiles(playerUser.selectedUnitPrefab);
             }
@@ -767,7 +794,7 @@ namespace RM_EDU
         public bool IsEnemyInRow(int row)
         {
             // Checks if the row is valid.
-            if(row >= 0 && row < rowEnemyUnits.Count)
+            if (row >= 0 && row < rowEnemyUnits.Count)
             {
                 return rowEnemyUnits[row].Count > 0;
             }
@@ -804,10 +831,10 @@ namespace RM_EDU
                     // If can be hit, check if in line of fire.
                     if (canBeHit)
                     {
-                        if(refDirec < 0) // Negative (Left)
+                        if (refDirec < 0) // Negative (Left)
                         {
                             // Checks if equal to should be included.
-                            if(includeEqualTo)
+                            if (includeEqualTo)
                             {
                                 //  The enemy is to the left or equal to the reference position.
                                 if (refPos.x >= enemy.transform.position.x)
@@ -826,7 +853,7 @@ namespace RM_EDU
                                 }
                             }
                         }
-                        else if(refDirec > 0) // Positive (Right)
+                        else if (refDirec > 0) // Positive (Right)
                         {
                             // Checks if equal to should be included.
                             if (includeEqualTo)
@@ -851,12 +878,12 @@ namespace RM_EDU
                         else // Exact position.
                         {
                             // Is in range if the reference position is the same as the enemy position.
-                            if(refPos == enemy.transform.position)
+                            if (refPos == enemy.transform.position)
                             {
                                 inRange = true;
                                 break;
                             }
-                        }  
+                        }
                     }
 
                 }
@@ -920,9 +947,9 @@ namespace RM_EDU
         public void ResetStage()
         {
             // Resets all the tiles for the map.
-            for(int r = 0; r < tiles.GetLength(0); r++) // Rows
+            for (int r = 0; r < tiles.GetLength(0); r++) // Rows
             {
-                for(int c = 0; c < tiles.GetLength(1); c++) // Columns
+                for (int c = 0; c < tiles.GetLength(1); c++) // Columns
                 {
                     // Tile exists, so reset it.
                     if (tiles[r, c] != null)
@@ -933,7 +960,7 @@ namespace RM_EDU
             }
 
             // If lane blasters should be used, create lane blasters in row 0. 
-            if(useLaneBlasters)
+            if (useLaneBlasters)
             {
                 CreateLaneBlastersInRow0(true);
             }

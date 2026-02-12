@@ -35,6 +35,11 @@ namespace RM_EDU
         public Sprite direcUpSprite;
         public Sprite direcDownSprite;
 
+        [Header("Generator/Hydro/Audio")]
+
+        // The flood sound effect.
+        public AudioClip floodSfx;
+
         // Start is called just before any of the Update methods is called the first time
         protected override void Start()
         {
@@ -483,10 +488,27 @@ namespace RM_EDU
             // Tiles have been flooded.
             floodedTiles = true;
 
+            // Tiles have been flooded, so play SFX.
+            if (floodedTiles)
+            {
+                PlayFloodSfx();
+            }
+
             // If the player is selecting an action prefab, that means the tiles are highlighted.
             // As such, refresh the highlighted tiles.
             if (ActionManager.Instance.playerUser.IsSelectingActionUnitPrefab())
+            {
                 ActionManager.Instance.actionStage.RefreshHighlightedTiles();
+            }
+        }
+
+        // Plays the flood sound effect.
+        public void PlayFloodSfx()
+        {
+            if(CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(floodSfx);
+            }
         }
 
         // Update is called every from, if the MonoBehaviour is enabled

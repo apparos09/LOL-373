@@ -7,6 +7,15 @@ namespace RM_EDU
     // A lane blaster.
     public class ActionUnitDefenseBlasterLane : ActionUnitDefenseBlaster
     {
+        [Header("Lane")]
+
+        // Kills unit once an attack has been performed.
+        [Tooltip("Kills this unit once an attack has been performed.")]
+        public bool killOnAttackPerformed = true;
+
+        // The blaster shot sfx.
+        public AudioClip shotSfx;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -39,8 +48,15 @@ namespace RM_EDU
         {
             base.OnUnitAttackPerformed();
 
-            // A shot has been fired, so kill the lane blaster.
-            Kill();
+            // Play the shot sound effect.
+            PlayShotSfx();
+
+            // If unit should be killed.
+            if(killOnAttackPerformed)
+            {
+                // A shot has been fired, so kill the lane blaster.
+                Kill();
+            }
         }
 
         // Called when the unit has died.
@@ -59,6 +75,15 @@ namespace RM_EDU
             base.OnUnitDeath();
         }
 
+        // AUDIO //
+        // Plays the shot sound effect.
+        public void PlayShotSfx()
+        {
+            if(CanPlayAudio())
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(shotSfx);
+            }
+        }
 
         // Update is called once per frame
         protected override void Update()

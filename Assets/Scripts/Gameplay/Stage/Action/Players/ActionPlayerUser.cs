@@ -68,6 +68,14 @@ namespace RM_EDU
         // Only user units can be placed in this list.
         public List<ActionUnitUser> createdUserUnits = new List<ActionUnitUser>();
 
+        [Header("User/Audio")]
+
+        // Sound effect played when a unit is created.
+        public AudioClip unitCreatedSfx;
+
+        // Sound effect played when a unit is removed.
+        public AudioClip unitRemovedSfx;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -497,6 +505,12 @@ namespace RM_EDU
                 }
             }
 
+            // If the new unit isn't null, play the created sound.
+            if(newUnit != null)
+            {
+                PlayUnitCreatedSfx();
+            }
+
             // Returns the new unit.
             return newUnit;
         }
@@ -557,6 +571,28 @@ namespace RM_EDU
             createdUserUnits.Clear();
         }
 
+        // AUDIO // 
+        // Play the unit created sound effect.
+        public void PlayUnitCreatedSfx()
+        {
+            // Audio is enabled and the action audio is instantiated.
+            if(audioEnabled && ActionAudio.Instantiated)
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(unitCreatedSfx);
+            }
+        }
+
+        // Play the unit removed sound effect.
+        public void PlayUnitRemovedSfx()
+        {
+            // Audio is enabled and the action audio is instantiated.
+            if (audioEnabled && ActionAudio.Instantiated)
+            {
+                ActionAudio.Instance.PlaySoundEffectWorld(unitRemovedSfx);
+            }
+        }
+
+        // RESET //
         // Resets the player.
         public override void ResetPlayer()
         {
