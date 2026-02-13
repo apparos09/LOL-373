@@ -347,6 +347,37 @@ namespace RM_EDU
             return result;
         }
 
+        // Optimizes the matched statement datas list to remove duplicates.
+        // The knowledge stage should already check for duplicates, so this shouldn't be necessary to call.
+        public void OptimizeMatchedStatementDatas()
+        {
+            // Goes through the list from end to start.
+            for(int i = matchedStatementDatas.Count - 1; i >= 0; i--)
+            {
+                // Data exists.
+                if (matchedStatementDatas[i] != null)
+                {
+                    // Remove the data so that the list can be checked for duplicates.
+                    KnowledgeStatementList.Statement.StatementData currData = matchedStatementDatas[i];
+                    matchedStatementDatas.RemoveAt(i);
+
+                    // If the data is still in the list, that means it's in the list multiple times.
+                    // If it's not in the list, then that means this is the only instance of the data.
+                    // As such, it should be added back in.
+                    if(!MatchedStatementDatasContainsData(currData, true))
+                    {
+                        // Insert the data back in at the current index.
+                        matchedStatementDatas.Insert(i, currData);
+                    }
+                    
+                }
+                // Data is null, so remove it.
+                else
+                {
+                    matchedStatementDatas.RemoveAt(i);
+                }
+            }
+        }
 
         // Update is called once per frame
         void Update()

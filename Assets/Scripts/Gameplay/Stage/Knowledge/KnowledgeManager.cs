@@ -53,7 +53,7 @@ namespace RM_EDU
         // If 'true', saved matched statements are allowed to be reused.
         // If 'false', they won't be used. If a group has no statements left after removing...
         // All the saved matched statements they're reused anyway.
-        private bool useSavedMatchedStatements = true;
+        private bool useSavedMatchedStatements = false;
 
         // Gets set to 'true' when the knowledge manager has been intialized.
         protected bool initializedKnowledge = false;
@@ -305,14 +305,15 @@ namespace RM_EDU
                 }
             }
 
-            // Randomizes the order of statements in the groups.
+            // Randomizes the order of statements in the groups and removes matching statements.
             for(int i = statementGroups.Count - 1; i >= 0; i--)
             {
                 // Grabs the statement group.
                 KnowledgeStatementList.StatementGroup group = statementGroups[i];
 
-                // If the data logger has been instantiated, use it to take out statements that have already been matched in other stages.
-                if(DataLogger.Instantiated)
+                // If saved matched statements shouldn't be used and the data logger has been instantiated...
+                // Use the data logger to take out statements that have already been matched in other stages.
+                if(!useSavedMatchedStatements && DataLogger.Instantiated)
                 {
                     // Creates a list that'll hold the unmatched statements.
                     List<KnowledgeStatementList.Statement> unmatchedList = new List<KnowledgeStatementList.Statement>(group.statements);
@@ -337,8 +338,14 @@ namespace RM_EDU
                         }
                     }
 
-                    // Give the group the unmatched list.
-                    group.statements = unmatchedList;
+                    // If the unmatched list isn't empty, override the group statements list.
+                    // If all the statements in a group have been matched, keep the list the same...
+                    // So that there are still statements to pull from.
+                    if(unmatchedList.Count > 0)
+                    {
+                        // Give the group the unmatched list.
+                        group.statements = unmatchedList;
+                    }
                 }
                 
 
@@ -353,14 +360,6 @@ namespace RM_EDU
                     // The 'RandomizeStatements' function will ignore groups that have no statements.
                     // statementGroups.RemoveAt(i);
                 }
-            }
-
-            // TODO: implement.
-            // If saved matched statements shouldn't be used, remove them from the groups.
-            // These saved statements come from the data logger.
-            if(!useSavedMatchedStatements && DataLogger.Instantiated)
-            {
-                // ...
             }
             
             // Randomizes the statements.
@@ -993,6 +992,11 @@ namespace RM_EDU
                     }
                 }
             }
+
+            // NOTE: this is only for testing, and isn't necessary since the code above...
+            // Already ignores duplicates. Only uncomment if you need to test.
+            // Optimize the data logger's matched statements list.
+            // dataLogger.OptimizeMatchedStatementDatas();
 
             // Makes sure the energy start bonus isn't negative.
             if (dataLogger.energyStartBonus < 0)
