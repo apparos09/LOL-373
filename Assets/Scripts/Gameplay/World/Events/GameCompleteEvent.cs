@@ -58,7 +58,11 @@ namespace RM_EDU
         {
             base.OnEventComplete();
 
-            worldManager.CompleteGame();
+            // For some reason, when the loading screen was active, calling...
+            // CompleteGame() here didn't work the first time it's called.
+            // This code was adjusted to wait another frame.
+            // worldManager.CompleteGame(); // Old
+            worldManager.callCompleteGameInLateUpdate = true; // New
         }
 
         // Update is called once per frame

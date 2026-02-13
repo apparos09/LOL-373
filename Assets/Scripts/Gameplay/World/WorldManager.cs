@@ -64,6 +64,11 @@ namespace RM_EDU
         [Tooltip("Becomes true when tutorials have been checked. Set to false to check for tutorials in Update().")]
         public bool checkedTutorials = false;
 
+        // If 'true', complete is called in the update loop. This is to fix a problem where the loading screen...
+        // Wasn't triggering the game end state the first time.
+        [Tooltip("Calls the CompleteGame() function in Update() to end the game.")]
+        public bool callCompleteGameInLateUpdate = false; 
+
         [Header("World/Events")]
 
         // The game complete event of the world manager.
@@ -1230,6 +1235,9 @@ namespace RM_EDU
 
             // Go to the results scene.
             LoadResultsScene();
+
+            // Complete has been called, so don't call it again.
+            callCompleteGameInLateUpdate = false;
         }
 
         // Update is called once per frame
@@ -1237,11 +1245,31 @@ namespace RM_EDU
         {
             base.Update();
 
-            // If tutorials need to be checked, the game isn't paused, and the game isn't loading...
-            // So check for tutorials.
-            if(!checkedTutorials && !IsGamePaused() && !IsLoading())
+            // Checks that the game isn't paused.
+            if(!IsGamePaused())
             {
-                CheckTutorials();
+                // If tutorials need to be checked and the game isn't loading...
+                // Check for tutorials.
+                if (!checkedTutorials && !IsLoading())
+                {
+                    CheckTutorials();
+                }
+                
+            }
+        }
+
+        // LateUpdate is called every frame, if this behaviour is enabled.
+        private void LateUpdate()
+        {
+            // If the game isn't paused.
+            if (!IsGamePaused())
+            {
+                // Calls that the game is complete.
+                // Doesn't work in main update.
+                if (callCompleteGameInLateUpdate)
+                {
+                    CompleteGame();
+                }
             }
         }
     }

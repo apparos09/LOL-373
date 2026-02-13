@@ -2326,6 +2326,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Info Log Entry Button 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1127768828271526743, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5937876426640614884, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3027,6 +3031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Info Log Entry Button 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1127768828271526743, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5937876426640614884, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3226,6 +3234,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Info Log Entry Button 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1127768828271526743, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5937876426640614884, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3319,6 +3331,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Info Log Entry Button 4
       objectReference: {fileID: 0}
+    - target: {fileID: 1127768828271526743, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5937876426640614884, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -3411,6 +3427,10 @@ PrefabInstance:
     - target: {fileID: 725461677221151190, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
       propertyPath: m_Name
       value: Info Log Entry Button 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127768828271526743, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5937876426640614884, guid: 09eedaa362365254c9b6c4fa5945ee51, type: 3}
       propertyPath: m_Pivot.x

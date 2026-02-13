@@ -433,8 +433,8 @@ MonoBehaviour:
       clearedFirstActionCompleteTutorial: 0
       clearedFirstKnowledgeTutorial: 0
       clearedFirstKnowledgeCompleteTutorial: 0
-      clearedFirstAreaComplete: 0
-      clearedFinalAreaStart: 0
+      clearedFirstAreaCompleteTutorial: 0
+      clearedFinalAreaTutorial: 0
       clearedBiomassTutorial: 0
       clearedGeothermalTutorial: 0
       clearedHydroTutorial: 0
@@ -463,8 +463,8 @@ MonoBehaviour:
       clearedFirstActionCompleteTutorial: 0
       clearedFirstKnowledgeTutorial: 0
       clearedFirstKnowledgeCompleteTutorial: 0
-      clearedFirstAreaComplete: 0
-      clearedFinalAreaStart: 0
+      clearedFirstAreaCompleteTutorial: 0
+      clearedFinalAreaTutorial: 0
       clearedBiomassTutorial: 0
       clearedGeothermalTutorial: 0
       clearedHydroTutorial: 0
