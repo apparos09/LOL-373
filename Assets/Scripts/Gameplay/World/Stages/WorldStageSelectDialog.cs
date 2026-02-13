@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_EDU
 {
@@ -28,6 +30,29 @@ namespace RM_EDU
         public const string KNOWLEDGE_STAGE_KEY = "kwd_knowledgeStage";
         public const string UNKNOWN_STAGE_KEY = "kwd_unknownStage";
 
+        [Header("UI/Symbols")]
+
+        // Renewable
+        public Image biomassSymbolImage;
+        public Image geothermalSymbolImage;
+        public Image hydroSymbolImage;
+        public Image solarSymbolImage;
+        public Image waveSymbolImage;
+        public Image windSymbolImage;
+
+        // Non-renewable
+        public Image coalSymbolImage;
+        public Image naturalGasSymbolImage;
+        public Image nuclearSymbolImage;
+        public Image oilSymbolImage;
+
+        // The colour for when a resource is being used.
+        private Color includedResourceColor = Color.white;
+
+        // The colour for a resoruce that's being unused.
+        private Color excludedResourceColor = new Color(0.25F, 0.25F, 0.25F);
+
+
         // Start is called before the first frame update
         void Start()
         {
@@ -43,6 +68,18 @@ namespace RM_EDU
         {
             // Tries to speak the stage type using TTS.
             SpeakStageType();   
+        }
+
+        // The color for a resource that's being included.
+        public Color IncludedResourceColor
+        {
+            get { return includedResourceColor; }
+        }
+
+        // The color for a resource that's being excluded.
+        public Color ExcludedResourceColor
+        {
+            get { return excludedResourceColor; }
         }
 
         // Gets the stage name translated. Returns empty string if LOLSDK isn't initialized or the key is blank.
@@ -132,14 +169,69 @@ namespace RM_EDU
             {
                 resourcesText.text = "-";
             }
+
+
+            // Symbol Colors
+            // Changes colours to show which resources are included or excluded.
+            // Renewable
+            biomassSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.biomass) ? 
+                includedResourceColor : excludedResourceColor;
+
+            geothermalSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.geothermal) ?
+                includedResourceColor : excludedResourceColor;
+
+            hydroSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.hydro) ?
+                includedResourceColor : excludedResourceColor;
+
+            solarSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.solar) ?
+                includedResourceColor : excludedResourceColor;
+
+            waveSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.wave) ?
+                includedResourceColor : excludedResourceColor;
+
+            windSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.wind) ?
+                includedResourceColor : excludedResourceColor;
+
+
+            // Non-renewable
+            coalSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.coal) ?
+                includedResourceColor : excludedResourceColor;
+
+            naturalGasSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.naturalGas) ?
+                includedResourceColor : excludedResourceColor;
+
+            nuclearSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.nuclear) ?
+                includedResourceColor : excludedResourceColor;
+
+            oilSymbolImage.color = worldStage.naturalResources.Contains(NaturalResources.naturalResource.oil) ?
+                includedResourceColor : excludedResourceColor;
         }
 
         // Clears the world stage.
         public void ClearWorldStage()
         {
+            // Sets the stage.
             worldStage = null;
+
+            // Changes the stage and resources text.
             stageTypeText.text = GetWorldStageString();
             resourcesText.text = "-";
+
+            // Symbol Colors
+            // Sets all colors to white (default).
+            // Renewable
+            biomassSymbolImage.color = Color.white;
+            geothermalSymbolImage.color = Color.white;
+            hydroSymbolImage.color = Color.white;
+            solarSymbolImage.color = Color.white;
+            waveSymbolImage.color = Color.white;
+            windSymbolImage.color = Color.white;
+
+            // Non-renewable
+            coalSymbolImage.color = Color.white;
+            naturalGasSymbolImage.color = Color.white;
+            nuclearSymbolImage.color = Color.white;
+            oilSymbolImage.color = Color.white;
         }
 
         // Called to start the stage.
