@@ -24,6 +24,21 @@ namespace RM_EDU
 
                 // The statement resource.
                 public NaturalResources.naturalResource statementResource;
+
+                // Returns true if this data matches the comparison data.
+                public bool EqualsByValue(StatementData compData)
+                {
+                    return
+                        idNumber == compData.idNumber &&
+                        groupResource == compData.groupResource &&
+                        statementResource == compData.statementResource;
+                }
+
+                // Checks if the comparison data is equal to this data by reference.
+                public bool EqualsByReference(StatementData compData)
+                {
+                    return this == compData;
+                }
             }
 
             // The id number of the statement.

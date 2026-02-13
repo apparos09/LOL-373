@@ -262,6 +262,7 @@ namespace RM_EDU
         }
 
 
+        // ACTION //
         // DEFENSE //
         // Returns 'true' if there are action defense units.
         public bool HasActionDefenseUnits()
@@ -303,6 +304,49 @@ namespace RM_EDU
             defenseIds.AddRange(optList);
 
         }
+
+
+        // KNOWLEDGE //
+        // Checks if the provided data is in the list.
+        // compareByValue: if true, the data values are compared to see if data with the same values as the data...
+        //  - Passed to this function is already in the list.
+        // - If false, List.Contains(object) is used to see if this data object is in the list.
+        public bool MatchedStatementDatasContainsData(KnowledgeStatementList.Statement.StatementData data, bool compareByValue)
+        {
+            // The result to be returned.
+            bool result;
+
+            // If true, compare the values to see if a copy of this data is in the list.
+            if(compareByValue)
+            {
+                // False by defualt.
+                result = false;
+
+                // Manually checks for matching values. 
+                for(int i = 0; i < matchedStatementDatas.Count; i++)
+                {
+                    // The data exists.
+                    if(matchedStatementDatas[i] != null)
+                    {
+                        // The data in the list matches the provided data.
+                        if(matchedStatementDatas[i].EqualsByValue(data))
+                        {
+                            result = true;
+                            break;
+                        }
+
+                    }
+                }
+            }
+            // Use List.Contains() to see if the provided data is in the list.
+            else
+            {
+                result = matchedStatementDatas.Contains(data);
+            }
+
+            return result;
+        }
+
 
         // Update is called once per frame
         void Update()

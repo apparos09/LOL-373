@@ -50,6 +50,11 @@ namespace RM_EDU
         [Tooltip("The number of verification attempts.")]
         public int verifyAttempts = 0;
 
+        // If 'true', saved matched statements are allowed to be reused.
+        // If 'false', they won't be used. If a group has no statements left after removing...
+        // All the saved matched statements they're reused anyway.
+        private bool useSavedMatchedStatements = true;
+
         // Gets set to 'true' when the knowledge manager has been intialized.
         protected bool initializedKnowledge = false;
 
@@ -350,7 +355,13 @@ namespace RM_EDU
                 }
             }
 
-            // TODO: remove all statements that have already been used.
+            // TODO: implement.
+            // If saved matched statements shouldn't be used, remove them from the groups.
+            // These saved statements come from the data logger.
+            if(!useSavedMatchedStatements && DataLogger.Instantiated)
+            {
+                // ...
+            }
             
             // Randomizes the statements.
             RandomizeStatements(false);
@@ -968,8 +979,17 @@ namespace RM_EDU
                     // If the statement isn't null, save it as a used statement since the stage is finished.
                     if (statement.Statement != null)
                     {
-                        // Generate the statement data.
-                        dataLogger.matchedStatementDatas.Add(statement.Statement.GenerateStatementData());
+                        // Gets the statement data.
+                        KnowledgeStatementList.Statement.StatementData statementData = statement.Statement.GenerateStatementData();
+
+                        // If the statement data isn't in the matched statements list...
+                        // Add it to the matched statements list.
+                        // Compares values instead of doing reference compares.
+                        if (!dataLogger.MatchedStatementDatasContainsData(statementData, true))
+                        {
+                            // Generate the statement data.
+                            dataLogger.matchedStatementDatas.Add(statementData);
+                        }
                     }
                 }
             }
