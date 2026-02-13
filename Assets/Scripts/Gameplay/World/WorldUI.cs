@@ -54,8 +54,8 @@ namespace RM_EDU
         [Tooltip("The dialog that appears when the player gets rewards from a world stage. This is seperate from the other dialogs.")]
         public WorldStageRewardsDialog stageRewardsDialog;
 
-        // The stage reward dialog.
-
+        // Game complete dialog.
+        public GameCompleteDialog gameCompleteDialog;
 
         [Header("Other")]
 
@@ -288,7 +288,8 @@ namespace RM_EDU
         // Generates a list of dialogs.
         public virtual List<GameObject> GenerateDialogList()
         {
-            // NOTE: the stage dialog isn't included since it's not a menu dialog.
+            // NOTE: the stage, reward, and game complete dialogs aren't included...
+            // Since they aren't menu dialogs.
 
             // The list to return, which is given the dialogs in this script.
             List<GameObject> dialogList = new List<GameObject>
@@ -426,6 +427,25 @@ namespace RM_EDU
             stageRewardsDialog.gameObject.SetActive(false);
         }
 
+        // Game Complete
+        // Returns 'true' if the game complete dialog is open.
+        public bool IsGameCompleteDialogOpen()
+        {
+            return gameCompleteDialog.gameObject.activeSelf;
+        }
+
+        // Opens the game complete  dialog.
+        public void OpenGameCompleteDialog()
+        {
+            gameCompleteDialog.gameObject.SetActive(true);
+        }
+
+        // Closes the game complete  dialog.
+        public void CloseGameCompleteDialog()
+        {
+            gameCompleteDialog.gameObject.SetActive(false);
+        }
+
         // SAVE
         // Saves and continues the game.
         public void SaveAndContinue()
@@ -443,6 +463,12 @@ namespace RM_EDU
         public void QuitWithoutSaving()
         {
             worldManager.QuitWithoutSaving();
+        }
+
+        // Completes the game.
+        public void CompleteGame()
+        {
+            worldManager.CompleteGame();
         }
 
         // Update is called once per frame

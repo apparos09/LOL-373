@@ -8,8 +8,15 @@ namespace RM_EDU
     // The game complete event.
     public class GameCompleteEvent : GameEvent
     {
+        [Header("Game Complete Event")]
+
         // The world manager.
-        public WorldManager worldManager;        
+        public WorldManager worldManager;
+
+        // Opens the game complete dialog on the event being completed.
+        // If false, the dialog is ignored.
+        [Tooltip("If true, a dialog is opened upon the event being completed. If false, the dialog isn't used.")]
+        public bool openDialogOnComplete = true;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -60,9 +67,24 @@ namespace RM_EDU
 
             // For some reason, when the loading screen was active, calling...
             // CompleteGame() here didn't work the first time it's called.
-            // This code was adjusted to wait another frame.
-            // worldManager.CompleteGame(); // Old
-            worldManager.callCompleteGameInLateUpdate = true; // New
+            // callCompleteGameInLateUpdate was made to fix this.
+
+            // Gets the world UI instance.
+            WorldUI worldUI = WorldUI.Instance;
+
+            // If the dialog should be used and...
+            // The stage complete dialog exists, use that.
+            if(openDialogOnComplete && worldUI.gameCompleteDialog != null)
+            {
+                worldUI.OpenGameCompleteDialog();
+            }
+            // Dialog isn't set, so call complete function.
+            else
+            {
+                // worldManager.CompleteGame(); // Old
+                worldManager.callCompleteGameInLateUpdate = true; // New
+            }
+                
         }
 
         // Update is called once per frame

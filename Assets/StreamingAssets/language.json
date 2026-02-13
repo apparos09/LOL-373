@@ -352,6 +352,8 @@
 
 
 
+      "kwd_gameComplete": 18,
+
       "kwd_results": 18,
 
       "kwd_gameScore": 18,
@@ -716,6 +718,8 @@
     "trl_oil_00": "This stage uses the non-renewable resource oil, which is burned to produce steam to turn a turbine to generate energy. Oil can be mined on land or at sea, but drilling for oil in the ocean can cause an oil spill if done improperly. Oil generators can only be placed on oil spots, generate energy for a limited time, and cause an oil spill if an enemy destroys them before they're finished. No units can be placed on a spot with an oil spill.",
 
 
+
+    "kwd_gameComplete": "Game Complete",
 
     "kwd_results": "Results",
 

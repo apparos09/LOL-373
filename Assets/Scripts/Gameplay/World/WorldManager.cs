@@ -1221,7 +1221,37 @@ namespace RM_EDU
         // Checks if the game is complete.
         public bool IsGameComplete()
         {
-            return gameCompleteEvent.cleared;
+            // Result to be returned.
+            bool result;
+
+            // Checks that the game complete event is set.
+            if(gameCompleteEvent != null)
+            {
+                result = gameCompleteEvent.cleared;
+            }
+            // No event, so manaully check.
+            else
+            {
+                // True by default.
+                result = true;
+
+                // Goes through all the stages. If a not complete stage is found, result is false.
+                for(int i = 0; i < stages.Count; i++)
+                {
+                    // Stage exists.
+                    if (stages[i] != null)
+                    {
+                        // Stage isn't complete, so the game isn't complete.
+                        if (!stages[i].IsComplete())
+                        {
+                            result = false;
+                            break;
+                        }
+                    }
+                }
+            }
+
+            return result;
         }
 
         // Called when the game has been completed.
@@ -1232,6 +1262,9 @@ namespace RM_EDU
 
             // Submit progress complete.
             SubmitProgressComplete();
+
+            // Save the game one last time.
+            SaveGame();
 
             // Go to the results scene.
             LoadResultsScene();

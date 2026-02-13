@@ -46,10 +46,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
+  gameAudio: {fileID: 0}
   gameTimer: 0
   runGameTimer: 1
   gameScore: 0
-  mouseTouch: {fileID: 0}
   tutorials: {fileID: 0}
   titleScene: TitleScene
   worldScene: WorldScene
@@ -58,12 +58,14 @@ MonoBehaviour:
   resultsScene: ResultsScene
   loadingScreenEnabled: 1
   dataLogger: {fileID: 0}
-  useDataLogger: 1
   worldUI: {fileID: 0}
+  worldAudio: {fileID: 0}
   worldCamera: {fileID: 0}
   areas: []
   stages: []
   defaultDefenseIds: 020000000500000006000000
+  checkedTutorials: 0
+  callCompleteGameInLateUpdate: 0
   gameCompleteEvent: {fileID: 2118307901418152946}
 --- !u!114 &2118307901418152946
 MonoBehaviour:
@@ -85,3 +87,4 @@ MonoBehaviour:
   calledInit: 0
   calledComplete: 0
   worldManager: {fileID: 0}
+  openDialogOnComplete: 1
