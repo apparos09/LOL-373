@@ -27,7 +27,16 @@ namespace RM_EDU
         public float worldBgmLoopEnd;
 
         // If 'true', the bgm is played in start.
-        public bool playBgmInStart = true;
+        public bool playWorldBgmInStart = true;
+
+        // The game complete BGM, which is the stage results theme.
+        public AudioClip gameCompleteBgm;
+
+        // Game complete loop start.
+        public float gameCompleteBgmLoopStart;
+
+        // Stage results loop end.
+        public float gameCompleteBgmLoopEnd;
 
         // Constructor
         private WorldAudio()
@@ -67,7 +76,7 @@ namespace RM_EDU
             worldBgmLoopEnd = Mathf.Clamp(worldBgmLoopEnd, 0.0F, worldBgm.length);
 
             // If the BGM should be played in start, play it.
-            if (playBgmInStart)
+            if (playWorldBgmInStart)
             {
                 PlayWorldBgm();
             }
@@ -113,6 +122,12 @@ namespace RM_EDU
         public void PlayWorldBgm()
         {
             PlayBackgroundMusic(worldBgm, worldBgmLoopStart, worldBgmLoopEnd);
+        }
+
+        // Plays the game complete BGM, which is the stage results BGM.
+        public void PlayGameCompleteBgm()
+        {
+            PlayBackgroundMusic(gameCompleteBgm, gameCompleteBgmLoopStart, gameCompleteBgmLoopEnd);
         }
 
         // // Update is called once per frame

@@ -256,9 +256,9 @@ MonoBehaviour:
   stageBgm02: {fileID: 8300000, guid: 9c1ff02b88430a640ad414755bab3862, type: 3}
   stageBgm02LoopStart: 0
   stageBgm02LoopEnd: 92.376
-  stageResults: {fileID: 8300000, guid: ffa4b4e96da81ef4cb41e9ffe5deb236, type: 3}
-  stageResultsLoopStart: 1.354
-  stageResultsLoopEnd: 12.013
+  stageResultsBgm: {fileID: 8300000, guid: ffa4b4e96da81ef4cb41e9ffe5deb236, type: 3}
+  stageResultsBgmLoopStart: 1.354
+  stageResultsBgmLoopEnd: 12.013
   actionManager: {fileID: 0}
   enemyAttackSource: {fileID: 4153624060882948546}
   enemyAttackPlayCalls: 0

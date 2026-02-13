@@ -29,14 +29,14 @@ namespace RM_EDU
         // The ned of the stage 02 bgm loop.
         public float stageBgm02LoopEnd;
 
-        // The stage results.
-        public AudioClip stageResults;
+        // The stage results bgm.
+        public AudioClip stageResultsBgm;
 
-        // Stage results loop start.
-        public float stageResultsLoopStart;
+        // Stage results bgm loop start.
+        public float stageResultsBgmLoopStart;
 
-        // Stage results loop end.
-        public float stageResultsLoopEnd;
+        // Stage results bgm loop end.
+        public float stageResultsBgmLoopEnd;
 
 
         // // Start is called before the first frame update
@@ -103,7 +103,7 @@ namespace RM_EDU
         // Plays the stage results.
         public void PlayStageResultsBgm()
         {
-            PlayBackgroundMusic(stageResults, stageResultsLoopStart, stageResultsLoopEnd);
+            PlayBackgroundMusic(stageResultsBgm, stageResultsBgmLoopStart, stageResultsBgmLoopEnd);
         }
 
         // Called when the stage is being reset.
