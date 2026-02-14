@@ -38,8 +38,6 @@ namespace RM_EDU
         // Sets the start info.
         public virtual void SetStartInfo(GameplayManager manager)
         {
-            // TODO: implement.
-
             // If this is a stage manager, mark that this is coming from a stage.
             if(manager is StageManager)
             {

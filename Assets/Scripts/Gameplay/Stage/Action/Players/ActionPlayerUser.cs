@@ -16,7 +16,7 @@ namespace RM_EDU
         [Header("User")]
 
         // The energy the player user starts with.
-        public float energyStart = 300.0F;
+        public float energyStart = 250.0F;
 
         // The bonus energy the player gets on start.
         public float energyStartBonus = 0.0F;
@@ -29,12 +29,15 @@ namespace RM_EDU
         private float prevUpdateEnergy = -1.0F;
 
         // The energy auto generation timer.
+        [Tooltip("The countdown timer for the player to automatically generate energy.")]
         public float energyAutoGenTimer = 0.0F;
 
         // The amount of time it takes for the player to generate energy.
-        public float energyAutoGenTimerMax = 5.0F;
+        [Tooltip("The maximum time for the player to automatically generate energy.")]
+        public float energyAutoGenTimerMax = 10.0F;
 
         // The amount of energy that's generated for every instance.
+        [Tooltip("The amount of energy the player automatically generates for every instance.")]
         public float energyAutoGenAmount = 100.0F;
 
         // If 'true', the player automatically generates energy.

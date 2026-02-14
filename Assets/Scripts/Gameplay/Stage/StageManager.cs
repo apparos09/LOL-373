@@ -402,6 +402,11 @@ namespace RM_EDU
             // Stage no longer playing.
             SetStagePlaying(false);
 
+            // The game timer isn't stopped since it's an overall timer for the scene.
+
+            // Reset the game time scale.
+            ResetGameTimeScale(true);
+
             // Calculates the game score.
             CalculateAndSetGameScore();
 
@@ -421,7 +426,7 @@ namespace RM_EDU
         // Resets the stage.
         public virtual void ResetStage()
         {
-            // Resets the tiem and the score.
+            // Resets the time and the score.
             ResetGameTimerAndStageTimer();
             ResetStageScore();
 
@@ -458,10 +463,12 @@ namespace RM_EDU
         // Finishes the stage.
         public virtual void FinishStage()
         {
-            // Reset the game time scale to make sure it's 1.00.
-            ResetGameTimer();
+            // DON'T RESET THE GAME TIMER OR THE STAGE TIMER
+            // If the stage is complete, these values will be checked to get the stage time...
+            // For results reasons.
+
+            // Returns the game's time scale to normal.
             ResetGameTimeScale(true);
-            ResetStageTimer();
 
             // Stop running the game timer so that the time is measured accurately.
             PauseGameTimer();
@@ -471,19 +478,26 @@ namespace RM_EDU
         }
 
         // Generates the stage data.
-        public WorldStage.WorldStageData GenerateStageData(bool complete)
+        public virtual WorldStage.WorldStageData GenerateStageData(bool complete)
         {
             WorldStage.WorldStageData data = new WorldStage.WorldStageData();
 
+            // World stage index, id number, and stage type.
             data.worldStageIndex = worldStageIndex;
             data.idNumber = idNumber;
-
             data.stageType = GetStageType();
-            // TODO: review where the game score is being gotten from.
-            data.score = GetStageScore();
 
+            // Time, score, energy total, and air pollution.
+            data.time = GetStageTimer();
+            data.score = GetStageScore();
+            data.energyTotal = GetStageEnergyTotal();
+            data.airPollution = GetStageAirPollution();
+
+            // Complete parameter.
             data.complete = complete;
 
+
+            // Returns the data.
             return data;
         }
 
@@ -515,7 +529,8 @@ namespace RM_EDU
             // If the stage is playing and the game is unpaused...
             if(IsStagePlayingAndGameUnpaused())
             {
-                stageTimer += Time.deltaTime;
+                // stageTimer += Time.deltaTime;
+                stageTimer += Time.unscaledDeltaTime; // Now uses unscaled delta time.
             }
 
             // If tutorials need to be checked, the game isn't paused, and the game isn't loading...

@@ -545,7 +545,7 @@ namespace RM_EDU
         public virtual float CalculateEnergyGenerationAmount()
         {
             // Ceil(Amount Stat / Stat Maximum * 10)
-            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 10.0F);
+            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 25.0F);
         }
 
 

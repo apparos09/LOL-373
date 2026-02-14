@@ -102,10 +102,10 @@ MonoBehaviour:
   unitProjectileParent: {fileID: 1133093146673767100}
   kills: 0
   blockingAttackEnergy: 0
-  energyStart: 300
+  energyStart: 250
   energyStartBonus: 0
   energyAutoGenTimer: 0
-  energyAutoGenTimerMax: 5
+  energyAutoGenTimerMax: 10
   energyAutoGenAmount: 100
   energyGenTotal: 0
   generatorPrefabs: []
