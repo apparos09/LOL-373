@@ -307,12 +307,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f20f6dfd30a77644dac4ec14fc050bc9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 75a016d38ed3b4d4aa9a7921c456b71e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10.24, y: 5.76}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -344,6 +344,7 @@ GameObject:
   - component: {fileID: 101663912}
   - component: {fileID: 101663911}
   - component: {fileID: 101663910}
+  - component: {fileID: 101663913}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -425,6 +426,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &101663913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 101663909}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70c892f9c931f3b4e8a8d8b04912aea3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camera: {fileID: 101663911}
+  postShader: {fileID: 4800000, guid: fc5f11d1088f76a48bdfd24657275080, type: 3}
+  colorGradeRGBID: _ColorGradeRGB
+  colorGradeRGB: {fileID: 2800000, guid: f0f449909fb7b274b83df13be215872e, type: 3}
 --- !u!1001 &123506032
 PrefabInstance:
   m_ObjectHideFlags: 0
