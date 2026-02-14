@@ -109,8 +109,8 @@ MonoBehaviour:
   sliderUISfx: {fileID: 8300000, guid: f6e01c9fbaacfaf4a82824afdc294e7b, type: 3}
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   titleBgm: {fileID: 8300000, guid: 99a2a7bb0bb388c46b37d80f3f5bf60e, type: 3}
-  titleBgmLoopStart: 21.01
-  titleBgmLoopEnd: 54.737
+  titleBgmLoopStart: 5.021
+  titleBgmLoopEnd: 21.021
   playBgmInStart: 1
 --- !u!82 &6874522189092471154 stripped
 AudioSource:

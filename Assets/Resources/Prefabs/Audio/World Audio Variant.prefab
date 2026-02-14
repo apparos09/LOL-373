@@ -110,7 +110,7 @@ MonoBehaviour:
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   worldBgm: {fileID: 8300000, guid: 10aaad302c69ebc4988bc5d3def4f984, type: 3}
   worldBgmLoopStart: 0
-  worldBgmLoopEnd: 42.666
+  worldBgmLoopEnd: 21.298
   playWorldBgmInStart: 1
   gameCompleteBgm: {fileID: 8300000, guid: ffa4b4e96da81ef4cb41e9ffe5deb236, type: 3}
   gameCompleteBgmLoopStart: 1.354

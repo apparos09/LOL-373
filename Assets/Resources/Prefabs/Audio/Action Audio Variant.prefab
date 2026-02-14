@@ -252,10 +252,10 @@ MonoBehaviour:
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   stageBgm01: {fileID: 8300000, guid: 86145a65cd0500f4a9cda675eb1f77c6, type: 3}
   stageBgm01LoopStart: 0
-  stageBgm01LoopEnd: 95.994
+  stageBgm01LoopEnd: 63.989
   stageBgm02: {fileID: 8300000, guid: 9c1ff02b88430a640ad414755bab3862, type: 3}
   stageBgm02LoopStart: 0
-  stageBgm02LoopEnd: 92.376
+  stageBgm02LoopEnd: 52.778
   stageResultsBgm: {fileID: 8300000, guid: ffa4b4e96da81ef4cb41e9ffe5deb236, type: 3}
   stageResultsBgmLoopStart: 1.354
   stageResultsBgmLoopEnd: 12.013
