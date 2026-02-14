@@ -44,7 +44,7 @@ namespace RM_EDU
                 int row = tile.GetMapRowPosition();
 
                 // If the row is valid.
-                if (row >= 0 && row < actionManager.actionStage.MapRowCount)
+                if (actionManager.actionStage.ValidMapRow(row))
                 {
                     // Checks for targets to the left and right.
                     hasTargetLeft = actionManager.actionStage.IsEnemyInRowLeftOfPosition(row, transform.position, true, false);
@@ -54,7 +54,12 @@ namespace RM_EDU
                     hasTarget = hasTargetLeft || hasTargetRight;
                 }
             }
-
+            else
+            {
+                // Not on a tile, so a target cannot be searched for.
+            }
+            
+            // Return the result.
             return hasTarget;
         }
 
@@ -86,39 +91,67 @@ namespace RM_EDU
                     // Gets the left projectile. This function also puts iti n the list.
                     ActionProjectile leftProj = Shoot();
 
-                    // Projectile directions.
+                    // Projectile start points and directions.
+                    rightProj.transform.position = CalculateProjectileStartingPositionRight();
                     rightProj.moveDirec = Vector2.right;
+
+                    leftProj.transform.position = CalculateProjectileStartingPositionLeft();
                     leftProj.moveDirec = Vector2.left;
 
                     // The owner exists.
                     if(owner != null)
                     {
-                        // Reduce the owner's energy by the attack cost.
-                        owner.DecreaseEnergy(attackEnergyCost);
+                        // Reduce the owner's energy by the attack cost since two projectiles have been fired.
+                        // The energy cost for the first shot fired has already been applied.
+                        owner.DecreaseEnergy(CalculateAttackEnergyCost(attackEnergyCost));
                     }
                 }
             }
             else
             {
-                // Only fired one shot.
+                // Only fired one shot, so see where it should go.
 
                 // Gets the most recently fired projectile.
                 ActionProjectile projectile = firedProjectiles[firedProjectiles.Count - 1];
 
-                // Calculates the starting position for shooting backwards.
-                projectile.transform.position = CalculateProjectileStartingPositionBack();
+                // The x-direction of the projectile.
+                int direcX = 0;
 
-                // If the target is to the left, have the projectile move left.
-                // If the target is to the right, have the projectile move right (default).
-                if (hasTargetLeft)
-                    projectile.moveDirec = Vector2.left;
+                // If the target to the right, fire right.
+                if(hasTargetRight)
+                {
+                    direcX = 1;
+                }
+                // If the target is to the left, fire left.
+                else if(hasTargetLeft)
+                {
+                    direcX = -1;
+                }
+                // Unknown direction for the target. Since right is the default direction, fire right.
                 else
-                    projectile.moveDirec = Vector2.right;
+                {
+                    direcX = 1;
+                }
+
+                // Checks the direction to send the projectile.
+                switch(direcX)
+                {
+                    case -1: // Left
+                        projectile.transform.position = CalculateProjectileStartingPositionLeft();
+                        projectile.moveDirec = Vector2.left;
+                        break;
+
+                    default: // Right
+                    case 1:
+                        projectile.transform.position = CalculateProjectileStartingPositionRight();
+                        projectile.moveDirec = Vector2.right;
+                        break;
+                }
             }
         }
 
-        // Calculates and returns the projectile's starting position if firing from the back.
-        public virtual Vector3 CalculateProjectileStartingPositionBack()
+        // Calculates and returns the projectile's starting position if firing from the back (left).
+        public virtual Vector3 CalculateProjectileStartingPositionLeft()
         {
             // The start position to be returned.
             Vector3 startPos;
@@ -143,6 +176,12 @@ namespace RM_EDU
                 
             // Return the starting position.
             return startPos;
+        }
+
+        // Uses the main proejctile starting position function since right is the default direction.
+        public virtual Vector3 CalculateProjectileStartingPositionRight()
+        {
+            return CalculateProjectileStartingPosition();
         }
     }
 }

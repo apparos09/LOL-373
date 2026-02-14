@@ -45,6 +45,10 @@ PrefabInstance:
       propertyPath: energyCreationCost
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
+      propertyPath: damageEnergyPercent
+      value: 0.33
+      objectReference: {fileID: 0}
     - target: {fileID: 5149994175010406257, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: m_Sprite
       value: 

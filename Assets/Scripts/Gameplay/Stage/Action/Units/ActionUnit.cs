@@ -655,10 +655,10 @@ namespace RM_EDU
         // If 'allowNegative' is false, the damage rounds up to 1 if the attackerPower is greater than 0.
         public static float CalculateDamage(float attackerStatFactor, float attackerPower, float targetStatFactor, float targetDurability, bool allowNegative = false)
         {
-            // 2.0 * statFactor + ((attackPower * 1.80 * statFactor) - (target.durability * 1.20 * target.statFactor))
+            // 5.0 * statFactor + ((attackPower * 1.75 * statFactor) - (target.durability * 1.25 * target.statFactor))
             // The amount of damage being done.
             float damage = (5.0F * attackerStatFactor) + 
-                ((attackerPower * 1.85F * attackerStatFactor) - (targetDurability * 1.15F * targetStatFactor));
+                ((attackerPower * 1.75F * attackerStatFactor) - (targetDurability * 1.25F * targetStatFactor));
 
 
             // If the damage is negative and allowNegative is false...

@@ -14,8 +14,8 @@ namespace RM_EDU
 
         // The decay of the attack power.
         // The attack power goes down by this amount every time the projectile hits something.
-        [Tooltip("Decreases the attack power by the attack decay for every hit the projectile has.")]
-        public float attackPowerDecay = 10;
+        [Tooltip("Decreases the attack power by the attack decay points for every hit the projectile has.")]
+        public float attackPowerDecay = 12.5F;
 
         // The minimum value the attack power can have.
         [Tooltip("The minimum value the attack power can have.")]

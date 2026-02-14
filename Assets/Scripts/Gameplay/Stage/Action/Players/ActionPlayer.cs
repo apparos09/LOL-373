@@ -133,14 +133,15 @@ namespace RM_EDU
             if(blockingAttackEnergy)
             {
                 // If the action unit uses no energy for its attacks...
-                // Allow the attack.
+                // Allow the attack. If it requires energy, it can't attack, since...
+                // It's blocked from receiving energy.
                 result = actionUnit.attackEnergyCost <= 0;
             }
             else
             {
                 // The player isn't blocking (witholding) energy for attacks...
-                // So if the player has enough energy to attack.
-                result = energy >= actionUnit.attackEnergyCost;
+                // So check if the player has enough energy to attack.
+                result = energy >= ActionUnit.CalculateAttackEnergyCost(actionUnit.attackEnergyCost);
             }
 
             return result;                
