@@ -35,7 +35,7 @@ namespace RM_EDU
         [Header("World/Dialogs")]
 
         // The options dialog.
-        public GameObject optionsDialog;
+        public WorldOptionsDialog optionsDialog;
 
         // The game settings.
         public GameSettingsUI settingsDialog;
@@ -276,7 +276,7 @@ namespace RM_EDU
             // The list to return, which is given the dialogs in this script.
             List<GameObject> dialogList = new List<GameObject>
             {
-                optionsDialog,
+                optionsDialog.gameObject,
                 settingsDialog.gameObject,
                 infoLogDialog.gameObject
             };

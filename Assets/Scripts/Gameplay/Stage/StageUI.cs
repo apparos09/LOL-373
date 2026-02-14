@@ -15,7 +15,7 @@ namespace RM_EDU
         public StageManager stageManager;
 
         // The options dialog.
-        public StageOptions optionsDialog;
+        public StageOptionsDialog optionsDialog;
 
         // The game settings UI.
         public GameSettingsUI settingsDialog;

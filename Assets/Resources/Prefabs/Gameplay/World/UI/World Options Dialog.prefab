@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1761028247551809090}
+  - component: {fileID: 8077721559677666312}
   m_Layer: 5
   m_Name: World Options Dialog
   m_TagString: Untagged
@@ -43,6 +44,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &8077721559677666312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2823322230178348275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91c748b238bdce449a28d17b0169296c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  worldUI: {fileID: 0}
 --- !u!1 &7162932028598728307
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,12 +319,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8077721559677666312}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -321,7 +339,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.WorldUI, Assembly-CSharp
+      value: RM_EDU.WorldOptionsDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -443,12 +461,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8077721559677666312}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -459,7 +481,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.WorldUI, Assembly-CSharp
+      value: RM_EDU.WorldOptionsDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -683,23 +705,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8077721559677666312}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: LoadTitleScene
+      value: QuitWithoutSaving
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.GameplayUI, Assembly-CSharp
+      value: RM_EDU.WorldOptionsDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
@@ -807,6 +833,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1761028247551809090}
     m_Modifications:
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8077721559677666312}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: CloseOptionsDialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: RM_EDU.WorldOptionsDialog, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 2675849373562422770, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
       propertyPath: m_Name
       value: Back Button (UI) Variant
@@ -923,12 +977,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8077721559677666312}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
@@ -939,7 +997,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.WorldUI, Assembly-CSharp
+      value: RM_EDU.WorldOptionsDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument

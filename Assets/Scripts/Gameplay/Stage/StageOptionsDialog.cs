@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 namespace RM_EDU
 {
-    // The stage options.
-    public class StageOptions : MonoBehaviour
+    // The stage options dialog.
+    public class StageOptionsDialog : MonoBehaviour
     {
         // The stage UI.
         public StageUI stageUI;
