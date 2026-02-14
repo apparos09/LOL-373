@@ -445,6 +445,16 @@ namespace RM_EDU
 
         }
 
+        // Quits the stage, returning the world area.
+        public virtual void QuitStage()
+        {
+            // Generates the world start info, making that it shouldn't be destroyed on load.
+            WorldStartInfo wsi = GenerateWorldStartInfo(true);
+
+            // Loads the world scene.
+            LoadWorldScene();
+        }
+
         // Finishes the stage.
         public virtual void FinishStage()
         {

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -183,36 +182,19 @@ namespace RM_EDU
             if (worldManager == null)
                 worldManager = WorldManager.Instance;
 
-            // Set the area buttons as interactable by default.
-            prevAreaButton.interactable = true;
-            nextAreaButton.interactable = true;
+            // Gets the current area and its index.
+            WorldArea currArea = worldManager.GetCurrentWorldArea();
 
-            // PREVIOUS
-            // If this is the first area, disable the previous button by default.
-            if (worldManager.IsCurrentWorldAreaFirstArea())
-            {
-                prevAreaButton.interactable = false;
-            }
-            else
-            {
-                // Not the first area, so the player can go back.
-                prevAreaButton.interactable = true;
-            }
+            // If this isn't the first area, the previous area button should be interactable.
+            prevAreaButton.interactable = !worldManager.IsCurrentWorldAreaFirstArea();
 
-            // NEXT
-            // If this is the last area, disable the next button.
+            // If this is the final area, disable the next area button.
+            // If this isn't the final area, check if it's complete.
+            // If it is, the next area is unlocked. If it's incomplete, the next area is locked.
             if (worldManager.IsCurrentWorldAreaFinalArea())
-            {
                 nextAreaButton.interactable = false;
-            }
             else
-            {
-                // Not the last area, so check if the current area is complete.
-                WorldArea currArea = worldManager.GetCurrentWorldArea();
-
-                // If the area is cleared, allow going to the next area.
-                nextAreaButton.interactable = currArea.IsWorldAreaEventCleared();
-            }
+                nextAreaButton.interactable = currArea.IsComplete();
 
         }
 

@@ -68,6 +68,8 @@ namespace RM_EDU
             // For some reason, when the loading screen was active, calling...
             // CompleteGame() here didn't work the first time it's called.
             // callCompleteGameInLateUpdate was made to fix this.
+            // The loading screen animation wasn't using unscaled delta time before, so maybe...
+            // That was the problem, but this system is still in place regardless.
 
             // Gets the world UI instance.
             WorldUI worldUI = WorldUI.Instance;

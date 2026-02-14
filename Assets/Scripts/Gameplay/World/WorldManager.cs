@@ -25,6 +25,9 @@ namespace RM_EDU
         // If 'true', auto saving is enabled.
         private bool autoSavingEnabled = true;
 
+        // If true, the game saves in late start.
+        private bool saveInLateStart = true;
+
         [Header("World")]
 
         // The world UI.
@@ -74,10 +77,33 @@ namespace RM_EDU
         // The game complete event of the world manager.
         public GameCompleteEvent gameCompleteEvent;
 
+        // Constructor
+        private WorldManager()
+        {
+            // ...
+        }
+
         // Awake is called when the script is being loaded
         protected override void Awake()
         {
             base.Awake();
+
+            // If the instance hasn't been set, set it to this object.
+            if (instance == null)
+            {
+                instance = this;
+            }
+            // If the instance isn't this, destroy the game object.
+            else if (instance != this)
+            {
+                Destroy(gameObject);
+            }
+
+            // Run code for initialization.
+            if (!instanced)
+            {
+                instanced = true;
+            }
         }
 
         // Start is called before the first frame update
@@ -136,8 +162,10 @@ namespace RM_EDU
         {
             base.LateStart();
 
-            // Refreshes the world area buttons in case they aren't active properly.
-            worldUI.RefreshWorldAreaButtons();
+            // NOTE: was causing the current area to reset to area 0.
+            // Refreshes the current world area.
+            // This also refreshes the area arrow buttons if that setting is on.
+            // RefreshCurrentWorldArea();
 
             // Check for some tutorials.
             checkedTutorials = false;
@@ -331,11 +359,15 @@ namespace RM_EDU
             // Save the game score to the data logger.
             dataLogger.gameScore = gameScore;
 
-            // Updates teh energy start bonus display.
+            // Updates the energy start bonus display.
             worldUI.UpdateEnergyStartBonusDisplay();
 
             // Submits progress for the game.
             SubmitProgress();
+
+            // Refreshes the current world area.
+            // This happens in late start.
+            // RefreshCurrentWorldArea();
 
             // The world has been intialized.
             worldInitialized = true;
@@ -895,6 +927,12 @@ namespace RM_EDU
             }
         }
 
+        // Gets the world area count.
+        public int GetWorldAreaCount()
+        {
+            return areas.Count;
+        }
+
         // Gets the current world area.
         public WorldArea GetCurrentWorldArea()
         {
@@ -969,6 +1007,12 @@ namespace RM_EDU
             // Refreshes the world area buttons.
             if(effectAreaButtons)
                 worldUI.RefreshWorldAreaButtons();
+        }
+
+        // Refreshes setting the current world area.
+        public void RefreshCurrentWorldArea()
+        {
+            SetCurrentWorldArea(GetCurrentWorldArea());
         }
 
         // Gets the current world area index.
@@ -1304,6 +1348,18 @@ namespace RM_EDU
                     CompleteGame();
                 }
             }
+        }
+
+        // This function is called when the MonoBehaviour will be destroyed.
+        protected override void OnDestroy()
+        {
+            // If the saved instance is being deleted, set 'instanced' to false.
+            if (instance == this)
+            {
+                instanced = false;
+            }
+
+            base.OnDestroy();
         }
     }
 }

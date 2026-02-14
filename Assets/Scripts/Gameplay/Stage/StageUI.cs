@@ -15,7 +15,7 @@ namespace RM_EDU
         public StageManager stageManager;
 
         // The options dialog.
-        public GameObject optionsDialog;
+        public StageOptions optionsDialog;
 
         // The game settings UI.
         public GameSettingsUI settingsDialog;
@@ -114,7 +114,7 @@ namespace RM_EDU
             // The list to return, which is given the dialogs in this script.
             List<GameObject> dialogList = new List<GameObject>
             {
-                optionsDialog,
+                optionsDialog.gameObject,
                 settingsDialog.gameObject
             };
 
@@ -179,6 +179,12 @@ namespace RM_EDU
         public virtual void ResetStage()
         {
             stageManager.ResetStage();
+        }
+
+        // Quits the stage, returning to the world scene.
+        public virtual void QuitStage()
+        {
+            stageManager.QuitStage();
         }
 
         // Called to finish the stage.

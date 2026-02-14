@@ -44,18 +44,17 @@ namespace RM_EDU
             }
         }
 
-        // Checks if all stages in the area are complete. If so, the area is complete.
-        // If the area has no stages, this returns true.
-        public bool IsComplete()
+        // Returns 'true' if all stages in this area are complete.
+        public bool AllStagesComplete()
         {
-            // The result to be returned.
+            // The result to return.
             bool result = true;
 
             // Checks if stages exist.
-            if(stages.Count > 0)
+            if (stages.Count > 0)
             {
                 // Goes through all stages.
-                for(int i = 0; i < stages.Count; i++)
+                for (int i = 0; i < stages.Count; i++)
                 {
                     // Stage exists.
                     if (stages[i] != null)
@@ -69,6 +68,7 @@ namespace RM_EDU
                     }
                 }
             }
+            // No stages, so true by default.
             else
             {
                 result = true;
@@ -78,15 +78,36 @@ namespace RM_EDU
         }
 
         // Returns 'true' if the world area has been cleared.
-        public bool IsWorldAreaEventCleared()
+        public bool IsAreaCompleteEventCleared()
         {
             return areaCompleteEvent.cleared;
         }
 
-        // Update is called once per frame
-        void Update()
+        // Checks if all stages in the area are complete. If so, the area is complete.
+        // If the area has no stages, this returns true.
+        public bool IsComplete()
         {
+            // The result to be returned.
+            bool result;
 
+            // If an area complete event exists, check that.
+            if(areaCompleteEvent != null)
+            {
+                result = areaCompleteEvent.cleared;
+            }
+            // No area complete event, so manually check.
+            else
+            {
+                result = AllStagesComplete();   
+            }
+
+            return result;
+        }
+
+        // Update is called once per frame
+        protected virtual void Update()
+        {
+            // ...
         }
     }
 }

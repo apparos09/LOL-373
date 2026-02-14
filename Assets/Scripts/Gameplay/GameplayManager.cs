@@ -72,7 +72,9 @@ namespace RM_EDU
         // Awake is called when the script is being loaded
         protected virtual void Awake()
         {
-            // ...
+            // Makes sure the game isn't paused and resets the game time scale to 1.0.
+            UnpauseGame();
+            ResetGameTimeScale(true);
         }
 
         // Start is called before the first frame update
@@ -440,6 +442,12 @@ namespace RM_EDU
         // Loads a scene, which checks if a loading screen should be used.
         public virtual void LoadScene(string scene, bool useLoadingScreen)
         {
+            // Unpauses the game and resets the game time scale...
+            // So that the next scene isn't frozen once loaded.
+            // This also makes sure the loading screen animation works.
+            UnpauseGame();
+            ResetGameTimeScale(true);
+
             // If the loading screen should be used and the loading scene is available.
             if(useLoadingScreen && IsLoadingScreenAvailableAndEnabled())
             {
@@ -554,11 +562,9 @@ namespace RM_EDU
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()
         {
-            // Resets the game time scale.
+            // Unpauses the game and resets the game time scale.
+            UnpauseGame();
             ResetGameTimeScale(true);
-
-            // Return the time scale to normal.
-            Time.timeScale = 1.0F;
         }
     }
 }
