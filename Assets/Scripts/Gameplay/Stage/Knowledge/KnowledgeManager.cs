@@ -601,6 +601,11 @@ namespace RM_EDU
                 knowledgeUI = KnowledgeUI.Instance;
             }
 
+
+            // Increases the verification attempts count.
+            // This was moved here so that any energy calculation checks take this into account.
+            verifyAttempts++;
+
             // Saves if all the statements are matching correctly.
             bool allMatch = true;
 
@@ -692,9 +697,6 @@ namespace RM_EDU
 
             // CLear the current selection.
             ClearCurrentSelection();
-
-            // Increases the verification attempts count.
-            verifyAttempts++;
             
             // Returns result of all statements matching.
             return allMatch;
@@ -885,13 +887,14 @@ namespace RM_EDU
         }
 
         // Calculates the current energy bonus.
-        public float CalculateEnergyBonus()
+        // verifications: the number of verifications that have been performed.
+        public float CalculateEnergyBonus(int verifications)
         {
             // The energy bonus.
             float energyBonus;
 
             // Checks the number of verification attempts.
-            switch (verifyAttempts)
+            switch (verifications)
             {
                 case 5: // 5 attempts.
                     energyBonus = 50.0F;
@@ -921,6 +924,12 @@ namespace RM_EDU
 
             // Returns the energy bonus.
             return energyBonus;
+        }
+
+        // Calculates the energy bonus using the saved verify attempts.
+        public float CalculateEnergyBonus()
+        {
+            return CalculateEnergyBonus(verifyAttempts);
         }
 
         // Returns 'true' if the stage is complete.

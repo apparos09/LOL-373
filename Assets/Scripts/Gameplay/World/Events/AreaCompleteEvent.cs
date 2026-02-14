@@ -66,7 +66,6 @@ namespace RM_EDU
             {
                 // The next area button is interactable.
                 worldManager.worldUI.RefreshWorldAreaButtons();
-                Debug.Log("Test");
             }
         }
 

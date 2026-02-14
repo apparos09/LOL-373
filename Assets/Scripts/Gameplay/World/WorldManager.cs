@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -25,8 +24,9 @@ namespace RM_EDU
         // If 'true', auto saving is enabled.
         private bool autoSavingEnabled = true;
 
-        // If true, the game saves in late start.
-        private bool saveInLateStart = true;
+        // If 'true', auto saving happens in late start.
+        // If false, it happens in InitializeWorld().
+        private bool autoSaveInLateStart = true;
 
         [Header("World")]
 
@@ -167,6 +167,24 @@ namespace RM_EDU
             // This also refreshes the area arrow buttons if that setting is on.
             // RefreshCurrentWorldArea();
 
+            // If saving and auto saving is enabled, and the game should auto save in late start...
+            // Save the game.
+            if(IsSavingAndAutoSavingEnabled() && autoSaveInLateStart)
+            {
+                // Gets the save system.
+                SaveSystem saveSystem = SaveSystem.Instance;
+
+                // Auto save the game.
+                SaveGame();
+                
+                // If the save system is set, that means it's been instantiated.
+                // Clears the loaded data so that it doesn't take priority over the data logger.
+                // This is a holdover from the auto save call in Initialize(), but it's also done here...
+                // To be safe.
+                if (saveSystem != null)
+                    saveSystem.ClearLoadedAndLastSaveData();
+            }
+
             // Check for some tutorials.
             checkedTutorials = false;
         }
@@ -259,14 +277,21 @@ namespace RM_EDU
                 // Apply the start info.
                 startInfo.ApplyStartInfo(this);
 
-                // If saving/loading is enabled and auto saving is enabled.
-                if(savingLoadingEnabled && autoSavingEnabled)
+                // If saving/loading is enabled and auto saving is enabled, do an auto save.
+                // if(savingLoadingEnabled && autoSavingEnabled) // Now a dedicated function.
+                if (IsSavingAndAutoSavingEnabled())
                 {
                     // If the player returned from a stage, and that stage was completed, auto save.
                     if (startInfo.fromStage && startInfo.stageCompleted)
                     {
-                        // Auto save the game.
-                        SaveGame();
+                        // If the game won't auto save in late start, do it here.
+                        if(!autoSaveInLateStart)
+                        {
+                            // If you uncomment the code below, make sure not to auto save again in late start.
+                            // autoSaveInLateStart = false;
+                            // Auto save the game.
+                            SaveGame();                            
+                        }
 
                         // If the save system is set, that means it's been instantiated.
                         // Clears the loaded data so that it doesn't take priority over the data logger.
@@ -475,6 +500,19 @@ namespace RM_EDU
             }
         }
 
+        // Returns true if saving and auto saving are enabled.
+        public bool IsSavingAndAutoSavingEnabled()
+        {
+            return savingLoadingEnabled && autoSavingEnabled;
+        }
+
+        // The game already mentions if an improper save is made...
+        // So checking if the game can save beforehand is unnecessary.
+        // // Returns 'true' if the game can save.
+        // public bool CanSave()
+        // {
+        //     return SaveSystem.Instantiated && savingLoadingEnabled;
+        // }
 
         // Saves the data for the game.
         public bool SaveGame()
@@ -1007,6 +1045,9 @@ namespace RM_EDU
             // Refreshes the world area buttons.
             if(effectAreaButtons)
                 worldUI.RefreshWorldAreaButtons();
+
+            // Check the tutorials now that the player has moved to a new area.
+            checkedTutorials = false;
         }
 
         // Refreshes setting the current world area.
