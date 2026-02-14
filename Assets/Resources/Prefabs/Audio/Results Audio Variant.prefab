@@ -120,5 +120,5 @@ MonoBehaviour:
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   resultsBgm: {fileID: 8300000, guid: d253d69bc15fb684199e19375659d94c, type: 3}
   resultsBgmLoopStart: 0
-  resultsBgmLoopEnd: 31.995
+  resultsBgmLoopEnd: 15.972
   playBgmInStart: 1
