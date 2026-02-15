@@ -242,22 +242,22 @@ namespace RM_EDU
             stageAirPollution.valueText.text = Mathf.CeilToInt(actionManager.GetStageAirPollution()).ToString();
         }
 
-        // Goes to the world scene.
-        public void LoadWorldScene()
+        // Quits the stage, which goes to the results scene.
+        public void QuitStage()
         {
-            ActionUI.Instance.LoadWorldScene();
+            actionUI.QuitStage();
         }
 
         // Called to finish the stage.
         public void FinishStage()
         {
-            ActionUI.Instance.FinishStage();
+            actionUI.FinishStage();
         }
 
         // Resets the stage.
         public void ResetStage()
         {
-            ActionUI.Instance.ResetStage();
+            actionUI.ResetStage();
         }
 
     }

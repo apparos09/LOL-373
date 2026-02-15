@@ -45,7 +45,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5376823678882525142, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Name
-      value: Action Stage Object - Cliff (Top)
+      value: Action Stage Object - Cliff - Top
       objectReference: {fileID: 0}
     - target: {fileID: 6224318159762303510, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -94,7 +94,7 @@ PrefabInstance:
     - target: {fileID: 9070086229073596719, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1227743315, guid: 003f5cc9a9380024fbfe9589ac5c3ee9, type: 3}
+      objectReference: {fileID: -1306533575, guid: 003f5cc9a9380024fbfe9589ac5c3ee9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8987747818809567076, guid: b26c43d3b4ca99849b4d9557e1391926, type: 3}
       propertyPath: m_Name
-      value: Action Stage Object - Road (Right)
+      value: Action Stage Object - Road - Right
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -217,7 +217,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8987747818809567076, guid: b26c43d3b4ca99849b4d9557e1391926, type: 3}
       propertyPath: m_Name
-      value: Action Stage Object - Road (Left)
+      value: Action Stage Object - Road - Left
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -279,7 +279,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5376823678882525142, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Name
-      value: Action Stage Object - Cliff (Bottom)
+      value: Action Stage Object - Cliff - Bottom
       objectReference: {fileID: 0}
     - target: {fileID: 6224318159762303510, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_LocalPosition.y
@@ -308,7 +308,7 @@ PrefabInstance:
     - target: {fileID: 9070086229073596719, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -695476561, guid: 003f5cc9a9380024fbfe9589ac5c3ee9, type: 3}
+      objectReference: {fileID: 973077209, guid: 003f5cc9a9380024fbfe9589ac5c3ee9, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

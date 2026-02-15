@@ -173,8 +173,8 @@ TextureImporter:
       name: aoj_cliff_1
       rect:
         serializedVersion: 2
-        x: 128
-        y: 256
+        x: 0
+        y: 128
         width: 128
         height: 128
       alignment: 0
@@ -194,8 +194,8 @@ TextureImporter:
       name: aoj_cliff_2
       rect:
         serializedVersion: 2
-        x: 256
-        y: 256
+        x: 0
+        y: 0
         width: 128
         height: 128
       alignment: 0
@@ -207,132 +207,6 @@ TextureImporter:
       bones: []
       spriteID: 473f33da802d3234c9ee85dc9d246396
       internalID: -1306533575
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoj_cliff_3
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7fc5d3a25ec0c234aa4af80efaef40b3
-      internalID: 128529699
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoj_cliff_4
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34d504235902b9644bdfc14a6fd1878a
-      internalID: -1195855472
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoj_cliff_5
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 128
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e4dc671b404fe6149aa3126b6379c14d
-      internalID: 774962481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoj_cliff_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d991006ae241f3346901a9e7c6e6bc8b
-      internalID: -1764784715
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoj_cliff_7
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: c39cb0ee20d9333439691465cc03b210
-      internalID: -1227743315
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: aoj_cliff_8
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 0
-        width: 128
-        height: 128
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 08693fdc9b70e964eaec2214b668387e
-      internalID: -612953692
       vertices: []
       indices: 
       edges: []
@@ -351,12 +225,6 @@ TextureImporter:
       aoj_cliff_0: 973077209
       aoj_cliff_1: -695476561
       aoj_cliff_2: -1306533575
-      aoj_cliff_3: 128529699
-      aoj_cliff_4: -1195855472
-      aoj_cliff_5: 774962481
-      aoj_cliff_6: -1764784715
-      aoj_cliff_7: -1227743315
-      aoj_cliff_8: -612953692
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
