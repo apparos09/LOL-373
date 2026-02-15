@@ -26,6 +26,9 @@ namespace RM_EDU
         // The energy death cost to be applied when the enemy reaches the stage bounds.
         public float energyDeathCost = 0;
 
+        // The energy death cost factor to be applied.
+        public float energyDeathCostFactor = 1.0F;
+
         // The enemy retreats.
         private static List<EnemyRetreat> enemyRetreats = new List<EnemyRetreat>();
 
@@ -66,11 +69,17 @@ namespace RM_EDU
             }
         }
 
+        // Gets the energy death cost modified by the cost factor.
+        public float GetEnergyDeathCostModified()
+        {
+            return energyDeathCost * energyDeathCostFactor;
+        }
+
         // Kils the retreating enemy.
         protected virtual void Kill()
         {
             // Applies the energy death cost.
-            ActionManager.Instance.playerEnemy.energy -= energyDeathCost;
+            ActionManager.Instance.playerEnemy.DecreaseEnergy(GetEnergyDeathCostModified());
 
             // Destroys this enemy.
             Destroy(gameObject);

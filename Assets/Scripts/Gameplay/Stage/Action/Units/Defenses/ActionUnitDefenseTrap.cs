@@ -263,8 +263,11 @@ namespace RM_EDU
             // Add it to the owner's energy.
             if(owner != null && energyGainSum > 0)
             {
-                // Increase energy.
-                owner.IncreaseEnergy(energyGainSum);
+                // Rounds the energy gain sum up to a whole number.
+                float energyGainSumCeiled = Mathf.Ceil(energyGainSum);
+
+                // Increase energy by the ceil rounded amount.
+                owner.IncreaseEnergy(energyGainSumCeiled);
 
                 // Play the energy generation animation.
                 PlayEnergyGenerationAnimation();
