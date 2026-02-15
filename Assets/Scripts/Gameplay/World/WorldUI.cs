@@ -29,8 +29,14 @@ namespace RM_EDU
 
         [Header("World/Header")]
 
+        // The info log button.
+        public Button infoLogButton;
+
         // The energy bonus.
         public TMP_LabeledValue energyStartBonus;
+
+        // The options button.
+        public Button optionsButton;
 
         [Header("World/Dialogs")]
 

@@ -62,6 +62,9 @@ namespace RM_EDU
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
 
+        // If no stages have been completed, disable the info log.
+        private bool disableInfoLogIfNoStagesComplete = true;
+
         // The default defense ids that the player has.
         [Tooltip("The defense ids that are set by default.")]
         public List<int> defaultDefenseIds = new List<int>();
@@ -173,6 +176,14 @@ namespace RM_EDU
             // This also refreshes the area arrow buttons if that setting is on.
             // RefreshCurrentWorldArea();
             worldUI.RefreshWorldAreaButtons();
+
+            // If the info log button should be disabled if no stages are complete.
+            if(disableInfoLogIfNoStagesComplete)
+            {
+                // If a stage has been completed, make the button interactable.
+                // If a stage hasn't been complete,d make the button non-interactable.
+                worldUI.infoLogButton.interactable = HasCompletedAStage();
+            }
 
             // If saving and auto saving is enabled, and the game should auto save in late start...
             // Save the game.
@@ -1124,6 +1135,55 @@ namespace RM_EDU
             }
         }
 
+        // Goes to the previous world area.
+        // If 'wrapAround' is true, the game loops around to the other area if it underflows.
+        public void PreviousWorldArea(bool wrapAround)
+        {
+            // Gets the potential index of the previous area.
+            int index = currAreaIndex - 1;
+
+            // If the index is less than 0, either wrap around or stay at 0.
+            if(index < 0)
+                index = (wrapAround) ? areas.Count - 1 : 0;
+
+            // Set the new area.
+            SetCurrentWorldArea(index);
+        }
+
+        // Goes to the previous world area, not allowing wrap arounds.
+        public void PreviousWorldArea()
+        {
+            PreviousWorldArea(false);
+        }
+
+        // Goes to the next world area.
+        // If 'wrapAround' is true, the game loops around to the other area if it overflows.
+        public void NextWorldArea(bool wrapAround)
+        {
+            // Gets the potential index of the next area.
+            int index = currAreaIndex + 1;
+
+            // If the index is greater than or equal to the area count, either wrap around or stay at 0.
+            if (index >= areas.Count)
+                index = (wrapAround) ? 0 : areas.Count - 1;
+
+            // Set the new area.
+            SetCurrentWorldArea(index);
+        }
+
+        // Goes to the next world area, not allowing wrap arounds.
+        public void NextWorldArea()
+        {
+            NextWorldArea(false);
+        }
+
+        // If area buttons should be effected by the state of the world.
+        public bool EffectAreaButtons
+        {
+            get { return effectAreaButtons; }
+        }
+
+
         // STAGE //
         // Gets a world stage by its index.
         public WorldStage GetWorldStage(int index)
@@ -1186,54 +1246,7 @@ namespace RM_EDU
             return stageArea;
         }
 
-        // Goes to the previous world area.
-        // If 'wrapAround' is true, the game loops around to the other area if it underflows.
-        public void PreviousWorldArea(bool wrapAround)
-        {
-            // Gets the potential index of the previous area.
-            int index = currAreaIndex - 1;
-
-            // If the index is less than 0, either wrap around or stay at 0.
-            if(index < 0)
-                index = (wrapAround) ? areas.Count - 1 : 0;
-
-            // Set the new area.
-            SetCurrentWorldArea(index);
-        }
-
-        // Goes to the previous world area, not allowing wrap arounds.
-        public void PreviousWorldArea()
-        {
-            PreviousWorldArea(false);
-        }
-
-        // Goes to the next world area.
-        // If 'wrapAround' is true, the game loops around to the other area if it overflows.
-        public void NextWorldArea(bool wrapAround)
-        {
-            // Gets the potential index of the next area.
-            int index = currAreaIndex + 1;
-
-            // If the index is greater than or equal to the area count, either wrap around or stay at 0.
-            if (index >= areas.Count)
-                index = (wrapAround) ? 0 : areas.Count - 1;
-
-            // Set the new area.
-            SetCurrentWorldArea(index);
-        }
-
-        // Goes to the next world area, not allowing wrap arounds.
-        public void NextWorldArea()
-        {
-            NextWorldArea(false);
-        }
-
-        // If area buttons should be effected by the state of the world.
-        public bool EffectAreaButtons
-        {
-            get { return effectAreaButtons; }
-        }
-
+        
         // Starts the provided stage.
         public void StartStage(WorldStage worldStage)
         {
@@ -1281,7 +1294,26 @@ namespace RM_EDU
             }
         }
 
-        // 
+        // Returns 'true' if the player has completed at least 1 stage.
+        public bool HasCompletedAStage()
+        {
+            // Goes through all stages.
+            foreach(WorldStage stage in stages)
+            {
+                // Stage exists.
+                if(stage != null)
+                {
+                    // If a stage has been completed, return true.
+                    if(stage.IsComplete())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            // No stages complete.
+            return false;
+        }
 
 
         // PROGRESS, COMPLETE
