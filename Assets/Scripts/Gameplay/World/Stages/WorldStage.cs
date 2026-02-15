@@ -304,6 +304,24 @@ namespace RM_EDU
             return WorldManager.Instance.GetWorldStageArea(this);
         }
 
+        // Gets the world stage area index.
+        public int GetWorldStageAreaIndex()
+        {
+            // If the world manager isn't set, set it.
+            if (worldManager == null)
+                worldManager = WorldManager.Instance;
+
+            // Gets the area and the index of that area.
+            WorldArea area = worldManager.GetWorldStageArea(this);
+
+            // The area index.
+            // If the area doesn't exist, set it to -1.
+            int areaIndex = (area != null) ? worldManager.areas.IndexOf(area) : -1;
+
+            // Returns the area index.
+            return areaIndex;
+        }
+
         // STAGE TYPE
         // Gets the stage type.
         public virtual stageType GetStageType()

@@ -53,6 +53,12 @@ namespace RM_EDU
         // If 'false', the area buttons remain on at all times.
         private bool effectAreaButtons = true;
 
+        // Refreshes the area buttons in a given set of wait frames.
+        // Use this to delay the area buttons being refreshed to fix an error...
+        // Where the area buttons aren't set properly.
+        [HideInInspector]
+        public int refreshAreaButtonsWaitFrames = 0;
+
         // The world stages.
         public List<WorldStage> stages = new List<WorldStage>();
 
@@ -166,6 +172,7 @@ namespace RM_EDU
             // Refreshes the current world area.
             // This also refreshes the area arrow buttons if that setting is on.
             // RefreshCurrentWorldArea();
+            worldUI.RefreshWorldAreaButtons();
 
             // If saving and auto saving is enabled, and the game should auto save in late start...
             // Save the game.
@@ -241,6 +248,11 @@ namespace RM_EDU
             // Gets set to true if save data was loaded.
             bool saveDataLoaded = false;
 
+            // The index for the area the player should be in for the world.
+            // This is used to fix an issue where the camera isn't in the right area...
+            // When the player comes back from a saved game or a world stage.
+            int initAreaIndex = 0;
+
             // If there's save data to load in, try to load it in.
             if(saveSystem != null)
             {
@@ -249,6 +261,12 @@ namespace RM_EDU
                 {
                     // Loads the game.
                     saveDataLoaded = LoadGame(true);
+
+                    // If save data was loaded, set the init area index from the saved data.
+                    if(saveDataLoaded)
+                    {
+                        initAreaIndex = saveSystem.loadedData.currentAreaIndex;
+                    }
 
                     // Calls again in case the function was unsuccessful.
                     saveSystem.ClearLoadedAndLastSaveData();
@@ -276,6 +294,15 @@ namespace RM_EDU
             {
                 // Apply the start info.
                 startInfo.ApplyStartInfo(this);
+
+                // If coming from the stage, get that as the area index.
+                // If there's also save data, this overrides the value...
+                // Gotten from the save data.
+                if(startInfo.fromStage)
+                {
+                    // Gets the world stage's area index.
+                    initAreaIndex = stages[startInfo.worldStageIndex].GetWorldStageAreaIndex();
+                }
 
                 // If saving/loading is enabled and auto saving is enabled, do an auto save.
                 // if(savingLoadingEnabled && autoSavingEnabled) // Now a dedicated function.
@@ -347,8 +374,9 @@ namespace RM_EDU
                 // Go to the first area.
                 if(!saveDataLoaded)
                 {
-                    // The current area index.
+                    // The current area index and the init area index.
                     currAreaIndex = 0;
+                    initAreaIndex = 0;
 
                     // Sets the current area to be the first one.
                     SetCurrentWorldArea(currAreaIndex);
@@ -389,6 +417,11 @@ namespace RM_EDU
 
             // Submits progress for the game.
             SubmitProgress();
+
+            // Sets the current world area using the init area index.
+            // This is to fix a problem where the camera wasn't in the right area...
+            // Upon loading a saved game or returning from a world stage.
+            SetCurrentWorldArea(initAreaIndex);
 
             // Refreshes the current world area.
             // This happens in late start.
@@ -1366,13 +1399,28 @@ namespace RM_EDU
             // Checks that the game isn't paused.
             if(!IsGamePaused())
             {
+                // If there are wait frames, reduce them.
+                if(refreshAreaButtonsWaitFrames > 0)
+                {
+                    // Down by 1 frame.
+                    refreshAreaButtonsWaitFrames--;
+
+                    // No more wait frames, so refresh the buttons.
+                    // This is here in case game events end up happening out of order...
+                    // And cause the area buttons not to be set properly.
+                    if(refreshAreaButtonsWaitFrames <= 0)
+                    {
+                        refreshAreaButtonsWaitFrames = 0;
+                        worldUI.RefreshWorldAreaButtons();
+                    }
+                }
+
                 // If tutorials need to be checked and the game isn't loading...
                 // Check for tutorials.
                 if (!checkedTutorials && !IsLoading())
                 {
                     CheckTutorials();
                 }
-                
             }
         }
 

@@ -65,7 +65,12 @@ namespace RM_EDU
             if (worldManager.EffectAreaButtons)
             {
                 // The next area button is interactable.
+                // NOTE: maybe don't do this if they're going to be refreshed again anyway?
                 worldManager.worldUI.RefreshWorldAreaButtons();
+
+                // In 2 frames, refresh the area buttons. This is to address an issue...
+                // Where the area buttons weren't being set properly.
+                worldManager.refreshAreaButtonsWaitFrames = 2;
             }
         }
 

@@ -835,6 +835,8 @@ namespace RM_EDU
         {
             base.OnStageOver();
 
+            // Set the enemy bar to 0 if it lost.
+
             // Open the end UI.
             actionUI.OpenStageEndDialog();
         }
