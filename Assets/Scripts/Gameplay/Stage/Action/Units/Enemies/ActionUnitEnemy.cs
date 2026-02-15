@@ -9,6 +9,11 @@ namespace RM_EDU
         // The enemy player.
         public ActionPlayerEnemy playerEnemy;
 
+        // The energy death cost factor. This can be changed based on what killed the enemy.
+        // This is basically only for the lane blaster, and is there for balancing reasons.
+        [HideInInspector]
+        public float energyDeathCostFactor = 1.0F;
+
         // The row the action unit is in.
         private int row = -1;
 
@@ -464,8 +469,9 @@ namespace RM_EDU
                 // Sets the retreat's position.
                 retreat.transform.position = transform.position;
 
-                // Sets the energy death cost.
+                // Sets the energy death cost and the death cost factor.
                 retreat.energyDeathCost = tempDeathCost;
+                retreat.energyDeathCostFactor = energyDeathCostFactor;
 
                 // Calls the base kill function.
                 base.Kill();
@@ -475,8 +481,17 @@ namespace RM_EDU
             }
             else
             {
+                // Saves the current energy death cost temporarily.
+                float tempDeathCost = energyDeathCost;
+
+                // Apply the energy death cost factor.
+                energyDeathCost *= energyDeathCostFactor;
+
                 // Just call base kill.
                 base.Kill();
+
+                // Restore the energy death cost back to normal.
+                energyDeathCost = tempDeathCost;
             }
         }
 

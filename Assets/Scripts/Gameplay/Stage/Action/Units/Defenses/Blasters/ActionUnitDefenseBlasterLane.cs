@@ -9,6 +9,10 @@ namespace RM_EDU
     {
         [Header("Lane")]
 
+        // Modifies the enemy energy death cost for enemies killed by the lane blaster if true.
+        [Tooltip("Modifies the enemy's energy death cost if killed by a lane blaster projectile.")]
+        public bool modifyEnemyEnergyDeathCost = true;
+
         // Kills unit once an attack has been performed.
         [Tooltip("Kills this unit once an attack has been performed.")]
         public bool killOnAttackPerformed = true;
@@ -54,6 +58,32 @@ namespace RM_EDU
                 // A shot has been fired, so kill the lane blaster.
                 Kill();
             }
+        }
+
+        // Shoots the projectile.
+        public override ActionProjectile Shoot()
+        {
+            // Fires the projectile.
+            ActionProjectile projectile = base.Shoot();
+
+            // If it is a lane blaster projectile, down cast.
+            if(projectile is ActionProjectileLaneBlaster)
+            {
+                // Downcast.
+                ActionProjectileLaneBlaster projLaneBlaster = (ActionProjectileLaneBlaster)projectile;
+            
+                // If the enemy death cost shouldn't be modified...
+                // Set the factor to 1.0. It's already set in the prefab...
+                // So it doesn't need to be changed if modifyEnemyEnergyDeathCost...
+                // Is true.
+                if(!modifyEnemyEnergyDeathCost)
+                {
+                    // Set to default (1.0F).
+                    projLaneBlaster.enemyDeathCostFactor = 1.0F;
+                }
+            }
+
+            return projectile;
         }
 
         // Called when the unit has died.

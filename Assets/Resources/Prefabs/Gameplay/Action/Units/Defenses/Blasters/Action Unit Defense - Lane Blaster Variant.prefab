@@ -167,12 +167,13 @@ MonoBehaviour:
   removableByUser: 0
   defType: 1
   platformSpriteRenderer: {fileID: 6801037432176312619}
-  projectilePrefab: {fileID: 6423055876177994831, guid: 989f33c9573112749b85881a7f42db92, type: 3}
+  projectilePrefab: {fileID: 834843449278615229, guid: 989f33c9573112749b85881a7f42db92, type: 3}
   projectileStartPos: {fileID: 3226871958145216452}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
   shotSfx: {fileID: 8300000, guid: 6ec4596f160ae13478b03b860c60a84d, type: 3}
+  modifyEnemyEnergyDeathCost: 1
   killOnAttackPerformed: 1
 --- !u!212 &6801037432176312619 stripped
 SpriteRenderer:
