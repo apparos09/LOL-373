@@ -1397,7 +1397,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 45}
+  m_SizeDelta: {x: 550, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &770623193113104286
 CanvasRenderer:
@@ -1457,9 +1457,9 @@ MonoBehaviour:
   m_fontSize: 32
   m_fontSizeBase: 32
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 14
+  m_fontSizeMax: 32
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
@@ -2521,7 +2521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6823050334902580250, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -96
+      value: -100
       objectReference: {fileID: 0}
     - target: {fileID: 6823050334902580250, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2674,7 +2674,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6823050334902580250, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -300
+      value: -325
       objectReference: {fileID: 0}
     - target: {fileID: 6823050334902580250, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2795,7 +2795,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1905061197346884375, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 300
+      value: 325
       objectReference: {fileID: 0}
     - target: {fileID: 1905061197346884375, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -2948,7 +2948,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1905061197346884375, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 96
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1905061197346884375, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_AnchoredPosition.y

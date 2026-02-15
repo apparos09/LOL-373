@@ -39,9 +39,9 @@
       "kwd_reset": 18,
       "kwd_restart": 18,
       "kwd_save": 18,
-      "kwd_saveAndContinue": 24,
-      "kwd_saveAndQuit": 24,
-      "kwd_quitWithoutSaving": 24,
+      "kwd_saveAndContinue": 28,
+      "kwd_saveAndQuit": 28,
+      "kwd_quitWithoutSaving": 28,
 
       "kwd_world": 18,
       "kwd_worldStage": 18,
@@ -56,8 +56,8 @@
       "kwd_info": 18,
 
 
-      "kwd_naturalResource": 18,
-      "kwd_naturalResources": 18,
+      "kwd_naturalResource": 28,
+      "kwd_naturalResources": 28,
       "kwd_resource": 18,
       "kwd_resources": 18,
 
@@ -304,51 +304,51 @@
 
 
 
-      "trl_intro_00": 640,
-      "trl_intro_01": 640,
-      "trl_intro_02": 640,
-      "trl_intro_03": 640,
+      "trl_intro_00": 650,
+      "trl_intro_01": 650,
+      "trl_intro_02": 650,
+      "trl_intro_03": 650,
 
-      "trl_firstAction_00": 640,
-      "trl_firstAction_01": 640,
-      "trl_firstAction_02": 640,
-      "trl_firstAction_03": 640,
-      "trl_firstAction_04": 640,
-      "trl_firstAction_05": 640,
-      "trl_firstAction_06": 640,
+      "trl_firstAction_00": 650,
+      "trl_firstAction_01": 650,
+      "trl_firstAction_02": 650,
+      "trl_firstAction_03": 650,
+      "trl_firstAction_04": 650,
+      "trl_firstAction_05": 650,
+      "trl_firstAction_06": 650,
 
-      "trl_firstActionComplete_00": 640,
+      "trl_firstActionComplete_00": 650,
 
-      "trl_firstKnowledge_00": 640,
-      "trl_firstKnowledge_01": 640,
-      "trl_firstKnowledge_02": 640,
+      "trl_firstKnowledge_00": 650,
+      "trl_firstKnowledge_01": 650,
+      "trl_firstKnowledge_02": 650,
 
-      "trl_firstKnowledgeComplete_00": 640,
+      "trl_firstKnowledgeComplete_00": 650,
 
-      "trl_firstAreaComplete_00": 640,
+      "trl_firstAreaComplete_00": 650,
 
-      "trl_finalArea_00": 640,
+      "trl_finalArea_00": 650,
 
-      "trl_biomass_00": 640,
+      "trl_biomass_00": 650,
 
-      "trl_geothermal_00": 640,
+      "trl_geothermal_00": 650,
 
-      "trl_hydro_00": 640,
+      "trl_hydro_00": 650,
 
-      "trl_solar_00": 640,
+      "trl_solar_00": 650,
 
-      "trl_wave_00": 640,
+      "trl_wave_00": 650,
 
-      "trl_wind_00": 640,
+      "trl_wind_00": 650,
 
-      "trl_coal_00": 640,
+      "trl_coal_00": 650,
 
-      "trl_naturalGas_00": 640,
+      "trl_naturalGas_00": 650,
 
-      "trl_nuclear_00": 640,
-      "trl_nuclear_01": 640,
+      "trl_nuclear_00": 650,
+      "trl_nuclear_01": 650,
 
-      "trl_oil_00": 640,
+      "trl_oil_00": 650,
 
 
 
