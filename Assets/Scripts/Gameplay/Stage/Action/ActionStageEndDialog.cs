@@ -169,11 +169,11 @@ namespace RM_EDU
             ActionManager actionManager = ActionManager.Instance;
 
             // Checks the winner to know what to set the dialog to.
-            if (actionManager.PlayerUserWon())
+            if (actionManager.HasPlayerUserWon())
             {
                 SetStageEndOutcomeUserWon();
             }
-            else if (actionManager.PlayerEnemyWon())
+            else if (actionManager.HasPlayerEnemyWon())
             {
                 SetStageEndOutcomeUserLost();
             }

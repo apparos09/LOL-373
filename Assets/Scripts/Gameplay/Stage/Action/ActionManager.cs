@@ -297,7 +297,7 @@ namespace RM_EDU
             float basePoints = 500;
 
             // Bonus for the user winning, and their amount of kills.
-            float userWonBonus = PlayerUserWon() ? 500 : 0;
+            float userWonBonus = HasPlayerUserWon() ? 500 : 0;
             float killBonus = playerUser.kills * 50.0F;
 
             // Reduce for air pollution.
@@ -792,16 +792,16 @@ namespace RM_EDU
 
 
         // PLAYERS
-        // If the player enemy has no energy, the player has won.
-        public bool PlayerUserWon()
+        // If the stage isn't playing and the player enemy has no energy, the player user has won.
+        public bool HasPlayerUserWon()
         {
-            return !playerEnemy.HasEnergy();
+            return !IsStagePlaying() && !playerEnemy.HasEnergy();
         }
 
-        // If the player enemy has enemy, the player has lost.
-        public bool PlayerEnemyWon()
+        // If the stag isn't running and the player enemy has energy, the player user has lost.
+        public bool HasPlayerEnemyWon()
         {
-            return playerEnemy.HasEnergy();
+            return !IsStagePlaying() && playerEnemy.HasEnergy();
         }
 
         // Called on the death of the user.
@@ -835,7 +835,15 @@ namespace RM_EDU
         {
             base.OnStageOver();
 
-            // Set the enemy bar to 0 if it lost.
+            // Set the enemy bar to 0 if the enemy has no energy.
+            // This is to make sure the enemy's energy bar is empty when the stage is over.
+            if(!playerEnemy.HasEnergy())
+            {
+                // Force the enemy's energy bar to be 0 in case it's currently in transition.
+                // It might still show that the enemy has energy left if the stage end dialog...
+                // Opens and sets the time scale to 0 before the transition is done.
+                actionUI.playerEnemyEnergyBar.SetValueAsPercentage(0, false);
+            }
 
             // Open the end UI.
             actionUI.OpenStageEndDialog();

@@ -259,13 +259,18 @@ namespace RM_EDU
                 // If the save system has loaded data, load the game.
                 if(saveSystem.HasLoadedData())
                 {
+                    // Gets the world area index from the loaded data.
+                    // This is done here since the loaded data is cleared after...
+                    // It's applied to the game in the function below.
+                    int loadedDataAreaIndex = saveSystem.loadedData.currentAreaIndex;
+
                     // Loads the game.
                     saveDataLoaded = LoadGame(true);
 
                     // If save data was loaded, set the init area index from the saved data.
                     if(saveDataLoaded)
                     {
-                        initAreaIndex = saveSystem.loadedData.currentAreaIndex;
+                        initAreaIndex = loadedDataAreaIndex;
                     }
 
                     // Calls again in case the function was unsuccessful.
