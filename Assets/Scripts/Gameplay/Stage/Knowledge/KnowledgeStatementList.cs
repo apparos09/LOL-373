@@ -523,7 +523,7 @@ namespace RM_EDU
                 "A non-renewable liquid resource that's burned for generating energy. It can be found by mining on land and at sea, but drilling at sea can cause a spill if something goes wrong.", 
                 "kst_oil_03"));
             oilGroup.statements.Add(new Statement(4,
-                "A non-renewable resource that can be burned for generating energy, and can be refined for various uses When burned, it releases toxic chemicals into the air.", 
+                "A non-renewable resource that can be burned for generating energy and can be refined for various uses. When burned, it releases toxic chemicals into the air.", 
                 "kst_oil_04"));
             oilGroup.SetAllStatementsToGroupResource();
 

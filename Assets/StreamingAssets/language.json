@@ -29,8 +29,10 @@
       "kwd_tutorials": 28,
 
       "dlg_licenses_dsc": 100,
-      "kwd_bgms": 8,
-      "kwd_sfxs": 8,
+      "kwd_bgm": 3,
+      "kwd_bgms": 4,
+      "kwd_sfx": 3,
+      "kwd_sfxs": 4,
 
       "sve_msg_savingGame": 18,
 
@@ -393,7 +395,9 @@
     "kwd_tutorials": "Tutorials",
 
     "dlg_licenses_dsc": "Sourced assets have been modified for use in this game.",
+    "kwd_bgm": "BGM",
     "kwd_bgms": "BGMs",
+    "kwd_sfx": "SFX",
     "kwd_sfxs": "SFXs",
 
     "sve_msg_savingGame": "Saving...",
@@ -663,7 +667,7 @@
     "kst_oil_01": "This resource forms from dead organic material that's buried under sediments, kept away from oxygen, and exposed to both high heat and pressure. It takes millions of years to form, but forms at a lower temperature than natural gas.",
     "kst_oil_02": "A resource that's obtained in a crude form, which has a mix of different hydrocarbons. It's then refined via heating to separate it into different compounds, which all boil at different temperatures.",
     "kst_oil_03": "A non-renewable liquid resource that's burned for generating energy. It can be found by mining on land and at sea, but drilling at sea can cause a spill if something goes wrong.",
-    "kst_oil_04": "A non-renewable resource that can be burned for generating energy, and can be refined for various uses When burned, it releases toxic chemicals into the air.",
+    "kst_oil_04": "A non-renewable resource that can be burned for generating energy and can be refined for various uses. When burned, it releases toxic chemicals into the air.",
 
     "kwd_verify": "Verify",
     "kwd_energyBonus": "Energy Bonus",
