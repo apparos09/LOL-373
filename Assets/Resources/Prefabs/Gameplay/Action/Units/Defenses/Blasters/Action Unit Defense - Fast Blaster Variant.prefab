@@ -18,8 +18,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: unitDesc
-      value: A faster version of Basic Blaster. Its shots move faster but do less
-        damage.
+      value: A faster version of Basic Blaster. It fires more frequently and its
+        shots move faster.
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: unitName

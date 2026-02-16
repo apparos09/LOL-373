@@ -549,7 +549,7 @@
     "aud_energyTrapStandard_dsc": "An energy trap that drains energy from enemies that pass over it and gives a portion of it to the player. When the trap reaches its energy limit, it explodes, destroying all enemies in its range in the process.",
 
     "aud_blasterFast_nme": "Faster Blaster",
-    "aud_blasterFast_dsc": "A faster version of Basic Blaster. Its shots move faster but do less damage.",
+    "aud_blasterFast_dsc": "A faster version of Basic Blaster. It fires more frequently and its shots move faster.",
 
     "aud_blasterTriple_nme": "Triple Blaster",
     "aud_blasterTriple_dsc": "A blaster that shoots three shots at once, with each shot going at a different angle.",
@@ -564,7 +564,7 @@
     "aud_energyTrapFast_dsc": "An energy trap that explodes almost instantly when an enemy passes over it, destroying all enemies in its range upon exploding.",
 
     "aud_blasterSlow_nme": "Slower Blaster",
-    "aud_blasterSlow_dsc": "A slower version of Basic Blaster. Its shots move slower but do more damage.",
+    "aud_blasterSlow_dsc": "A slower version of Basic Blaster. It fires less frequently and its shots move slower, but its shots do more damage.",
 
     "aud_blasterRapid_nme": "Rapid Blaster",
     "aud_blasterRapid_dsc": "A blaster that can fire one to three shots in quick succession before needing to recharge.",
