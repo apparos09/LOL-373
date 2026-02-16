@@ -606,7 +606,7 @@
 
 
     "kst_bms_00": "A renewable resource that burns plant and/or waste materials to turn a turbine to generate energy.",
-    "kst_bms_01": "A resource that burns plant and/or waste materials for generating energy. It can also be processed to make biofuel, which can be used for vehicle engines.",
+    "kst_bms_01": "A renewable resource that burns plant and/or waste materials for generating energy. It can also be processed to make fuel that can be used for vehicle engines.",
     "kst_bms_02": "A renewable resource that burns plant and/or waste materials for generating energy. It can also be used for fuel, which cuts down on fossil fuel usage.",
     "kst_bms_03": "A renewable resource that burns plant and/or waste materials, which produces carbon dioxide. Plants grown for this resource can consume the carbon dioxide, reducing the gases released into the air.",
     "kst_bms_04": "A renewable resource that burns plant and/or waste materials to generate energy. Plants used for this process cannot be used for other activities.",
@@ -624,10 +624,10 @@
     "kst_hdo_04": "A resource that uses water moving through a dam. The dam slows the release of silt, which can cause downstream areas to become more exposed to storms and rising sea levels.",
 
     "kst_slr_00": "A renewable resource that uses panels to convert sunlight to energy. The panels are made up of multiple cells.",
-    "kst_slr_01": "A resource that uses panels to generate energy. The panels can be placed in fields, attached to buildings, and mounted on certain structures.",
+    "kst_slr_01": "A resource that uses panels to generate energy from sunlight. The panels can be placed in fields, attached to buildings, and mounted on certain structures.",
     "kst_slr_02": "A resource that uses panels to generate energy from sunlight. This generation method produces virtually no pollutants when in operation.",
     "kst_slr_03": "A resource that uses sunlight to generate energy. No energy can be generated at night, so extra energy from the daytime must be stored using a battery.",
-    "kst_slr_04": "A renewable resource that converts solar energy into electricity. While solar energy is in abundance, the technology to harness it can be expensive.",
+    "kst_slr_04": "A renewable resource that converts sunlight into energy. While sunlight is in abundance, the technology to harness it can be expensive.",
 
     "kst_wve_00": "A renewable resource that uses the waves and tides to generate energy. A narrow bay or estuary may need to be closed off to use these types of energy plants.",
     "kst_wve_01": "A clean, renewable resource that generates energy by using waves. Areas with high wind have the most potential to produce waves.",

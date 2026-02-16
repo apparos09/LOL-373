@@ -342,7 +342,7 @@ namespace RM_EDU
                 "A renewable resource that burns plant and/or waste materials to turn a turbine to generate energy.", 
                 "kst_bms_00"));
             biomassGroup.statements.Add(new Statement(1,
-                "A resource that burns plant and/or waste materials for generating energy. It can also be processed to make biofuel, which can be used for vehicle engines.", 
+                "A renewable resource that burns plant and/or waste materials for generating energy. It can also be processed to make fuel that can be used for vehicle engines.", 
                 "kst_bms_01"));
             biomassGroup.statements.Add(new Statement(2,
                 "A renewable resource that burns plant and/or waste materials for generating energy. It can also be used for fuel, which cuts down on fossil fuel usage.", 
@@ -399,7 +399,7 @@ namespace RM_EDU
                 "A renewable resource that uses panels to convert sunlight to energy. The panels are made up of multiple cells.", 
                 "kst_slr_00"));
             solarGroup.statements.Add(new Statement(1,
-                "A resource that uses panels to generate energy. The panels can be placed in fields, attached to buildings, and mounted on certain structures.", 
+                "A resource that uses panels to generate energy from sunlight. The panels can be placed in fields, attached to buildings, and mounted on certain structures.", 
                 "kst_slr_01"));
             solarGroup.statements.Add(new Statement(2,
                 "A resource that uses panels to generate energy from sunlight. This generation method produces virtually no pollutants when in operation.", 
@@ -408,7 +408,7 @@ namespace RM_EDU
                 "A resource that uses sunlight to generate energy. No energy can be generated at night, so extra energy from the daytime must be stored using a battery.", 
                 "kst_slr_03"));
             solarGroup.statements.Add(new Statement(4,
-                "A renewable resource that converts solar energy into electricity. While solar energy is in abundance, the technology to harness it can be expensive.", 
+                "A renewable resource that converts sunlight into energy. While sunlight is in abundance, the technology to harness it can be expensive.", 
                 "kst_slr_04"));
             solarGroup.SetAllStatementsToGroupResource();
 

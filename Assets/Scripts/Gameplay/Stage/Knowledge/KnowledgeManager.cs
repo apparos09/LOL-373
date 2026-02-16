@@ -809,7 +809,7 @@ namespace RM_EDU
         public override float CalculateStageScore()
         {
             // The local base score.
-            float scoreBase = 0.0F;
+            float scoreBase = 50.0F;
 
             // Goes through all the statements.
             foreach(KnowledgeStatement statement in KnowledgeUI.Instance.statements)
@@ -829,44 +829,44 @@ namespace RM_EDU
             float scoreBonus;
 
             // The energy bonus.
-            float energyBonus;
+            float energyBonus = CalculateEnergyBonus();
 
             // Checks the number of verification attempts.
             switch(verifyAttempts)
             {
                 case 5: // 5 attempts.
                     scoreBonus = 50.0F;
-                    energyBonus = 50.0F;
+                    // energyBonus = 50.0F;
                     break;
 
                 case 4: // 4 attempts
                     scoreBonus = 100.0F;
-                    energyBonus = 75.0F;
+                    // energyBonus = 75.0F;
                     break;
 
                 case 3: // 3 attempts
                     scoreBonus = 150.0F;
-                    energyBonus = 100.0F;
+                    // energyBonus = 100.0F;
                     break;
 
                 case 2: // 2 attempts
                     scoreBonus = 200.0F;
-                    energyBonus = 125.0F;
+                    // energyBonus = 125.0F;
                     break;
 
                 case 1: // 1 attempt (lowest).
                 case 0: // 0 attempts (not possible).
                     scoreBonus = 250.0F;
-                    energyBonus = 150.0F;
+                    // energyBonus = 150.0F;
                     break;
 
-                default: // No bonus.
+                default: // No bonus since too many attempts.
                     scoreBonus = 0.0F;
-                    energyBonus = 0.0F;
+                    // energyBonus = 0.0F;
                     break;
             }
 
-            // Calculates the local score total score.
+            // Calculates the local total score.
             float scoreTotal = scoreBase + scoreBonus;
 
             // If the data logger exists, set the energy bonus.
