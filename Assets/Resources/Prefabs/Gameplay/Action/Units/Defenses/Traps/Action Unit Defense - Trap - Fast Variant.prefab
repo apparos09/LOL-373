@@ -23,7 +23,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: unitName
-      value: Furious Enemy Trap
+      value: Furious Energy Trap
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: iconSprite

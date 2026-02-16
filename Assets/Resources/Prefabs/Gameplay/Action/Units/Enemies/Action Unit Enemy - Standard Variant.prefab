@@ -14,8 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitDesc
-      value: A basic enemy that travels from the enemy ship to the Energy Defense
-        Unit base.
+      value: A basic enemy that travels from the right side of the field to the left.
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitName
