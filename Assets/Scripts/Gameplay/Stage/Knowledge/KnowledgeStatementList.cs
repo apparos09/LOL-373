@@ -463,10 +463,10 @@ namespace RM_EDU
                 "A non-renewable resource that's burned for producing energy. It can be mined on the surface or underground. Surface mining is safer for miners but has a higher chance of releasing toxic materials into the air.", 
                 "kst_col_02"));
             coalGroup.statements.Add(new Statement(3,
-                "A non-renewable resource that's burned to produce energy. When burned, this resource releases carbon dioxide and potentially other harmful materials into the air. This resource produces more carbon dioxide than oil and natural gas when burned.", 
+                "When burned for producing energy, this resource releases carbon dioxide and potentially other harmful materials into the air. This resource produces more carbon dioxide than oil and natural gas when burned.", 
                 "kst_col_03"));
             coalGroup.statements.Add(new Statement(4,
-                "A resource that's burned for producing energy. When mined on the surface, this resource exposes sulfur to the atmosphere. Sulfur can mix with water and air to create sulfuric acid, a highly corrosive chemical that can damage environments.", 
+                "A resource that's found by mining. When mined on the surface, this resource exposes sulfur to the atmosphere. Sulfur can mix with water and air to create sulfuric acid, a highly corrosive chemical that can damage environments.", 
                 "kst_col_04"));
             coalGroup.SetAllStatementsToGroupResource();
 

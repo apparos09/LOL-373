@@ -644,8 +644,8 @@
     "kst_col_00": "A non-renewable fossil fuel resource that's turned into powder and fed to a furnace to create heat. This heat boils water to produce steam and said steam turns a turbine to generate energy.",
     "kst_col_01": "A non-renewable fossil fuel resource formed from plant remains at the bottom of swamps. The organic matter turns into this resource after millions of years.",
     "kst_col_02": "A non-renewable resource that's burned for producing energy. It can be mined on the surface or underground. Surface mining is safer for miners but has a higher chance of releasing toxic materials into the air.",
-    "kst_col_03": "A non-renewable resource that's burned to produce energy. When burned, this resource releases carbon dioxide and potentially other harmful materials into the air. This resource produces more carbon dioxide than oil and natural gas when burned.",
-    "kst_col_04": "A resource that's burned for producing energy. When mined on the surface, this resource exposes sulfur to the atmosphere. Sulfur can mix with water and air to create sulfuric acid, a highly corrosive chemical that can damage environments.",
+    "kst_col_03": "When burned for producing energy, this resource releases carbon dioxide and potentially other harmful materials into the air. This resource produces more carbon dioxide than oil and natural gas when burned.",
+    "kst_col_04": "A resource that's found by mining. When mined on the surface, this resource exposes sulfur to the atmosphere. Sulfur can mix with water and air to create sulfuric acid, a highly corrosive chemical that can damage environments.",
 
     "kst_ngs_00": "A non-renewable fossil fuel resource that's burned to produce hot gases or steam to turn a turbine to generate energy. It's mostly methane.",
     "kst_ngs_01": "A non-renewable resource that's burned for producing energy. It can often be found with oil and coal in underground deposits since it forms with them, though it forms at higher temperatures than oil.",

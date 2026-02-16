@@ -107,5 +107,5 @@ MonoBehaviour:
   validTargets: 03000000
   dieOnContact: 0
   targetHits: 0
-  attackPowerDecay: 12.5
+  attackPowerDecay: 15
   attackPowerMin: 10
