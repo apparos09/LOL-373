@@ -267,8 +267,11 @@ namespace RM_EDU
             // Checks the number of columns.
             if(colCount > 0)
             {
-                // If the row count is greater than 0
-                if(rowCount > 0)
+                // Originally it would use this code even if there's one row, which didn't make sense.
+                // If there's more than 1 row, check the highlights. If theres only 1 row...
+                // The highlights should stay off, since there's no other row to reference.
+                // if(rowCount > 0)
+                if (rowCount > 1)
                 {
                     // The previous and next row.
                     // Up arrow is previous, down arrow is next.

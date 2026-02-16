@@ -255,6 +255,9 @@ namespace RM_EDU
             // If instantiated, get the instance. If not instantiated, set to null.
             SaveSystem saveSystem = SaveSystem.Instantiated ? SaveSystem.Instance : null;
 
+            // Set to false by default. Only set to true if returning from a completed stage.
+            autoSaveInLateStart = false;
+
             // Loading Data
             // Gets set to true if save data was loaded.
             bool saveDataLoaded = false;
@@ -327,14 +330,19 @@ namespace RM_EDU
                     // If the player returned from a stage, and that stage was completed, auto save.
                     if (startInfo.fromStage && startInfo.stageCompleted)
                     {
-                        // If the game won't auto save in late start, do it here.
-                        if(!autoSaveInLateStart)
-                        {
-                            // If you uncomment the code below, make sure not to auto save again in late start.
-                            // autoSaveInLateStart = false;
-                            // Auto save the game.
-                            SaveGame();                            
-                        }
+                        // If the stage was completed and the save system is available, auto save.
+                        // Auto saving only happens when coming back from a completed stage.
+                        autoSaveInLateStart = startInfo.stageCompleted;
+
+                        // Since auto saving is happening in late start, don't do it here.
+                        // // If the game won't auto save in late start, do it here.
+                        // if (!autoSaveInLateStart)
+                        // {
+                        //     // If you uncomment the code below, make sure not to auto save again in late start.
+                        //     // autoSaveInLateStart = false;
+                        //     // Auto save the game.
+                        //     SaveGame();                            
+                        // }
 
                         // If the save system is set, that means it's been instantiated.
                         // Clears the loaded data so that it doesn't take priority over the data logger.

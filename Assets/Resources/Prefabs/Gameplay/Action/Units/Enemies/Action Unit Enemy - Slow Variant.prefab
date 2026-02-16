@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitDesc
-      value: A slower, stronger version of the basic enemy.
+      value: A slower, more durable version of Basic Enemy.
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitName
@@ -32,6 +32,14 @@ PrefabInstance:
       propertyPath: iconSprite
       value: 
       objectReference: {fileID: 21300000, guid: 8bc822e7fe8d695428440b07547db8fd, type: 3}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: attackPower
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
+      propertyPath: attackSpeed
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitDescKey
       value: aue_enemySlow_dsc
