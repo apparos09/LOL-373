@@ -450,7 +450,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of power, you win. The enemy side loses power automatically, but defeating an enemy makes the enemy side lose power faster. The enemy's energy amount is displayed with the bar on the right.", "trl_firstAction_00"),
+                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of energy, you win. The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed using the bar on the right.", "trl_firstAction_00"),
                 new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, destroying all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstAction_01"),
                 new EDU_Page("To fight off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstAction_02"),
                 new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units in their lane. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstAction_03"),
@@ -471,7 +471,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("You've completed the first action stage! When you unlock an action stage, you'll sometimes unlock new defense units. To see what defense units you have and what they do, open the info log.", "trl_firstActionComplete_00"),
+                new EDU_Page("You've completed your first action stage! When you complete an action stage, you'll sometimes unlock new defense units. To see what defense units you have and what they do, open the info log.", "trl_firstActionComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.
