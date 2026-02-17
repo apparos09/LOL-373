@@ -433,7 +433,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("Welcome to the Energy Defense Unit (EDU)! For this training exercise, you'll be doing a simulation where you defend Earth's bases from alien invaders! The aliens are here to take Earth's natural resources, so you must use said resources to defend Earth. Once the aliens are fended off at every base, the simulation is complete.", "trl_intro_00"),
-                new EDU_Page("The game is split two stage types: action and knowledge. Action stages are where you fight off the aliens, and knowledge stages are where you're evaluated on your natural resource knowledge. Some stages can be completed before others, but all stages must be cleared to complete the simulation.", "trl_intro_01"),
+                new EDU_Page("The simulation is split into two stage types: action and knowledge. Action stages are where you fight off the aliens, and knowledge stages are where you're evaluated on your natural resource knowledge. Some stages can be completed before others, but all stages must be cleared to complete the simulation.", "trl_intro_01"),
                 new EDU_Page("From left to right on the top are the info log button, the energy bonus display, and the options button. The info log allows you to lookup information on natural resources, generators, and defenses that you've encountered. The energy bonus display shows how much bonus starting energy you have, which is applied in action stages. Finally, the options button opens the options menu, which allows you to adjust the game's settings, save your game, and return to the title screen.", "trl_intro_02"),
                 new EDU_Page("More simulation elements will be explained as they become relevant. With all that said, please select your first stage!", "trl_intro_03"),
             };
@@ -595,7 +595,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight to electricity, which can only be done during the day. Solar generators can be placed anywhere on land and produce no air pollution but only generate energy during the daytime.", "trl_solar_00"),
+                new EDU_Page("This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight into electricity, which can only be done during the day. Solar generators can be placed anywhere on land and produce no air pollution but only generate energy during the daytime.", "trl_solar_00"),
             };
 
             // Sets the bool and loads the tutorial.
