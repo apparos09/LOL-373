@@ -14,7 +14,7 @@ namespace RM_EDU
 
         // The limit on the number of hits this trap can have before it destroys itself.
         [Tooltip("The number of hits this trap can take before it destroys itself.")]
-        public float hitLimit = 15;
+        public float hitLimit = 12;
 
         // If 'true', the hit limit is enabled. If false, there is no limit, so the hit limit is infinite.
         [Tooltip("Enables hit limit. If the hit limit isn't being used, the hit limit is considered infinite.")]

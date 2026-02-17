@@ -93,6 +93,27 @@ namespace RM_EDU
                 return result;
             }
 
+            // Returns the translated version if the stagement text.
+            public string GetStatementTextTranslated()
+            {
+                // Result to be returned.
+                string result;
+
+                // If the LOL SDK exists and the key is set, use the key to translate the statement.
+                if(LOLManager.IsLOLSDKInitialized() && key != "")
+                {
+                    result = LOLManager.GetLanguageTextStatic(key);
+                }
+                // The LOL SDK isn't being used, so just use the regular text.
+                else
+                {
+                    result = text;
+                }
+
+                // Returns the result.
+                return result;
+            }
+
             // Generates the statement data. The group resource is the same as the statement's resource.
             public StatementData GenerateStatementData()
             {

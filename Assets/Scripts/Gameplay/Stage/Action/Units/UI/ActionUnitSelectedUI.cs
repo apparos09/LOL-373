@@ -36,7 +36,7 @@ namespace RM_EDU
             selectedUnit.ApplyActionUnitInfo(actionUnit);
 
             // Sets the name.
-            selectedUnitNameText.text = actionUnit.unitName;
+            selectedUnitNameText.text = actionUnit.GetUnitNameTranslated();
 
             // Reads the unit name key.
             SpeakText(actionUnit.unitNameKey);
@@ -45,6 +45,7 @@ namespace RM_EDU
         // Applies information from an action unit button.
         public void ApplyActionUnitInfo(ActionUnitButton unitButton)
         {
+            // Sets the action unit info using the unit button.
             selectedUnit.ApplyActionUnitInfo(unitButton);
 
             // Checks if the button has a unit prefab.

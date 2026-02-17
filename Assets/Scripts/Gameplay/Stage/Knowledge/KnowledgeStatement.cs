@@ -84,7 +84,18 @@ namespace RM_EDU
         public void SetStatement(KnowledgeStatementList.Statement statement)
         {
             this.statement = statement;
-            statementText.text = (useIdText) ? statement.GenerateIdText() : statement.text;
+            statementText.text = useIdText ? statement.GenerateIdText() : statement.GetStatementTextTranslated();
+        }
+
+        // Gets the translated statement text.
+        // If translation isn't possible, the default statement text is returned.
+        public string GetStatementTextTranslated()
+        {
+            // Checks if the statement exists.
+            if (statement != null)
+                return statement.GetStatementTextTranslated();
+            else
+                return statement.text;
         }
 
         // Gets the statement key. Returns "" if the statement isn't set.

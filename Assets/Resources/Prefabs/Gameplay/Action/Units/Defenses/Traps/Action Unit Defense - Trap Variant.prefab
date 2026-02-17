@@ -162,7 +162,7 @@ MonoBehaviour:
   defType: 3
   platformSpriteRenderer: {fileID: 9051461572882687555}
   hitCount: 0
-  hitLimit: 15
+  hitLimit: 12
   useHitLimit: 1
   damageEnergyPercent: 0.25
   killTargetsOnHitLimitReached: 1
