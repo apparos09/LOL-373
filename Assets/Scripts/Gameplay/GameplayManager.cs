@@ -335,7 +335,7 @@ namespace RM_EDU
                 }
 
                 // NOTE: if testing tutorials, uncomment line below to ignore result.
-                return true;
+                // return true;
             }
             // Tutorials not enabled, so return false automatically.
             else

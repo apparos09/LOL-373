@@ -57,6 +57,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   worldUI: {fileID: 0}
+  saveContButton: {fileID: 5740209947363369788}
+  saveQuitButton: {fileID: 119889092565638832}
 --- !u!1 &7162932028598728307
 GameObject:
   m_ObjectHideFlags: 0
@@ -576,6 +578,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+--- !u!114 &119889092565638832 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+  m_PrefabInstance: {fileID: 3773309023142452387}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &7337966021445325185 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
@@ -1097,3 +1110,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
   m_PrefabInstance: {fileID: 8817415193106506031}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5740209947363369788 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+  m_PrefabInstance: {fileID: 8817415193106506031}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
