@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,8 +21,21 @@ namespace RM_EDU
         // Manager
         public KnowledgeManager knowledgeManager;
 
+        // The section text.
+        public TMP_Text sectionText;
+
+        // NOTE: the active section is at a (1, 1, 1) scale, while the inactive section is at a (0, 0, 0) scale.
+        // This is done so that the objects can be set and updated properly, which may not happen...
+        // If the objects are off, and thus not being updated.
+
+        // The parent object of all statements.
+        public GameObject statementsParent;
+
         // The statements in the knowledge stage.
         public List<KnowledgeStatement> statements = new List<KnowledgeStatement>();
+
+        // The parent object for all resources.
+        public GameObject resourcesParent;
 
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
@@ -37,11 +51,6 @@ namespace RM_EDU
 
         // The butto used to verify the statements.
         public Button verifyButton;
-
-        // The finish button.
-        // NOTE: this is part of the stage end dialog window, so saving the button here...
-        // Isn't really needed anymore, but it's already integrated into the code.
-        public Button finishButton;
 
         // Constructor
         private KnowledgeUI()
@@ -96,8 +105,9 @@ namespace RM_EDU
                 resources = new List<KnowledgeResource>(FindObjectsOfType<KnowledgeResource>(true));
             }
 
+            // The finish button is now in a dialog, so it's interactability doesn't need to be changed.
             // The finish button only becomes interactable once all elements have been matched correctly.
-            finishButton.interactable = false;
+            // finishButton.interactable = false;
         }
 
         // Gets the instance.
@@ -134,6 +144,12 @@ namespace RM_EDU
             {
                 return instanced;
             }
+        }
+
+        // Swaps the sections.
+        public void SwapSections()
+        {
+            knowledgeManager.SwapSections();
         }
 
         // Verifies the matches.

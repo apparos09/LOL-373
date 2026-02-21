@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using util;
 
 namespace RM_EDU
@@ -21,6 +22,11 @@ namespace RM_EDU
 
         // The stage user energy total.
         public TMP_LabeledValue stageEnergyBonus;
+
+        [Header("Buttons")]
+
+        // The finish button.
+        public Button finishbutton;
 
         // Start is called before the first frame update
         void Start()

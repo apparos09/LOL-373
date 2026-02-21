@@ -245,6 +245,10 @@ PrefabInstance:
       propertyPath: m_fontSizeMax
       value: 28
       objectReference: {fileID: 0}
+    - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_fontSizeMin
+      value: 14
+      objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_Colors.m_SelectedColor.g
       value: 0.80784315
@@ -295,7 +299,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 1024
+      value: 1536
       objectReference: {fileID: 0}
     - target: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.y

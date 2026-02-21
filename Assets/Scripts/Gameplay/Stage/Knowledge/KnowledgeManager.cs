@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
@@ -25,6 +26,24 @@ namespace RM_EDU
 
         // The knowledge audio.
         public KnowledgeAudio knowledgeAudio = null;
+
+        // The section text.
+        private string sectionString = "Section";
+
+        // The section key.
+        private string sectionStringKey = "kwd_section";
+
+        // The statements text.
+        private string statementsString = "Statements";
+
+        // The statements text key.
+        private string statementsStringKey = "kwd_statements";
+
+        // The resources text.
+        private string resourcesStringString = "Resources";
+
+        // The resources text key.
+        private string resourcesStringKey = "kwd_resources";
 
         // The selected knowledge statement.
         public KnowledgeStatement selectedStatement = null;
@@ -171,6 +190,9 @@ namespace RM_EDU
 
             // The base number of statements used.
             int baseStatementCount = 0;
+
+            // Makes sure both sections are active.
+            SetSection(0);
 
             // Determines the statement count by the difficulty.
             switch(difficulty)
@@ -368,6 +390,9 @@ namespace RM_EDU
             // Sets verification attempts to 0.
             verifyAttempts = 0;
 
+            // Activates the statement section as the default section.
+            ActivateStatementsSection();
+
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
 
@@ -402,6 +427,161 @@ namespace RM_EDU
             // Calls base to check for resource tutorials.
             base.CheckTutorials();
         }
+
+
+        // SECTIONS 
+        // Gets the section text string translated.
+        public string GetSectionStringTranslated()
+        {
+            string result;
+
+            // If the LOL SDK is available, translate the text.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                result = LOLManager.GetLanguageTextStatic(sectionStringKey);
+            }
+            // Use default text.
+            else
+            {
+                result = sectionString;
+            }
+
+            return result;
+        }
+
+        // Gets the statements string translated.
+        public string GetStatementsStringTranslated()
+        {
+            string result;
+
+            // If the LOL SDK is available, translate the text.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                result = LOLManager.GetLanguageTextStatic(statementsStringKey);
+            }
+            // Use default text.
+            else
+            {
+                result = statementsString;
+            }
+
+            return result;
+        }
+
+        // Gets the resources string translated.
+        public string GetResourcesStringTranslated()
+        {
+            string result;
+
+            // If the LOL SDK is available, translate the text.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                result = LOLManager.GetLanguageTextStatic(resourcesStringKey);
+            }
+            // Use default text.
+            else
+            {
+                result = resourcesStringString;
+            }
+
+            return result;
+        }
+
+        // Sets what section is active.
+        // An inactive section has a scale of (0, 0, 0), but still has its parent active.
+        // 0 = both, 1 = statmenet, 2 = resource
+        public void SetSection(int section)
+        {
+            // Sets the instance.
+            if (knowledgeUI == null)
+                knowledgeUI = KnowledgeUI.Instance;
+
+            // The section text.
+            TMP_Text sectionText = knowledgeUI.sectionText;
+
+            // Gets the parents.
+            GameObject sp = knowledgeUI.statementsParent;
+            GameObject rp = knowledgeUI.resourcesParent;
+
+            // Makes sure both are active.
+            sp.SetActive(true);
+            rp.SetActive(true);
+
+            // Checks what section to active.
+            switch (section)
+            {
+                default:
+                case 0: // Both
+                    sp.transform.localScale = Vector3.one;
+                    rp.transform.localScale = Vector3.one;
+
+                    sectionText.text = GetSectionStringTranslated();
+
+                    break;
+
+                case 1: // Statements
+                    sp.transform.localScale = Vector3.one;
+                    rp.transform.localScale = Vector3.zero;
+
+                    sectionText.text = GetStatementsStringTranslated();
+
+                    break;
+
+                case 2: // Resources
+                    sp.transform.localScale = Vector3.zero;
+                    rp.transform.localScale = Vector3.one;
+
+                    sectionText.text = GetResourcesStringTranslated();
+
+                    break;
+            }
+
+
+        }
+
+        // Returns true if the statements section is active.
+        public bool IsStatementsSectionActive()
+        {
+            GameObject sp = KnowledgeUI.Instance.statementsParent;
+
+            return sp.activeSelf && sp.transform.localScale == Vector3.one;
+        }
+
+        // Activates the statements section.
+        public void ActivateStatementsSection()
+        {
+            SetSection(1);
+        }
+
+        // Returns true if the resources section is active.
+        public bool IsResourcesSectionActive()
+        {
+            GameObject rp = KnowledgeUI.Instance.resourcesParent;
+
+            return rp.activeSelf && rp.transform.localScale == Vector3.one;
+        }
+
+        // Activates the resources section.
+        public void ActivateResourcesSection()
+        {
+            SetSection(2);
+        }
+
+        // Swaps the sections.
+        public void SwapSections()
+        {
+            // If the statements section is active, activate the resources section.
+            if(IsStatementsSectionActive())
+            {
+                ActivateResourcesSection();
+            }
+            // Activate the statements section.
+            else
+            {
+                ActivateStatementsSection();
+            }
+        }
+
 
         // RANDOMIZE
         // Randomizes the statements using the groups.
@@ -676,8 +856,9 @@ namespace RM_EDU
                     resource.button.interactable = false;
                 }
 
+                // The finish button is now in a dialog, so it's interactability doesn't need to be changed.
                 // The finish button is interactable.
-                knowledgeUI.finishButton.interactable = true;
+                // knowledgeUI.finishButton.interactable = true;
 
                 // Calls function to indicate that the stage is over.
                 OnStageOver();
@@ -685,11 +866,12 @@ namespace RM_EDU
             // Not all matching.
             else
             {
-                knowledgeUI.finishButton.interactable = false;
+                // The finish button is now in a dialog, so it's interactability doesn't need to be changed.
+                // knowledgeUI.finishButton.interactable = false;
 
                 // If the statements should be randomized if a match fails, randomize them.
                 // If not, keep them the same.
-                if(randomizeStatementsOnFail)
+                if (randomizeStatementsOnFail)
                 {
                     RandomizeStatements(false);
                 }
@@ -782,7 +964,10 @@ namespace RM_EDU
 
             // Verify button is interactable, but the finish button isn't.
             knowledgeUI.verifyButton.interactable = true;
-            knowledgeUI.finishButton.interactable = false;
+
+            // The finish button is now in a dialog, so it's interactability doesn't need to be changed.
+            // The button is now kept interactable.
+            // knowledgeUI.finishButton.interactable = false;
         }
 
         // Called when the stage is over.
