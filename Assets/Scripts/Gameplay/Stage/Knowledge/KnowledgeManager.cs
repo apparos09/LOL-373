@@ -907,6 +907,9 @@ namespace RM_EDU
             if (selectedResource != null)
                 selectedResource.SetButtonToNormalColor();
 
+            // Clears the knowledge element text.
+            knowledgeUI.ClearKnowledgeElementText();
+
             // Clear the selections.
             selectedStatement = null;
             selectedResource = null;

@@ -28,10 +28,15 @@ namespace RM_EDU
         // If 'true', the resource colour is used instead of the button's base color.
         private bool useResourceColor = false;
 
-        // The mix amount for the resource colour. The resource colour is lerped with the colour white...
-        // To set the button color.
+        // The mix amount for the resource normal colour. The resource colour is lerped with the color white...
+        // To set the button normal color.
         // The higher the value, the stronger the resource color is in the new color.
-        private float resourceColorMix = 0.333F;
+        private float resourceNormalColorMix = 0.333F;
+
+        // The mix amount for the resource selected color. The button's normal color is lerped with the color black...
+        // To set the button's selected color.
+        // The higher the value, the stronger the button's normal color is in the new color.
+        private float resourceSelectedColorMix = 0.75F;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -59,6 +64,9 @@ namespace RM_EDU
 
             // Sets the button image color to the selected color.
             SetButtonToSelectedColor();
+
+            // Sets the selected knowledge element text.
+            KnowledgeUI.Instance.SetSelectedKnowledgeElementText(this);
         }
 
         // Returns 'true' if this button is set to use the resource color.
@@ -67,10 +75,16 @@ namespace RM_EDU
             get { return useResourceColor; }
         }
 
-        // Gets the resource color mix amount.
-        public float ResourceColorMix
+        // Gets the resource normal color mix amount.
+        public float ResourceNormalColorMix
         {
-            get { return resourceColorMix; }
+            get { return resourceNormalColorMix; }
+        }
+
+        // Gets the resource selected color mix amount.
+        public float ResourceSelectedColorMix
+        {
+            get { return resourceSelectedColorMix; }
         }
 
         // Sets the resource and the display text.
@@ -82,13 +96,35 @@ namespace RM_EDU
             // If the resource color should be used.
             if(useResourceColor && buttonImage != null)
             {
-                // Gets the resource colour, and mixes it with white to get the new colour.
+                // Gets the resource color.
                 Color resColor = NaturalResources.GetNaturalResourceColor(resource);
-                Color newColor = Color.Lerp(Color.white, resColor, resourceColorMix);
 
-                // Sets the new colour.
-                buttonImage.color = newColor;
+                // Mixes the resource color with white for the normal color.
+                Color newNormalColor = Color.Lerp(Color.white, resColor, resourceNormalColorMix);
+                
+                // Mixes the new normal color with black for the selected clor.
+                Color newSelectedColor = Color.Lerp(Color.black, newNormalColor, resourceSelectedColorMix);
+
+                // Sets the button imag'es color, the normal and selected colors.
+                buttonImage.color = newNormalColor;
+                buttonNormalColor = newNormalColor;
+                buttonSelectedColor = newSelectedColor;
+
+                // Sets hte button to its normal color.
+                SetButtonToNormalColor();
             }
+        }
+
+        // Gets the resource text translated.
+        public string GetResourceTextTranslated()
+        {
+            return NaturalResources.GetNaturalResourceName(resource);
+        }
+
+        // Gets the resource name.
+        public string GetResourceName()
+        {
+            return NaturalResources.GetNaturalResourceName(resource);
         }
 
         // Gets the resource name key.

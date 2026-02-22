@@ -186,6 +186,9 @@ MonoBehaviour:
   knowledgeUI: {fileID: 0}
   button: {fileID: 7953860339629387337}
   buttonImage: {fileID: 5500835126285192567}
+  buttonNormalColor: {r: 0.7294118, g: 0.8235294, b: 1, a: 1}
+  autoSetButtonNormalColor: 1
+  buttonSelectedColor: {r: 0.443681, g: 0.6269597, b: 0.9716981, a: 1}
   buttonColorsCopy:
     m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
     m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
@@ -256,14 +259,6 @@ PrefabInstance:
     - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_enableAutoSizing
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.g
-      value: 0.80784315
-      objectReference: {fileID: 0}
-    - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
-      propertyPath: m_Colors.m_SelectedColor.r
-      value: 0.5568628
       objectReference: {fileID: 0}
     - target: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode

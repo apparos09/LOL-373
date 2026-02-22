@@ -58,6 +58,9 @@ namespace RM_EDU
 
             // Sets the button image color to the selected color.
             SetButtonToSelectedColor();
+
+            // Sets the selected knowledge element text.
+            KnowledgeUI.Instance.SetSelectedKnowledgeElementText(this);
         }
 
         // The statement.

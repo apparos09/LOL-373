@@ -21,6 +21,7 @@ namespace RM_EDU
         // Manager
         public KnowledgeManager knowledgeManager;
 
+        [Header("Statements, Resources")]
         // The section text.
         public TMP_Text sectionText;
 
@@ -40,6 +41,15 @@ namespace RM_EDU
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
 
+        // The selected knowledgement element text object.
+        [Tooltip("Selected knowledge element text object.")]
+        public TMP_Text selectedKEText;
+
+        // The butto used to verify the statements.
+        public Button verifyButton;
+
+        [Header("Knowledge/Buttons, Dialogs")]
+
         // The info log button.
         public Button infoLogButton;
 
@@ -48,9 +58,6 @@ namespace RM_EDU
 
         // The knowledge stage end dialog.
         public KnowledgeStageEndDialog stageEndDialog;
-
-        // The butto used to verify the statements.
-        public Button verifyButton;
 
         // Constructor
         private KnowledgeUI()
@@ -105,6 +112,9 @@ namespace RM_EDU
                 resources = new List<KnowledgeResource>(FindObjectsOfType<KnowledgeResource>(true));
             }
 
+            // Clears the knowledge element text.
+            ClearKnowledgeElementText();
+
             // The finish button is now in a dialog, so it's interactability doesn't need to be changed.
             // The finish button only becomes interactable once all elements have been matched correctly.
             // finishButton.interactable = false;
@@ -146,10 +156,29 @@ namespace RM_EDU
             }
         }
 
+        // SECTION, STATEMENTS, RESOURCES
         // Swaps the sections.
         public void SwapSections()
         {
             knowledgeManager.SwapSections();
+        }
+
+        // Sets the selected knowledge element text.
+        public void SetSelectedKnowledgeElementText(KnowledgeStatement statement)
+        {
+            selectedKEText.text = statement.GetStatementTextTranslated();
+        }
+
+        // Sets the selected knowledge element text.
+        public void SetSelectedKnowledgeElementText(KnowledgeResource resource)
+        {
+            selectedKEText.text = resource.GetResourceTextTranslated();
+        }
+
+        // Clears the knowledge element text.
+        public void ClearKnowledgeElementText()
+        {
+            selectedKEText.text = "-";
         }
 
         // Verifies the matches.

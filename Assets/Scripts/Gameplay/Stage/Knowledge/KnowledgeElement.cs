@@ -17,9 +17,21 @@ namespace RM_EDU
         // The button image.
         public Image buttonImage;
 
+        // The normal color of the button.
+        public Color buttonNormalColor = Color.white;
+
+        // If 'true', the button's normal color is automatically set to the button's normal color.
+        [Tooltip("Sets the saved normal color to the button's normal color on Start.")]
+        public bool autoSetButtonNormalColor = true;
+
+        // The selected color for the button. This is used when the button is selected...
+        // Since navigation is set to none.
+        public Color buttonSelectedColor = new Color(0.961F, 0.961F, 0.961F);
+
+        // Not needed anymore.
         // A copy of the button's color block on start.
-        [HideInInspector]
-        public ColorBlock buttonColorsCopy;
+        // [HideInInspector]
+        // public ColorBlock buttonColorsCopy;
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -35,40 +47,56 @@ namespace RM_EDU
                 if (buttonImage == null)
                     buttonImage = button.gameObject.GetComponent<Image>();
 
+                // Automatically sets the normal color of the button.
+                if(autoSetButtonNormalColor)
+                {
+                    buttonNormalColor = buttonImage.color;
+                }
+
                 // Listener for the tutorial toggle.
                 button.onClick.AddListener(delegate
                 {
                     Select();
                 });
 
+                // Not needed anymore.
                 // Saves the color block.
-                SetButtonColorsCopyToCurrent();
+                // SetButtonColorsCopyToCurrent();
             }
         }
 
         // The select function for the button.
         public abstract void Select();
 
-        // Sets the button's color copy to the current values.
-        public void SetButtonColorsCopyToCurrent()
-        {
-            buttonColorsCopy = button.colors;
-        }
+        // No longer needed.
+        // // Sets the button's color copy to the current values.
+        // public void SetButtonColorsCopyToCurrent()
+        // {
+        //     buttonColorsCopy = button.colors;
+        // }
 
         // Sets the button to the normal color.
         public void SetButtonToNormalColor()
         {
-            ColorBlock cb = button.colors;
-            cb.normalColor = buttonColorsCopy.normalColor;
-            button.colors = cb;
+            // Old
+            // ColorBlock cb = button.colors;
+            // cb.normalColor = buttonColorsCopy.normalColor;
+            // button.colors = cb;
+
+            // New
+            buttonImage.color = buttonNormalColor;
         }
 
         // Sets the button to the selected color.
         public void SetButtonToSelectedColor()
         {
-            ColorBlock cb = button.colors;
-            cb.normalColor = buttonColorsCopy.selectedColor;
-            button.colors = cb;
+            // Old
+            // ColorBlock cb = button.colors;
+            // cb.normalColor = buttonColorsCopy.selectedColor;
+            // button.colors = cb;
+
+            // New
+            buttonImage.color = buttonSelectedColor;
         }
 
         // Returns 'true' if text-to-speech is enabled.
