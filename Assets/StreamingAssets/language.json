@@ -552,7 +552,7 @@
     "aud_shieldStandard_dsc": "A shield that can be used to block enemies and defend units that're behind it.",
 
     "aud_energyTrapStandard_nme": "Basic Energy Trap",
-    "aud_energyTrapStandard_dsc": "An energy trap that drains energy from enemies that pass over it and gives a portion of it to the player. When the trap reaches its energy limit, it explodes, destroying all enemies in its range in the process.",
+    "aud_energyTrapStandard_dsc": "An energy trap that drains energy from enemies that pass over it and gives a portion of it to the player. When the trap reaches its energy limit, it destroys itself and damages all enemies in range.",
 
     "aud_blasterFast_nme": "Faster Blaster",
     "aud_blasterFast_dsc": "A faster version of Basic Blaster. It fires more frequently and its shots move faster.",
@@ -567,7 +567,7 @@
     "aud_shieldWeak_dsc": "A weaker version of Basic Shield.",
 
     "aud_energyTrapFast_nme": "Furious Energy Trap",
-    "aud_energyTrapFast_dsc": "An energy trap that explodes almost instantly when an enemy passes over it, destroying all enemies in its range upon exploding.",
+    "aud_energyTrapFast_dsc": "Drains energy from enemies that pass over it and gives it to the player, but it has a small energy limit. When its energy limit is reached, it destroys itself and damages all enemies within range.",
 
     "aud_blasterSlow_nme": "Slower Blaster",
     "aud_blasterSlow_dsc": "A slower version of Basic Blaster. It fires less frequently and its shots move slower, but its shots do more damage.",
@@ -582,7 +582,7 @@
     "aud_shieldStrong_dsc": "A stronger version of Basic Shield.",
 
     "aud_energyTrapSlow_nme": "Steady Energy Trap",
-    "aud_energyTrapSlow_dsc": "An energy trap that causes damage slower than Basic Energy Trap but causes more damage per hit.",
+    "aud_energyTrapSlow_dsc": "An energy trap that deals damage slower than Basic Energy Trap but causes more damage per hit. When it reaches its energy limit, it destroys itself and damages all enemies in range.",
 
 
 
