@@ -17,7 +17,13 @@
 
       "kwd_back": 28,
 
-      "ttl_instructions_dsc": 800,
+      "dlg_instructions_dsc": 220,
+      "kwd_world": 18,
+      "dlg_instructions_emt_world": 220,
+      "kwd_action": 18,
+      "dlg_instructions_emt_action": 220,
+      "kwd_knowledge": 18,
+      "dlg_instructions_emt_knowledge": 220,
 
       "kwd_volume": 28,
       "kwd_bgmVolume": 70,
@@ -45,11 +51,8 @@
       "kwd_saveAndQuit": 28,
       "kwd_quitWithoutSaving": 28,
 
-      "kwd_world": 18,
       "kwd_worldStage": 18,
-      "kwd_action": 18,
       "kwd_actionStage": 18,
-      "kwd_knowledge": 18,
       "kwd_knowledgeStage": 18,
       "kwd_unknownStage": 18,
 
@@ -390,7 +393,13 @@
 
     "kwd_back": "Back",
 
-    "ttl_instructions_dsc": "Use the mouse or touch controls to interact with game elements. This game has three gameplay areas: world, action, and knowledge. In the world area, you can view information using the info log and select stages. In an action stage, you place generators to generate energy and create defenses to fight off enemies. In a knowledge stage, you match statements with the natural resources they apply to. Once all action and knowledge stages are completed, the game is finished.",
+    "dlg_instructions_dsc": "Use the mouse or touch controls to interact with game elements. This game has three gameplay areas: world, action, and knowledge.",
+    "kwd_world": "World",
+    "dlg_instructions_emt_world": "In the world section, you select action stages and knowledge stages. Once all stages are complete, the game is finished.",
+    "kwd_action": "Action",
+    "dlg_instructions_emt_action": "In an action stage, you place generator units to generate energy and place defense units to defend the base from enemies.",
+    "kwd_knowledge": "Knowledge",
+    "dlg_instructions_emt_knowledge": "In a knowledge stage, you match statements with the resources they apply to.",
 
     "kwd_volume": "Volume",
     "kwd_bgmVolume": "Background Music (BGM) Volume",
@@ -418,11 +427,8 @@
     "kwd_saveAndQuit": "Save and Quit",
     "kwd_quitWithoutSaving": "Quit Without Saving",
 
-    "kwd_world": "World",
     "kwd_worldStage": "World Stage",
-    "kwd_action": "Action",
     "kwd_actionStage": "Action Stage",
-    "kwd_knowledge": "Knowledge",
     "kwd_knowledgeStage": "Knowledge Stage",
     "kwd_unknownStage": "Unknown Stage",
 

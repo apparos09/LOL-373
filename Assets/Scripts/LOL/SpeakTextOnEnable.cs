@@ -42,7 +42,9 @@ namespace RM_EDU
         public void SpeakText()
         {
             // Checks if the instances exist: LOL SDK, Text-to-Speech, and GameSettings.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && TextToSpeech.Instantiated && GameSettings.Instantiated)
+            // Also checks that the key is set.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && TextToSpeech.Instantiated && 
+                GameSettings.Instantiated && key != "")
             {
                 // Gets the instances.
                 GameSettings gameSettings = GameSettings.Instance;

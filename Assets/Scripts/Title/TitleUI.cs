@@ -41,7 +41,7 @@ namespace RM_EDU
         public GameObject titleDialog;
 
         // The instructions, settings, and credits windows.
-        public GameObject instructionsDialog;
+        public InstructionsDialog instructionsDialog;
         public GameSettingsUI settingsDialog;
         public Licenses licensesDialog;
 
@@ -222,7 +222,7 @@ namespace RM_EDU
         public void CloseAllDialogs()
         {
             titleDialog.SetActive(false);
-            instructionsDialog.SetActive(false);
+            instructionsDialog.gameObject.SetActive(false);
             settingsDialog.gameObject.SetActive(false);
             licensesDialog.gameObject.SetActive(false);
         }
@@ -236,7 +236,7 @@ namespace RM_EDU
         // Opens the instructions dialog.
         public void OpenInstructionsDialog()
         {
-            OpenDialog(instructionsDialog, true);
+            OpenDialog(instructionsDialog.gameObject, true);
         }
 
         // Opens the settings dialog.
