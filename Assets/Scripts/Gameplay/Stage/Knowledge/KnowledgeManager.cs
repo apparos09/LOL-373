@@ -1155,6 +1155,9 @@ namespace RM_EDU
 
             // Sets verification attempts to 0.
             verifyAttempts = 0;
+
+            // Goes to the statement section.
+            ActivateStatementsSection();
         }
 
         // Finishes the stage. Only call this if the stage is complete.
