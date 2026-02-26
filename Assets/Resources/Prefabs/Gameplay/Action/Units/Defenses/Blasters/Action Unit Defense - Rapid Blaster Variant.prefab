@@ -151,7 +151,7 @@ MonoBehaviour:
   attackingEnabled: 1
   attackCooldownTimer: 0
   oneHitKill: 0
-  durability: 80
+  durability: 70
   movementSpeed: 0
   airPollution: 0
   unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}

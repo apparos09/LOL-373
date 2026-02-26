@@ -19,7 +19,7 @@ PrefabInstance:
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: unitDesc
       value: A faster version of Basic Blaster. It fires more frequently and its
-        shots move faster.
+        shots move faster, but the shots do less damage.
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: unitName
@@ -27,7 +27,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: durability
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: iconSprite
@@ -35,7 +35,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 42c97364801b0ec418f15f4b9cc38415, type: 3}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: attackPower
-      value: 60
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: attackSpeed
@@ -59,7 +59,7 @@ PrefabInstance:
       objectReference: {fileID: 1861831386709414063, guid: 7feca1428507f684f8eb0a1570340b98, type: 3}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: energyCreationCost
-      value: 60
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1849280751653751939, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: m_LocalPosition.x
