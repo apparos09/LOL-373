@@ -84,10 +84,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
-  shooterUnit: {fileID: 0}
   spriteRenderer: {fileID: 2920835005272386918}
   collider: {fileID: 7944872884518390476}
   rigidbody: {fileID: 6311839317751408495}
+  owner: {fileID: 0}
+  shooterUnit: {fileID: 0}
   useShooterDirectly: 0
   ignoreTangible: 0
   defaultAttackPower: 1
@@ -105,7 +106,7 @@ MonoBehaviour:
   useDistancePowerChange: 1
   startPosition: {x: 0, y: 0, z: 0}
   setStartPosOnStart: 1
-  attackPowerDistanceMax: 12.799999
+  attackPowerDistanceMax: 15.36
   attackPowerAtDistanceMax: 10
 --- !u!50 &6311839317751408495 stripped
 Rigidbody2D:

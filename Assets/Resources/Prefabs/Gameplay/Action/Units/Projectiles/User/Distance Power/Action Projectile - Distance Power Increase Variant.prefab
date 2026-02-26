@@ -54,7 +54,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5737000945249497890, guid: 12b3c6e565c23644d8283ce29e22143c, type: 3}
       propertyPath: attackPowerAtDistanceMax
-      value: 100
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
