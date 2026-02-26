@@ -112,7 +112,7 @@ MonoBehaviour:
   statFactor: 1
   energyCreationCost: 20
   energyDeathCost: 0
-  energyGenerationAmount: 60
+  energyGenerationAmount: 50
   energyGenerationSpeed: 80
   attackEnergyCost: 0
   attackPower: 0
@@ -120,7 +120,7 @@ MonoBehaviour:
   attackingEnabled: 0
   attackCooldownTimer: 0
   oneHitKill: 0
-  durability: 60
+  durability: 50
   movementSpeed: 0
   airPollution: 0
   unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}

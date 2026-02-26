@@ -720,14 +720,14 @@ namespace RM_EDU
         // Calculates the energy creation cost.
         public static float CalculateAttackEnergyCost(float attackEnergyCost)
         {
-            // Divide by 10, multiply by 1.5 and round up to the nearest value.
-            return Mathf.Ceil(attackEnergyCost / 10.0F * 1.5F);
+            // Divide by 10, multiply by 2.5 and round up to the nearest value.
+            return Mathf.Ceil(attackEnergyCost / 10.0F * 2.5F);
         }
 
         // Calculates the attack cooldown time.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
         {
-            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpped) / BASE_STAT_MAXIMUM * 5.0F)
+            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 5.0F)
             return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 5.0F);
         }
 
