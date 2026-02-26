@@ -126,9 +126,9 @@ MonoBehaviour:
   tangible: 1
   vulnerable: 1
   statFactor: 1
-  energyCreationCost: 100
+  energyCreationCost: 90
   energyDeathCost: 0
-  energyGenerationAmount: 100
+  energyGenerationAmount: 90
   energyGenerationSpeed: 60
   attackEnergyCost: 0
   attackPower: 0

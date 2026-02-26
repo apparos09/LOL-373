@@ -135,7 +135,7 @@ MonoBehaviour:
   statFactor: 1
   energyCreationCost: 60
   energyDeathCost: 0
-  energyGenerationAmount: 100
+  energyGenerationAmount: 90
   energyGenerationSpeed: 60
   attackEnergyCost: 0
   attackPower: 0
