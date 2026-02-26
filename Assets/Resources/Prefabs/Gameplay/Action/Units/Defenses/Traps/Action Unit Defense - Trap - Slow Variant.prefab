@@ -28,11 +28,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 4d52f9a338d59b141bffa50a18960124, type: 3}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: attackPower
-      value: 80
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: attackSpeed
-      value: 40
+      value: 80
       objectReference: {fileID: 0}
     - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: unitDescKey

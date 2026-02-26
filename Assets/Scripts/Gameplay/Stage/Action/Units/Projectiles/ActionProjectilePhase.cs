@@ -19,7 +19,7 @@ namespace RM_EDU
 
         // The minimum value the attack power can have.
         [Tooltip("The minimum value the attack power can have.")]
-        public float attackPowerMin = 10;
+        public float attackPowerMin = 5;
 
         // Start is called before the first frame update
         protected override void Start()

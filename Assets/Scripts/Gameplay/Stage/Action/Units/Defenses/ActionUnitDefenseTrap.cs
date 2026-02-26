@@ -345,10 +345,10 @@ namespace RM_EDU
                     // If the attack cooldown time is zero or less.
                     // This is done here so that the trap can damage all its targets...
                     // In its trigger function.
-                    if (attackCooldownTimer <= 0.0F)
-                    {
-                        CalculateAndSetAttackCooldownTime();
-                    }
+                    // if (attackCooldownTimer <= 0.0F)
+                    // {
+                    //     CalculateAndSetAttackCooldownTime();
+                    // }
                 }
 
             }

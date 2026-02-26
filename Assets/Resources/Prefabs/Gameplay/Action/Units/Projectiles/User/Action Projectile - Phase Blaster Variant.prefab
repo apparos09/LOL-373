@@ -108,4 +108,4 @@ MonoBehaviour:
   dieOnContact: 0
   targetHits: 0
   attackPowerDecay: 15
-  attackPowerMin: 10
+  attackPowerMin: 5

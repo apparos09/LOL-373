@@ -752,12 +752,8 @@ namespace RM_EDU
             // If the owner is set.
             if(owner != null)
             {
-                // Reduce the owner's energy.
-                owner.energy -= CalculateAttackEnergyCost(attackEnergyCost);
-
-                // Prevent energy from being negative.
-                if (owner.energy < 0.0F)
-                    owner.energy = 0.0F;
+                // Reduce the owner's energy. Also performs a bounds check.
+                owner.DecreaseEnergy(CalculateAttackEnergyCost(attackEnergyCost));
             }
 
             // Set the attack cooldown timer to the attack speed.
