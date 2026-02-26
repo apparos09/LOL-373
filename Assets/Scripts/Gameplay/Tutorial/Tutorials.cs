@@ -432,10 +432,9 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("Welcome to the Energy Defense Unit (EDU)! For this training exercise, you'll be doing a simulation where you defend Earth's bases from alien invaders! The aliens are here to take Earth's natural resources, so you must use said resources to defend Earth. Once the aliens are fended off at every base, the simulation is complete.", "trl_intro_00"),
-                new EDU_Page("The simulation is split into two stage types: action and knowledge. Action stages are where you fight off the aliens, and knowledge stages are where you're evaluated on your natural resource knowledge. Some stages can be completed before others, but all stages must be cleared to complete the simulation.", "trl_intro_01"),
-                new EDU_Page("From left to right on the top are the info log button, the energy bonus display, and the options button. The info log allows you to lookup information on natural resources, generators, and defenses that you've encountered. The energy bonus display shows how much bonus starting energy you have, which is applied in action stages. Finally, the options button opens the options menu, which allows you to adjust the game's settings, save your game, and return to the title screen.", "trl_intro_02"),
-                new EDU_Page("More simulation elements will be explained as they become relevant. With all that said, please select your first stage!", "trl_intro_03"),
+                new EDU_Page("Welcome to the Energy Defense Unit (EDU)! You've been tasked with completing a training simulation game that teaches you about natural resources and the EDU's defense systems. In this exercise, aliens are attacking Earth's bases to steal their resources. Your job is to defend each base from the invaders.", "trl_intro_00"),
+                new EDU_Page("This simulation has two stage types: action and knowledge. In action stages you defend a base from enemies and in knowledge stages you're assessed on your knowledge of natural resources. You'll get more information on each type when you play them.", "trl_intro_01"),
+                new EDU_Page("From left to right on the top are the info log button, the energy bonus display, and the options button. The info log button opens the info log, which provides information on simulation elements you've encountered. Relatedly, the options button opens the options menu, which allows you to save your progress, quit the game, and adjust the game's settings. As for the energy bonus display, that'll be explained later. With all that said, please select your first stage!", "trl_intro_02"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -451,12 +450,12 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of energy, you win. The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed using the bar on the right.", "trl_firstAction_00"),
-                new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, destroying all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstAction_01"),
-                new EDU_Page("To fight off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstAction_02"),
-                new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units in their lane. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstAction_03"),
-                new EDU_Page("On the top is the info log button, the day-night indicator, the energy display, the wind indicator, and the options button. The info log button opens the info log, which contains information on the units you have. The options button opens the options menu, which allows you to reset the stage, quit the stage, and adjust the game's settings. The day-night indicator shows the time of day, and the wind indicator shows the wind speed. Finally, the energy display shows how much energy you have and how much air pollution you've generated.", "trl_firstAction_04"),
-                new EDU_Page("On the bottom are your generator units on the left side and your defense units on the right side. When you select a unit, it will show in the middle of the bottom area. If you have enough energy to create the unit, the selected unit will be created when you select a valid tile.", "trl_firstAction_05"),
-                new EDU_Page("To the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove any of your created units. Finally, the energy block button stops your defense units from using energy. With all this explained, time to start the stage!", "trl_firstAction_06"),
+                new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, defeating all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstAction_01"),
+                new EDU_Page("To fend off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstAction_02"),
+                new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units from enemies. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstAction_03"),
+                new EDU_Page("From left to right on the top is the info log button, the day-night indicator, the energy display, the wind indicator, and the options button. While the stage info log is the same as the world info log, the stage options menu allows you to quit the stage, reset the stage, and adjust the game's settings. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Finally, the energy display shows how much energy you have, and how much air pollution you've generated.", "trl_firstAction_04"),
+                new EDU_Page("On the bottom are your generator units on the left side and your defense units on the right side. When you have a unit selected, it'll be displayed in the middle of the bottom area. If you have enough energy to create the selected unit, the unit will be created once you select a valid tile.", "trl_firstAction_05"),
+                new EDU_Page("On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove your created units by selecting them. Finally, the energy block button stops your defense units from using energy. With all this explained, time to start the stage!", "trl_firstAction_06"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -471,7 +470,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("You've completed your first action stage! When you complete an action stage, you'll sometimes unlock new defense units. To see what defense units you have and what they do, open the info log.", "trl_firstActionComplete_00"),
+                new EDU_Page("You've completed your first action stage! When you complete a stage, sometimes you'll unlock new defense units, which will have their information available in the info log. Relatedly, when a stage is successfully completed, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.", "trl_firstActionComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -487,8 +486,8 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("This is a knowledge stage! In knowledge stages, you must match statements with the natural resources they apply to. Once you've made connections, select the verify button to check your answers. When verification is performed, all correctly matched statements and resources are taken out of the stage, and all remaining statements are randomized to new ones. Once all the statements have been matched correctly, the stage is complete.", "trl_firstKnowledge_00"),
-                new EDU_Page("On the top left is the info log button and on the top right is the options button. The info log allows you to review information on natural resources. However, if you open the info log, the remaining statements will be randomized, and the info log will be locked. The info log will be unlocked once you perform another verification check. As for the options button, it opens the options menu, which allows you to adjust the game's settings, reset the stage, and return to the world area.", "trl_firstKnowledge_01"),
-                new EDU_Page("You can get a starting energy bonus for the next action stage based on how many verifications it took for you to complete the current knowledge stage. If you perform too many verifications, you won't get a bonus. With all that explained, time to start the stage!", "trl_firstKnowledge_02"),
+                new EDU_Page("The statements and resources are on separate pages, which are switched between using the arrow buttons at the top. The panel at the bottom shows what you currently have selected. Also on the top are the info log button and the options button. The info log and options menu are the same as they are in action stages. However, if you open the info log, your remaining statements will be randomized to new ones. The info log will also be locked once you close it, but it will be unlocked again once you perform a verification check.", "trl_firstKnowledge_01"),
+                new EDU_Page("You can get a starting energy bonus for your next action stage based on how many verifications it took to complete your most recent knowledge stages. The more verifications you perform, the smaller the bonus, and doing too many verifications stops you from receiving any energy bonus for your current knowledge stage. With all that explained, time to start the stage!", "trl_firstKnowledge_02"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -503,7 +502,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("You've completed your first knowledge stage! If you got an energy bonus, it'll be displayed at the top of the screen.", "trl_firstKnowledgeComplete_00"),
+                new EDU_Page("You've completed your first knowledge stage! If you got an energy bonus, it'll be displayed at the top of the screen. As mentioned, the starting energy bonus will be applied in your next action stage.", "trl_firstKnowledgeComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -533,7 +532,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This is the final area! Once you clear all the stages in this area, the simulation is complete.", "trl_finalArea_00"),
+                new EDU_Page("This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!", "trl_finalArea_00"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -542,7 +541,7 @@ namespace RM_EDU
         }
 
 
-        // Natural Resources
+        // Natural Resources //
         // Loads the biomass tutorial.
         public void LoadBiomassTutorial(bool startTutorial = true)
         {
