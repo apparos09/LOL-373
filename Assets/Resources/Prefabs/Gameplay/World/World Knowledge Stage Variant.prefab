@@ -129,12 +129,17 @@ MonoBehaviour:
   collider: {fileID: 4512073324015095585}
   idNumber: 0
   difficulty: 0
+  bgmNumber: 0
   time: 0
   score: 0
   energyTotal: 0
+  airPollution: 0
   locked: 0
   complete: 0
   naturalResources: 
   defenseIdRewards: 
   stageUnlockEvent: {fileID: 8688446065975923426}
   stageCompleteEvent: {fileID: 7136178238821619501}
+  playAudio: 1
+  selectSuccessSfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
+  selectFailSfx: {fileID: 8300000, guid: 1ec6beb3c1595b74baf64e23048a6253, type: 3}

@@ -117,6 +117,19 @@ namespace RM_EDU
         // The stage's complete event.
         public StageCompleteEvent stageCompleteEvent;
 
+        [Header("World Stage/Audio")]
+
+        // If 'true', the audio for the world stage is played.
+        public bool playAudio = true;
+
+        // The audio clip that plays when the stage is selected and the dialog opens successfully.
+        [Tooltip("Plays when the stage is selected and the dialog was opened (stage available).")]
+        public AudioClip selectSuccessSfx;
+
+        // The audio clip that plays when the stage is selected, but the dialog doesn't open.
+        [Tooltip("Plays when the stage is selected, but the dialog didn't open (stage unavailable).")]
+        public AudioClip selectFailSfx;
+
 
         // Start is called before the first frame update
         protected virtual void Start()
@@ -145,10 +158,27 @@ namespace RM_EDU
             if (EventSystem.current.IsPointerOverGameObject())
                 return;
 
+            // Gets set to 'true' if this world stage was selected successfully.
+            bool selectSuccess;
+
             // If the stage is not complete and isn't locked, open the stage dialog.
             if(!complete && !locked)
             {
                 WorldManager.Instance.worldUI.OpenWorldStageSelectDialog(this);
+                
+                selectSuccess = true;
+            }
+            // The stage is locked or unavailable, so it can't be selected.
+            else
+            {
+                selectSuccess = false;
+            }
+
+            // If audio should be played.
+            if (playAudio && WorldAudio.Instantiated)
+            {
+                // Determines what clip to use, and plays it.
+                WorldAudio.Instance.PlaySoundEffectWorld(selectSuccess ? selectSuccessSfx : selectFailSfx);
             }
         }
 
