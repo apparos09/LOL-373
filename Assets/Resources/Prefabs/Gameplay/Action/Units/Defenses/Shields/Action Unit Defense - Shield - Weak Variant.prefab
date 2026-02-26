@@ -22,7 +22,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4435047156542007297, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: durability
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 4435047156542007297, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: iconSprite
