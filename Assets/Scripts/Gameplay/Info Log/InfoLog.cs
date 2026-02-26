@@ -60,6 +60,9 @@ namespace RM_EDU
         // Defense entires.
         protected List<InfoLogEntry> defenseEntries = new List<InfoLogEntry>();
 
+        // If 'true', the lane blaster (Defense ID: 01) is included in the info log.
+        private bool includeLaneBlaster = false;
+
         // Gets set to 'true' if the entry lists have been updated.
         private bool entryListsUpdated = false;
 
@@ -235,15 +238,23 @@ namespace RM_EDU
             // If the data logger has defense ids, use those.
             if (!unlockAllEntries && dataLogger.HasActionDefenseUnits())
             {
+                // Add the ids to the list.
                 defenseIdList.AddRange(dataLogger.defenseIds);
 
-                // Defense 1 (Lane Blaster) isn't given as an option to the player, since those units...
-                // Are placed automatically.
-                // However, they should be in the defense id list, so that id is insrted regardless.
-                if(!defenseIdList.Contains(1))
+                // If the lane blaster (ID: 01) should be included in the list, and it isn't in the list...
+                // Add it to the list. The player cannot create lane blasters, as those are automatically...
+                // Placed, hence why it maybe shouldn't be in the list.
+                if(includeLaneBlaster && !defenseIdList.Contains(1))
                 {
                     // Inserts the id at the beginning of the list.
                     defenseIdList.Insert(0, 1);
+                }
+                // If the lane blaster shouldn't be included and its in the defense ID list...
+                // Remove it from the list.
+                else if(!includeLaneBlaster && defenseIdList.Contains(1))
+                {
+                    // Remove the lane blaster.
+                    defenseIdList.Remove(1);
                 }
             }
             // No defense ids in data logger list, so grab all defense ids.
@@ -251,7 +262,10 @@ namespace RM_EDU
             {
                 // The action unit prefabs object exists, so generate the defense id list.
                 if (actionUnitPrefabs != null)
-                    defenseIdList.AddRange(actionUnitPrefabs.GenerateDefensePrefabIdList(false, true));
+                {
+                    // Checks if the lane blaster (defense id 01) should be included.
+                    defenseIdList.AddRange(actionUnitPrefabs.GenerateDefensePrefabIdList(false, includeLaneBlaster));
+                }
             }
 
             // Sorts all three lists to make sure the order stays consistent.
