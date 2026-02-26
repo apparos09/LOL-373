@@ -34,7 +34,7 @@ namespace RM_EDU
 
         // The amount of time it takes for the player to generate energy.
         [Tooltip("The maximum time for the player to automatically generate energy.")]
-        public float energyAutoGenTimerMax = 12.0F;
+        public float energyAutoGenTimerMax = 10.0F;
 
         // The amount of energy that's generated for every instance.
         [Tooltip("The amount of energy the player automatically generates for every instance.")]

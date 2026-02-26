@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using LoLSDK;
 using System.Buffers;
 using System.Collections;
@@ -297,8 +296,33 @@ namespace RM_EDU
             float basePoints = 500;
 
             // Bonus for the user winning, and their amount of kills.
-            float userWonBonus = HasPlayerUserWon() ? 500 : 0;
+            float userWonBonus = HasPlayerUserWon() ? 500.0F : 0.0F;
             float killBonus = playerUser.kills * 50.0F;
+
+            // The bonus for the lane blasters the player has left.
+            int laneBlastersLeft = 0;
+            float laneBlastersBonus = 0.0F;
+
+            // Goes through all units the player has.
+            for(int i = 0; i < playerUser.createdUserUnits.Count; i++)
+            {
+                // Gets the user unit.
+                ActionUnitUser userUnit = playerUser.createdUserUnits[i];
+
+                // The user unit exists.
+                if (userUnit != null)
+                {
+                    // If the unit is a lane blaster, add to the lane blaster count.
+                    if(userUnit.idNumber == 1)
+                    {
+                        // Add to the count.
+                        laneBlastersLeft++;
+                    }
+                }
+            }
+
+            // Give the player a bonus for every lane blaster they have left.
+            laneBlastersBonus = 50.0F * laneBlastersLeft;
 
             // Reduce for air pollution.
             float pollutionDeduction = 0;
@@ -306,12 +330,12 @@ namespace RM_EDU
             // If the player user has generated air pollution, calculate a reduction.
             if(playerUser.airPollution > 0)
             {
-                // For every 100 points of air pollution, deduct 10 points.
-                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 100.0F) * 10.0F;
+                // For every 100 points of air pollution, deduct 20 points.
+                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 100.0F) * 20.0F;
             }
 
             // Calculates the bonus. If the bonus is less than 0, make it 0.
-            float bonusPoints = userWonBonus + killBonus - pollutionDeduction;
+            float bonusPoints = userWonBonus + killBonus + laneBlastersBonus - pollutionDeduction;
 
             // If the bonus is negative, set the bonus to 0.
             if (bonusPoints < 0)

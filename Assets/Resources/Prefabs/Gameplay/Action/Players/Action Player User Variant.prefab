@@ -105,7 +105,7 @@ MonoBehaviour:
   energyStart: 250
   energyStartBonus: 0
   energyAutoGenTimer: 0
-  energyAutoGenTimerMax: 12
+  energyAutoGenTimerMax: 10
   energyAutoGenAmount: 100
   energyGenTotal: 0
   generatorPrefabs: []
