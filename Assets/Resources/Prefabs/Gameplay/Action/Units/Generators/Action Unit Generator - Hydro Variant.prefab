@@ -169,7 +169,7 @@ MonoBehaviour:
   oneHitKill: 0
   durability: 80
   movementSpeed: 0
-  airPollution: 20
+  airPollution: 5
   unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 02000000
   tile: {fileID: 0}
