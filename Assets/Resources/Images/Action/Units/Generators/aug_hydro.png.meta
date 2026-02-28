@@ -173,8 +173,8 @@ TextureImporter:
       name: aug_hydro_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 128
+        y: 384
         width: 128
         height: 128
       alignment: 0
@@ -195,7 +195,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -215,8 +215,8 @@ TextureImporter:
       name: aug_hydro_3
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
+        x: 128
+        y: 256
         width: 128
         height: 128
       alignment: 0
@@ -228,6 +228,90 @@ TextureImporter:
       bones: []
       spriteID: bf79728c323464a43979a1c24e5452f9
       internalID: 1756027287
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aug_hydro_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27e8b4d022389ec43b15e6b5cb6ba218
+      internalID: -1081969405
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aug_hydro_5
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e8d0c7d61fa4e0f4ca23033660fab38b
+      internalID: 1805597005
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aug_hydro_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8dd8c3f86083dfd4d8bfe49178bac04a
+      internalID: -1513645208
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: aug_hydro_7
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 053f1dbb8b5f0e04d818638d94722d28
+      internalID: 2078603656
       vertices: []
       indices: 
       edges: []
@@ -247,6 +331,10 @@ TextureImporter:
       aug_hydro_1: -2080276251
       aug_hydro_2: 885133429
       aug_hydro_3: 1756027287
+      aug_hydro_4: -1081969405
+      aug_hydro_5: 1805597005
+      aug_hydro_6: -1513645208
+      aug_hydro_7: 2078603656
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
