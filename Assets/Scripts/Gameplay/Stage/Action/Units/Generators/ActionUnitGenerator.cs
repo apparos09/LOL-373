@@ -152,7 +152,9 @@ namespace RM_EDU
                     float speedInc = BASE_STAT_MAXIMUM / 5;
 
                     // Checks the wind rating to see the speed.
-                    switch (actionManager.GetCurrentWindRating())
+                    // The recent wind rating should match the current wind rating...
+                    // So it shouldn't need to be recalculated.
+                    switch (actionManager.GetCurrentWindRating(false))
                     {
                         default:
                         case statRating.unknown:

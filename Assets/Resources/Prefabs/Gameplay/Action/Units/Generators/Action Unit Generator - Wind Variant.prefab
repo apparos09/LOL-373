@@ -174,6 +174,21 @@ MonoBehaviour:
   energyGenClip: {fileID: 7400000, guid: b3c8621e61951db40940e323ad9f5d5c, type: 2}
   landSprite: {fileID: -1265152829, guid: 49b4149f8d197a24881f9b3cf0e5299f, type: 3}
   waterSprite: {fileID: -963675277, guid: dc664542071a01543ad1e04751529903, type: 3}
+  currSpinSpeed: 0
+  landSpinNoneAnim: Action Unit Generator - Wind - Land - Spin - None Animation
+  landSpinVerySlowAnim: Action Unit Generator - Wind - Land - Spin - Very Slow Animation
+  landSpinSlowAnim: Action Unit Generator - Wind - Land - Spin - Slow Animation
+  landSpinMediumAnim: Action Unit Generator - Wind - Land - Spin - Medium Animation
+  landSpinFastAnim: Action Unit Generator - Wind - Land - Spin - Fast Animation
+  landSpinVeryFastAnim: Action Unit Generator - Wind - Land - Spin - Very Fast Animation
+  waterSpinNoneAnim: Action Unit Generator - Wind - Water - Spin - None Animation
+  waterSpinVerySlowAnim: Action Unit Generator - Wind - Water - Spin - Very Slow
+    Animation
+  waterSpinSlowAnim: Action Unit Generator - Wind - Water - Spin - Slow Animation
+  waterSpinMediumAnim: Action Unit Generator - Wind - Water - Spin - Medium Animation
+  waterSpinFastAnim: Action Unit Generator - Wind - Water - Spin - Fast Animation
+  waterSpinVeryFastAnim: Action Unit Generator - Wind - Water - Spin - Very Fast
+    Animation
 --- !u!61 &7425700527384149387 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 690021909378568088, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}

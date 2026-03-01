@@ -715,6 +715,23 @@ namespace RM_EDU
             return rating;
         }
 
+        // Gets the current wind rating.
+        // recalculate: if true, the current wind rating is calculated.
+        // - If false, the recent wind rating is returned.
+        public ActionUnit.statRating GetCurrentWindRating(bool recaulcate)
+        {
+            // If the wind rating should be recalculated, call the current wind rating function.
+            if (recaulcate)
+            {
+                return GetCurrentWindRating();
+            }
+            // Don't recalculate, so get the recent wind rating.
+            else
+            {
+                return GetRecentWindRating();
+            }
+        }
+
         // Gets the provide wind rating as a value.
         public float GetWindRatingAsValue(ActionUnit.statRating windRating)
         {
@@ -791,6 +808,14 @@ namespace RM_EDU
         {
             return GetWindRatingAsAPercentage(GetCurrentWindRating());
         }
+
+        // Gets the most recent wind rating, which is saved to a variable.
+        // This doesn't do a calculation to get the current wind rating, so it's more efficient.
+        public ActionUnit.statRating GetRecentWindRating()
+        {
+            return recentWindRating;
+        }
+
         // Called when the wind speed has changed.
         protected virtual void OnWindChanged()
         {

@@ -1,12 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RM_EDU
 {
     // Action Unit Generator - Wind
     public class ActionUnitGeneratorWind : ActionUnitGenerator
     {
+        // The spin speed of the wind generator.
+        public enum spinSpeed { none, verySlow, slow, medium, fast, veryFast }
+
         [Header("Wind")]
 
         // The sprite for the wind on land.
@@ -17,8 +22,39 @@ namespace RM_EDU
         [Tooltip("The sprite for the wind generator when in the sea.")]
         public Sprite waterSprite;
 
+        // The current spin speed.
+        public spinSpeed currSpinSpeed = spinSpeed.none;
+
         // If 'true', the wind generator is using its restricted configuration.
         private bool restrictConfig = true;
+
+        // If 'true', the spin animations are used.
+        private bool useSpinAnims = true;
+
+        [Header("Wind/Animations/Land")]
+
+        // The animation for when there's no spinning on land. After it plays it switches to 'Empty State'.
+        public string landSpinNoneAnim = "Action Unit Generator - Wind - Land - Spin - None Animation";
+
+        // The animations for various land spin speeds.
+        public string landSpinVerySlowAnim = "Action Unit Generator - Wind - Land - Spin - Very Slow Animation";
+        public string landSpinSlowAnim = "Action Unit Generator - Wind - Land - Spin - Slow Animation";
+        public string landSpinMediumAnim = "Action Unit Generator - Wind - Land - Spin - Medium Animation";
+        public string landSpinFastAnim = "Action Unit Generator - Wind - Land - Spin - Fast Animation";
+        public string landSpinVeryFastAnim = "Action Unit Generator - Wind - Land - Spin - Very Fast Animation";
+
+        [Header("Wind/Animations/Water")]
+
+        // The animation for when there's no spinning on land. After it plays it switches to 'Empty State'.
+        public string waterSpinNoneAnim = "Action Unit Generator - Wind - Water - Spin - None Animation";
+
+        // The animations for various water spin speeds.
+        public string waterSpinVerySlowAnim = "Action Unit Generator - Wind - Water - Spin - Very Slow Animation";
+        public string waterSpinSlowAnim = "Action Unit Generator - Wind - Water - Spin - Slow Animation";
+        public string waterSpinMediumAnim = "Action Unit Generator - Wind - Water - Spin - Medium Animation";
+        public string waterSpinFastAnim = "Action Unit Generator - Wind - Water - Spin - Fast Animation";
+        public string waterSpinVeryFastAnim = "Action Unit Generator - Wind - Water - Spin - Very Fast Animation";
+
 
         // Start is called just before any of the Update methods is called the first time
         protected override void Start()
@@ -42,8 +78,15 @@ namespace RM_EDU
             {
                 // If it's a land tile, use the land sprite.
                 // If it's wa ter tile, use the water sprite.
-               spriteRenderer.sprite = tile.IsLandTile() ? landSprite : waterSprite;
+                spriteRenderer.sprite = tile.IsLandTile() ? landSprite : waterSprite;
+                
+                // Plays the spin - none animation to make sure the sprite is set properly.
+                if(animator.enabled)
+                    PlaySpinAnimation(spinSpeed.none);
             }
+
+            // Set to none by default.
+            SetCurrentSpinSpeed(spinSpeed.none);
         }
 
         // Checks if the tile configuration is valid.
@@ -176,6 +219,138 @@ namespace RM_EDU
 
             // Return the result.
             return result;
+        }
+
+        // Converts the provided stat rating to a spin speed object.
+        public static spinSpeed ConvertStatRatingToSpinSpeed(statRating rating)
+        {
+            // The value to return.
+            spinSpeed value;
+
+            // Checks what value to use for the rating.
+            switch(rating)
+            {
+                default:
+                case statRating.unknown:
+                case statRating.noneMinus:
+                case statRating.none:
+                    value = spinSpeed.none;
+                    break;
+
+                case statRating.veryLow:
+                    value = spinSpeed.verySlow;
+                    break;
+
+                case statRating.low:
+                    value = spinSpeed.slow;
+                    break;
+
+                case statRating.medium:
+                    value = spinSpeed.medium;
+                    break;
+
+                case statRating.high:
+                    value = spinSpeed.fast;
+                    break;
+
+                case statRating.veryHigh:
+                case statRating.maximum:
+                case statRating.maximumPlus:
+                    value = spinSpeed.veryFast;
+                    break;
+            }
+
+            return value;
+        }
+
+        // Sets the current wind speed.
+        public void SetCurrentSpinSpeed(spinSpeed speed)
+        {
+            // Override current spin speed.
+            currSpinSpeed = speed;
+
+            // If the spin animations should be used.
+            if (AnimationsEnabledAndUsingSpinAnimations)
+            {
+                PlaySpinAnimation(currSpinSpeed);
+            }
+        }
+
+
+        // ANIMATIONS //
+        // Returns 'true' if animations are enabled and spin animations are being used.
+        public bool AnimationsEnabledAndUsingSpinAnimations
+        {
+            get { return AnimationsEnabled && useSpinAnims; }
+        }
+
+        // Plays the spin animation based on the current wind speed.
+        public void PlaySpinAnimation(spinSpeed speed)
+        {
+            // Gets set to 'true' if this is a land tile. If false, it's a water tile.
+            // True by default.
+            bool onLand = (tile != null) ? tile.IsLandTile() : true;
+            
+            // The animation to play.
+            string anim = string.Empty;
+
+            // Checks the current spin speed to know what to play.
+            switch(currSpinSpeed)
+            {
+                default:
+                case spinSpeed.none:
+                    anim = onLand ? landSpinNoneAnim : waterSpinNoneAnim;
+                    break;
+
+                case spinSpeed.verySlow:
+                    anim = onLand ? landSpinVerySlowAnim : waterSpinVerySlowAnim;
+                    break;
+
+                case spinSpeed.slow:
+                    anim = onLand ? landSpinSlowAnim : waterSpinSlowAnim;
+                    break;
+
+                case spinSpeed.medium:
+                    anim = onLand ? landSpinMediumAnim: waterSpinMediumAnim;
+                    break;
+
+                case spinSpeed.fast:
+                    anim = onLand ? landSpinFastAnim : waterSpinFastAnim;
+                    break;
+
+                case spinSpeed.veryFast:
+                    anim = onLand ? landSpinVeryFastAnim : waterSpinVeryFastAnim;
+                    break;
+            }
+
+            // If the animation was set, play it.
+            if(anim != "")
+            {
+                animator.Play(anim);
+            }
+        }
+
+        // Converts the wind rating to the spin speed.
+        public void PlaySpinAnimation(statRating windRating)
+        {
+            PlaySpinAnimation(ConvertStatRatingToSpinSpeed(windRating));
+        }
+
+        // Update is called every frame, if the MonoBehaviour is enabled
+        protected override void Update()
+        {
+            base.Update();
+
+            // Gets the current wind rating (don't recalculate) and converts it to the spin speed.
+            statRating windRating = actionManager.GetCurrentWindRating(false);
+            spinSpeed ratingSpeed = ConvertStatRatingToSpinSpeed(windRating);
+
+            // If the spin speed doesn't match the current wind rating, change it.
+            if (currSpinSpeed != ratingSpeed)
+            {
+                // Set the current spin speed.
+                SetCurrentSpinSpeed(ratingSpeed);
+            }
         }
     }
 }
