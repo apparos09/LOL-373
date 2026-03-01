@@ -84,6 +84,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 4035956208484555091, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4707138622183788118}
+    - targetCorrespondingSourceObject: {fileID: 4768688748114397008, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7788903205666360177}
   m_SourcePrefab: {fileID: 100100000, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
 --- !u!114 &971890930758920495 stripped
 MonoBehaviour:
@@ -96,6 +99,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fef442291c023264fa677411add550aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3463823591666795977 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4768688748114397008, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
+  m_PrefabInstance: {fileID: 8231507076051370649}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7788903205666360177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3463823591666795977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6ad5980da07ac948b335205cf25d32c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useLocalPosition: 1
+  resetPosition: {x: 0, y: 0, z: 0}
+  autoSetResetPosition: 0
+  highPosition: {x: 0, y: 0.16, z: 0}
+  lowPosition: {x: 0, y: -0.24, z: 0}
+  autoSetHighLowPos: 0
+  basePosOffset: 1
+  speed: 1
+  floatEnabled: 1
 --- !u!95 &4122209489060199114 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5406913998153414739, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
@@ -167,6 +196,8 @@ MonoBehaviour:
   useEnergyGenLimit: 0
   energyGenAnim: Action Unit - Flash - Blue Animation
   energyGenClip: {fileID: 7400000, guid: b3c8621e61951db40940e323ad9f5d5c, type: 2}
+  currWaveStrength: 0
+  objectFloat: {fileID: 7788903205666360177}
 --- !u!50 &6149255988997723966 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 2840288876026598823, guid: 2d98fa32ccb9f1f45a918c132fcc6ba6, type: 3}
