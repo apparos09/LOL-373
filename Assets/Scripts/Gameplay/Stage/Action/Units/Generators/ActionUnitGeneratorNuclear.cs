@@ -7,7 +7,7 @@ namespace RM_EDU
     // Action Unit Generator - Nuclear
     public class ActionUnitGeneratorNuclear : ActionUnitGenerator
     {
-        [Header("Nuclear")]
+        [Header("Generator/Nuclear")]
 
         // Kills the generator if it's no longer usable (no energy cycles left).
         [Tooltip("If the generator can't generate anymore energy, kill it.")]

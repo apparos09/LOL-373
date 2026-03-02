@@ -12,7 +12,7 @@ namespace RM_EDU
         // The spin speed of the wind generator.
         public enum spinSpeed { none, verySlow, slow, medium, fast, veryFast }
 
-        [Header("Wind")]
+        [Header("Generator/Wind")]
 
         // The sprite for the wind on land.
         [Tooltip("The sprite for the wind generator when on land.")]

@@ -11,7 +11,7 @@ namespace RM_EDU
         // The strength of the waves, which effects the wave heights and speed.
         public enum waveStrength { none, veryWeak, weak, medium, strong, veryStrong }
 
-        [Header("Wave")]
+        [Header("Generator/Wave")]
 
         // The current wave strength.
         public waveStrength currWaveStrength = waveStrength.none;
