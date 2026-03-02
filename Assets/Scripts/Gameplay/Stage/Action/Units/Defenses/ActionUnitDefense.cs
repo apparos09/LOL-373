@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RM_EDU
@@ -20,6 +21,12 @@ namespace RM_EDU
 
         // The sprite renderer for a platform that can be displayed below the user unit.
         public SpriteRenderer platformSpriteRenderer;
+
+        // If 'true', the unit shows when it's attack energy is being blocked.
+        protected bool showAttackEnergyBlocked = false;
+
+        // Gets set to 'true' if marked as energy blocked.
+        private bool markedAsEnergyBlocked = false;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -329,6 +336,18 @@ namespace RM_EDU
             return hasTarget;
         }
 
+        // Returns 'true', if the unit shows when it's attack energy is being blocked.
+        public bool ShowsAttackEnergyBlocked()
+        {
+            return showAttackEnergyBlocked;
+        }
+
+        // Returns 'true' if the unit is marked as having its attack energy blocked.
+        public bool IsMarkedAsAttackEnergyBlocked()
+        {
+            return markedAsEnergyBlocked;
+        }
+
         // Performs an attack.
         public virtual void PerformAttack()
         {
@@ -360,6 +379,43 @@ namespace RM_EDU
                 {
                     // Performs an attack.
                     PerformAttack();
+                }
+            }
+            // The action unit cannot attack.
+            else
+            {
+                // The owner is set.
+                if(owner != null)
+                {
+                    // If attack energy being blocked should be shown...
+                    // Attacking is enabled, and there's an attack energy cost...
+                    // Alter the sprite to show if the unit is usable or unusable.
+                    if(showAttackEnergyBlocked && attackingEnabled && HasAttackEnergyCost()) 
+                    {
+                        // If the owner is blocking attack energy, make as unusable.
+                        if(owner.IsBlockingAttackEnergy() && !markedAsEnergyBlocked)
+                        {
+                            unitAnimations.PlayUnusableAnimation();
+                            markedAsEnergyBlocked = true;
+                        }
+                        // Energy not being blocked, so mark as usable if not already.
+                        else if(markedAsEnergyBlocked)
+                        {
+                            unitAnimations.PlayUsableAnimation();
+                            markedAsEnergyBlocked = false;
+                        }
+                    }
+                    else
+                    {
+                        // If currenty marked as having its attack energy blocked when it shouldn't be...
+                        // Mark the unit as usable.
+                        if(markedAsEnergyBlocked)
+                        {
+                            unitAnimations.PlayUsableAnimation();
+                            markedAsEnergyBlocked = false;
+                        }
+                    }
+
                 }
             }
         }

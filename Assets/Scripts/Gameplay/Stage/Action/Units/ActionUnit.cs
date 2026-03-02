@@ -562,6 +562,13 @@ namespace RM_EDU
             return attackingEnabled;
         }
 
+        // Returns 'true' if this unit has an attack energy cost.
+        // In otherwords, it checks if the attack energy cost is greater than 0.
+        public bool HasAttackEnergyCost()
+        {
+            return attackEnergyCost > 0;
+        }
+
         // Returns 'true' if the action unit is capable of attacking.
         // This checks if the attack cooldown timer is 0.
         public virtual bool CanAttack()

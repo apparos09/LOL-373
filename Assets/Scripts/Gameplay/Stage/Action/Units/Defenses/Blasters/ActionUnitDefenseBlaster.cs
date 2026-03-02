@@ -36,6 +36,18 @@ namespace RM_EDU
         // By default, this sound effect isn't used.
         protected bool useShotSfx = false;
 
+        // Start is called before the first frame update
+        protected override void Start()
+        {
+            base.Start();
+
+            // If the defense type is unknown, set to default value based on script.
+            if (defType == defenseType.unknown)
+            {
+                defType = defenseType.blaster;
+            }
+        }
+
         // Performs an attack.
         public override void PerformAttack()
         {

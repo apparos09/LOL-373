@@ -47,6 +47,12 @@ namespace RM_EDU
         {
             base.Start();
 
+            // If the defense type is unknown, set to default value based on script.
+            if (defType == defenseType.unknown)
+            {
+                defType = defenseType.trap;
+            }
+
             // The defense is intangible so that enemies aren't blocked by it, and don't get stopped by it.
             tangible = false;
 
