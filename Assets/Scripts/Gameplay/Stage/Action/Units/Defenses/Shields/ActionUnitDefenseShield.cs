@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RM_EDU
 {
     // An action unit shield.
-    public class ActionUnitShield : ActionUnitDefense
+    public class ActionUnitDefenseShield : ActionUnitDefense
     {
         // [Header("Defense/Shield")]
 

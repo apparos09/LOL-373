@@ -49,6 +49,10 @@ PrefabInstance:
       propertyPath: energyCreationCost
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 2511431481117591295, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: actionUnit
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -97,7 +101,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1020483345052379991, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
@@ -175,7 +180,7 @@ MonoBehaviour:
   attackEnergyCost: 0
   attackPower: 0
   attackSpeed: 0
-  attackingEnabled: 1
+  attackingEnabled: 0
   attackCooldownTimer: 0
   oneHitKill: 0
   durability: 85
@@ -188,6 +193,7 @@ MonoBehaviour:
   removableByUser: 1
   defType: 2
   platformSpriteRenderer: {fileID: 5281753398701963983}
+  showAttackEnergyBlocked: 0
 --- !u!61 &7470610345764135303 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6055651898615620305, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}

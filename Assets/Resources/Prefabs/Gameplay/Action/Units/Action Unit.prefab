@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7612480617304553112}
   m_Layer: 0
   m_Name: Action Unit
-  m_TagString: Untagged
+  m_TagString: Action Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -146,6 +146,10 @@ MonoBehaviour:
   animator: {fileID: 6768110755542312317}
   actionUnit: {fileID: 0}
   emptyStateAnim: Empty State
+  usableAnim: Action Unit - Usable Animation
+  unusableAnim: Action Unit - Unusable Animation
+  flashBlueAnim: Action Unit - Flash Blue Anim
+  deathAnim: Action Unit - Death Animation
   explosionAnim: Action Unit - Explosion Animation
 --- !u!1 &6109650057116392062
 GameObject:

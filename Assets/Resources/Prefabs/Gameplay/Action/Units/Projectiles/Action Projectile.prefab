@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4091072397194717789}
   m_Layer: 0
   m_Name: Action Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,10 +110,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionManager: {fileID: 0}
-  shooterUnit: {fileID: 0}
   spriteRenderer: {fileID: 6368839386873273574}
   collider: {fileID: 2210020094070389580}
   rigidbody: {fileID: 2842442279350359791}
+  owner: {fileID: 0}
+  shooterUnit: {fileID: 0}
   useShooterDirectly: 1
   ignoreTangible: 0
   defaultAttackPower: 1

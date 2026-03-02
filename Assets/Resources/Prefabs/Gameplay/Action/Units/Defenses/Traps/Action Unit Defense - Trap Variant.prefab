@@ -161,6 +161,7 @@ MonoBehaviour:
   removableByUser: 1
   defType: 3
   platformSpriteRenderer: {fileID: 9051461572882687555}
+  showAttackEnergyBlocked: 0
   hitCount: 0
   hitLimit: 12
   useHitLimit: 1

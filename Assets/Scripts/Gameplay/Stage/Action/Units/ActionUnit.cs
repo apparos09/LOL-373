@@ -569,6 +569,17 @@ namespace RM_EDU
             return attackEnergyCost > 0;
         }
 
+        // Returns 'true' if the attack energy is being blocked.
+        // If there's no owner, there's nothing blocking energy, so it defaults to false.
+        public bool IsAttackEnergyBlocked()
+        {
+            // If owner exists, check if blocking energy.
+            if (owner != null)
+                return owner.blockingAttackEnergy;
+            else
+                return false;
+        }
+
         // Returns 'true' if the action unit is capable of attacking.
         // This checks if the attack cooldown timer is 0.
         public virtual bool CanAttack()

@@ -20,13 +20,18 @@ namespace RM_EDU
         public defenseType defType = defenseType.unknown;
 
         // The sprite renderer for a platform that can be displayed below the user unit.
+        [Tooltip("A platform shown under the unit if it's on a water tile.")]
         public SpriteRenderer platformSpriteRenderer;
 
+        // Enables visuals that are used for showing that the attack energy is being blocked.
+        private bool attackEnergyBlockedVisualAvailable = true;
+
         // If 'true', the unit shows when it's attack energy is being blocked.
-        protected bool showAttackEnergyBlocked = false;
+        [Tooltip("If true, the unit shows if it's attack energy is being blocked.")]
+        public bool showAttackEnergyBlocked = true;
 
         // Gets set to 'true' if marked as energy blocked.
-        private bool markedAsEnergyBlocked = false;
+        private bool markedAsAttackEnergyBlocked = false;
 
         // Start is called before the first frame update
         protected override void Start()
@@ -336,16 +341,28 @@ namespace RM_EDU
             return hasTarget;
         }
 
-        // Returns 'true', if the unit shows when it's attack energy is being blocked.
-        public bool ShowsAttackEnergyBlocked()
+        // Returns 'true' if the attack energy blocked visual is available for use.
+        public bool IsAttackEnergyBlockedVisualAvailable()
+        {
+            return attackEnergyBlockedVisualAvailable;
+        }
+
+        // Returns 'true', if the unit should show when it's attack energy is being blocked.
+        public bool ShowAttackEnergyBlocked()
         {
             return showAttackEnergyBlocked;
+        }
+
+        // Returns 'true' if the attack energy blocked visual is available and it should be shown.
+        public bool IsAttackEnergyBlockedVisualAvailableAndShowable()
+        {
+            return attackEnergyBlockedVisualAvailable && showAttackEnergyBlocked;
         }
 
         // Returns 'true' if the unit is marked as having its attack energy blocked.
         public bool IsMarkedAsAttackEnergyBlocked()
         {
-            return markedAsEnergyBlocked;
+            return markedAsAttackEnergyBlocked;
         }
 
         // Performs an attack.
@@ -381,43 +398,43 @@ namespace RM_EDU
                     PerformAttack();
                 }
             }
-            // The action unit cannot attack.
-            else
-            {
-                // The owner is set.
-                if(owner != null)
-                {
-                    // If attack energy being blocked should be shown...
-                    // Attacking is enabled, and there's an attack energy cost...
-                    // Alter the sprite to show if the unit is usable or unusable.
-                    if(showAttackEnergyBlocked && attackingEnabled && HasAttackEnergyCost()) 
-                    {
-                        // If the owner is blocking attack energy, make as unusable.
-                        if(owner.IsBlockingAttackEnergy() && !markedAsEnergyBlocked)
-                        {
-                            unitAnimations.PlayUnusableAnimation();
-                            markedAsEnergyBlocked = true;
-                        }
-                        // Energy not being blocked, so mark as usable if not already.
-                        else if(markedAsEnergyBlocked)
-                        {
-                            unitAnimations.PlayUsableAnimation();
-                            markedAsEnergyBlocked = false;
-                        }
-                    }
-                    else
-                    {
-                        // If currenty marked as having its attack energy blocked when it shouldn't be...
-                        // Mark the unit as usable.
-                        if(markedAsEnergyBlocked)
-                        {
-                            unitAnimations.PlayUsableAnimation();
-                            markedAsEnergyBlocked = false;
-                        }
-                    }
 
+            // The owner is set.
+            if (owner != null)
+            {
+                // If attack energy being blocked should be shown...
+                // Attacking is enabled, and there's an attack energy cost...
+                // Alter the sprite to show if the unit is usable or unusable.
+                if (IsAttackEnergyBlockedVisualAvailableAndShowable() && attackingEnabled && HasAttackEnergyCost())
+                {
+                    // Saves that the attack energy is blocked or not blocked.
+                    bool attackEnergyBlocked = IsAttackEnergyBlocked();
+
+                    // If the owner is blocking attack energy, make as unusable.
+                    if (attackEnergyBlocked && !markedAsAttackEnergyBlocked)
+                    {
+                        unitAnimations.PlayUnusableAnimation();
+                        markedAsAttackEnergyBlocked = true;
+                    }
+                    // Energy not being blocked, so mark as usable if not already.
+                    else if (!attackEnergyBlocked && markedAsAttackEnergyBlocked)
+                    {
+                        unitAnimations.PlayUsableAnimation();
+                        markedAsAttackEnergyBlocked = false;
+                    }
+                }
+                else
+                {
+                    // If currenty marked as having its attack energy blocked when it shouldn't be...
+                    // Mark the unit as usable.
+                    if (markedAsAttackEnergyBlocked)
+                    {
+                        unitAnimations.PlayUsableAnimation();
+                        markedAsAttackEnergyBlocked = false;
+                    }
                 }
             }
+
         }
     }
 }

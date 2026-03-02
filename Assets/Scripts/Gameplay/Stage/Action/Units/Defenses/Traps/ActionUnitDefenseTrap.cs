@@ -7,7 +7,7 @@ namespace RM_EDU
     // A trap, which damages enemies that pass over it.
     public class ActionUnitDefenseTrap : ActionUnitDefense
     {      
-        [Header("Trap")]
+        [Header("Defense/Trap")]
 
         // The number of hits that have occurred.
         public int hitCount = 0;
@@ -32,12 +32,12 @@ namespace RM_EDU
         [Tooltip("A list of enemy targets. A target is added in trigger start and removed in trigger end.")]
         protected List<ActionUnitEnemy> enemyTargets = new List<ActionUnitEnemy>();
 
-        [Header("Trap/Animaitons")]
+        [Header("Defense/Trap/Animaitons")]
 
         // The animation for energy generation.
         public string energyGenAnim = "Action Unit - Flash - Blue Animation";
 
-        [Header("Trap/Audio")]
+        [Header("Defense/Trap/Audio")]
 
         // The explosion audio for the trap.
         public AudioClip explosionSfx;

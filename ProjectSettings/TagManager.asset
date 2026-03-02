@@ -11,6 +11,9 @@ TagManager:
   - Tile
   - Manager
   - Computer
+  - User
+  - Action Unit
+  - Projectile
   layers:
   - Default
   - TransparentFX
