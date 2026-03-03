@@ -1459,13 +1459,13 @@ namespace RM_EDU
                         worldUI.RefreshWorldAreaButtons();
                     }
                 }
+            }
 
-                // If tutorials need to be checked and the game isn't loading...
-                // Check for tutorials.
-                if (!checkedTutorials && !IsLoading())
-                {
-                    CheckTutorials();
-                }
+            // If tutorials need to be checked and the game isn't loading...
+            // Check for tutorials.
+            if (!checkedTutorials && !IsLoading())
+            {
+                CheckTutorials();
             }
         }
 

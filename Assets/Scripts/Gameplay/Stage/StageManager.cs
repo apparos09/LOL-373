@@ -533,9 +533,11 @@ namespace RM_EDU
                 stageTimer += Time.unscaledDeltaTime; // Now uses unscaled delta time.
             }
 
-            // If tutorials need to be checked, the game isn't paused, and the game isn't loading...
-            // So check for tutorials.
-            if (!checkedTutorials && !IsGamePaused() && !IsLoading())
+            // If tutorials need to be checked and the game isn't loading, check for tutorials.
+            // Originally checked if the game was not paused, but that was taken out since...
+            // Tutorials may be played when the game is in a paused state.
+            // if (!checkedTutorials && !IsGamePaused() && !IsLoading()) // Old
+            if (!checkedTutorials && !IsLoading()) // New
             {
                 CheckTutorials();
             }
