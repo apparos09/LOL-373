@@ -69,6 +69,10 @@ namespace RM_EDU
         [Tooltip("The number of verification attempts.")]
         public int verifyAttempts = 0;
 
+        // The maximum time the player can take on the stage while still getting a time bonus.
+        // If the stage time is past this amount, the time bonus isn't applied.
+        public const float TIME_BONUS_TIME_MAX = 90.0F;
+
         // If 'true', saved matched statements are allowed to be reused.
         // If 'false', they won't be used. If a group has no statements left after removing...
         // All the saved matched statements they're reused anyway.
@@ -985,7 +989,6 @@ namespace RM_EDU
         // Returns the stage score.
         public override float GetStageScore()
         {
-            // TODO: you'll likely change the way this is calculated later.
             // Calculates the stage score and sets it.
             CalculateAndSetGameScore();
 
@@ -1013,52 +1016,65 @@ namespace RM_EDU
                 }
             }
 
-            // A bonus applied to the local score.
-            float scoreBonus;
+            // The bonus based on how long the player took.
+            float scoreTimeBonus;
+
+            // If the stage time is within TIME_BONUS_TIME_MAX, the bonus is applied.
+            if(stageTimer >= 0.0F && stageTimer <= TIME_BONUS_TIME_MAX)
+            {
+                // Calculates the lerp T value.
+                // The closer to the time max the stage time is, the smaller the bonus.
+                float lerpT = stageTimer / TIME_BONUS_TIME_MAX;
+
+                // Calculates the time bonus and ceil rounds up.
+                scoreTimeBonus = Mathf.Ceil(Mathf.Lerp(1000.0F, 0.0F, lerpT));
+            }
+            // The stage took more than a moin
+            else
+            {
+                scoreTimeBonus = 0.0F;
+            }
 
             // The energy bonus.
             float energyBonus = CalculateEnergyBonus();
+
+            // THe bonus to the score for the amount of verifications.
+            float scoreVerifyBonus;
 
             // Checks the number of verification attempts.
             switch(verifyAttempts)
             {
                 case 5: // 5 attempts.
-                    scoreBonus = 50.0F;
-                    // energyBonus = 50.0F;
+                    scoreVerifyBonus = 50.0F;
                     break;
 
                 case 4: // 4 attempts
-                    scoreBonus = 100.0F;
-                    // energyBonus = 75.0F;
+                    scoreVerifyBonus = 100.0F;
                     break;
 
                 case 3: // 3 attempts
-                    scoreBonus = 150.0F;
-                    // energyBonus = 100.0F;
+                    scoreVerifyBonus = 150.0F;
                     break;
 
                 case 2: // 2 attempts
-                    scoreBonus = 200.0F;
-                    // energyBonus = 125.0F;
+                    scoreVerifyBonus = 200.0F;
                     break;
 
                 case 1: // 1 attempt (lowest).
                 case 0: // 0 attempts (not possible).
-                    scoreBonus = 250.0F;
-                    // energyBonus = 150.0F;
+                    scoreVerifyBonus = 250.0F;
                     break;
 
                 default: // No bonus since too many attempts.
-                    scoreBonus = 0.0F;
-                    // energyBonus = 0.0F;
+                    scoreVerifyBonus = 0.0F;
                     break;
             }
 
-            // Calculates the local total score.
-            float scoreTotal = scoreBase + scoreBonus;
+            // Calculate the score total by adding the score base to the bonuses.
+            float scoreTotal = scoreBase + scoreTimeBonus + scoreVerifyBonus;
 
             // If the data logger exists, set the energy bonus.
-            if(DataLogger.Instantiated)
+            if (DataLogger.Instantiated)
             {
                 DataLogger.Instance.energyStartBonus = energyBonus;
             }    

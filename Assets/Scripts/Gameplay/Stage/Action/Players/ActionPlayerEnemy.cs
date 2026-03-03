@@ -120,10 +120,10 @@ namespace RM_EDU
 
                 case 3:
                     energyMax = 250.0F;
-                    spawnTimeMax = 8.70F;
+                    spawnTimeMax = 8.80F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 4;
+                    enemiesPerSpawnMax = 3;
 
                     enemyIds.Add(1);
 
@@ -131,7 +131,7 @@ namespace RM_EDU
 
                 case 4:
                     energyMax = 275.0F;
-                    spawnTimeMax = 8.80F;
+                    spawnTimeMax = 8.70F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 4;
@@ -143,10 +143,10 @@ namespace RM_EDU
 
                 case 5:
                     energyMax = 300.0F;
-                    spawnTimeMax = 8.70F;
+                    spawnTimeMax = 8.60F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 5;
+                    enemiesPerSpawnMax = 4;
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
@@ -155,10 +155,10 @@ namespace RM_EDU
 
                 case 6:
                     energyMax = 325.0F;
-                    spawnTimeMax = 8.60F;
+                    spawnTimeMax = 8.50F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 5;
+                    enemiesPerSpawnMax = 4;
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
@@ -167,10 +167,10 @@ namespace RM_EDU
 
                 case 7:
                     energyMax = 350.0F;
-                    spawnTimeMax = 8.50F;
+                    spawnTimeMax = 8.40F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 6;
+                    enemiesPerSpawnMax = 5;
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
@@ -180,10 +180,10 @@ namespace RM_EDU
 
                 case 8:
                     energyMax = 375.0F;
-                    spawnTimeMax = 8.40F;
+                    spawnTimeMax = 8.30F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 6;
+                    enemiesPerSpawnMax = 5;
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
@@ -196,7 +196,7 @@ namespace RM_EDU
                 case 9:
                     // Energy and spawn time.
                     energyMax = 400.0F;
-                    spawnTimeMax = 8.30F;
+                    spawnTimeMax = 8.20F;
 
                     // Enemies per spawn min and max.
                     enemiesPerSpawnMin = ENEMIES_PER_SPAWN_MIN_DEFAULT;

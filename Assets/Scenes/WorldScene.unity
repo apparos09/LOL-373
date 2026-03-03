@@ -950,11 +950,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: naturalResources.Array.data[1]
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5144242280119519190, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: m_Name
-      value: World Stage 7 - Action (Biomass, Natural Gas)
+      value: World Stage 7 - Action (Biomass, Nuclear)
       objectReference: {fileID: 0}
     - target: {fileID: 6771119980151796219, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1035,7 +1035,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: defenseIdRewards.Array.size
@@ -1091,7 +1091,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: naturalResources.Array.data[1]
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: naturalResources.Array.data[2]
@@ -1099,7 +1099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: naturalResources.Array.data[3]
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7191134862665893542, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1580,7 +1580,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
-      value: 7
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: defenseIdRewards.Array.size
@@ -1809,11 +1809,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: naturalResources.Array.data[1]
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5144242280119519190, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: m_Name
-      value: World Stage 6 - Action (Wave, Nuclear)
+      value: World Stage 6 - Action (Wave, Natural Gas)
       objectReference: {fileID: 0}
     - target: {fileID: 6771119980151796219, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2040,7 +2040,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: naturalResources.Array.data[1]
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: naturalResources.Array.data[2]
@@ -2048,7 +2048,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: naturalResources.Array.data[3]
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5091421738382468543, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: requiredStages.Array.size
@@ -2141,7 +2141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: difficulty
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3593118385226243896, guid: dfddc1b9bd210e54f90a3d8e04cc4318, type: 3}
       propertyPath: defenseIdRewards.Array.size

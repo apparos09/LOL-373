@@ -461,7 +461,7 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 06 (wave, nuclear).
+        // Generates and returns stage data for stage 06 (wave, natural gas).
         public static StageGenerationData GenerateStageData06()
         {
             // An empty map to use as a base to make other function.
@@ -477,18 +477,18 @@ namespace RM_EDU
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 5, 0, 5, 0, 0, 5, 0, 0, 0, 0, 5 },
-                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 5 },
-                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 5, 0, 5, 0, 0, 0, 0, 0, 0, 0, 5 },
-                { 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+                { 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 4, 0, 4, 0, 0, 4, 0, 6, 0, 0, 3 },
+                { 0, 4, 0, 0, 0, 0, 0, 0, 0, 3, 0, 4, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 4 },
+                { 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 4, 0, 4, 0, 0, 0, 0, 0, 0, 0, 6 },
+                { 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
             };
 
             // Wind array of no wind.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
-            { ActionUnit.statRating.medium, ActionUnit.statRating.low, ActionUnit.statRating.high};
+            { ActionUnit.statRating.high, ActionUnit.statRating.low, ActionUnit.statRating.veryHigh};
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();
@@ -501,7 +501,7 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 07 (biomass, natural gas).
+        // Generates and returns stage data for stage 07 (biomass, nuclear).
         public static StageGenerationData GenerateStageData07()
         {
             // An empty map to use as a base to make other function.
@@ -517,13 +517,13 @@ namespace RM_EDU
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 0, 4, 0, 0, 0, 4, 0, 0, 3, 0, 0, 0, 4, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0 },
-                { 0, 4, 0, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 0, 4 },
-                { 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0 },
-                { 0, 0, 4, 0, 0, 0, 3, 0, 0, 3, 0, 0, 0, 4, 0 },
-                { 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 4, 0, 0, 0, 0, 3, 0, 0, 4, 0, 0, 0, 0, 4 }
+                { 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 5, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 5 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 5, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 5, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 5, 0, 0, 0, 0, 5, 0, 0, 5, 0, 0, 0, 0, 5 }
             };
 
             // Wind array of no wind.
@@ -580,7 +580,7 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 09 (wave, nuclear, biomass, natural gas).
+        // Generates and returns stage data for stage 09 (wave, natural gas, biomass, nuclear).
         public static StageGenerationData GenerateStageData09()
         {
             // An empty map to use as a base to make other function.
