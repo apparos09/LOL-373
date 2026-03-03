@@ -90,6 +90,9 @@ namespace RM_EDU
         // The slow time scale.
         public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.5F;
 
+        // If 'true', the stage start dialog is used.
+        private bool useStageStartDialog = true;
+
         // Gets set to 'true' when the action manager has been initialized.
         protected bool actionInitialized = false;
 
@@ -167,6 +170,23 @@ namespace RM_EDU
 
             // Initializes the stage.
             InitializeStage();
+        }
+
+        // Called the first frame after start.
+        protected override void LateStart()
+        {
+            base.LateStart();
+
+            // If the stage start dialog is being used, open it.
+            if (useStageStartDialog)
+            {
+                actionUI.OpenStageStartDialog();
+            }
+            // If it isn't, close the stage start dialog.
+            else
+            {
+                actionUI.CloseStageStartDialog();
+            }
         }
 
         // Gets the instance.

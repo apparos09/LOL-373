@@ -22,6 +22,9 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The stage start dialog.
+        public ActionStageStartDialog stageStartDialog;
+
         // The info log dialog.
         public InfoLog infoLogDialog;
 
@@ -265,10 +268,25 @@ namespace RM_EDU
             List<GameObject> dialogList = base.GenerateDialogList();
 
             // Adds the rest of the dialogs.
+            dialogList.Add(stageStartDialog.gameObject);
             dialogList.Add(infoLogDialog.gameObject);
             dialogList.Add(stageEndDialog.gameObject);
 
             return dialogList;
+        }
+
+        // Opens the stage tart dialog.
+        public void OpenStageStartDialog()
+        {
+            OpenDialog(stageStartDialog.gameObject, true);
+            stageStartDialog.StopStage();
+        }
+
+        // Closes the stage start dialog.
+        public void CloseStageStartDialog()
+        {
+            CloseDialog(stageStartDialog.gameObject);
+            // StartStage() is called by button in Stage Start Dialog.
         }
 
         // Returns 'true' if the info log is open.
