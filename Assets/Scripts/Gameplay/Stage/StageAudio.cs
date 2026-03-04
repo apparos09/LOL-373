@@ -9,14 +9,24 @@ namespace RM_EDU
     {
         [Header("Stage")]
 
-        // THEME 2 (NORMAL BGM)
+        // STAGE PREPERATION
+        // The stage preparation bgm.
+        public AudioClip stagePrepBgm;
+
+        // The start of the stage prepreation bgm loop.
+        public float stagePrepBgmLoopStart;
+
+        // The end of the stage prepreation bgm loop.
+        public float stagePrepBgmLoopEnd;
+
+        // THEME 1 (NORMAL BGM)
         // The stage 01 bgm.
         public AudioClip stageBgm01;
 
         // The start of the stage 01 bgm loop.
         public float stageBgm01LoopStart;
 
-        // The ned of the stage 01 bgm loop.
+        // The end of the stage 01 bgm loop.
         public float stageBgm01LoopEnd;
 
         // THEME 2 (FINAL BGM)
@@ -26,9 +36,10 @@ namespace RM_EDU
         // The start of the stage 02 bgm loop.
         public float stageBgm02LoopStart;
 
-        // The ned of the stage 02 bgm loop.
+        // The end of the stage 02 bgm loop.
         public float stageBgm02LoopEnd;
 
+        // STAGE RESULTS
         // The stage results bgm.
         public AudioClip stageResultsBgm;
 
@@ -45,6 +56,13 @@ namespace RM_EDU
         // 
         // }
         // 
+
+        // Plays the stage preparation BGM.
+        public void PlayStagePreparationBgm()
+        {
+            PlayBackgroundMusic(stagePrepBgm, stagePrepBgmLoopStart, stagePrepBgmLoopEnd);
+        }
+
 
         // Returns the stage BGM count.
         public virtual int GetStageBgmCount()
@@ -82,7 +100,7 @@ namespace RM_EDU
             return bgmSource.clip == stageBgm01;
         }
 
-        // Plays stage bgm 01.
+        // Plays stage BGM 01.
         public void PlayStageBgm01()
         {
             PlayStageBgm(1);
@@ -94,7 +112,7 @@ namespace RM_EDU
             return bgmSource.clip == stageBgm02;
         }
 
-        // Play stage bgm 02.
+        // Play stage BGM 02.
         public void PlayStageBgm02()
         {
             PlayStageBgm(2);
@@ -109,8 +127,9 @@ namespace RM_EDU
         // Called when the stage is being reset.
         public virtual void ResetStage()
         {
-            // NOTE: restarting the BGM is handled in the manage it's relevant to.
-
+            // NOTE: restarting the BGM is handled in the manager it's relevant to.
+            // The BGM will be set to the results theme when a stage ends, so the stage BGM...
+            // That was being used before won't be the one playing when a reset is called.
             sfxWorldSource.Stop();
         }
 

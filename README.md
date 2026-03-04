@@ -27,6 +27,18 @@ These are the background music (BGM) credits.
 	* https://creativecommons.org/licenses/by/4.0/
 
 
+### Stage Preparation
+* Name: Cycles
+* Artist: Jason Shaw
+* Website: Audionautix
+* Link: https://audionautix.com/free-music/electronic
+* Copyright:
+	* "Cycles"
+	* Creative Commons Music by Jason Shaw on Audionautix.com
+	* Creative Commons Attribution 4.0 International License
+	* https://creativecommons.org/licenses/by/4.0/
+
+
 ### Action Stage Theme 1
 * Name: Thought Bot
 * Artist: Jason Shaw

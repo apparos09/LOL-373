@@ -71,7 +71,7 @@ namespace RM_EDU
         public void StopStage()
         {
             ActionManager.Instance.SetStagePlaying(false);
-            ActionAudio.Instance.StopBackgroundMusic();
+            ActionAudio.Instance.PlayStagePreparationBgm();
         }
     }
 }

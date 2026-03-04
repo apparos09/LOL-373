@@ -96,7 +96,23 @@ namespace RM_EDU
 
             bgmCredits.audioCredits.Add(credit);
 
-            // Action Theme 1
+            // Stage Preparation
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Cycles";
+            credit.artist = "Jason Shaw";
+            credit.collection = "Electronic";
+            credit.source = "Audionautix.com";
+            credit.link1 = "https://audionautix.com/free-music/electronic";
+            credit.link2 = "-";
+            credit.copyright =
+                "\"Cycles\"\n" +
+                "Creative Commons Music by Jason Shaw on Audionautix.com\n" +
+                "Creative Commons Attribution 4.0 International License\n" +
+                "https://creativecommons.org/licenses/by/4.0/";
+
+            bgmCredits.audioCredits.Add(credit);
+
+            // Action Stage Theme 1
             credit = new AudioCredits.AudioCredit();
             credit.title = "Thought Bot";
             credit.artist = "Jason Shaw";
@@ -112,13 +128,13 @@ namespace RM_EDU
 
             bgmCredits.audioCredits.Add(credit);
 
-            // Action Theme 2
+            // Action Stage Theme 2
             credit = new AudioCredits.AudioCredit();
             credit.title = "Code Blue";
             credit.artist = "Jason Shaw";
             credit.collection = "Jazz + Funk";
             credit.source = "Audionautix.com";
-            credit.link1 = "https://audionautix.com/free-music/electronic";
+            credit.link1 = "https://audionautix.com/free-music/JAZZ+FUNK";
             credit.link2 = "-";
             credit.copyright =
                 "\"Code Blue\"\n" +
@@ -128,7 +144,7 @@ namespace RM_EDU
 
             bgmCredits.audioCredits.Add(credit);
 
-            // Knowledge Theme 1
+            // Knowledge Stage Theme 1
             credit = new AudioCredits.AudioCredit();
             credit.title = "Limit 70";
             credit.artist = "Kevin MacLeod";
@@ -143,7 +159,7 @@ namespace RM_EDU
 
             bgmCredits.audioCredits.Add(credit);
 
-            // Knowledge Theme 2
+            // Knowledge Stage Theme 2
             credit = new AudioCredits.AudioCredit();
             credit.title = "Mesmerizing Galaxy";
             credit.artist = "Kevin MacLeod";
