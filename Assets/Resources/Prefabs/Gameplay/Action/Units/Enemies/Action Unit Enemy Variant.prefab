@@ -149,6 +149,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 6768110755542312317, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: da9f50bda73850b448f19cba9a166924, type: 2}
     - target: {fileID: 7612480617304553112, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: actionUnit
       value: 
@@ -208,6 +212,7 @@ MonoBehaviour:
   autoSetHighLowPos: 0
   basePosOffset: 1
   speed: 0.75
+  useScaledDeltaTime: 1
   floatEnabled: 1
 --- !u!50 &5471115357671747941 stripped
 Rigidbody2D:
@@ -268,7 +273,6 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 60
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: fc3a67f64102f1b47bff49109cb6605b, type: 3}
   playerEnemy: {fileID: 0}
   energyDeathCostFactor: 1
   movementDirec: {x: -1, y: 0, z: 0}
@@ -276,6 +280,7 @@ MonoBehaviour:
   enemyRetreatPrefab: {fileID: 4824531729917000575, guid: 37bb43a55bef8124395cd2bd70d5769d, type: 3}
   useEnemyAttack: 1
   useEnemyRetreat: 1
+  unitSpawnAnim: Action Unit Enemy - Spawn Animation
   unitAttackSfx: {fileID: 8300000, guid: 20f4d1de8fba51743bb5f1b0448bdd61, type: 3}
   unitDamagedSfx: {fileID: 8300000, guid: c32fd310b1b1aac4a8c09859887cc649, type: 3}
 --- !u!61 &7283594400394210138 stripped

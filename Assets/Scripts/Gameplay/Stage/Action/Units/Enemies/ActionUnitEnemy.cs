@@ -50,6 +50,14 @@ namespace RM_EDU
         [Tooltip("If true, the enemy retreats to their ship when they're destroyed.")]
         public bool useEnemyRetreat = true;
 
+        [Header("Enemy/Animations")]
+
+        // The spawn animation for the unit.
+        public string unitSpawnAnim = "Action Unit Enemy - Spawn Animation";
+
+        // If 'true', the spawn animation is used.
+        private bool useSpawnAnim = true;
+
         [Header("Enemy/Audio")]
 
         // The attack sound effect.
@@ -98,6 +106,12 @@ namespace RM_EDU
             // It just checks every frame.
             if (!actionManager.actionStage.HasMetalTiles)
                 checkForMapLeftBound = true;
+
+            // If animations are enabled and the spawn animation should be played.
+            if(AnimationsEnabled && useSpawnAnim)
+            {
+                PlayUnitSpawnAnimation();
+            }
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -511,6 +525,19 @@ namespace RM_EDU
             // This automatically checks if the row list contains this.
             TryRemoveFromRowList();
         }
+
+
+        // ANIMATIONS
+        // Plays the spawn animation.
+        public void PlayUnitSpawnAnimation()
+        {
+            // Plays the spawn animation if the animator and animation are set.
+            if (animator != null && unitSpawnAnim != "")
+            {
+                animator.Play(unitSpawnAnim);
+            }
+        }
+
 
         // AUDIO
         // Plays the attack sound effect.
