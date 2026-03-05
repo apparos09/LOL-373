@@ -23,11 +23,13 @@ namespace RM_EDU
         private bool floatingEnabled = true;
 
         // The highest position on the y-axis (min, max).
+        // HIGHEST_Y_MAX is 0.16 to stay within the tile bounds.
         public const float OBJECT_FLOAT_HIGHEST_Y_MIN = 0.08F;
-        public const float OBJECT_FLOAT_HIGHEST_Y_MAX = 0.16F;
+        public const float OBJECT_FLOAT_HIGHEST_Y_MAX = 0.12F; // At or Below +0.16F
         
         // The lowest position on the y-axis (min, max).
-        public const float OBJECT_FLOAT_LOWEST_Y_MIN = -0.24F;
+        // LOWEST_Y_MIN is -0.24 to stay within the tile bounds.
+        public const float OBJECT_FLOAT_LOWEST_Y_MIN = -0.20F; // At or Below -0.24F
         public const float OBJECT_FLOAT_LOWEST_Y_MAX = -0.16F;
 
         // Changes the float highest and lowest positions if true.

@@ -119,11 +119,12 @@ MonoBehaviour:
   useLocalPosition: 1
   resetPosition: {x: 0, y: 0, z: 0}
   autoSetResetPosition: 0
-  highPosition: {x: 0, y: 0.16, z: 0}
-  lowPosition: {x: 0, y: -0.24, z: 0}
+  highPosition: {x: 0, y: 0.12, z: 0}
+  lowPosition: {x: 0, y: -0.2, z: 0}
   autoSetHighLowPos: 0
   basePosOffset: 1
   speed: 1
+  useScaledDeltaTime: 1
   floatEnabled: 1
 --- !u!95 &4122209489060199114 stripped
 Animator:
@@ -181,7 +182,6 @@ MonoBehaviour:
   durability: 90
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 03000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
