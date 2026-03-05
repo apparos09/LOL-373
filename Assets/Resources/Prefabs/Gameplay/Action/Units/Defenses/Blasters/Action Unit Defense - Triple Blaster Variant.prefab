@@ -126,7 +126,7 @@ MonoBehaviour:
   unitDescKey: aud_blasterTriple_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 4858011163393688270}
-  iconSprite: {fileID: 21300000, guid: 0c723d1de68b4884ab0669343f44cf63, type: 3}
+  iconSprite: {fileID: 21300000, guid: adec203535001ef4baf83b9ecca7aa7d, type: 3}
   cardBackgroundSprite: {fileID: 21300000, guid: e7ad40952e1c17445a061f83b275193b, type: 3}
   animator: {fileID: 1581908626458310527}
   unitAnimations: {fileID: 2431327616302458010}
@@ -150,13 +150,13 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   defType: 1
   platformSpriteRenderer: {fileID: 8758985984888052732}
+  showAttackEnergyBlocked: 1
   projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
   projectileStartPos: {fileID: 802817388348945683}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
