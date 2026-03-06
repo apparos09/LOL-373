@@ -657,6 +657,9 @@ MonoBehaviour:
   infoNameText: {fileID: 5266958754774711357}
   infoDescText: {fileID: 6264337962764597880}
   infoDescScrollView: {fileID: 7083934896107210083}
+  infoDescScrollViewRect: {fileID: 848136288069305513}
+  infoDescScrollViewContent: {fileID: 6900115281925462531}
+  resizeInfoDescScrollView: 0
 --- !u!1 &2434862173449012896
 GameObject:
   m_ObjectHideFlags: 0

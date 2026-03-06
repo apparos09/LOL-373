@@ -121,8 +121,46 @@ namespace RM_EDU
         // The info description text.
         public TMP_Text infoDescText;
 
+        // The info desc text size delta (W, H) on start.
+        private Vector2 infoDescTextSize;
+
+        // The character count limit of the info description text box at its default size.
+        public const int INFO_DESC_TEXT_DEFAULT_LENGTH = 980;
+
+        // Additional text length that's added to the info description when dynamically resizing.
+        public const int INFO_DESC_TEXT_LENGTH_EXTRA = 20;
+
+        [Header("Info Section/Scroll View")]
         // The info description scroll view.
         public ScrollRect infoDescScrollView;
+
+        // The minimum extra size added to parts of the scroll view that's dynamically resized.
+        private float INFO_DESC_SCROLL_VIEW_SIZE_MIN_EXTRA = 300.0F;
+
+        // The info description scroll view rect size.
+        public RectTransform infoDescScrollViewRect;
+
+        // The info description scroll view size.
+        private Vector2 infoDescScrollViewRectSize;
+
+        // The content object of the scroll view.
+        public RectTransform infoDescScrollViewContent;
+
+        // The info desc text size delta (W, H) on start.
+        private Vector2 infoDescScrollViewContentSize;
+
+        // If 'true', the scroll view is automatically resized based on how much text is there.
+        [Tooltip("Resizes the info desc scroll view automatically based on the character count if true.")]
+        public bool resizeInfoDescScrollView = true;
+
+        // Awake is called when the script instance is being loaded
+        private void Awake()
+        {
+            // Gets the size delta for the desc text, desc scroll view, and desc scroll view content.
+            infoDescScrollViewRectSize = infoDescScrollViewRect.sizeDelta;
+            infoDescTextSize = infoDescText.rectTransform.sizeDelta;
+            infoDescScrollViewContentSize = infoDescScrollViewContent.sizeDelta;
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -704,6 +742,12 @@ namespace RM_EDU
 
             // Updates the entry buttons.
             UpdateEntryButtons();
+
+            // If the scroll view should be resized based on the text amount, resize it.
+            if(resizeInfoDescScrollView)
+            {
+                ResizeInfoDescriptionScrollView();
+            }
         }
 
         // Gets the current entry index in the entry buttons pages.
@@ -871,6 +915,91 @@ namespace RM_EDU
             // Resets the current category.
             // This updates the entry buttons again, but that should be fine.
             ResetCurrentCategory();
+        }
+
+        // Scroll View
+        // Resizes the info description scroll view based on the character count.
+        public void ResizeInfoDescriptionScrollView()
+        {
+            // If 'true', the scroll views are rounded.
+            bool roundSizes = false;
+
+            // Gets the auto size value and turns it off.
+            // This causes the calculations to resize the text window based on the...
+            // Full size of the text.
+            bool autoSizeValue = infoDescText.enableAutoSizing;
+            infoDescText.enableAutoSizing = false;
+
+            // Gets the minimum size for the content size.
+            // TODO: maybe don't save this to a dedicated vaiable?
+            float minContentSizeY = infoDescScrollViewRectSize.y + INFO_DESC_SCROLL_VIEW_SIZE_MIN_EXTRA;
+            
+            // Calculates the difference between the content size and text size.
+            // Also saves the minimum text size y.
+            Vector2 contentTextDiff = infoDescScrollViewContentSize - infoDescTextSize;
+            float minTextSizeY = infoDescScrollViewRectSize.y - contentTextDiff.y + INFO_DESC_SCROLL_VIEW_SIZE_MIN_EXTRA;
+
+            // The text length (character count) of the description text, plus the extra amount.
+            float textLength = infoDescText.text.Length + INFO_DESC_TEXT_LENGTH_EXTRA;
+
+            // The text percentage change, which takes the current text length as...
+            // A percentage of the text default length.
+            float textPercentChange = textLength / INFO_DESC_TEXT_DEFAULT_LENGTH;
+
+            // Calculates the new content size on the y-axis.
+            // Also clamps it within the bounds.
+            float newContentSizeY = infoDescScrollViewContentSize.y * textPercentChange;
+
+            // Rounds the content size y up to the nearest 10.
+            if(roundSizes)
+            {
+                newContentSizeY /= 10.0F;
+                newContentSizeY = Mathf.Ceil(newContentSizeY);
+                newContentSizeY *= 10.0F;
+            }
+
+            // Clamps the value.
+            newContentSizeY = Mathf.Clamp(newContentSizeY, minContentSizeY, infoDescScrollViewContentSize.y);
+
+            // Calculates the new text size on the y-axis.
+            float newTextSizeY = infoDescTextSize.y * textPercentChange;
+
+            // Rounds the text size y up to the nearest 10.
+            if (roundSizes)
+            {
+                newTextSizeY /= 10.0F;
+                newTextSizeY = Mathf.Ceil(newTextSizeY);
+                newTextSizeY *= 10.0F;
+            }
+
+            // Clamps within the bounds.
+            newTextSizeY = Mathf.Clamp(newTextSizeY, minTextSizeY, infoDescTextSize.y);
+
+            // Deltas
+            // Calculates the new text size delta.
+            Vector2 newTextSizeDelta = infoDescTextSize;
+            newTextSizeDelta.y = newTextSizeY;
+
+            // Calculates the new content size delta.
+            Vector2 newContentSizeDelta = infoDescScrollViewContentSize;
+            newContentSizeDelta.y = newContentSizeY;
+
+            // Sets the delta values.
+            infoDescText.rectTransform.sizeDelta = newTextSizeDelta;
+            infoDescScrollViewContent.sizeDelta = newContentSizeDelta;
+
+            // TODO: check for text overflow?
+
+            // Return auto sizing to its original value.
+            infoDescText.enableAutoSizing = autoSizeValue;
+        }
+
+        // Resets the info description scroll view to its default size.
+        public void ResetInfoDescriptionScrollView()
+        {
+            // Resets the text and the scroll view content.
+            infoDescText.rectTransform.sizeDelta = infoDescTextSize;
+            infoDescScrollViewContent.sizeDelta = infoDescScrollViewContentSize;
         }
 
         // TEXT-TO-SPEECH
