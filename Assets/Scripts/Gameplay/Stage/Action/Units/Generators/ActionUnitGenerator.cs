@@ -195,8 +195,8 @@ namespace RM_EDU
                 }
 
                 // Calculates the value based on the current energy generation speed.
-                // Calculation: 1 sec + 9 secs * ((maxSpeed - Abs(speed)) / maxSpeed)
-                value = 1.0F + 9.0F * ((BASE_STAT_MAXIMUM - Mathf.Abs(currEnergyGenSpeed)) / BASE_STAT_MAXIMUM);
+                // Calculation: 1 sec + 7 secs * ((maxSpeed - Abs(speed)) / maxSpeed)
+                value = 1.0F + 7.0F * ((BASE_STAT_MAXIMUM - Mathf.Abs(currEnergyGenSpeed)) / BASE_STAT_MAXIMUM);
 
                 // Bounds check.
                 if (value < 0)
