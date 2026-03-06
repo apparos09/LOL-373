@@ -89,7 +89,7 @@ MonoBehaviour:
   toggleUISfx: {fileID: 8300000, guid: 0d47a3fd8ef7ce3448b543518028ac8c, type: 3}
   stagePrepBgm: {fileID: 8300000, guid: a214614bddf964a4e8ad29cf3f2a48da, type: 3}
   stagePrepBgmLoopStart: 0
-  stagePrepBgmLoopEnd: 3.176
+  stagePrepBgmLoopEnd: 3.18
   stageBgm01: {fileID: 8300000, guid: 8217610e2f6045748a6431df9a14c512, type: 3}
   stageBgm01LoopStart: 0
   stageBgm01LoopEnd: 41.562
