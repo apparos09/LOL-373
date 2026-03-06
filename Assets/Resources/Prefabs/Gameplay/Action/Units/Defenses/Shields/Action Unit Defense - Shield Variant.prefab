@@ -54,9 +54,21 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Size.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Size.y
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: eca9138b327923648945b54eb175115a, type: 3}
+      objectReference: {fileID: -2101105607, guid: eca9138b327923648945b54eb175115a, type: 3}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Name
       value: Action Unit Defense - Shield Variant
@@ -186,7 +198,6 @@ MonoBehaviour:
   durability: 85
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
@@ -194,6 +205,10 @@ MonoBehaviour:
   defType: 2
   platformSpriteRenderer: {fileID: 5281753398701963983}
   showAttackEnergyBlocked: 0
+  showShieldDamage: 1
+  noDamageSprite: {fileID: -2101105607, guid: eca9138b327923648945b54eb175115a, type: 3}
+  lightDamageSprite: {fileID: -1711081684, guid: eca9138b327923648945b54eb175115a, type: 3}
+  heavyDamageSprite: {fileID: -482513695, guid: eca9138b327923648945b54eb175115a, type: 3}
 --- !u!61 &7470610345764135303 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 6055651898615620305, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}

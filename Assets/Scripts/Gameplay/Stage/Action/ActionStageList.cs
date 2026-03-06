@@ -488,7 +488,7 @@ namespace RM_EDU
 
             // Wind array of no wind.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
-            { ActionUnit.statRating.high, ActionUnit.statRating.low, ActionUnit.statRating.veryHigh};
+            { ActionUnit.statRating.medium, ActionUnit.statRating.high, ActionUnit.statRating.veryHigh};
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();
