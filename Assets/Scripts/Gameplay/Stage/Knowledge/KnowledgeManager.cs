@@ -664,6 +664,9 @@ namespace RM_EDU
                             KnowledgeStatementList.Statement listStatement = statementGroups[groupOrigIndex].statements[0];
                             statement.Statement = listStatement;
 
+                            // Makes sure the statement button is interactable.
+                            statement.button.interactable = true;
+
                             // Removes the statement at index 0 and puts it back in at the end of the list.
                             statementGroups[groupOrigIndex].statements.RemoveAt(0);
                             statementGroups[groupOrigIndex].statements.Add(listStatement);
@@ -696,7 +699,7 @@ namespace RM_EDU
                 // If the data logger has been instantiated, try reusing a statement.
                 if(DataLogger.Instantiated)
                 {
-                    // There are statemetns that can be reused.
+                    // There are statements that can be reused.
                     if(dataLogger.matchedStatementDatas.Count > 0)
                     {
                         // Goes through each knowledge statement and gives it a random statement that has been used.
@@ -705,44 +708,50 @@ namespace RM_EDU
                             // If the statement is active and enabled or inactive should be included.
                             if (statement.isActiveAndEnabled || includeInactive)
                             {
-                                // Gets the data and gets the group that it would come from.
-                                KnowledgeStatementList.Statement.StatementData tempData = dataLogger.matchedStatementDatas[Random.Range(0, dataLogger.matchedStatementDatas.Count)];
-                                KnowledgeStatementList.StatementGroup tempGroup = KnowledgeStatementList.Instance.GetGroupCopy(tempData.groupResource);
-
-                                // If the temp group exists, reuse a statement from it.
-                                if (tempGroup != null)
+                                // If the attachment doesn't match correctly or there is no attachment, set it.
+                                // NOTE: this wasn't originally here. This was added since it seems like it should be here...
+                                if (!statement.IsAttachmentMatchedCorrectly())
                                 {
-                                    // The new statement.
-                                    KnowledgeStatementList.Statement newStatement = null;
+                                    // Gets the data and gets the group that it would come from.
+                                    KnowledgeStatementList.Statement.StatementData tempData = dataLogger.matchedStatementDatas[Random.Range(0, dataLogger.matchedStatementDatas.Count)];
+                                    KnowledgeStatementList.StatementGroup tempGroup = KnowledgeStatementList.Instance.GetGroupCopy(tempData.groupResource);
 
-                                    // Goes through the statements to find the one with the matching ID.
-                                    foreach (KnowledgeStatementList.Statement ksls in tempGroup.statements)
+                                    // If the temp group exists, reuse a statement from it.
+                                    if (tempGroup != null)
                                     {
-                                        // If the ID number and resource match, grab the statement.
-                                        if (ksls.idNumber == tempData.idNumber && ksls.resource == tempData.statementResource)
+                                        // The new statement.
+                                        KnowledgeStatementList.Statement newStatement = null;
+
+                                        // Goes through the statements to find the one with the matching ID.
+                                        foreach (KnowledgeStatementList.Statement ksls in tempGroup.statements)
                                         {
-                                            newStatement = ksls;
-                                            break;
+                                            // If the ID number and resource match, grab the statement.
+                                            if (ksls.idNumber == tempData.idNumber && ksls.resource == tempData.statementResource)
+                                            {
+                                                newStatement = ksls;
+                                                break;
+                                            }
                                         }
-                                    }
 
-                                    // If a new statement wasn't found, just load the test statement.
-                                    if(newStatement == null)
+                                        // If a new statement wasn't found, just load the test statement.
+                                        if (newStatement == null)
+                                        {
+                                            newStatement = KnowledgeStatementList.GenerateTestStatement();
+                                        }
+
+                                        // Set the new statement to the knowledge statement.
+                                        statement.Statement = newStatement;
+                                    }
+                                    else
                                     {
-                                        newStatement = KnowledgeStatementList.GenerateTestStatement();
+                                        // Use test statement.
+                                        statement.Statement = KnowledgeStatementList.GenerateTestStatement();
                                     }
 
-                                    // Set the new statement to the knowledge statement.
-                                    statement.Statement = newStatement;
+                                    // Makes sure the statement button is interactable.
+                                    statement.button.interactable = true;
                                 }
-                                else
-                                {
-                                    // Use test statement.
-                                    statement.Statement = KnowledgeStatementList.GenerateTestStatement();
-                                }
-
                             }
-
                         }
 
                         // Marks that statements were reused.
@@ -765,7 +774,11 @@ namespace RM_EDU
                         // If 'includeInactive' is true, then use the statement regardless.
                         if (statement.isActiveAndEnabled || includeInactive)
                         {
+                            // Sets the statement to the test statement.
                             statement.Statement = KnowledgeStatementList.GenerateTestStatement();
+
+                            // Makes sure the statement button is interactable.
+                            statement.button.interactable = true;
                         }
                     }
                 }
