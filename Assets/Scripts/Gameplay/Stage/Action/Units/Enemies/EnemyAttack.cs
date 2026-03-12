@@ -274,11 +274,19 @@ namespace RM_EDU
             PlayPulsingSfx(false);
         }
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
+        // Update is called once per frame
+        void Update()
+        {
+            // If the target is set.
+            if(target != null)
+            {
+                // If the target is NOT active and enabled, clear the target.
+                if(!target.isActiveAndEnabled)
+                {
+                    ClearTarget();
+                }
+            }
+        }
 
         // LateUpdate is called every frame, if the Behaviour is enabled
         private void LateUpdate()

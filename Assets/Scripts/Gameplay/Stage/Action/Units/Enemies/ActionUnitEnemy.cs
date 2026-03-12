@@ -35,6 +35,9 @@ namespace RM_EDU
         // NOTE: pretty sure this doesn't do anything anymore since enemies now trigger attacks on contact.
         private bool targetInRange = false;
 
+        // The most recent unit being targeted.
+        private ActionUnit currTarget;
+
         // If 'true', the enemy unit checks if it's at the end of the map on the left.
         // Since this happens every frame, there should be some tile that's used to enable this function...
         // Upon the enemy unit coming into contact with it.
@@ -49,6 +52,18 @@ namespace RM_EDU
         // If true, the enemy retreat is used. If false, the enemy dies like normal.
         [Tooltip("If true, the enemy retreats to their ship when they're destroyed.")]
         public bool useEnemyRetreat = true;
+
+        [Header("Enemy/Sprites")]
+
+        // The neutral sprite for the enemy, which is used when it's moving.
+        public Sprite neutralSprite;
+
+        // The attack sprite for the enemy, which is used when it's attacking.
+        public Sprite attackSprite;
+
+        // If 'true', the sprites are manually changed based on the current state of the enemy.
+        [Tooltip("Changes the enemy's sprite based on the current enemy state.")]
+        public bool changeSprites = true;
 
         [Header("Enemy/Animations")]
 
@@ -149,8 +164,9 @@ namespace RM_EDU
                 // And it can be attacked.
                 if(userUnit.tangible)
                 {
-                    // A target is in range.
+                    // Sets that a target is in range, and saves the current target.
                     targetInRange = true;
+                    currTarget = userUnit;
 
                     // If the enemy can attack.
                     if (CanAttack())
@@ -346,10 +362,49 @@ namespace RM_EDU
             return targetInRange;
         }
 
+        // Returns 'true' if the enemy has a target.
+        public bool HasTarget()
+        {
+            return currTarget != null;
+        }
+
+        // Returns 'true' if the enemy attack has a target.
+        public bool HasEnemyAttackTarget()
+        {
+            // If set, check enemy attack. If null, return false.
+            if (enemyAttack != null)
+                return enemyAttack.HasTarget();
+            else
+                return false;
+        }
+
         // Returns 'true' if the enemy can move and attack at the same time.
         public bool CanMoveAndAttack()
         {
             return moveAndAttack;
+        }
+
+        // If the enemy is attacking, returns true.
+        public bool IsAttacking()
+        {
+            // If the current target is set, then the enemy is attacking.
+            bool result = currTarget != null;
+
+            // NOTE: checking enemy attack shouldn't be needed.
+            // // If enemy attack is being used and it's set.
+            // if (useEnemyAttack && enemyAttack != null)
+            // {
+            //     // There's a current target, the enemy attack is active and has a target.
+            //     result = currTarget != null && IsEnemyAttackActive() && enemyAttack.HasTarget();
+            // }
+            // // Only check if the target is in range.
+            // else
+            // {
+            //     result = currTarget != null;
+            // }
+            
+            // Returns the result.
+            return result;
         }
 
         // Returns 'true' if the enemy attack object is active.
@@ -619,8 +674,42 @@ namespace RM_EDU
                     CancelVelocity();
                 }
 
+                // If sprites should be changed.
+                if(changeSprites)
+                {
+                    // Checks if the enemy is attacking by seeing if there's a target in range.
+                    bool attacking = IsAttacking();
+
+                    // NOTE: this doesn't check if the sprites being changed have been set to proper values.
+                    // Just set the default sprite to all values if an enemy doesn't have a sprite that...
+                    // Aligns with a specific value.
+
+                    // If the sprite rendere is set to the netural sprite and an attack was tried...
+                    // Switch to the attack sprite.
+                    if(spriteRenderer.sprite == neutralSprite && attacking)
+                    {
+                        spriteRenderer.sprite = attackSprite;
+                    }
+                    // If an attack wasn't tried and the attack sprite is currently being used...
+                    // Switch to the netural sprite.
+                    else if(spriteRenderer.sprite == attackSprite && !attacking)
+                    {
+                        spriteRenderer.sprite = neutralSprite;
+                    }
+                }
+
                 // Sets to false. This will keep getting set to true as long as there's a target in range.
                 targetInRange = false;
+
+                // If the current target is set.
+                if (currTarget != null)
+                {
+                    // If the current target isn't active and enabled, set it to null.
+                    if(!currTarget.isActiveAndEnabled)
+                    {
+                        currTarget = null;
+                    }
+                }
 
                 // If the enemy should check for the end of the map on the left side.
                 if (checkForMapLeftBound)
