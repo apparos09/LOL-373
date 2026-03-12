@@ -451,6 +451,27 @@ namespace RM_EDU
             // This happens in late start.
             // RefreshCurrentWorldArea();
 
+            // Checks that the world audio is set for playing music.
+            if(worldAudio != null)
+            {
+                // If all stages are complete, don't play the world BGM.
+                // The game complete dialog will be opened, which will trigger the results BGM.
+                if (AllStagesComplete())
+                {
+                    // If the world bgm is playing, stop the BGM so that it isn't heard...
+                    // Before switching over the game results BGM.
+                    if (worldAudio.IsPlayingWorldBgm())
+                    {
+                        worldAudio.StopBackgroundMusic();
+                    }
+                }
+                // Not all stages are complete, so play the world BGM.
+                else
+                {
+                    worldAudio.PlayWorldBgm();
+                }
+            }
+
             // The world has been intialized.
             worldInitialized = true;
         }
@@ -1390,30 +1411,51 @@ namespace RM_EDU
             // Checks that the game complete event is set.
             if(gameCompleteEvent != null)
             {
+                // No need to call the function since you already checked that the event is set.
+                // result = IsGameCompleteEventComplete();
                 result = gameCompleteEvent.cleared;
             }
             // No event, so manaully check.
             else
             {
-                // True by default.
-                result = true;
+                // Checks if all stages are complete.
+                result = AllStagesComplete();
+            }
 
-                // Goes through all the stages. If a not complete stage is found, result is false.
-                for(int i = 0; i < stages.Count; i++)
+            return result;
+        }
+
+        // Returns 'true' if game complete event is complete.
+        public bool IsGameCompleteEventComplete()
+        {
+            // If the game complete event is set, check that.
+            // If it isn't, return false.
+            bool result = (gameCompleteEvent != null) ? gameCompleteEvent.cleared : false;
+            return result;
+        }
+
+        // Returns 'true' if all stages are marked as complete.
+        public bool AllStagesComplete()
+        {
+            // True by default.
+            bool result = true;
+
+            // Goes through all the stages. If a not complete stage is found, result is false.
+            for (int i = 0; i < stages.Count; i++)
+            {
+                // Stage exists.
+                if (stages[i] != null)
                 {
-                    // Stage exists.
-                    if (stages[i] != null)
+                    // Stage isn't complete, so the game isn't complete.
+                    if (!stages[i].IsComplete())
                     {
-                        // Stage isn't complete, so the game isn't complete.
-                        if (!stages[i].IsComplete())
-                        {
-                            result = false;
-                            break;
-                        }
+                        result = false;
+                        break;
                     }
                 }
             }
 
+            // Returns the results.
             return result;
         }
 

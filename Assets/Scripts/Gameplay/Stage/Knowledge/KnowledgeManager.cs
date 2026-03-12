@@ -811,7 +811,22 @@ namespace RM_EDU
                         }
                         else
                         {
+                            // Not all matching.
                             allMatch = false;
+
+                            // Makes sure the statement and resourcce buttons are interactable.
+                            // This is to fix a bug where the buttons may be made non-interactable...
+                            // While not being connected to anything.
+
+                            // Makes sure the statement button is interactable.
+                            statement.button.interactable = true;
+
+                            // If the statement is matched to a resource, make sure that...
+                            // The resource's button is interactable.
+                            if (statement.IsAttachedToResource())
+                                statement.attachedResource.button.interactable = true;
+
+                            // Detaches the statement's resource.
                             statement.DetachResource();
                         }
                     }

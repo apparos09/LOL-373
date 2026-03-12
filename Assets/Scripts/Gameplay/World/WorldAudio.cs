@@ -27,7 +27,7 @@ namespace RM_EDU
         public float worldBgmLoopEnd;
 
         // If 'true', the bgm is played in start.
-        public bool playWorldBgmInStart = true;
+        public bool playWorldBgmInStart = false;
 
         // The game complete BGM, which is the stage results theme.
         public AudioClip gameCompleteBgm;
@@ -124,10 +124,22 @@ namespace RM_EDU
             PlayBackgroundMusic(worldBgm, worldBgmLoopStart, worldBgmLoopEnd);
         }
 
+        // Returns 'true' if the world BGM is playing.
+        public bool IsPlayingWorldBgm()
+        {
+            return bgmSource.isPlaying && bgmSource.clip == worldBgm;
+        }
+
         // Plays the game complete BGM, which is the stage results BGM.
         public void PlayGameCompleteBgm()
         {
             PlayBackgroundMusic(gameCompleteBgm, gameCompleteBgmLoopStart, gameCompleteBgmLoopEnd);
+        }
+
+        // Returns 'true' if the game complete BGM is playing.
+        public bool IsPlayingGameCompleteBgm()
+        {
+            return bgmSource.isPlaying && bgmSource.clip == gameCompleteBgm;
         }
 
         // // Update is called once per frame
