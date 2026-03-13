@@ -11,7 +11,7 @@ namespace RM_EDU
 
         // The enemy death cost factor for enemies destroyed by this projectile.
         // This is used to reduce the energy death cost for an enemy killed by a lane blaster.
-        public float enemyDeathCostFactor = 0.20F;
+        public float enemyDeathCostFactor = 0.25F;
 
         // Called when the projectile has made contact with the target.
         public override void OnContactWithTarget(ActionUnit target)

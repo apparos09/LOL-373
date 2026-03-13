@@ -27,11 +27,17 @@ namespace RM_EDU
                 worldUI = WorldUI.Instance;
 
             // Checks to see if saving can be done.
+            bool canSave;
+
             // This is done by seeing if this is the LOL_BUILD, the SaveSystem is Instantiated...
             // And if Saving/Loading is enabled.
             // In WebGL, the game can only save if it's using LOL's systems.
-            bool canSave = GameSettings.IS_LOL_BUILD && SaveSystem.Instantiated &&
+            canSave = GameSettings.IS_LOL_BUILD && SaveSystem.Instantiated &&
                     WorldManager.Instance.SavingLoadingEnabled;
+
+            // Use this version if running the game with the LOL components removed.
+            // canSave = Application.platform != RuntimePlatform.WebGLPlayer &&
+            //     SaveSystem.Instantiated && WorldManager.Instance.SavingLoadingEnabled;
 
             // Sets the interactivity of the save buttons.
             saveContButton.interactable = canSave;

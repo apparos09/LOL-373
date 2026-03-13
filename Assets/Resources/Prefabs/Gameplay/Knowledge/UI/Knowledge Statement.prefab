@@ -189,14 +189,6 @@ MonoBehaviour:
   buttonNormalColor: {r: 0.7294118, g: 0.8235294, b: 1, a: 1}
   autoSetButtonNormalColor: 1
   buttonSelectedColor: {r: 0.443681, g: 0.6269597, b: 0.9716981, a: 1}
-  buttonColorsCopy:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
-    m_ColorMultiplier: 0
-    m_FadeDuration: 0
   attachedResource: {fileID: 0}
   statementText: {fileID: 8473084709445149009}
   matchText: {fileID: 8765125859996393695}

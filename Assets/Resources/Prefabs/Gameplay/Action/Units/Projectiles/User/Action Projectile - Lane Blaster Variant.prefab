@@ -132,7 +132,7 @@ MonoBehaviour:
   moveSpeed: 40
   validTargets: 03000000
   dieOnContact: 0
-  enemyDeathCostFactor: 0.2
+  enemyDeathCostFactor: 0.25
 --- !u!58 &9173478889524770142 stripped
 CircleCollider2D:
   m_CorrespondingSourceObject: {fileID: 2386776853073937460, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
