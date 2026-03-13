@@ -81,5 +81,22 @@ namespace RM_EDU
                 }
             }
         }
+
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+            
+            // If the shot count is less than the shot count max...
+            // And the attack cooldown timer is above the shot rapid delay...
+            // Set the shot count to the max.
+            // This is to fix a bug where the rapid blaster would use its regular attack cooldown time...
+            // But not reset the shot count to its max.
+            // NOTE: make sure the regular attack cooldown time is greater than the shot rapid delay time.
+            if(shotCount < shotCountMax && attackCooldownTimer > shotRapidDelay)
+            {
+                SetShotCountToMax();
+            }
+        }
     }
 }

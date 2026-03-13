@@ -146,21 +146,21 @@ MonoBehaviour:
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
   attackEnergyCost: 30
-  attackPower: 30
-  attackSpeed: 20
+  attackPower: 40
+  attackSpeed: 50
   attackingEnabled: 1
   attackCooldownTimer: 0
   oneHitKill: 0
   durability: 70
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   defType: 1
   platformSpriteRenderer: {fileID: 8508448896018595191}
+  showAttackEnergyBlocked: 1
   projectilePrefab: {fileID: 1861831386709414063, guid: 7feca1428507f684f8eb0a1570340b98, type: 3}
   projectileStartPos: {fileID: 341728493843485592}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}

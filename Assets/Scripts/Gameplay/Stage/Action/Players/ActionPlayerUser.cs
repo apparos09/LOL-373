@@ -38,7 +38,7 @@ namespace RM_EDU
 
         // The amount of energy that's generated for every instance.
         [Tooltip("The amount of energy the player automatically generates for every instance.")]
-        public float energyAutoGenAmount = 100.0F;
+        public float energyAutoGenAmount = 120.0F;
 
         // If 'true', the player automatically generates energy.
         private bool energyAutoGenEnabled = true;
