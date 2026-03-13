@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -230,7 +230,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_text
-      value: Knowledge Statement
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_fontSize
@@ -350,7 +350,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -64
+      value: -68
       objectReference: {fileID: 0}
     - target: {fileID: 6726008191714370322, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_SizeDelta.y

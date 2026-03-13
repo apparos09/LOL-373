@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00
+  m_text: '-'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -189,14 +189,6 @@ MonoBehaviour:
   buttonNormalColor: {r: 0.52156866, g: 1, b: 0.61960787, a: 1}
   autoSetButtonNormalColor: 1
   buttonSelectedColor: {r: 0.12687784, g: 0.9339623, b: 0.46773392, a: 1}
-  buttonColorsCopy:
-    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
-    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_SelectedColor: {r: 0, g: 0, b: 0, a: 0}
-    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
-    m_ColorMultiplier: 0
-    m_FadeDuration: 0
   resource: 0
   attachedStatement: {fileID: 0}
   resourceText: {fileID: 7157670302591326618}
@@ -251,7 +243,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3716918630251316696, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_text
-      value: Knowledge Resource
+      value: '-'
       objectReference: {fileID: 0}
     - target: {fileID: 3716918630251316696, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_fontSize
@@ -271,7 +263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4666181678639492033, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -64
+      value: -68
       objectReference: {fileID: 0}
     - target: {fileID: 4666181678639492033, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_SizeDelta.y
