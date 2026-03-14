@@ -86,11 +86,19 @@ PrefabInstance:
     - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 627306348e5efdf47a029f3d87b8a3f3, type: 3}
+      objectReference: {fileID: 941885297, guid: 627306348e5efdf47a029f3d87b8a3f3, type: 3}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: actionUnit
       value: 
       objectReference: {fileID: 4400795511340984922}
+    - target: {fileID: 8194997913235594361, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4040f53e97a3f2f459bffa49e1ce5bf3, type: 2}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -152,18 +160,20 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   defType: 1
   platformSpriteRenderer: {fileID: 2246493071496549586}
+  showAttackEnergyBlocked: 1
   projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
   projectileStartPos: {fileID: 7892313130456758845}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  shootAnim: Action Unit Defense - Left-Right Blaster - Shoot - Both Animation
+  useShootAnim: 1
   shotSfx: {fileID: 8300000, guid: f69afc9c519d1f145a770456555350da, type: 3}
   projectileStartPosLeft: {fileID: 7942979384664849884}
   projectileStartPosLeftOffset: {x: 0, y: 0, z: 0}

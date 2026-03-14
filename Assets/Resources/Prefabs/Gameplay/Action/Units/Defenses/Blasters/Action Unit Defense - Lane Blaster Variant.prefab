@@ -53,9 +53,21 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Size.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Size.y
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 9039e335e79ecc647801527bf5978c86, type: 3}
+      objectReference: {fileID: 1418564143, guid: 9039e335e79ecc647801527bf5978c86, type: 3}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: actionUnit
       value: 
@@ -80,6 +92,10 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 6423055876177994831, guid: 989f33c9573112749b85881a7f42db92, type: 3}
+    - target: {fileID: 8194997913235594361, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cd1ebfde6b593dc4e9eaa8385da15579, type: 2}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -160,7 +176,6 @@ MonoBehaviour:
   durability: 0
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
@@ -173,6 +188,8 @@ MonoBehaviour:
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  shootAnim: Action Unit Defense - Lane Blaster - Shoot Animation
+  useShootAnim: 1
   shotSfx: {fileID: 8300000, guid: 6ec4596f160ae13478b03b860c60a84d, type: 3}
   modifyEnemyEnergyDeathCost: 1
   killOnAttackPerformed: 1

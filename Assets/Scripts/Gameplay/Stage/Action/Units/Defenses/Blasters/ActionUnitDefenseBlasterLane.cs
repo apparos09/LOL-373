@@ -7,7 +7,7 @@ namespace RM_EDU
     // A lane blaster.
     public class ActionUnitDefenseBlasterLane : ActionUnitDefenseBlaster
     {
-        [Header("Lane")]
+        [Header("Defense/Blaster/Lane")]
 
         // Modifies the enemy energy death cost for enemies killed by the lane blaster if true.
         [Tooltip("Modifies the enemy's energy death cost if killed by a lane blaster projectile.")]

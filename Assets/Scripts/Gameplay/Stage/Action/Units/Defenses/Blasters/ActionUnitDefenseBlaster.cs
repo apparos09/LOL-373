@@ -29,6 +29,16 @@ namespace RM_EDU
         // The projectiles fired by this unit.
         public List<ActionProjectile> firedProjectiles = new List<ActionProjectile>();
 
+        [Header("Defense/Blaster/Animation")]
+
+        // The shoot animation for the blaster.
+        public string shootAnim = "Action Unit Defense - Standard Blaster - Shoot Animation";
+
+        // If 'true', the shoot animation is used.
+        [Tooltip("Uses the shoot animation if set to true.")]
+        public bool useShootAnim = true;
+
+        [Header("Defense/Blaster/Audio")]
         // The blaster shot sfx.
         public AudioClip shotSfx;
 
@@ -133,6 +143,12 @@ namespace RM_EDU
 
                 // Add to list of fired projectiles.
                 firedProjectiles.Add(projectile);
+
+                // Uses the shoot animation if true.
+                if(useShootAnim)
+                {
+                    PlayShootAnimation();
+                }
             }
 
             return projectile;
@@ -145,6 +161,17 @@ namespace RM_EDU
             if(firedProjectiles.Contains(projectile))
             {
                 firedProjectiles.Remove(projectile);
+            }
+        }
+
+        // ANIMATION //
+        // Plays the shoot animation.
+        public void PlayShootAnimation()
+        {
+            // Animator is set and so is the shoot animation.
+            if(animator != null && shootAnim != "")
+            {
+                animator.Play(shootAnim);
             }
         }
 

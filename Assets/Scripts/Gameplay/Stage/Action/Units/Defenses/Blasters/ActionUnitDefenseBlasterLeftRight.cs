@@ -7,7 +7,7 @@ namespace RM_EDU
     // A action unit blaster that shoots from the front (right) and the back (left).
     public class ActionUnitDefenseBlasterLeftRight : ActionUnitDefenseBlaster
     {
-        [Header("Blaster/Left-Right")]
+        [Header("Defense/Blaster/Left-Right")]
 
         // The projectile start pos in the parent class is for firing forward (right).
         // The starting position of the projectile if shooting towards the left side. 
@@ -25,6 +25,11 @@ namespace RM_EDU
         // Has a target to the left (back) and a target to the right (front).
         private bool hasTargetLeft = false;
         private bool hasTargetRight = false;
+
+        [Header("Blaster/Left-Right/Animations")]
+        public string shootBothAnim = "Action Unit Defense - Left-Right Blaster - Shoot - Both Animation";
+        public string shootLeftAnim = "Action Unit Defense - Left-Right Blaster - Shoot - Left Animation";
+        public string shootRightAnim = "Action Unit Defense - Left-Right Blaster - Shoot - Right Animation";
 
         // Returns 'true' if the defense unit has a target to attack.
         // SInce this is a front-back blaster, it checks the left and right side.
@@ -67,6 +72,7 @@ namespace RM_EDU
         public override void PerformAttack()
         {
             // If there are targets are both sides, so shooting twice.
+            // The game prioritizes shooting right if it can only shoot one direction.
             bool shootTwice = hasTargetLeft && hasTargetRight;
 
             // Performs an attack.
@@ -105,6 +111,21 @@ namespace RM_EDU
                         // The energy cost for the first shot fired has already been applied.
                         owner.DecreaseEnergy(CalculateAttackEnergyCost(attackEnergyCost));
                     }
+
+                    // If the shoot animation should be used, use the shoot both animation.
+                    if(useShootAnim)
+                    {
+                        PlayShootBothAnimation();
+                    }
+                }
+                else
+                {
+                    // If the shoot animation should be used, use the shoot right animation.
+                    // Since shooting right takes priority, it can be assumed that the blaster shot right.
+                    if (useShootAnim)
+                    {
+                        PlayShootRightAnimation();
+                    }
                 }
             }
             else
@@ -139,15 +160,26 @@ namespace RM_EDU
                     case -1: // Left
                         projectile.transform.position = CalculateProjectileStartingPositionLeft();
                         projectile.moveDirec = Vector2.left;
+
+                        // Play the shoot left animation.
+                        if (useShootAnim)
+                            PlayShootLeftAnimation();
+
                         break;
 
                     default: // Right
                     case 1:
                         projectile.transform.position = CalculateProjectileStartingPositionRight();
                         projectile.moveDirec = Vector2.right;
+
+                        // Play the shoot right animation.
+                        if (useShootAnim)
+                            PlayShootRightAnimation();
+
                         break;
                 }
             }
+
         }
 
         // Calculates and returns the projectile's starting position if firing from the back (left).
@@ -182,6 +214,37 @@ namespace RM_EDU
         public virtual Vector3 CalculateProjectileStartingPositionRight()
         {
             return CalculateProjectileStartingPosition();
+        }
+
+        // ANIMATION
+        // Play animation for shooting out of both sides.
+        public void PlayShootBothAnimation()
+        {
+            // Animator is set and so is the shoot both animation.
+            if (animator != null && shootBothAnim != "")
+            {
+                animator.Play(shootBothAnim);
+            }
+        }
+
+        // Play animation for shooting left.
+        public void PlayShootLeftAnimation()
+        {
+            // Animator is set and so is the shoot left animation.
+            if (animator != null && shootLeftAnim != "")
+            {
+                animator.Play(shootLeftAnim);
+            }
+        }
+
+        // Play animation for shooting right.
+        public void PlayShootRightAnimation()
+        {
+            // Animator is set and so is the shoot right animation.
+            if (animator != null && shootRightAnim != "")
+            {
+                animator.Play(shootRightAnim);
+            }
         }
     }
 }

@@ -47,14 +47,30 @@ PrefabInstance:
       propertyPath: projectilePrefab
       value: 
       objectReference: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
+    - target: {fileID: 1626850282260206874, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 698b4d413280fe14fac747210ab2d60c, type: 2}
     - target: {fileID: 2511431481117591295, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: actionUnit
       value: 
       objectReference: {fileID: 877795126609007684}
     - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Size.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_Size.y
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 01ac8769396968f4398509e349b48f28, type: 3}
+      objectReference: {fileID: 377120559, guid: 01ac8769396968f4398509e349b48f28, type: 3}
+    - target: {fileID: 4615263141650489515, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7320624136933962778, guid: 665c5f82cc10b764c8de01b1012a0f53, type: 3}
       propertyPath: m_Name
       value: Action Unit Defense - Blaster Variant
@@ -160,18 +176,20 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   defType: 1
   platformSpriteRenderer: {fileID: 2143785946635923706}
+  showAttackEnergyBlocked: 1
   projectilePrefab: {fileID: 536616501510198565, guid: 2c023c3b64618554b9cd1d12da06c3ee, type: 3}
   projectileStartPos: {fileID: 8028304619842985493}
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  shootAnim: Action Unit Defense - Standard Blaster - Shoot Animation
+  useShootAnim: 1
   shotSfx: {fileID: 8300000, guid: f69afc9c519d1f145a770456555350da, type: 3}
 --- !u!4 &1849280751653751939 stripped
 Transform:

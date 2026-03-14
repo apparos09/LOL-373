@@ -57,13 +57,29 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Size.x
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Size.y
+      value: 1.28
+      objectReference: {fileID: 0}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: c4756bc722fa25d44a828f7864ef8e8e, type: 3}
+      objectReference: {fileID: 1588291006, guid: c4756bc722fa25d44a828f7864ef8e8e, type: 3}
+    - target: {fileID: 2820790240764193224, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5040554070110883740, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: actionUnit
       value: 
       objectReference: {fileID: 1973138774349668337}
+    - target: {fileID: 8194997913235594361, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b843c3f6cef95204f98d11ac2cd6087b, type: 2}
     m_RemovedComponents:
     - {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
     m_RemovedGameObjects: []
@@ -166,6 +182,8 @@ MonoBehaviour:
   projectileStartPosOffset: {x: 0, y: 0, z: 0}
   flipOffsetX: 0
   firedProjectiles: []
+  shootAnim: Action Unit Defense - Rapid Blaster - Shoot Animation
+  useShootAnim: 1
   shotSfx: {fileID: 8300000, guid: f69afc9c519d1f145a770456555350da, type: 3}
   shotCount: 0
   shotCountMax: 3
