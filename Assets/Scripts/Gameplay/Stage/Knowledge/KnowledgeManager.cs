@@ -655,6 +655,13 @@ namespace RM_EDU
                     if(statement.isActiveAndEnabled || includeInactive)
                     {
                         // If the attachment doesn't match correctly or there is no attachment, randomize it.
+                        // NOTE: if a statement is matched correctly but the button is still interactable...
+                        // It means that the statement hasn't been verified properly yet. However, since this...
+                        // Doesn't check if the button is interactable, the statement matched correctly isn't randomized...
+                        // Despite not being locked in. It technically reveals that the statement is matched correctly...
+                        // Before a verification check is done, but that's probably fine.
+                        // It would take several steps to do this, and it could only reveal the answer for one statement...
+                        // At a time anyway, so it's not a big deal to leave this exploit in.
                         if (!statement.IsAttachmentMatchedCorrectly())
                         {
                             // Gets the group's index in the original group list.
@@ -670,6 +677,17 @@ namespace RM_EDU
                             // Removes the statement at index 0 and puts it back in at the end of the list.
                             statementGroups[groupOrigIndex].statements.RemoveAt(0);
                             statementGroups[groupOrigIndex].statements.Add(listStatement);
+
+                            // If the statement is attached to a resource, detach that resource.
+                            // This is to address an issue where an attached statement or resource was selected...
+                            // Then a randomization call randomized the attached statement while still...
+                            // Keeping the statement connected to a resource.
+                            if(statement.IsAttachedToResource())
+                            {
+                                // Detach the resource the statement is attached to...
+                                // Since the statement has been randomized.
+                                statement.DetachResource();
+                            }
 
                             // Increases the value in the usable groups index.
                             usableGroupsIndex++;
