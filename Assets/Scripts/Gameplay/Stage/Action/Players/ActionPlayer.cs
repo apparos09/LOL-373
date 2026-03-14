@@ -224,6 +224,12 @@ namespace RM_EDU
             SetBlockingAttackEnergy(!blockingAttackEnergy);
         }
 
+        // Updates the block button's icon.
+        public void UpdateBlockButtonIcon()
+        {
+            ActionUI.Instance.blockButton.UpdateBlockIcon();
+        }
+
 
         // AUDIO //
         // If 'true', the audio is enabled.

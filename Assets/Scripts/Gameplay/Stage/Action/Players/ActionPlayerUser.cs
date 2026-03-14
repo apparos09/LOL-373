@@ -612,6 +612,11 @@ namespace RM_EDU
 
             // Clears the selected prefab.
             ClearSelectedActionUnitPrefab(); // Also sets to "select" mode.
+
+            // Makes sure the player user isn't blocking their attack energy.
+            // Also updates the block button's icon to reflect this.
+            UnblockAttackEnergy();
+            UpdateBlockButtonIcon();
         }
 
 
