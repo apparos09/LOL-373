@@ -145,6 +145,14 @@ namespace RM_EDU
             {
                 Destroy(DataLogger.Instance.gameObject);
             }
+
+            // If the tutorials object still exists, destroy it.
+            // This makes sure that the tutorials are properly reset if the user starts a new game...
+            // After coming back from a saved game.
+            if (Tutorials.Instantiated)
+            {
+                Destroy(Tutorials.Instance.gameObject);
+            }
         }
 
         // Called on the first update frame.
