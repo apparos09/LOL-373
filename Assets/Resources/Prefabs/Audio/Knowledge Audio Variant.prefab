@@ -95,7 +95,7 @@ MonoBehaviour:
   stageBgm01LoopEnd: 41.562
   stageBgm02: {fileID: 8300000, guid: fa987a4585b92e54f9c1be0180a048e9, type: 3}
   stageBgm02LoopStart: 0
-  stageBgm02LoopEnd: 34.399
+  stageBgm02LoopEnd: 34.364
   stageResultsBgm: {fileID: 8300000, guid: ffa4b4e96da81ef4cb41e9ffe5deb236, type: 3}
   stageResultsBgmLoopStart: 1.354
   stageResultsBgmLoopEnd: 12.013
