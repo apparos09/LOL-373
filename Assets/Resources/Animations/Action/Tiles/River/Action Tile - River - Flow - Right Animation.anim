@@ -28,8 +28,8 @@ AnimationClip:
       value: {fileID: 483940436, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
     - time: 0.2
       value: {fileID: -1307895196, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
-    - time: 0.26666668
-      value: {fileID: 120893903, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+    - time: 0.23333333
+      value: {fileID: -1307895196, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
     attribute: m_Sprite
     path: Tile Sprite
     classID: 212
@@ -56,13 +56,13 @@ AnimationClip:
     - {fileID: 740328820, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
     - {fileID: 483940436, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
     - {fileID: -1307895196, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
-    - {fileID: 120893903, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
+    - {fileID: -1307895196, guid: b60812d222a04d44b9f4e5d555894bcd, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.3
+    m_StopTime: 0.26666668
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
