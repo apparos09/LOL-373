@@ -1015,6 +1015,9 @@ namespace RM_EDU
             // Clears the current selection.
             ClearCurrentSelection();
 
+            // Makes sure the info log button interactable.
+            knowledgeUI.infoLogButton.interactable = true;
+
             // Verify button is interactable, but the finish button isn't.
             knowledgeUI.verifyButton.interactable = true;
 
@@ -1214,6 +1217,9 @@ namespace RM_EDU
 
             // Resets all matches.
             ResetAllMatches();
+
+            // Randomizes all statements.
+            RandomizeStatements();
 
             // Sets verification attempts to 0.
             verifyAttempts = 0;

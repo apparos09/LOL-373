@@ -256,7 +256,7 @@ namespace RM_EDU
         // Quits the game.
         public void QuitGame()
         {
-            titleManager.QuitGame();
+            TitleManager.Instance.QuitGame();
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
