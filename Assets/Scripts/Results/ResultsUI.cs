@@ -151,30 +151,14 @@ namespace RM_EDU
         // Goes to the title scene.
         public void ToTitleScene()
         {
-            resultsManager.ToTitleScene();
+            ResultsManager.Instance.ToTitleScene();
         }
 
         // Call this function to complete the game. This is called by the "finish" button.
         public void CompleteGame()
         {
-            // The SDK has been initialized.
-            if (LOLSDK.Instance.IsInitialized)
-            {
-                // Complete the game.
-                LOLSDK.Instance.CompleteGame();
-            }
-            else
-            {
-                // Logs the error.
-                Debug.LogError("SDK NOT INITIALIZED. RETURNING TO THE TITLE SCREEN.");
-
-                // Return to the main menu scene.
-                ToTitleScene();
-            }
-
-            // Do not return to the title scene if running through the LOL platform.
-            // This is because you can't have the game get repeated in the same session.
-            // ToTitleScene();
+            // Moved to the results manager since it makes more sense.
+            ResultsManager.Instance.CompleteGame();
         }
 
 

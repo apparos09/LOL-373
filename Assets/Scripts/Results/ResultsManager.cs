@@ -1,3 +1,4 @@
+using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -163,7 +164,7 @@ namespace RM_EDU
         // Clears the results data.
         public void ClearResultsData()
         {
-            resultsUI.ClearResultsData();
+            ResultsUI.Instance.ClearResultsData();
         }
 
         // Goes to the title scene.
@@ -187,6 +188,29 @@ namespace RM_EDU
             {
                 SceneManager.LoadScene(titleScene);
             }
+        }
+
+        // Completes the game.
+        public void CompleteGame()
+        {
+            // The SDK has been initialized.
+            if (LOLSDK.Instance.IsInitialized)
+            {
+                // Complete the game.
+                LOLSDK.Instance.CompleteGame();
+            }
+            else
+            {
+                // Logs the error.
+                Debug.LogError("SDK NOT INITIALIZED. RETURNING TO THE TITLE SCREEN.");
+
+                // Return to the main menu scene.
+                ToTitleScene();
+            }
+
+            // Do not return to the title scene if running through the LOL platform.
+            // This is because you can't have the game get repeated in the same session.
+            // ToTitleScene();
         }
 
         // Update is called once per frame
