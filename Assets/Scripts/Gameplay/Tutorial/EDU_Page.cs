@@ -14,6 +14,9 @@ namespace RM_EDU
         // The speak key for the page.
         public string speakKey = string.Empty;
 
+        // The display sprite for the page.
+        public Sprite displaySprite = null;
+
         // Adds a page.
         public EDU_Page() : base()
         {
@@ -28,11 +31,34 @@ namespace RM_EDU
             AddSpeakTextCallback();
         }
 
+        // Add a page with text and a display sprite.
+        public EDU_Page(string text, Sprite displaySprite) : base(text)
+        {
+            // Set the sprite.
+            this.displaySprite = displaySprite;
+
+            // Add speak text callback.
+            AddSpeakTextCallback();
+        }
+
         // Adds a page with text and a language/speak key.
         public EDU_Page(string text, string languageKey) : base(text)
         {
             // Sets the language key and translates the text.
             SetLanguageText(languageKey, true);
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Adds a page with text and a language/speak key.
+        public EDU_Page(string text, string languageKey, Sprite displaySprite) : base(text)
+        {
+            // Sets the language key and translates the text.
+            SetLanguageText(languageKey, true);
+
+            // Sets the display sprite.
+            this.displaySprite = displaySprite;
 
             // Adds the speak text callback.
             AddSpeakTextCallback();
@@ -44,6 +70,20 @@ namespace RM_EDU
             // Sets the language key and translates the text.
             // Also sets the speak key, which may be different than the language key.
             SetLanguageTextAndSpeakKey(languageKey, speakKey);
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Adds a page with text, a langauge key, and a speak key.
+        public EDU_Page(string text, string languageKey, string speakKey, Sprite displaySprite) : base(text)
+        {
+            // Sets the language key and translates the text.
+            // Also sets the speak key, which may be different than the language key.
+            SetLanguageTextAndSpeakKey(languageKey, speakKey);
+
+            // Sets the display sprite.
+            this.displaySprite = displaySprite;
 
             // Adds the speak text callback.
             AddSpeakTextCallback();
@@ -118,6 +158,13 @@ namespace RM_EDU
         public void RemoveSpeakTextCallback()
         {
             OnPageOpenedRemoveCallback(SpeakText);
+        }
+
+
+        // Returns 'true' if the page has a display sprite.
+        public bool HasDisplaySprite()
+        {
+            return displaySprite != null;
         }
     }
 }
