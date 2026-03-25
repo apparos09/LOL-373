@@ -637,7 +637,7 @@
     "kst_gtl_01": "A resource that involves drilling wells to get hot water or steam from the Earth's internal heat. Water can be pumped into these wells to use this resource perpetually.",
     "kst_gtl_02": "A renewable resource that uses the Earth's internal heat for generating energy. This is a clean, safe resource that can be used without processing.",
     "kst_gtl_03": "A resource that utilizes the Earth's internal heat. Many parts of the world don't have underground heat sources close enough to the Earth's surface to make using this resource economically viable.",
-    "kst_gtl_04": "A resource that uses hot water and/or stream created from the Earth's internal heat. The steam can come with unwanted mineral byproducts, and resource-related activities can cause earthquakes.",
+    "kst_gtl_04": "A resource that uses hot water and/or steam created from the Earth's internal heat. The steam can come with unwanted mineral byproducts, and resource-related activities can cause earthquakes.",
 
     "kst_hdo_00": "A renewable resource that harnesses water moving through a stream to spin turbines to generate energy.",
     "kst_hdo_01": "A resource that uses moving water to generate energy. The water is held in a reservoir and flows downstream through a dam.",

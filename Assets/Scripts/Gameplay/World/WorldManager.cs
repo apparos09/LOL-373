@@ -15,7 +15,8 @@ namespace RM_EDU
         private static bool instanced = false;
 
         // The stage count.
-        public const int STAGE_COUNT = 11;
+        // This has been changed from 11 to 9 to reflect the reduction in stages.
+        public const int STAGE_COUNT = 9;
 
         // If saving and loading is enabled.
         // NOTE: set this to true when you have the tutorial set up.

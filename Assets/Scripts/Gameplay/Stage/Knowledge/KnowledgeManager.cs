@@ -1084,8 +1084,9 @@ namespace RM_EDU
                 scoreTimeBonus = 0.0F;
             }
 
+            // Commented out since it's not factored in for the stage score.
             // The energy bonus.
-            float energyBonus = CalculateEnergyBonus();
+            // float energyBonus = CalculateEnergyBonus();
 
             // THe bonus to the score for the amount of verifications.
             float scoreVerifyBonus;
@@ -1122,11 +1123,8 @@ namespace RM_EDU
             // Calculate the score total by adding the score base to the bonuses.
             float scoreTotal = scoreBase + scoreTimeBonus + scoreVerifyBonus;
 
-            // If the data logger exists, set the energy bonus.
-            if (DataLogger.Instantiated)
-            {
-                DataLogger.Instance.energyStartBonus = energyBonus;
-            }    
+            // Originally, the energy start bonus was overwritten here.
+            // Since the energy bonus shouldn't be reset here, that no longer happens here.  
             
             // Returns the local score total.
             return scoreTotal;

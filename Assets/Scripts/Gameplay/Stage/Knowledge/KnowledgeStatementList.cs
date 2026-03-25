@@ -391,7 +391,7 @@ namespace RM_EDU
                 "A resource that utilizes the Earth's internal heat. Many parts of the world don't have underground heat sources close enough to the Earth's surface to make using this resource economically viable.", 
                 "kst_gtl_03"));
             geothermalGroup.statements.Add(new Statement(4,
-                "A resource that uses hot water and/or stream created from the Earth's internal heat. The steam can come with unwanted mineral byproducts, and resource-related activities can cause earthquakes.", 
+                "A resource that uses hot water and/or steam created from the Earth's internal heat. The steam can come with unwanted mineral byproducts, and resource-related activities can cause earthquakes.", 
                 "kst_gtl_04"));
             geothermalGroup.SetAllStatementsToGroupResource();
 
