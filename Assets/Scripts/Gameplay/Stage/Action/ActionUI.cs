@@ -22,6 +22,9 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The day-night overlay.
+        public DayNightOverlay dayNightOverlay;
+
         // The stage start dialog.
         public ActionStageStartDialog stageStartDialog;
 
@@ -146,6 +149,13 @@ namespace RM_EDU
             {
                 return instanced;
             }
+        }
+
+        // DAY-NIGHT OVERLAY
+        // Updates the day-night overlay using the provided t-value.
+        public void UpdateDayNightEffect(float t)
+        {
+            dayNightOverlay.UpdateOverlay(t);
         }
 
         // PLAYER UI

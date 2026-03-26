@@ -77,11 +77,16 @@ namespace RM_EDU
         // The player enemy.
         public ActionPlayerEnemy playerEnemy;
 
-        // The action post processor.
-        public ActionPostProcessor postProcessor;
+        // Post-processing was removed for game performance reasons.
+        // The action post processor (unused).
+        // public ActionPostProcessor postProcessor;
 
         // If 'true', the game uses post processing.
-        private bool usePostProcessing = true;
+        // private bool usePostProcessing = true;
+
+        // If 'true', the day-night visual effects are used.
+        // This is a replaced to 'usePostProcessing'.
+        private bool useDayNightEffects = true;
 
         // The fast time scale.
         public const float STAGE_SPEED_FAST_TIME_SCALE = 2.0F;
@@ -579,15 +584,21 @@ namespace RM_EDU
         // Updates the day-night effect.
         public void UpdateDayNightEffect()
         {
-            // If the post processor isn't set, do nothing.
-            if (postProcessor == null)
-                return;
+            // OLD - Post-processing is no longer being used
+            // // If the post processor isn't set, do nothing.
+            // if (postProcessor == null)
+            //     return;
+            // 
+            // // Gets the day-night transition value.
+            // float t = Mathf.Clamp01(GetDayNightTransitionValue());
+            // 
+            // // Sets t-value.
+            // postProcessor.lerpT = t;
 
-            // Gets the day-night transition value.
+            // NEW - use the overlay.
+            // Calculate the transition value.
             float t = Mathf.Clamp01(GetDayNightTransitionValue());
-
-            // Sets t-value.
-            postProcessor.lerpT = t;
+            actionUI.UpdateDayNightEffect(t);
         }
 
         // Called when the day-night timer has finished, which rolls the timer over to another day.
@@ -1038,8 +1049,12 @@ namespace RM_EDU
                     }
                     else
                     {
+                        // Post processing is no longer being used.
                         // If post processing is being used.
-                        if (usePostProcessing)
+                        // if (usePostProcessing)
+
+                        // If the day-night visual effects are being used.
+                        if (useDayNightEffects)
                         {
                             // Update the day-night effect.
                             UpdateDayNightEffect();

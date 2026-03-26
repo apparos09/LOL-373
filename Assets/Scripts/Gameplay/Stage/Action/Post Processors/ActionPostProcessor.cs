@@ -6,6 +6,7 @@ using UnityEngine;
 namespace RM_EDU
 {
     // The post processor for the action stage.
+    // This is no longer used because it possibly impacted game performance significantly.
     public class ActionPostProcessor : util.PostProcessor
     {
         [Header("Action")]
