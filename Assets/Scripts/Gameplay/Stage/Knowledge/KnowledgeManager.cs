@@ -492,8 +492,9 @@ namespace RM_EDU
         }
 
         // Sets what section is active.
-        // An inactive section has a scale of (0, 0, 0), but still has its parent active.
-        // 0 = both, 1 = statmenet, 2 = resource
+        // An inactive section is moved to the hidden position.
+        // This is done because all sections must be active to make sure they're all constantly updated.
+        // 0 = both, 1 = statement, 2 = resource
         public void SetSection(int section)
         {
             // Sets the instance.
@@ -503,38 +504,65 @@ namespace RM_EDU
             // The section text.
             TMP_Text sectionText = knowledgeUI.sectionText;
 
-            // Gets the parents.
+            // Gets the parents and their transform rects.
             GameObject sp = knowledgeUI.statementsParent;
+            RectTransform spr = knowledgeUI.statementsParentRect;
+
             GameObject rp = knowledgeUI.resourcesParent;
+            RectTransform rpr = knowledgeUI.resourcesParentRect;
 
             // Makes sure both are active.
-            sp.SetActive(true);
-            rp.SetActive(true);
+            // Statements
+            if (!sp.activeSelf) 
+                sp.SetActive(true);
+            
+            // Resources
+            if(!rp.activeSelf)
+                rp.SetActive(true);
 
             // Checks what section to active.
             switch (section)
             {
                 default:
                 case 0: // Both
-                    sp.transform.localScale = Vector3.one;
-                    rp.transform.localScale = Vector3.one;
+                    // Old - change scale.
+                    // sp.transform.localScale = Vector3.one;
+                    // rp.transform.localScale = Vector3.one;
 
+                    // New - change positions - both visible.
+                    spr.position = knowledgeUI.sectionVisibleRect.position;
+                    rpr.position = knowledgeUI.sectionVisibleRect.position;
+
+                    // Update text.
                     sectionText.text = GetSectionStringTranslated();
 
                     break;
 
                 case 1: // Statements
-                    sp.transform.localScale = Vector3.one;
-                    rp.transform.localScale = Vector3.zero;
 
+                    // Old - change scale - statements visible.
+                    // sp.transform.localScale = Vector3.one;
+                    // rp.transform.localScale = Vector3.zero;
+
+                    // New - change positions - statements visible.
+                    spr.position = knowledgeUI.sectionVisibleRect.position;
+                    rpr.position = knowledgeUI.sectionHiddenRect.position;
+
+                    // Update text.
                     sectionText.text = GetStatementsStringTranslated();
 
                     break;
 
                 case 2: // Resources
-                    sp.transform.localScale = Vector3.zero;
-                    rp.transform.localScale = Vector3.one;
+                    // Old - change scale - resources visible.
+                    // sp.transform.localScale = Vector3.zero;
+                    // rp.transform.localScale = Vector3.one;
 
+                    // New - change positions - resources visible.
+                    spr.position = knowledgeUI.sectionHiddenRect.position;
+                    rpr.position = knowledgeUI.sectionVisibleRect.position;
+
+                    // Update text.
                     sectionText.text = GetResourcesStringTranslated();
 
                     break;
@@ -546,9 +574,21 @@ namespace RM_EDU
         // Returns true if the statements section is active.
         public bool IsStatementsSectionActive()
         {
-            GameObject sp = KnowledgeUI.Instance.statementsParent;
+            // If not set, grab instance.
+            if (knowledgeUI == null)
+                knowledgeUI = KnowledgeUI.Instance;
 
-            return sp.activeSelf && sp.transform.localScale == Vector3.one;
+            // Old - checks scale.
+            // GameObject sp = KnowledgeUI.Instance.statementsParent;
+            // return sp.activeSelf && sp.transform.localScale == Vector3.one;
+
+            // New - checks position.
+            // Grabs the statements rect and the visible position rect.
+            RectTransform spr = knowledgeUI.statementsParentRect;
+            RectTransform visibleRect = knowledgeUI.sectionVisibleRect;
+
+            // Check if active and in the visible position.
+            return spr.gameObject.activeSelf && spr.position == visibleRect.position;
         }
 
         // Activates the statements section.
@@ -560,9 +600,21 @@ namespace RM_EDU
         // Returns true if the resources section is active.
         public bool IsResourcesSectionActive()
         {
-            GameObject rp = KnowledgeUI.Instance.resourcesParent;
+            // If not set, grab instance.
+            if (knowledgeUI == null)
+                knowledgeUI = KnowledgeUI.Instance;
 
-            return rp.activeSelf && rp.transform.localScale == Vector3.one;
+            // Old - check the local scale.
+            // GameObject rp = KnowledgeUI.Instance.resourcesParent;
+            // return rp.activeSelf && rp.transform.localScale == Vector3.one;
+
+            // New - check the position.
+            // Grabs the resources rect and the visible position rect.
+            RectTransform rpr = knowledgeUI.resourcesParentRect;
+            RectTransform visibleRect = knowledgeUI.sectionVisibleRect;
+
+            // Check if active and in the visible position.
+            return rpr.gameObject.activeSelf && rpr.position == visibleRect.position;
         }
 
         // Activates the resources section.

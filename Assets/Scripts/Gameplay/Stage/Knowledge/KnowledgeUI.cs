@@ -25,18 +25,31 @@ namespace RM_EDU
         // The section text.
         public TMP_Text sectionText;
 
-        // NOTE: the active section is at a (1, 1, 1) scale, while the inactive section is at a (0, 0, 0) scale.
-        // This is done so that the objects can be set and updated properly, which may not happen...
-        // If the objects are off, and thus not being updated.
+        // NOTE: originally, the active section had a (1, 1, 1) scale and the inactive section had a (0, 0, 0) scale.
+        // To try and improve the game's frame rate, elements are moved out of view instead of having their scale altered.
+        // This is handled this way as all sections must be active to make sure updates occur properly.
+        // This is a hold over from how the game was handled statements and resources before.
+
+        // The rect transform for an on-screen element being visible.
+        public RectTransform sectionVisibleRect;
+
+        // The rect transform for an on-screen element being hidden.
+        public RectTransform sectionHiddenRect;
 
         // The parent object of all statements.
         public GameObject statementsParent;
+
+        // The statements parent rect transform.
+        public RectTransform statementsParentRect;
 
         // The statements in the knowledge stage.
         public List<KnowledgeStatement> statements = new List<KnowledgeStatement>();
 
         // The parent object for all resources.
         public GameObject resourcesParent;
+
+        // The resources parent rect transform.
+        public RectTransform resourcesParentRect;
 
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
@@ -100,10 +113,24 @@ namespace RM_EDU
                 knowledgeManager = KnowledgeManager.Instance;
             }
 
+            // If the statements parent rect is equal to null and the statements parent is set...
+            // Grab the rect transform from the statements parent.
+            if(statementsParentRect == null && statementsParent != null)
+            {
+                statementsParentRect = statementsParent.GetComponent<RectTransform>();
+            }
+
             // If the statements list is empty, fill the list automatically.
             if (statements.Count == 0)
             {
                 statements = new List<KnowledgeStatement>(FindObjectsOfType<KnowledgeStatement>(true));
+            }
+
+            // If the resources parent rect is null and the resources parent is set...
+            // Grab the rect transform from the resources parent.
+            if (resourcesParentRect == null && resourcesParent != null)
+            {
+                resourcesParentRect = resourcesParent.GetComponent<RectTransform>();
             }
 
             // If the resources list is empty, fill the list automatically.
