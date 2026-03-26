@@ -19,6 +19,21 @@ namespace RM_EDU
         // The display image.
         public Image displayImage;
 
+        [Header("Tutorials/Display Sprites")]
+
+        // Display sprites for the natural resources.
+        public Sprite biomassSprite;
+        public Sprite geothermalSprite;
+        public Sprite hydroSprite;
+        public Sprite solarSprite;
+        public Sprite waveSprite;
+        public Sprite windSprite;
+
+        public Sprite coalSprite;
+        public Sprite naturalGasSprite;
+        public Sprite nuclearSprite;
+        public Sprite oilSprite;
+
         // Start is called before the first frame update
         protected override void Start()
         {
@@ -27,6 +42,9 @@ namespace RM_EDU
             // If the tutorial UI isn't set, get the instance.
             if (tutorialUI == null)
                 tutorialUI = TutorialUI.Instance;
+
+            // Adds a callback for when the text box has been closed.
+            OnTextBoxClosedAddCallback(OnTextBoxClosed);
         }
 
         // Returns 'true' if the display is active.
@@ -90,6 +108,14 @@ namespace RM_EDU
 
             // Refreshes the display so that its shown if there's a sprite...
             // And hidden if there's not a sprite.
+            RefreshDisplayActive();
+        }
+
+        // Called when the text box has been closed.
+        protected void OnTextBoxClosed()
+        {
+            // Clear the diagram image and refresh the diagram object.
+            ClearDisplayImageSprite();
             RefreshDisplayActive();
         }
 

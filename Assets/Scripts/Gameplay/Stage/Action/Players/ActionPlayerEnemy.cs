@@ -61,7 +61,9 @@ namespace RM_EDU
         public List<ActionUnitEnemy> spawnedEnemies = new List<ActionUnitEnemy>();
 
         // The enemy unit spawn limit.
-        public const int ACTIVE_ENEMY_UNIT_LIMIT = ActionStage.MAP_ROW_COUNT_DEFAULT * ActionStage.MAP_COLUMN_COUNT_DEFAULT;
+        // Uncomment the line below to allow an enemy unit for every row and column tile.
+        // public const int ACTIVE_ENEMY_UNIT_LIMIT = ActionStage.MAP_ROW_COUNT_DEFAULT * ActionStage.MAP_COLUMN_COUNT_DEFAULT; 
+        public const int ACTIVE_ENEMY_UNIT_LIMIT = 28; // 7 rows * 4 cols
 
         // Start is called before the first frame update
         protected override void Start()
