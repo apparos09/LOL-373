@@ -19,13 +19,36 @@ namespace RM_EDU
             public string nameKey;
 
             // The description of the info entry.
-            public string description;
+            // Each element is considered a seperate page.
+            public List<string> description;
 
             // The description key.
             public string descriptionKey;
 
             // The icon sprite for the info log entry.
             public Sprite iconSprite;
+
+            // Generates the page description key based on the provided index.
+            public string GenerateDescriptionPageKey(int pageIndex)
+            {
+                return descriptionKey + "_" + pageIndex.ToString("D2");
+            }
+
+            // Generates description page keys.
+            public List<string> GenerateDescriptionPageKeys()
+            {
+                // The description keys.
+                List<string> descKeys = new List<string>();
+
+                // Goes through all the pages of the description.
+                for(int i = 0; i < description.Count; i++)
+                {
+                    descKeys.Add(descriptionKey + "_" + i.ToString("D2"));
+                }
+
+                // Returns the description keys.
+                return descKeys;
+            }
         }
 
         // The info log categories.
@@ -121,45 +144,38 @@ namespace RM_EDU
         // The info description text.
         public TMP_Text infoDescText;
 
-        // The info desc text size delta (W, H) on start.
-        private Vector2 infoDescTextSize;
-
         // The character count limit of the info description text box at its default size.
         public const int INFO_DESC_TEXT_DEFAULT_LENGTH = 980;
 
         // Additional text length that's added to the info description when dynamically resizing.
         public const int INFO_DESC_TEXT_LENGTH_EXTRA = 20;
 
-        [Header("Info Section/Scroll View")]
-        // The info description scroll view.
-        public ScrollRect infoDescScrollView;
+        [Header("Info Section/Desc Pages")]
 
-        // The minimum extra size added to parts of the scroll view that's dynamically resized.
-        private float INFO_DESC_SCROLL_VIEW_SIZE_MIN_EXTRA = 300.0F;
+        // The pages for the info description.
+        [Tooltip("The pages for the info description.")]
+        public List<string> infoDescPages = new List<string>();
 
-        // The info description scroll view rect size.
-        public RectTransform infoDescScrollViewRect;
+        // The speak keys for the pages for the info description.
+        [Tooltip("The page keys for the info description.")]
+        public List<string> infoDescPageKeys = new List<string>();
 
-        // The info description scroll view size.
-        private Vector2 infoDescScrollViewRectSize;
+        // The current info descriotion page index.
+        public int infoDescPageIndex = 0;
 
-        // The content object of the scroll view.
-        public RectTransform infoDescScrollViewContent;
+        // The previous page button.
+        public Button prevInfoDescPageButton;
 
-        // The info desc text size delta (W, H) on start.
-        private Vector2 infoDescScrollViewContentSize;
+        // The next page button.
+        public Button nextInfoDescPageButton;
 
-        // If 'true', the scroll view is automatically resized based on how much text is there.
-        [Tooltip("Resizes the info desc scroll view automatically based on the character count if true.")]
-        public bool resizeInfoDescScrollView = true;
+        // The info description page text.
+        public TMP_Text infoDescPageText;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
         {
-            // Gets the size delta for the desc text, desc scroll view, and desc scroll view content.
-            infoDescScrollViewRectSize = infoDescScrollViewRect.sizeDelta;
-            infoDescTextSize = infoDescText.rectTransform.sizeDelta;
-            infoDescScrollViewContentSize = infoDescScrollViewContent.sizeDelta;
+            // ...
         }
 
         // Start is called before the first frame update
@@ -742,12 +758,6 @@ namespace RM_EDU
 
             // Updates the entry buttons.
             UpdateEntryButtons();
-
-            // If the scroll view should be resized based on the text amount, resize it.
-            if(resizeInfoDescScrollView)
-            {
-                ResizeInfoDescriptionScrollView();
-            }
         }
 
         // Gets the current entry index in the entry buttons pages.
@@ -807,19 +817,37 @@ namespace RM_EDU
             // If the entry exists.
             if(currEntry != null)
             {
+                // Update text and icon.
+                // Updates the name and the icon. The description is now a set of pages, so it's updated differently.
                 infoNameText.text = entry.name;
-                infoDescText.text = entry.description;
+                // infoDescText.text = entry.description;
                 infoIconImage.sprite = entry.iconSprite;
 
-                // Sets the scroll view value to the top.
-                infoDescScrollView.verticalScrollbar.value = 1;
+                // Load the description pages and keys.
+                infoDescPages.Clear();
+                infoDescPages.AddRange(entry.description);
 
-                // If text-to-speech is usable and enabled.
-                if (entry.descriptionKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
-                {
-                    // Read the description.
-                    SpeakText(entry.descriptionKey);
-                }
+                infoDescPageKeys.Clear();
+                infoDescPageKeys = entry.GenerateDescriptionPageKeys();
+
+                // Sets to the first page.
+                SetInfoDescriptionPageIndex(0);
+
+                // If there are multiple pages, make the previous and next buttons active.
+                // If there's only 1 page, disable the previous and next buttons.
+                bool multDescPages = GetInfoDescriptionPageCount() > 1;
+                prevInfoDescPageButton.interactable = multDescPages;
+                nextInfoDescPageButton.interactable= multDescPages;
+
+
+                // This has been moved to where the info description page is set...
+                // Since the description can now be split into multiple pages.
+                // // If text-to-speech is usable and enabled.
+                // if (entry.descriptionKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+                // {
+                //     // Read the description.
+                //     SpeakText(entry.descriptionKey);
+                // }
             }
             else
             {
@@ -827,17 +855,98 @@ namespace RM_EDU
             }
         }
 
+        // Split the text into a list using the provided split character.
+        public static List<string> SplitStringByCharacter(string text, char splitChar)
+        {
+            // Splits the provided text and loads in into the pages.
+            List<string> strList = new List<string>(text.Split(splitChar));
+            return strList;
+        }
+
+        // Gets the info description page index.
+        public int GetInfoDescriptionPageIndex()
+        {
+            return infoDescPageIndex;
+        }
+
+        // Returns the info description page count.
+        public int GetInfoDescriptionPageCount()
+        {
+            return infoDescPages.Count;
+        }
+
+        // Sets the info description page using the provided index.
+        public void SetInfoDescriptionPageIndex(int pageIndex)
+        {
+            // Gets the info description page count.
+            int pageCount = GetInfoDescriptionPageCount();
+
+            // Clamps the page index within the proper bounds.
+            infoDescPageIndex = Mathf.Clamp(pageIndex, 0, pageCount - 1);
+
+            // Updates the info description text.
+            infoDescText.text = infoDescPages[infoDescPageIndex];
+
+            // Updates the info descrption page text.
+            infoDescPageText.text = (infoDescPageIndex + 1).ToString() + "/" + pageCount.ToString();
+
+            // Gets the description speak key.
+            string descKey = infoDescPageKeys[infoDescPageIndex];
+
+            // If text-to-speech is usable and enabled, read the description.
+            if (descKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+            {
+                // Read the description.
+                SpeakText(descKey);
+            }
+        }
+
+        // Goes to the previous info description page.
+        public void PreviousInfoDescriptionPage()
+        {
+            // Page count and index.
+            int pageCount = GetInfoDescriptionPageCount();
+            int pageIndex = infoDescPageIndex - 1;
+
+            // Bounds check.
+            if (pageIndex < 0)
+                pageIndex = pageCount - 1;
+
+            // Set the page.
+            SetInfoDescriptionPageIndex(pageIndex);
+        }
+
+        // Goes to the next info description page.
+        public void NextInfoDescriptionPage()
+        {
+            // Page count and index.
+            int pageCount = GetInfoDescriptionPageCount();
+            int pageIndex = infoDescPageIndex + 1;
+
+            // Bounds check.
+            if (pageIndex >= pageCount)
+                pageIndex = 0;
+
+            // Set the page.
+            SetInfoDescriptionPageIndex(pageIndex);
+        }
+
         // Clears the info.
         public void ClearInfo()
         {
             currEntry = null;
 
+            // Clear text.
             infoNameText.text = "";
             infoDescText.text = "";
-            infoIconImage.sprite = alpha0Sprite;
 
-            // Sets the scroll view value to the top.
-            infoDescScrollView.verticalScrollbar.value = 1;
+            // Clear the pages and info desc page index.
+            infoDescPages.Clear();
+            infoDescPageIndex = 0;
+            infoDescPageText.text = "-";
+
+            // Clear icon.
+            infoIconImage.sprite = alpha0Sprite;
         }
 
         // INFO LOG (General)
@@ -917,91 +1026,7 @@ namespace RM_EDU
             ResetCurrentCategory();
         }
 
-        // Scroll View
-        // Resizes the info description scroll view based on the character count.
-        public void ResizeInfoDescriptionScrollView()
-        {
-            // If 'true', the scroll views are rounded.
-            bool roundSizes = false;
-
-            // Gets the auto size value and turns it off.
-            // This causes the calculations to resize the text window based on the...
-            // Full size of the text.
-            bool autoSizeValue = infoDescText.enableAutoSizing;
-            infoDescText.enableAutoSizing = false;
-
-            // Gets the minimum size for the content size.
-            // TODO: maybe don't save this to a dedicated vaiable?
-            float minContentSizeY = infoDescScrollViewRectSize.y + INFO_DESC_SCROLL_VIEW_SIZE_MIN_EXTRA;
-            
-            // Calculates the difference between the content size and text size.
-            // Also saves the minimum text size y.
-            Vector2 contentTextDiff = infoDescScrollViewContentSize - infoDescTextSize;
-            float minTextSizeY = infoDescScrollViewRectSize.y - contentTextDiff.y + INFO_DESC_SCROLL_VIEW_SIZE_MIN_EXTRA;
-
-            // The text length (character count) of the description text, plus the extra amount.
-            float textLength = infoDescText.text.Length + INFO_DESC_TEXT_LENGTH_EXTRA;
-
-            // The text percentage change, which takes the current text length as...
-            // A percentage of the text default length.
-            float textPercentChange = textLength / INFO_DESC_TEXT_DEFAULT_LENGTH;
-
-            // Calculates the new content size on the y-axis.
-            // Also clamps it within the bounds.
-            float newContentSizeY = infoDescScrollViewContentSize.y * textPercentChange;
-
-            // Rounds the content size y up to the nearest 10.
-            if(roundSizes)
-            {
-                newContentSizeY /= 10.0F;
-                newContentSizeY = Mathf.Ceil(newContentSizeY);
-                newContentSizeY *= 10.0F;
-            }
-
-            // Clamps the value.
-            newContentSizeY = Mathf.Clamp(newContentSizeY, minContentSizeY, infoDescScrollViewContentSize.y);
-
-            // Calculates the new text size on the y-axis.
-            float newTextSizeY = infoDescTextSize.y * textPercentChange;
-
-            // Rounds the text size y up to the nearest 10.
-            if (roundSizes)
-            {
-                newTextSizeY /= 10.0F;
-                newTextSizeY = Mathf.Ceil(newTextSizeY);
-                newTextSizeY *= 10.0F;
-            }
-
-            // Clamps within the bounds.
-            newTextSizeY = Mathf.Clamp(newTextSizeY, minTextSizeY, infoDescTextSize.y);
-
-            // Deltas
-            // Calculates the new text size delta.
-            Vector2 newTextSizeDelta = infoDescTextSize;
-            newTextSizeDelta.y = newTextSizeY;
-
-            // Calculates the new content size delta.
-            Vector2 newContentSizeDelta = infoDescScrollViewContentSize;
-            newContentSizeDelta.y = newContentSizeY;
-
-            // Sets the delta values.
-            infoDescText.rectTransform.sizeDelta = newTextSizeDelta;
-            infoDescScrollViewContent.sizeDelta = newContentSizeDelta;
-
-            // TODO: check for text overflow?
-
-            // Return auto sizing to its original value.
-            infoDescText.enableAutoSizing = autoSizeValue;
-        }
-
-        // Resets the info description scroll view to its default size.
-        public void ResetInfoDescriptionScrollView()
-        {
-            // Resets the text and the scroll view content.
-            infoDescText.rectTransform.sizeDelta = infoDescTextSize;
-            infoDescScrollViewContent.sizeDelta = infoDescScrollViewContentSize;
-        }
-
+        
         // TEXT-TO-SPEECH
         // Speaks text if Text-to-Speech is usable and enabled.
         public void SpeakText(string key)

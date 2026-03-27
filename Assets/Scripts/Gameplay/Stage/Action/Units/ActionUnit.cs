@@ -252,7 +252,7 @@ namespace RM_EDU
             // LOL SDK Initialized and the key is set, so get the translated text.
             if (LOLManager.IsLOLSDKInitialized() && unitDescKey != "")
             {
-                result = LOLManager.GetLanguageTextStatic(unitDescKey);
+                result = LOLManager.GetLanguageTextStatic(unitDescKey + "_00");
             }
             else
             {
@@ -364,8 +364,9 @@ namespace RM_EDU
             // Sets the values.
             entry.name = GetUnitNameTranslated();
             entry.nameKey = unitNameKey;
-            entry.description = GetUnitDescriptionTranslated();
-            entry.descriptionKey = unitDescKey;
+            // TODO: implement properly
+            entry.description = new List<string>() { GetUnitDescriptionTranslated() };
+            entry.descriptionKey = unitDescKey + "_00";
             entry.iconSprite = iconSprite;
 
             return entry;
