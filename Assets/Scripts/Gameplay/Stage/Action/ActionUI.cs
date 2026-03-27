@@ -168,14 +168,31 @@ namespace RM_EDU
             // If the player exists, update the energy and air pollution text.
             if(playerUser != null)
             {
-                playerUserEnergyText.text = Mathf.Floor(playerUser.energy).ToString();
-                playerUserAirPollutionText.text = Mathf.Floor(playerUser.airPollution).ToString();
+                // The new energy and air pollution text.
+                string newEnergyText = Mathf.Floor(playerUser.energy).ToString();
+                string newAirPollutionText = Mathf.Floor(playerUser.airPollution).ToString();
+
+                // If the current player user energy text is different, change it to the new value.
+                if (playerUserEnergyText.text != newEnergyText)
+                    playerUserEnergyText.text = newEnergyText;
+
+                // If the current player user air pollution text is different, change it to the new value.
+                if (playerUserAirPollutionText.text != newAirPollutionText)
+                    playerUserAirPollutionText.text = newAirPollutionText;
             }
             // The player user couldn't be found, so clear the text.
             else
             {
-                playerUserEnergyText.text = "-";
-                playerUserAirPollutionText.text = "-";
+                // The default text.
+                string defaultText = "-";
+
+                // If the player user energy text isn't set to the default text, set it.
+                if (playerUserEnergyText.text != defaultText)
+                    playerUserEnergyText.text = defaultText;
+
+                // If the player air pollution text isn't set to the default text, set it.
+                if(playerUserAirPollutionText.text != defaultText)
+                    playerUserAirPollutionText.text = defaultText;
             }
         }
 
@@ -188,6 +205,9 @@ namespace RM_EDU
             // If the enemy exists, update the bar.
             if (playerEnemy != null)
             {
+                // Since the player enemy's energy amount is constantly changing...
+                // It's probably fine to update this every frame.
+
                 // Calculates the energy percent and applies it to the energy bar.
                 float energyPercent = playerEnemy.energy / playerEnemy.energyMax;
                 playerEnemyEnergyBar.SetValueAsPercentage(energyPercent);

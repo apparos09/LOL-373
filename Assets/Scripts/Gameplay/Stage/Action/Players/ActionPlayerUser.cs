@@ -202,6 +202,11 @@ namespace RM_EDU
         // Called when the energy amount for the user has changed.
         public void OnEnergyChanged()
         {
+            // NOTE: the energy display text isn't updated here, it's updated as part of...
+            // The general player UI update. That function already checks to make sure that...
+            // The text isn't updated if the text hasn't actually change, which is meant to...
+            // Help with optimization.
+
             // Refreshes the unit buttons.
             actionManager.actionUI.RefreshUnitButtonsInteractable();
 
