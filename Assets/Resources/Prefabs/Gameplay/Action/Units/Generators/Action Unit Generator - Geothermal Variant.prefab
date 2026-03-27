@@ -110,8 +110,9 @@ MonoBehaviour:
   idNumber: 2
   unitName: Geothermal Generator
   unitNameKey: aug_geothermal_nme
-  unitDesc: A renewable generator that uses the Earth's internal heat for generating
-    energy. This generator can only be placed on geothermal source tiles.
+  unitDesc:
+  - A renewable generator that uses the Earth's internal heat for generating energy.
+    This generator can only be placed on geothermal source tiles.
   unitDescKey: aug_geothermal_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 7476519495157278778}
@@ -139,7 +140,6 @@ MonoBehaviour:
   durability: 80
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

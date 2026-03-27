@@ -141,8 +141,9 @@ MonoBehaviour:
   idNumber: 13
   unitName: Rapid Blaster
   unitNameKey: aud_blasterRapid_nme
-  unitDesc: A blaster that can fire one to three shots in quick succession before
-    needing to recharge.
+  unitDesc:
+  - A blaster that can fire one to three shots in quick succession before needing
+    to recharge.
   unitDescKey: aud_blasterRapid_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 5544248910452008005}

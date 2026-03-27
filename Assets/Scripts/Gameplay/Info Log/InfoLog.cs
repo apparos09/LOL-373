@@ -22,33 +22,36 @@ namespace RM_EDU
             // Each element is considered a seperate page.
             public List<string> description;
 
-            // The description key.
-            public string descriptionKey;
+            // The description key, which is the base
+            // public string descriptionKey;
+
+            // The description keys oaired with the description.
+            public List<string> descriptionKeys;
 
             // The icon sprite for the info log entry.
             public Sprite iconSprite;
 
-            // Generates the page description key based on the provided index.
-            public string GenerateDescriptionPageKey(int pageIndex)
-            {
-                return descriptionKey + "_" + pageIndex.ToString("D2");
-            }
-
-            // Generates description page keys.
-            public List<string> GenerateDescriptionPageKeys()
-            {
-                // The description keys.
-                List<string> descKeys = new List<string>();
-
-                // Goes through all the pages of the description.
-                for(int i = 0; i < description.Count; i++)
-                {
-                    descKeys.Add(descriptionKey + "_" + i.ToString("D2"));
-                }
-
-                // Returns the description keys.
-                return descKeys;
-            }
+            // // Generates the page description key based on the provided index.
+            // public string GenerateDescriptionPageKey(int pageIndex)
+            // {
+            //     return descriptionKey + "_" + pageIndex.ToString("D2");
+            // }
+            // 
+            // // Generates description page keys.
+            // public List<string> GenerateDescriptionPageKeys()
+            // {
+            //     // The description keys.
+            //     List<string> descKeys = new List<string>();
+            // 
+            //     // Goes through all the pages of the description.
+            //     for(int i = 0; i < description.Count; i++)
+            //     {
+            //         descKeys.Add(descriptionKey + "_" + i.ToString("D2"));
+            //     }
+            // 
+            //     // Returns the description keys.
+            //     return descKeys;
+            // }
         }
 
         // The info log categories.
@@ -339,13 +342,22 @@ namespace RM_EDU
 
                 // If the Natural Resources class has been instantiated, get the symbol.
                 // Since this is a sprite, the class must be instantiated beforehand.
-                if(NaturalResources.Instantiated)
-                    newEntry.iconSprite = NaturalResources.Instance.GetNaturalResourceSymbol(resource);
-
-                // If the icon sprite is null, use the default sprite icon.
                 if(newEntry.iconSprite == null)
-                    newEntry.iconSprite = defaultIconSprite; // TODO: replace with proper image.
-                
+                {
+                    // If the natural resources instance has been instantiated, get the sprite.
+                    if (NaturalResources.Instantiated)
+                    {
+                        newEntry.iconSprite = NaturalResources.Instance.GetNaturalResourceSymbol(resource);
+                    }
+
+                    // If the icon sprite is still null, set it to the default icon sprite.
+                    if (newEntry.iconSprite == null)
+                    {
+                        newEntry.iconSprite = defaultIconSprite;
+                    }
+                }
+
+                // Add the new entry.
                 resourceEntries.Add(newEntry);
             }
 
@@ -828,7 +840,7 @@ namespace RM_EDU
                 infoDescPages.AddRange(entry.description);
 
                 infoDescPageKeys.Clear();
-                infoDescPageKeys = entry.GenerateDescriptionPageKeys();
+                infoDescPageKeys.AddRange(entry.descriptionKeys);
 
                 // Sets to the first page.
                 SetInfoDescriptionPageIndex(0);
@@ -944,6 +956,10 @@ namespace RM_EDU
             infoDescPages.Clear();
             infoDescPageIndex = 0;
             infoDescPageText.text = "-";
+
+            // Deactivate the info description page buttons since there's no pages.
+            prevInfoDescPageButton.interactable = false;
+            nextInfoDescPageButton.interactable = false;
 
             // Clear icon.
             infoIconImage.sprite = alpha0Sprite;

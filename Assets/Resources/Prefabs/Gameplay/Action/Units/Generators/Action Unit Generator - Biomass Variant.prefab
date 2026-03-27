@@ -110,8 +110,9 @@ MonoBehaviour:
   idNumber: 1
   unitName: Biomass Generator
   unitNameKey: aug_biomass_nme
-  unitDesc: A renewable generator that burns plant materials to generate energy.
-    This generator can be placed anywhere on land.
+  unitDesc:
+  - A renewable generator that burns plant materials to generate energy. This generator
+    can be placed anywhere on land.
   unitDescKey: aug_biomass_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8058976512716701036}
@@ -139,7 +140,6 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

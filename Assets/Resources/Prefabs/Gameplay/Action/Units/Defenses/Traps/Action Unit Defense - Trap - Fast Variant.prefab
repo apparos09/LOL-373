@@ -54,6 +54,12 @@ PrefabInstance:
       propertyPath: damageEnergyPercent
       value: 0.2
       objectReference: {fileID: 0}
+    - target: {fileID: 1345667675349863645, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
+      propertyPath: unitDesc.Array.data[0]
+      value: Drains energy from enemies that pass over it and gives it to the player,
+        but it has a small energy limit. When its energy limit is reached, it destroys
+        itself and damages all enemies within range.
+      objectReference: {fileID: 0}
     - target: {fileID: 5149994175010406257, guid: 0484bbf71e1798542b62acd7513bfad6, type: 3}
       propertyPath: m_Sprite
       value: 

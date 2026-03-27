@@ -42,7 +42,8 @@ namespace RM_EDU
         public string unitNameKey = "";
 
         // The unit description.
-        public string unitDesc = "";
+        // This is uses a list so that the description can be split into multiple pages.
+        public List<string> unitDesc = new List<string>();
 
         // The unit description key.
         public string unitDescKey = "";
@@ -221,8 +222,20 @@ namespace RM_EDU
         }
 
         // NAME, DESCRIPTION, UNIT TYPE / RATING //
+        // Gets the unit name.
+        public string GetUnitName()
+        {
+            return unitName;
+        }
 
-        // Gets the unit name translated.
+        // Gets the unit name key.
+        public string GetUnitNameKey()
+        {
+            return unitNameKey;
+        }
+
+
+        // Gets the unit name translated using the language key.
         // If the LOLSDK isn't initialized, or the key is empty...
         // It returns the value saved in unitName.
         public string GetUnitNameTranslated()
@@ -243,23 +256,62 @@ namespace RM_EDU
             return result;
         }
 
+        // Gets the unit description.
+        public List<string> GetUnitDescription()
+        {
+            return unitDesc;
+        }
+
+        // Returns the unit description key.
+        public string GetUnitDescriptionKey()
+        {
+            return unitDescKey;
+        }
+
         // Gets the unit description translated.
-        public string GetUnitDescriptionTranslated()
+        public List<string> GetUnitDescriptionTranslated()
         {
             // The result to be returned.
-            string result;
+            List<string> result;
 
             // LOL SDK Initialized and the key is set, so get the translated text.
             if (LOLManager.IsLOLSDKInitialized() && unitDescKey != "")
             {
-                result = LOLManager.GetLanguageTextStatic(unitDescKey + "_00");
+                // Create a new list.
+                result = new List<string>();
+
+                // Generates the keys.
+                List<string> unitDescKeys = GenerateUnitDescriptionKeys();
+
+                // Translate each page with the applicable key.
+                for(int i = 0; i < unitDescKeys.Count; i++)
+                {
+                    result.Add(LOLManager.GetLanguageTextStatic(unitDescKeys[i]));
+                }
             }
             else
             {
-                result = unitDesc;
+                // Create a new list with the provided values.
+                result = new List<string>(unitDesc);
             }
 
             return result;
+        }
+
+        // Generates the transation keys for the descriptions.
+        public List<string> GenerateUnitDescriptionKeys()
+        {
+            // The list of keys to return.
+            List<string> unitDescKeys = new List<string>();
+
+            // Goes through all the description pages.
+            for(int i = 0; i < unitDesc.Count; i++)
+            {
+                unitDescKeys.Add(unitDescKey + "_" + i.ToString("D2"));
+            }
+
+            // Returns the description keys.
+            return unitDescKeys;
         }
 
         // Gets the action unit type.
@@ -364,9 +416,8 @@ namespace RM_EDU
             // Sets the values.
             entry.name = GetUnitNameTranslated();
             entry.nameKey = unitNameKey;
-            // TODO: implement properly
-            entry.description = new List<string>() { GetUnitDescriptionTranslated() };
-            entry.descriptionKey = unitDescKey + "_00";
+            entry.description = GetUnitDescriptionTranslated();
+            entry.descriptionKeys = GenerateUnitDescriptionKeys();
             entry.iconSprite = iconSprite;
 
             return entry;

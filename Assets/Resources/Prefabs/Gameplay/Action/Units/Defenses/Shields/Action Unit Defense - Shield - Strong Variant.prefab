@@ -128,6 +128,10 @@ PrefabInstance:
       propertyPath: energyCreationCost
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 6406251498641835542, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
+      propertyPath: unitDesc.Array.data[0]
+      value: A stronger version of Basic Shield.
+      objectReference: {fileID: 0}
     - target: {fileID: 8334397686786663421, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: m_Size.x
       value: 1.28

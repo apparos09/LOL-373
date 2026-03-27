@@ -132,7 +132,8 @@ MonoBehaviour:
   idNumber: 3
   unitName: Double-Sided Blaster
   unitNameKey: aud_blasterLeftRight_nme
-  unitDesc: A blaster that fires at enemies in front of it and behind it.
+  unitDesc:
+  - A blaster that fires at enemies in front of it and behind it.
   unitDescKey: aud_blasterLeftRight_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 2722445462588853728}
@@ -178,6 +179,9 @@ MonoBehaviour:
   projectileStartPosLeft: {fileID: 7942979384664849884}
   projectileStartPosLeftOffset: {x: 0, y: 0, z: 0}
   flipOffsetLeftX: 0
+  shootBothAnim: Action Unit Defense - Left-Right Blaster - Shoot - Both Animation
+  shootLeftAnim: Action Unit Defense - Left-Right Blaster - Shoot - Left Animation
+  shootRightAnim: Action Unit Defense - Left-Right Blaster - Shoot - Right Animation
 --- !u!4 &1964857471232305323 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1849280751653751939, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}

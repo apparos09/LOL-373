@@ -147,8 +147,9 @@ MonoBehaviour:
   idNumber: 1
   unitName: Lane Blaster
   unitNameKey: aud_blasterLane_nme
-  unitDesc: A blaster that destroys all enemies in its lane upon an enemy interacting
-    with it. Once a shot is fired, this blaster is destroyed.
+  unitDesc:
+  - A blaster that destroys all enemies in its lane upon an enemy interacting with
+    it. Once a shot is fired, this blaster is destroyed.
   unitDescKey: aud_blasterLane_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 7243784571539888153}

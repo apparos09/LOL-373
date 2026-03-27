@@ -618,6 +618,77 @@ namespace RM_EDU
             return result;
         }
 
+        // Generates the natural resource description keys.
+        public static List<string> GenerateNaturalResourceDescriptionKeys(naturalResource res)
+        {
+            // The resulting keys that will be returned.
+            List<string> resultKeys = new List<string>();
+
+            // Gets the base key.
+            string baseKey = GetNaturalResourceDescriptionKey(res);
+
+            // NOTE: make sure this matches the number of pages in GetNaturalResourceDescription().
+            // You could grab the list of descriptions and base the number on that, but this is...
+            // More sufficient. You could also do this in a loop instead of manaully, but that...
+            // Would also be more intensive programming wise, so you decided to just manually do it.
+
+            // Checks the resource type to know what keys to generate.
+            switch (res)
+            {
+                case naturalResource.unknown:
+                    // Unknown doesn't have multiple pages, so just add the base key.
+                    resultKeys.Add(baseKey);
+                    break;
+
+                case naturalResource.biomass:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.geothermal:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.hydro:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.solar:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.wave:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.wind:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.coal:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.naturalGas:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.nuclear:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                case naturalResource.oil:
+                    resultKeys.Add(baseKey + "_00");
+                    break;
+
+                default:
+                    // Nothing
+                    break;
+            }
+
+            // Return the result keys.
+            return resultKeys;
+        }
+
         // Gets the natural resource sprite. The resource number shoud match up with the sprite index value.
         public Sprite GetNaturalResourceSymbol(naturalResource resource)
         {
@@ -651,10 +722,11 @@ namespace RM_EDU
             entry.name = GetNaturalResourceName(resource);
             entry.nameKey = GetNaturalResourceNameKey(resource);
             entry.description = GetNaturalResourceDescription(resource);
-            entry.descriptionKey = GetNaturalResourceDescriptionKey(resource);
-            entry.iconSprite = null;
+            entry.descriptionKeys = GenerateNaturalResourceDescriptionKeys(resource);
 
-            // TODO: create a list of icons for natural resources.
+            // If the natural resources have been instantiated, provide the symbol.
+            // If false, set to null.
+            entry.iconSprite = Instantiated ? Instance.GetNaturalResourceSymbol(resource) : null;
 
             return entry;
         }

@@ -125,11 +125,12 @@ MonoBehaviour:
   idNumber: 9
   unitName: Nuclear Generator
   unitNameKey: aug_nuclear_nme
-  unitDesc: A non-renewable generator that generates energy by splitting uranium
-    atoms. This generator can only be placed on nuclear source tiles. Once all the
-    nuclear resources are depleted in a spot, this generator is destroyed automatically.
-    If the nuclear generator is destroyed by an enemy before it's finished, it will
-    leave nuclear waste. Nothing can be placed on a tile that has nuclear waste.
+  unitDesc:
+  - A non-renewable generator that generates energy by splitting uranium atoms. This
+    generator can only be placed on nuclear source tiles. Once all the nuclear resources
+    are depleted in a spot, this generator is destroyed automatically. If the nuclear
+    generator is destroyed by an enemy before it's finished, it will leave nuclear
+    waste. Nothing can be placed on a tile that has nuclear waste.
   unitDescKey: aug_nuclear_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 6575261612139626044}
@@ -157,7 +158,6 @@ MonoBehaviour:
   durability: 90
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

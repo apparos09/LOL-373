@@ -273,7 +273,8 @@ namespace RM_EDU
             {
                 // Name and description.
                 selectedRewardUnit.headerText.text = rewardButton.unitPrefab.GetUnitNameTranslated();
-                selectedRewardUnit.valueText.text = rewardButton.unitPrefab.GetUnitDescriptionTranslated();
+                // TODO: implement multiple pages.
+                selectedRewardUnit.valueText.text = rewardButton.unitPrefab.GetUnitDescriptionTranslated()[0];
 
                 // Tries speaking the unit prefab's description.
                 SpeakText(rewardButton.unitPrefab.unitDescKey);

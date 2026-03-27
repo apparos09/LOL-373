@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: energyCreationCost
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
+      propertyPath: unitDesc.Array.data[0]
+      value: A blaster that does more damage the closer the target is.
+      objectReference: {fileID: 0}
     - target: {fileID: 1849280751653751939, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
