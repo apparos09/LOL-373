@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,8 +19,8 @@ namespace RM_EDU
         [Header("Rewards")]
 
         // The selected reward unit.
-        public TMP_LabeledValue selectedRewardUnit;
-
+        public TMP_LabeledValue selectedUnitDisplay;      
+        
         // The reward buttons.
         public List<ActionUnitRewardButton> rewardButtons = new List<ActionUnitRewardButton>();
 
@@ -39,13 +40,41 @@ namespace RM_EDU
         // Sets to 'true' if the rewards have been loaded.
         private bool rewardsInfoLoaded = false;
 
-        [Header("Buttons")]
+        [Header("Unit Selector")]
 
         // The previous index button.
-        public Button prevIndexButton;
+        public Button prevUnitIndexButton;
 
         // The next index button.
-        public Button nextIndexButton;
+        public Button nextUnitIndexButton;
+
+        [Header("Selected Unit")]
+
+        // The reward unit prefab that's currently selected.
+        [Tooltip("The rewarded unit the player has selected.")]
+        public ActionUnit selectedUnitPrefab;
+
+        // The selected unit description.
+        [Tooltip("The description for the unit the player has selected.")]
+        public List<string> selectedUnitDesc = new List<string>();
+
+        // he selected unit description keys.
+        [Tooltip("The description key for the unit the player has selected.")]
+        public List<string> selectedUnitDescKeys = new List<string>();
+
+        // The selected unit index.
+        public int selectedUnitDescPageIndex = 0;
+
+        // The unit description page text.
+        public TMP_Text selectedUnitDescPageText;
+
+        // The previous unit description page button.
+        public Button prevUnitDescPageButton;
+
+        // The next unit description page button.
+        public Button nextUnitDescPageButton;
+
+        [Header("Other")]
 
         // The continue button.
         public Button continueButton;
@@ -66,6 +95,9 @@ namespace RM_EDU
             // Gets the world UI.
             if (worldUI == null)
                 worldUI = WorldUI.Instance;
+
+            // Clear the selected unit info on start.
+            ClearSelectedUnitInfo();
         }
 
         // LOAD REWARDS //
@@ -253,14 +285,14 @@ namespace RM_EDU
             // If there are more prefabs than there are buttons, there are multiple pages.
             if(rewardUnitPrefabs.Count > rewardButtons.Count)
             {
-                prevIndexButton.interactable = true;
-                nextIndexButton.interactable = true;
+                prevUnitIndexButton.interactable = true;
+                nextUnitIndexButton.interactable = true;
             }
             // Only one page, so disable buttons.
             else
             {
-                prevIndexButton.interactable = false;
-                nextIndexButton.interactable = false;
+                prevUnitIndexButton.interactable = false;
+                nextUnitIndexButton.interactable = false;
             }
         }
 
@@ -271,13 +303,36 @@ namespace RM_EDU
             // If the reward button has a prefab.
             if(rewardButton.HasUnitPrefab())
             {
-                // Name and description.
-                selectedRewardUnit.headerText.text = rewardButton.unitPrefab.GetUnitNameTranslated();
-                // TODO: implement multiple pages.
-                selectedRewardUnit.valueText.text = rewardButton.unitPrefab.GetUnitDescriptionTranslated()[0];
+                // Saves the unit prefab.
+                selectedUnitPrefab = rewardButton.unitPrefab;
+
+                // Name.
+                selectedUnitDisplay.headerText.text = selectedUnitPrefab.GetUnitNameTranslated();
+                
+                // Description.
+                // Clears the selected unit desc and adds the range - will set text at end.
+                selectedUnitDesc.Clear();
+                selectedUnitDesc.AddRange(selectedUnitPrefab.GetUnitDescriptionTranslated());
+
+                // Gets the description keys.
+                selectedUnitDescKeys.Clear();
+                selectedUnitDescKeys = selectedUnitPrefab.GenerateUnitDescriptionKeys();
+
+                // Checks if the selected unit description has multiple pages.
+                bool multPages = selectedUnitDesc.Count > 1;
+
+                // Changes interactability of buttons.
+                prevUnitDescPageButton.interactable = multPages;
+                nextUnitDescPageButton.interactable = multPages;
+
+                // Original - set description.
+                // selectedRewardUnitDisplay.valueText.text = selectedRewardUnitPrefab.GetUnitDescriptionTranslated()[0];
 
                 // Tries speaking the unit prefab's description.
-                SpeakText(rewardButton.unitPrefab.unitDescKey);
+                // SpeakText(selectedRewardUnitPrefab.unitDescKey);
+
+                // New - selects page by index.
+                SetSelectedUnitInfoDescriptionPageIndex(0);
             }
             // No prefab, so clear.
             else
@@ -286,13 +341,94 @@ namespace RM_EDU
             }
         }
 
+        // Returns the selected unit description count.
+        public int GetSelectedUnitInfoDescriptionPageCount()
+        {
+            return selectedUnitDesc.Count;
+        }
+
+        // Sets the page index of the selected unit description.
+        public void SetSelectedUnitInfoDescriptionPageIndex(int pageIndex)
+        {
+            // There are entries to use.
+            if(selectedUnitDesc.Count > 0)
+            {
+                // Clamp the value.
+                selectedUnitDescPageIndex = Mathf.Clamp(pageIndex, 0, selectedUnitDesc.Count - 1);
+
+                // Set the description.
+                selectedUnitDisplay.valueText.text = selectedUnitDesc[selectedUnitDescPageIndex];
+
+                // Update the page text.
+                selectedUnitDescPageText.text = (selectedUnitDescPageIndex + 1).ToString() + "/" + selectedUnitDesc.Count.ToString();
+
+                // Tries speaking the unit prefab's description.
+                SpeakText(selectedUnitDescKeys[selectedUnitDescPageIndex]);
+            }
+            else
+            {
+                // Clear.
+                selectedUnitDescPageIndex = 0;
+                selectedUnitDisplay.valueText.text = "-";
+            }
+
+            // Nothing.
+            // selectedRewardUnitDisplay.valueText.text = rewardButton.unitPrefab.GetUnitDescriptionTranslated()[0];
+        }
+
+        // Goes to the previous page index of the selected unit description.
+        public void PreviousSelectedUnitInfoDescriptionPageIndex()
+        {
+            // The new index.
+            int newIndex = selectedUnitDescPageIndex - 1;
+
+            // Loop around to the end.
+            if (newIndex < 0)
+                newIndex = selectedUnitDesc.Count - 1;
+
+            // Set the new index.
+            SetSelectedUnitInfoDescriptionPageIndex(newIndex);
+        }
+
+        // Goes to the next page index of the selected unit description.
+        public void NextSelectedUnitInfoDescriptionPageIndex()
+        {
+            // The new index.
+            int newIndex = selectedUnitDescPageIndex + 1;
+
+            // Loop around to the beginning.
+            if (newIndex >= selectedUnitDesc.Count)
+                newIndex = 0;
+
+            // Set the new index.
+            SetSelectedUnitInfoDescriptionPageIndex(newIndex);
+        }
+
         // Clears the selected unit information.
         public void ClearSelectedUnitInfo()
         {
-            selectedRewardUnit.headerText.text = "-";
-            selectedRewardUnit.valueText.text = "-";
+            // Clear the selected prefab.
+            selectedUnitPrefab = null;
+
+            // Clears the selected unit description.
+            selectedUnitDesc.Clear();
+
+            // Set the description page index.
+            selectedUnitDescPageIndex = 0;
+
+            // Clear the selected prefab display.
+            selectedUnitDisplay.headerText.text = "-";
+            selectedUnitDisplay.valueText.text = "-";
+
+            // Clear the selected unit description page text.
+            selectedUnitDescPageText.text = "-";
+
+            // Make the selected unit buttons non-interactable.
+            prevUnitDescPageButton.interactable = false;
+            nextUnitDescPageButton.interactable = false;
         }
 
+        // INFO, CLEAR DIALOG
         // Clears the info.
         public void ClearInfo()
         {
@@ -319,6 +455,7 @@ namespace RM_EDU
             WorldUI.Instance.CloseWorldStageRewardsDialog();
         }
 
+        // SPEAK TEXT
         // Speaks the reward text.
         public void SpeakText(string key)
         {

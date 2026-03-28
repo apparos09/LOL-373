@@ -77,43 +77,43 @@
 
       "nrs_bms_nme": 18,
       "nrs_bms_nme_abv": 3,
-      "nrs_bms_dsc_00": 960,
+      "nrs_bms_dsc_00": 280,
 
       "nrs_gtl_nme": 18,
       "nrs_gtl_nme_abv": 3,
-      "nrs_gtl_dsc_00": 960,
+      "nrs_gtl_dsc_00": 280,
 
       "nrs_hdo_nme": 18,
       "nrs_hdo_nme_abv": 3,
-      "nrs_hdo_dsc_00": 960,
+      "nrs_hdo_dsc_00": 280,
 
       "nrs_slr_nme": 18,
       "nrs_slr_nme_abv": 3,
-      "nrs_slr_dsc_00": 960,
+      "nrs_slr_dsc_00": 280,
 
       "nrs_wve_nme": 18,
       "nrs_wve_nme_abv": 3,
-      "nrs_wve_dsc_00": 960,
+      "nrs_wve_dsc_00": 280,
 
       "nrs_wnd_nme": 18,
       "nrs_wnd_nme_abv": 3,
-      "nrs_wnd_dsc_00": 960,
+      "nrs_wnd_dsc_00": 280,
 
       "nrs_col_nme": 18,
       "nrs_col_nme_abv": 3,
-      "nrs_col_dsc_00": 960,
+      "nrs_col_dsc_00": 280,
 
       "nrs_ngs_nme": 18,
       "nrs_ngs_nme_abv": 3,
-      "nrs_ngs_dsc_00": 960,
+      "nrs_ngs_dsc_00": 280,
 
       "nrs_nlr_nme": 18,
       "nrs_nlr_nme_abv": 3,
-      "nrs_nlr_dsc_00": 960,
+      "nrs_nlr_dsc_00": 280,
 
       "nrs_oil_nme": 18,
       "nrs_oil_nme_abv": 3,
-      "nrs_oil_dsc_00": 960,
+      "nrs_oil_dsc_00": 280,
 
 
 
@@ -133,34 +133,34 @@
 
 
       "aug_biomass_nme": 36,
-      "aug_biomass_dsc_00": 960,
+      "aug_biomass_dsc_00": 280,
 
       "aug_geothermal_nme": 36,
-      "aug_geothermal_dsc_00": 960,
+      "aug_geothermal_dsc_00": 280,
 
       "aug_hydro_nme": 36,
-      "aug_hydro_dsc_00": 960,
+      "aug_hydro_dsc_00": 280,
 
       "aug_solar_nme": 36,
-      "aug_solar_dsc_00": 960,
+      "aug_solar_dsc_00": 280,
 
       "aug_wave_nme": 36,
-      "aug_wave_dsc_00": 960,
+      "aug_wave_dsc_00": 280,
 
       "aug_wind_nme": 36,
-      "aug_wind_dsc_00": 960,
+      "aug_wind_dsc_00": 280,
 
       "aug_coal_nme": 36,
-      "aug_coal_dsc_00": 960,
+      "aug_coal_dsc_00": 280,
 
       "aug_naturalGas_nme": 36,
-      "aug_naturalGas_dsc_00": 960,
+      "aug_naturalGas_dsc_00": 280,
 
       "aug_nuclear_nme": 36,
-      "aug_nuclear_dsc_00": 960,
+      "aug_nuclear_dsc_00": 280,
 
       "aug_oil_nme": 36,
-      "aug_oil_dsc_00": 960,
+      "aug_oil_dsc_00": 280,
 
 
 

@@ -335,7 +335,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -198}
+  m_AnchoredPosition: {x: -25, y: -198}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2135286563628296606
@@ -584,6 +584,7 @@ MonoBehaviour:
   infoNameText: {fileID: 5266958754774711357}
   infoDescText: {fileID: 6264337962764597880}
   infoDescPages: []
+  infoDescPageKeys: []
   infoDescPageIndex: 0
   prevInfoDescPageButton: {fileID: 8075150979153331304}
   nextInfoDescPageButton: {fileID: 3133028002357383288}
