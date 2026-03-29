@@ -157,7 +157,8 @@ namespace RM_EDU
         // This also doesn't account for applying the statFactor value to a stat.
         public const float BASE_STAT_MAXIMUM = 100.0F;
 
-        [Header("Projectiles")]
+        // This doesn't show up since queues can't be edited in the inspector.
+        // [Header("Projectiles")]
 
         // The projectile pool that can be used by the action unit.
         // This can be used to optimize projectile generation.
@@ -168,7 +169,7 @@ namespace RM_EDU
         public float projectilePoolDestroyTimer = 0.0F;
 
         // If 'true', the projectile pool is used.
-        protected bool useProjectilePool = false;
+        protected bool useProjectilePool = true;
 
         // Awake is called when the script instance is being loaded
         protected virtual void Awake()
@@ -911,10 +912,11 @@ namespace RM_EDU
                 projectile = projectilePool.Dequeue();
             }
 
-            // If the projectile exists, change the set active parameter.
+            // If the projectile exists, change the set active and enabled parameters.
             if(projectile != null)
             {
                 projectile.gameObject.SetActive(activate);
+                projectile.enabled = activate;
             }
 
             // Reset the timer since a projectile was taken from the pool.

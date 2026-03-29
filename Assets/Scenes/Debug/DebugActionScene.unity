@@ -213,17 +213,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &368618438 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 357782339145897223, guid: aed884a8ccbd95440972cb495032f63b, type: 3}
-  m_PrefabInstance: {fileID: 3873163681425406867}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 454ddab2440b3444294371d2dedce71e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &439856156
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -482,6 +471,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243355073232322581, guid: ab38d455426586744978a60e45742b25, type: 3}
+      propertyPath: difficulty
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4243355073232322581, guid: ab38d455426586744978a60e45742b25, type: 3}
       propertyPath: playerUser
       value: 
       objectReference: {fileID: 8040844772360132460}
@@ -504,7 +497,7 @@ PrefabInstance:
     - target: {fileID: 4243355073232322581, guid: ab38d455426586744978a60e45742b25, type: 3}
       propertyPath: postProcessor
       value: 
-      objectReference: {fileID: 368618438}
+      objectReference: {fileID: 0}
     - target: {fileID: 4243355073232322581, guid: ab38d455426586744978a60e45742b25, type: 3}
       propertyPath: knowledgeScene
       value: DebugKnowledgeScene

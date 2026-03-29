@@ -17,6 +17,19 @@ namespace RM_EDU
         [Tooltip("Kills this unit once an attack has been performed.")]
         public bool killOnAttackPerformed = true;
 
+        // Awake is called when the script instance is being loaded
+        protected override void Awake()
+        {
+            base.Awake();
+
+            // Makes sure the projectile pool isn't being used...
+            // Since lane blasters are destroyed automatically.
+            if(killOnAttackPerformed)
+            {
+                useProjectilePool = false;
+            }
+        }
+
         // Start is called before the first frame update
         protected override void Start()
         {

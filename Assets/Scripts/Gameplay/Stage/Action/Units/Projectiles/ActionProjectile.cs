@@ -333,7 +333,12 @@ namespace RM_EDU
                 blaster.OnProjectileKilled(this);
 
                 // Set shooter to null.
-                shooterUnit = null;
+                // This isn't done if the projectile pool is being used, since it will...
+                // Be put in that shooter's projectile pool.
+                if(!shooterUnit.UseProjectilePool)
+                {
+                    shooterUnit = null;
+                }
             }
 
             // Tries to return the projectile to its pool.
