@@ -1,6 +1,7 @@
 using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace RM_EDU
@@ -155,6 +156,19 @@ namespace RM_EDU
         // Note that some stats may go past this maximum.
         // This also doesn't account for applying the statFactor value to a stat.
         public const float BASE_STAT_MAXIMUM = 100.0F;
+
+        [Header("Projectiles")]
+
+        // The projectile pool that can be used by the action unit.
+        // This can be used to optimize projectile generation.
+        public Queue<ActionProjectile> projectilePool = new Queue<ActionProjectile>();
+
+        // The projectile pool clear timer. When this timer hits 0, all projectiles in the pool are destroyed.
+        // This is automatically calculated based on how long it takes for an attack to be performed.
+        public float projectilePoolDestroyTimer = 0.0F;
+
+        // If 'true', the projectile pool is used.
+        protected bool useProjectilePool = false;
 
         // Awake is called when the script instance is being loaded
         protected virtual void Awake()
@@ -869,6 +883,125 @@ namespace RM_EDU
             OnUnitAttacked(null);
         }
 
+        // PROJECTILES //
+        // Returns 'true' if the projectile pool is being used.
+        public bool UseProjectilePool
+        {
+            get { return useProjectilePool; }
+        }
+
+        // Gets a projectile from the pool. If there are no projectiles in the pool, it returns null.
+        // activate: determines if the projectile should be activated if one if returned.
+        public ActionProjectile GetProjectileFromPool(bool activate = true)
+        {
+            // The projectile to be returned.
+            ActionProjectile projectile = null;
+
+            // If the projectile pool has values.
+            if(projectilePool.Count > 0)
+            {
+                // If the projectile next in the queue doesn't exist, remove it.
+                while(projectilePool.Peek() == null)
+                {
+                    // Remove the empty value.
+                    projectilePool.Dequeue();
+                }
+
+                // Gets the projectile in the pool.
+                projectile = projectilePool.Dequeue();
+            }
+
+            // If the projectile exists, change the set active parameter.
+            if(projectile != null)
+            {
+                projectile.gameObject.SetActive(activate);
+            }
+
+            // Reset the timer since a projectile was taken from the pool.
+            // This happens even if no projectile is being returned (object is null).
+            CalculateAndSetProjectilePoolDestroyTime();
+            
+            // Returns the projectile.
+            return projectile;
+        }
+
+        // Returns the projectile to the pool.
+        // resetProjectile: determines if the projectile should be reset before returning it to the pool.
+        public bool ReturnProjectileToPool(ActionProjectile projectile, bool resetProjectile = true)
+        {
+            // Checks that the projectile pool is being used and the projectile exists.
+            if(useProjectilePool && projectile != null)
+            {
+                // Resets the projectile based on this value.
+                // This can be set to false in case the projectile has already been reset.
+                if(resetProjectile)
+                    projectile.ResetProjectile();
+
+                // Disables the projectile object.
+                projectile.gameObject.SetActive(false);
+
+                // Puts the projecitle into the pool.
+                projectilePool.Enqueue(projectile);
+
+                // The projectile is back in the pool.
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        // Calculates the projectile pool destroy time max...
+        // Which determines how long the game waits for a unit's projectile pool...
+        // Is cleared.
+        public float CalculateProjectilePoolDestroyTime()
+        {
+            // Uses the attack cooldown time plus extra time.
+            float result = CalculateAttackCooldownTime() + 1.0F;
+
+            return result;
+        }
+
+        // Calculates and sets the projectile pool's destroy time.
+        public void CalculateAndSetProjectilePoolDestroyTime()
+        {
+            projectilePoolDestroyTimer = CalculateProjectilePoolDestroyTime();
+        }
+
+        // Destroys all projectiles in the projectile pool.
+        public void DestroyProjectilesInProjectilePool()
+        {
+            // While there are projectiles.
+            while(projectilePool.Count > 0)
+            {
+                // Removes a projectile from the queue.
+                ActionProjectile projectile = projectilePool.Dequeue();
+
+                // Destroys the projectile.
+                if(projectile != null)
+                {
+                    // If the projectile isn't active and enabled, make sure it's both...
+                    // So that its destroy function is called.
+                    if(!projectile.isActiveAndEnabled)
+                    {
+                        projectile.gameObject.SetActive(true);
+                        projectile.enabled = true;
+                    }
+
+                    // Call destroy.
+                    Destroy(projectile.gameObject);
+                }
+            }
+
+            // Clears the pool using the function to be safe.
+            projectilePool.Clear();
+
+            // Set the destroy timer to the max.
+            CalculateAndSetProjectilePoolDestroyTime();
+        }
+
+        // KILL
         // Kills the unit.
         public virtual void Kill()
         {
@@ -897,6 +1030,10 @@ namespace RM_EDU
         // Called when a unit has died/been destroyed.
         public virtual void OnUnitDeath()
         {
+            // If there are projectiles in the pool, destroy them.
+            if(projectilePool.Count > 0)
+                DestroyProjectilesInProjectilePool();
+
             // Destroys this unit.
             Destroy(gameObject);
         }
@@ -1010,6 +1147,22 @@ namespace RM_EDU
                     }
                 }
 
+                // If the projectile pool is being used.
+                // This doesn't check if the projectile pool is being used...
+                // Because projectile objects shouldn't be spawned infinitely and kept in memory.
+                if(projectilePool.Count > 0)
+                {
+                    // Reduce the destroy timer.
+                    projectilePoolDestroyTimer -= Time.deltaTime;
+
+                    // If the timer is 0 or negative, destroy all the projectiles.
+                    if(projectilePoolDestroyTimer <= 0.0F)
+                    {
+                        projectilePoolDestroyTimer = 0.0F;
+                        DestroyProjectilesInProjectilePool();
+                    }
+                }
+
                 // TODO: check if in death animation.
                 // Checks if the unit is dead.
                 if(IsDead())
@@ -1032,7 +1185,9 @@ namespace RM_EDU
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()
         {
-            // ...
+            // If the projectile pool contains objects, destroy them.
+            if (projectilePool.Count > 0)
+                DestroyProjectilesInProjectilePool();
         }
     }
 }

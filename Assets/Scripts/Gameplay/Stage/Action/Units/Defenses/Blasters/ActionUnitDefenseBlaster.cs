@@ -113,11 +113,23 @@ namespace RM_EDU
             // The projectile to be returned.
             ActionProjectile projectile = null;
 
-            // Projectile prefab exists.
-            if (projectilePrefab != null)
+            // If the projectile pool is being used, try getting a projectile from it.
+            if(useProjectilePool)
+            {
+                // The projectile should be activated if one is returned from the pool.
+                projectile = GetProjectileFromPool(true);
+            }
+
+            // Projectile prefab exists and the projectile is null (didn't get object from pool).
+            if (projectilePrefab != null && projectile == null)
             {
                 projectile = Instantiate(projectilePrefab);
+            }
 
+            // If the projectile exists, set its values.
+            // The projectile exists if it was gotten from the pool or instantiated from a prefab.
+            if(projectile != null)
+            {
                 // Sets the projectile's parent.
                 if (owner != null)
                 {
@@ -145,7 +157,7 @@ namespace RM_EDU
                 firedProjectiles.Add(projectile);
 
                 // Uses the shoot animation if true.
-                if(useShootAnim)
+                if (useShootAnim)
                 {
                     PlayShootAnimation();
                 }

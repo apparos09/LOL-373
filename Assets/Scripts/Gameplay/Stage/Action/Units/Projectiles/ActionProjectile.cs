@@ -336,8 +336,42 @@ namespace RM_EDU
                 shooterUnit = null;
             }
 
-            // Destroys object.
-            Destroy(gameObject);
+            // Tries to return the projectile to its pool.
+            // If it can't return to its pool, or if it has no pool destroy it.
+            if(!ReturnToPool())
+            {
+                // Destroys object if it couldn't be returned to a pool.
+                Destroy(gameObject);
+            }
+        }
+
+        // Returns the projectile to the object pool.
+        protected virtual bool ReturnToPool()
+        {
+            // If the shooter unit exists, try using its pool.
+            if(shooterUnit != null)
+            {
+                // If the shooter unit uses a projectile pool, return to it.
+                if(shooterUnit.UseProjectilePool)
+                {
+                    // Resets the projectile.
+                    ResetProjectile();
+
+                    // Returns the projectile to the pool.
+                    // The projectile's already been reset, so no need to do it again.
+                    return shooterUnit.ReturnProjectileToPool(this, false);
+                }
+                // The shooter unit doesn't use a projectile pool, so there's no pool to return to.
+                else
+                {
+                    return false;
+                }
+            }
+            // No shooter unit, so no pool to return to.
+            else
+            {
+                return false;
+            }
         }
 
         // Kills all projectiles in the game world.
@@ -361,6 +395,14 @@ namespace RM_EDU
 
             // All projectiles should be dead now, so clear the list.
             actionProjectiles.Clear();
+        }
+
+        // Resets the projectile.
+        public void ResetProjectile()
+        {
+            // Cancel the velocity and reset the position.
+            CancelVelocity();
+            transform.position = Vector3.zero;
         }
 
         // Update is called once per frame
@@ -396,6 +438,14 @@ namespace RM_EDU
             // The shooter unit exists.
             if (shooterUnit != null)
             {
+                // NOTE: since this is a queue, individual elements cannot be removed.
+                // The game should already account for null values in the projectile pool.
+                // If the shooter unit's projectile pool contains this projectile...
+                // Try to remove it.
+                // if(shooterUnit.projectilePool.Contains(this))
+                // {
+                // }
+
                 // If the shooter is a blaster.
                 if (shooterUnit is ActionUnitDefenseBlaster)
                 {
