@@ -86,11 +86,21 @@ namespace RM_EDU
             if (t > 0)
             {
                 // Lerp the alpha values to get the new alpha, and set it to the new color.
-                newColor.a = Mathf.Lerp(dayAlpha, nightAlpha, t);
+                // Checks whether its going from day to night or night to day to know what...
+                // Values to set as the start and end for the lerp.
+                if(ActionManager.Instance.IsDayToNight())
+                {
+                    newColor.a = Mathf.Lerp(dayAlpha, nightAlpha, t);
+                }
+                else
+                {
+                    newColor.a = Mathf.Lerp(nightAlpha, dayAlpha, t);
+                }
+
 
                 // Set the overlay image's new color.
                 // If the color won't be changing, this step is ignored.
-                if(overlayImage.color != newColor)
+                if (overlayImage.color != newColor)
                 {
                     overlayImage.color = newColor;
                 }
