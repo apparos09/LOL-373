@@ -138,12 +138,12 @@ MonoBehaviour:
   unitName: Hydro Generator
   unitNameKey: aug_hydro_nme
   unitDesc:
-  - A renewable generator that uses the flow of water to generate energy. This generator
-    can only be placed in rivers and cannot be placed right next to another hydro
-    generator. It also cannot be placed next to a wind generator that's in the water.
-    If this generator generates energy for too long, it floods the tiles behind it,
-    destroying any generator and defense units in those tiles. This generator also
-    generates a small amount of air pollution.
+  - A renewable generator that uses the flow of water to generate energy. It can
+    only be placed in rivers and cannot be placed next to other hydro generators.
+    It also can't be placed next to wind generators that're in water.
+  - If this generator runs for too long, it'll flood the tiles behind it, destroying
+    any units placed in those tiles. This generator also creates a small amount of
+    air pollution.
   unitDescKey: aug_hydro_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 6032254477688619056}

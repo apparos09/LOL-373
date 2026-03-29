@@ -517,7 +517,8 @@
     "aug_geothermal_dsc_00": "A renewable generator that uses the Earth's internal heat for generating energy. This generator can only be placed on geothermal source tiles.",
 
     "aug_hydro_nme": "Hydro Generator",
-    "aug_hydro_dsc_00": "A renewable generator that uses the flow of water to generate energy. This generator can only be placed in rivers and cannot be placed right next to another hydro generator. It also cannot be placed next to a wind generator that's in the water. If this generator generates energy for too long, it floods the tiles behind it, destroying any generator and defense units in those tiles. This generator also generates a small amount of air pollution.",
+    "aug_hydro_dsc_00": "A renewable generator that uses the flow of water to generate energy. It can only be placed in rivers and cannot be placed next to other hydro generators. It also can't be placed next to wind generators that're in water.",
+    "aug_hydro_dsc_01": "If this generator runs for too long, it'll flood the tiles behind it, destroying any units placed in those tiles. This generator also creates a small amount of air pollution.",
 
     "aug_solar_nme": "Solar Generator",
     "aug_solar_dsc_00": "A renewable generator that generates energy using sunlight. This generator can only be placed on land. This generator cannot produce energy at night.",
@@ -526,7 +527,7 @@
     "aug_wave_dsc_00": "A renewable generator that generates energy using ocean waves. It can only be placed in the sea. The wave strength is determined by the wind speed. If there's no wind, there's no waves.",
 
     "aug_wind_nme": "Wind Generator",
-    "aug_wind_dsc_00": "A renewable generator that generates energy using wind. This generator can be placed on land or on water tiles close to land. The energy generation speed is determined by the wind speed. If there's no wind, no energy is generated.",
+    "aug_wind_dsc_00": "A renewable generator that generates energy using wind. This generator can be placed on land or on water tiles close to land. The wind speed determines the energy generation speed, and no energy is produced if there's no wind.",
 
     "aug_coal_nme": "Coal Generator",
     "aug_coal_dsc_00": "A non-renewable generator that generates energy using coal. This generator can only be used on coal source tiles and creates air pollution.",
@@ -535,10 +536,12 @@
     "aug_naturalGas_dsc_00": "A non-renewable generator that generates energy using natural gas. This generator can be placed on coal, oil, and natural gas source spots.",
 
     "aug_nuclear_nme": "Nuclear Generator",
-    "aug_nuclear_dsc_00": "A non-renewable generator that generates energy by splitting uranium atoms. This generator can only be placed on nuclear source tiles. Once all the nuclear resources are depleted in a spot, this generator is destroyed automatically. If the nuclear generator is destroyed by an enemy before it's finished, it will leave nuclear waste. Nothing can be placed on a tile that has nuclear waste.",
+    "aug_nuclear_dsc_00": "A non-renewable generator that generates energy by splitting uranium atoms. This generator can only be placed on nuclear source tiles. Once all the nuclear resources are depleted in a spot, this generator is destroyed automatically.",
+    "aug_nuclear_dsc_01": "If a nuclear generator is destroyed by an enemy before it's finished generating energy, it will leave nuclear waste. Nothing can be placed on a tile that has nuclear waste.",
 
     "aug_oil_nme": "Oil Generator",
-    "aug_oil_dsc_00": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots. If the oil generator is destroyed by an enemy before it's finished, it will leave an oil spill. No units can be placed on a tile that has an oil spill.",
+    "aug_oil_dsc_00": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots.",
+    "aug_oil_dsc_01": "If an oil generator is destroyed by an enemy before it's finished generating energy, it will leave an oil spill. No units can be placed on a tile that has an oil spill.",
 
 
 
@@ -555,13 +558,13 @@
     "aud_blasterPhase_dsc_00": "A blaster that fires a shot that goes through multiple targets.",
 
     "aud_shieldStandard_nme": "Basic Shield",
-    "aud_shieldStandard_dsc_00": "A shield that can be used to block enemies and defend units that're behind it.",
+    "aud_shieldStandard_dsc_00": "A standard shield that can be used to block enemies and defend units that're behind it.",
 
     "aud_energyTrapStandard_nme": "Basic Energy Trap",
     "aud_energyTrapStandard_dsc_00": "An energy trap that drains energy from enemies that pass over it and gives a portion of it to the player. When the trap reaches its energy limit, it destroys itself and damages all enemies in range.",
 
     "aud_blasterFast_nme": "Faster Blaster",
-    "aud_blasterFast_dsc_00": "A faster version of Basic Blaster. It fires more frequently and its shots move faster, but the shots do less damage.",
+    "aud_blasterFast_dsc_00": "A fast blaster that fires at enemies in front of it in its own lane. It recharges quickly and its shots move fast, but its shots are weak.",
 
     "aud_blasterTriple_nme": "Triple Blaster",
     "aud_blasterTriple_dsc_00": "A blaster that shoots three shots at once, with each shot going at a different angle.",
@@ -570,13 +573,13 @@
     "aud_blasterDepreciation_dsc_00": "A blaster that does more damage the closer the target is.",
 
     "aud_shieldWeak_nme": "Flimsy Shield",
-    "aud_shieldWeak_dsc_00": "A weaker version of Basic Shield.",
+    "aud_shieldWeak_dsc_00": "A weak shield that can be used to block enemies and defend units that're behind it.",
 
     "aud_energyTrapFast_nme": "Furious Energy Trap",
-    "aud_energyTrapFast_dsc_00": "Drains energy from enemies that pass over it and gives it to the player, but it has a small energy limit. When its energy limit is reached, it destroys itself and damages all enemies within range.",
+    "aud_energyTrapFast_dsc_00": "Drains energy from enemies that pass over it and gives some of it to the player, but it has a small energy limit. When its energy limit is reached, it destroys itself and damages all enemies within range.",
 
     "aud_blasterSlow_nme": "Slower Blaster",
-    "aud_blasterSlow_dsc_00": "A slower version of Basic Blaster. It fires less frequently and its shots move slower, but its shots do more damage.",
+    "aud_blasterSlow_dsc_00": "A slow blaster that fires at enemies in front of it in its own lane. It doesn't fire often and its shots travel slowly, but its shots are strong.",
 
     "aud_blasterRapid_nme": "Rapid Blaster",
     "aud_blasterRapid_dsc_00": "A blaster that can fire one to three shots in quick succession before needing to recharge.",
@@ -585,10 +588,10 @@
     "aud_blasterAppreciation_dsc_00": "A blaster that does more damage the farther a target is.",
 
     "aud_shieldStrong_nme": "Sturdy Shield",
-    "aud_shieldStrong_dsc_00": "A stronger version of Basic Shield.",
+    "aud_shieldStrong_dsc_00": "A strong shield that can be used to block enemies and defend units that're behind it.",
 
     "aud_energyTrapSlow_nme": "Steady Energy Trap",
-    "aud_energyTrapSlow_dsc_00": "An energy trap that deals damage slower than Basic Energy Trap but causes more damage per hit. When it reaches its energy limit, it destroys itself and damages all enemies in range.",
+    "aud_energyTrapSlow_dsc_00": "An energy trap that takes energy from enemies that pass over it and gives some of it to the player. It deals damage slowly, but its damage per hit is high. When it reaches its energy limit, it destroys itself and damages all enemies in range.",
 
 
 
@@ -596,10 +599,10 @@
     "aue_enemyStandard_dsc_00": "A basic enemy that travels from the right side of the field to the left.",
 
     "aue_enemyFast_nme": "Fast Enemy",
-    "aue_enemyFast_dsc_00": "A faster, less durable version of Basic Enemy.",
+    "aue_enemyFast_dsc_00": "A fast, frail enemy that travels from the right side of the field to the left.",
 
     "aue_enemySlow_nme": "Slow Enemy",
-    "aue_enemySlow_dsc_00": "A slower, more durable version of Basic Enemy.",
+    "aue_enemySlow_dsc_00": "A slow, durable enemy that travels from the right side of the field to the left.",
 
 
 

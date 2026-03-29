@@ -170,7 +170,8 @@ MonoBehaviour:
   unitName: Basic Shield
   unitNameKey: aud_shieldStandard_nme
   unitDesc:
-  - A shield that can be used to block enemies and defend units that're behind it.
+  - A standard shield that can be used to block enemies and defend units that're
+    behind it.
   unitDescKey: aud_shieldStandard_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8334397686786663421}

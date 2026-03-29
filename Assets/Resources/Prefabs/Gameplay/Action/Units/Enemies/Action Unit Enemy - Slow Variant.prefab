@@ -66,7 +66,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 620184031015233443, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: unitDesc.Array.data[0]
-      value: A slower, more durable version of Basic Enemy.
+      value: A slow, durable enemy that travels from the right side of the field
+        to the left.
       objectReference: {fileID: 0}
     - target: {fileID: 5736827563331587179, guid: a47d53a6a12d17346af9c415570d11da, type: 3}
       propertyPath: m_LocalPosition.x

@@ -67,8 +67,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 877795126609007684, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: unitDesc.Array.data[0]
-      value: A slower version of Basic Blaster. It fires less frequently and its
-        shots move slower, but its shots do more damage.
+      value: A slow blaster that fires at enemies in front of it in its own lane.
+        It doesn't fire often and its shots travel slowly, but its shots are strong.
       objectReference: {fileID: 0}
     - target: {fileID: 1849280751653751939, guid: b71ed2bd416f43c4aa03ff0ac00370b2, type: 3}
       propertyPath: m_LocalPosition.x

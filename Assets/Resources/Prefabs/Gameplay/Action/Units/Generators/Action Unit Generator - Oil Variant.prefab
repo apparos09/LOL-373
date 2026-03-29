@@ -209,9 +209,10 @@ MonoBehaviour:
   unitNameKey: aug_oil_nme
   unitDesc:
   - A non-renewable generator that uses oil to generate energy, which can only be
-    used on oil source spots. If the oil generator is destroyed by an enemy before
-    it's finished, it will leave an oil spill. No units can be placed on a tile that
-    has an oil spill.
+    used on oil source spots.
+  - If an oil generator is destroyed by an enemy before it's finished generating
+    energy, it will leave an oil spill. No units can be placed on a tile that has
+    an oil spill.
   unitDescKey: aug_oil_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8877867496329654203}

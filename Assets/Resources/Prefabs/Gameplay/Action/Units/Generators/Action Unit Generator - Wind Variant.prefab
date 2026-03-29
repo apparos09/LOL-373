@@ -129,8 +129,8 @@ MonoBehaviour:
   unitNameKey: aug_wind_nme
   unitDesc:
   - A renewable generator that generates energy using wind. This generator can be
-    placed on land or on water tiles close to land. The energy generation speed is
-    determined by the wind speed. If there's no wind, no energy is generated.
+    placed on land or on water tiles close to land. The wind speed determines the
+    energy generation speed, and no energy is produced if there's no wind.
   unitDescKey: aug_wind_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8288920503193255921}
