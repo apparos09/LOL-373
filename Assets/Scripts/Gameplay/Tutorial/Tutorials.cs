@@ -12,12 +12,26 @@ namespace RM_EDU
         [System.Serializable]
         public class TutorialsData
         {
-            // Main
+            // World - 1
             public bool clearedIntroTutorial = false;
-            public bool clearedFirstActionTutorial = false;
+
+            // Action
+            public bool clearedFirstActionIntroTutorial = false;
+            public bool clearedFirstActionGeneratorsTutorial = false;
+            public bool clearedFirstActionDefensesTutorial = false;
+            public bool clearedFirstActionFirstKillTutorial = false;
+
+            // Action Complete (World)
             public bool clearedFirstActionCompleteTutorial = false;
-            public bool clearedFirstKnowledgeTutorial = false;
+
+            // Knowledge 
+            public bool clearedFirstKnowledgeIntroTutorial = false;
+            public bool clearedFirstKnowledgeVerifyTutorial = false;
+
+            // Knowledge Complete (World)
             public bool clearedFirstKnowledgeCompleteTutorial = false;
+
+            // World - 2
             public bool clearedFirstAreaCompleteTutorial = false;
             public bool clearedFinalAreaTutorial = false;
 
@@ -28,7 +42,6 @@ namespace RM_EDU
             public bool clearedSolarTutorial = false;
             public bool clearedWaveTutorial = false;
             public bool clearedWindTutorial = false;
-
             public bool clearedCoalTutorial = false;
             public bool clearedNaturalGasTutorial = false;
             public bool clearedNuclearTutorial = false;
@@ -40,12 +53,26 @@ namespace RM_EDU
                 // The copied data.
                 TutorialsData copyData = new TutorialsData();
 
-                // Main
+                // World - 1
                 copyData.clearedIntroTutorial = clearedIntroTutorial;
-                copyData.clearedFirstActionTutorial = clearedFirstActionTutorial;
+
+                // Action
+                copyData.clearedFirstActionIntroTutorial = clearedFirstActionIntroTutorial;
+                copyData.clearedFirstActionGeneratorsTutorial = clearedFirstActionGeneratorsTutorial;
+                copyData.clearedFirstActionDefensesTutorial = clearedFirstActionDefensesTutorial;
+                copyData.clearedFirstActionFirstKillTutorial = clearedFirstActionFirstKillTutorial;
+
+                // Action - Complete (World)
                 copyData.clearedFirstActionCompleteTutorial = clearedFirstActionCompleteTutorial;
-                copyData.clearedFirstKnowledgeTutorial = clearedFirstKnowledgeTutorial;
+
+                // Knowledge
+                copyData.clearedFirstKnowledgeIntroTutorial = clearedFirstKnowledgeIntroTutorial;
+                copyData.clearedFirstKnowledgeVerifyTutorial = clearedFirstKnowledgeVerifyTutorial;
+
+                // Knowledge - Complete (World)
                 copyData.clearedFirstKnowledgeCompleteTutorial = clearedFirstKnowledgeCompleteTutorial;
+
+                // World - 2
                 copyData.clearedFirstAreaCompleteTutorial = clearedFirstAreaCompleteTutorial;
                 copyData.clearedFinalAreaTutorial = clearedFinalAreaTutorial;
 
@@ -69,12 +96,26 @@ namespace RM_EDU
             // Pastes the values from the provided data to this object.
             public void Paste(TutorialsData pasteData)
             {
-                // Main
+                // World - 1
                 clearedIntroTutorial = pasteData.clearedIntroTutorial;
-                clearedFirstActionTutorial = pasteData.clearedFirstActionTutorial;
+
+                // Action
+                clearedFirstActionIntroTutorial = pasteData.clearedFirstActionIntroTutorial;
+                clearedFirstActionGeneratorsTutorial = pasteData.clearedFirstActionGeneratorsTutorial;
+                clearedFirstActionDefensesTutorial = pasteData.clearedFirstActionDefensesTutorial;
+                clearedFirstActionFirstKillTutorial = pasteData.clearedFirstActionFirstKillTutorial;
+
+                // Action - Complete
                 clearedFirstActionCompleteTutorial = pasteData.clearedFirstActionCompleteTutorial;
-                clearedFirstKnowledgeTutorial = pasteData.clearedFirstKnowledgeTutorial;
+
+                // Knowledge
+                clearedFirstKnowledgeIntroTutorial = pasteData.clearedFirstKnowledgeIntroTutorial;
+                clearedFirstKnowledgeVerifyTutorial = pasteData.clearedFirstKnowledgeVerifyTutorial;
+
+                // Knowledge - Complete
                 clearedFirstKnowledgeCompleteTutorial = pasteData.clearedFirstKnowledgeCompleteTutorial;
+
+                // World - 2
                 clearedFirstAreaCompleteTutorial = pasteData.clearedFirstAreaCompleteTutorial;
                 clearedFinalAreaTutorial = pasteData.clearedFinalAreaTutorial;
 
@@ -93,17 +134,6 @@ namespace RM_EDU
             }
 
         }
-
-        // The tutorial types 
-        // TODO: remove.
-        // public enum tutorialType
-        // {
-        //     none, intro, stage, firstWin, mixStage, weightImperial, lengthImperial, time, lengthMetric, weightMetric, capacity
-        // };
-
-
-        // The tutorial type count. TODO: finalize.
-        public const int TUTORIAL_TYPE_COUNT = 15;
 
         // The singleton instance.
         private static Tutorials instance;
@@ -442,8 +472,8 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Loads the first action tutorial.
-        public void LoadFirstActionTutorial(bool startTutorial = true)
+        // Loads the first action - intro tutorial.
+        public void LoadFirstActionIntroTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
@@ -459,7 +489,7 @@ namespace RM_EDU
             };
 
             // Sets the bool and loads the tutorial.
-            data.clearedFirstActionTutorial = true;
+            data.clearedFirstActionIntroTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
@@ -478,8 +508,8 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Loads the first knowledge tutorial.
-        public void LoadFirstKnowledgeTutorial(bool startTutorial = true)
+        // Loads the first knowledge - intro tutorial.
+        public void LoadFirstKnowledgeIntroTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
@@ -491,7 +521,7 @@ namespace RM_EDU
             };
 
             // Sets the bool and loads the tutorial.
-            data.clearedFirstKnowledgeTutorial = true;
+            data.clearedFirstKnowledgeIntroTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 

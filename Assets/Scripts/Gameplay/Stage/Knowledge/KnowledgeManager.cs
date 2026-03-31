@@ -419,9 +419,9 @@ namespace RM_EDU
                 bool startedTutorial = false;
 
                 // First Knowledge Stage
-                if (!startedTutorial && !tutorials.Data.clearedFirstKnowledgeTutorial)
+                if (!startedTutorial && !tutorials.Data.clearedFirstKnowledgeIntroTutorial)
                 {
-                    tutorials.LoadFirstKnowledgeTutorial();
+                    tutorials.LoadFirstKnowledgeIntroTutorial();
                     startedTutorial = true;
                 }
             }

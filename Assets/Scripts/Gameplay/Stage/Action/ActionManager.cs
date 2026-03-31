@@ -287,15 +287,43 @@ namespace RM_EDU
                 bool startedTutorial = false;
 
                 // First Action Stage
-                if (!startedTutorial && !tutorials.Data.clearedFirstActionTutorial)
+                if (!startedTutorial && !tutorials.Data.clearedFirstActionIntroTutorial)
                 {
-                    tutorials.LoadFirstActionTutorial();
+                    tutorials.LoadFirstActionIntroTutorial();
                     startedTutorial = true;
                 }
             }
 
             // Calls base to check for resource tutorials.
             base.CheckTutorials();
+        }
+
+        // Called when the first action stage tutorial starts.
+        // This is the introduction tutorial for the action stage.
+        public void OnFirstActionStageIntroTutorialStart()
+        {
+
+        }
+
+        // Called when the first action stage generators tutorial starts.
+        // This is when the player plants creates first generator.
+        public void OnFirstActionStageGeneratorsTutorialStart()
+        {
+
+        }
+
+        // Called when the first action stage defenses tutorial starts.
+        // This is when the player is about to start using defense units.
+        public void OnFirstActionStageDefensesTutorialStart()
+        {
+
+        }
+
+        // Called when the first action stage first kill tutorial starts.
+        // This is the tutorial for when the player kills their first enemy.
+        public void OnFirstActionStageFirstKillTutorialStart()
+        {
+
         }
 
         // DEFENSE IDS
