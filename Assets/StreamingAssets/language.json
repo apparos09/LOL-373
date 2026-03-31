@@ -155,36 +155,46 @@
 
       "aug_biomass_nme": 36,
       "aug_biomass_dsc_00": 280,
+      "aug_biomass_dsc_01": 280,
 
       "aug_geothermal_nme": 36,
       "aug_geothermal_dsc_00": 280,
+      "aug_geothermal_dsc_01": 280,
 
       "aug_hydro_nme": 36,
       "aug_hydro_dsc_00": 280,
       "aug_hydro_dsc_01": 280,
+      "aug_hydro_dsc_02": 280,
 
       "aug_solar_nme": 36,
       "aug_solar_dsc_00": 280,
+      "aug_solar_dsc_01": 280,
 
       "aug_wave_nme": 36,
       "aug_wave_dsc_00": 280,
+      "aug_wave_dsc_01": 280,
 
       "aug_wind_nme": 36,
       "aug_wind_dsc_00": 280,
+      "aug_wind_dsc_01": 280,
 
       "aug_coal_nme": 36,
       "aug_coal_dsc_00": 280,
+      "aug_coal_dsc_01": 280,
 
       "aug_naturalGas_nme": 36,
       "aug_naturalGas_dsc_00": 280,
+      "aug_naturalGas_dsc_01": 280,
 
       "aug_nuclear_nme": 36,
       "aug_nuclear_dsc_00": 280,
       "aug_nuclear_dsc_01": 280,
+      "aug_nuclear_dsc_02": 280,
 
       "aug_oil_nme": 36,
       "aug_oil_dsc_00": 280,
       "aug_oil_dsc_01": 280,
+      "aug_oil_dsc_02": 280,
 
 
 
@@ -557,36 +567,46 @@
 
     "aug_biomass_nme": "Biomass Generator",
     "aug_biomass_dsc_00": "A renewable generator that burns plant materials to generate energy. This generator can be placed anywhere on land.",
+    "aug_biomass_dsc_01": "This generator generates a moderate amount of energy at a slow rate.",
 
     "aug_geothermal_nme": "Geothermal Generator",
     "aug_geothermal_dsc_00": "A renewable generator that uses the Earth's internal heat for generating energy. This generator can only be placed on geothermal source tiles.",
+    "aug_geothermal_dsc_01": "This generator generates a high amount of energy at a moderate rate.",
 
     "aug_hydro_nme": "Hydro Generator",
     "aug_hydro_dsc_00": "A renewable generator that uses the flow of water to generate energy. It can only be placed in rivers and cannot be placed next to other hydro generators. It also can't be placed next to wind generators that're in water.",
-    "aug_hydro_dsc_01": "If this generator runs for too long, it'll flood the tiles behind it, destroying any units placed in those tiles. This generator also creates a small amount of air pollution.",
+    "aug_hydro_dsc_01": "If this generator runs for too long, it'll flood the tiles behind it, destroying any units placed in those tiles. This generator also creates a very small amount of air pollution.",
+    "aug_hydro_dsc_02": "This generator produces a high amount of energy at a high rate.",
 
     "aug_solar_nme": "Solar Generator",
     "aug_solar_dsc_00": "A renewable generator that generates energy using sunlight. This generator can only be placed on land. This generator cannot produce energy at night.",
+    "aug_solar_dsc_01": "This generator produces a moderate amount of energy at a high rate.",
 
     "aug_wave_nme": "Wave Generator",
-    "aug_wave_dsc_00": "A renewable generator that generates energy using ocean waves. It can only be placed in the sea. The wave strength is determined by the wind speed. If there's no wind, there's no waves.",
+    "aug_wave_dsc_00": "A renewable generator that generates energy using ocean waves. It can only be placed in the sea. The wave strength is determined by the wind speed. If there's no wind, there's no waves, meaning no energy can be produced.",
+    "aug_wave_dsc_01": "This generator produces a moderate amount of energy at varying rates.",
 
     "aug_wind_nme": "Wind Generator",
     "aug_wind_dsc_00": "A renewable generator that generates energy using wind. This generator can be placed on land or on water tiles close to land. The wind speed determines the energy generation speed, and no energy is produced if there's no wind.",
+    "aug_wind_dsc_01": "This generator produces a moderate amount of energy at varying rates.",
 
     "aug_coal_nme": "Coal Generator",
-    "aug_coal_dsc_00": "A non-renewable generator that generates energy using coal. This generator can only be used on coal source tiles and creates air pollution.",
+    "aug_coal_dsc_00": "A non-renewable generator that generates energy using coal. This generator can only be used on coal source tiles and creates high amounts of air pollution.",
+    "aug_coal_dsc_01": "This generator produces a high amount of energy at a high rate.",
 
     "aug_naturalGas_nme": "Natural Gas Generator",
-    "aug_naturalGas_dsc_00": "A non-renewable generator that generates energy using natural gas. This generator can be placed on coal, oil, and natural gas source spots.",
+    "aug_naturalGas_dsc_00": "A non-renewable generator that generates energy using natural gas. This generator can be placed on coal, oil, and natural gas source spots. It also produces a moderate amount of air pollution.",
+    "aug_naturalGas_dsc_01": "This generator produces a high amount of energy at a low rate.",
 
     "aug_nuclear_nme": "Nuclear Generator",
     "aug_nuclear_dsc_00": "A non-renewable generator that generates energy by splitting uranium atoms. This generator can only be placed on nuclear source tiles. Once all the nuclear resources are depleted in a spot, this generator is destroyed automatically.",
     "aug_nuclear_dsc_01": "If a nuclear generator is destroyed by an enemy before it's finished generating energy, it will leave nuclear waste. Nothing can be placed on a tile that has nuclear waste.",
+    "aug_nuclear_dsc_02": "This generator produces a very high amount of energy at a very high rate.",
 
     "aug_oil_nme": "Oil Generator",
-    "aug_oil_dsc_00": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots.",
+    "aug_oil_dsc_00": "A non-renewable generator that uses oil to generate energy, which can only be used on oil source spots. It also produces high amounts of air pollution.",
     "aug_oil_dsc_01": "If an oil generator is destroyed by an enemy before it's finished generating energy, it will leave an oil spill. No units can be placed on a tile that has an oil spill.",
+    "aug_oil_dsc_02": "This generator produces a very high amount of energy at a moderate rate.",
 
 
 

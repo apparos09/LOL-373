@@ -132,6 +132,7 @@ MonoBehaviour:
   - If a nuclear generator is destroyed by an enemy before it's finished generating
     energy, it will leave nuclear waste. Nothing can be placed on a tile that has
     nuclear waste.
+  - This generator produces a very high amount of energy at a very high rate.
   unitDescKey: aug_nuclear_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 6575261612139626044}
@@ -159,6 +160,7 @@ MonoBehaviour:
   durability: 90
   movementSpeed: 0
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

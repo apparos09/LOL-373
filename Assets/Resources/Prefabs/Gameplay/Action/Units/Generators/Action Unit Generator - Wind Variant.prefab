@@ -131,6 +131,7 @@ MonoBehaviour:
   - A renewable generator that generates energy using wind. This generator can be
     placed on land or on water tiles close to land. The wind speed determines the
     energy generation speed, and no energy is produced if there's no wind.
+  - This generator produces a moderate amount of energy at varying rates.
   unitDescKey: aug_wind_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8288920503193255921}
@@ -158,6 +159,7 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   validTiles: 010000000200000003000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

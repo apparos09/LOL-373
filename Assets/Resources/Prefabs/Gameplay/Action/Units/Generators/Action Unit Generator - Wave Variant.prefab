@@ -155,7 +155,8 @@ MonoBehaviour:
   unitDesc:
   - A renewable generator that generates energy using ocean waves. It can only be
     placed in the sea. The wave strength is determined by the wind speed. If there's
-    no wind, there's no waves.
+    no wind, there's no waves, meaning no energy can be produced.
+  - This generator produces a moderate amount of energy at varying rates.
   unitDescKey: aug_wave_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8046253962694201211}
@@ -183,6 +184,7 @@ MonoBehaviour:
   durability: 90
   movementSpeed: 0
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   validTiles: 03000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

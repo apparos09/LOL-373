@@ -97,6 +97,7 @@ MonoBehaviour:
   unitDesc:
   - A renewable generator that generates energy using sunlight. This generator can
     only be placed on land. This generator cannot produce energy at night.
+  - This generator produces a moderate amount of energy at a high rate.
   unitDescKey: aug_solar_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 2319632060183005838}
@@ -124,6 +125,7 @@ MonoBehaviour:
   durability: 50
   movementSpeed: 0
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

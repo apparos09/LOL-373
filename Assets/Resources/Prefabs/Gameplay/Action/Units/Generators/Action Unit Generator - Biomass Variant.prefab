@@ -113,6 +113,7 @@ MonoBehaviour:
   unitDesc:
   - A renewable generator that burns plant materials to generate energy. This generator
     can be placed anywhere on land.
+  - This generator generates a moderate amount of energy at a slow rate.
   unitDescKey: aug_biomass_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8058976512716701036}
@@ -140,6 +141,7 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   validTiles: 01000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}

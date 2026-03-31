@@ -142,8 +142,9 @@ MonoBehaviour:
     only be placed in rivers and cannot be placed next to other hydro generators.
     It also can't be placed next to wind generators that're in water.
   - If this generator runs for too long, it'll flood the tiles behind it, destroying
-    any units placed in those tiles. This generator also creates a small amount of
-    air pollution.
+    any units placed in those tiles. This generator also creates a very small amount
+    of air pollution.
+  - This generator produces a high amount of energy at a high rate.
   unitDescKey: aug_hydro_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 6032254477688619056}
@@ -171,6 +172,7 @@ MonoBehaviour:
   durability: 80
   movementSpeed: 0
   airPollution: 5
+  projectilePoolDestroyTimer: 0
   validTiles: 02000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
