@@ -472,20 +472,20 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Loads the first action - intro tutorial.
+        // Loads the first action stage - intro tutorial.
         public void LoadFirstActionIntroTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of energy, you win. The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed using the bar on the right.", "trl_firstAction_00"),
-                new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, defeating all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstAction_01"),
-                new EDU_Page("To fend off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstAction_02"),
-                new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units from enemies. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstAction_03"),
-                new EDU_Page("From left to right on the top is the info log button, the day-night indicator, the energy display, the wind indicator, and the options button. While the stage info log is the same as the world info log, the stage options menu allows you to quit the stage, reset the stage, and adjust the game's settings. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Finally, the energy display shows how much energy you have, and how much air pollution you've generated.", "trl_firstAction_04"),
-                new EDU_Page("On the bottom are your generator units on the left side and your defense units on the right side. When you have a unit selected, it'll be displayed in the middle of the bottom area. If you have enough energy to create the selected unit, the unit will be created once you select a valid tile.", "trl_firstAction_05"),
-                new EDU_Page("On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove your created units by selecting them. Finally, the energy block button stops your defense units from using energy. With all that explained, time to start the stage!", "trl_firstAction_06"),
+                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of energy, you win. The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed using the bar on the right.", "trl_firstActionIntro_00"),
+                new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, defeating all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstActionIntro_01"),
+                new EDU_Page("To fend off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstActionIntro_02"),
+                new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units from enemies. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstActionIntro_03"),
+                new EDU_Page("From left to right on the top is the info log button, the day-night indicator, the energy display, the wind indicator, and the options button. While the stage info log is the same as the world info log, the stage options menu allows you to quit the stage, reset the stage, and adjust the game's settings. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Finally, the energy display shows how much energy you have, and how much air pollution you've generated.", "trl_firstActionIntro_04"),
+                new EDU_Page("On the bottom are your generator units on the left side and your defense units on the right side. When you have a unit selected, it'll be displayed in the middle of the bottom area. If you have enough energy to create the selected unit, the unit will be created once you select a valid tile.", "trl_firstActionIntro_05"),
+                new EDU_Page("On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove your created units by selecting them. Finally, the energy block button stops your defense units from using energy. With all that explained, time to start the stage!", "trl_firstActionIntro_06"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -493,7 +493,55 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Loads the first action complete tutorial.
+        // Loads the first action stage - generators tutorial.
+        public void LoadFirstActionGeneratorsTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new Page("Insert text here.")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Loads the tutorial.
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first action stage - defenses tutorial.
+        public void LoadFirstActionDefensesTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new Page("Insert text here.")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Loads the tutorial.
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first action stage - first kill tutorial.
+        public void LoadFirstActionFirstKillTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new Page("Insert text here.")
+            };
+
+            // Change the display image when certain pages are opened using callbacks.
+
+            // Loads the tutorial.
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first action stage complete tutorial.
         public void LoadFirstActionCompleteTutorial(bool startTutorial = true)
         {
             // Create the pages list.
@@ -508,16 +556,18 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Loads the first knowledge - intro tutorial.
+        // Loads the first knowledge stage - intro tutorial.
         public void LoadFirstKnowledgeIntroTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This is a knowledge stage! In knowledge stages, you must match statements with the natural resources they apply to. Once you've made connections, select the verify button to check your answers. When verification is performed, all correctly matched statements and resources are taken out of the stage, and all remaining statements are randomized to new ones. Once all the statements have been matched correctly, the stage is complete.", "trl_firstKnowledge_00"),
-                new EDU_Page("The statements and resources are on separate screens, which are switched between using the arrow buttons at the top. When you have a statement or resource selected, it's shown at the bottom. Also on the top are the info log button and the options button. The info log and options menu are the same as they are in action stages. However, if you open the info log, your remaining statements will be randomized to new ones. The info log will also be locked once you close it, but it will be unlocked again once you perform a verification check.", "trl_firstKnowledge_01"),
-                new EDU_Page("You can get a starting energy bonus for your next action stage based on how many verifications it took to complete your most recent knowledge stages. The more verifications you perform, the smaller the bonus, and doing too many verifications stops you from receiving any energy bonus for your current knowledge stage. With all that explained, time to start the stage!", "trl_firstKnowledge_02"),
+                new EDU_Page("This is a knowledge stage! In knowledge stages, you must match statements with the natural resources they apply to. Once you've made connections, select the verify button in the bottom right to check your answers. All statements must be matched correctly to complete the stage.", "trl_firstKnowledgeIntro_00"),
+                new EDU_Page("The statements and resources are on separate screens, with the current screen's title being displayed in the top middle. To switch screens, use the arrow buttons at the top. When you have a statement or resource selected, it will be shown at the bottom.", "trl_firstKnowledgeIntro_01"),
+                new EDU_Page("Once you have a statement selected, it will be connected to the next resource you select. If you have a resource selected, it will be connected to the next statement you select. When a statement and resource are connected, they will have the same number attached to them.", "trl_firstKnowledgeIntro_02"),
+                new EDU_Page("In the top left is the info log button and in the top right is the options menu button. The info log and options menu are the same as they are in action stages. However, if you open the info log, statements that haven't been matched correctly will be randomized to new ones. The info log will also be locked once you close it, but it will be unlocked again once you perform a verification.", "trl_firstKnowledgeIntro_03"),
+                new EDU_Page("Try to beat the stage with as few verifications as possible. With all that stated, time to start the stage!", "trl_firstKnowledgeIntro_04"),
             };
 
             // Sets the bool and loads the tutorial.
@@ -525,14 +575,30 @@ namespace RM_EDU
             LoadTutorial(ref pages, startTutorial);
         }
 
-        // Loads the first knowledge complete tutorial.
+        // Loads the first knowledge stage verify tutorial.
+        public void LoadFirstKnowledgeVerifyTutorial(bool startTutorial = true)
+        {
+            // Create the pages list.
+            List<Page> pages = new List<Page>
+            {
+                // Load the pages.
+                new EDU_Page("You've performed a connection verification! All statements and resources that have been matched correctly have become locked. All statements that weren't matched correctly or weren't connected to anything have been randomized to new ones. Remember: all statements must be matched correctly to complete the stage.", "trl_firstKnowledgeVerify_00"),
+                new EDU_Page("When you complete a knowledge stage, you can get an energy start bonus depending on how many verifications it took. An energy start bonus gives you more energy at the start of your next action stage. If you took too many verifications to beat a knowledge stage, you won't get any energy bonus for that stage.", "trl_firstKnowledgeVerify_01"),
+            };
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstKnowledgeVerifyTutorial = true;
+            LoadTutorial(ref pages, startTutorial);
+        }
+
+        // Loads the first knowledge stage complete tutorial.
         public void LoadFirstKnowledgeCompleteTutorial(bool startTutorial = true)
         {
             // Create the pages list.
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("You've completed your first knowledge stage! If you got an energy bonus, it'll be displayed at the top of the screen. As mentioned, the starting energy bonus will be applied in your next action stage.", "trl_firstKnowledgeComplete_00"),
+                new EDU_Page("You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. As mentioned, the energy start bonus will be applied in your next action stage.", "trl_firstKnowledgeComplete_00"),
             };
 
             // Sets the bool and loads the tutorial.

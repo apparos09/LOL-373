@@ -979,6 +979,25 @@ namespace RM_EDU
 
             // CLear the current selection.
             ClearCurrentSelection();
+
+            // If tutorials are being used and a tutorial isn't active.
+            if(IsUsingTutorials() && !IsTutorialActive())
+            {
+                // First Knowledge Stage - Verify Tutorial
+                if (!tutorials.Data.clearedFirstKnowledgeVerifyTutorial)
+                {
+                    // Turns off the stage end dialog speak text that triggers when the dialog opens.
+                    // This is to prevent the stage end speak text call from overriding...
+                    // The speak text for the first page for the knowledge verify tutorial.
+                    if(allMatch)
+                    {
+                        knowledgeUI.stageEndDialog.speakTextOnEnable.speakTextOnStart = false;
+                    }
+
+                    // Loads the tutorial.
+                    tutorials.LoadFirstKnowledgeVerifyTutorial();
+                }
+            }
             
             // Returns result of all statements matching.
             return allMatch;

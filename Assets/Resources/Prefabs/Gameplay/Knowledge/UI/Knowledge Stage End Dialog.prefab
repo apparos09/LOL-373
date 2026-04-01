@@ -91,10 +91,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knowledgeUI: {fileID: 0}
+  speakTextOnEnable: {fileID: 6616300713861322885}
   stageTime: {fileID: 5889741225157173878}
   stageScore: {fileID: 4176675770683523981}
   stageEnergyBonus: {fileID: 535276957088342941}
-  finishbutton: {fileID: 0}
+  finishButton: {fileID: 7886060446071230950}
 --- !u!114 &6616300713861322885
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,6 +727,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
   m_PrefabInstance: {fileID: 4977171982728829734}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7886060446071230950 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2910061748029590208, guid: 77f1817714185a741937f2deb494834e, type: 3}
+  m_PrefabInstance: {fileID: 4977171982728829734}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5126225011162824515
 PrefabInstance:
   m_ObjectHideFlags: 0

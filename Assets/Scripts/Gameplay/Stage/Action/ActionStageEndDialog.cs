@@ -28,6 +28,9 @@ namespace RM_EDU
         // The stage end message text.
         public TMP_Text stageEndMessageText;
 
+        // The component for speaking text on enable.
+        public SpeakTextOnEnable speakTextOnEnable;
+
         // The stage over message.
         public const string STAGE_OVER_MESSAGE_KEY = "asg_msg_stageOver";
 

@@ -12,6 +12,9 @@ namespace RM_EDU
         // The knowledge UI.
         public KnowledgeUI knowledgeUI;
 
+        // The speak text on enable object attached to this dialog.
+        public SpeakTextOnEnable speakTextOnEnable;
+
         [Header("Stats")]
 
         // The stage time.
@@ -26,7 +29,7 @@ namespace RM_EDU
         [Header("Buttons")]
 
         // The finish button.
-        public Button finishbutton;
+        public Button finishButton;
 
         // Start is called before the first frame update
         void Start()
