@@ -354,6 +354,8 @@
       "trl_intro_01": 500,
       "trl_intro_02": 500,
       "trl_intro_03": 500,
+      "trl_intro_04": 500,
+      "trl_intro_05": 500,
 
       "trl_firstActionIntro_00": 500,
       "trl_firstActionIntro_01": 500,
@@ -778,8 +780,11 @@
 
 
     "trl_intro_00": "Welcome to the Energy Defense Unit (EDU)! You've been tasked with completing a training simulation game that teaches you about natural resources and the EDU's defense systems. In this exercise, aliens are attacking Earth's bases to steal their resources. Your job is to defend each base from the invaders.",
-    "trl_intro_01": "This simulation has two stage types: action and knowledge. In action stages you defend a base from enemies and in knowledge stages you're assessed on your knowledge of natural resources. You'll get more information on each type when you play them.",
-    "trl_intro_02": "From left to right on the top are the info log button, the energy bonus display, and the options button. The info log button opens the info log, which provides information on simulation elements you've encountered. Similarly, the options button opens the options menu, which allows you to save your progress, quit the game, and adjust the game's settings. As for the energy bonus display, that'll be explained later. With all that said, please select your first stage!",
+    "trl_intro_01": "This simulation has two stage types: action and knowledge. In action stages you defend a base from enemies and in knowledge stages you're assessed on your knowledge of natural resources. You'll be given more details on both stage types later.",
+    "trl_intro_02": "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.",
+    "trl_intro_03": "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, and adjust the game's settings.",
+    "trl_intro_04": "In the top middle is the energy start bonus display, but that'll be explained later.",
+    "trl_intro_05": "With all that covered, it's time to select a stage. When a stage is selected, it'll show what natural resources it uses. Details on natural resources will be provided when relevant. Please select the available stage, which is an action stage.",
 
     "trl_firstActionIntro_00": "This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of energy, you win. The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed using the bar on the right.",
     "trl_firstActionIntro_01": "On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, defeating all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.",

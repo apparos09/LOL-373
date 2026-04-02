@@ -463,8 +463,11 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("Welcome to the Energy Defense Unit (EDU)! You've been tasked with completing a training simulation game that teaches you about natural resources and the EDU's defense systems. In this exercise, aliens are attacking Earth's bases to steal their resources. Your job is to defend each base from the invaders.", "trl_intro_00"),
-                new EDU_Page("This simulation has two stage types: action and knowledge. In action stages you defend a base from enemies and in knowledge stages you're assessed on your knowledge of natural resources. You'll get more information on each type when you play them.", "trl_intro_01"),
-                new EDU_Page("From left to right on the top are the info log button, the energy bonus display, and the options button. The info log button opens the info log, which provides information on simulation elements you've encountered. Relatedly, the options button opens the options menu, which allows you to save your progress, quit the game, and adjust the game's settings. As for the energy bonus display, that'll be explained later. With all that said, please select your first stage!", "trl_intro_02"),
+                new EDU_Page("This simulation has two stage types: action and knowledge. In action stages you defend a base from enemies and in knowledge stages you're assessed on your knowledge of natural resources. You'll be given more details on both stage types later.", "trl_intro_01"),
+                new EDU_Page("In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.", "trl_intro_02"),
+                new EDU_Page("In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, and adjust the game's settings.", "trl_intro_03"),
+                new EDU_Page("In the top middle is the energy start bonus display, but that'll be explained later.", "trl_intro_04"),
+                new EDU_Page("With all that covered, it's time to select a stage. When a stage is selected, it'll show what natural resources it uses. Details on natural resources will be provided when relevant. Please select the available stage, which is an action stage.", "trl_intro_05"),
             };
 
             // Sets the bool and loads the tutorial.
