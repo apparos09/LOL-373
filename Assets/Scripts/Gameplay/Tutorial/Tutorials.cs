@@ -537,7 +537,7 @@ namespace RM_EDU
                 new EDU_Page("An enemy is approaching! You'll need to use defense units to defeat them. Your defense units can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.", "trl_firstActionDefenses_00"),
                 new EDU_Page("Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that make contact with them. You'll unlock more defense units naturally as the simulation progresses.", "trl_firstActionDefenses_01"),
                 new EDU_Page("Any unit that uses energy to attack pulls from the same energy that you use to create generator and defense units. Notably, lane blasters and traps don't use any energy to attack, and shields don't attack at all. Remember: your current energy amount is displayed in the top middle.", "trl_firstActionDefenses_02"),
-                new EDU_Page("If you want to stop defense units from using energy, select the block button on the left. This will block the energy flow to defense units, which will prevent them from functioning. Units that don't use energy for anything once they've been created are unaffected. Select the block button again to allow defense units to use energy again.", "trl_firstActionDefenses_03"),
+                new EDU_Page("If you want to stop defense units from using energy, select the energy block button on the left. This will block the energy flow to defense units, which will prevent them from functioning. Units that don't use energy for anything once they've been created are unaffected. Select the block button again to allow defense units to use energy again.", "trl_firstActionDefenses_03"),
                 new EDU_Page("With all that explained, back to the stage!", "trl_firstActionDefenses_04"),
             };
 
@@ -561,11 +561,11 @@ namespace RM_EDU
                 // Load the pages.
                 new EDU_Page("You've defeated your first enemy, but there's still more on the way. Now that you have an idea of how action stages work, there's some more tools that you should know about.", "trl_firstActionFirstKill_00"),
                 new EDU_Page("When you have more units than a unit list can display at once, you'll need to use the arrow buttons to switch rows. The arrows on the unit buttons light up if you have enough energy to create the unit they're pointing towards. The arrows remain greyed out if they have no unit to point to.", "trl_firstActionFirstKill_01"),
-                new EDU_Page("On the left are the speed button, the unit deselect button, the unit remove button, and the energy block button.", "trl_firstActionFirstKill_02"),
-                new EDU_Page("The speed button allows you to speed the stage up. Press the button again to return the stage to normal speed.", "trl_firstActionFirstKill_03"),
+                new EDU_Page("On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. Since the energy block button has already been covered, it won't be gone over again.", "trl_firstActionFirstKill_02"),
+                new EDU_Page("The stage speed button allows you to speed the stage up. Press the speed button again to return the stage to normal speed.", "trl_firstActionFirstKill_03"),
                 new EDU_Page("The unit deselect button allows you to deselect the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_04"),
                 new EDU_Page("The unit remove button turns on remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is enabled, select one of your field units to remove them. To turn off remove mode, press the remove button again, press the unit deselect button, or select one of the units in the unit lists on the bottom.", "trl_firstActionFirstKill_05"),
-                new EDU_Page("As for the energy block button, that's already been covered, so no need to go over it again. With all that explained, time to recommence the stage!", "trl_firstActionFirstKill_06"),
+                new EDU_Page("With all that explained, let the stage recommence!", "trl_firstActionFirstKill_06"),
             };
 
             // Add callback for the action manager.
@@ -620,8 +620,8 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("You've performed a connection verification! All statements and resources that have been matched correctly have become locked. All statements that weren't matched correctly or weren't connected to anything have been randomized to new ones. Remember: all statements must be matched correctly to complete the stage.", "trl_firstKnowledgeVerify_00"),
-                new EDU_Page("When you complete a knowledge stage, you can get an energy start bonus depending on how many verifications it took. An energy start bonus gives you more energy at the start of your next action stage. If you took too many verifications to beat a knowledge stage, you won't get any energy bonus for that stage.", "trl_firstKnowledgeVerify_01"),
+                new EDU_Page("You've performed a connection verification! All statements and resources that have been matched correctly have become locked. All statements that weren't matched correctly or weren't connected to anything have been randomized to new ones.", "trl_firstKnowledgeVerify_00"),
+                new EDU_Page("When you complete a knowledge stage, you can get an energy start bonus depending on how many verifications it took. An energy start bonus gives you more energy at the start of your next action stage. If you took too many verifications to beat a knowledge stage, you won't get any energy bonus from that stage.", "trl_firstKnowledgeVerify_01"),
             };
 
             // Sets the bool and loads the tutorial.
