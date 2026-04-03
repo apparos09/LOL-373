@@ -281,7 +281,7 @@ namespace RM_EDU
         public override void CheckTutorials()
         {
             // Check for action specific tutorials.
-            if (IsUsingTutorials() && !IsTutorialActive())
+            if (IsUsingTutorialsAndTutorialNotActive())
             {
                 // Gets set to true when a tutorial has started.
                 bool startedTutorial = false;
@@ -293,7 +293,8 @@ namespace RM_EDU
                     startedTutorial = true;
                 }
 
-                // TODO: disable the related mechanics when certain tutorials are triggered.
+                // This only handles the intro tutorial and the generator tutorials.
+                // Other tutorials are triggered elsewhere.
             }
 
             // Calls base to check for resource tutorials.
@@ -303,25 +304,69 @@ namespace RM_EDU
         // Called when the first action intro tutorial is starting.
         public void OnFirstActionIntroTutorialStart()
         {
+            // Disables elements that will be enabled by another tutorial.
+            if(!tutorials.Data.clearedFirstActionGeneratorsTutorial)
+            {
+                // Disables the enemy player, day-night cycle and wind.
+                playerEnemy.gameObject.SetActive(false);
+                dayNightEnabled = false;
+                windEnabled = false;
 
+                // Disables the info log button, day-night indicator, wind indicator, and options button.
+                actionUI.infoLogButton.gameObject.SetActive(false);
+                actionUI.dayNightIndicator.gameObject.SetActive(false);
+                actionUI.windIndicator.gameObject.SetActive(false);
+                actionUI.optionsButton.gameObject.SetActive(false);
+            }
+
+            // Disables elements that will be enabled by another tutorial.
+            if (!tutorials.Data.clearedFirstActionDefensesTutorial)
+            {
+                // Disables the defense unit selector and energy block button.
+                actionUI.defenseUnitSelector.gameObject.SetActive(false);
+                actionUI.blockButton.gameObject.SetActive(false);
+            }
+
+            // Disables elements that will be enabled by another tutorial.
+            if (!tutorials.Data.clearedFirstActionFirstKillTutorial)
+            {
+                // Disables the speed up, deselect, and remove buttons.
+                actionUI.speedButton.gameObject.SetActive(false);
+                actionUI.deselectButton.gameObject.SetActive(false);
+                actionUI.removeButton.gameObject.SetActive(false);
+            }
         }
 
         // Called when the first action generator tutorial is starting.
         public void OnFirstActionGeneratorsTutorialStart()
         {
+            // Enables the player enemy, the day-night system, and the wind system.
+            playerEnemy.gameObject.SetActive(true);
+            dayNightEnabled = true;
+            windEnabled = true;
 
+            // Enables the info log button, day-night indicator, wind indicator, and options button.
+            actionUI.infoLogButton.gameObject.SetActive(true);
+            actionUI.dayNightIndicator.gameObject.SetActive(true);
+            actionUI.windIndicator.gameObject.SetActive(true);
+            actionUI.optionsButton.gameObject.SetActive(true);
         }
 
         // Called when the first action defenses tutorial is starting.
         public void OnFirstActionDefensesTutorialStart()
         {
-
+            // Activate the defense unit selector and the block button.
+            actionUI.defenseUnitSelector.gameObject.SetActive(true);
+            actionUI.blockButton.gameObject.SetActive(true);
         }
 
         // Called when the first action first kill tutorial is starting.
         public void OnFirstActionFirstKillTutorialStart()
         {
-
+            // Activates the speed button, deselect button, and remove button.
+            actionUI.speedButton.gameObject.SetActive(true);
+            actionUI.deselectButton.gameObject.SetActive(true);
+            actionUI.removeButton.gameObject.SetActive(true);
         }
 
         // DEFENSE IDS

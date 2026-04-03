@@ -3478,6 +3478,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8640468847560290041, guid: 47fe32e9b8eaf604a905ccaa3e6e7467, type: 3}
   m_PrefabInstance: {fileID: 6548775401305072494}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5293048347433697958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1411108731816239560, guid: 47fe32e9b8eaf604a905ccaa3e6e7467, type: 3}
+  m_PrefabInstance: {fileID: 6548775401305072494}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6861780316909233611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4255,6 +4266,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   tutorialUI: {fileID: 1399281358078865442}
   stageManager: {fileID: 0}
+  optionsButton: {fileID: 5293048347433697958}
   optionsDialog: {fileID: 1691320918570867352}
   settingsDialog: {fileID: 4444148940795227066}
   knowledgeManager: {fileID: 0}
@@ -4584,7 +4596,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3646959133197753882, guid: 00e39db1faaa4a24b9d8f53d3772a2de, type: 3}
       propertyPath: m_Name
-      value: Log Button (UI)
+      value: Info Log Button (UI)
       objectReference: {fileID: 0}
     - target: {fileID: 7704060999554775592, guid: 00e39db1faaa4a24b9d8f53d3772a2de, type: 3}
       propertyPath: m_Pivot.x

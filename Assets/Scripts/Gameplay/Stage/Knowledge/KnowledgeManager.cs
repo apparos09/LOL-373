@@ -413,7 +413,7 @@ namespace RM_EDU
         public override void CheckTutorials()
         {
             // Check for knowledge specific tutorials.
-            if (IsUsingTutorials() && !IsTutorialActive())
+            if (IsUsingTutorialsAndTutorialNotActive())
             {
                 // Gets set to true when a tutorial has started.
                 bool startedTutorial = false;
@@ -981,7 +981,7 @@ namespace RM_EDU
             ClearCurrentSelection();
 
             // If tutorials are being used and a tutorial isn't active.
-            if(IsUsingTutorials() && !IsTutorialActive())
+            if(IsUsingTutorialsAndTutorialNotActive())
             {
                 // First Knowledge Stage - Verify Tutorial
                 if (!tutorials.Data.clearedFirstKnowledgeVerifyTutorial)

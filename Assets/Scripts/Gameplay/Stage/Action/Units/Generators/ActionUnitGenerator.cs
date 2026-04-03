@@ -84,6 +84,16 @@ namespace RM_EDU
                     PlayUnusableAnimation();
                 }
             }
+
+            // If using tutorials and tutorial not active, run applicable tutorial.
+            if(actionManager.IsUsingTutorialsAndTutorialNotActive())
+            {
+                // Runs the generator tutorial.
+                if(!actionManager.tutorials.Data.clearedFirstActionGeneratorsTutorial)
+                {
+                    actionManager.tutorials.LoadFirstActionGeneratorsTutorial();
+                }
+            }
         }
 
         // Gets the unit type.

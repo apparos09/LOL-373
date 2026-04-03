@@ -127,6 +127,16 @@ namespace RM_EDU
             {
                 PlayUnitSpawnAnimation();
             }
+
+            // If using tutorials and tutorial not active, run applicable tutorial.
+            if (actionManager.IsUsingTutorialsAndTutorialNotActive())
+            {
+                // Runs the defenses tutorial.
+                if (!actionManager.tutorials.Data.clearedFirstActionDefensesTutorial)
+                {
+                    actionManager.tutorials.LoadFirstActionDefensesTutorial();
+                }
+            }
         }
 
         // OnTriggerEnter2D is called when the Collider2D other enters this trigger (2D physics only)
@@ -579,6 +589,16 @@ namespace RM_EDU
             // Tries to remove the unit from its row list.
             // This automatically checks if the row list contains this.
             TryRemoveFromRowList();
+
+            // If using tutorials and tutorial not active, run applicable tutorial.
+            if (actionManager.IsUsingTutorialsAndTutorialNotActive())
+            {
+                // Runs the first kill tutorial.
+                if (!actionManager.tutorials.Data.clearedFirstActionFirstKillTutorial)
+                {
+                    actionManager.tutorials.LoadFirstActionFirstKillTutorial();
+                }
+            }
         }
 
 

@@ -35,6 +35,10 @@ namespace RM_EDU
         public ActionStageEndDialog stageEndDialog;
 
         [Header("Action/Top Header")]
+
+        // The info log button.
+        public Button infoLogButton;
+
         // The day night indicator.
         public DayNightIndicator dayNightIndicator;
 

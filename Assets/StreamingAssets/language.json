@@ -60,6 +60,8 @@
       "kwd_entries": 18,
       "kwd_info": 18,
 
+      "kwd_energyStartBonus": 28,
+
 
       "kwd_naturalResource": 28,
       "kwd_naturalResources": 28,
@@ -512,6 +514,8 @@
     "kwd_entries": "Entries",
     "kwd_info": "Info",
 
+    "kwd_energyStartBonus": "Energy Start Bonus",
+
 
     "kwd_naturalResource": "Natural Resource",
     "kwd_naturalResources": "Natural Resources",
@@ -815,7 +819,7 @@
     "trl_firstActionIntro_00": "This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose. But if the enemy side runs out of energy, you win.",
     "trl_firstActionIntro_01": "The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed by the bar on the right.",
     "trl_firstActionIntro_02": "On the left side of the field are lane blasters. If an enemy touches a lane blaster, the lane blaster will go off, destroying itself and all enemies in its lane. Once a lane blaster is destroyed, it leaves an opening for enemies to reach the end of the field. You cannot restore a lane blaster, but you always get your lane blasters back at the start of a stage.",
-    "trl_firstActionIntro_03": "To fend off enemies, you place units on the field, which requires energy. The energy needed to create a unit is displayed on its button. Some energy is generated automatically, but you'll need to place generator units on the field to generate more energy. Your generator units can be found in the bottom left.",
+    "trl_firstActionIntro_03": "To fend off enemies, you place units on the field, which requires energy. The energy needed to create a unit is displayed on its unit button. Some energy is generated automatically, but you'll need to place generator units on the field to generate more energy. Your generator units can be found in the bottom left.",
     "trl_firstActionIntro_04": "When you have a unit selected, it will be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. Two units cannot share the same space, and some units can only use certain spaces. With all that explained, please place a generator unit on the field.",
 
     "trl_firstActionGenerators_00": "You've placed a generator! Generators generate energy if their conditions are met, and some generators only generate energy for a limited time. A generator flashes blue when it generates energy and goes dark if it cannot generate energy. Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage.",
@@ -829,7 +833,7 @@
     "trl_firstActionDefenses_00": "An enemy is approaching! You'll need to use defense units to defeat them. Your defense units can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.",
     "trl_firstActionDefenses_01": "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that make contact with them. You'll unlock more defense units naturally as the simulation progresses.",
     "trl_firstActionDefenses_02": "Any unit that uses energy to attack pulls from the same energy that you use to create generator and defense units. Notably, lane blasters and traps don't use any energy to attack, and shields don't attack at all. Remember: your current energy amount is displayed in the top middle.",
-    "trl_firstActionDefenses_03": "If you want to stop defense units from using energy, select the block bottom on the left. This will block the energy flow to defense units, which will prevent them from functioning. Units that don't use energy for anything once they've been created are unaffected. Select the block button again to allow defense units to use energy again.",
+    "trl_firstActionDefenses_03": "If you want to stop defense units from using energy, select the block button on the left. This will block the energy flow to defense units, which will prevent them from functioning. Units that don't use energy for anything once they've been created are unaffected. Select the block button again to allow defense units to use energy again.",
     "trl_firstActionDefenses_04": "With all that explained, back to the stage!",
 
     "trl_firstActionFirstKill_00": "You've defeated your first enemy, but there's still more on the way. Now that you have an idea of how action stages work, there's some more tools that you should know about.",

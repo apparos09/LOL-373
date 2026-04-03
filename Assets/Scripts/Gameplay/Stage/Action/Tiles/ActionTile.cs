@@ -93,7 +93,7 @@ namespace RM_EDU
         private static Color unusableColor = Color.black;
 
         // The alpha of highlights on the tile.
-        private static float highlightAlpha = 0.50F;
+        private static float highlightAlpha = 0.4F;
 
         [Header("World")]
 

@@ -358,6 +358,12 @@ namespace RM_EDU
             return gameUI.IsTutorialActive();
         }
 
+        // Returns 'true' if tutorials are being used a tutorial is not active.
+        public bool IsUsingTutorialsAndTutorialNotActive()
+        {
+            return IsUsingTutorials() && !IsTutorialActive();
+        }
+
         // Checks if the text box is open.
         public bool IsTutorialTextBoxOpen()
         {

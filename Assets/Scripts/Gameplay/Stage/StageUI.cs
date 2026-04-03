@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace RM_EDU
 {
@@ -13,6 +14,9 @@ namespace RM_EDU
 
         // The stage manager.
         public StageManager stageManager;
+
+        // The options button.
+        public Button optionsButton;
 
         // The options dialog.
         public StageOptionsDialog optionsDialog;
