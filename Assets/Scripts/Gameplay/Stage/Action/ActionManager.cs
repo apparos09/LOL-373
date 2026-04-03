@@ -334,6 +334,11 @@ namespace RM_EDU
                 actionUI.speedButton.gameObject.SetActive(false);
                 actionUI.deselectButton.gameObject.SetActive(false);
                 actionUI.removeButton.gameObject.SetActive(false);
+
+                // Disables the reset and world buttons.
+                // This is to prevent the player from resetting or leaving the stage before the tutorial ends.
+                actionUI.optionsDialog.resetButton.interactable = false;
+                actionUI.optionsDialog.worldButton.interactable = false;
             }
         }
 
@@ -367,6 +372,10 @@ namespace RM_EDU
             actionUI.speedButton.gameObject.SetActive(true);
             actionUI.deselectButton.gameObject.SetActive(true);
             actionUI.removeButton.gameObject.SetActive(true);
+
+            // Enables the reset and world buttons.
+            actionUI.optionsDialog.resetButton.interactable = true;
+            actionUI.optionsDialog.worldButton.interactable = true;
         }
 
         // DEFENSE IDS

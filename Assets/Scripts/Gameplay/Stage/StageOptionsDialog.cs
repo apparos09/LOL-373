@@ -11,6 +11,20 @@ namespace RM_EDU
         // The stage UI.
         public StageUI stageUI;
 
+        [Header("Buttons")]
+
+        // The reset stage button.
+        public Button resetButton;
+
+        // The return to world button.
+        public Button worldButton;
+
+        // The settings button.
+        public Button settingsButton;
+
+        // The back button.
+        public Button backButton;
+
         // Start is called before the first frame update
         void Start()
         {
