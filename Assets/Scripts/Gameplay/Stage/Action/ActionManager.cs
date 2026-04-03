@@ -300,6 +300,30 @@ namespace RM_EDU
             base.CheckTutorials();
         }
 
+        // Called when the first action intro tutorial is starting.
+        public void OnFirstActionIntroTutorialStart()
+        {
+
+        }
+
+        // Called when the first action generator tutorial is starting.
+        public void OnFirstActionGeneratorsTutorialStart()
+        {
+
+        }
+
+        // Called when the first action defenses tutorial is starting.
+        public void OnFirstActionDefensesTutorialStart()
+        {
+
+        }
+
+        // Called when the first action first kill tutorial is starting.
+        public void OnFirstActionFirstKillTutorialStart()
+        {
+
+        }
+
         // DEFENSE IDS
         // Sets the defense id list to all valid ids.
         public void SetDefenseIdListToAllValidIds()

@@ -430,7 +430,7 @@ namespace RM_EDU
                 new Page("Insert text here.")
             };
 
-            // Change the display image when certain pages are opened using callbacks.
+            // You can set an image to go along with a page by providing it to EDU_Page constructor.
 
             // Loads the tutorial.
             LoadTutorial(ref pages, startTutorial);
@@ -482,14 +482,18 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the end of the field, you lose. But if the enemy side runs out of energy, you win. The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed using the bar on the right.", "trl_firstActionIntro_00"),
-                new EDU_Page("On the left side of the field are the lane blasters. If an enemy reaches a lane blaster, it'll go off, defeating all enemies in its lane. However, this will also destroy said lane blaster, meaning each lane blaster can only be used once per stage. If a lane blaster is destroyed, it leaves an opening for the enemies to reach the end of the field.", "trl_firstActionIntro_01"),
-                new EDU_Page("To fend off enemies, you use generator units and defense units. Generators generate energy, which is needed to create a unit. Some energy is generated regularly without generators, but not much. Relatedly, some generators create air pollution, which lowers your stage score, so keep that in mind.", "trl_firstActionIntro_02"),
-                new EDU_Page("As for defense units, they attack enemies in their lane and/or defend units from enemies. Defense units use energy to attack, so make sure you have enough energy to power them. Your units can only be placed on certain tiles, which is determined by various factors. When you select a unit, the map will show you where it can be placed.", "trl_firstActionIntro_03"),
-                new EDU_Page("From left to right on the top is the info log button, the day-night indicator, the energy display, the wind indicator, and the options button. While the stage info log is the same as the world info log, the stage options menu allows you to quit the stage, reset the stage, and adjust the game's settings. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Finally, the energy display shows how much energy you have, and how much air pollution you've generated.", "trl_firstActionIntro_04"),
-                new EDU_Page("On the bottom are your generator units on the left side and your defense units on the right side. When you have a unit selected, it'll be displayed in the middle of the bottom area. If you have enough energy to create the selected unit, the unit will be created once you select a valid tile.", "trl_firstActionIntro_05"),
-                new EDU_Page("On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. The speed button switches the game between normal and fast speed. The deselect button deselects the unit you currently have selected. The remove button activates remove mode, which allows you to remove your created units by selecting them. Finally, the energy block button stops your defense units from using energy. With all that explained, time to start the stage!", "trl_firstActionIntro_06"),
+                new EDU_Page("This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose. But if the enemy side runs out of energy, you win.", "trl_firstActionIntro_00"),
+                new EDU_Page("The enemy side loses energy automatically, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed by the bar on the right.", "trl_firstActionIntro_01"),
+                new EDU_Page("On the left side of the field are lane blasters. If an enemy touches a lane blaster, the lane blaster will go off, destroying itself and all enemies in its lane. Once a lane blaster is destroyed, it leaves an opening for enemies to reach the end of the field. You cannot restore a lane blaster, but you always get your lane blasters back at the start of a stage.", "trl_firstActionIntro_02"),
+                new EDU_Page("To fend off enemies, you place units on the field, which requires energy. The energy needed to create a unit is displayed on its button. Some energy is generated automatically, but you'll need to place generator units on the field to generate more energy. Your generator units can be found in the bottom left.", "trl_firstActionIntro_03"),
+                new EDU_Page("When you have a unit selected, it will be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. Two units cannot share the same space, and some units can only use certain spaces. With all that explained, please place a generator unit on the field.", "trl_firstActionIntro_04"),
             };
+
+            // Add callback for the action manager.
+            if(ActionManager.Instantiated)
+            {
+                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionIntroTutorialStart);
+            }
 
             // Sets the bool and loads the tutorial.
             data.clearedFirstActionIntroTutorial = true;
@@ -503,12 +507,23 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new Page("Insert text here.")
+                new EDU_Page("You've placed a generator! Generators generate energy if their conditions are met, and some generators only generate energy for a limited time. A generator flashes blue when it generates energy and goes dark if it cannot generate energy. Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage.", "trl_firstActionGenerators_00"),
+                new EDU_Page("In the top left is the info log button, which opens the info log. The info log is the same as it is in the world area. If you ever need information on what your units do, check the info log.", "trl_firstActionGenerators_01"),
+                new EDU_Page("Also on the top left is the day-night indicator, which shows the time of day. As mentioned, solar power can only be generated during the day.", "trl_firstActionGenerators_02"),
+                new EDU_Page("In the top right is the options button, which opens the options menu. The options menu allows you to quit the stage, reset the stage, and adjust the game's settings.", "trl_firstActionGenerators_03"),
+                new EDU_Page("Also on the top right is the wind indicator, which shows the current wind speed. Generators that are affected by wind speed will be explained later.", "trl_firstActionGenerators_04"),
+                new EDU_Page("In the top middle is the energy display and air pollution display. The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_05"),
+                new EDU_Page("With all that covered, let's continue with the stage.", "trl_firstActionGenerators_06"),
             };
 
-            // Change the display image when certain pages are opened using callbacks.
+            // Add callback for the action manager.
+            if (ActionManager.Instantiated)
+            {
+                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionGeneratorsTutorialStart);
+            }
 
-            // Loads the tutorial.
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionGeneratorsTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
@@ -519,12 +534,21 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new Page("Insert text here.")
+                new EDU_Page("An enemy is approaching! You'll need to use defense units to defeat them. Your defense units can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.", "trl_firstActionDefenses_00"),
+                new EDU_Page("Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that make contact with them. You'll unlock more defense units naturally as the simulation progresses.", "trl_firstActionDefenses_01"),
+                new EDU_Page("Any unit that uses energy to attack pulls from the same energy that you use to create generator and defense units. Notably, lane blasters and traps don't use any energy to attack, and shields don't attack at all. Remember: your current energy amount is displayed in the top middle.", "trl_firstActionDefenses_02"),
+                new EDU_Page("If you want to stop defense units from using energy, select the block bottom on the left. This will block the energy flow to defense units, which will prevent them from functioning. Units that don't use energy for anything once they've been created are unaffected. Select the block button again to allow defense units to use energy again.", "trl_firstActionDefenses_03"),
+                new EDU_Page("With all that explained, back to the stage!", "trl_firstActionDefenses_04"),
             };
 
-            // Change the display image when certain pages are opened using callbacks.
+            // Add callback for the action manager.
+            if (ActionManager.Instantiated)
+            {
+                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionDefensesTutorialStart);
+            }
 
-            // Loads the tutorial.
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionDefensesTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
@@ -535,12 +559,23 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new Page("Insert text here.")
+                new EDU_Page("You've defeated your first enemy, but there's still more on the way. Now that you have an idea of how action stages work, there's some more tools that you should know about.", "trl_firstActionFirstKill_00"),
+                new EDU_Page("When you have more units than a unit list can display at once, you'll need to use the arrow buttons to switch rows. The arrows on the unit buttons light up if you have enough energy to create the unit they're pointing towards. The arrows remain greyed out if they have no unit to point to.", "trl_firstActionFirstKill_01"),
+                new EDU_Page("On the left are the speed button, the unit deselect button, the unit remove button, and the energy block button.", "trl_firstActionFirstKill_02"),
+                new EDU_Page("The speed button allows you to speed the stage up. Press the button again to return the stage to normal speed.", "trl_firstActionFirstKill_03"),
+                new EDU_Page("The unit deselect button allows you to deselect the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_04"),
+                new EDU_Page("The unit remove button turns on remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is enabled, select one of your field units to remove them. To turn off remove mode, press the remove button again, press the unit deselect button, or select one of the units in the unit lists on the bottom.", "trl_firstActionFirstKill_05"),
+                new EDU_Page("As for the energy block button, that's already been covered, so no need to go over it again. With all that explained, time to recommence the stage!", "trl_firstActionFirstKill_06"),
             };
 
-            // Change the display image when certain pages are opened using callbacks.
+            // Add callback for the action manager.
+            if (ActionManager.Instantiated)
+            {
+                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionFirstKillTutorialStart);
+            }
 
-            // Loads the tutorial.
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionFirstKillTutorial = true;
             LoadTutorial(ref pages, startTutorial);
         }
 
