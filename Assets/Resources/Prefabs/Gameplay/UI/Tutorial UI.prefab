@@ -624,6 +624,11 @@ MonoBehaviour:
   tutorialUI: {fileID: 2211305606249259944}
   displayObject: {fileID: 6543226961160049396}
   displayImage: {fileID: 4267522530789618741}
+  alpha0Sprite: {fileID: 21300000, guid: bdd637e8ecf094d45bd207a895ae47df, type: 3}
+  stageTypesSprite: {fileID: 21300000, guid: ee120598bcbec304da98e5e2a32da486, type: 3}
+  logOptionsButtonsSprite: {fileID: 21300000, guid: e35bb7b78e3ffab41ba91cdcfef272de, type: 3}
+  logButtonSprite: {fileID: 21300000, guid: 8adebd517ae5ba84eb79754e05ef83a8, type: 3}
+  optionsButtonSprite: {fileID: 21300000, guid: 8e0ee0598b9df6b43ba8c3499d39b388, type: 3}
   biomassSprite: {fileID: 21300000, guid: b49dcc202c0e64b4492bc4339b9177f4, type: 3}
   geothermalSprite: {fileID: 21300000, guid: 16da41d3f43971c439974af350dc39fc, type: 3}
   hydroSprite: {fileID: 21300000, guid: d7bc527a09103c944918272c6664f3c9, type: 3}
@@ -634,3 +639,11 @@ MonoBehaviour:
   naturalGasSprite: {fileID: 21300000, guid: 60ae3bb2d337b1c40a735becb7033830, type: 3}
   nuclearSprite: {fileID: 21300000, guid: d679c97814b753745a0829f73d787070, type: 3}
   oilSprite: {fileID: 21300000, guid: 3f5e08bbccdc13b4bb66752f6e968bae, type: 3}
+  actionDefenseTypesSprite: {fileID: 21300000, guid: fbb830b508f14f040ad3e3e43c02efc3, type: 3}
+  dayNightIndicatorSprite: {fileID: 21300000, guid: df110a98350f82f44b0036699bc5f3f4, type: 3}
+  windIndicatorSprite: {fileID: 21300000, guid: c6af56f7540f690408605c8a7d332417, type: 3}
+  actionButtonsSprite: {fileID: 21300000, guid: 94493836833a57944a2af5738991f3b3, type: 3}
+  stageSpeedSprite: {fileID: 21300000, guid: 9de3e3cfa0884e04cbb8aed6bebf6c3f, type: 3}
+  unitDeselectSprite: {fileID: 21300000, guid: bd07ea53e4160924a8e7957908caf443, type: 3}
+  unitRemoveSprite: {fileID: 21300000, guid: bbc530712c1d0d244bef5516275c6db9, type: 3}
+  energyBlockSprite: {fileID: 21300000, guid: 0df2494c424b25845a67695de10020aa, type: 3}

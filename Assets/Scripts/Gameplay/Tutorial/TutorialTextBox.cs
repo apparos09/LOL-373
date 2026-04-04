@@ -19,8 +19,20 @@ namespace RM_EDU
         // The display image.
         public Image displayImage;
 
-        [Header("Tutorials/Display Sprites")]
+        [Header("Tutorials/Sprites")]
+        // A transparent sprite (alpha = 0).
+        public Sprite alpha0Sprite;
+        
+        // The two stage types: action and knowledge
+        public Sprite stageTypesSprite;
 
+        // The log and options buttons
+        public Sprite logOptionsButtonsSprite;
+        public Sprite logButtonSprite;
+        public Sprite optionsButtonSprite;
+
+
+        [Header("Tutorials/Sprites/Natural Resources")]
         // Display sprites for the natural resources.
         public Sprite biomassSprite;
         public Sprite geothermalSprite;
@@ -33,6 +45,22 @@ namespace RM_EDU
         public Sprite naturalGasSprite;
         public Sprite nuclearSprite;
         public Sprite oilSprite;
+
+        [Header("Tutorials/Sprites/Action")]
+
+        // Defense types
+        public Sprite actionDefenseTypesSprite;
+
+        // Indicators
+        public Sprite dayNightIndicatorSprite;
+        public Sprite windIndicatorSprite;
+
+        // The action buttons: speed, deselect, remove, and energy block.
+        public Sprite actionButtonsSprite;
+        public Sprite stageSpeedSprite;
+        public Sprite unitDeselectSprite;
+        public Sprite unitRemoveSprite;
+        public Sprite energyBlockSprite;
 
         // Start is called before the first frame update
         protected override void Start()
