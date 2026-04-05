@@ -22,9 +22,9 @@ namespace RM_EDU
         public bool setStartPosOnStart = true;
 
         // The maximum distance the projectile travels while having its power change.
-        // The distance max by default is 12 tiles (1.28 x 10 = 15.36).
+        // The distance max by default is 10 tiles (1.28 x 10 = 12.8).
         [Tooltip("The maximum distance the projectile can travel before it's power is at a fixed amount.")]
-        public float attackPowerDistanceMax = ActionStage.TILE_SIZE_X_DEFAULT * 12.0F;
+        public float attackPowerDistanceMax = ActionStage.TILE_SIZE_X_DEFAULT * 10.0F;
 
         // The attack power at the maximum distance.
         // The base power is the power of the projectile or shooter based on the projectile's setting.

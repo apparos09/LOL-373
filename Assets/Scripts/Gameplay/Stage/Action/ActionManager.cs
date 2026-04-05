@@ -401,6 +401,12 @@ namespace RM_EDU
 
             // Bonus for the user winning, and their amount of kills.
             float userWonBonus = HasPlayerUserWon() ? 500.0F : 0.0F;
+
+            // Time
+            // 4 points per second.
+            float timeBonus = 480.0F * Mathf.Clamp01(1.0F - (stageTimer / STAGE_LENGTH_MAX_SECONDS));
+
+            // Kills
             float killBonus = playerUser.kills * 50.0F;
 
             // The bonus for the lane blasters the player has left.
@@ -439,7 +445,7 @@ namespace RM_EDU
             }
 
             // Calculates the bonus. If the bonus is less than 0, make it 0.
-            float bonusPoints = userWonBonus + killBonus + laneBlastersBonus - pollutionDeduction;
+            float bonusPoints = userWonBonus + timeBonus + killBonus + laneBlastersBonus - pollutionDeduction;
 
             // If the bonus is negative, set the bonus to 0.
             if (bonusPoints < 0)
