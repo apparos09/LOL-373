@@ -47,7 +47,7 @@ namespace RM_EDU
         public int enemiesPerSpawnMax = ENEMIES_PER_SPAWN_MAX_DEFAULT;
 
         // The default enemies per spawn max.
-        public const int ENEMIES_PER_SPAWN_MAX_DEFAULT = 7;
+        public const int ENEMIES_PER_SPAWN_MAX_DEFAULT = 5;
 
         // If 'true', spawning is allowed.
         private bool allowSpawns = true;
@@ -103,7 +103,7 @@ namespace RM_EDU
                     spawnTimeMax = 9.0F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 3;
+                    enemiesPerSpawnMax = 2;
 
                     enemyIds.Add(1);
 
@@ -114,7 +114,7 @@ namespace RM_EDU
                     spawnTimeMax = 8.90F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 3;
+                    enemiesPerSpawnMax = 2;
 
                     enemyIds.Add(1);
 
@@ -128,6 +128,7 @@ namespace RM_EDU
                     enemiesPerSpawnMax = 3;
 
                     enemyIds.Add(1);
+                    enemyIds.Add(2);
 
                     break;
 
@@ -136,7 +137,7 @@ namespace RM_EDU
                     spawnTimeMax = 8.70F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 4;
+                    enemiesPerSpawnMax = 3;
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
@@ -152,6 +153,7 @@ namespace RM_EDU
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
+                    enemyIds.Add(3);
 
                     break;
 
@@ -164,6 +166,7 @@ namespace RM_EDU
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
+                    enemyIds.Add(3);
 
                     break;
 
