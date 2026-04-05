@@ -30,10 +30,10 @@ namespace RM_EDU
         public GameObject tileParent;
 
         // The default row count for the map.
-        public const int MAP_ROW_COUNT_DEFAULT = 7;
+        public const int MAP_ROW_COUNT_DEFAULT = 5; // Original: 7
 
         // The default colum count for a map.
-        public const int MAP_COLUMN_COUNT_DEFAULT = 15;
+        public const int MAP_COLUMN_COUNT_DEFAULT = 12; // Original: 15
 
         // Arrays - (r, w) = (y, x)
         // Action Tiles
