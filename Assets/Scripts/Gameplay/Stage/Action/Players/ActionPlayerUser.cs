@@ -16,7 +16,7 @@ namespace RM_EDU
         [Header("User")]
 
         // The energy the player user starts with.
-        public float energyStart = 250.0F;
+        public float energyStart = 200.0F;
 
         // The bonus energy the player gets on start.
         public float energyStartBonus = 0.0F;

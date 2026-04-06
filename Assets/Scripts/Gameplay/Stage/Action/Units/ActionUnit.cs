@@ -960,7 +960,7 @@ namespace RM_EDU
         public float CalculateProjectilePoolDestroyTime()
         {
             // Uses the attack cooldown time plus extra time.
-            float result = CalculateAttackCooldownTime() + 1.0F;
+            float result = CalculateAttackCooldownTime() + 2.0F;
 
             return result;
         }
