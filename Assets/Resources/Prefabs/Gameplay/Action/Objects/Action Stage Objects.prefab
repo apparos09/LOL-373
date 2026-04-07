@@ -88,10 +88,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9070086229073596719, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
-      propertyPath: m_Size.x
-      value: 29.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 9070086229073596719, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1306533575, guid: 003f5cc9a9380024fbfe9589ac5c3ee9, type: 3}
@@ -115,7 +111,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 267952418115976589, guid: b26c43d3b4ca99849b4d9557e1391926, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10.24
+      value: 8.96
       objectReference: {fileID: 0}
     - target: {fileID: 267952418115976589, guid: b26c43d3b4ca99849b4d9557e1391926, type: 3}
       propertyPath: m_LocalPosition.y
@@ -177,7 +173,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 267952418115976589, guid: b26c43d3b4ca99849b4d9557e1391926, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10.24
+      value: -8.96
       objectReference: {fileID: 0}
     - target: {fileID: 267952418115976589, guid: b26c43d3b4ca99849b4d9557e1391926, type: 3}
       propertyPath: m_LocalPosition.y
@@ -300,10 +296,6 @@ PrefabInstance:
     - target: {fileID: 7756061652513959121, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Name
       value: Action Stage Object - Cliff (Bottom)
-      objectReference: {fileID: 0}
-    - target: {fileID: 9070086229073596719, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
-      propertyPath: m_Size.x
-      value: 29.44
       objectReference: {fileID: 0}
     - target: {fileID: 9070086229073596719, guid: 19be6d4e5a4666c439f7b05bb340232b, type: 3}
       propertyPath: m_Sprite
