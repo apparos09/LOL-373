@@ -191,6 +191,24 @@ namespace RM_EDU
             SetEnemyAttackSfxPaused(false);
         }
 
+        // Returns 'true' if the enemy attack source is playing.
+        public bool IsEnemyAttackSourcePlaying()
+        {
+            return enemyAttackSource.isPlaying;
+        }
+
+        // Returns 'true' if the enemy attack source is marked as being paused.
+        public bool IsEnemyAttackSourceMarkedPaused()
+        {
+            return enemyAttackSourceMarkedPaused;
+        }
+
+        // Returns 'true' if the enemy attack source isn't playing and is marked as paused.
+        public bool IsEnemyAttackSourceNotPlayingAndMarkedPaused()
+        {
+            return enemyAttackSourceMarkedPaused && !enemyAttackSource.isPlaying;
+        }
+
         // Called when the stage is being reset.
         public override void ResetStage()
         {
@@ -205,30 +223,37 @@ namespace RM_EDU
         {
             base.Update();
 
-            // Safety Check
-            // If the enemy attack source is playing.
-            if (enemyAttackSource.isPlaying)
+            // Checks if the stage is playing and runs related code.
+            // This doesn't check for the game being paused since code within this conditional statement...
+            // Is run based on if the game is paused or not.
+            if(actionManager.IsStagePlaying())
             {
-                // If the game is paused and the attack source isn't marked as paused.
-                if(actionManager.IsGamePaused() && !enemyAttackSourceMarkedPaused)
+                // Safety Check
+                // If the enemy attack source is playing.
+                if (enemyAttackSource.isPlaying)
                 {
-                    PauseEnemyAttackSfx();
-                }
+                    // If the game is paused and the attack source isn't marked as paused.
+                    if (actionManager.IsGamePaused() && !enemyAttackSourceMarkedPaused)
+                    {
+                        PauseEnemyAttackSfx();
+                    }
 
-                // No spawned enemies, so stop the attack source.
-                if (actionManager.playerEnemy.spawnedEnemies.Count <= 0)
+                    // No spawned enemies, so stop the attack source.
+                    if (actionManager.playerEnemy.spawnedEnemies.Count <= 0)
+                    {
+                        StopEnemyAttackSfx(true);
+                    }
+                }
+                else
                 {
-                    StopEnemyAttackSfx(true);
+                    // If the game isn't paused but the enemy attack source is paused, unpause it.
+                    if (!actionManager.IsGamePaused() && enemyAttackSourceMarkedPaused)
+                    {
+                        UnpauseEnemyAttackSfx();
+                    }
                 }
             }
-            else
-            {
-                // If the game isn't paused but the enemy attack source is paused, unpause it.
-                if(!actionManager.IsGamePaused() && enemyAttackSourceMarkedPaused)
-                {
-                    UnpauseEnemyAttackSfx();
-                }
-            }
+            
         }
 
         // This function is called when the MonoBehaviour will be destroyed.

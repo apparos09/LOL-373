@@ -115,7 +115,7 @@ MonoBehaviour:
   energyCreationCost: 20
   energyDeathCost: 0
   energyGenerationAmount: 50
-  energyGenerationSpeed: 80
+  energyGenerationSpeed: 70
   attackEnergyCost: 0
   attackPower: 0
   attackSpeed: 0

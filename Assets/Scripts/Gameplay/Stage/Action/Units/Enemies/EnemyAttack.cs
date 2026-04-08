@@ -9,6 +9,9 @@ namespace RM_EDU
     // The enemy attack.
     public class EnemyAttack : MonoBehaviour
     {
+        // The action manager.
+        public ActionManager actionManager;
+
         // The action unit enemy this enemy attack belongs to.
         public ActionUnitEnemy unitEnemy;
 
@@ -53,6 +56,10 @@ namespace RM_EDU
         // Start is called before the first frame update
         void Start()
         {
+            // Gets the action manager.
+            if (actionManager == null)
+                actionManager = ActionManager.Instance;
+
             // Autosets the unit enemy. The attack should be a child of the enemy it belongs to.
             if (unitEnemy == null)
                 unitEnemy = GetComponentInParent<ActionUnitEnemy>();
@@ -277,13 +284,17 @@ namespace RM_EDU
         // Update is called once per frame
         void Update()
         {
-            // If the target is set.
-            if(target != null)
+            // If the stage is playing and the game isn't paused.
+            if(actionManager.IsStagePlayingAndGameUnpaused())
             {
-                // If the target is NOT active and enabled, clear the target.
-                if(!target.isActiveAndEnabled)
+                // If the target is set.
+                if (target != null)
                 {
-                    ClearTarget();
+                    // If the target is NOT active and enabled, clear the target.
+                    if (!target.isActiveAndEnabled)
+                    {
+                        ClearTarget();
+                    }
                 }
             }
         }
@@ -291,44 +302,48 @@ namespace RM_EDU
         // LateUpdate is called every frame, if the Behaviour is enabled
         private void LateUpdate()
         {
-            // The target is set.
-            if(target != null)
+            // The stage is playing and the game isn't paused.
+            if(actionManager.IsStagePlayingAndGameUnpaused())
             {
-                // If the attack should lock to the target's position.
-                if(lockPosToTarget)
+                // The target is set.
+                if (target != null)
                 {
-                    // If the target's position is not the attack's position, move the attack.
-                    if (target.transform.position != transform.position)
+                    // If the attack should lock to the target's position.
+                    if (lockPosToTarget)
                     {
-                        // SetToTargetPosition();
-                        transform.position = target.transform.position;
+                        // If the target's position is not the attack's position, move the attack.
+                        if (target.transform.position != transform.position)
+                        {
+                            // SetToTargetPosition();
+                            transform.position = target.transform.position;
+                        }
                     }
+
                 }
-                
-            }
-            // Target not set.
-            else
-            {
-                // If the attack should lock to a target.
-                if(lockPosToTarget)
+                // Target not set.
+                else
                 {
-                    // If the local position isn't zero, make it zero.
-                    if(transform.localPosition != Vector3.zero)
+                    // If the attack should lock to a target.
+                    if (lockPosToTarget)
                     {
-                        // SetLocalPositionToZero();
-                        transform.localPosition = Vector3.zero;
+                        // If the local position isn't zero, make it zero.
+                        if (transform.localPosition != Vector3.zero)
+                        {
+                            // SetLocalPositionToZero();
+                            transform.localPosition = Vector3.zero;
+                        }
                     }
-                }
 
 
-                // If there is no target, and the enemy attack should turn off...
-                // Under such a circumstance, disable the game object.
-                if(autoInactiveIfNoTarget)
-                {
-                    gameObject.SetActive(false);
+                    // If there is no target, and the enemy attack should turn off...
+                    // Under such a circumstance, disable the game object.
+                    if (autoInactiveIfNoTarget)
+                    {
+                        gameObject.SetActive(false);
+                    }
                 }
-                    
             }
+
         }
 
         // This function is called when the MonoBehaviour will be destroyed.
