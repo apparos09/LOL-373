@@ -512,7 +512,7 @@ namespace RM_EDU
                 new EDU_Page("Also on the top left is the day-night indicator, which shows the time of day. As mentioned, solar power can only be generated during the day.", "trl_firstActionGenerators_02", tutorialsUI.textBox.dayNightIndicatorSprite),
                 new EDU_Page("In the top right is the options button, which opens the options menu. The options menu allows you to quit the stage, reset the stage, and adjust the game's settings.", "trl_firstActionGenerators_03", tutorialsUI.textBox.optionsButtonSprite),
                 new EDU_Page("Also on the top right is the wind indicator, which shows the current wind speed. Generators that are affected by wind speed will be explained later.", "trl_firstActionGenerators_04", tutorialsUI.textBox.windIndicatorSprite),
-                new EDU_Page("In the top middle is the energy display and air pollution display. The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_05"),
+                new EDU_Page("In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_05"),
                 new EDU_Page("With all that covered, let's continue with the stage.", "trl_firstActionGenerators_06"),
             };
 
@@ -560,7 +560,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("You've defeated your first enemy, but there's still more on the way. Now that you have an idea of how action stages work, there's some more tools that you should know about.", "trl_firstActionFirstKill_00"),
-                new EDU_Page("If you have more units than a unit selector can display at once, you use the arrow buttons to switch rows. The arrows on the unit buttons light up if you have enough energy to create the unit they're pointing towards in an adjacent row. A unit button's arrows remain greyed out if they have no unit to point to.", "trl_firstActionFirstKill_01"),
+                new EDU_Page("If you have more units than a unit selector can display at once, you use the arrow buttons to switch rows. The arrows on the unit buttons light up if you have enough energy to create the unit they're pointing towards in an adjacent row. A unit button's arrows remain dark if they have no unit to point to.", "trl_firstActionFirstKill_01", tutorialsUI.textBox.actionUnitButtonsSprite),
                 new EDU_Page("On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button. Since the energy block button has already been covered, it won't be gone over again.", "trl_firstActionFirstKill_02", tutorialsUI.textBox.actionButtonsSprite),
                 new EDU_Page("The stage speed button allows you to speed the stage up. Press the speed button again to return the stage to normal speed.", "trl_firstActionFirstKill_03", tutorialsUI.textBox.stageSpeedSprite),
                 new EDU_Page("The unit deselect button allows you to deselect the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_04", tutorialsUI.textBox.unitDeselectSprite),

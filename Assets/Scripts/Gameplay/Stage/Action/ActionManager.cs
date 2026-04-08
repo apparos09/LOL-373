@@ -432,7 +432,8 @@ namespace RM_EDU
             }
 
             // Give the player a bonus for every lane blaster they have left.
-            laneBlastersBonus = 50.0F * laneBlastersLeft;
+            // Lowerd from 50 to 25 per lane blaster.
+            laneBlastersBonus = 25.0F * laneBlastersLeft;
 
             // Reduce for air pollution.
             float pollutionDeduction = 0;
@@ -440,8 +441,8 @@ namespace RM_EDU
             // If the player user has generated air pollution, calculate a reduction.
             if(playerUser.airPollution > 0)
             {
-                // For every 100 points of air pollution, deduct 20 points.
-                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 100.0F) * 20.0F;
+                // For every 50 points of air pollution, deduct 25 points from the score.
+                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 50.0F) * 25.0F;
             }
 
             // Calculates the bonus. If the bonus is less than 0, make it 0.

@@ -48,6 +48,9 @@ namespace RM_EDU
 
         [Header("Tutorials/Sprites/Action")]
 
+        // Action unit buttons
+        public Sprite actionUnitButtonsSprite;
+
         // Defense types
         public Sprite actionDefenseTypesSprite;
 
