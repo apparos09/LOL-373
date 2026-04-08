@@ -500,7 +500,7 @@ namespace RM_EDU
         // Calculates the movement speed with the provided stat factor.
         public static float CalculateMovementSpeed(float statFactor, float movementSpeed)
         {
-            return movementSpeed / 100.0F * 0.70F * statFactor;
+            return movementSpeed / 100.0F * 0.80F * statFactor;
         }
 
         // Calculates movement speed with a stat factor of 1.

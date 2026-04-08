@@ -62,8 +62,9 @@ namespace RM_EDU
 
         // The enemy unit spawn limit.
         // Uncomment the line below to allow an enemy unit for every row and column tile.
+        // Originally 28 (7 rows * 4 cols).
         // public const int ACTIVE_ENEMY_UNIT_LIMIT = ActionStage.MAP_ROW_COUNT_DEFAULT * ActionStage.MAP_COLUMN_COUNT_DEFAULT; 
-        public const int ACTIVE_ENEMY_UNIT_LIMIT = 28; // 7 rows * 4 cols
+        public const int ACTIVE_ENEMY_UNIT_LIMIT = 15; // 5 rows * 3 cols (15 / 60 = 0.25)
 
         // Start is called before the first frame update
         protected override void Start()
