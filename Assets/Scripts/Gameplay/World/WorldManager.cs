@@ -836,7 +836,7 @@ namespace RM_EDU
         public void CheckTutorials()
         {
             // If tutorials are being used and a tutorial isn't active.
-            if (IsUsingTutorials() && !IsTutorialActive())
+            if (IsUsingTutorialsAndTutorialNotActive())
             {
                 // Gets set to true when a tutorial has started.
                 bool startedTutorial = false;
