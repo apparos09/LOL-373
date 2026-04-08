@@ -77,8 +77,9 @@ MonoBehaviour:
   spriteRenderer: {fileID: 4406130478158325983}
   rigidbody: {fileID: 5253803263663068381}
   moveDirec: {x: 1, y: 0}
-  moveSpeed: 15
+  moveSpeed: 18
   energyDeathCost: 0
+  energyDeathCostFactor: 1
 --- !u!1 &6788233713859977537
 GameObject:
   m_ObjectHideFlags: 0
