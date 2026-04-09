@@ -522,7 +522,7 @@ namespace RM_EDU
                     }
                     else
                     {
-                        result.Add("A non-renewable fossil fuel resource that's crushed into powder and fed to a furnace to produce heat. This heat is used to boil water to make steam, which turns a turbine to produce energy.");
+                        result.Add("A non-renewable fossil fuel resource that's crushed into powder and fed to a furnace to produce heat. This heat is used to boil water to make steam, which then turns a turbine to generate energy.");
                         result.Add("Coal is formed from plant waste in swamps over the course of millions of years. When burned, coal releases carbon dioxide and potentially other harmful minerals into the air. Coal produces more carbon dioxide than oil and natural gas when burned.");
                         result.Add("Coal can be mined underground or on the surface. Surface mining is safer for miners but releases harmful materials into the atmosphere, such as sulfur. Sulfur can combine with water and air to make sulfuric acid, which can damage environments.");
                     }

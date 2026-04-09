@@ -716,7 +716,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("This stage uses the renewable resource hydro. Hydropower uses the flow of water to turn a turbine to generate energy.", "trl_hydro_00", tutorialsUI.textBox.hydroSprite),
-                new EDU_Page("Hydro generators can only be placed in rivers, cannot be next to other hydro generators, and cannot be next to wind turbines in the water. Hydro generators produce small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.", "trl_hydro_01", tutorialsUI.textBox.hydroSprite),
+                new EDU_Page("Hydro generators can only be placed in rivers, cannot be next to other hydro generators, and cannot be next to wind turbines in the water. Hydro generators produce a very small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.", "trl_hydro_01", tutorialsUI.textBox.hydroSprite),
             };
 
             // Sets the bool and loads the tutorial.
@@ -796,7 +796,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page("This stage uses the non-renewable fossil fuel resource natural gas, which is burned to produce gases to spin a turbine to generate energy. Natural gas is often found with coal or oil, is highly flammable, must have its poisonous elements removed before being burned, and releases pollutants when burned.", "trl_naturalGas_00", tutorialsUI.textBox.naturalGasSprite),
-                new EDU_Page("Natural gas generators generate energy for a limited time, produce air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a low rate.", "trl_naturalGas_01", tutorialsUI.textBox.naturalGasSprite),
+                new EDU_Page("Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a low rate.", "trl_naturalGas_01", tutorialsUI.textBox.naturalGasSprite),
             };
 
             // Sets the bool and loads the tutorial.
@@ -811,7 +811,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page("This stage uses the non-renewable resource nuclear. Nuclear power involves splitting uranium atoms to produce heat to boil water, which then produces steam to spin a turbine to generate energy. This reaction produces no pollution, but it creates radioactive waste, which must be stored away to prevent harm to people and/or the environment.", "trl_nuclear_00", tutorialsUI.textBox.nuclearSprite),
+                new EDU_Page("This stage uses the non-renewable resource nuclear. Nuclear power involves splitting uranium atoms to generate heat to boil water, which then produces steam to spin a turbine to generate energy. This reaction produces no pollution, but it creates radioactive waste, which must be stored away to prevent harm to people and/or the environment.", "trl_nuclear_00", tutorialsUI.textBox.nuclearSprite),
                 new EDU_Page("Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, and produce no air pollution. Nuclear generators are automatically destroyed once they deplete their resources but will leave nuclear waste behind if they're destroyed by enemies. No units can be placed on a tile that has nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.", "trl_nuclear_01", tutorialsUI.textBox.nuclearSprite),
             };
 
