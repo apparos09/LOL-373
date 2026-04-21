@@ -183,6 +183,17 @@ namespace RM_EDU
             }
         }
 
+        // Changes full-screen parameter.
+        public bool FullScreen
+        {
+            get { return Screen.fullScreen; }
+
+            set
+            {
+                Screen.fullScreen = value;
+            }
+        }
+
         // Is the audio muted?
         public bool Mute
         {

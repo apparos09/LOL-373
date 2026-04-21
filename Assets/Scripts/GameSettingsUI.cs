@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using util;
 
 
 namespace RM_EDU
@@ -42,6 +43,9 @@ namespace RM_EDU
 
         // the tutorial toggle.
         public Toggle tutorialToggle;
+
+        // The full-screen toggle. This isn't used in the LOL version.
+        public Toggle fullScreenToggle;
 
         // Start is called before the first frame update
         void Start()
@@ -91,6 +95,15 @@ namespace RM_EDU
             //     OnTutorialChange(tutorialToggle);
             // });
 
+            // Sets if the toggle is full-screen or not.
+            fullScreenToggle.isOn = Screen.fullScreen;
+
+            // Disable full-screen if the game is being played in WebGL.
+            fullScreenToggle.interactable = Application.platform != RuntimePlatform.WebGLPlayer;
+
+            // The full-screen toggle is turned off since it goes unused.
+            // NOTE: for a future Windows version, make sure the full-screen toggle is turned on.
+            fullScreenToggle.gameObject.SetActive(false);
 
             // If the SDK isn't initialized, some functions may be unavailable.
             // NOTE: the 'interactable' component of the tutorial toggle isn't changed because...
@@ -110,6 +123,9 @@ namespace RM_EDU
             {
                 // Turn on the tutorial toggle since it should be accessible.
                 tutorialToggle.gameObject.SetActive(true);
+
+                // Since TTS isn't available, turn this off.
+                textToSpeechToggle.isOn = false;
 
                 // Disable the TTS volume slider and toggle.
                 // ttsVolumeSlider.interactable = false; // Unused
@@ -144,6 +160,12 @@ namespace RM_EDU
         public void OnTutorialChange(Toggle toggle)
         {
             gameSettings.UseTutorials = toggle.isOn;
+        }
+
+        // On the full-screen change.
+        public void OnFullScreenChange(Toggle toggle)
+        {
+            gameSettings.FullScreen = toggle.isOn;
         }
 
         // On the bgm volume change.
