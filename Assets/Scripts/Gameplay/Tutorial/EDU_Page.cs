@@ -8,11 +8,14 @@ namespace RM_EDU
     // A page for a text box.
     public class EDU_Page : Page
     {
-        // The language key for the page.
-        public string languageKey = string.Empty;
+        // The language key for the page title.
+        public string titleLanguageKey = string.Empty;
+
+        // The language key for the page text.
+        public string textLanguageKey = string.Empty;
 
         // The speak key for the page.
-        public string speakKey = string.Empty;
+        public string textSpeakKey = string.Empty;
 
         // The display sprite for the page.
         public Sprite displaySprite = null;
@@ -42,20 +45,21 @@ namespace RM_EDU
         }
 
         // Adds a page with text and a language/speak key.
-        public EDU_Page(string text, string languageKey) : base(text)
+        public EDU_Page(string text, string textLanguageKey) : base(text)
         {
             // Sets the language key and translates the text.
-            SetLanguageText(languageKey, true);
+            TranslateText(textLanguageKey, true);
 
             // Adds the speak text callback.
             AddSpeakTextCallback();
         }
 
         // Adds a page with text and a language/speak key.
-        public EDU_Page(string text, string languageKey, Sprite displaySprite) : base(text)
+        public EDU_Page(string text, string textLanguageKey, Sprite displaySprite) : base(text)
         {
             // Sets the language key and translates the text.
-            SetLanguageText(languageKey, true);
+            // Also sets the language key to the speak key.
+            TranslateText(textLanguageKey, true);
 
             // Sets the display sprite.
             this.displaySprite = displaySprite;
@@ -65,22 +69,22 @@ namespace RM_EDU
         }
 
         // Adds a page with text, a langauge key, and a speak key.
-        public EDU_Page(string text, string languageKey, string speakKey) : base(text)
+        public EDU_Page(string text, string textLanguageKey, string textSpeakKey) : base(text)
         {
             // Sets the language key and translates the text.
             // Also sets the speak key, which may be different than the language key.
-            SetLanguageTextAndSpeakKey(languageKey, speakKey);
+            SetTextLanguageKeyAndSpeakKey(textLanguageKey, textSpeakKey);
 
             // Adds the speak text callback.
             AddSpeakTextCallback();
         }
 
         // Adds a page with text, a langauge key, and a speak key.
-        public EDU_Page(string text, string languageKey, string speakKey, Sprite displaySprite) : base(text)
+        public EDU_Page(string text, string textLanguageKey, string textSpeakKey, Sprite displaySprite) : base(text)
         {
             // Sets the language key and translates the text.
             // Also sets the speak key, which may be different than the language key.
-            SetLanguageTextAndSpeakKey(languageKey, speakKey);
+            SetTextLanguageKeyAndSpeakKey(textLanguageKey, textSpeakKey);
 
             // Sets the display sprite.
             this.displaySprite = displaySprite;
@@ -89,61 +93,171 @@ namespace RM_EDU
             AddSpeakTextCallback();
         }
 
-        // Translates the text using the language key.
-        public void SetLanguageText()
+        // Sets the title, the title language key, the text, and the text language key.
+        public EDU_Page(string title, string titleLanguageKey, string text, string textLanguageKey) : base(title, text)
+        {
+            // Sets the title and translates the text.
+            TranslateTitle(titleLanguageKey);
+
+            // Sets the text language key and translates the text.
+            // Also sets the speak key to the language key.
+            TranslateText(textLanguageKey, true);
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Sets the title, title language key, text, text language key, and text speak key.
+        public EDU_Page(string title, string titleLanguageKey, string text, string textLanguageKey, string textSpeakKey) : base(title, text)
+        {
+            // Sets the title and translates the text.
+            TranslateTitle(titleLanguageKey);
+
+            // Sets the language key and translates the text.
+            // Also sets the speak key, which may be different than the language key.
+            SetTextLanguageKeyAndSpeakKey(textLanguageKey, textSpeakKey);
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Sets the title, title language key, text, text language key, and display sprite.
+        public EDU_Page(string title, string titleLanguageKey, string text, string textLanguageKey, Sprite displaySprite) : base(title, text)
+        {
+            // Sets the title and translates the text.
+            TranslateTitle(titleLanguageKey);
+
+            // Sets the text language key and translates the text.
+            // Also sets the speak key to the language key.
+            TranslateText(textLanguageKey, true);
+
+            // Sets the display sprite.
+            this.displaySprite = displaySprite;
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Sets the title, title language key, text, text language key, text speak key, and display sprite.
+        public EDU_Page(string title, string titleLanguageKey, string text, string textLanguageKey, string textSpeakKey, Sprite displaySprite) : base(title, text)
+        {
+            // Sets the title and translates the text.
+            TranslateTitle(titleLanguageKey);
+
+            // Sets the language key and translates the text.
+            // Also sets the speak key, which may be different than the language key.
+            SetTextLanguageKeyAndSpeakKey(textLanguageKey, textSpeakKey);
+
+            // Sets the display sprite.
+            this.displaySprite = displaySprite;
+
+            // Adds the speak text callback.
+            AddSpeakTextCallback();
+        }
+
+        // Translates the title and text for the page title and text.
+        public void TranslateTitleAndText()
+        {
+            // If the LOL Manager is instantiated...
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // Gets the new title and text.
+                string newTitle = LOLManager.GetLanguageTextStatic(titleLanguageKey);
+                string newText = LOLManager.GetLanguageTextStatic(textLanguageKey);
+
+                // If the new text is not null, use it. If the new text is null, use an empty string.
+                title = (newTitle != null) ? newTitle : string.Empty;
+                text = (newText != null) ? newText : string.Empty;
+            }
+        }
+
+        // Sets the title language text (translation).
+        public void TranslateTitle()
+        {
+            // If the LOL Manager is instantiated...
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // Gets the new title text.
+                string newTitle = LOLManager.GetLanguageTextStatic(titleLanguageKey);
+
+                // If the new text is not null, use it. If the new text is null, use an empty string.
+                text = (newTitle != null) ? newTitle : string.Empty;
+            }
+        }
+
+        // Sets the title language key and translates the title.
+        public void TranslateTitle(string newTitleLangKey)
+        {
+            titleLanguageKey = newTitleLangKey;
+            TranslateTitle();
+        }
+
+        // Translates the page text using the language key.
+        public void TranslateText()
         {
             // If the LOL Manager is instantiated...
             if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 // Gets the new text.
-                string newText = LOLManager.GetLanguageTextStatic(languageKey);
+                string newText = LOLManager.GetLanguageTextStatic(textLanguageKey);
 
                 // If the new text is not null, use it. If the new text is null, use an empty string.
                 text = (newText != null) ? newText : string.Empty;
             }
         }
 
-        // Sets the language key and translates it.
-        public void SetLanguageText(string newLangKey)
+        // Sets the text language key and translates it.
+        public void TranslateText(string newTextLangKey)
         {
-            languageKey = newLangKey;
-            SetLanguageText();
+            textLanguageKey = newTextLangKey;
+            TranslateText();
         }
 
-        // Sets the language key and translates it.
+        // Sets the text language key and translates it.
         // If setSpeakKey is true, the speak key is also set.
-        public void SetLanguageText(string newLangKey, bool setSpeakKey)
+        public void TranslateText(string newTextLangKey, bool setTextSpeakKey)
         {
             // Sets the language key.
-            SetLanguageText(newLangKey);
+            TranslateText(newTextLangKey);
 
             // If this is also the speak key, set it as the speak key.
-            if (setSpeakKey)
+            if (setTextSpeakKey)
             {
-                SetSpeakKey(newLangKey);
+                SetTextSpeakKey(newTextLangKey);
             }
         }
 
-        // Sets the new speak key.
-        public void SetSpeakKey(string newSpeakKey)
+        // Sets the new text speak key.
+        public void SetTextSpeakKey(string newTextSpeakKey)
         {
-            speakKey = newSpeakKey;
+            textSpeakKey = newTextSpeakKey;
         }
 
-        // Sets the language text key and speak key at the same time.
-        public void SetLanguageTextAndSpeakKey(string newLangKey, string newSpeakKey)
+        // Sets the text language text key and speak key at the same time.
+        public void SetTextLanguageKeyAndSpeakKey(string newTextLangKey, string newTextSpeakKey)
         {
-            SetLanguageText(newLangKey);
-            SetSpeakKey(newSpeakKey);
+            TranslateText(newTextLangKey);
+            SetTextSpeakKey(newTextSpeakKey);
+        }
+
+        // Speaks the title for the tutorial page.
+        public void SpeakTitle()
+        {
+            // If the LOL SDK is initialized, TTS is available, TTS is on, and the title key is set.
+            if (LOLManager.IsTextToSpeechUsableAndEnabled() && titleLanguageKey != string.Empty)
+            {
+                LOLManager.Instance.SpeakText(titleLanguageKey);
+                // TextToSpeech.Instance.SpeakText(speakKey);
+            }
         }
 
         // Speaks the text for the tutorial page.
         public void SpeakText()
         {
-            // If the LOL SDK is initialized, TTS is available, TTS is on.
-            if (LOLManager.IsTextToSpeechUsableAndEnabled() && speakKey != string.Empty)
+            // If the LOL SDK is initialized, TTS is available, TTS is on, and the text speak key is set.
+            if (LOLManager.IsTextToSpeechUsableAndEnabled() && textSpeakKey != string.Empty)
             {
-                LOLManager.Instance.SpeakText(speakKey);
+                LOLManager.Instance.SpeakText(textSpeakKey);
                 // TextToSpeech.Instance.SpeakText(speakKey);
             }
         }
