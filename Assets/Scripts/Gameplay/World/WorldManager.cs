@@ -15,8 +15,10 @@ namespace RM_EDU
         private static bool instanced = false;
 
         // The stage count.
-        // This has been changed from 11 to 9 to reflect the reduction in stages.
-        public const int STAGE_COUNT = 9;
+        // Build V03: this has been changed from 11 to 9 to reflect the reduction in stages.
+        // Build V04: the stage count has been changed from 9 to 8 to reflect the reduction in stages.
+        //  - The game needs a minimum of 8 progress points, so it can't go lower than this.
+        public const int STAGE_COUNT = 8;
 
         // If saving and loading is enabled.
         // NOTE: set this to true when you have the tutorial set up.
