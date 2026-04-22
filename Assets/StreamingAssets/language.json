@@ -416,8 +416,8 @@
       "trl_firstAreaComplete_ttl": 50,
       "trl_firstAreaComplete_txt_00": 500,
 
-      "trl_finalArea_ttl": 50,
-      "trl_finalArea_txt_00": 500,
+      "trl_finalAreaIntro_ttl": 50,
+      "trl_finalAreaIntro_txt_00": 500,
 
 
       "trl_biomass_ttl": 50,
@@ -893,8 +893,8 @@
     "trl_firstAreaComplete_ttl": "First Area Complete",
     "trl_firstAreaComplete_txt_00": "You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the on-screen arrow buttons.",
 
-    "trl_finalArea_ttl": "Final Area Introduction",
-    "trl_finalArea_txt_00": "This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!",
+    "trl_finalAreaIntro_ttl": "Final Area Introduction",
+    "trl_finalAreaIntro_txt_00": "This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!",
 
 
     "trl_biomass_ttl": "Biomass",

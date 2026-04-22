@@ -932,12 +932,12 @@ namespace RM_EDU
                 }
 
                 // Checks if the player has started the final area.
-                if (!startedTutorial && !tutorials.Data.clearedFinalAreaTutorial)
+                if (!startedTutorial && !tutorials.Data.clearedFinalAreaIntroTutorial)
                 {
                     // If the current area is the final area, run the final area tutorial.
                     if (areas.IndexOf(GetCurrentWorldArea()) == areas.Count - 1)
                     {
-                        tutorials.LoadFinalAreaTutorial();
+                        tutorials.LoadFinalAreaIntroTutorial();
                         startedTutorial = true;
                     }
                 }
@@ -1172,7 +1172,7 @@ namespace RM_EDU
             // If any of the area-specific tutorials haven't been cleared...
             // Check for them.
             if(!tutorials.Data.clearedFirstAreaCompleteTutorial || 
-                !tutorials.Data.clearedFinalAreaTutorial)
+                !tutorials.Data.clearedFinalAreaIntroTutorial)
             {
                 checkedTutorials = false;
             }

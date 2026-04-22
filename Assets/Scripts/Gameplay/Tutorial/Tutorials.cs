@@ -33,7 +33,7 @@ namespace RM_EDU
 
             // World - 2
             public bool clearedFirstAreaCompleteTutorial = false;
-            public bool clearedFinalAreaTutorial = false;
+            public bool clearedFinalAreaIntroTutorial = false;
 
             // Natural Resources
             public bool clearedBiomassTutorial = false;
@@ -74,7 +74,7 @@ namespace RM_EDU
 
                 // World - 2
                 copyData.clearedFirstAreaCompleteTutorial = clearedFirstAreaCompleteTutorial;
-                copyData.clearedFinalAreaTutorial = clearedFinalAreaTutorial;
+                copyData.clearedFinalAreaIntroTutorial = clearedFinalAreaIntroTutorial;
 
                 // Natural Resources
                 copyData.clearedBiomassTutorial = clearedBiomassTutorial;
@@ -117,7 +117,7 @@ namespace RM_EDU
 
                 // World - 2
                 clearedFirstAreaCompleteTutorial = pasteData.clearedFirstAreaCompleteTutorial;
-                clearedFinalAreaTutorial = pasteData.clearedFinalAreaTutorial;
+                clearedFinalAreaIntroTutorial = pasteData.clearedFinalAreaIntroTutorial;
 
                 // Natural Resources
                 clearedBiomassTutorial = pasteData.clearedBiomassTutorial;
@@ -133,6 +133,14 @@ namespace RM_EDU
                 clearedOilTutorial = pasteData.clearedOilTutorial;
             }
 
+        }
+
+        // A tutorial info set, which is used to store info for a tutorial.
+        public class TutorialInfo
+        {
+            public string title = "";
+            public string titleKey = "";
+            public List<Page> pages = new List<Page>();
         }
 
         // The singleton instance.
@@ -362,7 +370,8 @@ namespace RM_EDU
         }
 
 
-        // TUTORIAL DATA
+        // TUTORIAL DATA, INFO
+
         // Generates a copy of the tutorials data.
         public TutorialsData GenerateTutorialsDataCopy()
         {
@@ -397,6 +406,21 @@ namespace RM_EDU
         {
             TutorialsData newData = new TutorialsData();
             data.Paste(newData);
+        }
+
+        // Generates tutorial info.
+        public TutorialInfo GenerateTutorialInfo(string title, string titleKey, ref List<Page> pages)
+        {
+            // Creates the info object.
+            TutorialInfo tutorialInfo = new TutorialInfo();
+
+            // Load the info.
+            tutorialInfo.title = title;
+            tutorialInfo.titleKey = titleKey;
+            tutorialInfo.pages.AddRange(pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
         // TUTORIAL LOADING
@@ -455,9 +479,21 @@ namespace RM_EDU
 
 
         // MAIN
+        // GAME INTRO
         // Loads the intro tutorial.
         public void LoadIntroTutorial(bool startTutorial = true)
         {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetIntroTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedIntroTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the intro tutorial info into an object and returns it.
+        public TutorialInfo GetIntroTutorialInfo()
+        {  
             // The title and title translation key.
             string title = "Game Introduction";
             string titleKey = "trl_intro_ttl";
@@ -474,13 +510,33 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "With all that covered, it's time to select a stage. When a stage is selected, it'll show what natural resources it uses. Details on natural resources will be provided when relevant. Please select the available stage, which is an action stage.", "trl_intro_txt_05"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedIntroTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // FIRST ACTION - INTRO
         // Loads the first action stage - intro tutorial.
         public void LoadFirstActionIntroTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstActionIntroTutorialInfo();
+
+            // Add callback for the action manager.
+            if (ActionManager.Instantiated)
+            {
+                tutorialInfo.pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionIntroTutorialStart);
+            }
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionIntroTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the first action tutorial info into an object and returns it.
+        public TutorialInfo GetFirstActionIntroTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Action Stage - Introduction";
@@ -497,19 +553,33 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "When you have a unit selected, it will be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. Two units cannot share the same space, and some units can only use certain spaces. With all that explained, please place a generator unit on the field.", "trl_firstActionIntro_txt_04"),
             };
 
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
+        }
+
+        // FIRST ACTION - GENERATORS
+        // Loads the first action stage - generators tutorial.
+        public void LoadFirstActionGeneratorsTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstActionGeneratorsTutorialInfo();
+
             // Add callback for the action manager.
-            if(ActionManager.Instantiated)
+            if (ActionManager.Instantiated)
             {
-                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionIntroTutorialStart);
+                tutorialInfo.pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionGeneratorsTutorialStart);
             }
 
             // Sets the bool and loads the tutorial.
-            data.clearedFirstActionIntroTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            data.clearedFirstActionGeneratorsTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
         }
 
-        // Loads the first action stage - generators tutorial.
-        public void LoadFirstActionGeneratorsTutorial(bool startTutorial = true)
+        // Loads the first action generators tutorial info into an object and returns it.
+        public TutorialInfo GetFirstActionGeneratorsTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Action Stage - Generators";
@@ -528,19 +598,33 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage.", "trl_firstActionGenerators_txt_06"),
             };
 
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
+        }
+
+        // FIRST ACTION - DEFENSES
+        // Loads the first action stage - defenses tutorial.
+        public void LoadFirstActionDefensesTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstActionDefensesTutorialInfo();
+
             // Add callback for the action manager.
             if (ActionManager.Instantiated)
             {
-                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionGeneratorsTutorialStart);
+                tutorialInfo.pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionDefensesTutorialStart);
             }
 
             // Sets the bool and loads the tutorial.
-            data.clearedFirstActionGeneratorsTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            data.clearedFirstActionDefensesTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
         }
 
-        // Loads the first action stage - defenses tutorial.
-        public void LoadFirstActionDefensesTutorial(bool startTutorial = true)
+        // Loads the first action defenses tutorial info into an object and returns it.
+        public TutorialInfo GetFirstActionDefensesTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Action Stage - Defenses";
@@ -557,24 +641,37 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "With all that explained, back to the stage!", "trl_firstActionDefenses_txt_04"),
             };
 
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
+        }
+
+        // FIRST ACTION - FIRST KILL
+        // Loads the first action stage - first kill tutorial.
+        public void LoadFirstActionFirstKillTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstActionFirstKillTutorialInfo();
+
             // Add callback for the action manager.
             if (ActionManager.Instantiated)
             {
-                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionDefensesTutorialStart);
+                tutorialInfo.pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionFirstKillTutorialStart);
             }
 
             // Sets the bool and loads the tutorial.
-            data.clearedFirstActionDefensesTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            data.clearedFirstActionFirstKillTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
         }
 
-        // Loads the first action stage - first kill tutorial.
-        public void LoadFirstActionFirstKillTutorial(bool startTutorial = true)
+        // Loads the first action defenses tutorial info into an object and returns it.
+        public TutorialInfo GetFirstActionFirstKillTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Action Stage - Enemy Defeated";
             string titleKey = "trl_firstActionFirstKill_ttl";
-
 
             // Create the pages list.
             List<Page> pages = new List<Page>
@@ -589,19 +686,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "With all that explained, let the stage recommence!", "trl_firstActionFirstKill_txt_06"),
             };
 
-            // Add callback for the action manager.
-            if (ActionManager.Instantiated)
-            {
-                pages[0].OnPageOpenedAddCallback(ActionManager.Instance.OnFirstActionFirstKillTutorialStart);
-            }
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstActionFirstKillTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // FIRST ACTION COMPLETE
         // Loads the first action stage complete tutorial.
         public void LoadFirstActionCompleteTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstActionCompleteTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstActionCompleteTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the first action complete tutorial info into an object and returns it.
+        public TutorialInfo GetFirstActionCompleteTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Action Stage Complete";
@@ -614,13 +719,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "You've completed your first action stage! When you complete a stage, sometimes you'll unlock new defense units, which will have their information available in the info log. Relatedly, when a stage is successfully completed, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.", "trl_firstActionComplete_txt_00"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstActionCompleteTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // FIRST KNOWLEDGE - INTRO
         // Loads the first knowledge stage - intro tutorial.
         public void LoadFirstKnowledgeIntroTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstKnowledgeIntroTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstKnowledgeIntroTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the first knowledge - intro tutorial info into an object and returns it.
+        public TutorialInfo GetFirstKnowledgeIntroTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Knowledge Stage - Introduction";
@@ -637,13 +756,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Try to beat the stage with as few verifications as possible. With all that stated, time to start the stage!", "trl_firstKnowledgeIntro_txt_04"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstKnowledgeIntroTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
-        // Loads the first knowledge stage verify tutorial.
+        // FIRST KNOWLEDGE - VERIFY
+        // Loads the first knowledge stage - verify tutorial.
         public void LoadFirstKnowledgeVerifyTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstKnowledgeVerifyTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstKnowledgeVerifyTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the first knowledge verify tutorial info into an object and returns it.
+        public TutorialInfo GetFirstKnowledgeVerifyTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Knowledge Stage - Verification";
@@ -657,13 +790,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "When you complete a knowledge stage, you can get an energy start bonus depending on how many verifications it took. An energy start bonus gives you more energy at the start of your next action stage. If you took too many verifications to beat a knowledge stage, you won't get any energy bonus from that stage.", "trl_firstKnowledgeVerify_txt_01"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstKnowledgeVerifyTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // FIRST KNOWLEDGE COMPLETE
         // Loads the first knowledge stage complete tutorial.
         public void LoadFirstKnowledgeCompleteTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstKnowledgeCompleteTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstKnowledgeCompleteTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the first knowledge complete tutorial info into an object and returns it.
+        public TutorialInfo GetFirstKnowledgeCompleteTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Knowledge Complete";
@@ -676,13 +823,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. As mentioned, the energy start bonus will be applied in your next action stage.", "trl_firstKnowledgeComplete_txt_00"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstKnowledgeCompleteTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // FIRST AREA COMPLETE
         // Loads the first area complete tutorial.
         public void LoadFirstAreaCompleteTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFirstAreaCompleteTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFirstAreaCompleteTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the first area complete tutorial info into an object and returns it.
+        public TutorialInfo GetFirstAreaCompleteTutorialInfo()
         {
             // The title and title translation key.
             string title = "First Area Complete";
@@ -695,34 +856,62 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the on-screen arrow buttons.", "trl_firstAreaComplete_txt_00"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstAreaCompleteTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
-        // Loads the final area start tutorial.
-        public void LoadFinalAreaTutorial(bool startTutorial = true)
+        // FNAL AREA INTRO
+        // Loads the final area intro tutorial.
+        public void LoadFinalAreaIntroTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetFinalAreaIntroTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedFinalAreaIntroTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the final area intro tutorial info into an object and returns it.
+        public TutorialInfo GetFinalAreaIntroTutorialInfo()
         {
             // The title and title translation key.
             string title = "Final Area Introduction";
-            string titleKey = "trl_finalArea_ttl";
+            string titleKey = "trl_finalAreaIntro_ttl";
 
             // Create the pages list.
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!", "trl_finalArea_txt_00"),
+                new EDU_Page(title, titleKey, "This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!", "trl_finalAreaIntro_txt_00"),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedFinalAreaTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
 
-        // Natural Resources //
+        // NATURAL RESOURCES //
+        // BIOMASS
         // Loads the biomass tutorial.
         public void LoadBiomassTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetBiomassTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedBiomassTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the biomass tutorial info into an object and returns it.
+        public TutorialInfo GetBiomassTutorialInfo()
         {
             // The title and title translation key.
             string title = "Biomass";
@@ -736,13 +925,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "A biomass generator can be placed anywhere on land, generates energy regularly, and produces no air pollution. It generates a moderate amount of energy at a slow rate.", "trl_biomass_txt_01", tutorialsUI.textBox.biomassSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedBiomassTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // GEOTHERMAL
         // Loads the geothermal tutorial.
         public void LoadGeothermalTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetGeothermalTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedGeothermalTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the geothermal tutorial info into an object and returns it.
+        public TutorialInfo GetGeothermalTutorialInfo()
         {
             // The title and title translation key.
             string title = "Geothermal";
@@ -756,13 +959,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "A geothermal generator can only be placed on geothermal spots, generates energy perpetually, and produces no air pollution. It generates a high amount of energy at a moderate rate.", "trl_geothermal_txt_01", tutorialsUI.textBox.geothermalSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedGeothermalTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // HYDRO
         // Loads the hydro tutorial.
         public void LoadHydroTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetHydroTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedHydroTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the hydro tutorial info into an object and returns it.
+        public TutorialInfo GetHydroTutorialInfo()
         {
             // The title and title translation key.
             string title = "Hydro";
@@ -776,13 +993,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Hydro generators can only be placed in rivers, cannot be next to other hydro generators, and cannot be next to wind turbines in the water. Hydro generators produce a very small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.", "trl_hydro_txt_01", tutorialsUI.textBox.hydroSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedHydroTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // SOLAR
         // Loads the solar tutorial.
         public void LoadSolarTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetSolarTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedSolarTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the solar tutorial info into an object and returns it.
+        public TutorialInfo GetSolarTutorialInfo()
         {
             // The title and title translation key.
             string title = "Solar";
@@ -796,13 +1027,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Solar generators can be placed anywhere on land, produce no air pollution, and can only be used during the daytime. They produce a moderate amount of energy at a high rate.", "trl_solar_txt_01", tutorialsUI.textBox.solarSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedSolarTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // WAVE
         // Loads the wave tutorial.
         public void LoadWaveTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetWaveTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedWaveTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the wave tutorial info into an object and returns it.
+        public TutorialInfo GetWaveTutorialInfo()
         {
             // The title and title translation key.
             string title = "Wave";
@@ -816,13 +1061,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Wave generators can only be placed in the sea, generate energy based on the wind speed, and produce no air pollution. They produce a moderate amount of energy at varying speeds.", "trl_wave_txt_01", tutorialsUI.textBox.waveSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedWaveTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // WIND
         // Loads the wind tutorial.
         public void LoadWindTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetWindTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedWindTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the wind tutorial info into an object and returns it.
+        public TutorialInfo GetWindTutorialInfo()
         {
             // The title and title translation key.
             string title = "Wind";
@@ -836,13 +1095,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Wind generators can be placed on land or in water tiles close to land. They create no air pollution, and generate energy based on the wind speed. Wind generators produce a moderate amount of energy at varying rates.", "trl_wind_txt_01", tutorialsUI.textBox.windSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedWindTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // COAL
         // Loads the coal tutorial.
         public void LoadCoalTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetCoalTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedCoalTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the coal tutorial info into an object and returns it.
+        public TutorialInfo GetCoalTutorialInfo()
         {
             // The title and title translation key.
             string title = "Coal";
@@ -856,13 +1129,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Coal generators can only be placed on coal spots, generate energy for a limited time, and create a high amount of air pollution. They produce a high amount of energy at a high rate.", "trl_coal_txt_01", tutorialsUI.textBox.coalSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedCoalTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // NATURAL GAS
         // Loads the naturalgas tutorial.
         public void LoadNaturalGasTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetNaturalGasTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedNaturalGasTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the natural gas tutorial info into an object and returns it.
+        public TutorialInfo GetNaturalGasTutorialInfo()
         {
             // The title and title translation key.
             string title = "Natural Gas";
@@ -876,13 +1163,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a low rate.", "trl_naturalGas_txt_01", tutorialsUI.textBox.naturalGasSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedNaturalGasTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // NUCLEAR
         // Loads the nuclear tutorial.
         public void LoadNuclearTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetNuclearTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedNuclearTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the nuclear tutorial info into an object and returns it.
+        public TutorialInfo GetNuclearTutorialInfo()
         {
             // The title and title translation key.
             string title = "Nuclear";
@@ -896,13 +1197,27 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, and produce no air pollution. Nuclear generators are automatically destroyed once they deplete their resources but will leave nuclear waste behind if they're destroyed by enemies. No units can be placed on a tile that has nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.", "trl_nuclear_txt_01", tutorialsUI.textBox.nuclearSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedNuclearTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+
+            // Returns the info.
+            return tutorialInfo;
         }
 
+        // OIL
         // Loads the oil tutorial.
         public void LoadOilTutorial(bool startTutorial = true)
+        {
+            // Gets the tutorial info.
+            TutorialInfo tutorialInfo = GetOilTutorialInfo();
+
+            // Sets the bool and loads the tutorial.
+            data.clearedOilTutorial = true;
+            LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        }
+
+        // Loads the oil tutorial info into an object and returns it.
+        public TutorialInfo GetOilTutorialInfo()
         {
             // The title and title translation key.
             string title = "Oil";
@@ -916,10 +1231,11 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Oil generators can only be placed on oil spots, generate energy for a limited time, and produce high amounts of air pollution. They can also cause oil spills if destroyed by enemies before they've used up their resources. No units can be placed on spots that have oil spills. Oil generators generate a very high amount of energy at a moderate rate.", "trl_oil_txt_01", tutorialsUI.textBox.oilSprite),
             };
 
-            // Sets the bool and loads the tutorial.
-            data.clearedOilTutorial = true;
-            LoadTutorial(ref pages, startTutorial);
-        }
+            // Creates the info object.
+            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
 
+            // Returns the info.
+            return tutorialInfo;
+        }
     }
 }
