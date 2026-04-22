@@ -26,7 +26,7 @@ namespace RM_EDU
         public DayNightOverlay dayNightOverlay;
 
         // The action event overlay.
-        public ActionEventOverlay actionEventOverlay;
+        // public ActionEventOverlay actionEventOverlay;
 
         // The stage start dialog.
         public ActionStageStartDialog stageStartDialog;

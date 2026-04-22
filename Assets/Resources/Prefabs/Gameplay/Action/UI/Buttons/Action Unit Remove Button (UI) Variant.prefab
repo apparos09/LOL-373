@@ -209,9 +209,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3604517035233956085}
-    - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2816970859258568742}
   m_SourcePrefab: {fileID: 100100000, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
 --- !u!114 &1174038030808729301 stripped
 MonoBehaviour:
@@ -246,22 +243,6 @@ MonoBehaviour:
   speakKeyUI: {fileID: 0}
   cardBackgroundSprite: {fileID: 21300000, guid: c479da06b5d92094aa8b0a591b3d6f05, type: 3}
   cardIconSprite: {fileID: 21300000, guid: 209c882526d7cce49af1a45d4548df43, type: 3}
-  eventOverlayTrigger: {fileID: 2816970859258568742}
---- !u!114 &2816970859258568742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188991347527593430}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea48ee03a2983e49a44671c00e74a8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionUI: {fileID: 0}
-  eventText: Remove
-  eventTextKey: kwd_remove
 --- !u!224 &8374261087349262820 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6727819777221657265, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}

@@ -18,7 +18,7 @@ namespace RM_EDU
         public Image iconImage;
 
         // The event overlay trigger for this button.
-        public ActionEventOverlayTrigger eventOverlayTrigger;
+        // public ActionEventOverlayTrigger eventOverlayTrigger;
 
         // Start is called before the first frame update
         void Start()
@@ -55,9 +55,9 @@ namespace RM_EDU
                 playerUser.ClearSelectedActionUnitPrefab();
             }
 
-            // Plays the event if the stage event overlay is enabled.
-            if (ActionManager.Instance.StageEventOverlayEnabled)
-                eventOverlayTrigger.PlayEvent();
+            // // Plays the event if the stage event overlay is enabled.
+            // if (ActionManager.Instance.StageEventOverlayEnabled)
+            //     eventOverlayTrigger.PlayEvent();
         }
     }
 }

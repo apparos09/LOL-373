@@ -193,9 +193,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8844501013846887958}
-    - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5275998252561148636}
   m_SourcePrefab: {fileID: 100100000, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
 --- !u!1 &589331386258950061 stripped
 GameObject:
@@ -219,25 +216,9 @@ MonoBehaviour:
   iconImage: {fileID: 3626100860883603094}
   speedUp: 1
   slowDown: 0
-  eventOverlayTrigger: {fileID: 5275998252561148636}
   speedSlowIconSprite: {fileID: 21300000, guid: 1de57e52418884c488f4784d781197bb, type: 3}
   speedNormalIconSprite: {fileID: 21300000, guid: 19350ea83b2b6b04dae26e28257d2630, type: 3}
   speedFastIconSprite: {fileID: 21300000, guid: 7172dd16254bb774c8a55847ee08cd51, type: 3}
---- !u!114 &5275998252561148636
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 589331386258950061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bea48ee03a2983e49a44671c00e74a8d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actionUI: {fileID: 0}
-  eventText: Speed
-  eventTextKey: kwd_speed
 --- !u!114 &3758023161568717998 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}

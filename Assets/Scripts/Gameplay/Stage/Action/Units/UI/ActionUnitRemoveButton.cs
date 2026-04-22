@@ -25,7 +25,7 @@ namespace RM_EDU
         public Sprite cardIconSprite;
 
         // The event overlay trigger for this button.
-        public ActionEventOverlayTrigger eventOverlayTrigger;
+        // public ActionEventOverlayTrigger eventOverlayTrigger;
 
         // Start is called before the first frame update
         void Start()
@@ -76,9 +76,9 @@ namespace RM_EDU
                 }
             }
 
-            // Plays the event if the stage event overlay is enabled.
-            if(ActionManager.Instance.StageEventOverlayEnabled)
-                eventOverlayTrigger.PlayEvent();
+            // // Plays the event if the stage event overlay is enabled.
+            // if(ActionManager.Instance.StageEventOverlayEnabled)
+            //     eventOverlayTrigger.PlayEvent();
         }
 
         // Gets the remove card's name.

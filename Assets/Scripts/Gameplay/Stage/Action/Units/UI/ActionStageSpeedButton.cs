@@ -26,7 +26,7 @@ namespace RM_EDU
         public bool slowDown = false;
 
         // The event overlay trigger for this button.
-        public ActionEventOverlayTrigger eventOverlayTrigger;
+        // public ActionEventOverlayTrigger eventOverlayTrigger;
 
         [Header("Sprites")]
         // Slow speed icon.
@@ -69,9 +69,9 @@ namespace RM_EDU
             // Changes the stage speed.
             ChangeStageSpeed();
 
-            // Plays the event if the stage event overlay is enabled.
-            if (ActionManager.Instance.StageEventOverlayEnabled)
-                eventOverlayTrigger.PlayEvent();
+            // // Plays the event if the stage event overlay is enabled.
+            // if (ActionManager.Instance.StageEventOverlayEnabled)
+            //     eventOverlayTrigger.PlayEvent();
         }
 
         // Sets the stage speed based on the button's settings.

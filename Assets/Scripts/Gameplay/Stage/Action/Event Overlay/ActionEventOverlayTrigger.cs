@@ -50,7 +50,7 @@ namespace RM_EDU
         {
             // Gets the translated event text and plays the event.
             string text = GetEventTextTranslated();
-            ActionUI.Instance.actionEventOverlay.PlayEvent(text);
+            // ActionUI.Instance.actionEventOverlay.PlayEvent(text);
         }
 
         // Plays the event, setting the event text and event text key.

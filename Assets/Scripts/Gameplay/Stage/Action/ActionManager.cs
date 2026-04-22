@@ -36,7 +36,7 @@ namespace RM_EDU
         public const float STAGE_LENGTH_MAX_SECONDS = 120.0F;
 
         // If 'true', the event overlay is enabled.
-        private bool stageEventOverlayEnabled = true;
+        // private bool stageEventOverlayEnabled = true;
 
         // The stage day timer, which is used to determine the time of day.
         // This is seperate from 'gameTime' which is the real-world time it takes the player to finish the stage.
@@ -461,12 +461,12 @@ namespace RM_EDU
             return finalScore;
         }
 
-        // EVENT OVERLAY
-        // Returns 'true' if the action event overlay is enabled.
-        public bool StageEventOverlayEnabled
-        {
-            get { return stageEventOverlayEnabled; }
-        }
+        // // EVENT OVERLAY
+        // // Returns 'true' if the action event overlay is enabled.
+        // public bool StageEventOverlayEnabled
+        // {
+        //     get { return stageEventOverlayEnabled; }
+        // }
 
         // STAGE SPEED
         // Returns the stage speed, which is the game time scale.
