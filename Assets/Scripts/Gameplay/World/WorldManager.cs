@@ -27,6 +27,11 @@ namespace RM_EDU
         // If 'true', auto saving is enabled.
         private bool autoSavingEnabled = true;
 
+        // If 'true', the game auto saves when the game ends.
+        // If false, the game doesn't save before the game ends.
+        // NOTE: the game doesn't save when the game ends as per a new LOL requirement.
+        private bool autoSaveOnGameEnd = false;
+
         // If 'true', auto saving happens in late start.
         // If false, it happens in InitializeWorld().
         private bool autoSaveInLateStart = true;
@@ -192,18 +197,24 @@ namespace RM_EDU
             // Save the game.
             if(IsSavingAndAutoSavingEnabled() && autoSaveInLateStart)
             {
-                // Gets the save system.
-                SaveSystem saveSystem = SaveSystem.Instance;
+                // If autoSaveOnGameEnd is true, save no matter what.
+                // If autoSaveOnGameEnd is false, only save if not all stages are complete.
+                // If a save should be performed.
+                if(autoSaveOnGameEnd || (!autoSaveOnGameEnd && !AllStagesComplete()))
+                {
+                    // Gets the save system.
+                    SaveSystem saveSystem = SaveSystem.Instance;
 
-                // Auto save the game.
-                SaveGame();
-                
-                // If the save system is set, that means it's been instantiated.
-                // Clears the loaded data so that it doesn't take priority over the data logger.
-                // This is a holdover from the auto save call in Initialize(), but it's also done here...
-                // To be safe.
-                if (saveSystem != null)
-                    saveSystem.ClearLoadedAndLastSaveData();
+                    // Auto save the game.
+                    SaveGame();
+
+                    // If the save system is set, that means it's been instantiated.
+                    // Clears the loaded data so that it doesn't take priority over the data logger.
+                    // This is a holdover from the auto save call in Initialize(), but it's also done here...
+                    // To be safe.
+                    if (saveSystem != null)
+                        saveSystem.ClearLoadedAndLastSaveData();
+                }
             }
 
             // Check for some tutorials.
@@ -1471,8 +1482,16 @@ namespace RM_EDU
             // Submit progress complete.
             SubmitProgressComplete();
 
-            // Save the game one last time.
-            SaveGame();
+            // If the game should auto save on game end...
+            // Of it the game shouldn't auto save in game end, but not all stages are complete...
+            // Save the game on complete.
+            // CompleteGame() should only be called once all stages are complete anyway...
+            // But this check is still here.
+            if(autoSaveOnGameEnd || (!autoSaveOnGameEnd && !AllStagesComplete()))
+            {
+                // Save the game one last time.
+                SaveGame();
+            }
 
             // Go to the results scene.
             LoadResultsScene();

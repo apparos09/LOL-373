@@ -67,10 +67,6 @@ namespace RM_EDU
         [Tooltip("The number of verification attempts.")]
         public int verifyAttempts = 0;
 
-        // The maximum time the player can take on the stage while still getting a time bonus.
-        // If the stage time is past this amount, the time bonus isn't applied.
-        public const float TIME_BONUS_TIME_MAX = 90.0F;
-
         // If 'true', saved matched statements are allowed to be reused.
         // If 'false', they won't be used. If a group has no statements left after removing...
         // All the saved matched statements they're reused anyway.
@@ -1134,20 +1130,84 @@ namespace RM_EDU
                 }
             }
 
-            // The bonus based on how long the player took.
-            float scoreTimeBonus;
+            // Add points for every resource that the stage used.
+            float scoreResourcesBonus = 0.0F;
 
-            // If the stage time is within TIME_BONUS_TIME_MAX, the bonus is applied.
-            if(stageTimer >= 0.0F && stageTimer <= TIME_BONUS_TIME_MAX)
+            // Goes through all the resources.
+            foreach (KnowledgeResource resource in KnowledgeUI.Instance.resources)
+            {
+                // If the resource is active and enabled.
+                if (resource.isActiveAndEnabled)
+                {
+                    // Adds points for every resource. The game doesn't check if a resource is matched...
+                    // Correctly since some resources may go unmatched.
+                    scoreResourcesBonus += 50.0F;
+                }
+            }
+
+            // The bonus based on how long the player took, and the maximum for that bonus.
+            float scoreTimeBonus;
+            float scoreTimeBonusMax;
+
+            // The maximum time the player can take to get the bonus (in seconds).
+            float timeBonusTimeMax;
+
+            // Checks the difficulty to determine the maximum time...
+            // The player can take to get the score time bonus.
+            switch(difficulty)
+            {
+                case 1:
+                    scoreTimeBonusMax = 1000.0F;
+                    timeBonusTimeMax = 170.0F; // 2:50
+                    break;
+                case 2:
+                    scoreTimeBonusMax = 1050.0F;
+                    timeBonusTimeMax = 160.0F; // 2:40
+                    break;
+                case 3:
+                    scoreTimeBonusMax = 1100.0F;
+                    timeBonusTimeMax = 150.0F; // 2:30
+                    break;
+                case 4:
+                    scoreTimeBonusMax = 1150.0F;
+                    timeBonusTimeMax = 140.0F; // 2:20
+                    break;
+                case 5:
+                    scoreTimeBonusMax = 1200.0F;
+                    timeBonusTimeMax = 130.0F; // 2:10
+                    break;
+                case 6:
+                    scoreTimeBonusMax = 1250.0F;
+                    timeBonusTimeMax = 120.0F; // 2:00
+                    break;
+                case 7:
+                    scoreTimeBonusMax = 1300.0F;
+                    timeBonusTimeMax = 110.0F; // 1:50
+                    break;
+                case 8:
+                    scoreTimeBonusMax = 1350.0F;
+                    timeBonusTimeMax = 100.0F; // 1:40
+                    break;
+
+                case 0:
+                case 9:
+                default:
+                    scoreTimeBonusMax = 1400.0F;
+                    timeBonusTimeMax = 90.0F; // 1:30
+                    break;
+            }
+
+            // If the stage time is within timeBonusTimeMax, the bonus is applied.
+            if (stageTimer >= 0.0F && stageTimer <= timeBonusTimeMax)
             {
                 // Calculates the lerp T value.
                 // The closer to the time max the stage time is, the smaller the bonus.
-                float lerpT = stageTimer / TIME_BONUS_TIME_MAX;
+                float lerpT = stageTimer / timeBonusTimeMax;
 
                 // Calculates the time bonus and ceil rounds up.
-                scoreTimeBonus = Mathf.Ceil(Mathf.Lerp(1000.0F, 0.0F, lerpT));
+                scoreTimeBonus = Mathf.Ceil(Mathf.Lerp(scoreTimeBonusMax, 0.0F, lerpT));
             }
-            // The stage took more than a moin
+            // The stage took more than the maximum time, so no time bonus.
             else
             {
                 scoreTimeBonus = 0.0F;
@@ -1190,7 +1250,8 @@ namespace RM_EDU
             }
 
             // Calculate the score total by adding the score base to the bonuses.
-            float scoreTotal = scoreBase + scoreTimeBonus + scoreVerifyBonus;
+            // Bonuses: resources bonus, time bonus, and verify bonus.
+            float scoreTotal = scoreBase + scoreResourcesBonus + scoreTimeBonus + scoreVerifyBonus;
 
             // Originally, the energy start bonus was overwritten here.
             // Since the energy bonus shouldn't be reset here, that no longer happens here.  

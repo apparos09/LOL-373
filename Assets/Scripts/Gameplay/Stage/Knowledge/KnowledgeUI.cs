@@ -250,8 +250,11 @@ namespace RM_EDU
         {
             OpenDialog(infoLogDialog.gameObject, closeOtherDialogs);
 
-            // Randomize statements, and make the info log button non-interactable.
-            knowledgeManager.RandomizeStatements();
+            // Randomize statements.
+            // NOTE: as of build V04, the statements are no longer randomzied when the info log is opened.
+            // knowledgeManager.RandomizeStatements();
+
+            // Makes the info log button non-interactable.
             infoLogButton.interactable = false;
         }
 
