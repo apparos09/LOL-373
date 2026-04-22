@@ -25,6 +25,9 @@ namespace RM_EDU
         [Tooltip("Slows down the stage when the button is pressed.")]
         public bool slowDown = false;
 
+        // The event overlay trigger for this button.
+        public ActionEventOverlayTrigger eventOverlayTrigger;
+
         [Header("Sprites")]
         // Slow speed icon.
         public Sprite speedSlowIconSprite;
@@ -63,7 +66,12 @@ namespace RM_EDU
         // Called when the button has been pressed.
         public virtual void Select()
         {
+            // Changes the stage speed.
             ChangeStageSpeed();
+
+            // Plays the event if the stage event overlay is enabled.
+            if (ActionManager.Instance.StageEventOverlayEnabled)
+                eventOverlayTrigger.PlayEvent();
         }
 
         // Sets the stage speed based on the button's settings.

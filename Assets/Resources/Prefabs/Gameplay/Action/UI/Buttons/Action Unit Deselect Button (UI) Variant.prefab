@@ -217,6 +217,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8308922157607547356}
+    - targetCorrespondingSourceObject: {fileID: 371772206014555779, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1481501851146242667}
   m_SourcePrefab: {fileID: 100100000, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}
 --- !u!224 &293988740395573198 stripped
 RectTransform:
@@ -243,6 +246,22 @@ MonoBehaviour:
   actionUI: {fileID: 0}
   button: {fileID: 6946849132246798591}
   iconImage: {fileID: 6893613527436141254}
+  eventOverlayTrigger: {fileID: 1481501851146242667}
+--- !u!114 &1481501851146242667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6657091662923660284}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bea48ee03a2983e49a44671c00e74a8d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionUI: {fileID: 0}
+  eventText: Deselect
+  eventTextKey: kwd_deselect
 --- !u!114 &6946849132246798591 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4116953307238763904, guid: e5c56062f5e686e4584a900e743bfac1, type: 3}

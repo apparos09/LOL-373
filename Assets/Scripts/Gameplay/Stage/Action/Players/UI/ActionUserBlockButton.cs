@@ -23,6 +23,9 @@ namespace RM_EDU
         // The block inactive sprite.
         public Sprite blockInactiveSprite;
 
+        // The event overlay trigger for this button.
+        public ActionEventOverlayTrigger eventOverlayTrigger;
+
         // Start is called before the first frame update
         void Start()
         {
@@ -56,6 +59,10 @@ namespace RM_EDU
 
             // Updates the block icon.
             UpdateBlockIcon();
+
+            // Plays the event if the stage event overlay is enabled.
+            if (ActionManager.Instance.StageEventOverlayEnabled)
+                eventOverlayTrigger.PlayEvent();
         }
 
         // Updates the block icon.

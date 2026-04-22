@@ -35,6 +35,9 @@ namespace RM_EDU
         // Day and night are 1 minute each (half of the stage).
         public const float STAGE_LENGTH_MAX_SECONDS = 120.0F;
 
+        // If 'true', the event overlay is enabled.
+        private bool stageEventOverlayEnabled = true;
+
         // The stage day timer, which is used to determine the time of day.
         // This is seperate from 'gameTime' which is the real-world time it takes the player to finish the stage.
         // TODO: loop around to day time.
@@ -386,12 +389,7 @@ namespace RM_EDU
             userDefenseIds = ActionUnitPrefabs.Instance.GenerateDefensePrefabIdList(false, false);
         }
 
-        // STAGE SPEED
-        // Returns the stage speed, which is the game time scale.
-        public float GetStageSpeed()
-        {
-            return GetGameTimeScale();
-        }
+        
 
         // Calculates the stage score.
         public override float CalculateStageScore()
@@ -461,6 +459,20 @@ namespace RM_EDU
 
             // Return the final score.
             return finalScore;
+        }
+
+        // EVENT OVERLAY
+        // Returns 'true' if the action event overlay is enabled.
+        public bool StageEventOverlayEnabled
+        {
+            get { return stageEventOverlayEnabled; }
+        }
+
+        // STAGE SPEED
+        // Returns the stage speed, which is the game time scale.
+        public float GetStageSpeed()
+        {
+            return GetGameTimeScale();
         }
 
         // Sets the stage speed using the provided factor.

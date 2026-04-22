@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace RM_EDU
@@ -23,6 +24,8 @@ namespace RM_EDU
         // The icon for the card.
         public Sprite cardIconSprite;
 
+        // The event overlay trigger for this button.
+        public ActionEventOverlayTrigger eventOverlayTrigger;
 
         // Start is called before the first frame update
         void Start()
@@ -72,6 +75,10 @@ namespace RM_EDU
                     playerUser.EnableRemoveMode();
                 }
             }
+
+            // Plays the event if the stage event overlay is enabled.
+            if(ActionManager.Instance.StageEventOverlayEnabled)
+                eventOverlayTrigger.PlayEvent();
         }
 
         // Gets the remove card's name.
