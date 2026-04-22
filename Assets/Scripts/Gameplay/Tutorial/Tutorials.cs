@@ -62,41 +62,91 @@ namespace RM_EDU
                 // The cleared count.
                 int clearedCount = 0;
 
-                // World - 1
-                clearedCount += clearedIntroTutorial ? 1 : 0;
+                // // OLD
+                // // World - 1
+                // clearedCount += clearedIntroTutorial ? 1 : 0;
+                // 
+                // // Action
+                // clearedCount += clearedFirstActionIntroTutorial ? 1 : 0;
+                // clearedCount += clearedFirstActionGeneratorsTutorial ? 1 : 0;
+                // clearedCount += clearedFirstActionDefensesTutorial ? 1 : 0;
+                // clearedCount += clearedFirstActionFirstKillTutorial ? 1 : 0;
+                // 
+                // // Action Complete (World)
+                // clearedCount += clearedFirstActionCompleteTutorial ? 1 : 0;
+                // 
+                // // Knowledge 
+                // clearedCount += clearedFirstKnowledgeIntroTutorial ? 1 : 0;
+                // clearedCount += clearedFirstKnowledgeVerifyTutorial ? 1 : 0;
+                // 
+                // // Knowledge Complete (World)
+                // clearedCount += clearedFirstKnowledgeCompleteTutorial ? 1 : 0;
+                // 
+                // // World - 2
+                // clearedCount += clearedFirstAreaCompleteTutorial ? 1 : 0;
+                // clearedCount += clearedFinalAreaIntroTutorial ? 1 : 0;
+                // 
+                // // Natural Resources
+                // clearedCount += clearedBiomassTutorial ? 1 : 0;
+                // clearedCount += clearedGeothermalTutorial ? 1 : 0;
+                // clearedCount += clearedHydroTutorial ? 1 : 0;
+                // clearedCount += clearedSolarTutorial ? 1 : 0;
+                // clearedCount += clearedWaveTutorial ? 1 : 0;
+                // clearedCount += clearedWindTutorial ? 1 : 0;
+                // clearedCount += clearedCoalTutorial ? 1 : 0;
+                // clearedCount += clearedNaturalGasTutorial ? 1 : 0;
+                // clearedCount += clearedNuclearTutorial ? 1 : 0;
+                // clearedCount += clearedOilTutorial ? 1 : 0;
 
-                // Action
-                clearedCount += clearedFirstActionIntroTutorial ? 1 : 0;
-                clearedCount += clearedFirstActionGeneratorsTutorial ? 1 : 0;
-                clearedCount += clearedFirstActionDefensesTutorial ? 1 : 0;
-                clearedCount += clearedFirstActionFirstKillTutorial ? 1 : 0;
+                // NEW
+                // The cleared tutorial array.
+                bool[] clearedArr = new bool[]
+                { 
+                    // World - 1
+                    clearedIntroTutorial,
 
-                // Action Complete (World)
-                clearedCount += clearedFirstActionCompleteTutorial ? 1 : 0;
+                    // Action
+                    clearedFirstActionIntroTutorial,
+                    clearedFirstActionGeneratorsTutorial,
+                    clearedFirstActionDefensesTutorial,
+                    clearedFirstActionFirstKillTutorial,
 
-                // Knowledge 
-                clearedCount += clearedFirstKnowledgeIntroTutorial ? 1 : 0;
-                clearedCount += clearedFirstKnowledgeVerifyTutorial ? 1 : 0;
+                    // Action Complete (World)
+                    clearedFirstActionCompleteTutorial,
 
-                // Knowledge Complete (World)
-                clearedCount += clearedFirstKnowledgeCompleteTutorial ? 1 : 0;
+                    // Knowledge 
+                    clearedFirstKnowledgeIntroTutorial,
+                    clearedFirstKnowledgeVerifyTutorial,
 
-                // World - 2
-                clearedCount += clearedFirstAreaCompleteTutorial ? 1 : 0;
-                clearedCount += clearedFinalAreaIntroTutorial ? 1 : 0;
+                    // Knowledge Complete (World)
+                    clearedFirstKnowledgeCompleteTutorial,
 
-                // Natural Resources
-                clearedCount += clearedBiomassTutorial ? 1 : 0;
-                clearedCount += clearedGeothermalTutorial ? 1 : 0;
-                clearedCount += clearedHydroTutorial ? 1 : 0;
-                clearedCount += clearedSolarTutorial ? 1 : 0;
-                clearedCount += clearedWaveTutorial ? 1 : 0;
-                clearedCount += clearedWindTutorial ? 1 : 0;
-                clearedCount += clearedCoalTutorial ? 1 : 0;
-                clearedCount += clearedNaturalGasTutorial ? 1 : 0;
-                clearedCount += clearedNuclearTutorial ? 1 : 0;
-                clearedCount += clearedOilTutorial ? 1 : 0;
+                    // World - 2
+                    clearedFirstAreaCompleteTutorial,
+                    clearedFinalAreaIntroTutorial,
 
+                    // Natural Resources
+                    clearedBiomassTutorial,
+                    clearedGeothermalTutorial,
+                    clearedHydroTutorial,
+                    clearedSolarTutorial,
+                    clearedWaveTutorial,
+                    clearedWindTutorial,
+                    clearedCoalTutorial,
+                    clearedNaturalGasTutorial,
+                    clearedNuclearTutorial,
+                    clearedOilTutorial
+                };
+
+                // Goes through the array.
+                foreach(bool value in clearedArr)
+                {
+                    // If the value is true, add to the cleared count.
+                    if (value)
+                        clearedCount++;
+                }
+
+                // Return the cleared count.
                 return clearedCount;
             }
 

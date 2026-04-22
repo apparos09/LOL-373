@@ -12,7 +12,7 @@ namespace RM_EDU
         // The gameplay UI.
         public GameplayUI gameplayUI;
 
-        [Header("Tutorial")]
+        [Header("Tutorial Info")]
 
         // The tutorial title.
         public TMP_Text tutorialTitle;
@@ -22,6 +22,19 @@ namespace RM_EDU
 
         // The tutorial text.
         public TMP_Text tutorialText;
+
+        // The tutorial page index.
+        protected int tutorialPageIndex = 0;
+
+        // The previous tutorial text page.
+        public Button prevTutorialTextPage;
+
+        // The next tutorial text page.
+        public Button nextTutorialTextPage;
+
+        // The tutorial page text.
+        public TMP_Text tutorialPageText;
+
 
         // Start is called before the first frame update
         void Start()
