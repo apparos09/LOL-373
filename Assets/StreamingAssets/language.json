@@ -60,6 +60,8 @@
       "kwd_entries": 18,
       "kwd_info": 18,
 
+      "kwd_tutorialLog": 28,
+
       "kwd_energyStartBonus": 28,
 
 
@@ -534,6 +536,8 @@
     "kwd_infoLog": "Info Log",
     "kwd_entries": "Entries",
     "kwd_info": "Info",
+
+    "kwd_tutorialLog": "Tutorial Log",
 
     "kwd_energyStartBonus": "Energy Start Bonus",
 

@@ -12,6 +12,9 @@ namespace RM_EDU
         [System.Serializable]
         public class TutorialsData
         {
+            // The tutorial count.
+            public const int TUTORIAL_COUNT = 21;
+
             // World - 1
             public bool clearedIntroTutorial = false;
 
@@ -46,6 +49,56 @@ namespace RM_EDU
             public bool clearedNaturalGasTutorial = false;
             public bool clearedNuclearTutorial = false;
             public bool clearedOilTutorial = false;
+
+            // Gets the tutorials count.
+            public int GetTutorialsCount()
+            {
+                return TUTORIAL_COUNT;
+            }
+
+            // The tutorials cleared count.
+            public int GetTutorialsClearedCount()
+            {
+                // The cleared count.
+                int clearedCount = 0;
+
+                // World - 1
+                clearedCount += clearedIntroTutorial ? 1 : 0;
+
+                // Action
+                clearedCount += clearedFirstActionIntroTutorial ? 1 : 0;
+                clearedCount += clearedFirstActionGeneratorsTutorial ? 1 : 0;
+                clearedCount += clearedFirstActionDefensesTutorial ? 1 : 0;
+                clearedCount += clearedFirstActionFirstKillTutorial ? 1 : 0;
+
+                // Action Complete (World)
+                clearedCount += clearedFirstActionCompleteTutorial ? 1 : 0;
+
+                // Knowledge 
+                clearedCount += clearedFirstKnowledgeIntroTutorial ? 1 : 0;
+                clearedCount += clearedFirstKnowledgeVerifyTutorial ? 1 : 0;
+
+                // Knowledge Complete (World)
+                clearedCount += clearedFirstKnowledgeCompleteTutorial ? 1 : 0;
+
+                // World - 2
+                clearedCount += clearedFirstAreaCompleteTutorial ? 1 : 0;
+                clearedCount += clearedFinalAreaIntroTutorial ? 1 : 0;
+
+                // Natural Resources
+                clearedCount += clearedBiomassTutorial ? 1 : 0;
+                clearedCount += clearedGeothermalTutorial ? 1 : 0;
+                clearedCount += clearedHydroTutorial ? 1 : 0;
+                clearedCount += clearedSolarTutorial ? 1 : 0;
+                clearedCount += clearedWaveTutorial ? 1 : 0;
+                clearedCount += clearedWindTutorial ? 1 : 0;
+                clearedCount += clearedCoalTutorial ? 1 : 0;
+                clearedCount += clearedNaturalGasTutorial ? 1 : 0;
+                clearedCount += clearedNuclearTutorial ? 1 : 0;
+                clearedCount += clearedOilTutorial ? 1 : 0;
+
+                return clearedCount;
+            }
 
             // Copies the tutorial data.
             public TutorialsData Copy()
@@ -302,6 +355,18 @@ namespace RM_EDU
         public TutorialsData Data
         {
             get { return data; }
+        }
+
+        // Gets the tutorials count.
+        public int TutorialsCount
+        {
+            get { return TutorialsData.TUTORIAL_COUNT; }
+        }
+
+        // Gets the tutorials cleared count.
+        public int TutorialsClearedCount
+        {
+            get { return data.GetTutorialsClearedCount(); }
         }
 
         // TUTORIAL FUNCTIONS
