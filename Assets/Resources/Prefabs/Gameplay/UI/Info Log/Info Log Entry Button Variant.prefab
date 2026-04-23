@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Info Log Entry Button Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 885517283239816081, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3315540612192128267, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
       propertyPath: m_text
       value: Info Log Entry

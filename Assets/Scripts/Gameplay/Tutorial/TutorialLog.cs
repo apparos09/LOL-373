@@ -100,12 +100,6 @@ namespace RM_EDU
         // forceLoad: if true, a load is forced. If false, a load only happens if the cleared tutorial count has changed.
         public void LoadTutorialsInfo(bool forceLoad = true)
         {
-            // Mark as updated.
-            tutorialInfosLoaded = true;
-
-            // Clear the current tutorial info.
-            ClearCurrentTutorialInfo();
-
             // Tutorials are instantiated.
             if (Tutorials.Instantiated)
             {
@@ -131,14 +125,24 @@ namespace RM_EDU
                     // Clears the infos.
                     tutorialInfos.Clear();
 
+                    // Clear the current tutorial info.
+                    ClearCurrentTutorialInfo();
+
+                    // If tutorials are being used, only load tutorials that have been cleared.
+                    // If no tutorials are being used, load all tutorials.
+                    bool clearedOnly = (GameSettings.Instantiated) ? GameSettings.Instance.UseTutorials : false;
+
                     // Loads the cleared tutorials.
-                    tutorialInfos = tutorials.GenerateTutorialInfos(true);
+                    tutorialInfos = tutorials.GenerateTutorialInfos(clearedOnly);
                 }
 
                 // Sets the current tutorial info index to 0 and updates the buttons.
                 tutorialInfosIndex = 0;
                 UpdateTutorialInfoEntryButtons();
             }
+
+            // Mark as updated.
+            tutorialInfosLoaded = true;
         }
 
         // Refreshes the tutorials info by doing a force load.
@@ -268,6 +272,7 @@ namespace RM_EDU
             // If the current info isn't null, update the info.
             if (currTutorialInfo != null)
             {
+                currTutorialInfoPageIndex = 0; // Reset page.
                 UpdateCurrentTutorialInfo();
             }
             // Info is now null, so clear the current info.
@@ -384,7 +389,7 @@ namespace RM_EDU
 
             // If the tutorial image sprite is null, turn the object off.
             if(tutorialImage.sprite == null)
-                tutorialImage.gameObject.SetActive(false);
+                tutorialImageDisplay.gameObject.SetActive(false);
 
             // If text-to-speech is usable and enabled, read the page text.
             if (page.textSpeakKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
@@ -415,7 +420,7 @@ namespace RM_EDU
             // Clear the info display image.
             tutorialImageDisplay.gameObject.SetActive(true);
             tutorialImage.sprite = null;
-            tutorialImage.gameObject.SetActive(false);
+            tutorialImageDisplay.SetActive(false);
 
             // Disable page buttons.
             prevTutorialTextPageButton.interactable = false;

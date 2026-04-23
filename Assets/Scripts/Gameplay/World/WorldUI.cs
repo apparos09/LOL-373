@@ -43,6 +43,9 @@ namespace RM_EDU
         // The options dialog.
         public WorldOptionsDialog optionsDialog;
 
+        // The tutorial log dialog.
+        public TutorialLog tutorialLogDialog;
+
         // The game settings.
         public GameSettingsUI settingsDialog;
 
@@ -283,6 +286,7 @@ namespace RM_EDU
             List<GameObject> dialogList = new List<GameObject>
             {
                 optionsDialog.gameObject,
+                tutorialLogDialog.gameObject,
                 settingsDialog.gameObject,
                 infoLogDialog.gameObject
             };
@@ -335,6 +339,25 @@ namespace RM_EDU
         public void CloseOptionsDialog()
         {
             CloseDialog(optionsDialog.gameObject);
+        }
+
+        // Tutorial Log
+        // Returns 'true' if the tutorial log dialog is open.
+        public bool IsTutorialLogDialogOpen()
+        {
+            return tutorialLogDialog.gameObject.activeSelf;
+        }
+
+        // Opens the tutorial log  dialog.
+        public void OpenTutorialLogDialogDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(tutorialLogDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the tutorial log  dialog.
+        public void CloseTutorialLogDialog()
+        {
+            CloseDialog(tutorialLogDialog.gameObject);
         }
 
         // Settings

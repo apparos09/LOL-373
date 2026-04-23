@@ -62,6 +62,12 @@ namespace RM_EDU
             worldUI.QuitWithoutSaving();
         }
 
+        // Opens the tutorials dialog.
+        public void OpenTutorialLogDialog()
+        {
+            worldUI.OpenTutorialLogDialogDialog(true);
+        }
+
         // Opens the settings dialog.
         public void OpenSettingsDialog()
         {
