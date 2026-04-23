@@ -465,8 +465,11 @@ namespace RM_EDU
                 string speakKey = GetCurrentCategoryNameKey();
 
                 // Speak the text.
+                // Don't need to do another check.
                 if (speakKey != "")
-                    SpeakText(speakKey);
+                {
+                    SpeakText(speakKey, false);
+                }
             }
         }
 
@@ -909,7 +912,8 @@ namespace RM_EDU
             if (descKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
             {
                 // Read the description.
-                SpeakText(descKey);
+                // Don't need to do a second check.
+                SpeakText(descKey, false);
             }
         }
 
@@ -1045,19 +1049,23 @@ namespace RM_EDU
         
         // TEXT-TO-SPEECH
         // Speaks text if Text-to-Speech is usable and enabled.
-        public void SpeakText(string key)
+        // checkUsable: if true, this function checks if TTS was usable. If false, just play the function.
+        public void SpeakText(string key, bool checkUsable = true)
         {
-            // If text-to-speech is usable and enabled, speak the text.
-            if(key != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+            // If the function should check for TTS being usable.
+            if(checkUsable)
+            {
+                // If text-to-speech is usable and enabled, speak the text.
+                if (key != "" && LOLManager.IsTextToSpeechUsableAndEnabled())
+                {
+                    LOLManager.Instance.SpeakText(key);
+                }
+            }
+            else
             {
                 LOLManager.Instance.SpeakText(key);
             }
         }
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
     }
 }

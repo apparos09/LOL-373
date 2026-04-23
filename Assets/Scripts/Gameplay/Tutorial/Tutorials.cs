@@ -244,6 +244,32 @@ namespace RM_EDU
             public string title = "";
             public string titleKey = "";
             public List<Page> pages = new List<Page>();
+
+            // Translates the title.
+            public void TranslateTitle()
+            {
+                // If possible, translate the title.
+                if(titleKey != "" && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    title = LOLManager.GetLanguageTextStatic(titleKey);
+                }
+            }
+
+            // Removed since the title should be saved already translated.
+            // // Gets the title translated.
+            // public string GetTitleTranslated()
+            // {
+            //     // If possible, translate the title.
+            //     if(titleKey != "" && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            //     {
+            //         return LOLManager.GetLanguageTextStatic(titleKey);
+            //     }
+            //     // Returns the title.
+            //     else
+            //     {
+            //         return title;
+            //     }
+            // }
         }
 
         // The singleton instance.
@@ -524,7 +550,9 @@ namespace RM_EDU
         }
 
         // Generates tutorial info.
-        public TutorialInfo GenerateTutorialInfo(string title, string titleKey, ref List<Page> pages)
+        // translateTitle: translates the title using the provided title key and saves it to the object if true.
+        //  - The tutorial log assumes the title has already been translated.
+        public TutorialInfo GenerateTutorialInfo(string title, string titleKey, ref List<Page> pages, bool translateTitle = true)
         {
             // Creates the info object.
             TutorialInfo tutorialInfo = new TutorialInfo();
@@ -533,6 +561,16 @@ namespace RM_EDU
             tutorialInfo.title = title;
             tutorialInfo.titleKey = titleKey;
             tutorialInfo.pages.AddRange(pages);
+
+            // If the title should be saved as its translated form.
+            if(translateTitle)
+            {
+                // If tranlsation is available, translate.
+                if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    tutorialInfo.title = LOLManager.GetLanguageTextStatic(titleKey);
+                }
+            }
 
             // Returns the info.
             return tutorialInfo;
