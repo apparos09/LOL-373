@@ -647,7 +647,7 @@ namespace RM_EDU
                 resultList.Add(GetNaturalGasTutorialInfo());
 
             if (!clearedOnly || (clearedOnly && Data.clearedNuclearTutorial))
-                resultList.Add(GetNaturalGasTutorialInfo());
+                resultList.Add(GetNuclearTutorialInfo());
 
             if (!clearedOnly || (clearedOnly && Data.clearedOilTutorial))
                 resultList.Add(GetOilTutorialInfo());

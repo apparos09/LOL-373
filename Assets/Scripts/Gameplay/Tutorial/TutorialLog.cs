@@ -49,6 +49,13 @@ namespace RM_EDU
         // The tutorial image.
         public Image tutorialImage;
 
+        // The display sprite used when a page doesn't have a display image.
+        public Sprite displaySpriteNone;
+
+        // If 'true', display sprite - none is used.
+        // If 'false', when there's no display sprite, the display object is turned off.
+        private bool useDisplaySpriteNone = true;
+
         // The tutorial text.
         public TMP_Text tutorialText;
 
@@ -64,6 +71,12 @@ namespace RM_EDU
         // The tutorial page text.
         public TMP_Text tutorialPageText;
 
+        // Awake is called when the script instance is being loaded
+        private void Awake()
+        {
+            // By default, the tutorial info is cleared.
+            ClearCurrentTutorialInfo();
+        }
 
         // Start is called before the first frame update
         void Start()
@@ -112,8 +125,8 @@ namespace RM_EDU
                 // If the load shouldn't be forced, check if a load is needed.
                 if (!forceLoad)
                 {
-                    // If the counts match, don't reload.
-                    if (tutorialInfos.Count == tutorials.TutorialsClearedCount)
+                    // If the counts match and the count is greater than 0, don't reload.
+                    if (tutorialInfos.Count == tutorials.TutorialsClearedCount && tutorialInfos.Count > 0)
                     {
                         load = false;
                     }
@@ -139,6 +152,16 @@ namespace RM_EDU
                 // Sets the current tutorial info index to 0 and updates the buttons.
                 tutorialInfosIndex = 0;
                 UpdateTutorialInfoEntryButtons();
+            }
+            else
+            {
+                // If the tutorials object doesn't exist, don't show anything.
+
+                // Clears the tutorial infos.
+                tutorialInfos.Clear();
+
+                // Clears the tutorial info by default.
+                ClearCurrentTutorialInfo();
             }
 
             // Mark as updated.
@@ -389,7 +412,15 @@ namespace RM_EDU
 
             // If the tutorial image sprite is null, turn the object off.
             if(tutorialImage.sprite == null)
-                tutorialImageDisplay.gameObject.SetActive(false);
+            {
+                // If display sprite none should be used, set it.
+                if(useDisplaySpriteNone)
+                    tutorialImage.sprite = displaySpriteNone;
+
+                // If the sprite is still null, hide the image display.
+                if(tutorialImage.sprite == null)
+                    tutorialImageDisplay.gameObject.SetActive(false);
+            }                
 
             // If text-to-speech is usable and enabled, read the page text.
             if (page.textSpeakKey != "" && LOLManager.IsTextToSpeechUsableAndEnabled())

@@ -19,6 +19,9 @@ namespace RM_EDU
         // The save and quit button.
         public Button saveQuitButton;
 
+        // The tutoria log button.
+        public Button tutorialLogButton;
+
         // Start is called before the first frame update
         void Start()
         {

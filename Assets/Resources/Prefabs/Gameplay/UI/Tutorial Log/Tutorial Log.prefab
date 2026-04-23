@@ -929,6 +929,7 @@ MonoBehaviour:
   tutorialTitle: {fileID: 3797344327041584895}
   tutorialImageDisplay: {fileID: 1681075355913807261}
   tutorialImage: {fileID: 8914199146821659402}
+  displaySpriteNone: {fileID: 21300000, guid: 73a98b1bc4386f14aa815b1262a87842, type: 3}
   tutorialText: {fileID: 3633280238378996568}
   prevTutorialTextPageButton: {fileID: 3126731854930292764}
   nextTutorialTextPageButton: {fileID: 4492658833571565690}

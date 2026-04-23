@@ -19,6 +19,9 @@ namespace RM_EDU
         // The return to world button.
         public Button worldButton;
 
+        // The tutoria log button.
+        public Button tutorialLogButton;
+
         // The settings button.
         public Button settingsButton;
 
@@ -45,6 +48,11 @@ namespace RM_EDU
             stageUI.QuitStage();
         }
 
+        // Opens the tutorials dialog.
+        public void OpenTutorialLogDialog()
+        {
+            stageUI.OpenTutorialLogDialogDialog(true);
+        }
 
         // Opens the settings dialog.
         public void OpenSettingsDialog()

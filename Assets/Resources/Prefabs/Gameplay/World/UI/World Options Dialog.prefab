@@ -55,6 +55,7 @@ MonoBehaviour:
   worldUI: {fileID: 0}
   saveContButton: {fileID: 5740209947363369788}
   saveQuitButton: {fileID: 119889092565638832}
+  tutorialLogButton: {fileID: 6261457497268747697}
 --- !u!1 &3595445200692939725
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +876,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5875171832961436962, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
   m_PrefabInstance: {fileID: 7138689766972194722}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &6261457497268747697 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3887893929344827923, guid: e501fd75ca92ac443b3b3c03d837b596, type: 3}
+  m_PrefabInstance: {fileID: 7138689766972194722}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &8293811705637768645
 PrefabInstance:
   m_ObjectHideFlags: 0
