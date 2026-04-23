@@ -576,6 +576,86 @@ namespace RM_EDU
             return tutorialInfo;
         }
 
+        // Generates tutorials infos list.
+        public List<TutorialInfo> GenerateTutorialInfos(bool clearedOnly)
+        {
+            // The resulting list.
+            List<TutorialInfo> resultList = new List<TutorialInfo>();
+
+            // World - 1
+            if (!clearedOnly || (clearedOnly && Data.clearedIntroTutorial))
+                resultList.Add(GetIntroTutorialInfo());
+
+            // Action
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstActionIntroTutorial))
+                resultList.Add(GetFirstActionIntroTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstActionGeneratorsTutorial))
+                resultList.Add(GetFirstActionGeneratorsTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstActionDefensesTutorial))
+                resultList.Add(GetFirstActionDefensesTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstActionFirstKillTutorial))
+                resultList.Add(GetFirstActionFirstKillTutorialInfo());
+
+            // Action Complete (World)
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstActionCompleteTutorial))
+                resultList.Add(GetFirstActionCompleteTutorialInfo());
+
+            // Knowledge 
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeIntroTutorial))
+                resultList.Add(GetFirstKnowledgeIntroTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeVerifyTutorial))
+                resultList.Add(GetFirstKnowledgeVerifyTutorialInfo());
+
+            // Knowledge Complete (World)
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeCompleteTutorial))
+                resultList.Add(GetFirstKnowledgeCompleteTutorialInfo());
+
+            // World - 2
+            if (!clearedOnly || (clearedOnly && Data.clearedFirstAreaCompleteTutorial))
+                resultList.Add(GetFirstAreaCompleteTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedFinalAreaIntroTutorial))
+                resultList.Add(GetFinalAreaIntroTutorialInfo());
+
+            // Natural Resources
+            if (!clearedOnly || (clearedOnly && Data.clearedBiomassTutorial))
+                resultList.Add(GetBiomassTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedGeothermalTutorial))
+                resultList.Add(GetGeothermalTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedHydroTutorial))
+                resultList.Add(GetHydroTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedSolarTutorial))
+                resultList.Add(GetSolarTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedWaveTutorial))
+                resultList.Add(GetWaveTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedWindTutorial))
+                resultList.Add(GetWindTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedCoalTutorial))
+                resultList.Add(GetCoalTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedNaturalGasTutorial))
+                resultList.Add(GetNaturalGasTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedNuclearTutorial))
+                resultList.Add(GetNaturalGasTutorialInfo());
+
+            if (!clearedOnly || (clearedOnly && Data.clearedOilTutorial))
+                resultList.Add(GetOilTutorialInfo());
+
+            // Return the resulting list.
+            return resultList;
+        }
+
         // TUTORIAL LOADING
 
         // Loads the tutorial

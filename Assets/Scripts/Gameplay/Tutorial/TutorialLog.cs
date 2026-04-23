@@ -14,11 +14,15 @@ namespace RM_EDU
         // The gameplay UI.
         public GameplayUI gameUI;
 
-        // The current tutorial index.
-        protected int currTutorialInfoIndex = 0;
+        // The tutorial infos index.
+        // This is used to determine what entry buttons to display.
+        protected int tutorialInfosIndex = 0;
 
         // The tutorial infos.
         protected List<Tutorials.TutorialInfo> tutorialInfos = new List<Tutorials.TutorialInfo>();
+
+        // Marks that the tutorial infos have been loaded.
+        private bool tutorialInfosLoaded = false;
 
         // The current tutorial info.
         protected Tutorials.TutorialInfo currTutorialInfo = null;
@@ -67,6 +71,160 @@ namespace RM_EDU
             // If the game UI isn't set, set it.
             if (gameUI == null)
                 gameUI = FindObjectOfType<GameplayUI>();
+
+            // Loads the tutorials info.
+            if(!tutorialInfosLoaded)
+            {
+                LoadTutorialsInfo(false);
+            }
+        }
+
+        // This function is called when the object becomes enabled and active.
+        private void OnEnable()
+        {
+            // Tries to reload the tutorials info if they haven't been updated.
+            if(!tutorialInfosLoaded)
+            {
+                LoadTutorialsInfo(false);
+            }
+        }
+
+        // This function is called when the behaviour becomes disabled or inactive.
+        private void OnDisable()
+        {
+            // Marks this as false so that a reload happens on enable.
+            tutorialInfosLoaded = false;
+        }
+
+        // Loads the tutorial info.
+        // forceLoad: if true, a load is forced. If false, a load only happens if the cleared tutorial count has changed.
+        public void LoadTutorialsInfo(bool forceLoad = true)
+        {
+            // Mark as updated.
+            tutorialInfosLoaded = true;
+
+            // Clear the current tutorial info.
+            ClearCurrentTutorialInfo();
+
+            // Tutorials are instantiated.
+            if (Tutorials.Instantiated)
+            {
+                // Marks that elements should be loaded.
+                bool load = true;
+
+                // Gets the instance.
+                Tutorials tutorials = Tutorials.Instance;
+
+                // If the load shouldn't be forced, check if a load is needed.
+                if (!forceLoad)
+                {
+                    // If the counts match, don't reload.
+                    if (tutorialInfos.Count == tutorials.TutorialsClearedCount)
+                    {
+                        load = false;
+                    }
+                }
+
+                // If elements should be load.
+                if(load)
+                {
+                    // Clears the infos.
+                    tutorialInfos.Clear();
+
+                    // Loads the cleared tutorials.
+                    tutorialInfos = tutorials.GenerateTutorialInfos(true);
+                }
+
+                // Sets the current tutorial info index to 0 and updates the buttons.
+                tutorialInfosIndex = 0;
+                UpdateTutorialInfoEntryButtons();
+            }
+        }
+
+        // Refreshes the tutorials info by doing a force load.
+        public void RefreshTutorialsInfo()
+        {
+            LoadTutorialsInfo(true);
+        }
+
+        // TUTORIAL INFO ENTRY BUTTONS
+        // Sets the current tutorial info entry buttons.
+        public void UpdateTutorialInfoEntryButtons()
+        {
+            // The index of the information being shown.
+            int infoIndex = tutorialInfosIndex;
+
+            // Goes through all buttons.
+            foreach(TutorialLogEntryButton entryButton in tutorialLogEntryButtons)
+            {
+                // The info index is within bounds.
+                if(infoIndex >= 0 && infoIndex < tutorialInfos.Count)
+                {
+                    // Apply the entry info from the index.
+                    entryButton.ApplyEntryInfo(tutorialInfos[infoIndex]);
+                }
+                // Not in bounds, so clear button.
+                else
+                {
+                    entryButton.ClearEntryInfo();
+                }
+
+                // Increase index.
+                infoIndex++;
+            }
+
+            // Checks if there are multiple pages.
+            // Used to make page buttons interactable or non-interactable.
+            bool multPages = tutorialInfos.Count > tutorialLogEntryButtons.Count;
+            prevTutorialsPageButton.interactable = multPages;
+            nextTutorialsPageButton.interactable= multPages;
+        }
+
+        // Clear the tutorial info entry buttons.
+        public void ClearTutorialInfoEntryButtons()
+        {
+            // Goes through all buttons.
+            foreach (TutorialLogEntryButton entryButton in tutorialLogEntryButtons)
+            {
+                entryButton.ClearEntryInfo();
+            }
+        }
+
+        // Goes to the previous tutorial info.
+        public void PreviousTutorialInfoEntryButtons()
+        {
+            // Reduce index by button count.
+            tutorialInfosIndex -= tutorialLogEntryButtons.Count;
+
+            // Bounds check for negative.
+            if (tutorialInfosIndex < 0)
+            {
+                // Reduce the count by the number of log entry buttons.
+                tutorialInfosIndex = tutorialInfos.Count - tutorialLogEntryButtons.Count;
+
+                // If the index is no negative, set it to 0.
+                if (tutorialInfosIndex < 0)
+                    tutorialInfosIndex = 0;
+            }
+
+            // Updates the entry buttons.
+            UpdateTutorialInfoEntryButtons();
+        }
+
+        // Goes to the next tutorial info.
+        public void NextTutorialInfoEntryButtons()
+        {
+            // Increase index by button count.
+            tutorialInfosIndex += tutorialLogEntryButtons.Count;
+
+            // Bounds check for positive.
+            if (tutorialInfosIndex >= tutorialInfos.Count)
+            {
+                tutorialInfosIndex = 0;
+            }
+
+            // Updates the entry buttons.
+            UpdateTutorialInfoEntryButtons();
         }
 
         // CURRENT TUTORIAL INFO
@@ -76,28 +234,29 @@ namespace RM_EDU
             return currTutorialInfo != null;
         }
 
-        // Sets the tutorial info.
-        public void SetCurrentTutorialInfo(int newTutorialInfoIndex)
+        // Sets the tutorial info using the provided index.
+        // NOTE: this doesn't override the saved index, since that's used for the entry buttons.
+        public void SetCurrentTutorialInfo(int tutorialInfoIndex)
         {
-            // Clamp the tutorial info index.
-            currTutorialInfoIndex = Mathf.Clamp(newTutorialInfoIndex, 0, tutorialInfos.Count - 1);
+            // Clamps the index.
+            int indexClamped = Mathf.Clamp(tutorialInfoIndex, 0, tutorialInfos.Count - 1);
 
-            // Index is valid, so get the tutorials info.
-            if(currTutorialInfoIndex >= 0 && currTutorialInfoIndex < tutorialInfos.Count)
+            // Index is valid, so load entry.
+            if(indexClamped >= 0 && indexClamped < tutorialInfos.Count)
             {
-                currTutorialInfo = tutorialInfos[currTutorialInfoIndex];
+                // Sets the current info.
+                currTutorialInfo = tutorialInfos[indexClamped];
+
+                // Sets page to 0, then updates the current tutorial info.
+                currTutorialInfoPageIndex = 0;
+                UpdateCurrentTutorialInfo();
             }
-            // Index is invalid, so set to null.
+            // Invalid index, so clear entry.
             else
             {
-                currTutorialInfo = null;
+                // Clears the info.
+                ClearCurrentTutorialInfo();
             }
-
-            // Sets the page index to 0.
-            currTutorialInfoPageIndex = 0;
-
-            // Updates the current tutorial info.
-            UpdateCurrentTutorialInfo();
         }
 
         // Set the current tutorial info using info.
@@ -122,38 +281,6 @@ namespace RM_EDU
         public void SetCurrentTutorialInfo(TutorialLogEntryButton entryButton)
         {
             SetCurrentTutorialInfo(entryButton.entryInfo);
-        }
-
-        // Goes to the previous tutorial info.
-        public void PreviousTutorialInfo()
-        {
-            // Reduce index.
-            currTutorialInfoIndex--;
-
-            // Bounds check.
-            if (currTutorialInfoIndex < 0)
-            {
-                currTutorialInfoIndex = tutorialInfos.Count - 1;
-            }
-
-            // Sets the tutorial.
-            SetCurrentTutorialInfo(currTutorialInfoIndex);
-        }
-
-        // Goes to the next tutorial info.
-        public void NextTutorialInfo()
-        {
-            // Increase index.
-            currTutorialInfoIndex++;
-
-            // Bounds check.
-            if(currTutorialInfoIndex >= tutorialInfos.Count)
-            {
-                currTutorialInfoIndex = 0;
-            }
-
-            // Sets the tutorial.
-            SetCurrentTutorialInfo(currTutorialInfoIndex);
         }
 
         // CURRENT TUTORIAL INFO PAGE
@@ -277,7 +404,7 @@ namespace RM_EDU
         {
             // Set the current tutorial info to null and reset the indexes.
             currTutorialInfo = null;
-            currTutorialInfoIndex = 0;
+            tutorialInfosIndex = 0;
             currTutorialInfoPageIndex = 0;
 
             // Clear the text.

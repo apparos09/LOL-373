@@ -10,8 +10,8 @@ namespace RM_EDU
         // Speaks text using the provided key.
         public void SpeakText(string key)
         {
-            // Checks if the instances exist.
-            if (GameSettings.Instantiated && LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            // Checks if the instances exist and if the key is set.
+            if (GameSettings.Instantiated && LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && key != "")
             {
                 // Gets the instances.
                 GameSettings gameSettings = GameSettings.Instance;
