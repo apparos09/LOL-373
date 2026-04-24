@@ -429,12 +429,16 @@ MonoBehaviour:
     useTutorial: 1
     tutorialData:
       clearedIntroTutorial: 0
-      clearedFirstActionTutorial: 0
+      clearedFirstActionIntroTutorial: 0
+      clearedFirstActionGeneratorsTutorial: 0
+      clearedFirstActionDefensesTutorial: 0
+      clearedFirstActionFirstKillTutorial: 0
       clearedFirstActionCompleteTutorial: 0
-      clearedFirstKnowledgeTutorial: 0
+      clearedFirstKnowledgeIntroTutorial: 0
+      clearedFirstKnowledgeVerifyTutorial: 0
       clearedFirstKnowledgeCompleteTutorial: 0
       clearedFirstAreaCompleteTutorial: 0
-      clearedFinalAreaTutorial: 0
+      clearedFinalAreaIntroTutorial: 0
       clearedBiomassTutorial: 0
       clearedGeothermalTutorial: 0
       clearedHydroTutorial: 0
@@ -459,12 +463,16 @@ MonoBehaviour:
     useTutorial: 1
     tutorialData:
       clearedIntroTutorial: 0
-      clearedFirstActionTutorial: 0
+      clearedFirstActionIntroTutorial: 0
+      clearedFirstActionGeneratorsTutorial: 0
+      clearedFirstActionDefensesTutorial: 0
+      clearedFirstActionFirstKillTutorial: 0
       clearedFirstActionCompleteTutorial: 0
-      clearedFirstKnowledgeTutorial: 0
+      clearedFirstKnowledgeIntroTutorial: 0
+      clearedFirstKnowledgeVerifyTutorial: 0
       clearedFirstKnowledgeCompleteTutorial: 0
       clearedFirstAreaCompleteTutorial: 0
-      clearedFinalAreaTutorial: 0
+      clearedFinalAreaIntroTutorial: 0
       clearedBiomassTutorial: 0
       clearedGeothermalTutorial: 0
       clearedHydroTutorial: 0
