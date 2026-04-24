@@ -325,18 +325,18 @@ namespace RM_EDU
             // Disables elements that will be enabled by another tutorial.
             if (!tutorials.Data.clearedFirstActionDefensesTutorial)
             {
-                // Disables the defense unit selector and energy block button.
-                actionUI.defenseUnitSelector.gameObject.SetActive(false);
-                actionUI.blockButton.gameObject.SetActive(false);
+                // Disables the defense unit selector.
+                actionUI.defenseUnitSelector.gameObject.SetActive(false);               
             }
 
             // Disables elements that will be enabled by another tutorial.
             if (!tutorials.Data.clearedFirstActionFirstKillTutorial)
             {
-                // Disables the speed up, deselect, and remove buttons.
+                // Disables the speed up, deselect, remove, and block buttons.
                 actionUI.speedButton.gameObject.SetActive(false);
                 actionUI.deselectButton.gameObject.SetActive(false);
                 actionUI.removeButton.gameObject.SetActive(false);
+                actionUI.blockButton.gameObject.SetActive(false);
 
                 // Disables the reset and world buttons.
                 // This is to prevent the player from resetting or leaving the stage before the tutorial ends.
@@ -365,16 +365,16 @@ namespace RM_EDU
         {
             // Activate the defense unit selector and the block button.
             actionUI.defenseUnitSelector.gameObject.SetActive(true);
-            actionUI.blockButton.gameObject.SetActive(true);
         }
 
         // Called when the first action first kill tutorial is starting.
         public void OnFirstActionFirstKillTutorialStart()
         {
-            // Activates the speed button, deselect button, and remove button.
+            // Activates the speed button, deselect button, remove button, and block button.
             actionUI.speedButton.gameObject.SetActive(true);
             actionUI.deselectButton.gameObject.SetActive(true);
             actionUI.removeButton.gameObject.SetActive(true);
+            actionUI.blockButton.gameObject.SetActive(true);
 
             // Enables the reset and world buttons.
             actionUI.optionsDialog.resetButton.interactable = true;
