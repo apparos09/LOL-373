@@ -38,6 +38,9 @@ namespace RM_EDU
         // The next tutorial pages button.
         public Button nextTutorialsPageButton;
 
+        // The tutorials page text.
+        public TMP_Text tutorialsPageText;
+
         [Header("Selected Tutorial Section")]
 
         // The tutorial title.
@@ -69,7 +72,7 @@ namespace RM_EDU
         public Button nextTutorialTextPageButton;
 
         // The tutorial page text.
-        public TMP_Text tutorialPageText;
+        public TMP_Text tutorialTextPageText;
 
         // Awake is called when the script instance is being loaded
         private void Awake()
@@ -200,6 +203,11 @@ namespace RM_EDU
                 infoIndex++;
             }
 
+            // Gets the entry buttons page number and page count.
+            int pageNumber = GetTutorialInfoEntryButtonsPageNumber();
+            int pageCount = GetTutorialInfoEntryButtonsPageCount();
+            tutorialsPageText.text = pageNumber.ToString() + "/" + pageCount.ToString();
+
             // Checks if there are multiple pages.
             // Used to make page buttons interactable or non-interactable.
             bool multPages = tutorialInfos.Count > tutorialLogEntryButtons.Count;
@@ -215,6 +223,9 @@ namespace RM_EDU
             {
                 entryButton.ClearEntryInfo();
             }
+
+            // Clear the entry button page text.
+            tutorialsPageText.text = "-";
         }
 
         // Goes to the previous tutorial info.
@@ -252,6 +263,38 @@ namespace RM_EDU
 
             // Updates the entry buttons.
             UpdateTutorialInfoEntryButtons();
+        }
+
+        // Gets the tutorial info entry buttons page.
+        public int GetTutorialInfoEntryButtonsPageNumber()
+        {
+            // If there are entry buttons, return the page number.
+            if(tutorialLogEntryButtons.Count > 0)
+            {
+                return Mathf.CeilToInt(
+                    (float)(tutorialInfosIndex + tutorialLogEntryButtons.Count) /
+                    tutorialLogEntryButtons.Count);
+            }
+            // No entry butotns, so return 0.
+            else
+            {
+                return 0;
+            }
+        }
+
+        // Gets the tutorial info entry buttons page count.
+        public int GetTutorialInfoEntryButtonsPageCount()
+        {
+            // If there are entry buttons, do the calculation.
+            if(tutorialLogEntryButtons.Count > 0)
+            {
+                return Mathf.CeilToInt((float)tutorialInfos.Count / tutorialLogEntryButtons.Count);
+            }
+            // No buttons, so return 0.
+            else
+            {
+                return 0;
+            }
         }
 
         // CURRENT TUTORIAL INFO
@@ -404,7 +447,7 @@ namespace RM_EDU
             // Set the text.
             tutorialTitle.text = page.title;
             tutorialText.text = page.text;
-            tutorialPageText.text = (currTutorialInfoPageIndex + 1).ToString() + "/" + currTutorialInfo.pages.Count.ToString();
+            tutorialTextPageText.text = (currTutorialInfoPageIndex + 1).ToString() + "/" + currTutorialInfo.pages.Count.ToString();
 
             // Set the display image.
             tutorialImageDisplay.gameObject.SetActive(true);
@@ -446,7 +489,7 @@ namespace RM_EDU
             // Clear the text.
             tutorialTitle.text = "-";
             tutorialText.text = "-";
-            tutorialPageText.text = "-";
+            tutorialTextPageText.text = "-";
 
             // Clear the info display image.
             tutorialImageDisplay.gameObject.SetActive(true);
@@ -457,6 +500,13 @@ namespace RM_EDU
             prevTutorialTextPageButton.interactable = false;
             nextTutorialTextPageButton.interactable = false;
 
+        }
+
+        // Clears the tutorial log entry buttons and the tutorial info.
+        public void ClearTutoriaLogEntryButtonsAndTutorialInfo()
+        {
+            ClearCurrentTutorialInfo();
+            ClearTutorialInfoEntryButtons();
         }
 
         // TEXT-TO-SPEECH

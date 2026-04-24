@@ -542,6 +542,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 3946860175108803513}
   m_SourcePrefab: {fileID: 100100000, guid: d89bb3eda2122ff46994510f9d6be968, type: 3}
+--- !u!114 &534672845180342314 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6017892603178077060, guid: d89bb3eda2122ff46994510f9d6be968, type: 3}
+  m_PrefabInstance: {fileID: 6118231828058135470}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4171026628225150279 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7857134212639028969, guid: d89bb3eda2122ff46994510f9d6be968, type: 3}
@@ -617,6 +628,8 @@ MonoBehaviour:
   boxVisual: {fileID: 8940941043124392247}
   boxTitle: {fileID: 4171026628225150279}
   boxText: {fileID: 4392946942442434423}
+  boxPageNumberText: {fileID: 534672845180342314}
+  showPageNumberAsFraction: 1
   autoNext: 0
   autoNextTimerMax: 5
   autoNextTimer: 0
