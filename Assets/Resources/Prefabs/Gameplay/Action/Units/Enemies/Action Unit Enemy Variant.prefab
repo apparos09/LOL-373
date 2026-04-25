@@ -245,7 +245,7 @@ MonoBehaviour:
   idNumber: 0
   unitName: Enemy
   unitNameKey: emy
-  unitDesc: 
+  unitDesc: []
   unitDescKey: 
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8147518098009090336}
@@ -273,6 +273,7 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 60
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   playerEnemy: {fileID: 0}
   energyDeathCostFactor: 1
   movementDirec: {x: -1, y: 0, z: 0}
@@ -280,6 +281,9 @@ MonoBehaviour:
   enemyRetreatPrefab: {fileID: 4824531729917000575, guid: 37bb43a55bef8124395cd2bd70d5769d, type: 3}
   useEnemyAttack: 1
   useEnemyRetreat: 1
+  neutralSprite: {fileID: 0}
+  attackSprite: {fileID: 0}
+  changeSprites: 1
   unitSpawnAnim: Action Unit Enemy - Spawn Animation
   unitAttackSfx: {fileID: 8300000, guid: 20f4d1de8fba51743bb5f1b0448bdd61, type: 3}
   unitDamagedSfx: {fileID: 8300000, guid: c32fd310b1b1aac4a8c09859887cc649, type: 3}

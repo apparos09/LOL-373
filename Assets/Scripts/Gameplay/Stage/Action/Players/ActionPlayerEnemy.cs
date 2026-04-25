@@ -101,7 +101,7 @@ namespace RM_EDU
             {
                 case 1:
                     energyMax = 200.0F;
-                    spawnTimeMax = 9.0F;
+                    spawnTimeMax = 8.80F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 2;
@@ -112,7 +112,7 @@ namespace RM_EDU
 
                 case 2:
                     energyMax = 225.0F;
-                    spawnTimeMax = 8.875F;
+                    spawnTimeMax = 8.70F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 2;
@@ -123,7 +123,7 @@ namespace RM_EDU
 
                 case 3:
                     energyMax = 250.0F;
-                    spawnTimeMax = 8.75F;
+                    spawnTimeMax = 8.60F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 3;
@@ -135,7 +135,7 @@ namespace RM_EDU
 
                 case 4:
                     energyMax = 275.0F;
-                    spawnTimeMax = 8.625F;
+                    spawnTimeMax = 8.50F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 3;
@@ -147,7 +147,7 @@ namespace RM_EDU
 
                 case 5:
                     energyMax = 300.0F;
-                    spawnTimeMax = 8.5F;
+                    spawnTimeMax = 8.40F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 4;
@@ -160,7 +160,7 @@ namespace RM_EDU
 
                 case 6:
                     energyMax = 325.0F;
-                    spawnTimeMax = 8.375F;
+                    spawnTimeMax = 8.30F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 4;
@@ -173,7 +173,7 @@ namespace RM_EDU
 
                 case 7:
                     energyMax = 350.0F;
-                    spawnTimeMax = 8.25F;
+                    spawnTimeMax = 8.20F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 5;
@@ -186,7 +186,7 @@ namespace RM_EDU
 
                 case 8:
                     energyMax = 375.0F;
-                    spawnTimeMax = 8.125F;
+                    spawnTimeMax = 8.10F;
 
                     enemiesPerSpawnMin = 1;
                     enemiesPerSpawnMax = 5;

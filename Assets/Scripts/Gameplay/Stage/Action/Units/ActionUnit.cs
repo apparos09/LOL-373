@@ -606,8 +606,8 @@ namespace RM_EDU
         // Override this function if the calculation should be changed.
         public virtual float CalculateEnergyGenerationAmount()
         {
-            // Ceil(Amount Stat / Stat Maximum * 10)
-            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 25.0F);
+            // Ceil(Amount Stat / Stat Maximum * 20)
+            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 20.0F);
         }
 
 
@@ -1007,8 +1007,6 @@ namespace RM_EDU
         // Kills the unit.
         public virtual void Kill()
         {
-            // TODO: add animation.
-            
             // Set health to zero.
             health = 0.0F;
 

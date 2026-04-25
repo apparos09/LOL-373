@@ -158,7 +158,7 @@ MonoBehaviour:
   energyDeathCost: 0
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
-  attackEnergyCost: 100
+  attackEnergyCost: 90
   attackPower: 50
   attackSpeed: 60
   attackingEnabled: 1
@@ -167,6 +167,7 @@ MonoBehaviour:
   durability: 60
   movementSpeed: 0
   airPollution: 0
+  projectilePoolDestroyTimer: 0
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
