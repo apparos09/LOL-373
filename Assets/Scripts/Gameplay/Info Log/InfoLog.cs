@@ -953,8 +953,8 @@ namespace RM_EDU
             currEntry = null;
 
             // Clear text.
-            infoNameText.text = "";
-            infoDescText.text = "";
+            infoNameText.text = "-";
+            infoDescText.text = "-";
 
             // Clear the pages and info desc page index.
             infoDescPages.Clear();

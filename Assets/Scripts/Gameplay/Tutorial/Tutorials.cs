@@ -908,7 +908,7 @@ namespace RM_EDU
         public TutorialInfo GetFirstActionFirstKillTutorialInfo()
         {
             // The title and title translation key.
-            string title = "First Action Stage - Enemy Defeated";
+            string title = "First Action Stage - Enemy Unit Defeated";
             string titleKey = "trl_firstActionFirstKill_ttl";
 
             // Create the pages list.
