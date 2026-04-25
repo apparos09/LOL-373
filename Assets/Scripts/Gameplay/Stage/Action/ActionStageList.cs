@@ -354,7 +354,8 @@ namespace RM_EDU
         }
 
         // Generates and returns stage data for stage 04 (unused).
-        // Originally data for final action stage for area 1.
+        // Originally data for final action stage for area 1 (geothermal, hydro, solar, wind, coal, oil).
+        // Stage 04 is now a knowledge stage.
         public static StageGenerationData GenerateStageData04()
         {
             // An empty map to use as a base to make other function.
@@ -462,8 +463,9 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 07
-        // Originally data for final action stage of area 2 (wave, natural gas, biomass, nuclear). 
+        // Generates and returns stage data for stage 07 (unused)
+        // Originally data for final action stage of area 2 (wave, natural gas, biomass, nuclear).
+        // This is now a knowledge stage.
         public static StageGenerationData GenerateStageData07()
         {
             // An empty map to use as a base to make other function.
@@ -499,43 +501,9 @@ namespace RM_EDU
             return data;
         }
 
-        // Generates and returns stage data for stage 08 (unused since stage 8 is a knowledge stage).
+        // Generates and returns stage data for stage 08 (all).
+        // Originally this was stage 09, but since the game only has 8 stages now, this is stage 08.
         public static StageGenerationData GenerateStageData08()
-        {
-            // An empty map to use as a base to make other function.
-            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
-                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
-                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
-                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
-                { "04D", "01A", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
-            };
-
-            // An empty tile overlay.
-            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
-            };
-
-            // Wind array of no wind.
-            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
-
-            // The data object to return.
-            StageGenerationData data = new StageGenerationData();
-
-            // Setting data.
-            data.map = map;
-            data.overlays = overlays;
-            data.windRatings = windRatings;
-
-            return data;
-        }
-
-        // Generates and returns stage data for stage 09 (all).
-        public static StageGenerationData GenerateStageData09()
         {
             // An empty map to use as a base to make other function.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
@@ -558,6 +526,42 @@ namespace RM_EDU
             // Wind array of no wind.
             ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
                 { ActionUnit.statRating.veryLow, ActionUnit.statRating.medium, ActionUnit.statRating.veryHigh};
+
+            // The data object to return.
+            StageGenerationData data = new StageGenerationData();
+
+            // Setting data.
+            data.map = map;
+            data.overlays = overlays;
+            data.windRatings = windRatings;
+
+            return data;
+        }
+
+        // Generates and returns stage data for stage 09 (unused).
+        // Originally there was a stage 9, but now the game only has 8 stages.
+        public static StageGenerationData GenerateStageData09()
+        {
+            // An empty map to use as a base to make other function.
+            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04D", "01A", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
+            };
+
+            // An empty tile overlay.
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+            };
+
+            // Wind array of no wind.
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT];
 
             // The data object to return.
             StageGenerationData data = new StageGenerationData();

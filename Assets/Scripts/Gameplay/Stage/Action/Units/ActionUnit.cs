@@ -606,8 +606,8 @@ namespace RM_EDU
         // Override this function if the calculation should be changed.
         public virtual float CalculateEnergyGenerationAmount()
         {
-            // Ceil(Amount Stat / Stat Maximum * 20)
-            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 20.0F);
+            // Ceil(Amount Stat / Stat Maximum * 22.5)
+            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 22.5F);
         }
 
 
@@ -800,8 +800,8 @@ namespace RM_EDU
         // Calculates the energy creation cost.
         public static float CalculateAttackEnergyCost(float attackEnergyCost)
         {
-            // Divide by 10, multiply by 3.0 and round up to the nearest value.
-            return Mathf.Ceil(attackEnergyCost / 10.0F * 3.0F);
+            // Divide by 10, multiply by 3.25 and round up to the nearest value.
+            return Mathf.Ceil(attackEnergyCost / 10.0F * 3.25F);
         }
 
         // Calculates the attack cooldown time.
