@@ -128,7 +128,7 @@ namespace RM_EDU
         }
 
         // Stops the enemy attack SFX if no one is using it anymore.
-        // ignoreCalls: if true, the enemy attack is stopped and calls are set.
+        // ignoreCalls: if true, the enemy attack SFX is stopped and the call count is set to 0.
         // - If false, the call count is decreased. If there are no more calls, the SFX is stopped.
         public void StopEnemyAttackSfx(bool ignoreCalls)
         {

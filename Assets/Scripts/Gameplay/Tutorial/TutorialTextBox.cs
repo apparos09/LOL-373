@@ -48,14 +48,21 @@ namespace RM_EDU
 
         [Header("Tutorials/Sprites/Action")]
 
+        // Action enemy player bar
+        public Sprite actionEnemyEnergyBarSprite;
+
         // Action unit buttons
         public Sprite actionUnitButtonsSprite;
+        public Sprite actionUnitSelectorArrowsSprite;
+        public Sprite actionUnitSelectedSprite;
 
         // Defense types
         public Sprite actionDefenseTypesSprite;
+        public Sprite actionDefenseLaneBlasterSprite;
 
         // Indicators
         public Sprite dayNightIndicatorSprite;
+        public Sprite energyAirPollutionDisplaySprite;
         public Sprite windIndicatorSprite;
 
         // The action buttons: speed, deselect, remove, and energy block.
@@ -64,6 +71,10 @@ namespace RM_EDU
         public Sprite unitDeselectSprite;
         public Sprite unitRemoveSprite;
         public Sprite energyBlockSprite;
+
+        [Header("Tutorials/Sprites/Knowledge")]
+
+        public Sprite knowledgeStatementsResourcesSprite;
 
         // Start is called before the first frame update
         protected override void Start()

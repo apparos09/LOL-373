@@ -2153,7 +2153,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: idNumber
-      value: 9
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2413287391043541662, guid: 5fa95f5114a0c4449a287269cecc6435, type: 3}
       propertyPath: bgmNumber

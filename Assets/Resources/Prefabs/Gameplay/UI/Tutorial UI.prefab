@@ -668,12 +668,18 @@ MonoBehaviour:
   naturalGasSprite: {fileID: 21300000, guid: 60ae3bb2d337b1c40a735becb7033830, type: 3}
   nuclearSprite: {fileID: 21300000, guid: d679c97814b753745a0829f73d787070, type: 3}
   oilSprite: {fileID: 21300000, guid: 3f5e08bbccdc13b4bb66752f6e968bae, type: 3}
+  actionEnemyEnergyBarSprite: {fileID: 21300000, guid: 6ae25a9362d46504780fc45fae80b29a, type: 3}
   actionUnitButtonsSprite: {fileID: 21300000, guid: 5fbdce38e4f699c41a2ebe3dc73dd718, type: 3}
+  actionUnitSelectorArrowsSprite: {fileID: 21300000, guid: 17887b8c2d19aba45abf0168fd9e9e9f, type: 3}
+  actionUnitSelectedSprite: {fileID: 21300000, guid: b1db7ca3af87947438b42dcba6212c74, type: 3}
   actionDefenseTypesSprite: {fileID: 21300000, guid: fbb830b508f14f040ad3e3e43c02efc3, type: 3}
+  actionDefenseLaneBlasterSprite: {fileID: 21300000, guid: 32d161d585fdd514a8118f068755e755, type: 3}
   dayNightIndicatorSprite: {fileID: 21300000, guid: df110a98350f82f44b0036699bc5f3f4, type: 3}
+  energyAirPollutionDisplaySprite: {fileID: 21300000, guid: 73eb47ddb68368a48a323924cd43dfd7, type: 3}
   windIndicatorSprite: {fileID: 21300000, guid: c6af56f7540f690408605c8a7d332417, type: 3}
   actionButtonsSprite: {fileID: 21300000, guid: 94493836833a57944a2af5738991f3b3, type: 3}
   stageSpeedSprite: {fileID: 21300000, guid: 9de3e3cfa0884e04cbb8aed6bebf6c3f, type: 3}
   unitDeselectSprite: {fileID: 21300000, guid: bd07ea53e4160924a8e7957908caf443, type: 3}
   unitRemoveSprite: {fileID: 21300000, guid: bbc530712c1d0d244bef5516275c6db9, type: 3}
   energyBlockSprite: {fileID: 21300000, guid: 0df2494c424b25845a67695de10020aa, type: 3}
+  knowledgeStatementsResourcesSprite: {fileID: 21300000, guid: 7d3f8689dee6c1742b1ff0b6e139fd5f, type: 3}

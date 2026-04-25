@@ -110,6 +110,10 @@ namespace RM_EDU
         {
             // Marks this as false so that a reload happens on enable.
             tutorialInfosLoaded = false;
+
+            // Clear the current tutorial info.
+            // This is consistent with what happens in the info log.
+            ClearCurrentTutorialInfo();
         }
 
         // Loads the tutorial info.

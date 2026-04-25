@@ -1023,6 +1023,12 @@ namespace RM_EDU
                 actionUI.playerEnemyEnergyBar.SetValueAsPercentage(0, false);
             }
 
+            // If the enemy attack source is playing, make sure it's stopped.
+            // This is to address a glitch where the sound would keep playing because an enemy was attacking...
+            // When the stage ended.
+            if(actionAudio.IsEnemyAttackSourcePlaying())
+                actionAudio.StopEnemyAttackSfx(true);
+
             // Open the end UI.
             actionUI.OpenStageEndDialog();
         }
