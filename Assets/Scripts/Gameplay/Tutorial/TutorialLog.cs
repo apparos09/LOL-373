@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.ParticleSystem;
 
 namespace RM_EDU
 {
@@ -241,12 +239,38 @@ namespace RM_EDU
             // Bounds check for negative.
             if (tutorialInfosIndex < 0)
             {
-                // Reduce the count by the number of log entry buttons.
-                tutorialInfosIndex = tutorialInfos.Count - tutorialLogEntryButtons.Count;
+                // OLD: this method would cause the last page to have an inconsistent...
+                // Amount of buttons set, so this has been changed.
+                // // Reduce the count by the number of log entry buttons.
+                // tutorialInfosIndex = tutorialInfos.Count - tutorialLogEntryButtons.Count;
+                // 
+                // // If the index is now negative, try to position it...
+                // // To show the last entry page to keep pages consistent.
+                // if (tutorialInfosIndex < 0)
+                // {
+                //     tutorialInfosIndex = 0;
+                // }
 
-                // If the index is no negative, set it to 0.
-                if (tutorialInfosIndex < 0)
-                    tutorialInfosIndex = 0;
+                // NEW: uses modulus to calculate the page number.
+                // If the index is now negative, try to position it...
+                // To show the last entry page to keep pages consistent.
+
+                // Gets the remainder from a modulus division operation.
+                int remainder = tutorialInfos.Count % tutorialLogEntryButtons.Count;
+
+                // Calculates the new index by subtracting the remainder...
+                // From the tutorials info count.
+                int newIndex = tutorialInfos.Count - remainder;
+
+                // If the new index is out of bounds, set it to 0.
+                // Out of bounds: lass than 0, or greater than or equal to count.
+                if (newIndex < 0 || newIndex >= tutorialInfos.Count)
+                {
+                    newIndex = 0;
+                }
+
+                // Set to new index.
+                tutorialInfosIndex = newIndex;
             }
 
             // Updates the entry buttons.
