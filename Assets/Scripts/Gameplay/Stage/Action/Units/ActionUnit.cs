@@ -606,8 +606,8 @@ namespace RM_EDU
         // Override this function if the calculation should be changed.
         public virtual float CalculateEnergyGenerationAmount()
         {
-            // Ceil(Amount Stat / Stat Maximum * 22.5)
-            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 22.5F);
+            // Ceil(Amount Stat / Stat Maximum * 22.0)
+            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 22.0F);
         }
 
 

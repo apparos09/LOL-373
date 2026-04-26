@@ -831,7 +831,7 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage.", "trl_firstActionGenerators_txt_01"),
                 new EDU_Page(title, titleKey, "In the top left is the info log button, which opens the info log. The info log is the same as it is in the world area. If you ever need information on what your units do, check the info log.", "trl_firstActionGenerators_txt_02", tutorialsUI.textBox.logButtonSprite),
                 new EDU_Page(title, titleKey, "Also on the top left is the day-night indicator, which shows the time of day. As mentioned, solar power can only be generated during the day.", "trl_firstActionGenerators_txt_03", tutorialsUI.textBox.dayNightIndicatorSprite),
-                new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to quit the stage, reset the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_04", tutorialsUI.textBox.optionsButtonSprite),
+                new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_04", tutorialsUI.textBox.optionsButtonSprite),
                 new EDU_Page(title, titleKey, "Also on the top right is the wind indicator, which shows the current wind speed. Generators that are affected by wind speed will be explained when relevant.", "trl_firstActionGenerators_txt_05", tutorialsUI.textBox.windIndicatorSprite),
                 new EDU_Page(title, titleKey, "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_txt_06", tutorialsUI.textBox.energyAirPollutionDisplaySprite),
                 new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage.", "trl_firstActionGenerators_txt_07"),
@@ -1338,7 +1338,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "This stage uses the renewable resource wind. Wind is used to spin wind turbines to generate energy. Wind turbines can be placed on land or offshore in shallow waters. Wind turbines can't produce energy when there's no wind.", "trl_wind_txt_00", tutorialsUI.textBox.windSprite),
-                new EDU_Page(title, titleKey, "Wind generators can be placed on land or in water tiles close to land. They create no air pollution, and generate energy based on the wind speed. Wind generators produce a moderate amount of energy at varying rates.", "trl_wind_txt_01", tutorialsUI.textBox.windSprite),
+                new EDU_Page(title, titleKey, "Wind generators can be placed on land tiles or on water tiles that are close to land tiles. They create no air pollution, and generate energy based on the wind speed. Wind generators produce a moderate amount of energy at varying speeds.", "trl_wind_txt_01", tutorialsUI.textBox.windSprite),
             };
 
             // Creates the info object.
