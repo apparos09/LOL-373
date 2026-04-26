@@ -868,7 +868,7 @@
     "trl_firstActionIntro_txt_03": "A lane blaster cannot be restored once it's destroyed, but you always get your destroyed lane blasters back at the start of a stage.",
     "trl_firstActionIntro_txt_04": "As mentioned, you place units on the field to fight off enemies, but to create a unit, you need energy. The energy needed to create a unit is displayed on its unit button.",
     "trl_firstActionIntro_txt_05": "Some energy is automatically generated periodically, but it won't be enough to defeat the enemies. To generate more energy, you need to place generator units on the field. Your generator units can be found in the bottom left.",
-    "trl_firstActionIntro_txt_06": "When you have a unit selected, it will be displayed in the bottom middle, and spots on the field will be highlighted to show where the unit can be placed. Two units cannot share the same space, and some units can only use certain tiles.",
+    "trl_firstActionIntro_txt_06": "When you have a unit selected, it'll be displayed in the bottom middle, and spots on the field will be highlighted to show where that unit can be placed. Two units cannot share the same space, and some units can only use certain tiles.",
     "trl_firstActionIntro_txt_07": "With all that explained, please place a generator unit on the field.",
 
     "trl_firstActionGenerators_ttl": "First Action Stage - Generators",
@@ -876,7 +876,7 @@
     "trl_firstActionGenerators_txt_01": "Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage.",
     "trl_firstActionGenerators_txt_02": "In the top left is the info log button, which opens the info log. The info log is the same as it is in the world area. If you ever need information on what your units do, check the info log.",
     "trl_firstActionGenerators_txt_03": "Also on the top left is the day-night indicator, which shows the time of day. As mentioned, solar power can only be generated during the day.",
-    "trl_firstActionGenerators_txt_04": "In the top right is the options button, which opens the options menu. The options menu allows you to quit the stage, reset the stage, and adjust the game's settings.",
+    "trl_firstActionGenerators_txt_04": "In the top right is the options button, which opens the options menu. The options menu allows you to quit the stage, reset the stage, reread tutorials, and adjust the game's settings.",
     "trl_firstActionGenerators_txt_05": "Also on the top right is the wind indicator, which shows the current wind speed. Generators that are affected by wind speed will be explained when relevant.",
     "trl_firstActionGenerators_txt_06": "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.",
     "trl_firstActionGenerators_txt_07": "With all that covered, let's continue with the stage.",
