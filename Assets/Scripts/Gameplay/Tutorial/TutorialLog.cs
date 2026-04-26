@@ -258,9 +258,24 @@ namespace RM_EDU
                 // Gets the remainder from a modulus division operation.
                 int remainder = tutorialInfos.Count % tutorialLogEntryButtons.Count;
 
-                // Calculates the new index by subtracting the remainder...
-                // From the tutorials info count.
-                int newIndex = tutorialInfos.Count - remainder;
+                // The new index that will be set.
+                int newIndex;
+
+                // If the remainder is 0 or less, just subtract the entry button count from the tutorials info count.
+                // This happens if tutorialInfos.Count can be perfectly divided by tutorialLogEntryButtons.Count.
+                // Such a calculation leaves no remainder, thus remainder = 0.
+                if (remainder <= 0)
+                {
+                    // Reduce the count by the number of log entry buttons.
+                    newIndex = tutorialInfos.Count - tutorialLogEntryButtons.Count;
+                }
+                // Remainder isn't 0, so subtract the remainder from the tutorials infos.
+                else
+                {
+                    // Calculates the new index by subtracting the remainder...
+                    // From the tutorials info count.
+                    newIndex = tutorialInfos.Count - remainder;
+                }
 
                 // If the new index is out of bounds, set it to 0.
                 // Out of bounds: lass than 0, or greater than or equal to count.
