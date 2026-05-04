@@ -31,9 +31,10 @@ namespace RM_EDU
         public ActionStage actionStage;
 
         // The total amount of time the stage lasts in seconds.
-        // The stage lasts 2 minutes (120 seconds).
+        // The stage lasts 2:10 (2 minutes, 10 seconds / 130 seconds).
+        // The extra 10 seconds is there because of changes to the enemy player's starting spawn time.
         // Day and night are 1 minute each (half of the stage).
-        public const float STAGE_LENGTH_MAX_SECONDS = 120.0F;
+        public const float STAGE_LENGTH_MAX_SECONDS = 130.0F;
 
         // If 'true', the event overlay is enabled.
         // private bool stageEventOverlayEnabled = true;
@@ -264,7 +265,9 @@ namespace RM_EDU
             playerUser.SetDefensePrefabsFromManager();
 
             // Applies the enemy difficulty and resets the values.
+            // Also sets the spawn timer value to its starting amount rather than its max amount.
             playerEnemy.ApplyDifficulty(true);
+            playerEnemy.SetSpawnTimerToStartingAmount();
 
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();

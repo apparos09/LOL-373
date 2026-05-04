@@ -35,6 +35,13 @@ namespace RM_EDU
         // This should change based on the game difficulty.
         public float spawnTimeMax = 5.0F;
 
+        // The starting spawn timer amount.
+        private float spawnTimeStart = 10.0F;
+
+        // If 'true', the enemy's starting spawn time is a fixed amount.
+        // If 'false', the starting spawn amount is the same as spawn time max.
+        private bool useFixedSpawnStartTime = true;
+
         // The enemy spawn count minimum. This determines the minimum of enemies to spawn eachi nstance.
         [Tooltip("Minimum number of enemies to spawn at once.")]
         public int enemiesPerSpawnMin = ENEMIES_PER_SPAWN_MIN_DEFAULT;
@@ -77,9 +84,10 @@ namespace RM_EDU
                 actionManager.playerEnemy = this;
             }
 
-            // Sets the enemy to max, sets the spaw timer to max, and sets to use all enemy prefabs.
+            // Sets the enemy to max, sets the spaw timer to starting amount, and sets to use all enemy prefabs.
             SetEnergyToMax();
-            SetSpawnTimerToMax();
+            // SetSpawnTimerToMax();
+            SetSpawnTimerToStartingAmount();
 
             // If there are no usable enemy ids, fill the list with all enemies.
             if(enemyIds.Count <= 0)
@@ -88,6 +96,7 @@ namespace RM_EDU
 
         // Applies the game difficulty to the enemy.
         // resetValues: if true, reset the current values to match the current difficulty.
+        //  - NOTE: if the spawn time is reset, it's reset to the max value, not the starting value.
         public void ApplyDifficulty(int difficulty, bool resetValues)
         {
             // Clamps the difficulty from 0 to 9.
@@ -310,6 +319,36 @@ namespace RM_EDU
             spawnTimer = spawnTimeMax;
         }
 
+        // The spawn time starting value.
+        public float SpawnTimeStart
+        {
+            get { return spawnTimeStart; }
+        }
+
+        // Sets the spawn timer to the starting amount.
+        public void SetSpawnTimerToStartingAmount()
+        {
+            // Checks if the spawn timer at the start is the fixed amount.
+            if(useFixedSpawnStartTime)
+            {
+                // If the max is greater than the starting amount, use the max.
+                if(spawnTimeMax > spawnTimeStart)
+                {
+                    spawnTimer = spawnTimeMax;
+                }
+                // If the max amount is less than the starting amount, use the starting amount.
+                else
+                {
+                    spawnTimer = spawnTimeStart;
+                }
+            }
+            // If false, use the regular spawn time max.
+            else
+            {
+                spawnTimer = spawnTimeMax;
+            }
+        }
+
         // Returns the number of spawned enemy units.
         public int GetSpawnedEnemyUnitCount()
         {
@@ -436,9 +475,10 @@ namespace RM_EDU
             KillAllEnemyUnits();
             EnemyRetreat.KillAllEnemyRetreats();
 
-            // Sets the energy to max, and resets the spawn timer to max.
+            // Sets the energy to max, and resets the spawn timer to the starting amount.
             SetEnergyToMax();
-            SetSpawnTimerToMax();
+            // SetSpawnTimerToMax();
+            SetSpawnTimerToStartingAmount();
         }
 
         // Update is called once per frame
