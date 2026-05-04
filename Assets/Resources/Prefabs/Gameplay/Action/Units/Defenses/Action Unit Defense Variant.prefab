@@ -96,6 +96,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2267399927797895862, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_Name
       value: Action Unit Defense Variant
@@ -218,7 +222,7 @@ MonoBehaviour:
   idNumber: 0
   unitName: Defense
   unitNameKey: kwd_defense
-  unitDesc: 
+  unitDesc: []
   unitDescKey: 
   owner: {fileID: 0}
   spriteRenderer: {fileID: 4615263141650489515}
@@ -246,13 +250,14 @@ MonoBehaviour:
   durability: 0
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
+  projectilePoolDestroyTimer: 0
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   defType: 0
   platformSpriteRenderer: {fileID: 8856752449333098905}
+  showAttackEnergyBlocked: 1
 --- !u!50 &8858641744088496366 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3570972780639013001, guid: 09943904bff810340a376831cb22bfec, type: 3}

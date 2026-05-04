@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2267399927797895862, guid: 09943904bff810340a376831cb22bfec, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
     - target: {fileID: 3379537777826579581, guid: 09943904bff810340a376831cb22bfec, type: 3}
       propertyPath: m_Name
       value: Action Unit Generator Variant
@@ -108,7 +112,7 @@ MonoBehaviour:
   idNumber: 0
   unitName: Generator
   unitNameKey: kwd_generator
-  unitDesc: 
+  unitDesc: []
   unitDescKey: 
   owner: {fileID: 0}
   spriteRenderer: {fileID: 2131954471664586210}
@@ -136,7 +140,7 @@ MonoBehaviour:
   durability: 0
   movementSpeed: 0
   airPollution: 0
-  unitDestroyedSfx: {fileID: 8300000, guid: 4c09d55c7eda0d54ba884ea6d664b893, type: 3}
+  projectilePoolDestroyTimer: 0
   validTiles: 
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
