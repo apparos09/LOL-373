@@ -147,8 +147,8 @@ MonoBehaviour:
   energyGenerationAmount: 0
   energyGenerationSpeed: 0
   attackEnergyCost: 0
-  attackPower: 50
-  attackSpeed: 90
+  attackPower: 55
+  attackSpeed: 95
   attackingEnabled: 1
   attackCooldownTimer: 0
   oneHitKill: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   hitCount: 0
   hitLimit: 12
   useHitLimit: 1
-  damageEnergyPercent: 0.25
+  damageEnergyPercent: 0.35
   killTargetsOnHitLimitReached: 1
   energyGenAnim: Action Unit - Flash - Blue Animation
   explosionSfx: {fileID: 8300000, guid: 3e0b40778ee5b704dbeecf6cd91d8000, type: 3}
