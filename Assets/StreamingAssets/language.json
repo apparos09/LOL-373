@@ -270,6 +270,8 @@
       "kwd_remove_abv": 3,
       "kwd_block": 18,
 
+      "kwd_enemiesApproaching": 28,
+
       "kwd_stageOver": 18,
       "asg_msg_stageOver": 100,
       "asg_msg_userWon": 100,
@@ -765,6 +767,8 @@
     "kwd_remove": "Remove",
     "kwd_remove_abv": "RMV",
     "kwd_block": "Block",
+
+    "kwd_enemiesApproaching": "Enemies Approaching!",
 
     "kwd_stageOver": "Stage Over",
     "asg_msg_stageOver": "The stage is over!",
