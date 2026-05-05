@@ -634,21 +634,22 @@ MonoBehaviour:
   boxText: {fileID: 4392946942442434423}
   boxPageNumberText: {fileID: 534672845180342314}
   showPageNumberAsFraction: 1
-  autoNext: 0
+  autoNextEnabled: 0
   autoNextTimerMax: 5
   autoNextTimer: 0
   ttsExtraTime: 1
   addTtsExtraTime: 1
   autoNextTimerPaused: 0
+  useScaledDeltaTime: 0
   closeOnEnd: 1
   prevPageButton: {fileID: 7764213691118358092}
   nextPageButton: {fileID: 5718946925736766873}
   autoDisablePrevButtonOnFirstPage: 1
-  instantText: 1
-  enableAnimationSkip: 1
+  instantText: 0
+  enableAnimationSkip: 0
   enableAnimationBackSkip: 1
   DisableControlsIfAnimSkipDisabled: 1
-  charsPerLoad: 1
+  charsPerLoad: 3
   textSpeed: 0
   tutorialUI: {fileID: 2211305606249259944}
   displayObject: {fileID: 6543226961160049396}

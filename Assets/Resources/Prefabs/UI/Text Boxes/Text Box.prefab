@@ -304,12 +304,13 @@ MonoBehaviour:
   boxText: {fileID: 7502630389405431001}
   boxPageNumberText: {fileID: 6017892603178077060}
   showPageNumberAsFraction: 1
-  autoNext: 0
+  autoNextEnabled: 0
   autoNextTimerMax: 5
   autoNextTimer: 0
   ttsExtraTime: 1
   addTtsExtraTime: 1
   autoNextTimerPaused: 0
+  useScaledDeltaTime: 0
   closeOnEnd: 1
   prevPageButton: {fileID: 4550980167500125666}
   nextPageButton: {fileID: 1996665300996519479}
