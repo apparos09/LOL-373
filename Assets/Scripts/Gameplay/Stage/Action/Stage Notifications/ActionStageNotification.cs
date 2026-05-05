@@ -12,6 +12,9 @@ namespace RM_EDU
         // The action UI.
         public ActionUI actionUI;
 
+        // The visual object.
+        public GameObject visualObject;
+
         // The background image of the notification.
         public Image backgroundImage;
 
@@ -31,12 +34,20 @@ namespace RM_EDU
         // The blink animation.
         public string blinkAnim = "Action Stage Notification - Blinking Animation";
 
+        // If 'true', the notification text is read when the blinking animation is played.
+        [Tooltip("If true, speaks the text when the blinking animation is played if possible")]
+        public bool speakTextOnBlinkStart = true;
+
         // Start is called before the first frame update
         void Start()
         {
             // Gets the action UI instance.
             if (actionUI == null)
                 actionUI = ActionUI.Instance;
+
+            // Makes sure the visual object is off.
+            if (visualObject != null)
+                visualObject.gameObject.SetActive(false);
         }
 
         // Animations
@@ -63,13 +74,32 @@ namespace RM_EDU
         // Called when the blink animation begins.
         public void OnBlinkAnimationStart()
         {
-            // ...
+            // Speaks the text on blink.
+            if(speakTextOnBlinkStart)
+            {
+                SpeakText();
+            }
         }
 
         // Called when the blink animation ends.
         public void OnBlinkAnimationEnd()
         {
             PlayEmptyStateAnimation();
+        }
+
+        // Reads the notification message.
+        public void SpeakText()
+        {
+            // If the key is set, LOL manager is istantiated, the LOL_SDK is instantiated...
+            // And the game settings are instantiated.
+            if(textTranslator.key != "" && LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && GameSettings.Instantiated)
+            {
+                // TTS is enabled.
+                if(GameSettings.Instance.UseTextToSpeech)
+                {
+                    LOLManager.Instance.SpeakText(textTranslator.key);
+                }
+            }
         }
 
         // Update is called once per frame

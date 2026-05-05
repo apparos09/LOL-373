@@ -40,7 +40,7 @@ namespace RM_EDU
         // private bool stageEventOverlayEnabled = true;
 
         // If 'ture', stage notifications are enabled.
-        private bool stageNotificationsEnabled = false;
+        private bool stageNotificationsEnabled = true;
 
         // The stage day timer, which is used to determine the time of day.
         // This is seperate from 'gameTime' which is the real-world time it takes the player to finish the stage.

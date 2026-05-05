@@ -539,7 +539,7 @@ namespace RM_EDU
                     if (!actionUI.playedEnemyApproachNotif)
                     {
                         // If the spawn timer is below 5 seconds, play the enemy approaching notification.
-                        if(spawnTimer < 4.0F)
+                        if(spawnTimer < 3.25F)
                         {
                             actionUI.PlayEnemiesApproachingNotification();
                         }

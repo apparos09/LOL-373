@@ -92,6 +92,18 @@ PrefabInstance:
       propertyPath: m_text
       value: Enemies Approaching!
       objectReference: {fileID: 0}
+    - target: {fileID: 2565387747391075715, guid: 92249bbf9dc508c41a15e736af9015d5, type: 3}
+      propertyPath: m_Color.b
+      value: 0.2584905
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565387747391075715, guid: 92249bbf9dc508c41a15e736af9015d5, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6847344
+      objectReference: {fileID: 0}
+    - target: {fileID: 2565387747391075715, guid: 92249bbf9dc508c41a15e736af9015d5, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2917499800636417553, guid: 92249bbf9dc508c41a15e736af9015d5, type: 3}
       propertyPath: m_IsActive
       value: 0
