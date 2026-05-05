@@ -29,7 +29,7 @@ namespace RM_EDU
         public string emptyStateAnim = "Empty State";
 
         // The blink animation.
-        public string blinkAnim = "Action Stage Notification - Blink Animation";
+        public string blinkAnim = "Action Stage Notification - Blinking Animation";
 
         // Start is called before the first frame update
         void Start()
@@ -63,7 +63,7 @@ namespace RM_EDU
         // Called when the blink animation begins.
         public void OnBlinkAnimationStart()
         {
-
+            // ...
         }
 
         // Called when the blink animation ends.

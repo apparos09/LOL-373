@@ -528,6 +528,23 @@ namespace RM_EDU
                     }
                     
                 }
+
+                // If stage notifications are enabled.
+                if(actionManager.StageNotificationsEnabled)
+                {
+                    // Gets the action UI instance.
+                    ActionUI actionUI = ActionUI.Instance;
+
+                    // If the enemy approaching notification hasn't been played yet.
+                    if (!actionUI.playedEnemyApproachNotif)
+                    {
+                        // If the spawn timer is below 5 seconds, play the enemy approaching notification.
+                        if(spawnTimer < 4.0F)
+                        {
+                            actionUI.PlayEnemiesApproachingNotification();
+                        }
+                    }
+                }
             }
         }
     }

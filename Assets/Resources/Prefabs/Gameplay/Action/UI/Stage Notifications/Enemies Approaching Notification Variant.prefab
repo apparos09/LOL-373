@@ -92,6 +92,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Enemies Approaching!
       objectReference: {fileID: 0}
+    - target: {fileID: 2917499800636417553, guid: 92249bbf9dc508c41a15e736af9015d5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5269093053414610631, guid: 92249bbf9dc508c41a15e736af9015d5, type: 3}
       propertyPath: key
       value: kwd_enemiesApproaching

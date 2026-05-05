@@ -39,6 +39,9 @@ namespace RM_EDU
         // If 'true', the event overlay is enabled.
         // private bool stageEventOverlayEnabled = true;
 
+        // If 'ture', stage notifications are enabled.
+        private bool stageNotificationsEnabled = false;
+
         // The stage day timer, which is used to determine the time of day.
         // This is seperate from 'gameTime' which is the real-world time it takes the player to finish the stage.
         // TODO: loop around to day time.
@@ -470,6 +473,13 @@ namespace RM_EDU
         // {
         //     get { return stageEventOverlayEnabled; }
         // }
+
+        // NOTIFICATION
+        // Returns 'true' if the stage notifications are enabled.
+        public bool StageNotificationsEnabled
+        {
+            get { return stageNotificationsEnabled; }
+        }
 
         // STAGE SPEED
         // Returns the stage speed, which is the game time scale.
@@ -1094,6 +1104,9 @@ namespace RM_EDU
 
             // Resets the stage.
             actionStage.ResetStage();
+
+            // Resets notifications
+            actionUI.playedEnemyApproachNotif = false;
 
             // Updates the UI for the player and enemy.
             actionUI.UpdatePlayerUserUI();

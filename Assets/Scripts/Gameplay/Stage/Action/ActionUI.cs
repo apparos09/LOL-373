@@ -84,6 +84,14 @@ namespace RM_EDU
         // The enemy's energy bar.
         public ProgressBar playerEnemyEnergyBar;
 
+        [Header("Action/Overlays, Notifications")]
+
+        // The enemies approaching notification.
+        public ActionStageNotification enemyApproachNotif;
+
+        // If the enemy approach notification has been played.
+        public bool playedEnemyApproachNotif = false;
+
         // Constructor
         private ActionUI()
         {
@@ -295,6 +303,14 @@ namespace RM_EDU
         public void ToggleBlockUserAttackEnergy()
         {
             SetBlockUserAttackEnergy(!actionManager.playerUser.blockingAttackEnergy);
+        }
+
+        // NOTIFICATIONS //
+        // Plays the enemies approaching notification.
+        public void PlayEnemiesApproachingNotification()
+        {
+            enemyApproachNotif.PlayBlinkingAnimation();
+            playedEnemyApproachNotif = true;
         }
 
         // DIALOGS //

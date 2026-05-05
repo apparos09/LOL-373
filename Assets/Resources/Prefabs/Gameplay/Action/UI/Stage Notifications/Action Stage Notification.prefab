@@ -338,4 +338,4 @@ MonoBehaviour:
   textTranslator: {fileID: 5269093053414610631}
   animator: {fileID: 982041821123488256}
   emptyStateAnim: Empty State
-  blinkAnim: Action Stage Notification - Blink Animation
+  blinkAnim: Action Stage Notification - Blinking Animation
