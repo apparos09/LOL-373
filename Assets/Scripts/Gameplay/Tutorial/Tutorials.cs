@@ -834,7 +834,7 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_04", tutorialsUI.textBox.optionsButtonSprite),
                 new EDU_Page(title, titleKey, "Also on the top right is the wind indicator, which shows the current wind speed. Generators that are affected by wind speed will be explained when relevant.", "trl_firstActionGenerators_txt_05", tutorialsUI.textBox.windIndicatorSprite),
                 new EDU_Page(title, titleKey, "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_txt_06", tutorialsUI.textBox.energyAirPollutionDisplaySprite),
-                new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage.", "trl_firstActionGenerators_txt_07"),
+                new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.", "trl_firstActionGenerators_txt_07"),
             };
 
             // Creates the info object.
