@@ -72,13 +72,14 @@ namespace RM_EDU
         // Gets the energy death cost modified by the cost factor.
         public float GetEnergyDeathCostModified()
         {
-            return energyDeathCost * energyDeathCostFactor;
+            return ActionUnit.CalculateEnergyDeathCost(energyDeathCost, energyDeathCostFactor);
         }
 
         // Kils the retreating enemy.
         protected virtual void Kill()
         {
             // Applies the energy death cost.
+            // This doesn't check for a 0 value since all enemies have a death cost anyway.
             ActionManager.Instance.playerEnemy.DecreaseEnergy(GetEnergyDeathCostModified());
 
             // Destroys this enemy.

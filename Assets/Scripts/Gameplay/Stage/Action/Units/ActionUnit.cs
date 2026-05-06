@@ -890,6 +890,19 @@ namespace RM_EDU
             OnUnitAttacked(null);
         }
 
+        // DEATH COST
+        // Calculates the energy death cost using the provided stat factor.
+        public static float CalculateEnergyDeathCost(float energyDeathCost, float statFactor)
+        {
+            return energyDeathCost * statFactor * 1.15F;
+        }
+
+        // Calculates the energy death cost using unit's vlaue.
+        public virtual float CalculateEnergyDeathCost()
+        {
+            return CalculateEnergyDeathCost(energyDeathCost, statFactor);
+        }
+
         // PROJECTILES //
         // Returns 'true' if the projectile pool is being used.
         public bool UseProjectilePool
@@ -1016,9 +1029,9 @@ namespace RM_EDU
             // Set health to zero.
             health = 0.0F;
 
-            // Reduce the owner's energy by the death cost.
-            if (owner != null)
-                owner.energy -= energyDeathCost;
+            // Reduce the owner's energy by the death cost if value isn't equal to 0.
+            if (owner != null && energyDeathCost != 0)
+                owner.DecreaseEnergy(CalculateEnergyDeathCost());
 
             // If animations are enabled, the death animation is enabled, there is a death animation.
             if(animationsEnabled && deathAnimationEnabled && unitAnimations.HasDeathAnimation())
