@@ -602,12 +602,18 @@ namespace RM_EDU
         }
 
         // ENERGY //
-        // Calculates the energy generation amount.
+        // Calculates the energy generation amount. This is the general static function for it.
+        public static float CalculateEnergyGenerationAmount(float energyGenAmnt)
+        {
+            // Ceil(Amount Stat / Stat Maximum * 23.75)
+            return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 23.75F);
+        }
+
         // Override this function if the calculation should be changed.
         public virtual float CalculateEnergyGenerationAmount()
         {
-            // Ceil(Amount Stat / Stat Maximum * 22.0)
-            return Mathf.Ceil(energyGenerationAmount / BASE_STAT_MAXIMUM * 22.0F);
+            // Calls the static function.
+            return CalculateEnergyGenerationAmount(energyGenerationAmount);
         }
 
 
@@ -800,15 +806,15 @@ namespace RM_EDU
         // Calculates the energy creation cost.
         public static float CalculateAttackEnergyCost(float attackEnergyCost)
         {
-            // Divide by 10, multiply by 3.75 and round up to the nearest value.
-            return Mathf.Ceil(attackEnergyCost / 10.0F * 3.75F);
+            // Divide by 10, multiply by 4.25 and round up to the nearest value.
+            return Mathf.Ceil(attackEnergyCost / 10.0F * 4.25F);
         }
 
         // Calculates the attack cooldown time.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
         {
-            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 5.0F)
-            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 5.0F);
+            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 4.5F)
+            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 4.5F);
         }
 
         // Calculates the attack cooldown time.
