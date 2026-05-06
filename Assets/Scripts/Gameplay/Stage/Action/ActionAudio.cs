@@ -305,13 +305,13 @@ namespace RM_EDU
             // Is run based on if the game is paused or not.
             if(actionManager.IsStagePlaying())
             {
+                // Saves if the game is paused or not.
+                bool gamePaused = actionManager.IsGamePaused();
+
                 // Warning
                 // If the warning sound is playing.
                 if (warningSource.isPlaying)
                 {
-                    // Saves if the game is paused or not.
-                    bool gamePaused = actionManager.IsGamePaused();
-
                     // The game is paused, so make sure the warning sound is also paused.
                     if (gamePaused && !warningSourceMarkedPaused)
                     {
@@ -323,13 +323,21 @@ namespace RM_EDU
                         UnpauseWarningSfx();
                     }
                 }
+                else
+                {
+                    // If the game isn't paused but the warning sound is paused, unpause it.
+                    if (!gamePaused && warningSourceMarkedPaused)
+                    {
+                        UnpauseWarningSfx();
+                    }
+                }
 
                 // Enemey Attack Safety Check
                 // If the enemy attack source is playing.
                 if (enemyAttackSource.isPlaying)
                 {
                     // If the game is paused and the attack source isn't marked as paused.
-                    if (actionManager.IsGamePaused() && !enemyAttackSourceMarkedPaused)
+                    if (gamePaused && !enemyAttackSourceMarkedPaused)
                     {
                         PauseEnemyAttackSfx();
                     }
@@ -343,7 +351,7 @@ namespace RM_EDU
                 else
                 {
                     // If the game isn't paused but the enemy attack source is paused, unpause it.
-                    if (!actionManager.IsGamePaused() && enemyAttackSourceMarkedPaused)
+                    if (!gamePaused && enemyAttackSourceMarkedPaused)
                     {
                         UnpauseEnemyAttackSfx();
                     }
