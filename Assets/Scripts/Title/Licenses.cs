@@ -244,6 +244,23 @@ namespace RM_EDU
 
             sfxCredits.audioCredits.Add(credit);
 
+            // Retro Sounds
+            // This is no longer available from Kenney.nl, so this was taken from GameSounds.xyz only.
+            credit = new AudioCredits.AudioCredit();
+            credit.title = "Retro Sounds (Sound Pack)";
+            credit.artist = "Kenney Vleugels";
+            credit.collection = "Retro Sounds";
+            credit.source = "GameSounds.xyz";
+            credit.link1 = "https://gamesounds.xyz/?dir=Kenney%27s%20Sound%20Pack/Retro%20Sounds%201";
+            credit.link2 = "-";
+            credit.copyright =
+                "Retro Sounds\n" +
+                "By Kenney Vleugels (Kenney.nl)\n" +
+                "License: Creative Commons Zero, CC0\n" +
+                "https://creativecommons.org/publicdomain/zero/1.0/";
+
+            sfxCredits.audioCredits.Add(credit);
+
             // Sci-Fi Sounds
             credit = new AudioCredits.AudioCredit();
             credit.title = "Sci-Fi Sounds (Sound Pack)";

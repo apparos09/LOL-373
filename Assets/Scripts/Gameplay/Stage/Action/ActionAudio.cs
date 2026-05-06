@@ -19,6 +19,12 @@ namespace RM_EDU
         // The action manager.
         public ActionManager actionManager;
 
+        // The warning audio source.
+        public AudioSource warningSource;
+
+        // Set to true if the warning audio source is marked as being paused.
+        private bool warningSourceMarkedPaused = false;
+
         // The enemy attack audio source (loops).
         public AudioSource enemyAttackSource;
 
@@ -111,6 +117,77 @@ namespace RM_EDU
             }
         }
 
+        // WARNING SFX
+        // Plays the warning sound effect (loops).
+        public void PlayWarningSfx()
+        {
+            // Plays the warning SFX source.
+            if(!warningSource.isPlaying)
+            {
+                warningSource.Play();
+
+                // Since it's now playing, it's not paused.
+                warningSourceMarkedPaused = false;
+            }
+        }
+
+        // Stops the warning sound effect.
+        public void StopWarningSfx()
+        {
+            // Stops the source and marks that it's not paused.
+            warningSource.Stop();
+            warningSourceMarkedPaused = false;
+        }
+
+        // Sets the warning SFX paused.
+        public void SetWarningSfxPaused(bool paused)
+        {
+            // Pause
+            if (paused)
+            {
+                warningSource.Pause();
+                warningSourceMarkedPaused = true;
+            }
+            // Unpause
+            else
+            {
+                // Unpause the warning.
+                warningSource.UnPause();
+                warningSourceMarkedPaused  = false;
+            }
+        }
+
+        // Pauses the warning SFX.
+        public void PauseWarningSfx()
+        {
+            SetWarningSfxPaused(true);
+        }
+
+        // Unpauses the warning SFX.
+        public void UnpauseWarningSfx()
+        {
+            SetWarningSfxPaused(false);
+        }
+
+        // Returns 'true' if the warning source is playing.
+        public bool IsWarningSourcePlaying()
+        {
+            return warningSource.isPlaying;
+        }
+
+        // Returns 'true' if warning source is marked as being paused.
+        public bool IsWarningSourceMarkedPaused()
+        {
+            return warningSourceMarkedPaused;
+        }
+
+        // Returns 'true' if the warning source isn't playing and is marked as paused.
+        public bool IsWarningSourceNotPlayingAndMarkedPaused()
+        {
+            return !warningSource.isPlaying && warningSourceMarkedPaused;
+        }
+
+        // ENEMY ATTACK SFX
         // Plays the enemy attack.
         public void PlayEnemyAttackSfx()
         {
@@ -206,7 +283,7 @@ namespace RM_EDU
         // Returns 'true' if the enemy attack source isn't playing and is marked as paused.
         public bool IsEnemyAttackSourceNotPlayingAndMarkedPaused()
         {
-            return enemyAttackSourceMarkedPaused && !enemyAttackSource.isPlaying;
+            return !enemyAttackSource.isPlaying && enemyAttackSourceMarkedPaused;
         }
 
         // Called when the stage is being reset.
@@ -228,7 +305,26 @@ namespace RM_EDU
             // Is run based on if the game is paused or not.
             if(actionManager.IsStagePlaying())
             {
-                // Safety Check
+                // Warning
+                // If the warning sound is playing.
+                if (warningSource.isPlaying)
+                {
+                    // Saves if the game is paused or not.
+                    bool gamePaused = actionManager.IsGamePaused();
+
+                    // The game is paused, so make sure the warning sound is also paused.
+                    if (gamePaused && !warningSourceMarkedPaused)
+                    {
+                        PauseWarningSfx();
+                    }
+                    // If the game isn't paused, but the warning source is marked as paused, unpause it.
+                    else if(!gamePaused && warningSourceMarkedPaused)
+                    {
+                        UnpauseWarningSfx();
+                    }
+                }
+
+                // Enemey Attack Safety Check
                 // If the enemy attack source is playing.
                 if (enemyAttackSource.isPlaying)
                 {

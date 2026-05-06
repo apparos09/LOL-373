@@ -2100,15 +2100,15 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3824914119630315275, guid: 3b4b3b5989115a3428aa0eb0c627a5f0, type: 3}
   m_PrefabInstance: {fileID: 3874856572198108542}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8725498186043286871 stripped
+--- !u!114 &5688847387342304869 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5535332801954994217, guid: 3b4b3b5989115a3428aa0eb0c627a5f0, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8877889038288603931, guid: 3b4b3b5989115a3428aa0eb0c627a5f0, type: 3}
   m_PrefabInstance: {fileID: 3874856572198108542}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 12ca6229b0405164c9d11eddbd048190, type: 3}
+  m_Script: {fileID: 11500000, guid: 81d45e0873d9b494a96417f593a96d33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &4472287514140584395
@@ -2990,7 +2990,8 @@ MonoBehaviour:
   removeButton: {fileID: 4530278570854005424}
   blockButton: {fileID: 5275295253407490284}
   playerEnemyEnergyBar: {fileID: 7835992301121791407}
-  enemyApproachNotif: {fileID: 8725498186043286871}
+  enemyApproachNotif: {fileID: 5688847387342304869}
+  playedEnemyApproachNotif: 0
 --- !u!224 &3306661983057246600 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8912566218404511156, guid: 905c49eb48498144fa557a9ab8699543, type: 3}

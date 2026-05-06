@@ -136,6 +136,18 @@ Some of these sounds were taken from GameSounds.xyz, which may host different ve
 		* By Kenney Vleugels (Kenney.nl)
 		* License: Creative Commons Zero, CC0
 		* https://creativecommons.org/publicdomain/zero/1.0/
+* Group: Retro Sounds
+	* Artist: Kenney Vleugels
+	* Websites: GameSounds.xyz
+	* Links:
+		* https://gamesounds.xyz/?dir=Kenney%27s%20Sound%20Pack/Retro%20Sounds%201
+	* Copyright:
+		* Retro Sounds
+		* By Kenney Vleugels (Kenney.nl)
+		* License: Creative Commons Zero, CC0
+		* https://creativecommons.org/publicdomain/zero/1.0/
+	* Notes: 
+		* This sound pack is no longer available on Kenney.nl. This sound pack was taken from GameSounds.xyz.
 * Group: Sci-Fi Sounds:
 	* Artist: Kenney Vleugels
 	* Websites: GameSounds.xyz, Kenney.nl

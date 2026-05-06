@@ -39,7 +39,7 @@ namespace RM_EDU
         public bool speakTextOnBlinkStart = true;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             // Gets the action UI instance.
             if (actionUI == null)
@@ -66,13 +66,13 @@ namespace RM_EDU
         }
 
         // Plays the blink animation.
-        public void PlayBlinkingAnimation()
+        public virtual void PlayBlinkingAnimation()
         {
             PlayAnimation(blinkAnim);
         }
 
         // Called when the blink animation begins.
-        public void OnBlinkAnimationStart()
+        public virtual void OnBlinkAnimationStart()
         {
             // Speaks the text on blink.
             if(speakTextOnBlinkStart)
@@ -82,7 +82,7 @@ namespace RM_EDU
         }
 
         // Called when the blink animation ends.
-        public void OnBlinkAnimationEnd()
+        public virtual void OnBlinkAnimationEnd()
         {
             PlayEmptyStateAnimation();
         }

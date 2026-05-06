@@ -87,7 +87,7 @@ namespace RM_EDU
         [Header("Action/Overlays, Notifications")]
 
         // The enemies approaching notification.
-        public ActionStageNotification enemyApproachNotif;
+        public EnemiesApproachingNotification enemyApproachNotif;
 
         // If the enemy approach notification has been played.
         public bool playedEnemyApproachNotif = false;
