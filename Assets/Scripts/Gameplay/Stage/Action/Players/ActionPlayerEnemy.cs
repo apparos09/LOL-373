@@ -113,7 +113,7 @@ namespace RM_EDU
                     spawnTimeMax = 8.70F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 2;
+                    enemiesPerSpawnMax = 3;
 
                     enemyIds.Add(1);
 
@@ -124,7 +124,7 @@ namespace RM_EDU
                     spawnTimeMax = 8.65F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 2;
+                    enemiesPerSpawnMax = 3;
 
                     enemyIds.Add(1);
 
@@ -147,7 +147,7 @@ namespace RM_EDU
                     spawnTimeMax = 8.55F;
 
                     enemiesPerSpawnMin = 1;
-                    enemiesPerSpawnMax = 3;
+                    enemiesPerSpawnMax = 4;
 
                     enemyIds.Add(1);
                     enemyIds.Add(2);
