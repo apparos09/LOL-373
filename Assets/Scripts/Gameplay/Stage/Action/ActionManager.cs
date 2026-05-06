@@ -408,11 +408,20 @@ namespace RM_EDU
 
             // Time
             // 4 points per second.
-            float timeBonus = 480.0F * Mathf.Clamp01(1.0F - (stageTimer / STAGE_LENGTH_MAX_SECONDS));
+            float timeBonus = 520.0F * Mathf.Clamp01(1.0F - (stageTimer / STAGE_LENGTH_MAX_SECONDS));
+
+            // Energy Remaining
+            // 1 point for every 5 points of energy the player user has left.
+            float energyLeftBonus = 1.0F * Mathf.Ceil(playerUser.energy / 5.0F);
+
+            // Bounds check.
+            if (energyLeftBonus < 0)
+                energyLeftBonus = 0;
 
             // Kills
             float killBonus = playerUser.kills * 50.0F;
 
+            // Lane Blasters
             // The bonus for the lane blasters the player has left.
             int laneBlastersLeft = 0;
             float laneBlastersBonus = 0.0F;
@@ -436,21 +445,22 @@ namespace RM_EDU
             }
 
             // Give the player a bonus for every lane blaster they have left.
-            // Lowerd from 50 to 25 per lane blaster.
-            laneBlastersBonus = 25.0F * laneBlastersLeft;
+            // Lowered from 50 to 25, then 20 per lane blaster.
+            laneBlastersBonus = 20.0F * laneBlastersLeft;
 
+            // Pollution
             // Reduce for air pollution.
             float pollutionDeduction = 0;
             
             // If the player user has generated air pollution, calculate a reduction.
             if(playerUser.airPollution > 0)
             {
-                // For every 50 points of air pollution, deduct 25 points from the score.
-                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 50.0F) * 25.0F;
+                // For every 50 points of air pollution, deduct 35 points from the score.
+                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 50.0F) * 35.0F;
             }
 
             // Calculates the bonus. If the bonus is less than 0, make it 0.
-            float bonusPoints = userWonBonus + timeBonus + killBonus + laneBlastersBonus - pollutionDeduction;
+            float bonusPoints = userWonBonus + timeBonus + energyLeftBonus + killBonus + laneBlastersBonus - pollutionDeduction;
 
             // If the bonus is negative, set the bonus to 0.
             if (bonusPoints < 0)
