@@ -213,11 +213,11 @@ namespace RM_EDU
             // ToTitleScene();
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
+        // // Update is called once per frame
+        // void Update()
+        // {
+        // 
+        // }
 
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()

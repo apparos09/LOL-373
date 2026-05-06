@@ -482,11 +482,12 @@ namespace RM_EDU
             worldManager.CompleteGame();
         }
 
-        // Update is called once per frame
-        protected override void Update()
-        {
-            base.Update();
-        }
+        // Commented out since there's no behaviour stored in here.
+        // // Update is called once per frame
+        // protected override void Update()
+        // {
+        //     base.Update();
+        // }
 
         // This function is called when the MonoBehaviour will be destroyed.
         protected virtual void OnDestroy()

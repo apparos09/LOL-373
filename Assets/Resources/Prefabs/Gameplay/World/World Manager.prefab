@@ -62,8 +62,9 @@ MonoBehaviour:
   worldAudio: {fileID: 0}
   worldCamera: {fileID: 0}
   areas: []
+  refreshAreaButtonsWaitFrames: 0
   stages: []
-  defaultDefenseIds: 020000000500000006000000
+  defaultDefenseIds: 0200000005000000
   checkedTutorials: 0
   callCompleteGameInLateUpdate: 0
   gameCompleteEvent: {fileID: 2118307901418152946}
