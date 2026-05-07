@@ -470,7 +470,7 @@ namespace RM_EDU
             float finalScore = basePoints + bonusPoints;
 
             // If the final score is less than 0, make it 0.
-            if (finalScore < 0)
+            if (finalScore < 0.0F)
                 finalScore = 0.0F;
 
             // Return the final score.

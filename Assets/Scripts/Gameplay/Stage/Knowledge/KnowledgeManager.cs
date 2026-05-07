@@ -1255,7 +1255,11 @@ namespace RM_EDU
 
             // Originally, the energy start bonus was overwritten here.
             // Since the energy bonus shouldn't be reset here, that no longer happens here.  
-            
+
+            // If the score total is negative, make it 0.
+            if (scoreTotal < 0.0F)
+                scoreTotal = 0.0F;
+
             // Returns the local score total.
             return scoreTotal;
         }
