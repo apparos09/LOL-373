@@ -21,7 +21,7 @@ namespace RM_EDU
         // Manager
         public KnowledgeManager knowledgeManager;
 
-        [Header("Statements, Resources")]
+        [Header("Knowledge/Statements, Resources")]
         // The section text.
         public TMP_Text sectionText;
 
@@ -53,6 +53,12 @@ namespace RM_EDU
 
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
+
+        [Header("Knowledge/Selected")]
+
+        // The text for the selected elemeent type.
+        [Tooltip("The selection type text.")]
+        public TMP_Text selectedTypeText;
 
         // The selected knowledgement element text object.
         [Tooltip("Selected knowledge element text object.")]
@@ -187,24 +193,42 @@ namespace RM_EDU
         // Swaps the sections.
         public void SwapSections()
         {
-            knowledgeManager.SwapSections();
+            KnowledgeManager.Instance.SwapSections();
         }
 
         // Sets the selected knowledge element text.
         public void SetSelectedKnowledgeElementText(KnowledgeStatement statement)
         {
+            // Selection Type Text.
+            selectedTypeText.text =
+                KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " + 
+                KnowledgeManager.Instance.GetStatementsStringTranslated();
+
+            // Knowledge Element Text.
             selectedKEText.text = statement.GetStatementTextTranslated();
         }
 
         // Sets the selected knowledge element text.
         public void SetSelectedKnowledgeElementText(KnowledgeResource resource)
         {
+            // Selection Type Text.
+            selectedTypeText.text =
+               KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " + 
+               KnowledgeManager.Instance.GetResourcesStringTranslated();
+
+            // Knowledge Element Text.
             selectedKEText.text = resource.GetResourceTextTranslated();
         }
 
         // Clears the knowledge element text.
         public void ClearKnowledgeElementText()
         {
+            // Selection Type Text.
+            selectedTypeText.text = 
+                KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " +
+                KnowledgeManager.Instance.GetNoneStringTranslated();
+
+            // Selected Element Text.
             selectedKEText.text = "-";
         }
 

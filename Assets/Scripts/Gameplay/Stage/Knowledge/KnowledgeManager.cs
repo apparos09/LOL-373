@@ -25,23 +25,35 @@ namespace RM_EDU
         // The knowledge audio.
         public KnowledgeAudio knowledgeAudio = null;
 
-        // The section text.
+        // The section string text.
         private string sectionString = "Section";
 
-        // The section key.
+        // The section string key.
         private string sectionStringKey = "kwd_section";
 
-        // The statements text.
+        // The statements string text.
         private string statementsString = "Statements";
 
-        // The statements text key.
+        // The statements string text key.
         private string statementsStringKey = "kwd_statements";
 
-        // The resources text.
-        private string resourcesStringString = "Resources";
+        // The resources string text.
+        private string resourcesString = "Resources";
 
-        // The resources text key.
+        // The resources string text key.
         private string resourcesStringKey = "kwd_resources";
+
+        // The selected string text.
+        private string selectedString = "Selected";
+
+        // The selected string text key.
+        private string selectedStringKey = "kwd_selected";
+
+        // The none string text.
+        private string noneString = "None";
+
+        // The none string key.
+        private string noneStringKey = "kwd_none";
 
         // The selected knowledge statement.
         public KnowledgeStatement selectedStatement = null;
@@ -479,7 +491,45 @@ namespace RM_EDU
             // Use default text.
             else
             {
-                result = resourcesStringString;
+                result = resourcesString;
+            }
+
+            return result;
+        }
+
+        // Gets the selected string translated.
+        public string GetSelectedStringTranslated()
+        {
+            string result;
+
+            // If the LOL SDK is available, translate the text.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                result = LOLManager.GetLanguageTextStatic(selectedStringKey);
+            }
+            // Use default text.
+            else
+            {
+                result = selectedString;
+            }
+
+            return result;
+        }
+
+        // Gets the none string translated.
+        public string GetNoneStringTranslated()
+        {
+            string result;
+
+            // If the LOL SDK is available, translate the text.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                result = LOLManager.GetLanguageTextStatic(noneStringKey);
+            }
+            // Use default text.
+            else
+            {
+                result = noneString;
             }
 
             return result;
