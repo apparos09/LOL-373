@@ -31,10 +31,12 @@ namespace RM_EDU
         public ActionStage actionStage;
 
         // The total amount of time the stage lasts in seconds.
-        // The stage lasts 2:10 (2 minutes, 10 seconds / 130 seconds).
-        // The extra 10 seconds is there because of changes to the enemy player's starting spawn time.
+        // The stage lasts 2:00 (120 seconds).
+        // Enemy units don't start spawning until 10 seconds have passed. Originally, an extra 10 seconds...
+        // Was added on to the stage time for this (2:10, i.e., 2 minutes, 10 seconds), but that has been removed.
+        // The 10 seconds wait time is there because of changes to the enemy player's starting spawn time.
         // Day and night are 1 minute each (half of the stage).
-        public const float STAGE_LENGTH_MAX_SECONDS = 130.0F;
+        public const float STAGE_LENGTH_MAX_SECONDS = 120.0F;
 
         // If 'true', the event overlay is enabled.
         // private bool stageEventOverlayEnabled = true;
@@ -408,7 +410,7 @@ namespace RM_EDU
 
             // Time
             // 4 points per second.
-            float timeBonus = 520.0F * Mathf.Clamp01(1.0F - (stageTimer / STAGE_LENGTH_MAX_SECONDS));
+            float timeBonus = STAGE_LENGTH_MAX_SECONDS * 4.0F * Mathf.Clamp01(1.0F - (stageTimer / STAGE_LENGTH_MAX_SECONDS));
 
             // Energy Remaining
             // 1 point for every 5 points of energy the player user has left.
