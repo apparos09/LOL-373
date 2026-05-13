@@ -42,12 +42,24 @@ namespace RM_EDU
         // The unit name key.
         public string unitNameKey = "";
 
+        // Gets set to 'true' if the unit name has been translated.
+        private bool unitNameTranslated = false;
+
+        // Saves the unit name translated upon the first translation call if true.
+        private bool saveUnitNameTranslated = true;
+
         // The unit description.
         // This is uses a list so that the description can be split into multiple pages.
         public List<string> unitDesc = new List<string>();
 
         // The unit description key.
         public string unitDescKey = "";
+
+        // Gets set to 'true' if the unit desc has been translated.
+        private bool unitDescTranslated = false;
+
+        // Saves the unit desc translated upon the first translation call if true.
+        private bool saveUnitDescTranslated = true;
 
         // The owner of this unit.
         public ActionPlayer owner;
@@ -258,14 +270,30 @@ namespace RM_EDU
             // The result to be returned.
             string result;
 
-            // LOL SDK Initialized and the key is set, so get the translated text
-            if (LOLManager.IsLOLSDKInitialized() && unitNameKey != "")
+            // If the unit name translation is being saved and has been saved.
+            if(saveUnitNameTranslated && unitNameTranslated)
             {
-                result = LOLManager.GetLanguageTextStatic(unitNameKey);
+                result = unitName;
             }
             else
             {
-                result = unitName;
+                // LOLMananger instantiated, OL SDK initialized, and the key is set, so get the translated text
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && unitNameKey != "")
+                {
+                    result = LOLManager.GetLanguageTextStatic(unitNameKey);
+
+                    // If the unit name translation should be saved...
+                    // Override unitName and mark that the translation has been saved.
+                    if(saveUnitNameTranslated)
+                    {
+                        unitName = result;
+                        unitNameTranslated = true;
+                    }
+                }
+                else
+                {
+                    result = unitName;
+                }
             }
 
             return result;
@@ -289,25 +317,45 @@ namespace RM_EDU
             // The result to be returned.
             List<string> result;
 
-            // LOL SDK Initialized and the key is set, so get the translated text.
-            if (LOLManager.IsLOLSDKInitialized() && unitDescKey != "")
+            // If the unit description translation is being saved and has been saved.
+            if (saveUnitDescTranslated && unitDescTranslated)
             {
-                // Create a new list.
-                result = new List<string>();
-
-                // Generates the keys.
-                List<string> unitDescKeys = GenerateUnitDescriptionKeys();
-
-                // Translate each page with the applicable key.
-                for(int i = 0; i < unitDescKeys.Count; i++)
-                {
-                    result.Add(LOLManager.GetLanguageTextStatic(unitDescKeys[i]));
-                }
+                result = new List<string>(unitDesc);
             }
             else
             {
-                // Create a new list with the provided values.
-                result = new List<string>(unitDesc);
+                // LOL SDK Initialized and the key is set, so get the translated text.
+                if (LOLManager.IsLOLSDKInitialized() && unitDescKey != "")
+                {
+                    // Create a new list.
+                    result = new List<string>();
+
+                    // Generates the keys.
+                    List<string> unitDescKeys = GenerateUnitDescriptionKeys();
+
+                    // Translate each page with the applicable key.
+                    for (int i = 0; i < unitDescKeys.Count; i++)
+                    {
+                        result.Add(LOLManager.GetLanguageTextStatic(unitDescKeys[i]));
+                    }
+
+                    // If the unit description translation should be saved...
+                    // Override unitDesc and mark that the translation has been saved.
+                    if (saveUnitDescTranslated)
+                    {
+                        // Clear the desc list and add the result.
+                        unitDesc.Clear();
+                        unitDesc.AddRange(result);
+
+                        // Mark that the unit description has been translated.
+                        unitDescTranslated = true;
+                    }
+                }
+                else
+                {
+                    // Create a new list with the provided values.
+                    result = new List<string>(unitDesc);
+                }
             }
 
             return result;

@@ -12,17 +12,31 @@ namespace RM_EDU
         // An element for the instructions dialog.
         protected struct Element
         {
+            // NAME
             // The name of the element.
             public string name;
 
             // The key for the name.
             public string nameKey;
 
+            // Gets set to 'true' if the name has been translated.
+            public bool nameTranslated;
+
+            // Saves the name translated if true.
+            public bool saveNameTranslated;
+
+            // DESCRIPTION
             // The description of the element.
             public string description;
             
             // The key for the description.
             public string descriptionKey;
+
+            // Gets set to 'true' if the description has been translated.
+            public bool descTranslated;
+
+            // Saves the description if it has been translated.
+            public bool saveDescTranslated;
 
             // The diagram sprite.
             public Sprite diagramSprite;
@@ -33,15 +47,31 @@ namespace RM_EDU
                 // Result to be returned.
                 string result;
 
-                // Checks if the LOL Manager exists for translation.
-                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && nameKey != "")
+                // If the name should be saved translated and it has been translated, use the name.
+                if(saveNameTranslated && nameTranslated)
                 {
-                    result = LOLManager.GetLanguageTextStatic(nameKey);
+                    result = name;
                 }
                 else
                 {
-                    // Set to default.
-                    result = name;
+                    // Checks if the LOL Manager exists for translation.
+                    if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && nameKey != "")
+                    {
+                        result = LOLManager.GetLanguageTextStatic(nameKey);
+
+                        // If the translated name should be saved.
+                        if(saveNameTranslated)
+                        {
+                            // Overwrites the name variable and marks that it has been translated.
+                            name = result;
+                            nameTranslated = true;
+                        }
+                    }
+                    else
+                    {
+                        // Set to default.
+                        result = name;
+                    }
                 }
 
                 return result;
@@ -53,15 +83,31 @@ namespace RM_EDU
                 // Result to be returned.
                 string result;
 
-                // Checks if the LOL Manager exists for translation.
-                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && descriptionKey != "")
+                // If the description should be saved translated and it has been translated, use the description.
+                if (saveDescTranslated && descTranslated)
                 {
-                    result = LOLManager.GetLanguageTextStatic(descriptionKey);
+                    result = description;
                 }
                 else
                 {
-                    // Set to default.
-                    result = description;
+                    // Checks if the LOL Manager exists for translation.
+                    if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && descriptionKey != "")
+                    {
+                        result = LOLManager.GetLanguageTextStatic(descriptionKey);
+
+                        // If the translated description should be saved.
+                        if (saveDescTranslated)
+                        {
+                            // Overwrites the description variable and marks that it has been translated.
+                            description = result;
+                            descTranslated = true;
+                        }
+                    }
+                    else
+                    {
+                        // Set to default.
+                        result = description;
+                    }
                 }
 
                 return result;
@@ -109,15 +155,21 @@ namespace RM_EDU
             if (titleUI == null)
                 titleUI = TitleUI.Instance;
 
-            // Element.
+            // Element Object
             Element element;
 
             // World
             element = new Element();
             element.name = "World";
             element.nameKey = "kwd_world";
+            element.nameTranslated = false;
+            element.saveNameTranslated = true;
+
             element.description = "In the world section, you select action stages and knowledge stages. Once all stages are complete, the game is finished.";
             element.descriptionKey = "dlg_instructions_emt_world";
+            element.descTranslated = false;
+            element.saveDescTranslated = true;
+
             element.diagramSprite = worldSprite;
             
             elements.Add(element);
@@ -126,8 +178,14 @@ namespace RM_EDU
             element = new Element();
             element.name = "Action";
             element.nameKey = "kwd_action";
+            element.nameTranslated = false;
+            element.saveNameTranslated = true;
+
             element.description = "In an action stage, you place generator units to generate energy and place defense units to defend the base from enemies.";
             element.descriptionKey = "dlg_instructions_emt_action";
+            element.descTranslated = false;
+            element.saveDescTranslated = true;
+
             element.diagramSprite = actionSprite;
 
             elements.Add(element);
@@ -136,8 +194,14 @@ namespace RM_EDU
             element = new Element();
             element.name = "Knowledge";
             element.nameKey = "kwd_knowledge";
+            element.nameTranslated = false;
+            element.saveNameTranslated = true;
+
             element.description = "In a knowledge stage, you match statements with the resources they apply to.";
             element.descriptionKey = "dlg_instructions_emt_knowledge";
+            element.descTranslated = false;
+            element.saveDescTranslated = true;
+
             element.diagramSprite = knowledgeSprite;
 
             elements.Add(element);

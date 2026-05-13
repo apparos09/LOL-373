@@ -27,6 +27,9 @@ namespace RM_EDU
         // Gets the event text translated.
         public string GetEventTextTranslated()
         {
+            // NOTE: this doesn't translate the text beforehand in case the event text...
+            // And event text key have been changed.
+
             // If the LOL Manager and SDK are instantiated, translate the text.
             if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {

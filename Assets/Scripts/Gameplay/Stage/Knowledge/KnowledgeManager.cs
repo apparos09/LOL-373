@@ -25,6 +25,9 @@ namespace RM_EDU
         // The knowledge audio.
         public KnowledgeAudio knowledgeAudio = null;
 
+        // Gets set to 'true' if the applicable strings have been translated.
+        private bool translatedStrings = false;
+
         // The section string text.
         private string sectionString = "Section";
 
@@ -150,6 +153,20 @@ namespace RM_EDU
 
                 // Destroys the start info object.
                 Destroy(startInfo.gameObject);
+            }
+
+            // If translation should be done.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                // Translates the strings.
+                sectionString = LOLManager.GetLanguageTextStatic(sectionStringKey);
+                statementsString = LOLManager.GetLanguageTextStatic(statementsStringKey);
+                resourcesString = LOLManager.GetLanguageTextStatic(resourcesStringKey);
+                selectedString = LOLManager.GetLanguageTextStatic(selectedStringKey);
+                noneString = LOLManager.GetLanguageTextStatic(noneStringKey);
+
+                // Marks that the strings have been translated.
+                translatedStrings = true;
             }
 
             // Initializes the knowledge stage.
@@ -445,15 +462,23 @@ namespace RM_EDU
         {
             string result;
 
-            // If the LOL SDK is available, translate the text.
-            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-            {
-                result = LOLManager.GetLanguageTextStatic(sectionStringKey);
-            }
-            // Use default text.
-            else
+            // Checks if translation has already been done.
+            if(translatedStrings)
             {
                 result = sectionString;
+            }
+            else
+            {
+                // If the LOL SDK is available, translate the text.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    result = LOLManager.GetLanguageTextStatic(sectionStringKey);
+                }
+                // Use default text.
+                else
+                {
+                    result = sectionString;
+                }
             }
 
             return result;
@@ -464,15 +489,23 @@ namespace RM_EDU
         {
             string result;
 
-            // If the LOL SDK is available, translate the text.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-            {
-                result = LOLManager.GetLanguageTextStatic(statementsStringKey);
-            }
-            // Use default text.
-            else
+            // Checks if translation has already been done.
+            if (translatedStrings)
             {
                 result = statementsString;
+            }
+            else
+            {
+                // If the LOL SDK is available, translate the text.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    result = LOLManager.GetLanguageTextStatic(statementsStringKey);
+                }
+                // Use default text.
+                else
+                {
+                    result = statementsString;
+                }
             }
 
             return result;
@@ -483,15 +516,24 @@ namespace RM_EDU
         {
             string result;
 
-            // If the LOL SDK is available, translate the text.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-            {
-                result = LOLManager.GetLanguageTextStatic(resourcesStringKey);
-            }
-            // Use default text.
-            else
+            // Checks if translation has already been done.
+            if (translatedStrings)
             {
                 result = resourcesString;
+            }
+            else
+            {
+
+                // If the LOL SDK is available, translate the text.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    result = LOLManager.GetLanguageTextStatic(resourcesStringKey);
+                }
+                // Use default text.
+                else
+                {
+                    result = resourcesString;
+                }
             }
 
             return result;
@@ -502,15 +544,23 @@ namespace RM_EDU
         {
             string result;
 
-            // If the LOL SDK is available, translate the text.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-            {
-                result = LOLManager.GetLanguageTextStatic(selectedStringKey);
-            }
-            // Use default text.
-            else
+            // Checks if translation has already been done.
+            if (translatedStrings)
             {
                 result = selectedString;
+            }
+            else
+            {
+                // If the LOL SDK is available, translate the text.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    result = LOLManager.GetLanguageTextStatic(selectedStringKey);
+                }
+                // Use default text.
+                else
+                {
+                    result = selectedString;
+                }
             }
 
             return result;
@@ -521,15 +571,23 @@ namespace RM_EDU
         {
             string result;
 
-            // If the LOL SDK is available, translate the text.
-            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-            {
-                result = LOLManager.GetLanguageTextStatic(noneStringKey);
-            }
-            // Use default text.
-            else
+            // Checks if translation has already been done.
+            if (translatedStrings)
             {
                 result = noneString;
+            }
+            else
+            {
+                // If the LOL SDK is available, translate the text.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    result = LOLManager.GetLanguageTextStatic(noneStringKey);
+                }
+                // Use default text.
+                else
+                {
+                    result = noneString;
+                }
             }
 
             return result;

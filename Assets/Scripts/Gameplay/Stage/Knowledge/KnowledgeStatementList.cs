@@ -50,6 +50,13 @@ namespace RM_EDU
             // The language key for the statement.
             public string key = string.Empty;
 
+            // If 'true', the text has been translated and overwritten to the text object.
+            // Make sure to reset this if the translation key and text are changed.
+            public bool translatedText = false;
+
+            // If 'true', once a text translation call is made, the 'text' object is overwritten.
+            public bool saveTranslatedText = true;
+
             // The resource this statement belongs to.
             public NaturalResources.naturalResource resource = NaturalResources.naturalResource.unknown;
 
@@ -99,15 +106,34 @@ namespace RM_EDU
                 // Result to be returned.
                 string result;
 
-                // If the LOL SDK exists and the key is set, use the key to translate the statement.
-                if(LOLManager.IsLOLSDKInitialized() && key != "")
-                {
-                    result = LOLManager.GetLanguageTextStatic(key);
-                }
-                // The LOL SDK isn't being used, so just use the regular text.
-                else
+                // If translated text should be saved, and the text is marked as being translated already...
+                // Translate it.
+                if(saveTranslatedText && translatedText)
                 {
                     result = text;
+                }
+                else
+                {
+
+                    // If the LOLManager is instantiated, the LOL SDK eis initialized...
+                    // And the key is set, use the key to translate the statement.
+                    if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && key != "")
+                    {
+                        result = LOLManager.GetLanguageTextStatic(key);
+
+                        // If translated text should be saved in the text variable, save it.
+                        if(saveTranslatedText)
+                        {
+                            // Saves the text and makrs that the text has been translated.
+                            text = result;
+                            translatedText = true;
+                        }
+                    }
+                    // The LOL SDK isn't being used, so just use the regular text.
+                    else
+                    {
+                        result = text;
+                    }
                 }
 
                 // Returns the result.
