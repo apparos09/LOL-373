@@ -58,7 +58,7 @@ namespace RM_EDU
 
         // The text for the selected elemeent type.
         [Tooltip("The selection type text.")]
-        public TMP_Text selectedTypeText;
+        public TMP_Text selectedTitleText;
 
         // The selected knowledgement element text object.
         [Tooltip("Selected knowledge element text object.")]
@@ -193,16 +193,17 @@ namespace RM_EDU
         // Swaps the sections.
         public void SwapSections()
         {
-            KnowledgeManager.Instance.SwapSections();
+            knowledgeManager.SwapSections();
         }
 
         // Sets the selected knowledge element text.
         public void SetSelectedKnowledgeElementText(KnowledgeStatement statement)
         {
-            // Selection Type Text.
-            selectedTypeText.text =
-                KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " + 
-                KnowledgeManager.Instance.GetStatementsStringTranslated();
+            // Commented out since this doesn't specify the selection type anymore.
+            // // Selection Type Text.
+            // selectedTypeText.text =
+            //     KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " + 
+            //     KnowledgeManager.Instance.GetStatementsStringTranslated();
 
             // Knowledge Element Text.
             selectedKEText.text = statement.GetStatementTextTranslated();
@@ -211,10 +212,11 @@ namespace RM_EDU
         // Sets the selected knowledge element text.
         public void SetSelectedKnowledgeElementText(KnowledgeResource resource)
         {
-            // Selection Type Text.
-            selectedTypeText.text =
-               KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " + 
-               KnowledgeManager.Instance.GetResourcesStringTranslated();
+            // Commented out since this doesn't specify the selection type anymore.
+            // // Selection Type Text.
+            // selectedTypeText.text =
+            //    KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " + 
+            //    KnowledgeManager.Instance.GetResourcesStringTranslated();
 
             // Knowledge Element Text.
             selectedKEText.text = resource.GetResourceTextTranslated();
@@ -223,10 +225,11 @@ namespace RM_EDU
         // Clears the knowledge element text.
         public void ClearKnowledgeElementText()
         {
-            // Selection Type Text.
-            selectedTypeText.text = 
-                KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " +
-                KnowledgeManager.Instance.GetNoneStringTranslated();
+            // Commented out since this doesn't specify the selection type anymore.
+            // // Selection Type Text.
+            // selectedTypeText.text = 
+            //     KnowledgeManager.Instance.GetSelectedStringTranslated() + ": " +
+            //     KnowledgeManager.Instance.GetNoneStringTranslated();
 
             // Selected Element Text.
             selectedKEText.text = "-";
