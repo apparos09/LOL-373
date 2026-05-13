@@ -263,12 +263,19 @@
 
 
 
+      "kwd_timeOfDay": 18,
+      "kwd_energyPollution": 28,
+      "kwd_windSpeed": 18,
+
+
       "kwd_speed": 18,
       "kwd_select": 18,
       "kwd_deselect": 18,
       "kwd_remove": 18,
       "kwd_remove_abv": 3,
       "kwd_block": 18,
+
+      "kwd_selected": 18,
 
       "kwd_enemiesApproaching": 28,
 
@@ -288,7 +295,6 @@
       "kwd_statement": 18,
       "kwd_statements": 18,
 
-      "kwd_selected": 18,
       "kwd_selection": 18,
       "kwd_none": 18,
 
@@ -766,12 +772,19 @@
 
 
 
+    "kwd_timeOfDay": "Time of Day",
+    "kwd_energyPollution": "Energy/Pollution",
+    "kwd_windSpeed": "Wind Speed",
+
+
     "kwd_speed": "Speed",
     "kwd_select": "Select",
     "kwd_deselect": "Deselect",
     "kwd_remove": "Remove",
     "kwd_remove_abv": "RMV",
     "kwd_block": "Block",
+
+    "kwd_selected": "Selected",
 
     "kwd_enemiesApproaching": "Enemies Approaching!",
 
@@ -791,7 +804,6 @@
     "kwd_statement": "Statement",
     "kwd_statements": "Statements",
 
-    "kwd_selected": "Selected",
     "kwd_selection": "Selection",
     "kwd_none": "None",
 
