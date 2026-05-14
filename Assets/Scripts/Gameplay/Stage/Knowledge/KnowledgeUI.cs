@@ -54,6 +54,11 @@ namespace RM_EDU
         // The resources in the knowledge stage.
         public List<KnowledgeResource> resources = new List<KnowledgeResource>();
 
+        [Header("Knowledge/Matches")]
+
+        // The matches text.
+        public TMP_Text matchesNumberText;
+
         [Header("Knowledge/Selected")]
 
         // The text for the selected elemeent type.
@@ -196,6 +201,102 @@ namespace RM_EDU
             knowledgeManager.SwapSections();
         }
 
+        // STATEMENTS ACTIVE, RESOURCES ACTIVE
+        // Gets the number of active statements.
+        public int GetStatementsActiveCount()
+        {
+            // The number to return.
+            int num = 0;
+
+            // Checks what statements are active.
+            foreach(KnowledgeStatement statement in statements)
+            {
+                // The statement exists.
+                if(statement != null)
+                {
+                    // The statement object is active.
+                    if(statement.gameObject.activeSelf)
+                    {
+                        num++;
+                    }
+                }
+            }
+
+            return num;
+        }
+
+        // Gets the number of statements that're matched correctly.
+        public int GetStatementsMatchedCorrectlyCount()
+        {
+            // The number to return.
+            int num = 0;
+
+            // Checks what statements are active.
+            foreach (KnowledgeStatement statement in statements)
+            {
+                // The statement exists.
+                if (statement != null)
+                {
+                    // The statement object is active and its button isn't interactable.
+                    // When a statement has been matched correctly, it's button isn't interactable.
+                    if (statement.gameObject.activeSelf && !statement.button.interactable)
+                    {
+                        num++;
+                    }
+                }
+            }
+
+            return num;
+        }
+
+        // Gets the number of active resources.
+        public int GetResourcesActiveCount()
+        {
+            // The number to return.
+            int num = 0;
+
+            // Checks what statements are active.
+            foreach (KnowledgeResource resource in resources)
+            {
+                // The resource exists.
+                if (resource != null)
+                {
+                    // The resource object is active.
+                    if (resource.gameObject.activeSelf)
+                    {
+                        num++;
+                    }
+                }
+            }
+
+            return num;
+        }
+
+        // Gets the number of resources that're matched correctly.
+        public int GetResourcesMatchedCorrectlyCount()
+        {
+            // The number to return.
+            int num = 0;
+
+            // Checks what resources are active.
+            foreach (KnowledgeResource resource in resources)
+            {
+                // The resource exists.
+                if (resource != null)
+                {
+                    // The resource object is active and its button isn't interactable.
+                    // When a resource has been matched correctly, it's button isn't interactable.
+                    if (resource.gameObject.activeSelf && !resource.button.interactable)
+                    {
+                        num++;
+                    }
+                }
+            }
+
+            return num;
+        }
+
+        // SELECTED ELEMENT
         // Sets the selected knowledge element text.
         public void SetSelectedKnowledgeElementText(KnowledgeStatement statement)
         {
@@ -235,21 +336,42 @@ namespace RM_EDU
             selectedKEText.text = "-";
         }
 
+        // VERIFY
         // Verifies the matches.
         public void VerifyMatches()
         {
+            // Calls function to verify matches.
             knowledgeManager.VerifyMatches();
 
             // If the info log button is off, make it interactable since a verification attempt...
             // Has been made.
             if (!infoLogButton.interactable)
                 infoLogButton.interactable = true;
+
+            // Updates the matches display.
+            UpdateMatchesDisplay();
         }
 
         // Clears all unverified matches.
         public void ClearUnverifiedMatches()
         {
             knowledgeManager.ClearUnverifiedMatches();
+        }
+
+        // Updates the display of the matches the player has.
+        public void UpdateMatchesDisplay()
+        {
+            int correctCount = GetStatementsMatchedCorrectlyCount();
+            int totalCount = GetStatementsActiveCount();
+
+            // The string that will be displayed.
+            string displayStr = correctCount.ToString() + "/" + totalCount.ToString();
+
+            // Updates the matches number text if it isn't set already.
+            if (matchesNumberText.text != displayStr)
+            {
+                matchesNumberText.text = displayStr;
+            }
         }
 
         // DIALOGS //

@@ -414,6 +414,9 @@ namespace RM_EDU
             // Randomizes the statements.
             RandomizeStatements(false);
 
+            // Updates the matches display.
+            knowledgeUI.UpdateMatchesDisplay();
+
             // Sets verification attempts to 0.
             verifyAttempts = 0;
 
