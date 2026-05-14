@@ -340,11 +340,12 @@ namespace RM_EDU
             // Disables elements that will be enabled by another tutorial.
             if (!tutorials.Data.clearedFirstActionFirstKillTutorial)
             {
-                // Disables the speed up, deselect, remove, and block buttons.
-                actionUI.speedButton.gameObject.SetActive(false);
-                actionUI.deselectButton.gameObject.SetActive(false);
-                actionUI.removeButton.gameObject.SetActive(false);
-                actionUI.blockButton.gameObject.SetActive(false);
+                // Disables the speed, deselect, remove, and block button UIs.
+                // The UIs include the buttons and the labels they've been given.
+                actionUI.speedButtonUI.gameObject.SetActive(false);
+                actionUI.deselectButtonUI.gameObject.SetActive(false);
+                actionUI.removeButtonUI.gameObject.SetActive(false);
+                actionUI.blockButtonUI.gameObject.SetActive(false);
 
                 // Disables the reset and world buttons.
                 // This is to prevent the player from resetting or leaving the stage before the tutorial ends.
@@ -378,11 +379,11 @@ namespace RM_EDU
         // Called when the first action first kill tutorial is starting.
         public void OnFirstActionFirstKillTutorialStart()
         {
-            // Activates the speed button, deselect button, remove button, and block button.
-            actionUI.speedButton.gameObject.SetActive(true);
-            actionUI.deselectButton.gameObject.SetActive(true);
-            actionUI.removeButton.gameObject.SetActive(true);
-            actionUI.blockButton.gameObject.SetActive(true);
+            // Activates the speed button UI, deselect button UI, remove button UI, and block button UI.
+            actionUI.speedButtonUI.gameObject.SetActive(true);
+            actionUI.deselectButtonUI.gameObject.SetActive(true);
+            actionUI.removeButtonUI.gameObject.SetActive(true);
+            actionUI.blockButtonUI.gameObject.SetActive(true);
 
             // Enables the reset and world buttons.
             actionUI.optionsDialog.resetButton.interactable = true;

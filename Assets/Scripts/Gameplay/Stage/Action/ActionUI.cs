@@ -67,19 +67,37 @@ namespace RM_EDU
 
         [Header("Action/Left")]
 
+        // Speed
+        // The speed button UI.
+        public GameObject speedButtonUI;
+
         // The speed button.
         public ActionStageSpeedButton speedButton;
+
+        // Deselect
+        // The deselect button UI.
+        public GameObject deselectButtonUI;
 
         // The unit deselect button.
         public ActionUnitDeselectButton deselectButton;
 
+        // Remove
+        // The remove button UI.
+        public GameObject removeButtonUI;
+
         // The unit remove button.
         public ActionUnitRemoveButton removeButton;
+
+        // The energy block UI.
+        public GameObject blockButtonUI;
 
         // The energy block button.
         public ActionUserBlockButton blockButton;
 
         [Header("Action/Right")]
+
+        // The enemy's energy UI.
+        public GameObject playerEnemyEnergyUI;
 
         // The enemy's energy bar.
         public ProgressBar playerEnemyEnergyBar;

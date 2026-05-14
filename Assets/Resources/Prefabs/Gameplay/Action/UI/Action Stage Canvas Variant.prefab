@@ -1923,7 +1923,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3628272485451031768}
   m_Layer: 5
-  m_Name: Enemy Energy
+  m_Name: Enemy Energy UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4077,10 +4077,15 @@ MonoBehaviour:
   generatorUnitSelector: {fileID: 2249315767078992416}
   selectedUnitUI: {fileID: 8225674576234293148}
   defenseUnitSelector: {fileID: 852871551769572893}
+  speedButtonUI: {fileID: 4015150498737100664}
   speedButton: {fileID: 4948676451167545309}
+  deselectButtonUI: {fileID: 3750332680437349933}
   deselectButton: {fileID: 207832217288030351}
+  removeButtonUI: {fileID: 5192999312873449358}
   removeButton: {fileID: 4530278570854005424}
+  blockButtonUI: {fileID: 1763588836501729192}
   blockButton: {fileID: 5275295253407490284}
+  playerEnemyEnergyUI: {fileID: 7795929095819144957}
   playerEnemyEnergyBar: {fileID: 7835992301121791407}
   enemyApproachNotif: {fileID: 5688847387342304869}
   playedEnemyApproachNotif: 0
