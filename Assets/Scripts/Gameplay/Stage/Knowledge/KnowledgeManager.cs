@@ -310,7 +310,7 @@ namespace RM_EDU
                 }
             }
 
-            // If the statement count is greater than the reosurce count...
+            // If the statement count is greater than the resource count...
             // Make the statement count match the resource count.
             if(statementCount > resourceCount)
             {

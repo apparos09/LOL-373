@@ -209,6 +209,42 @@ namespace RM_EDU
             return data;
         }
 
+        // Generates and returns a full stage (metal row with grass tiles only).
+        private static StageGenerationData GenerateStageDataFull()
+        {
+            // The map only has metal tiles and land tiles.
+            string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
+                { "04D", "01A", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
+            };
+
+            // An empty tile overlay.
+            int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
+                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+            };
+
+            // The stage uses no wind.
+            ActionUnit.statRating[] windRatings = new ActionUnit.statRating[ActionManager.WIND_RATINGS_COUNT_DEFAULT]
+            {ActionUnit.statRating.none, ActionUnit.statRating.none, ActionUnit.statRating.none };
+
+            // The data object to return.
+            StageGenerationData data = new StageGenerationData();
+
+            // Setting data.
+            data.map = map;
+            data.overlays = overlays;
+            data.windRatings = windRatings;
+
+            return data;
+        }
+
         // Generates and returns the debug stage map.
         public static StageGenerationData GenerateStageDataDebug()
         {
@@ -250,20 +286,20 @@ namespace RM_EDU
         {
             // The map only has metal tiles and land tiles.
             string[,] map = new string[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { "04L", "01I", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01J", "01K" },
-                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
-                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
-                { "04H", "01E", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01F", "01G" },
-                { "04D", "01A", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01B", "01C" }
+                { "04L", "01L", "03I", "03K", "01I", "01J", "01J", "01K", "03I", "03K", "01I", "01K" },
+                { "04H", "01H", "03E", "03G", "01E", "01F", "01F", "01G", "03E", "03G", "01E", "01G" },
+                { "04H", "01H", "03E", "03G", "01E", "01F", "01F", "01G", "03E", "03G", "01E", "01G" },
+                { "04H", "01H", "03E", "03G", "01E", "01F", "01F", "01G", "03E", "03G", "01E", "01G" },
+                { "04D", "01D", "03A", "03C", "01A", "01B", "01B", "01C", "03A", "03C", "01A", "01C" }
             };
 
             // An empty tile overlay.
             int[,] overlays = new int[ActionStage.MAP_ROW_COUNT_DEFAULT, ActionStage.MAP_COLUMN_COUNT_DEFAULT] {
-                { 0, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0 },
+                { 0, 3, 0, 0, 0, 3, 0, 3, 0, 0, 0, 3 },
+                { 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 3, 0 },
                 { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 3, 0 },
-                { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 },
-                { 0, 0, 3, 0, 3, 0, 3, 0, 3, 0, 3, 0 }
+                { 0, 0, 0, 0, 3, 0, 3, 0, 0, 0, 3, 0 },
+                { 0, 3, 0, 0, 0, 3, 0, 3, 0, 0, 0, 3 }
             };
 
             // The stage uses no wind.

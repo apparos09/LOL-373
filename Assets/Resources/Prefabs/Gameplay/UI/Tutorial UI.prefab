@@ -650,7 +650,7 @@ MonoBehaviour:
   enableAnimationBackSkip: 1
   DisableControlsIfAnimSkipDisabled: 1
   charsPerLoad: 3
-  textSpeed: 100
+  textSpeed: 1000
   tutorialUI: {fileID: 2211305606249259944}
   displayObject: {fileID: 6543226961160049396}
   displayImage: {fileID: 4267522530789618741}
