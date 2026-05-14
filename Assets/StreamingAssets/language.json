@@ -365,6 +365,8 @@
       "kwd_energyBonus": 18,
       "kwd_rewards": 18,
 
+      "ksg_msg_userWon": 100,
+
 
 
       "trl_intro_ttl": 50,
@@ -790,8 +792,8 @@
 
     "kwd_stageOver": "Stage Over",
     "asg_msg_stageOver": "The stage is over!",
-    "asg_msg_userWon": "You've won! The enemies have run out of power!",
-    "asg_msg_userLost": "The enemies have made it into the base!",
+    "asg_msg_userWon": "Your side has won! The enemy side has run out of power!",
+    "asg_msg_userLost": "The enemy side has won! Enemies have made it into the base!",
 
     "kwd_time": "Time",
     "kwd_score": "Score",
@@ -873,6 +875,8 @@
     "kwd_verify": "Verify",
     "kwd_energyBonus": "Energy Bonus",
     "kwd_rewards": "Rewards",
+
+    "ksg_msg_userWon": "You've won! All the statements have been matched correctly!",
 
 
 

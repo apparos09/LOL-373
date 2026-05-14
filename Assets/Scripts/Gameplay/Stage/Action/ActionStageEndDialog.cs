@@ -213,7 +213,7 @@ namespace RM_EDU
             // Use default message.
             else
             {
-                return "You've won! The enemies have run out of power!";
+                return "Your side has won! The enemy side has run out of power!";
             }
         }
 
@@ -228,7 +228,7 @@ namespace RM_EDU
             // Use default message.
             else
             {
-                return "The enemies have made it into the base!";
+                return "The enemy side has won! Enemies have made it into the base!";
             }
         }
 
