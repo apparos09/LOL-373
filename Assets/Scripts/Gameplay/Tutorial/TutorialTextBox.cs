@@ -52,6 +52,7 @@ namespace RM_EDU
         public Sprite actionEnemyEnergyBarSprite;
 
         // Action unit buttons
+        [Header("Tutorials/Sprites/Action/Units")]
         public Sprite actionUnitButtonsSprite;
         public Sprite actionUnitSelectorArrowsSprite;
         public Sprite actionUnitSelectedSprite;
@@ -60,12 +61,15 @@ namespace RM_EDU
         public Sprite actionDefenseTypesSprite;
         public Sprite actionDefenseLaneBlasterSprite;
 
-        // Indicators
-        public Sprite dayNightIndicatorSprite;
+        // Displays/Indicators
+        [Header("Tutorials/Sprites/Action/Displays, Indicators")]
         public Sprite energyAirPollutionDisplaySprite;
+        public Sprite indicatorsSprite;
+        public Sprite dayNightIndicatorSprite;
         public Sprite windIndicatorSprite;
 
         // The action buttons: speed, deselect, remove, and energy block.
+        [Header("Tutorials/Sprites/Action/Stage Buttons")]
         public Sprite actionButtonsSprite;
         public Sprite stageSpeedSprite;
         public Sprite unitDeselectSprite;

@@ -377,9 +377,6 @@
       "trl_intro_02": 445,
       "trl_intro_03": 445,
       "trl_intro_04": 445,
-      "trl_intro_05": 445,
-      "trl_intro_06": 445,
-      "trl_intro_07": 445,
 
 
       "trl_firstActionIntro_ttl": 50,
@@ -388,9 +385,6 @@
       "trl_firstActionIntro_txt_02": 445,
       "trl_firstActionIntro_txt_03": 445,
       "trl_firstActionIntro_txt_04": 445,
-      "trl_firstActionIntro_txt_05": 445,
-      "trl_firstActionIntro_txt_06": 445,
-      "trl_firstActionIntro_txt_07": 445,
 
       "trl_firstActionGenerators_ttl": 50,
       "trl_firstActionGenerators_txt_00": 445,
@@ -399,14 +393,11 @@
       "trl_firstActionGenerators_txt_03": 445,
       "trl_firstActionGenerators_txt_04": 445,
       "trl_firstActionGenerators_txt_05": 445,
-      "trl_firstActionGenerators_txt_06": 445,
-      "trl_firstActionGenerators_txt_07": 445,
 
       "trl_firstActionDefenses_ttl": 50,
       "trl_firstActionDefenses_txt_00": 445,
       "trl_firstActionDefenses_txt_01": 445,
       "trl_firstActionDefenses_txt_02": 445,
-      "trl_firstActionDefenses_txt_03": 445,
 
       "trl_firstActionFirstKill_ttl": 50,
       "trl_firstActionFirstKill_txt_00": 445,
@@ -416,14 +407,10 @@
       "trl_firstActionFirstKill_txt_04": 445,
       "trl_firstActionFirstKill_txt_05": 445,
       "trl_firstActionFirstKill_txt_06": 445,
-      "trl_firstActionFirstKill_txt_07": 445,
-      "trl_firstActionFirstKill_txt_08": 445,
-      "trl_firstActionFirstKill_txt_09": 445,
 
 
       "trl_firstActionComplete_ttl": 50,
       "trl_firstActionComplete_txt_00": 445,
-      "trl_firstActionComplete_txt_01": 445,
 
 
       "trl_firstKnowledgeIntro_ttl": 50,
@@ -431,14 +418,10 @@
       "trl_firstKnowledgeIntro_txt_01": 445,
       "trl_firstKnowledgeIntro_txt_02": 445,
       "trl_firstKnowledgeIntro_txt_03": 445,
-      "trl_firstKnowledgeIntro_txt_04": 445,
-      "trl_firstKnowledgeIntro_txt_05": 445,
-      "trl_firstKnowledgeIntro_txt_06": 445,
 
       "trl_firstKnowledgeVerify_ttl": 50,
       "trl_firstKnowledgeVerify_txt_00": 445,
       "trl_firstKnowledgeVerify_txt_01": 445,
-      "trl_firstKnowledgeVerify_txt_02": 445,
 
 
       "trl_firstKnowledgeComplete_ttl": 50,
@@ -885,25 +868,19 @@
 
 
     "trl_intro_ttl": "Game Introduction",
-    "trl_intro_txt_00": "Welcome to the Energy Defense Unit (EDU)! You've been tasked with completing a training simulation game that teaches you about natural resources and the EDU's defense systems.",
-    "trl_intro_txt_01": "Earth has various natural resources that are used for generating electricity, among other purposes. These resources all have their advantages and disadvantages, which will be covered in this simulation.",
-    "trl_intro_txt_02": "In this exercise, aliens are attacking Earth's bases to steal their resources. Your job is to defend each base from the invaders. This simulation has two stage types: action (blue) and knowledge (green).",
-    "trl_intro_txt_03": "In action stages you defend a base from enemies and in knowledge stages you're assessed on your knowledge of natural resources. You'll be given more details on both stage types later.",
-    "trl_intro_txt_04": "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.",
-    "trl_intro_txt_05": "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings.",
-    "trl_intro_txt_06": "In the top middle is the energy start bonus display, but that'll be explained later.",
-    "trl_intro_txt_07": "With all that covered, it's time to select a stage. When a stage is selected, it'll show what natural resources it uses. Details on natural resources will be provided when relevant. Please select the available stage, which is an action stage.",
+    "trl_intro_txt_00": "Welcome to the Energy Defense Unit (EDU)! This is a training simulation that teaches you about Earth's natural resources. In this exercise, aliens are attacking Earth's bases to steal their resources, and it's your job to stop them.",
+    "trl_intro_txt_01": "There are two stage types in this simulation game: action (blue) and knowledge (green). You'll receive more details on these stage types later.",
+    "trl_intro_txt_02": "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.",
+    "trl_intro_txt_03": "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings.",
+    "trl_intro_txt_04": "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.",
 
 
     "trl_firstActionIntro_ttl": "First Action Stage - Introduction",
     "trl_firstActionIntro_txt_00": "This is an action stage! In an action stage, you place units on the field to fight off enemies. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose.",
-    "trl_firstActionIntro_txt_01": "If the enemy side runs out of energy, you win. The enemy side automatically loses energy as the stage progresses, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed by the bar on the right.",
-    "trl_firstActionIntro_txt_02": "On the left side of the field are lane blasters. If an enemy touches a lane blaster, the lane blaster will go off, destroying all enemies in its lane. However, this also destroys the lane blaster itself, leaving an opening for enemies to reach the left end of the field.",
-    "trl_firstActionIntro_txt_03": "A lane blaster cannot be restored once it's destroyed, but you always get your destroyed lane blasters back at the start of a stage.",
-    "trl_firstActionIntro_txt_04": "As mentioned, you place units on the field to fight off enemies, but to create a unit, you need energy. The energy needed to create a unit is displayed on its unit button.",
-    "trl_firstActionIntro_txt_05": "Some energy is automatically generated periodically, but it won't be enough to defeat the enemies. To generate more energy, you need to place generator units on the field. Your generator units can be found in the bottom left.",
-    "trl_firstActionIntro_txt_06": "When you have a unit selected, it'll be displayed in the bottom middle, and spots on the field will be highlighted to show where that unit can be placed. Two units cannot share the same space, and some units can only use certain tiles.",
-    "trl_firstActionIntro_txt_07": "With all that explained, please place a generator unit on the field.",
+    "trl_firstActionIntro_txt_01": "If the enemy side runs out of energy, you win. The enemy side automatically loses energy as the stage progresses, but defeating an enemy makes the enemy side lose energy faster. The enemy side’s energy amount is displayed by the bar on the right.",
+    "trl_firstActionIntro_txt_02": "On the left side of the field are lane blasters. A lane blaster destroys all enemies in its row upon an enemy touching it, but this destroys the lane blaster in the process. You cannot restore lost lane blasters, but you always get them back at the start of a stage.",
+    "trl_firstActionIntro_txt_03": "To place a unit on the field you need energy. Some energy is generated periodically, but that won’t be enough to defeat the enemies. To get more energy, you need to create generator units, which can be found in the bottom left.",
+    "trl_firstActionIntro_txt_04": "The energy needed to create a unit is displayed on its unit button. When you have a unit selected, it’ll be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. With all that covered, please place a unit on the field.",
 
     "trl_firstActionGenerators_ttl": "First Action Stage - Generators",
     "trl_firstActionGenerators_txt_00": "You've placed a generator unit! Generators generate energy if their conditions are met, and some generators only generate energy for a limited time. A generator flashes blue when it generates energy and goes dark if it cannot generate energy.",
