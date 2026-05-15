@@ -822,13 +822,11 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "You've placed a generator unit! Generators generate energy if their conditions are met, and some generators only generate energy for a limited time. A generator flashes blue when it generates energy and goes dark if it cannot generate energy.", "trl_firstActionGenerators_txt_00"),
-                new EDU_Page(title, titleKey, "Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage.", "trl_firstActionGenerators_txt_01"),
-                new EDU_Page(title, titleKey, "In the top left is the info log button, which opens the info log. The info log is the same as it is in the world area. If you ever need information on what your units do, check the info log.", "trl_firstActionGenerators_txt_02", tutorialsUI.textBox.logButtonSprite),
-                new EDU_Page(title, titleKey, "Also on the top left is the day-night indicator, which shows the time of day. As mentioned, solar power can only be generated during the day.", "trl_firstActionGenerators_txt_03", tutorialsUI.textBox.dayNightIndicatorSprite),
-                new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_04", tutorialsUI.textBox.optionsButtonSprite),
-                new EDU_Page(title, titleKey, "Also on the top right is the wind indicator, which shows the current wind speed. Generators that are affected by wind speed will be explained when relevant.", "trl_firstActionGenerators_txt_05", tutorialsUI.textBox.windIndicatorSprite),
-                new EDU_Page(title, titleKey, "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows the current amount of energy you have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_txt_06", tutorialsUI.textBox.energyAirPollutionDisplaySprite),
-                new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.", "trl_firstActionGenerators_txt_07"),
+                new EDU_Page(title, titleKey, "Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage. If you ever need information on what your units do, check the info log using the button in the top left.", "trl_firstActionGenerators_txt_01", tutorialsUI.textBox.logButtonSprite),
+                new EDU_Page(title, titleKey, "Similarly, the options menu can be opened using the button in the top right. In a stage, the options menu allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_02", tutorialsUI.textBox.optionsButtonSprite),
+                new EDU_Page(title, titleKey, "In the top left is the day-night indicator and in the top right is the wind indicator. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Units affected by these elements are explained when relevant.", "trl_firstActionGenerators_txt_03", tutorialsUI.textBox.indicatorsSprite),
+                new EDU_Page(title, titleKey, "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows how much energy you currently have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_txt_04", tutorialsUI.textBox.energyAirPollutionDisplaySprite),
+                new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.", "trl_firstActionGenerators_txt_05"),
             };
 
             // Creates the info object.
@@ -867,10 +865,9 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "Enemies are approaching! You'll need to use defense units to defeat them. Your defense units can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.", "trl_firstActionDefenses_txt_00", tutorialsUI.textBox.actionDefenseTypesSprite),
+                new EDU_Page(title, titleKey, "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.", "trl_firstActionDefenses_txt_00", tutorialsUI.textBox.actionDefenseTypesSprite),
                 new EDU_Page(title, titleKey, "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units naturally as the simulation progresses.", "trl_firstActionDefenses_txt_01", tutorialsUI.textBox.actionDefenseTypesSprite),
-                new EDU_Page(title, titleKey, "Units that use energy to attack pull from the same energy that's used to create generator and defense units. Notably, lane blasters and traps don't use any energy to attack, and shields don't attack at all.", "trl_firstActionDefenses_txt_02", tutorialsUI.textBox.actionDefenseTypesSprite),
-                new EDU_Page(title, titleKey, "With all that explained, back to the stage!", "trl_firstActionDefenses_txt_03"),
+                new EDU_Page(title, titleKey, "The energy that you use to create units is also used to power certain unit attacks, so make sure you manage your energy well. With all that explained, let the stage recommence!", "trl_firstActionDefenses_txt_02"),
             };
 
             // Creates the info object.
@@ -909,16 +906,13 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've defeated your first enemy, but there's still more on the way. Now that you have an idea of how action stages work, there's some more mechanics that you should know about.", "trl_firstActionFirstKill_txt_00"),
-                new EDU_Page(title, titleKey, "You'll get more units as the simulation progresses. When you have more units than a unit selector can display at once, you use the arrow buttons next to the selector to switch rows.", "trl_firstActionFirstKill_txt_01", tutorialsUI.textBox.actionUnitSelectorArrowsSprite),
-                new EDU_Page(title, titleKey, "The arrows on a unit button light up if you have energy to create the unit they're pointing towards in an adjacent row. A unit button's arrows remain dark if they have no unit to point to.", "trl_firstActionFirstKill_txt_02", tutorialsUI.textBox.actionUnitButtonsSprite),
-                new EDU_Page(title, titleKey, "On the left are the stage speed button, the unit deselect button, the unit remove button, and the energy block button.", "trl_firstActionFirstKill_txt_03", tutorialsUI.textBox.actionButtonsSprite),
-                new EDU_Page(title, titleKey, "The stage speed button allows you to toggle between normal stage speed and fast stage speed. The icon displayed on the button shows the current stage speed. 2 arrows mean normal speed and 3 arrows mean fast speed.", "trl_firstActionFirstKill_txt_04", tutorialsUI.textBox.stageSpeedSprite),
-                new EDU_Page(title, titleKey, "The unit deselect button deselects the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_txt_05", tutorialsUI.textBox.unitDeselectSprite),
-                new EDU_Page(title, titleKey, "The unit remove button toggles remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is active, it's displayed in the bottom middle. To remove a field unit, select said unit while in remove mode.", "trl_firstActionFirstKill_txt_06", tutorialsUI.textBox.unitRemoveSprite),
-                new EDU_Page(title, titleKey, "The energy block button toggles the energy flow to defense units. When the block is active, defense units are prevented from using any attacks that require energy. Any defense unit affected by the energy block will also go dark.", "trl_firstActionFirstKill_txt_07", tutorialsUI.textBox.energyBlockSprite),
-                new EDU_Page(title, titleKey, "The energy block button's icon displays if the energy is currently blocked or not. When the block is inactive, the icon shows a connected plug. When the block is active, the icon shows a disconnected plug.", "trl_firstActionFirstKill_txt_08", tutorialsUI.textBox.energyBlockSprite),
-                new EDU_Page(title, titleKey, "With all that explained, let the stage recommence!", "trl_firstActionFirstKill_txt_09"),
+                new EDU_Page(title, titleKey, "You've defeated your first enemy, but there's still more on the way. As stated, you'll get more units as the simulation progresses. When you have more units than a unit selector can display at once, you use the arrow buttons next to the selector to switch rows.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsSprite),
+                new EDU_Page(title, titleKey, "Relatedly, the arrows on a unit button light up if you have energy to create the unit they're pointing towards in an adjacent row. A unit button's arrows remain dark if they have no unit to point to.", "trl_firstActionFirstKill_txt_01", tutorialsUI.textBox.actionUnitButtonsSprite),
+                new EDU_Page(title, titleKey, "On the left are various buttons. The stage speed button allows you to toggle between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed.", "trl_firstActionFirstKill_txt_02", tutorialsUI.textBox.stageSpeedSprite),
+                new EDU_Page(title, titleKey, "The unit deselect button deselects the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_txt_03", tutorialsUI.textBox.unitDeselectSprite),
+                new EDU_Page(title, titleKey, "The unit remove button toggles remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is active, it's displayed in the bottom middle. To remove a field unit, select said unit while in remove mode.", "trl_firstActionFirstKill_txt_04", tutorialsUI.textBox.unitRemoveSprite),
+                new EDU_Page(title, titleKey, "The energy block button toggles the energy flow to defense units. When the block is active, defense units are prevented from using attacks that require energy. Any defense unit affected by the energy block will also go dark.", "trl_firstActionFirstKill_txt_05", tutorialsUI.textBox.energyBlockSprite),
+                new EDU_Page(title, titleKey, "The energy block button's icon displays if the energy is currently blocked or not. When the block is inactive, the icon shows a connected plug. When the block is active, the icon shows a disconnected plug. With all that explained, back to the stage.", "trl_firstActionFirstKill_txt_06", tutorialsUI.textBox.energyBlockSprite),
             };
 
             // Creates the info object.
@@ -951,8 +945,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've completed your first action stage! When you complete a stage, sometimes you'll unlock new defense units, which will have their information available in the info log.", "trl_firstActionComplete_txt_00"),
-                new EDU_Page(title, titleKey, "Relatedly, when a stage is successfully completed, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.", "trl_firstActionComplete_txt_01"),
+                new EDU_Page(title, titleKey, "You've completed your first action stage! When a stage is cleared, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.", "trl_firstActionComplete_txt_00"),
             };
 
             // Creates the info object.
@@ -985,13 +978,10 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This is a knowledge stage! In knowledge stages, you must match statements with the resources they apply to. Once you've made connections, select the verify button in the bottom right to check your answers. All statements must be matched correctly to complete the stage.", "trl_firstKnowledgeIntro_txt_00"),
-                new EDU_Page(title, titleKey, "The statements and resources are on separate screens, with the current screen's title being displayed in the top middle. To switch screens, use the arrow buttons at the top. When you have a statement or resource selected, it will be shown at the bottom.", "trl_firstKnowledgeIntro_txt_01"),
-                new EDU_Page(title, titleKey, "If you have a statement selected, it'll be connected to the next resource you select. If you have a resource selected, it'll be connected to the next statement you select. When a statement and resource are connected, they both display the same number.", "trl_firstKnowledgeIntro_txt_02", tutorialsUI.textBox.knowledgeStatementsResourcesSprite),
-                new EDU_Page(title, titleKey, "In the top left is the info log button, which opens the info log. The info log provides information on natural resources, which can help you match the statements to the right resources.", "trl_firstKnowledgeIntro_txt_03", tutorialsUI.textBox.logButtonSprite),
-                new EDU_Page(title, titleKey, "However, if you open the info log, it will be locked once you close it. To regain access to the info log, you must verify your statement connections using the verify button.", "trl_firstKnowledgeIntro_txt_04", tutorialsUI.textBox.logButtonSprite),
-                new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. Like in action stages, the options menu allows you to reset the stage, quit the stage, reread tutorials, and change the game's settings.", "trl_firstKnowledgeIntro_txt_05", tutorialsUI.textBox.optionsButtonSprite),
-                new EDU_Page(title, titleKey, "Try to beat the stage with as few verifications as possible. With all that stated, time to start the stage!", "trl_firstKnowledgeIntro_txt_06"),
+                new EDU_Page(title, titleKey, "This is a knowledge stage! In knowledge stages, you must match statements with the resources they apply to. The statements and resources are on separate screens, with the current screen's title displayed in the top middle. To switch screens, use the arrow buttons at the top.", "trl_firstKnowledgeIntro_txt_00"),
+                new EDU_Page(title, titleKey, "All statements must be matched correctly to complete the stage. Once you've made connections, select the verify button in the bottom right to check your answers. The number of correct matches you have is displayed in the bottom left, which is updated every verification.", "trl_firstKnowledgeIntro_txt_01"),
+                new EDU_Page(title, titleKey, "When you have a statement or resource selected, it's shown in the bottom middle. If you have a statement selected, it'll be connected to the next resource you select, and vice versa. When a statement and resource are connected, they both display the same number.", "trl_firstKnowledgeIntro_txt_02", tutorialsUI.textBox.knowledgeStatementsResourcesSprite),
+                new EDU_Page(title, titleKey, "For information on resources, you can check the info log using the button in the top left. But once you open the info log, it becomes locked until you perform a verification. Try to beat the stage with as few verifications as possible. With all that covered, let the stage begin!", "trl_firstKnowledgeIntro_txt_03", tutorialsUI.textBox.logButtonSprite),
             };
 
             // Creates the info object.
@@ -1025,8 +1015,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "You've performed a connection verification! All statements and resources that were matched correctly have become locked. All statements that weren't matched correctly or weren't matched at all have been randomized.", "trl_firstKnowledgeVerify_txt_00"),
-                new EDU_Page(title, titleKey, "When you complete a knowledge stage, you can get an energy start bonus depending on how many verifications it took. An energy start bonus gives you more energy at the start of your next action stage.", "trl_firstKnowledgeVerify_txt_01"),
-                new EDU_Page(title, titleKey, "If too many verifications are performed in a knowledge stage, no energy start bonus will be given for that stage.", "trl_firstKnowledgeVerify_txt_02"),
+                new EDU_Page(title, titleKey, "When you complete a knowledge stage, you can get an energy start bonus, which is used in action stages. The rewarded energy amount depends on how many verifications it took to beat the stage. If too many verifications were performed, no bonus will be given.", "trl_firstKnowledgeVerify_txt_01"),
             };
 
             // Creates the info object.
@@ -1059,7 +1048,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. As mentioned, the energy start bonus will be applied in your next action stage.", "trl_firstKnowledgeComplete_txt_00"),
+                new EDU_Page(title, titleKey, "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. If applicable, the energy bonus will automatically be applied at the start of your next action stage.", "trl_firstKnowledgeComplete_txt_00"),
             };
 
             // Creates the info object.
@@ -1092,7 +1081,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the on-screen arrow buttons.", "trl_firstAreaComplete_txt_00"),
+                new EDU_Page(title, titleKey, "You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the world arrow buttons.", "trl_firstAreaComplete_txt_00"),
             };
 
             // Creates the info object.
