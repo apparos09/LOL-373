@@ -105,6 +105,9 @@ namespace RM_EDU
             userWonButtons.gameObject.SetActive(true);
             userLostButtons.gameObject.SetActive(true);
 
+            // The speak key that may be used.
+            string messageKey;
+
             // The outcome is valid.
             switch (validOutcome)
             {
@@ -115,7 +118,10 @@ namespace RM_EDU
 
                     userWonButtons.gameObject.SetActive(false);
                     userLostButtons.gameObject.SetActive(true);
-                    
+
+                    // The stage over message key.
+                    messageKey = STAGE_OVER_MESSAGE_KEY;
+
                     break;
 
                 case 1: // Player (User) Won
@@ -124,6 +130,9 @@ namespace RM_EDU
 
                     userWonButtons.gameObject.SetActive(true);
                     userLostButtons.gameObject.SetActive(false);
+
+                    // The user won message key.
+                    messageKey = PLAYER_USER_WON_MESSAGE_KEY;
 
                     break;
 
@@ -134,11 +143,19 @@ namespace RM_EDU
                     userWonButtons.gameObject.SetActive(false);
                     userLostButtons.gameObject.SetActive(true);
 
+                    // The user lost message key.
+                    messageKey = PLAYER_USER_LOST_MESSAGE_KEY;
+
                     break;
             }
 
             // Sets the message.
             stageEndMessageText.text = message;
+
+            // Sets the message key to the speak text on enable.
+            // As long as the speak text call in this script happens after this is set...
+            // It should be updated in time for TTS.
+            speakTextOnEnable.key = messageKey;
 
             // Update the stage end stats.
             if(updateStats)
@@ -191,7 +208,7 @@ namespace RM_EDU
         public string GetStageEndDefaultMessage()
         {
             // If the LOLSDK is set, use the translated message.
-            if (LOLManager.IsLOLSDKInitialized())
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 return LOLManager.GetLanguageTextStatic(STAGE_OVER_MESSAGE_KEY);
             }
@@ -206,7 +223,7 @@ namespace RM_EDU
         public string GetStageEndUserWonMessage()
         {
             // If the LOLSDK is set, use the translated message.
-            if (LOLManager.IsLOLSDKInitialized())
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 return LOLManager.GetLanguageTextStatic(PLAYER_USER_WON_MESSAGE_KEY);
             }
@@ -221,7 +238,7 @@ namespace RM_EDU
         public string GetStageEndUserLostMessage()
         {
             // If the LOLSDK is set, use the translated message.
-            if (LOLManager.IsLOLSDKInitialized())
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
                 return LOLManager.GetLanguageTextStatic(PLAYER_USER_LOST_MESSAGE_KEY);
             }
@@ -243,6 +260,28 @@ namespace RM_EDU
             stageScore.valueText.text = Mathf.CeilToInt(actionManager.GetStageScore()).ToString();
             stageEnergyTotal.valueText.text = Mathf.CeilToInt(actionManager.GetStageEnergyTotal()).ToString();
             stageAirPollution.valueText.text = Mathf.CeilToInt(actionManager.GetStageAirPollution()).ToString();
+        }
+
+        // Speak text using the provided key.
+        // This function checks if TTS is available and the key is valid.
+        public void SpeakText(string key)
+        {
+            // Checks if the instances exist: LOL SDK, Text-to-Speech, and GameSettings.
+            // Also checks that the key is set.
+            if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized() && TextToSpeech.Instantiated &&
+                GameSettings.Instantiated && key != "")
+            {
+                // Gets the instances.
+                GameSettings gameSettings = GameSettings.Instance;
+                LOLManager lolManager = LOLManager.Instance;
+
+                // Checks if TTS should be used, speak the key.
+                if (gameSettings.UseTextToSpeech)
+                {
+                    // Grabs the LOL Manager to trigger text-to-speech.
+                    lolManager.textToSpeech.SpeakText(key);
+                }
+            }
         }
 
         // Quits the stage, which goes to the results scene.

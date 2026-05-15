@@ -149,6 +149,43 @@ namespace RM_EDU
             }
         }
 
+        // Tries to speak text using the provided key. This does checks to see if TTS is usable.
+        // Returns 'true' if successful, false if unsuccessful.
+        public static bool TrySpeakText(string key)
+        {
+            // The result that will be returned.
+            bool result;
+
+            // Checks if the following instances exist: LOL_SDK, Text-to-Speech, and GameSettings.
+            // Also checks that the key is set.
+            if (LOLManager.IsLOLSDKInitialized() && Instantiated && GameSettings.Instantiated && key != "")
+            {
+                // Gets the instances for text to speech and game settings.
+                TextToSpeech textToSpeech = Instance;
+                GameSettings gameSettings = GameSettings.Instance;
+
+                // Checks if TTS should be used, speak the key.
+                if (gameSettings.UseTextToSpeech)
+                {
+                    // Calls TTS for the provided key, and sets result to true since the call was valid.
+                    textToSpeech.SpeakText(key);
+                    result = true;
+                }
+                else
+                {
+                    // Call was invalid, so result is false.
+                    result = false;
+                }
+            }
+            // TTS cannot be used, so return false.
+            else
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
         // Reads the text based on the provided key.
         public void SpeakText(string key)
         {
