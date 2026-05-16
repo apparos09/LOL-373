@@ -77,6 +77,10 @@ namespace RM_EDU
             // Sets the action UI.
             if (actionUI == null)
                 actionUI = ActionUI.Instance;
+
+            // If not set, auto set.
+            if (speakTextOnEnable == null)
+                speakTextOnEnable = GetComponent<SpeakTextOnEnable>();
         }
 
         // // This function is called when the behaviour becomes disabled or inactive.
@@ -156,6 +160,15 @@ namespace RM_EDU
             // As long as the speak text call in this script happens after this is set...
             // It should be updated in time for TTS.
             speakTextOnEnable.key = messageKey;
+
+            // If this script is active and enabled, and the start function in SpeakTextOnEnable...
+            // Has been cleared, speak the text.
+            // This is to address a bug where speak text on enable was reading an older message.
+            if(isActiveAndEnabled && speakTextOnEnable.StartCleared)
+            {
+                // This function does safety checks.
+                SpeakText(messageKey);
+            }
 
             // Update the stage end stats.
             if(updateStats)

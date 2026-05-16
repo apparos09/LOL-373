@@ -38,6 +38,12 @@ namespace RM_EDU
             }
         }
 
+        // Returns 'true' if the start function has been cleared.
+        public bool StartCleared
+        {
+            get { return startCleared; }
+        }
+
         // Speaks text using the provided key.
         public void SpeakText()
         {

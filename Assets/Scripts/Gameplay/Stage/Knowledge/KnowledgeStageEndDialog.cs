@@ -37,6 +37,10 @@ namespace RM_EDU
             // Gets the UI instance.
             if (knowledgeUI == null)
                 knowledgeUI = KnowledgeUI.Instance;
+
+            // If not set, auto set.
+            if (speakTextOnEnable == null)
+                speakTextOnEnable = GetComponent<SpeakTextOnEnable>();
         }
 
         // Updates the stage end stats.
