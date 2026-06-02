@@ -699,7 +699,7 @@
 
 
     "aud_blasterLane_nme": "Lane Blaster",
-    "aud_blasterLane_dsc_00": "A blaster that destroys all enemies in its lane upon an enemy interacting with it. Once a shot is fired, this blaster is destroyed.",
+    "aud_blasterLane_dsc_00": "A blaster that destroys all enemies in its lane upon enemy interaction. Once a shot is fired, this blaster is destroyed.",
 
     "aud_blasterStandard_nme": "Basic Blaster",
     "aud_blasterStandard_dsc_00": "A blaster that fires at enemies in front of it in its own lane.",
@@ -723,10 +723,10 @@
     "aud_blasterTriple_dsc_00": "A blaster that shoots three shots at once, with each shot going at a different angle.",
 
     "aud_blasterDepreciation_nme": "Near Blaster",
-    "aud_blasterDepreciation_dsc_00": "A blaster that does more damage the closer the target is.",
+    "aud_blasterDepreciation_dsc_00": "A blaster that does more damage when the target is close.",
 
     "aud_shieldWeak_nme": "Flimsy Shield",
-    "aud_shieldWeak_dsc_00": "A weak shield that can be used to block enemies and defend units that're behind it.",
+    "aud_shieldWeak_dsc_00": "A weak shield that can be used to block enemies and defend units that are behind it.",
 
     "aud_energyTrapFast_nme": "Furious Energy Trap",
     "aud_energyTrapFast_dsc_00": "Drains energy from enemies that pass over it and gives some of it to the player, but it has a small energy limit. When its energy limit is reached, it destroys itself and damages all enemies within range.",
@@ -777,7 +777,7 @@
 
     "kwd_stageOver": "Stage Over",
     "asg_msg_stageOver": "The stage is over!",
-    "asg_msg_userWon": "Your side has won! The enemy side has run out of power!",
+    "asg_msg_userWon": "Your side has won! The enemy side have run out of power!",
     "asg_msg_userLost": "The enemy side has won! Enemies have made it into the base!",
 
     "kwd_time": "Time",
