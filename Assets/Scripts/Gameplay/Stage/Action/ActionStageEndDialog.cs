@@ -243,7 +243,8 @@ namespace RM_EDU
             // Use default message.
             else
             {
-                return "Your side has won! The enemy side has run out of power!";
+                // return "Your side has won! The enemy side has run out of power!"; // Old
+                return "Your side has won! The enemy side have run out of power!"; // New (reviewer edited)
             }
         }
 
