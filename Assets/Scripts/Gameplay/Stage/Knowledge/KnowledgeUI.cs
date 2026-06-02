@@ -22,19 +22,9 @@ namespace RM_EDU
         public KnowledgeManager knowledgeManager;
 
         [Header("Knowledge/Statements, Resources")]
-        // The section text.
+        // The section text
+        // This is no longer referenced since statements and resources are all on one screen.
         public TMP_Text sectionText;
-
-        // NOTE: originally, the active section had a (1, 1, 1) scale and the inactive section had a (0, 0, 0) scale.
-        // To try and improve the game's frame rate, elements are moved out of view instead of having their scale altered.
-        // This is handled this way as all sections must be active to make sure updates occur properly.
-        // This is a hold over from how the game was handled statements and resources before.
-
-        // The rect transform for an on-screen element being visible.
-        public RectTransform sectionVisibleRect;
-
-        // The rect transform for an on-screen element being hidden.
-        public RectTransform sectionHiddenRect;
 
         // The parent object of all statements.
         public GameObject statementsParent;
@@ -192,13 +182,6 @@ namespace RM_EDU
             {
                 return instanced;
             }
-        }
-
-        // SECTION, STATEMENTS, RESOURCES
-        // Swaps the sections.
-        public void SwapSections()
-        {
-            knowledgeManager.SwapSections();
         }
 
         // STATEMENTS ACTIVE, RESOURCES ACTIVE

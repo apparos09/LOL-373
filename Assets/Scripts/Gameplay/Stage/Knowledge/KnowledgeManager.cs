@@ -218,8 +218,7 @@ namespace RM_EDU
             // The base number of statements used.
             int baseStatementCount = 0;
 
-            // Makes sure both sections are active.
-            SetSection(0);
+            // Only one section, so no need to set the section.
 
             // Determines the statement count by the difficulty.
             switch(difficulty)
@@ -420,8 +419,8 @@ namespace RM_EDU
             // Sets verification attempts to 0.
             verifyAttempts = 0;
 
-            // Activates the statement section as the default section.
-            ActivateStatementsSection();
+            // No section needs to be activated as the default since there's...
+            // No other sections (statements and resources share a screen).
 
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
@@ -595,154 +594,6 @@ namespace RM_EDU
 
             return result;
         }
-
-        // Sets what section is active.
-        // An inactive section is moved to the hidden position.
-        // This is done because all sections must be active to make sure they're all constantly updated.
-        // 0 = both, 1 = statement, 2 = resource
-        public void SetSection(int section)
-        {
-            // Sets the instance.
-            if (knowledgeUI == null)
-                knowledgeUI = KnowledgeUI.Instance;
-
-            // The section text.
-            TMP_Text sectionText = knowledgeUI.sectionText;
-
-            // Gets the parents and their transform rects.
-            GameObject sp = knowledgeUI.statementsParent;
-            RectTransform spr = knowledgeUI.statementsParentRect;
-
-            GameObject rp = knowledgeUI.resourcesParent;
-            RectTransform rpr = knowledgeUI.resourcesParentRect;
-
-            // Makes sure both are active.
-            // Statements
-            if (!sp.activeSelf) 
-                sp.SetActive(true);
-            
-            // Resources
-            if(!rp.activeSelf)
-                rp.SetActive(true);
-
-            // Checks what section to active.
-            switch (section)
-            {
-                default:
-                case 0: // Both
-                    // Old - change scale.
-                    // sp.transform.localScale = Vector3.one;
-                    // rp.transform.localScale = Vector3.one;
-
-                    // New - change positions - both visible.
-                    spr.position = knowledgeUI.sectionVisibleRect.position;
-                    rpr.position = knowledgeUI.sectionVisibleRect.position;
-
-                    // Update text.
-                    sectionText.text = GetSectionStringTranslated();
-
-                    break;
-
-                case 1: // Statements
-
-                    // Old - change scale - statements visible.
-                    // sp.transform.localScale = Vector3.one;
-                    // rp.transform.localScale = Vector3.zero;
-
-                    // New - change positions - statements visible.
-                    spr.position = knowledgeUI.sectionVisibleRect.position;
-                    rpr.position = knowledgeUI.sectionHiddenRect.position;
-
-                    // Update text.
-                    sectionText.text = GetStatementsStringTranslated();
-
-                    break;
-
-                case 2: // Resources
-                    // Old - change scale - resources visible.
-                    // sp.transform.localScale = Vector3.zero;
-                    // rp.transform.localScale = Vector3.one;
-
-                    // New - change positions - resources visible.
-                    spr.position = knowledgeUI.sectionHiddenRect.position;
-                    rpr.position = knowledgeUI.sectionVisibleRect.position;
-
-                    // Update text.
-                    sectionText.text = GetResourcesStringTranslated();
-
-                    break;
-            }
-
-
-        }
-
-        // Returns true if the statements section is active.
-        public bool IsStatementsSectionActive()
-        {
-            // If not set, grab instance.
-            if (knowledgeUI == null)
-                knowledgeUI = KnowledgeUI.Instance;
-
-            // Old - checks scale.
-            // GameObject sp = KnowledgeUI.Instance.statementsParent;
-            // return sp.activeSelf && sp.transform.localScale == Vector3.one;
-
-            // New - checks position.
-            // Grabs the statements rect and the visible position rect.
-            RectTransform spr = knowledgeUI.statementsParentRect;
-            RectTransform visibleRect = knowledgeUI.sectionVisibleRect;
-
-            // Check if active and in the visible position.
-            return spr.gameObject.activeSelf && spr.position == visibleRect.position;
-        }
-
-        // Activates the statements section.
-        public void ActivateStatementsSection()
-        {
-            SetSection(1);
-        }
-
-        // Returns true if the resources section is active.
-        public bool IsResourcesSectionActive()
-        {
-            // If not set, grab instance.
-            if (knowledgeUI == null)
-                knowledgeUI = KnowledgeUI.Instance;
-
-            // Old - check the local scale.
-            // GameObject rp = KnowledgeUI.Instance.resourcesParent;
-            // return rp.activeSelf && rp.transform.localScale == Vector3.one;
-
-            // New - check the position.
-            // Grabs the resources rect and the visible position rect.
-            RectTransform rpr = knowledgeUI.resourcesParentRect;
-            RectTransform visibleRect = knowledgeUI.sectionVisibleRect;
-
-            // Check if active and in the visible position.
-            return rpr.gameObject.activeSelf && rpr.position == visibleRect.position;
-        }
-
-        // Activates the resources section.
-        public void ActivateResourcesSection()
-        {
-            SetSection(2);
-        }
-
-        // Swaps the sections.
-        public void SwapSections()
-        {
-            // If the statements section is active, activate the resources section.
-            if(IsStatementsSectionActive())
-            {
-                ActivateResourcesSection();
-            }
-            // Activate the statements section.
-            else
-            {
-                ActivateStatementsSection();
-            }
-        }
-
 
         // RANDOMIZE
         // Randomizes the statements using the groups.
@@ -1467,8 +1318,8 @@ namespace RM_EDU
             // Sets verification attempts to 0.
             verifyAttempts = 0;
 
-            // Goes to the statement section.
-            ActivateStatementsSection();
+            // The statement section doesn't need to be gone to...
+            // Since there's only one section now.
         }
 
         // Finishes the stage. Only call this if the stage is complete.

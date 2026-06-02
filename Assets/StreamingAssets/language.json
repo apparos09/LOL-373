@@ -294,6 +294,7 @@
       "kwd_section": 18,
       "kwd_statement": 18,
       "kwd_statements": 18,
+      "kwd_statementsResources": 28,
 
       "kwd_matches": 18,
       "kwd_selection": 18,
@@ -790,6 +791,7 @@
     "kwd_section": "Section",
     "kwd_statement": "Statement",
     "kwd_statements": "Statements",
+    "kwd_statementsResources": "Statements/Resources",
 
     "kwd_matches": "Matches",
     "kwd_selection": "Selection",
