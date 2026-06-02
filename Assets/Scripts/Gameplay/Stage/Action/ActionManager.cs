@@ -31,12 +31,14 @@ namespace RM_EDU
         public ActionStage actionStage;
 
         // The total amount of time the stage lasts in seconds.
-        // The stage lasts 2:00 (120 seconds).
-        // Enemy units don't start spawning until 10 seconds have passed. Originally, an extra 10 seconds...
-        // Was added on to the stage time for this (2:10, i.e., 2 minutes, 10 seconds), but that has been removed.
-        // The 10 seconds wait time is there because of changes to the enemy player's starting spawn time.
-        // Day and night are 1 minute each (half of the stage).
-        public const float STAGE_LENGTH_MAX_SECONDS = 120.0F;
+        // The stage lasts 1:40 (100 seconds).
+        //  - Originally, the stage was 2:00 (120 seconds).
+        // Enemy units don't start spawning until 10 seconds have passed.
+        // - The 10 seconds wait time is there because of changes to the enemy player's starting spawn time.
+        // - It's always 10 seconds regardless of the stage difficulty. This wait time is included in the stage length.
+        // Day and night are 50 seconds (0:50) each (half of the stage).
+        // - Originally, day and night were 1 minute each when the stage was 2 minutes (i.e., half of stage time).
+        public const float STAGE_LENGTH_MAX_SECONDS = 100.0F;
 
         // If 'true', the event overlay is enabled.
         // private bool stageEventOverlayEnabled = true;
