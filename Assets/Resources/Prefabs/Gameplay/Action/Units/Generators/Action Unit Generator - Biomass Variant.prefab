@@ -113,7 +113,7 @@ MonoBehaviour:
   unitDesc:
   - A renewable generator that burns plant materials to generate energy. This generator
     can be placed anywhere on land.
-  - This generator generates a moderate amount of energy at a slow rate.
+  - This generator generates a moderate amount of energy at a moderate rate.
   unitDescKey: aug_biomass_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8058976512716701036}
@@ -131,7 +131,7 @@ MonoBehaviour:
   energyCreationCost: 70
   energyDeathCost: 0
   energyGenerationAmount: 60
-  energyGenerationSpeed: 40
+  energyGenerationSpeed: 60
   attackEnergyCost: 0
   attackPower: 0
   attackSpeed: 0

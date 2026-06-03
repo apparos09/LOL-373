@@ -211,7 +211,7 @@ MonoBehaviour:
   - A non-renewable generator that generates energy using natural gas. This generator
     can be placed on coal, oil, and natural gas source spots. It also produces a
     moderate amount of air pollution.
-  - This generator produces a high amount of energy at a low rate.
+  - This generator produces a high amount of energy at a moderate rate.
   unitDescKey: aug_naturalGas_dsc
   owner: {fileID: 0}
   spriteRenderer: {fileID: 8866950658550869557}
@@ -229,14 +229,14 @@ MonoBehaviour:
   energyCreationCost: 40
   energyDeathCost: 0
   energyGenerationAmount: 80
-  energyGenerationSpeed: 40
+  energyGenerationSpeed: 60
   attackEnergyCost: 0
   attackPower: 0
   attackSpeed: 0
   attackingEnabled: 0
   attackCooldownTimer: 0
   oneHitKill: 0
-  durability: 20
+  durability: 40
   movementSpeed: 0
   airPollution: 60
   projectilePoolDestroyTimer: 0

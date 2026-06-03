@@ -1150,7 +1150,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "This stage uses the renewable resource biomass. Biomass entails burning plant and/or waste materials to spin a turbine to generate energy.", "trl_biomass_txt_00", tutorialsUI.textBox.biomassSprite),
-                new EDU_Page(title, titleKey, "A biomass generator can be placed anywhere on land, generates energy regularly, and produces no air pollution. It generates a moderate amount of energy at a slow rate.", "trl_biomass_txt_01", tutorialsUI.textBox.biomassSprite),
+                new EDU_Page(title, titleKey, "A biomass generator can be placed anywhere on land, generates energy regularly, and produces no air pollution. It generates a moderate amount of energy at a moderate rate.", "trl_biomass_txt_01", tutorialsUI.textBox.biomassSprite),
             };
 
             // Creates the info object.
@@ -1253,7 +1253,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight into electricity, which can only be done during the day.", "trl_solar_txt_00", tutorialsUI.textBox.solarSprite),
-                new EDU_Page(title, titleKey, "Solar generators can be placed anywhere on land, produce no air pollution, and can only be used during the daytime. They produce a moderate amount of energy at a high rate.", "trl_solar_txt_01", tutorialsUI.textBox.solarSprite),
+                new EDU_Page(title, titleKey, "Solar generators can be placed anywhere on land, produce no air pollution, and can only be used during the daytime. They produce a moderate amount of energy at a moderate rate.", "trl_solar_txt_01", tutorialsUI.textBox.solarSprite),
             };
 
             // Creates the info object.
@@ -1390,7 +1390,7 @@ namespace RM_EDU
                 // Load the pages.
                 new EDU_Page(title, titleKey, "This stage uses the non-renewable fossil fuel resource natural gas. Natural gas is burned to produce gases, which then spin a turbine to generate energy.", "trl_naturalGas_txt_00", tutorialsUI.textBox.naturalGasSprite),
                 new EDU_Page(title, titleKey, "Natural gas is often found with coal or oil, is highly flammable, must have its poisonous elements removed before being burned, and releases pollutants when burned.", "trl_naturalGas_txt_01", tutorialsUI.textBox.naturalGasSprite),
-                new EDU_Page(title, titleKey, "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a low rate.", "trl_naturalGas_txt_02", tutorialsUI.textBox.naturalGasSprite),
+                new EDU_Page(title, titleKey, "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a moderate rate.", "trl_naturalGas_txt_02", tutorialsUI.textBox.naturalGasSprite),
             };
 
             // Creates the info object.
