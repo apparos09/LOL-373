@@ -84,11 +84,17 @@ namespace RM_EDU
                 actionManager.playerEnemy = this;
             }
 
-            // Sets the enemy to max, sets the spaw timer to starting amount, and sets to use all enemy prefabs.
+            // Sets the enemy to max.
             SetEnergyToMax();
+
+            // Calculates and sets the energy decrement amount to its default.
+            CalculateAndSetEnergyDecrementAmount();
+
+            // Sets the spawn timer to the starting amount.
             // SetSpawnTimerToMax();
             SetSpawnTimerToStartingAmount();
 
+            // Sets the enemy prefabs.
             // If there are no usable enemy ids, fill the list with all enemies.
             if(enemyIds.Count <= 0)
                 SetEnemyPrefabsToAll(false); 
@@ -109,7 +115,7 @@ namespace RM_EDU
             switch(enemyDiff)
             {
                 case 1:
-                    energyMax = 200.0F;
+                    energyMax = 960.0F;
                     spawnTimeMax = 8.65F;
 
                     enemiesPerSpawnMin = 1;
@@ -120,7 +126,7 @@ namespace RM_EDU
                     break;
 
                 case 2:
-                    energyMax = 225.0F;
+                    energyMax = 965.0F;
                     spawnTimeMax = 8.60F;
 
                     enemiesPerSpawnMin = 1;
@@ -131,7 +137,7 @@ namespace RM_EDU
                     break;
 
                 case 3:
-                    energyMax = 250.0F;
+                    energyMax = 970.0F;
                     spawnTimeMax = 8.55F;
 
                     enemiesPerSpawnMin = 1;
@@ -143,7 +149,7 @@ namespace RM_EDU
                     break;
 
                 case 4:
-                    energyMax = 275.0F;
+                    energyMax = 975.0F;
                     spawnTimeMax = 8.50F;
 
                     enemiesPerSpawnMin = 1;
@@ -155,7 +161,7 @@ namespace RM_EDU
                     break;
 
                 case 5:
-                    energyMax = 300.0F;
+                    energyMax = 980.0F;
                     spawnTimeMax = 8.45F;
 
                     enemiesPerSpawnMin = 1;
@@ -168,7 +174,7 @@ namespace RM_EDU
                     break;
 
                 case 6:
-                    energyMax = 325.0F;
+                    energyMax = 985.0F;
                     spawnTimeMax = 8.40F;
 
                     enemiesPerSpawnMin = 1;
@@ -181,7 +187,7 @@ namespace RM_EDU
                     break;
 
                 case 7:
-                    energyMax = 350.0F;
+                    energyMax = 990.0F;
                     spawnTimeMax = 8.35F;
 
                     enemiesPerSpawnMin = 1;
@@ -194,7 +200,7 @@ namespace RM_EDU
                     break;
 
                 case 8:
-                    energyMax = 375.0F;
+                    energyMax = 995.0F;
                     spawnTimeMax = 8.30F;
 
                     enemiesPerSpawnMin = 1;
@@ -210,7 +216,7 @@ namespace RM_EDU
                 case 0:
                 case 9:
                     // Energy and spawn time.
-                    energyMax = 400.0F;
+                    energyMax = 1000.0F;
                     spawnTimeMax = 8.25F;
 
                     // Enemies per spawn min and max.
@@ -225,8 +231,9 @@ namespace RM_EDU
             // If values should be reset based on the new difficulty.
             if(resetValues)
             {
-                // Sets the values to max.
+                // Sets the energy to max, sets the energy decrement value, and sets the spawn timer to max.
                 SetEnergyToMax();
+                CalculateAndSetEnergyDecrementAmount();
                 SetSpawnTimerToMax();
             }
         }
@@ -296,18 +303,27 @@ namespace RM_EDU
             return energyDec;
         }
 
-        // Calculates the energy decrement amount.
+        // Calculates the energy decrement amount per second.
         public float CalculateEnergyDecrementAmount()
         {
             // The maximum length of the stage is used...
             // To determine how much energy the enemy should lose every second.
-            // It's also multiplied by delta time to know how much to reduce it by.
-            float result = energyMax / ActionManager.STAGE_LENGTH_MAX_SECONDS * Time.deltaTime;
+
+            // Originally it was multiplied by delta time for some reason.
+            // Delta time is applied when the decrement amount applied in Update.
+            // It should not be part of the base value for the energy decrement.
+            // float energyMax / ActionManager.STAGE_LENGTH_MAX_SECONDS * Time.deltaTime;
+
+            float result = energyMax / ActionManager.STAGE_LENGTH_MAX_SECONDS;
+
+            // If the result is negative, set it to 1.
+            if (result < 0)
+                result = 1.0F;
 
             return result;
         }
 
-        // Calculates and sets the energy decrement amount.
+        // Calculates and sets the energy decrement amount per second.
         public void CalculateAndSetEnergyDecrementAmount()
         {
             energyDec = CalculateEnergyDecrementAmount();
