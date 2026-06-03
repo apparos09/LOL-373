@@ -115,7 +115,7 @@ namespace RM_EDU
             switch(enemyDiff)
             {
                 case 1:
-                    energyMax = 960.0F;
+                    energyMax = 920.0F;
                     spawnTimeMax = 8.40F;
 
                     enemiesPerSpawnMin = 1;
@@ -126,7 +126,7 @@ namespace RM_EDU
                     break;
 
                 case 2:
-                    energyMax = 965.0F;
+                    energyMax = 930.0F;
                     spawnTimeMax = 8.35F;
 
                     enemiesPerSpawnMin = 1;
@@ -137,7 +137,7 @@ namespace RM_EDU
                     break;
 
                 case 3:
-                    energyMax = 970.0F;
+                    energyMax = 940.0F;
                     spawnTimeMax = 8.30F;
 
                     enemiesPerSpawnMin = 1;
@@ -149,7 +149,7 @@ namespace RM_EDU
                     break;
 
                 case 4:
-                    energyMax = 975.0F;
+                    energyMax = 950.0F;
                     spawnTimeMax = 8.25F;
 
                     enemiesPerSpawnMin = 1;
@@ -161,7 +161,7 @@ namespace RM_EDU
                     break;
 
                 case 5:
-                    energyMax = 980.0F;
+                    energyMax = 960.0F;
                     spawnTimeMax = 8.20F;
 
                     enemiesPerSpawnMin = 1;
@@ -174,7 +174,7 @@ namespace RM_EDU
                     break;
 
                 case 6:
-                    energyMax = 985.0F;
+                    energyMax = 970.0F;
                     spawnTimeMax = 8.15F;
 
                     enemiesPerSpawnMin = 1;
@@ -187,7 +187,7 @@ namespace RM_EDU
                     break;
 
                 case 7:
-                    energyMax = 990.0F;
+                    energyMax = 980.0F;
                     spawnTimeMax = 8.10F;
 
                     enemiesPerSpawnMin = 1;
@@ -200,7 +200,7 @@ namespace RM_EDU
                     break;
 
                 case 8:
-                    energyMax = 995.0F;
+                    energyMax = 990.0F;
                     spawnTimeMax = 8.05F;
 
                     enemiesPerSpawnMin = 1;
