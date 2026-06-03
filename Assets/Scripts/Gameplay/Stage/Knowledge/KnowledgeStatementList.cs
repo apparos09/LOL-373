@@ -513,7 +513,7 @@ namespace RM_EDU
                 "When burned for producing energy, this resource releases carbon dioxide and potentially other harmful materials into the air. This resource produces more carbon dioxide than oil and natural gas when burned.", 
                 "kst_col_03"));
             coalGroup.statements.Add(new Statement(4,
-                "A resource that's found by mining. When mined on the surface, this resource exposes sulfur to the atmosphere. Sulfur can mix with water and air to create sulfuric acid, a highly corrosive chemical that can damage environments.", 
+                "When this resource is mined on the surface, it exposes sulfur to the atmosphere. Sulfur can mix with water and air to create sulfuric acid, a highly corrosive chemical that can damage environments.", 
                 "kst_col_04"));
             coalGroup.SetAllStatementsToGroupResource();
 
@@ -542,7 +542,7 @@ namespace RM_EDU
                 "A non-renewable resource that generates energy by splitting the nucleus of an atom. This reaction produces heat, which boils water to produce steam. This steam is used to turn a turbine to generate energy.", 
                 "kst_nlr_00"));
             nuclearGroup.statements.Add(new Statement(1,
-                "A resource that splits uranium atoms for generating energy. Uranium is concentrated into fuel rods and has its atoms split using tiny particles. These particles are controlled to avoid causing a dangerous explosion.", 
+                "A resource that uses uranium for generating energy. Uranium is concentrated into fuel rods and has its atoms split using tiny particles. These particles are controlled to avoid causing a dangerous explosion.", 
                 "kst_nlr_01"));
             nuclearGroup.statements.Add(new Statement(2,
                 "A non-renewable resource that generates energy by splitting uranium atoms. This resource produces no pollutants, and if there are no accidents, only steam is released into the air.", 
@@ -561,7 +561,7 @@ namespace RM_EDU
                 "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. It's a black or dark brown liquid found in rock layers in the Earth's crust.", 
                 "kst_oil_00"));
             oilGroup.statements.Add(new Statement(1,
-                "This resource forms from dead organic material that's buried under sediments, kept away from oxygen, and exposed to both high heat and pressure. It takes millions of years to form, but forms at a lower temperature than natural gas.", 
+                "This resource forms from dead organic material that's buried under sediments, kept away from oxygen, and exposed to both high heat and pressure. It forms at a lower temperature than natural gas.", 
                 "kst_oil_01"));
             oilGroup.statements.Add(new Statement(2,
                 "A resource that's obtained in a crude form, which has a mix of different hydrocarbons. It's then refined via heating to separate it into different compounds, which all boil at different temperatures.", 
@@ -570,7 +570,7 @@ namespace RM_EDU
                 "A non-renewable liquid resource that's burned for generating energy. It can be found by mining on land and at sea, but drilling at sea can cause a spill if something goes wrong.", 
                 "kst_oil_03"));
             oilGroup.statements.Add(new Statement(4,
-                "A non-renewable resource that can be burned for generating energy and can be refined for various uses. When burned, it releases toxic chemicals into the air.", 
+                "A non-renewable resource that can be burned for generating energy and can be refined for various uses. It takes millions of years to form and releases toxic chemicals into the air when burned.", 
                 "kst_oil_04"));
             oilGroup.SetAllStatementsToGroupResource();
 
