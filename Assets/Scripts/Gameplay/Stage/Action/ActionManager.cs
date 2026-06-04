@@ -460,8 +460,8 @@ namespace RM_EDU
             // If the player user has generated air pollution, calculate a reduction.
             if(playerUser.airPollution > 0)
             {
-                // For every 50 points of air pollution, deduct 35 points from the score.
-                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 50.0F) * 35.0F;
+                // For every 50 points of air pollution, deduct 40 points from the score.
+                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 50.0F) * 40.0F;
             }
 
             // Calculates the bonus. If the bonus is less than 0, make it 0.
@@ -471,8 +471,9 @@ namespace RM_EDU
             if (bonusPoints < 0)
                 bonusPoints = 0.0F;
 
-            // Final score.
+            // Final score - rounds up to nearest whole value.
             float finalScore = basePoints + bonusPoints;
+            finalScore = Mathf.Ceil(finalScore);
 
             // If the final score is less than 0, make it 0.
             if (finalScore < 0.0F)

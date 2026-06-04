@@ -374,8 +374,8 @@ namespace RM_EDU
         // Generates air pollution for one instance of this generator.
         public float GenerateAirPollution()
         {
-            // Generates the value.
-            float value = 10.0F * (Mathf.Abs(airPollution) / BASE_STAT_MAXIMUM);
+            // Generates the value and rounds up to the nearest whole number.
+            float value = Mathf.Ceil(12.5F * (Mathf.Abs(airPollution) / BASE_STAT_MAXIMUM));
 
             // Set to 0 if negative.
             if (value < 0)

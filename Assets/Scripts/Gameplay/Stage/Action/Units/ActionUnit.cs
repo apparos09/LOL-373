@@ -653,8 +653,8 @@ namespace RM_EDU
         // Calculates the energy generation amount. This is the general static function for it.
         public static float CalculateEnergyGenerationAmount(float energyGenAmnt)
         {
-            // Ceil(Amount Stat / Stat Maximum * 23.75)
-            return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 23.75F);
+            // Ceil(Amount Stat / Stat Maximum * 23.85)
+            return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 23.85F);
         }
 
         // Override this function if the calculation should be changed.

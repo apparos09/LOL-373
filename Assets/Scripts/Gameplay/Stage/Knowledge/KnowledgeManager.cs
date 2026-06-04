@@ -1212,8 +1212,10 @@ namespace RM_EDU
             }
 
             // Calculate the score total by adding the score base to the bonuses.
+            // Also rounds the score total up to the nearest value.
             // Bonuses: resources bonus, time bonus, and verify bonus.
             float scoreTotal = scoreBase + scoreResourcesBonus + scoreTimeBonus + scoreVerifyBonus;
+            scoreTotal = Mathf.Ceil(scoreTotal);
 
             // Originally, the energy start bonus was overwritten here.
             // Since the energy bonus shouldn't be reset here, that no longer happens here.  
