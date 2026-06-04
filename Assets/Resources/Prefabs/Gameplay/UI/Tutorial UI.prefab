@@ -684,4 +684,4 @@ MonoBehaviour:
   unitDeselectSprite: {fileID: 21300000, guid: bd07ea53e4160924a8e7957908caf443, type: 3}
   unitRemoveSprite: {fileID: 21300000, guid: bbc530712c1d0d244bef5516275c6db9, type: 3}
   energyBlockSprite: {fileID: 21300000, guid: 0df2494c424b25845a67695de10020aa, type: 3}
-  knowledgeStatementsResourcesSprite: {fileID: 21300000, guid: 7d3f8689dee6c1742b1ff0b6e139fd5f, type: 3}
+  knowledgeElementsSprite: {fileID: 21300000, guid: 7d3f8689dee6c1742b1ff0b6e139fd5f, type: 3}

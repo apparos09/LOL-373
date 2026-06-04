@@ -78,7 +78,7 @@ namespace RM_EDU
 
         [Header("Tutorials/Sprites/Knowledge")]
 
-        public Sprite knowledgeStatementsResourcesSprite;
+        public Sprite knowledgeElementsSprite;
 
         // Start is called before the first frame update
         protected override void Start()
