@@ -274,6 +274,7 @@
       "kwd_remove": 18,
       "kwd_remove_abv": 3,
       "kwd_block": 18,
+      "kwd_disable": 18,
 
       "kwd_selected": 18,
 
@@ -771,6 +772,7 @@
     "kwd_remove": "Remove",
     "kwd_remove_abv": "RMV",
     "kwd_block": "Block",
+    "kwd_disable": "Disable",
 
     "kwd_selected": "Selected",
 

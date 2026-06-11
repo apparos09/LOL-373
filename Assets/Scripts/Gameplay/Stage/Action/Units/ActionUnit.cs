@@ -942,7 +942,7 @@ namespace RM_EDU
         // Calculates the energy death cost using the provided stat factor.
         public static float CalculateEnergyDeathCost(float energyDeathCost, float statFactor)
         {
-            return energyDeathCost * statFactor * 1.12F;
+            return energyDeathCost * statFactor * 1.20F;
         }
 
         // Calculates the energy death cost using unit's vlaue.

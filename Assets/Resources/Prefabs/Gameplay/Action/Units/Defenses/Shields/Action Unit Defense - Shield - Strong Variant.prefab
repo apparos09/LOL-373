@@ -126,7 +126,7 @@ PrefabInstance:
       objectReference: {fileID: 1514778346, guid: a16819c540d366e47bca262d0ced7c5b, type: 3}
     - target: {fileID: 6406251498641835542, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: energyCreationCost
-      value: 100
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 6406251498641835542, guid: 1bc8edfc9ee9bfb45ac1a4a5676f6f57, type: 3}
       propertyPath: unitDesc.Array.data[0]
