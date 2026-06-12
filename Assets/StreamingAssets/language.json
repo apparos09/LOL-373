@@ -847,7 +847,7 @@
     "kst_oil_00": "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. It's a black or dark brown liquid found in rock layers in the Earth's crust.",
     "kst_oil_01": "This liquid resource forms from dead organic material that's buried under sediments, kept away from oxygen, and exposed to both high heat and pressure. It forms at a lower temperature than natural gas.",
     "kst_oil_02": "A resource that's obtained in a crude form, which has a mix of different hydrocarbons. It's then refined via heating to separate it into different compounds, which all boil at different temperatures.",
-    "kst_oil_03": "A non-renewable liquid resource that's burned for generating energy. It can be found by mining on land and at sea, but drilling at sea can cause a spill if something goes wrong.",
+    "kst_oil_03": "A non-renewable liquid resource that's burned for generating energy. It can be extracted on land and at sea, but drilling at sea can cause a spill if something goes wrong.",
     "kst_oil_04": "A non-renewable liquid resource that can be burned for generating energy and can be refined for various uses. It takes millions of years to form and releases toxic chemicals into the air when burned.",
 
 

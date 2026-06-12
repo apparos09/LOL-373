@@ -567,7 +567,7 @@ namespace RM_EDU
                 "A resource that's obtained in a crude form, which has a mix of different hydrocarbons. It's then refined via heating to separate it into different compounds, which all boil at different temperatures.", 
                 "kst_oil_02"));
             oilGroup.statements.Add(new Statement(3,
-                "A non-renewable liquid resource that's burned for generating energy. It can be found by mining on land and at sea, but drilling at sea can cause a spill if something goes wrong.", 
+                "A non-renewable liquid resource that's burned for generating energy. It can be extracted on land and at sea, but drilling at sea can cause a spill if something goes wrong.", 
                 "kst_oil_03"));
             oilGroup.statements.Add(new Statement(4,
                 "A non-renewable liquid resource that can be burned for generating energy and can be refined for various uses. It takes millions of years to form and releases toxic chemicals into the air when burned.", 
