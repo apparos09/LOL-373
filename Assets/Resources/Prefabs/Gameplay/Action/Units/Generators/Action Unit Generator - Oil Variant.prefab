@@ -238,7 +238,7 @@ MonoBehaviour:
   attackingEnabled: 0
   attackCooldownTimer: 0
   oneHitKill: 0
-  durability: 40
+  durability: 50
   movementSpeed: 0
   airPollution: 80
   projectilePoolDestroyTimer: 0
