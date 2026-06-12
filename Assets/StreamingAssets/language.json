@@ -438,48 +438,37 @@
 
       "trl_biomass_ttl": 50,
       "trl_biomass_txt_00": 445,
-      "trl_biomass_txt_01": 445,
 
       "trl_geothermal_ttl": 50,
       "trl_geothermal_txt_00": 445,
-      "trl_geothermal_txt_01": 445,
 
       "trl_hydro_ttl": 50,
       "trl_hydro_txt_00": 445,
       "trl_hydro_txt_01": 445,
-      "trl_hydro_txt_02": 445,
 
       "trl_solar_ttl": 50,
       "trl_solar_txt_00": 445,
-      "trl_solar_txt_01": 445,
 
       "trl_wave_ttl": 50,
       "trl_wave_txt_00": 445,
-      "trl_wave_txt_01": 445,
 
       "trl_wind_ttl": 50,
       "trl_wind_txt_00": 445,
-      "trl_wind_txt_01": 445,
 
       "trl_coal_ttl": 50,
       "trl_coal_txt_00": 445,
-      "trl_coal_txt_01": 445,
 
       "trl_naturalGas_ttl": 50,
       "trl_naturalGas_txt_00": 445,
       "trl_naturalGas_txt_01": 445,
-      "trl_naturalGas_txt_02": 445,
 
       "trl_nuclear_ttl": 50,
       "trl_nuclear_txt_00": 445,
       "trl_nuclear_txt_01": 445,
-      "trl_nuclear_txt_02": 445,
-      "trl_nuclear_txt_03": 445,
 
       "trl_oil_ttl": 50,
       "trl_oil_txt_00": 445,
       "trl_oil_txt_01": 445,
-      "trl_oil_txt_02": 445,
 
 
 
@@ -935,50 +924,38 @@
 
 
     "trl_biomass_ttl": "Biomass",
-    "trl_biomass_txt_00": "This stage uses the renewable resource biomass. Biomass entails burning plant and/or waste materials to spin a turbine to generate energy.",
-    "trl_biomass_txt_01": "A biomass generator can be placed anywhere on land, generates energy regularly, and produces no air pollution. It generates a moderate amount of energy at a moderate rate.",
+    "trl_biomass_txt_00": "This stage uses biomass, which is a renewable resource that burns plant and/or waste materials for generating energy. A biomass generator can be placed anywhere on land, generates energy regularly, and produces no air pollution. It generates a moderate amount of energy at a moderate rate.",
 
     "trl_geothermal_ttl": "Geothermal",
-    "trl_geothermal_txt_00": "This stage uses the renewable resource geothermal. Geothermal power uses the Earth's internal heat to produce hot water and/or steam to spin a turbine to generate energy.",
-    "trl_geothermal_txt_01": "A geothermal generator can only be placed on geothermal spots, generates energy perpetually, and produces no air pollution. It generates a high amount of energy at a moderate rate.",
+    "trl_geothermal_txt_00": "This stage uses geothermal, which is a renewable resource that uses the Earth's internal heat for generating energy. A geothermal generator can only be placed on geothermal spots, generates energy perpetually, and produces no air pollution. It generates a high amount of energy at a moderate rate.",
 
     "trl_hydro_ttl": "Hydro",
-    "trl_hydro_txt_00": "This stage uses the renewable resource hydro. Hydropower uses the flow of water to turn a turbine to generate energy.",
-    "trl_hydro_txt_01": "Hydro generators can only be placed in rivers. Hydro generators cannot be placed next to other hydro generators and cannot be next to wind generators that are in water.",
-    "trl_hydro_txt_02": "Hydro generators produce a very small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.",
+    "trl_hydro_txt_00": "This stage uses hydro, which uses the flow of water for generating energy. Hydro generators can only be placed in rivers and cannot be placed next to other hydro generators. They also cannot be placed next to wind generators that are in the water.",
+    "trl_hydro_txt_01": "Hydro generators produce a very small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.",
 
     "trl_solar_ttl": "Solar",
-    "trl_solar_txt_00": "This stage uses the renewable resource solar. Solar power entails using solar panels to convert sunlight into electricity, which can only be done during the day.",
-    "trl_solar_txt_01": "Solar generators can be placed anywhere on land, produce no air pollution, and can only be used during the daytime. They produce a moderate amount of energy at a moderate rate.",
+    "trl_solar_txt_00": "This stage uses solar, which is a renewable resource that uses solar panels to convert sunlight into electricity. Solar generators can be placed anywhere on land, produce no air pollution, and only generate energy during the day. They produce a moderate amount of energy at a moderate rate.",
 
     "trl_wave_ttl": "Wave",
-    "trl_wave_txt_00": "This stage uses the renewable resource wave. Wave power uses the movement of waves to turn turbines to generate energy. High wind areas have the most potential for using wave energy, and no energy is generated if there's no waves.",
-    "trl_wave_txt_01": "Wave generators can only be placed in the sea, generate energy based on the wind speed, and produce no air pollution. They produce a moderate amount of energy at varying speeds.",
+    "trl_wave_txt_00": "This stage uses wave, which is a renewable resource that uses the movement of waves for generating energy. Wave generators can only be placed in the sea, produce moderate amounts of energy, and create no air pollution. The energy generation speed is determined by the wind speed.",
 
     "trl_wind_ttl": "Wind",
-    "trl_wind_txt_00": "This stage uses the renewable resource wind. Wind is used to spin wind turbines to generate energy. Wind turbines can be placed on land or offshore in shallow waters. Wind turbines can't produce energy when there's no wind.",
-    "trl_wind_txt_01": "Wind generators can be placed on land tiles or on water tiles that are close to land tiles. They create no air pollution, and generate energy based on the wind speed. Wind generators produce a moderate amount of energy at varying speeds.",
+    "trl_wind_txt_00": "This stage uses wind, which is a renewable resource that uses moving air for generating energy. Wind generators can be placed anywhere on land or in water near land. They create no air pollution and produce moderate amounts of energy. The energy generation speed is determined by the wind speed.",
 
     "trl_coal_ttl": "Coal",
-    "trl_coal_txt_00": "This stage uses coal, which is a non-renewable fossil fuel resource. Coal is fed to a furnace to heat water, which produces steam. This steam then turns a turbine to generate energy. Coal produces toxic chemicals when burned and can release toxic minerals if mined on the surface.",
-    "trl_coal_txt_01": "Coal generators can only be placed on coal spots, generate energy for a limited time, and create a high amount of air pollution. They produce a high amount of energy at a high rate.",
+    "trl_coal_txt_00": "This stage uses coal, which is a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on coal spots, generate energy for a limited time, and create high amounts of air pollution. They produce a high amount of energy at a high rate.",
 
     "trl_naturalGas_ttl": "Natural Gas",
-    "trl_naturalGas_txt_00": "This stage uses the non-renewable fossil fuel resource natural gas. Natural gas is burned to produce gases, which then spin a turbine to generate energy.",
-    "trl_naturalGas_txt_01": "Natural gas is often found with coal or oil, is highly flammable, must have its poisonous elements removed before being burned, and releases pollutants when burned.",
-    "trl_naturalGas_txt_02": "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a moderate rate.",
+    "trl_naturalGas_txt_00": "This stage uses natural gas, which is a non-renewable fossil fuel resource that's burned to produce gases to turn a turbine to generate energy. It is often found with coal or oil.",
+    "trl_naturalGas_txt_01": "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a moderate rate.",
 
     "trl_nuclear_ttl": "Nuclear",
-    "trl_nuclear_txt_00": "This stage uses the non-renewable resource nuclear. Nuclear power involves splitting uranium atoms to generate heat to boil water. This boiled water then produces steam, which spins a turbine to generate energy.",
-    "trl_nuclear_txt_01": "Splitting uranium atoms produces no pollution, but it creates radioactive waste, which must be stored away to prevent harm to people and/or the environment.",
-    "trl_nuclear_txt_02": "Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, and produce no air pollution. Nuclear generators are automatically destroyed once they deplete their resources.",
-    "trl_nuclear_txt_03": "If a nuclear generator is destroyed by an enemy before its resources are depleted, it will leave nuclear waste behind. No units can be placed on a tile that has nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.",
+    "trl_nuclear_txt_00": "This stage uses nuclear, which is a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.",
+    "trl_nuclear_txt_01": "If a nuclear generator is destroyed by an enemy before its finished, it will leave nuclear waste behind. No units can be placed on tiles that have nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.",
 
     "trl_oil_ttl": "Oil",
-    "trl_oil_txt_00": "This stage uses the non-renewable fossil fuel resource oil, which is burned to produce steam to turn a turbine to generate energy. Oil can be found on land or at sea, but drilling for oil in the ocean can cause an oil spill if done improperly.",
-    "trl_oil_txt_01": "Oil generators can only be placed on oil spots, generate energy for a limited time, and produce high amounts of air pollution.",
-    "trl_oil_txt_02": "Oil generators leave oil spills if they're destroyed by enemies before they've used up their resources. No units can be placed on spots that have oil spills. Oil generators generate a very high amount of energy at a moderate rate.",
-
+    "trl_oil_txt_00": "This stage uses oil, which is a non-renewable fossil fuel resource that's burned for producing energy. Oil can be found on land or at sea. Oil generators can only be placed on oil spots, generate energy for a limited time, and produce high amounts of air pollution.",
+    "trl_oil_txt_01": "Oil generators leave oil spills if they're destroyed by enemies before they've used up their resources. No units can be placed on spots that have oil spills. Oil generators generate a very high amount of energy at a moderate rate.",
 
 
     "kwd_gameComplete": "Game Complete",
