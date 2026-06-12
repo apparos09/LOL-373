@@ -504,7 +504,7 @@ namespace RM_EDU
                 "A non-renewable fossil fuel resource that's turned into powder and fed to a furnace to create heat. This heat boils water to produce steam and said steam turns a turbine to generate energy.", 
                 "kst_col_00"));
             coalGroup.statements.Add(new Statement(1,
-                "A non-renewable fossil fuel resource formed from plant remains at the bottom of swamps. The organic matter turns into this resource after millions of years.", 
+                "A non-renewable fossil fuel resource formed from plant remains at the bottom of swamps. The organic matter turns into this resource after millions of years and is obtained via mining.", 
                 "kst_col_01"));
             coalGroup.statements.Add(new Statement(2,
                 "A non-renewable resource that's burned for producing energy. It can be mined on the surface or underground. Surface mining is safer for miners but has a higher chance of releasing toxic materials into the air.", 
@@ -526,7 +526,7 @@ namespace RM_EDU
                 "A non-renewable resource that's burned for producing energy. It can often be found with oil and coal in underground deposits since it forms with them, though it forms at higher temperatures than oil.", 
                 "kst_ngs_01"));
             naturalGasGroup.statements.Add(new Statement(2,
-                "A non-renewable fossil fuel resource that's burned for generating energy. It can also be used for cooking and heating.", 
+                "A non-renewable fossil fuel resource that's burned to produce hot gases or steam for generating energy. It can also be used for cooking and heating.", 
                 "kst_ngs_02"));
             naturalGasGroup.statements.Add(new Statement(3,
                 "A non-renewable resource that's burned to produce steam or hot gases for energy. It must be processed to remove poisonous chemicals and water before it can be burned.", 
@@ -561,7 +561,7 @@ namespace RM_EDU
                 "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. It's a black or dark brown liquid found in rock layers in the Earth's crust.", 
                 "kst_oil_00"));
             oilGroup.statements.Add(new Statement(1,
-                "This resource forms from dead organic material that's buried under sediments, kept away from oxygen, and exposed to both high heat and pressure. It forms at a lower temperature than natural gas.", 
+                "This liquid resource forms from dead organic material that's buried under sediments, kept away from oxygen, and exposed to both high heat and pressure. It forms at a lower temperature than natural gas.", 
                 "kst_oil_01"));
             oilGroup.statements.Add(new Statement(2,
                 "A resource that's obtained in a crude form, which has a mix of different hydrocarbons. It's then refined via heating to separate it into different compounds, which all boil at different temperatures.", 
@@ -570,7 +570,7 @@ namespace RM_EDU
                 "A non-renewable liquid resource that's burned for generating energy. It can be found by mining on land and at sea, but drilling at sea can cause a spill if something goes wrong.", 
                 "kst_oil_03"));
             oilGroup.statements.Add(new Statement(4,
-                "A non-renewable resource that can be burned for generating energy and can be refined for various uses. It takes millions of years to form and releases toxic chemicals into the air when burned.", 
+                "A non-renewable liquid resource that can be burned for generating energy and can be refined for various uses. It takes millions of years to form and releases toxic chemicals into the air when burned.", 
                 "kst_oil_04"));
             oilGroup.SetAllStatementsToGroupResource();
 
