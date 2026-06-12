@@ -635,7 +635,7 @@
     "nrs_oil_nme_abv": "OIL",
     "nrs_oil_dsc_00": "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. Oil is a black or dark brown liquid that's found in rock layers in the Earth's crust.",
     "nrs_oil_dsc_01": "Oil is formed from dead organic material that's buried under sediments that's kept away from oxygen and subjected to both high heat and pressure. After millions of years pass, said organic material becomes oil.",
-    "nrs_oil_dsc_02": "Oil can be mined on land or at sea, though drilling for oil in the ocean can cause a spill if not done properly. Raw oil starts out as crude oil, which contains a mixture of various hydrocarbons. ",
+    "nrs_oil_dsc_02": "Oil can be extracted on land or at sea, though drilling for oil in the ocean can cause a spill if not done properly. Raw oil starts out as crude oil, which contains a mixture of various hydrocarbons.",
     "nrs_oil_dsc_03": "Crude oil is refined via heating to separate it into different components, which boil at different temperatures. These components can be used for various purposes such as gasoline, and when burned release toxic chemicals into the air.",
 
 
@@ -905,8 +905,8 @@
     "trl_firstActionFirstKill_txt_02": "On the left are various buttons. The stage speed button allows you to toggle between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed.",
     "trl_firstActionFirstKill_txt_03": "The unit deselect button deselects the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.",
     "trl_firstActionFirstKill_txt_04": "The unit remove button toggles remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is active, it's displayed in the bottom middle. To remove a field unit, select said unit while in remove mode.",
-    "trl_firstActionFirstKill_txt_05": "The energy block button toggles the energy flow to defense units. When the block is active, defense units are prevented from using attacks that require energy. Any defense unit affected by the energy block will also go dark.",
-    "trl_firstActionFirstKill_txt_06": "The energy block button's icon displays if the energy is currently blocked or not. When the block is inactive, the icon shows a connected plug. When the block is active, the icon shows a disconnected plug. With all that explained, back to the stage.",
+    "trl_firstActionFirstKill_txt_05": "The energy disable button toggles the energy flow to defense units. When the flow is disabled, defense units are prevented from using attacks that require energy. Any defense unit affected by the energy flow being disabled will also go dark.",
+    "trl_firstActionFirstKill_txt_06": "The energy disable button's icon displays if the energy flow is currently enabled or disabled. When the flow is enabled, the icon shows a connected plug. When the flow is disabled, the icon shows a disconnected plug. With all that explained, back to the stage.",
 
 
     "trl_firstActionComplete_ttl": "First Action Stage Complete",

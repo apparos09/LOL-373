@@ -575,7 +575,7 @@ namespace RM_EDU
                     {
                         result.Add("A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. Oil is a black or dark brown liquid that's found in rock layers in the Earth's crust.");
                         result.Add("Oil is formed from dead organic material that's buried under sediments that's kept away from oxygen and subjected to both high heat and pressure. After millions of years pass, said organic material becomes oil.");
-                        result.Add("Oil can be mined on land or at sea, though drilling for oil in the ocean can cause a spill if not done properly. Raw oil starts out as crude oil, which contains a mixture of various hydrocarbons. \r\n");
+                        result.Add("Oil can be extracted on land or at sea, though drilling for oil in the ocean can cause a spill if not done properly. Raw oil starts out as crude oil, which contains a mixture of various hydrocarbons.");
                         result.Add("Crude oil is refined via heating to separate it into different components, which boil at different temperatures. These components can be used for various purposes such as gasoline, and when burned release toxic chemicals into the air.");
                     }
 
