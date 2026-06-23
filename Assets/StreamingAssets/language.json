@@ -841,7 +841,7 @@
     "kst_nlr_00": "A non-renewable resource that generates energy by splitting the nucleus of an atom. This reaction produces heat, which boils water to produce steam. This steam is used to turn a turbine to generate energy.",
     "kst_nlr_01": "A resource that uses uranium for generating energy. Uranium is concentrated into fuel rods and has its atoms split using tiny particles. These particles are controlled to avoid causing a dangerous explosion.",
     "kst_nlr_02": "A non-renewable resource that generates energy by splitting uranium atoms. This resource produces no pollutants, and if there are no accidents, only steam is released into the air.",
-    "kst_nlr_03": "A non-renewable resource that generates energy by splitting uranium atoms, which also produces radioactive waste. This waste can remain dangerous for hundreds to thousands of years.",
+    "kst_nlr_03": "A non-renewable resource that generates energy by splitting Uranium atoms, which also produces radioactive waste. This waste can remain dangerous for hundreds to thousands of years.",
     "kst_nlr_04": "A resource that generates energy by splitting atoms. This reaction creates dangerous radioactive waste, which must be securely stored to prevent harm to people and the environment.",
 
     "kst_oil_00": "A non-renewable fossil fuel resource that's burned to produce steam to spin a turbine to generate energy. It's a black or dark brown liquid found in rock layers in the Earth's crust.",
