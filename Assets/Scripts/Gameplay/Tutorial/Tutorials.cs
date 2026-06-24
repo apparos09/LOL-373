@@ -13,7 +13,8 @@ namespace RM_EDU
         public class TutorialsData
         {
             // The tutorial count.
-            public const int TUTORIAL_COUNT = 21;
+            // Changed from 21 to 20 since the final area intro tutorial was removed.
+            public const int TUTORIAL_COUNT = 20; // Original: 21
 
             // World - 1
             public bool clearedIntroTutorial = false;
@@ -36,7 +37,7 @@ namespace RM_EDU
 
             // World - 2
             public bool clearedFirstAreaCompleteTutorial = false;
-            public bool clearedFinalAreaIntroTutorial = false;
+            // public bool clearedFinalAreaIntroTutorial = false; // Removed.
 
             // Natural Resources
             public bool clearedBiomassTutorial = false;
@@ -123,7 +124,7 @@ namespace RM_EDU
 
                     // World - 2
                     clearedFirstAreaCompleteTutorial,
-                    clearedFinalAreaIntroTutorial,
+                    // clearedFinalAreaIntroTutorial, // Removed.
 
                     // Natural Resources
                     clearedBiomassTutorial,
@@ -177,7 +178,7 @@ namespace RM_EDU
 
                 // World - 2
                 copyData.clearedFirstAreaCompleteTutorial = clearedFirstAreaCompleteTutorial;
-                copyData.clearedFinalAreaIntroTutorial = clearedFinalAreaIntroTutorial;
+                // copyData.clearedFinalAreaIntroTutorial = clearedFinalAreaIntroTutorial; // Removed.
 
                 // Natural Resources
                 copyData.clearedBiomassTutorial = clearedBiomassTutorial;
@@ -220,7 +221,7 @@ namespace RM_EDU
 
                 // World - 2
                 clearedFirstAreaCompleteTutorial = pasteData.clearedFirstAreaCompleteTutorial;
-                clearedFinalAreaIntroTutorial = pasteData.clearedFinalAreaIntroTutorial;
+                // clearedFinalAreaIntroTutorial = pasteData.clearedFinalAreaIntroTutorial; // Removed.
 
                 // Natural Resources
                 clearedBiomassTutorial = pasteData.clearedBiomassTutorial;
@@ -618,8 +619,9 @@ namespace RM_EDU
             if (!clearedOnly || (clearedOnly && Data.clearedFirstAreaCompleteTutorial))
                 resultList.Add(GetFirstAreaCompleteTutorialInfo());
 
-            if (!clearedOnly || (clearedOnly && Data.clearedFinalAreaIntroTutorial))
-                resultList.Add(GetFinalAreaIntroTutorialInfo());
+            // // Removed since the final area intro tutorial is no longer used.
+            // if (!clearedOnly || (clearedOnly && Data.clearedFinalAreaIntroTutorial))
+            //     resultList.Add(GetFinalAreaIntroTutorialInfo());
 
             // Natural Resources
             if (!clearedOnly || (clearedOnly && Data.clearedBiomassTutorial))
@@ -1091,38 +1093,40 @@ namespace RM_EDU
             return tutorialInfo;
         }
 
-        // FNAL AREA INTRO
-        // Loads the final area intro tutorial.
-        public void LoadFinalAreaIntroTutorial(bool startTutorial = true)
-        {
-            // Gets the tutorial info.
-            TutorialInfo tutorialInfo = GetFinalAreaIntroTutorialInfo();
-
-            // Sets the bool and loads the tutorial.
-            data.clearedFinalAreaIntroTutorial = true;
-            LoadTutorial(ref tutorialInfo.pages, startTutorial);
-        }
-
-        // Loads the final area intro tutorial info into an object and returns it.
-        public TutorialInfo GetFinalAreaIntroTutorialInfo()
-        {
-            // The title and title translation key.
-            string title = "Final Area Introduction";
-            string titleKey = "trl_finalAreaIntro_ttl";
-
-            // Create the pages list.
-            List<Page> pages = new List<Page>
-            {
-                // Load the pages.
-                new EDU_Page(title, titleKey, "This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!", "trl_finalAreaIntro_txt_00"),
-            };
-
-            // Creates the info object.
-            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
-
-            // Returns the info.
-            return tutorialInfo;
-        }
+        // // FNAL AREA INTRO
+        // // Loads the final area intro tutorial.
+        // // NOTE: this tutorial has been removed.
+        // public void LoadFinalAreaIntroTutorial(bool startTutorial = true)
+        // {
+        //     // Gets the tutorial info.
+        //     TutorialInfo tutorialInfo = GetFinalAreaIntroTutorialInfo();
+        // 
+        //     // Sets the bool and loads the tutorial.
+        //     data.clearedFinalAreaIntroTutorial = true;
+        //     LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        // }
+        // 
+        // // Loads the final area intro tutorial info into an object and returns it.
+        // // NOTE: this tutorial has been removed.
+        // public TutorialInfo GetFinalAreaIntroTutorialInfo()
+        // {
+        //     // The title and title translation key.
+        //     string title = "Final Area Introduction";
+        //     string titleKey = "trl_finalAreaIntro_ttl";
+        // 
+        //     // Create the pages list.
+        //     List<Page> pages = new List<Page>
+        //     {
+        //         // Load the pages.
+        //         new EDU_Page(title, titleKey, "This is the final area! Once you clear all the stages in this area, the simulation game is complete. Good luck!", "trl_finalAreaIntro_txt_00"),
+        //     };
+        // 
+        //     // Creates the info object.
+        //     TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+        // 
+        //     // Returns the info.
+        //     return tutorialInfo;
+        // }
 
 
         // NATURAL RESOURCES //

@@ -931,16 +931,17 @@ namespace RM_EDU
                     }
                 }
 
-                // Checks if the player has started the final area.
-                if (!startedTutorial && !tutorials.Data.clearedFinalAreaIntroTutorial)
-                {
-                    // If the current area is the final area, run the final area tutorial.
-                    if (areas.IndexOf(GetCurrentWorldArea()) == areas.Count - 1)
-                    {
-                        tutorials.LoadFinalAreaIntroTutorial();
-                        startedTutorial = true;
-                    }
-                }
+                // Removed since the final area intro tutorial is no longer used.
+                // // Checks if the player has started the final area.
+                // if (!startedTutorial && !tutorials.Data.clearedFinalAreaIntroTutorial)
+                // {
+                //     // If the current area is the final area, run the final area tutorial.
+                //     if (areas.IndexOf(GetCurrentWorldArea()) == areas.Count - 1)
+                //     {
+                //         tutorials.LoadFinalAreaIntroTutorial();
+                //         startedTutorial = true;
+                //     }
+                // }
             }
 
             // Tutorials have been checked.
@@ -1169,13 +1170,14 @@ namespace RM_EDU
         // Called when the world camera has finished moving to the current area.
         public void OnWorldCameraInCurrentArea()
         {
-            // If any of the area-specific tutorials haven't been cleared...
-            // Check for them.
-            if(!tutorials.Data.clearedFirstAreaCompleteTutorial || 
-                !tutorials.Data.clearedFinalAreaIntroTutorial)
-            {
-                checkedTutorials = false;
-            }
+            // Removed since the final area intro tutorial is no longer used.
+            // // If any of the area-specific tutorials haven't been cleared...
+            // // Check for them.
+            // if(!tutorials.Data.clearedFirstAreaCompleteTutorial || 
+            //     !tutorials.Data.clearedFinalAreaIntroTutorial)
+            // {
+            //     checkedTutorials = false;
+            // }
         }
 
         // Goes to the previous world area.
