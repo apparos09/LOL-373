@@ -19,6 +19,20 @@ namespace RM_EDU
         // The display image.
         public Image displayImage;
 
+        [Header("Tutorials/Next Page Button Delay")]
+        // If 'true', the next page button being made active is delayed.
+        public bool delayNextPageButton = false;
+
+        // The timer for delaying the next page button.
+        public float delayNextPageButtonTimer;
+
+        // The maximum time for delaying the next page button.
+        public float delayNextPageButtonTimerMax = 3.0F;
+
+        // The timer bar that's used to display how long the player must wait...
+        // Until they can go onto the next page.
+        public ProgressBar delayNextPageButtonTimerBar;
+
         [Header("Tutorials/Sprites")]
         // A transparent sprite (alpha = 0).
         public Sprite alpha0Sprite;
@@ -93,6 +107,32 @@ namespace RM_EDU
             OnTextBoxClosedAddCallback(OnTextBoxClosed);
         }
 
+        // DELAY
+        // Sets the dely next page button timer to max.
+        public void SetDelayNextPageButtonToMax()
+        {
+            delayNextPageButtonTimer = delayNextPageButtonTimerMax;
+        }
+
+        // Updates the next page button timer bar.
+        public void UpdateDelayNextPageButtonTimerBar()
+        {
+            // The bar exists, so set it to the current time.
+            if (delayNextPageButtonTimerBar != null)
+            {
+                delayNextPageButtonTimerBar.SetValueAsPercentage(
+                    delayNextPageButtonTimer / delayNextPageButtonTimerMax, false);
+            }
+        }
+
+        // Sets the next page button to max and update's the timer bar.
+        public void SetDelayNextPageButtonToMaxAndUpdateTimerBar()
+        {
+            SetDelayNextPageButtonToMax();
+            UpdateDelayNextPageButtonTimerBar();
+        }
+
+        // DISPLAY
         // Returns 'true' if the display is active.
         public bool IsDisplayActive()
         {
@@ -133,6 +173,7 @@ namespace RM_EDU
             displayImage.sprite = null;
         }
 
+        // PAGE CHANGED/TEXT CHANGED
         // Called when the page has changed.
         public override void OnPageChanged(Page newPage, int newPageIndex)
         {
@@ -155,6 +196,27 @@ namespace RM_EDU
             // Refreshes the display so that its shown if there's a sprite...
             // And hidden if there's not a sprite.
             RefreshDisplayActive();
+
+            // If the next page button active is delayed...
+            // Sets the next page button timer to max and updates the delay next page button bar.
+            if(delayNextPageButton)
+            {
+                SetDelayNextPageButtonToMaxAndUpdateTimerBar();
+            }
+        }
+
+        // Called when the characters have finished loading.
+        public override void OnCharactersFinishedLoading()
+        {
+            base.OnCharactersFinishedLoading();
+
+            // If the next page button should be delayed.
+            if(delayNextPageButton)
+            {
+                // Disable the button and set the delay next page button to max.
+                nextPageButton.interactable = false;
+                SetDelayNextPageButtonToMax();
+            }
         }
 
         // Called when the text box has been closed.
@@ -165,10 +227,32 @@ namespace RM_EDU
             RefreshDisplayActive();
         }
 
-        // // Update is called once per frame
-        // void Update()
-        // {
-        // 
-        // }
+        // Update is called once per frame
+        protected override void Update()
+        {
+            base.Update();
+
+            // If the next page button is being delayed.
+            if(delayNextPageButton)
+            {
+                // If characters aren't being loaded and the timer is above 0.
+                if(!IsLoadingCharacters() && delayNextPageButtonTimer > 0.0F)
+                {
+                    // Reduce the time.
+                    delayNextPageButtonTimer -= Time.unscaledDeltaTime;
+                    
+                    // The delay next page button timer has reached zero or less.
+                    if(delayNextPageButtonTimer <= 0.0F)
+                    {
+                        // Set the timer to 0 and make the next page button active.
+                        delayNextPageButtonTimer = 0.0F;
+                        nextPageButton.interactable = true;
+                    }
+
+                    // Updates the bar.
+                    UpdateDelayNextPageButtonTimerBar();
+                }
+            }
+        }
     }
 }
