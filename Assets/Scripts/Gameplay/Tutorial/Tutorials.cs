@@ -1083,7 +1083,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've cleared the first area! Once all the stages in an area have been completed, you can move onto the next area. Switch areas using the world arrow buttons.", "trl_firstAreaComplete_txt_00"),
+                new EDU_Page(title, titleKey, "You've cleared the first area! When all stages in an area are completed, you're able to move onto the next area. There are three areas total, and all areas must be cleared to complete the game. Switch areas using the world area buttons.", "trl_firstAreaComplete_txt_00"),
             };
 
             // Creates the info object.
@@ -1186,7 +1186,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses geothermal, which is a renewable resource that uses the Earth's internal heat for generating energy. A geothermal generator can only be placed on geothermal spots, generates energy perpetually, and produces no air pollution. It generates a high amount of energy at a moderate rate.", "trl_geothermal_txt_00", tutorialsUI.textBox.geothermalSprite),
+                new EDU_Page(title, titleKey, "This stage uses geothermal, which is a renewable resource that uses the Earth's internal heat for generating energy. Geothermal generators can only be placed on spots with geothermal symbols, generate energy perpetually, and produce no air pollution. They generate high amounts of energy at a moderate rate.", "trl_geothermal_txt_00", tutorialsUI.textBox.geothermalSprite),
             };
 
             // Creates the info object.
@@ -1352,7 +1352,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses coal, which is a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on coal spots, generate energy for a limited time, and create high amounts of air pollution. They produce a high amount of energy at a high rate.", "trl_coal_txt_00", tutorialsUI.textBox.coalSprite),
+                new EDU_Page(title, titleKey, "This stage uses coal, which is a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on spots with coal symbols, generate energy for a limited time, and create high amounts of air pollution. They produce high amounts of energy at a high rate.", "trl_coal_txt_00", tutorialsUI.textBox.coalSprite),
             };
 
             // Creates the info object.
@@ -1386,7 +1386,7 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "This stage uses natural gas, which is a non-renewable fossil fuel resource that's burned to produce gases to turn a turbine to generate energy. It is often found with coal or oil.", "trl_naturalGas_txt_00", tutorialsUI.textBox.naturalGasSprite),
-                new EDU_Page(title, titleKey, "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on natural gas, oil, or coal spots. They produce a high amount of energy at a moderate rate.", "trl_naturalGas_txt_01", tutorialsUI.textBox.naturalGasSprite),
+                new EDU_Page(title, titleKey, "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on spots with natural gas, coal, or oil symbols. They produce a high amount of energy at a moderate rate.", "trl_naturalGas_txt_01", tutorialsUI.textBox.naturalGasSprite),
             };
 
             // Creates the info object.
@@ -1419,7 +1419,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses nuclear, which is a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on nuclear spots, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.", "trl_nuclear_txt_00", tutorialsUI.textBox.nuclearSprite),
+                new EDU_Page(title, titleKey, "This stage uses nuclear, which is a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on spots with nuclear symbols, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.", "trl_nuclear_txt_00", tutorialsUI.textBox.nuclearSprite),
                 new EDU_Page(title, titleKey, "If a nuclear generator is destroyed by an enemy before its finished, it will leave nuclear waste behind. No units can be placed on tiles that have nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.", "trl_nuclear_txt_01", tutorialsUI.textBox.nuclearSprite),            
             };
 
@@ -1453,7 +1453,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses oil, which is a non-renewable fossil fuel resource that's burned for producing energy. Oil can be found on land or at sea. Oil generators can only be placed on oil spots, generate energy for a limited time, and produce high amounts of air pollution.", "trl_oil_txt_00", tutorialsUI.textBox.oilSprite),
+                new EDU_Page(title, titleKey, "This stage uses oil, which is a non-renewable fossil fuel resource that's burned for producing energy. Oil can be found on land or at sea. Oil generators can only be placed on spots with oil symbols, generate energy for a limited time, and produce high amounts of air pollution.", "trl_oil_txt_00", tutorialsUI.textBox.oilSprite),
                 new EDU_Page(title, titleKey, "Oil generators leave oil spills if they're destroyed by enemies before they've used up their resources. No units can be placed on spots that have oil spills. Oil generators generate a very high amount of energy at a moderate rate.", "trl_oil_txt_01", tutorialsUI.textBox.oilSprite),
             };
 
