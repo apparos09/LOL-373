@@ -737,11 +737,10 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "Welcome to the Energy Defense Unit (EDU)! This is a training simulation that teaches you about Earth's natural resources. In this exercise, aliens are attacking Earth's bases to steal their resources, and it's your job to stop them.", "trl_intro_txt_00"),
-                new EDU_Page(title, titleKey, "There are two stage types in this simulation game: action (blue) and knowledge (green). You'll receive more details on these stage types later.", "trl_intro_txt_01", tutorialsUI.textBox.stageTypesSprite),
-                new EDU_Page(title, titleKey, "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.", "trl_intro_txt_02", tutorialsUI.textBox.logButtonSprite),
-                new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings.", "trl_intro_txt_03", tutorialsUI.textBox.optionsButtonSprite),
-                new EDU_Page(title, titleKey, "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.", "trl_intro_txt_04"),
+                new EDU_Page(title, titleKey, "Welcome to the Energy Defense Unit (EDU)! In this training simulation, your mission to stop aliens that are trying to steal Earth's natural resources. There are two stage types in this simulation game: action (blue) and knowledge (green). You'll get more details on both later.", "trl_intro_txt_00", tutorialsUI.textBox.stageTypesSprite),
+                new EDU_Page(title, titleKey, "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.", "trl_intro_txt_01", tutorialsUI.textBox.logButtonSprite),
+                new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings.", "trl_intro_txt_02", tutorialsUI.textBox.optionsButtonSprite),
+                new EDU_Page(title, titleKey, "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.", "trl_intro_txt_03"),
             };
 
             // Creates the info object.
@@ -913,8 +912,8 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "On the left are various buttons. The stage speed button allows you to toggle between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed.", "trl_firstActionFirstKill_txt_02", tutorialsUI.textBox.stageSpeedSprite),
                 new EDU_Page(title, titleKey, "The unit deselect button deselects the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_txt_03", tutorialsUI.textBox.unitDeselectSprite),
                 new EDU_Page(title, titleKey, "The unit remove button toggles remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is active, it's displayed in the bottom middle. To remove a field unit, select said unit while in remove mode.", "trl_firstActionFirstKill_txt_04", tutorialsUI.textBox.unitRemoveSprite),
-                new EDU_Page(title, titleKey, "The energy disable button toggles the energy flow to defense units. When the flow is disabled, defense units are prevented from using attacks that require energy. Any defense unit affected by the energy flow being disabled will also go dark.", "trl_firstActionFirstKill_txt_05", tutorialsUI.textBox.energyBlockSprite),
-                new EDU_Page(title, titleKey, "The energy disable button's icon displays if the energy flow is currently enabled or disabled. When the flow is enabled, the icon shows a connected plug. When the flow is disabled, the icon shows a disconnected plug. With all that explained, back to the stage.", "trl_firstActionFirstKill_txt_06", tutorialsUI.textBox.energyBlockSprite),
+                new EDU_Page(title, titleKey, "The energy disable button toggles the energy flow to defense units. When the flow is disabled, defense units cannot use attacks that require energy. Any defense units affected will also goes dark.", "trl_firstActionFirstKill_txt_05", tutorialsUI.textBox.energyBlockSprite),
+                new EDU_Page(title, titleKey, "The energy disable button's icon shows a connected plug when the flow is enabled and a disconnected plug when the flow is disabled. With all that explained, back to the stage.", "trl_firstActionFirstKill_txt_06", tutorialsUI.textBox.energyBlockSprite),
             };
 
             // Creates the info object.

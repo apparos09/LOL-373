@@ -386,7 +386,6 @@
       "trl_firstActionIntro_txt_01": 445,
       "trl_firstActionIntro_txt_02": 445,
       "trl_firstActionIntro_txt_03": 445,
-      "trl_firstActionIntro_txt_04": 445,
 
       "trl_firstActionGenerators_ttl": 50,
       "trl_firstActionGenerators_txt_00": 445,
@@ -858,11 +857,10 @@
 
 
     "trl_intro_ttl": "Game Introduction",
-    "trl_intro_txt_00": "Welcome to the Energy Defense Unit (EDU)! This is a training simulation that teaches you about Earth's natural resources. In this exercise, aliens are attacking Earth's bases to steal their resources, and it's your job to stop them.",
-    "trl_intro_txt_01": "There are two stage types in this simulation game: action (blue) and knowledge (green). You'll receive more details on these stage types later.",
-    "trl_intro_txt_02": "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.",
-    "trl_intro_txt_03": "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings.",
-    "trl_intro_txt_04": "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.",
+    "trl_intro_txt_00": "Welcome to the Energy Defense Unit (EDU)! In this training simulation, your mission to stop aliens that are trying to steal Earth's natural resources. There are two stage types in this simulation game: action (blue) and knowledge (green). You'll get more details on both later.",
+    "trl_intro_txt_01": "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.",
+    "trl_intro_txt_02": "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings.",
+    "trl_intro_txt_03": "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.",
 
 
     "trl_firstActionIntro_ttl": "First Action Stage - Introduction",
@@ -891,8 +889,8 @@
     "trl_firstActionFirstKill_txt_02": "On the left are various buttons. The stage speed button allows you to toggle between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed.",
     "trl_firstActionFirstKill_txt_03": "The unit deselect button deselects the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.",
     "trl_firstActionFirstKill_txt_04": "The unit remove button toggles remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is active, it's displayed in the bottom middle. To remove a field unit, select said unit while in remove mode.",
-    "trl_firstActionFirstKill_txt_05": "The energy disable button toggles the energy flow to defense units. When the flow is disabled, defense units are prevented from using attacks that require energy. Any defense unit affected by the energy flow being disabled will also go dark.",
-    "trl_firstActionFirstKill_txt_06": "The energy disable button's icon displays if the energy flow is currently enabled or disabled. When the flow is enabled, the icon shows a connected plug. When the flow is disabled, the icon shows a disconnected plug. With all that explained, back to the stage.",
+    "trl_firstActionFirstKill_txt_05": "The energy disable button toggles the energy flow to defense units. When the flow is disabled, defense units cannot use attacks that require energy. Any defense units affected will also goes dark.",
+    "trl_firstActionFirstKill_txt_06": "The energy disable button's icon shows a connected plug when the flow is enabled and a disconnected plug when the flow is disabled. With all that explained, back to the stage.",
 
 
     "trl_firstActionComplete_ttl": "First Action Stage Complete",
