@@ -393,12 +393,10 @@
       "trl_firstActionGenerators_txt_02": 445,
       "trl_firstActionGenerators_txt_03": 445,
       "trl_firstActionGenerators_txt_04": 445,
-      "trl_firstActionGenerators_txt_05": 445,
 
       "trl_firstActionDefenses_ttl": 50,
       "trl_firstActionDefenses_txt_00": 445,
       "trl_firstActionDefenses_txt_01": 445,
-      "trl_firstActionDefenses_txt_02": 445,
 
       "trl_firstActionFirstKill_ttl": 50,
       "trl_firstActionFirstKill_txt_00": 445,
@@ -871,17 +869,15 @@
     "trl_firstActionIntro_txt_04": "The energy needed to create a unit is displayed on its unit button. When you have a unit selected, it’ll be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. With all that covered, please place a unit on the field.",
 
     "trl_firstActionGenerators_ttl": "First Action Stage - Generators",
-    "trl_firstActionGenerators_txt_00": "You've placed a generator unit! Generators generate energy if their conditions are met, and some generators only generate energy for a limited time. A generator flashes blue when it generates energy and goes dark if it cannot generate energy.",
-    "trl_firstActionGenerators_txt_01": "Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage. If you ever need information on what your units do, check the info log using the button in the top left.",
-    "trl_firstActionGenerators_txt_02": "Similarly, the options menu can be opened using the button in the top right. In a stage, the options menu allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.",
-    "trl_firstActionGenerators_txt_03": "In the top left is the day-night indicator and in the top right is the wind indicator. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Units affected by these elements are explained when relevant.",
-    "trl_firstActionGenerators_txt_04": "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows how much energy you currently have, and the air pollution display shows how much air pollution you've generated in the current stage.",
-    "trl_firstActionGenerators_txt_05": "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.",
+    "trl_firstActionGenerators_txt_00": "You've placed a generator unit! Generators generate energy if their conditions are met. A generator flashes blue when it generates energy and goes dark if it cannot generate energy. Some generators also produce air pollution, which can lower your stage score.",
+    "trl_firstActionGenerators_txt_01": "If you need information on your units, check the info log using the button in the top left. Similarly, the stage options menu can be opened using the button in the top right. It allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.",
+    "trl_firstActionGenerators_txt_02": "In the top left is the day-night indicator and in the top right is the wind indicator. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Units affected by these elements are explained when relevant.",
+    "trl_firstActionGenerators_txt_03": "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows how much energy you currently have, and the air pollution display shows how much air pollution you've generated in the current stage.",
+    "trl_firstActionGenerators_txt_04": "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.",
 
     "trl_firstActionDefenses_ttl": "First Action Stage - Defenses",
-    "trl_firstActionDefenses_txt_00": "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.",
-    "trl_firstActionDefenses_txt_01": "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units naturally as the simulation progresses.",
-    "trl_firstActionDefenses_txt_02": "The energy that you use to create units is also used to power certain unit attacks, so make sure you manage your energy well. With all that explained, let the stage recommence!",
+    "trl_firstActionDefenses_txt_00": "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. The energy used to create units is also used to power certain unit attacks, so manage your energy well. Defense units come in three types: blaster, shield, and trap.",
+    "trl_firstActionDefenses_txt_01": "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units as the simulation progresses. With all that explained, let the stage recommence!",
 
     "trl_firstActionFirstKill_ttl": "First Action Stage - Enemy Unit Defeated",
     "trl_firstActionFirstKill_txt_00": "You've defeated your first enemy, but there's still more on the way. As stated, you'll get more units as the simulation progresses. When you have more units than a unit selector can display at once, you use the arrow buttons next to the selector to switch rows.",

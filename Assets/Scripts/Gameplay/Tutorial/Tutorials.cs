@@ -822,12 +822,11 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've placed a generator unit! Generators generate energy if their conditions are met, and some generators only generate energy for a limited time. A generator flashes blue when it generates energy and goes dark if it cannot generate energy.", "trl_firstActionGenerators_txt_00"),
-                new EDU_Page(title, titleKey, "Some generators also produce air pollution, which can lower your stage score. The generators that you're able to use will vary by stage. If you ever need information on what your units do, check the info log using the button in the top left.", "trl_firstActionGenerators_txt_01", tutorialsUI.textBox.logButtonSprite),
-                new EDU_Page(title, titleKey, "Similarly, the options menu can be opened using the button in the top right. In a stage, the options menu allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_02", tutorialsUI.textBox.optionsButtonSprite),
-                new EDU_Page(title, titleKey, "In the top left is the day-night indicator and in the top right is the wind indicator. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Units affected by these elements are explained when relevant.", "trl_firstActionGenerators_txt_03", tutorialsUI.textBox.indicatorsSprite),
-                new EDU_Page(title, titleKey, "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows how much energy you currently have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_txt_04", tutorialsUI.textBox.energyAirPollutionDisplaySprite),
-                new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.", "trl_firstActionGenerators_txt_05"),
+                new EDU_Page(title, titleKey, "You've placed a generator unit! Generators generate energy if their conditions are met. A generator flashes blue when it generates energy and goes dark if it cannot generate energy. Some generators also produce air pollution, which can lower your stage score.", "trl_firstActionGenerators_txt_00"),
+                new EDU_Page(title, titleKey, "If you need information on your units, check the info log using the button in the top left. Similarly, the stage options menu can be opened using the button in the top right. It allows you to reset the stage, quit the stage, reread tutorials, and adjust the game's settings.", "trl_firstActionGenerators_txt_01", tutorialsUI.textBox.logOptionsButtonsSprite),
+                new EDU_Page(title, titleKey, "In the top left is the day-night indicator and in the top right is the wind indicator. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Units affected by these elements are explained when relevant.", "trl_firstActionGenerators_txt_02", tutorialsUI.textBox.indicatorsSprite),
+                new EDU_Page(title, titleKey, "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows how much energy you currently have, and the air pollution display shows how much air pollution you've generated in the current stage.", "trl_firstActionGenerators_txt_03", tutorialsUI.textBox.energyAirPollutionDisplaySprite),
+                new EDU_Page(title, titleKey, "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.", "trl_firstActionGenerators_txt_04"),
             };
 
             // Creates the info object.
@@ -866,9 +865,8 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.", "trl_firstActionDefenses_txt_00", tutorialsUI.textBox.actionDefenseTypesSprite),
-                new EDU_Page(title, titleKey, "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units naturally as the simulation progresses.", "trl_firstActionDefenses_txt_01", tutorialsUI.textBox.actionDefenseTypesSprite),
-                new EDU_Page(title, titleKey, "The energy that you use to create units is also used to power certain unit attacks, so make sure you manage your energy well. With all that explained, let the stage recommence!", "trl_firstActionDefenses_txt_02"),
+                new EDU_Page(title, titleKey, "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. The energy used to create units is also used to power certain unit attacks, so manage your energy well. Defense units come in three types: blaster, shield, and trap.", "trl_firstActionDefenses_txt_00", tutorialsUI.textBox.actionDefenseTypesSprite),
+                new EDU_Page(title, titleKey, "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units as the simulation progresses. With all that explained, let the stage recommence!", "trl_firstActionDefenses_txt_01", tutorialsUI.textBox.actionDefenseTypesSprite),
             };
 
             // Creates the info object.
