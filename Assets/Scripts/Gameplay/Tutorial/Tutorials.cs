@@ -1183,7 +1183,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses geothermal, which is a renewable resource that uses the Earth's internal heat for generating energy. Geothermal generators can only be placed on spots with geothermal symbols, generate energy perpetually, and produce no air pollution. They generate high amounts of energy at a moderate rate.", "trl_geothermal_txt_00", tutorialsUI.textBox.geothermalSprite),
+                new EDU_Page(title, titleKey, "This stage uses geothermal, a renewable resource that uses Earth's internal heat for generating energy. Geothermal generators can only be placed on spots with geothermal symbols, generate energy perpetually, and produce no air pollution. They generate high amounts of energy at a moderate rate.", "trl_geothermal_txt_00", tutorialsUI.textBox.geothermalSprite),
             };
 
             // Creates the info object.
@@ -1349,7 +1349,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses coal, which is a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on spots with coal symbols, generate energy for a limited time, and create high amounts of air pollution. They produce high amounts of energy at a high rate.", "trl_coal_txt_00", tutorialsUI.textBox.coalSprite),
+                new EDU_Page(title, titleKey, "This stage uses coal, a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on spots with coal symbols, generate energy for a limited time, and create high amounts of air pollution. They produce high amounts of energy at a high rate.", "trl_coal_txt_00", tutorialsUI.textBox.coalSprite),
             };
 
             // Creates the info object.
@@ -1416,7 +1416,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses nuclear, which is a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on spots with nuclear symbols, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.", "trl_nuclear_txt_00", tutorialsUI.textBox.nuclearSprite),
+                new EDU_Page(title, titleKey, "This stage uses nuclear, a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on spots with nuclear symbols, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.", "trl_nuclear_txt_00", tutorialsUI.textBox.nuclearSprite),
                 new EDU_Page(title, titleKey, "If a nuclear generator is destroyed by an enemy before its finished, it will leave nuclear waste behind. No units can be placed on tiles that have nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.", "trl_nuclear_txt_01", tutorialsUI.textBox.nuclearSprite),            
             };
 

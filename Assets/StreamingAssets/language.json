@@ -915,7 +915,7 @@
     "trl_biomass_txt_00": "This stage uses biomass, which is a renewable resource that burns plant and/or waste materials for generating energy. A biomass generator can be placed anywhere on land, generates energy regularly, and produces no air pollution. It generates a moderate amount of energy at a moderate rate.",
 
     "trl_geothermal_ttl": "Geothermal",
-    "trl_geothermal_txt_00": "This stage uses geothermal, which is a renewable resource that uses the Earth's internal heat for generating energy. Geothermal generators can only be placed on spots with geothermal symbols, generate energy perpetually, and produce no air pollution. They generate high amounts of energy at a moderate rate.",
+    "trl_geothermal_txt_00": "This stage uses geothermal, a renewable resource that uses Earth's internal heat for generating energy. Geothermal generators can only be placed on spots with geothermal symbols, generate energy perpetually, and produce no air pollution. They generate high amounts of energy at a moderate rate.",
 
     "trl_hydro_ttl": "Hydro",
     "trl_hydro_txt_00": "This stage uses hydro, which uses the flow of water for generating energy. Hydro generators can only be placed in rivers and cannot be placed next to other hydro generators. They also cannot be placed next to wind generators that are in the water.",
@@ -931,14 +931,14 @@
     "trl_wind_txt_00": "This stage uses wind, which is a renewable resource that uses moving air for generating energy. Wind generators can be placed anywhere on land or in water near land. They create no air pollution and produce moderate amounts of energy. The energy generation speed is determined by the wind speed.",
 
     "trl_coal_ttl": "Coal",
-    "trl_coal_txt_00": "This stage uses coal, which is a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on spots with coal symbols, generate energy for a limited time, and create high amounts of air pollution. They produce high amounts of energy at a high rate.",
+    "trl_coal_txt_00": "This stage uses coal, a non-renewable fossil fuel resource that's fed to a furnace for generating energy. Coal generators can only be placed on spots with coal symbols, generate energy for a limited time, and create high amounts of air pollution. They produce high amounts of energy at a high rate.",
 
     "trl_naturalGas_ttl": "Natural Gas",
     "trl_naturalGas_txt_00": "This stage uses natural gas, which is a non-renewable fossil fuel resource that's burned to produce gases to turn a turbine to generate energy. It is often found with coal or oil.",
     "trl_naturalGas_txt_01": "Natural gas generators generate energy for a limited time, produce moderate amounts of air pollution, and can be placed on spots with natural gas, coal, or oil symbols. They produce a high amount of energy at a moderate rate.",
 
     "trl_nuclear_ttl": "Nuclear",
-    "trl_nuclear_txt_00": "This stage uses nuclear, which is a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on spots with nuclear symbols, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.",
+    "trl_nuclear_txt_00": "This stage uses nuclear, a non-renewable resource that splits uranium atoms for generating energy. Nuclear generators can only be placed on spots with nuclear symbols, generate energy for a limited time, produce no air pollution, and are automatically destroyed once they run out of resources.",
     "trl_nuclear_txt_01": "If a nuclear generator is destroyed by an enemy before its finished, it will leave nuclear waste behind. No units can be placed on tiles that have nuclear waste. Nuclear generators produce a very high amount of energy at a very high rate.",
 
     "trl_oil_ttl": "Oil",
