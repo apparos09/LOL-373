@@ -908,7 +908,7 @@
     "trl_firstKnowledgeComplete_txt_00": "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. If applicable, the energy bonus will automatically be applied at the start of your next action stage.",
 
     "trl_firstAreaComplete_ttl": "First Area Complete",
-    "trl_firstAreaComplete_txt_00": "You've cleared the first area! When all stages in an area are completed, you're able to move onto the next area. There are three areas total, and all areas must be cleared to complete the game. Switch areas using the world area buttons.",
+    "trl_firstAreaComplete_txt_00": "You've cleared the first area! When all stages in an area are completed, you're able to move onto the next area. There are three areas total, and all areas must be cleared to complete the game. Switch areas using the world arrow buttons.",
 
 
     "trl_biomass_ttl": "Biomass",

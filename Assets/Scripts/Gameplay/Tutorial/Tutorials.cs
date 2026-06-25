@@ -1080,7 +1080,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've cleared the first area! When all stages in an area are completed, you're able to move onto the next area. There are three areas total, and all areas must be cleared to complete the game. Switch areas using the world area buttons.", "trl_firstAreaComplete_txt_00"),
+                new EDU_Page(title, titleKey, "You've cleared the first area! When all stages in an area are completed, you're able to move onto the next area. There are three areas total, and all areas must be cleared to complete the game. Switch areas using the world arrow buttons.", "trl_firstAreaComplete_txt_00"),
             };
 
             // Creates the info object.
