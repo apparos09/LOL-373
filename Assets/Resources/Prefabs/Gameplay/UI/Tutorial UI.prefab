@@ -789,6 +789,7 @@ MonoBehaviour:
   nextPageButton: {fileID: 5718946925736766873}
   autoDisablePrevButtonOnFirstPage: 1
   instantText: 0
+  enableTextControlsOnAnimEnd: 0
   enableAnimationSkip: 0
   enableAnimationBackSkip: 1
   DisableControlsIfAnimSkipDisabled: 1

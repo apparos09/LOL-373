@@ -94,6 +94,18 @@ namespace RM_EDU
 
         public Sprite knowledgeElementsSprite;
 
+        // Awake is called when the script instance is being loaded
+        protected override void Awake()
+        {
+            base.Awake();
+
+            // If the next page button will get delayed, don't enable...
+            // The text controls on animation end.
+            // If the next page button won't be delayed...
+            // Make sure the text controls are activated on animation end.
+            enableTextControlsOnAnimEnd = !delayNextPageButton;
+        }
+
         // Start is called before the first frame update
         protected override void Start()
         {
