@@ -114,6 +114,13 @@ namespace RM_EDU
             delayNextPageButtonTimer = delayNextPageButtonTimerMax;
         }
 
+        // Returns 'true' if the next page button delay is active.
+        // Returns 'false' if the delay isn't being used, or if the delay timer isn't running.
+        public bool IsDelayNextPageButtonActiveAndRunning()
+        {
+            return delayNextPageButton && delayNextPageButtonTimer > 0.0F;
+        }
+
         // Updates the next page button timer bar.
         public void UpdateDelayNextPageButtonTimerBar()
         {
@@ -204,6 +211,22 @@ namespace RM_EDU
                 SetDelayNextPageButtonToMaxAndUpdateTimerBar();
             }
         }
+
+        // You tried to prevent the buttons for being active for a brief frame using this function...
+        // But it didn't work.
+        // // Called when the text box text has changed.
+        // public override void OnTextBoxTextChanged(string newText)
+        // {
+        //     base.OnTextBoxTextChanged(newText);
+        // 
+        //     // If the delay is being used, the delay is running...
+        //     // And the text box is done loading characters...
+        //     // Make sure the next page button is false. 
+        //     if(IsDelayNextPageButtonActiveAndRunning() && !IsLoadingCharacters())
+        //     {
+        //         nextPageButton.interactable = false;
+        //     }
+        // }
 
         // Called when the characters have finished loading.
         public override void OnCharactersFinishedLoading()

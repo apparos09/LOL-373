@@ -861,8 +861,8 @@ namespace RM_EDU
         // Calculates the attack cooldown time.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
         {
-            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 4.1F)
-            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 4.1F);
+            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 4.05F)
+            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 4.05F);
         }
 
         // Calculates the attack cooldown time.
