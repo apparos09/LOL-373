@@ -27,7 +27,8 @@ namespace RM_EDU
         public float delayNextPageButtonTimer;
 
         // The maximum time for delaying the next page button.
-        public float delayNextPageButtonTimerMax = 3.0F;
+        // Default: 4 seconds.
+        public float delayNextPageButtonTimerMax = 4.0F;
 
         // The timer bar that's used to display how long the player must wait...
         // Until they can go onto the next page.
