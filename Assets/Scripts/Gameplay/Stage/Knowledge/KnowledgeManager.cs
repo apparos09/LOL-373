@@ -78,6 +78,13 @@ namespace RM_EDU
         [Tooltip("Randomizes a statement if a match failed.")]
         public bool randomizeStatementsOnFail = true;
 
+        // If 'true', the info log's button interactable parameter is changed.
+        //  - Once opened, the info log button is made non-interactable.
+        //  - Once a verification is made, the info log button is made interactable again.
+        // If 'false', the info log button interactable parameter is never altered.
+        //  - It is left as interactable.
+        private bool changeInfoLogButtonInteractable = false;
+
         // The number of verification attempts, which determines the energy bonus.
         [Tooltip("The number of verification attempts.")]
         public int verifyAttempts = 0;
@@ -433,6 +440,13 @@ namespace RM_EDU
         public bool KnowledgeInitialized
         {
             get { return initializedKnowledge; }
+        }
+
+        // If 'true', the info log button interactable is changed by certain game events.
+        // If 'false', the info log button interactable parameter is not changed.
+        public bool ChangeInfoLogButtonInteractable
+        {
+            get { return changeInfoLogButtonInteractable; }
         }
 
         // TUTORIALS
@@ -1043,7 +1057,8 @@ namespace RM_EDU
             ClearCurrentSelection();
 
             // Makes sure the info log button interactable.
-            knowledgeUI.infoLogButton.interactable = true;
+            if(changeInfoLogButtonInteractable)
+                knowledgeUI.infoLogButton.interactable = true;
 
             // Verify button is interactable, but the finish button isn't.
             knowledgeUI.verifyButton.interactable = true;

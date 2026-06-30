@@ -328,7 +328,7 @@ namespace RM_EDU
 
             // If the info log button is off, make it interactable since a verification attempt...
             // Has been made.
-            if (!infoLogButton.interactable)
+            if (knowledgeManager.ChangeInfoLogButtonInteractable && !infoLogButton.interactable)
                 infoLogButton.interactable = true;
 
             // Updates the matches display.
@@ -387,7 +387,8 @@ namespace RM_EDU
             // knowledgeManager.RandomizeStatements();
 
             // Makes the info log button non-interactable.
-            infoLogButton.interactable = false;
+            if(knowledgeManager.ChangeInfoLogButtonInteractable)
+                infoLogButton.interactable = false;
         }
 
         // Closes the info log dialog.
