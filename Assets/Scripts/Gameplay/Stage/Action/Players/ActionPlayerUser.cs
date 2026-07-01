@@ -54,8 +54,11 @@ namespace RM_EDU
         // The defense prefabs the player can use.
         public List<ActionUnitDefense> defensePrefabs = new List<ActionUnitDefense>();
 
+        // The lane blasters parent.
+        public GameObject laneBlastersParent;
+
         // The lane blaster prefab.
-        public ActionUnitDefense laneBlasterPrefab;
+        public ActionUnitDefenseBlasterLane laneBlasterPrefab;
 
         // The id of the lane blaster.
         public const int LANE_BLASTER_ID = 1;
@@ -93,7 +96,7 @@ namespace RM_EDU
             // If the lane blaster is null, set the prefab using the lane blaster id.
             if(laneBlasterPrefab == null)
             {
-                laneBlasterPrefab = actionUnitPrefabs.GetDefensePrefab(LANE_BLASTER_ID);
+                laneBlasterPrefab = (ActionUnitDefenseBlasterLane)actionUnitPrefabs.GetDefensePrefab(LANE_BLASTER_ID);
             }
 
             // Sets the user's energy to the starting energy.
@@ -538,13 +541,39 @@ namespace RM_EDU
         // Instantiates a lane blaster.
         public ActionUnit InstantiateLaneBlaster(bool setAsOwner = true, bool applyEnergyCost = true)
         {
-            return InstantiateActionUnit(laneBlasterPrefab, null, setAsOwner, applyEnergyCost);
+            // Converts the action unit to a lane blaster.
+            ActionUnitDefenseBlasterLane laneBlaster = (ActionUnitDefenseBlasterLane)
+                InstantiateActionUnit(laneBlasterPrefab, null, setAsOwner, applyEnergyCost);
+
+            // Sets the lane blaster parent to the the lane blaster specific parent.
+            SetLaneBlasterParentToLaneBlastersParent(laneBlaster);
+
+            // Returns the lane blaster.
+            return laneBlaster;
         }
 
         // Instantiates a lane blaster on the provided tile.
         public ActionUnit InstantiateLaneBlaster(ActionTile tile, bool setAsOwner = true, bool applyEnergyCost = true)
         {
-            return InstantiateActionUnit(laneBlasterPrefab, tile, setAsOwner, applyEnergyCost);
+            // Converts the action unit to a lane blaster.
+            ActionUnitDefenseBlasterLane laneBlaster = (ActionUnitDefenseBlasterLane)
+                InstantiateActionUnit(laneBlasterPrefab, tile, setAsOwner, applyEnergyCost);
+
+            // Sets the lane blaster parent to the the lane blaster specific parent.
+            SetLaneBlasterParentToLaneBlastersParent(laneBlaster);
+            
+            // Returns the lane blaster.
+            return laneBlaster;
+        }
+
+        // Sets the provided lane blaster parent to the user parent.
+        public void SetLaneBlasterParentToLaneBlastersParent(ActionUnitDefenseBlasterLane laneBlaster)
+        {
+            // If the lane blasters parent is set, set it as the lane blaster parent.
+            if(laneBlastersParent != null)
+            {
+                laneBlaster.transform.parent = laneBlastersParent.transform;
+            }
         }
 
         // Tries to remove the user unit from the created units list.

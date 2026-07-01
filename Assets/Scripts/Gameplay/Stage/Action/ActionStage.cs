@@ -351,7 +351,7 @@ namespace RM_EDU
             // Put a lane blaster on the far left edge of the map.
             if (useLaneBlasters)
             {
-                // Create hte lane blasters in row 0.
+                // Create the lane blasters in row 0.
                 CreateLaneBlastersInRow0(true);
             }
 

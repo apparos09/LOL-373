@@ -336,7 +336,10 @@ namespace RM_EDU
             if (!tutorials.Data.clearedFirstActionDefensesTutorial)
             {
                 // Disables the defense unit selector.
-                actionUI.defenseUnitSelector.gameObject.SetActive(false);               
+                actionUI.defenseUnitSelector.gameObject.SetActive(false);
+
+                // Disables the lane blaster parent object, which also disables the lane blasters.
+                playerUser.laneBlastersParent.gameObject.SetActive(false);
             }
 
             // Disables elements that will be enabled by another tutorial.
@@ -374,8 +377,11 @@ namespace RM_EDU
         // Called when the first action defenses tutorial is starting.
         public void OnFirstActionDefensesTutorialStart()
         {
-            // Activate the defense unit selector and the block button.
+            // Activate the defense unit selector.
             actionUI.defenseUnitSelector.gameObject.SetActive(true);
+
+            // Activates the lane blaster parent object, which also enables the lane blasters.
+            playerUser.laneBlastersParent.gameObject.SetActive(true);
         }
 
         // Called when the first action first kill tutorial is starting.

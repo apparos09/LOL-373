@@ -70,6 +70,7 @@ namespace RM_EDU
         [Header("Tutorials/Sprites/Action/Units")]
         public Sprite actionUnitButtonsSprite;
         public Sprite actionUnitSelectorArrowsSprite;
+        public Sprite actionUnitSelectorArrowsAltSprite;
         public Sprite actionUnitSelectedSprite;
 
         // Defense types

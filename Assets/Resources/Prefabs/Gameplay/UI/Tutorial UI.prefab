@@ -820,6 +820,7 @@ MonoBehaviour:
   actionEnemyEnergyBarSprite: {fileID: 21300000, guid: 6ae25a9362d46504780fc45fae80b29a, type: 3}
   actionUnitButtonsSprite: {fileID: 21300000, guid: 5fbdce38e4f699c41a2ebe3dc73dd718, type: 3}
   actionUnitSelectorArrowsSprite: {fileID: 21300000, guid: 17887b8c2d19aba45abf0168fd9e9e9f, type: 3}
+  actionUnitSelectorArrowsAltSprite: {fileID: 21300000, guid: 4a73d10e702b9e948ab2cb2e593f292a, type: 3}
   actionUnitSelectedSprite: {fileID: 21300000, guid: b1db7ca3af87947438b42dcba6212c74, type: 3}
   actionDefenseTypesSprite: {fileID: 21300000, guid: fbb830b508f14f040ad3e3e43c02efc3, type: 3}
   actionDefenseLaneBlasterSprite: {fileID: 21300000, guid: 32d161d585fdd514a8118f068755e755, type: 3}
