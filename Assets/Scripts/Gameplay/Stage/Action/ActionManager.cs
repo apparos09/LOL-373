@@ -345,8 +345,8 @@ namespace RM_EDU
                 // Disables the speed, deselect, remove, and block button UIs.
                 // The UIs include the buttons and the labels they've been given.
                 actionUI.speedButtonUI.gameObject.SetActive(false);
-                actionUI.deselectButtonUI.gameObject.SetActive(false);
-                actionUI.removeButtonUI.gameObject.SetActive(false);
+                // actionUI.deselectButtonUI.gameObject.SetActive(false); // Unused
+                // actionUI.removeButtonUI.gameObject.SetActive(false); // Unused
                 actionUI.blockButtonUI.gameObject.SetActive(false);
 
                 // Disables the reset and world buttons.
@@ -383,8 +383,8 @@ namespace RM_EDU
         {
             // Activates the speed button UI, deselect button UI, remove button UI, and block button UI.
             actionUI.speedButtonUI.gameObject.SetActive(true);
-            actionUI.deselectButtonUI.gameObject.SetActive(true);
-            actionUI.removeButtonUI.gameObject.SetActive(true);
+            // actionUI.deselectButtonUI.gameObject.SetActive(true); // Unused
+            // actionUI.removeButtonUI.gameObject.SetActive(true); // Unused
             actionUI.blockButtonUI.gameObject.SetActive(true);
 
             // Enables the reset and world buttons.
