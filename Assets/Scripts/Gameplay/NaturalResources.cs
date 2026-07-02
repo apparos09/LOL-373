@@ -507,7 +507,7 @@ namespace RM_EDU
                     }
                     else
                     {
-                        result.Add("A renewable resource that uses wind to turn turbines to generate energy. Wind can be harnessed practically anywhere, but no energy can be generated if there’s no wind.");
+                        result.Add("A renewable resource that uses wind to turn turbines to generate energy. Wind can be harnessed practically anywhere, but no energy can be generated if there's no wind.");
                         result.Add("Wind turbines can be installed on land or offshore in shallow waters. Wind turbines produce no pollutants but can be expensive and wear out quickly.");
                     }
 
