@@ -1212,7 +1212,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses hydro, which uses the flow of water for generating energy. Hydro generators can only be placed in rivers and cannot be placed next to other hydro generators.", "trl_hydro_txt_00", tutorialsUI.textBox.hydroSprite),
+                new EDU_Page(title, titleKey, "This stage uses hydro, a renewable resource that uses the flow of water for generating energy. Hydro generators can only be placed in rivers and cannot be placed next to other hydro generators.", "trl_hydro_txt_00", tutorialsUI.textBox.hydroSprite),
                 new EDU_Page(title, titleKey, "Hydro generators produce a very small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.", "trl_hydro_txt_01", tutorialsUI.textBox.hydroSprite),
             };
 
@@ -1246,7 +1246,7 @@ namespace RM_EDU
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "This stage uses solar, which is a renewable resource that uses solar panels to convert sunlight into electricity. Solar generators can be placed anywhere on land, produce no air pollution, and only generate energy during the day. They produce a moderate amount of energy at a moderate rate.", "trl_solar_txt_00", tutorialsUI.textBox.solarSprite),
+                new EDU_Page(title, titleKey, "This stage uses solar, a renewable resource that converts sunlight into electricity. Solar generators can be placed anywhere on land, produce no air pollution, and only generate energy during the day. They produce a moderate amount of energy at a moderate rate.", "trl_solar_txt_00", tutorialsUI.textBox.solarSprite),
             };
 
             // Creates the info object.

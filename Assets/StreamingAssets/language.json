@@ -910,11 +910,11 @@
     "trl_geothermal_txt_00": "This stage uses geothermal, a renewable resource that uses Earth's internal heat for generating energy. Geothermal generators can only be placed on spots with geothermal symbols, generate energy perpetually, and produce no air pollution. They generate high amounts of energy at a moderate rate.",
 
     "trl_hydro_ttl": "Hydro",
-    "trl_hydro_txt_00": "This stage uses hydro, which uses the flow of water for generating energy. Hydro generators can only be placed in rivers and cannot be placed next to other hydro generators.",
+    "trl_hydro_txt_00": "This stage uses hydro, a renewable resource that uses the flow of water for generating energy. Hydro generators can only be placed in rivers and cannot be placed next to other hydro generators.",
     "trl_hydro_txt_01": "Hydro generators produce a very small amount of air pollution and will flood the spots behind them if they run for too long. They produce a high amount of energy at a high rate.",
 
     "trl_solar_ttl": "Solar",
-    "trl_solar_txt_00": "This stage uses solar, which is a renewable resource that uses solar panels to convert sunlight into electricity. Solar generators can be placed anywhere on land, produce no air pollution, and only generate energy during the day. They produce a moderate amount of energy at a moderate rate.",
+    "trl_solar_txt_00": "This stage uses solar, a renewable resource that converts sunlight into electricity. Solar generators can be placed anywhere on land, produce no air pollution, and only generate energy during the day. They produce a moderate amount of energy at a moderate rate.",
 
     "trl_wave_ttl": "Wave",
     "trl_wave_txt_00": "This stage uses wave, which is a renewable resource that uses the movement of waves for generating energy. Wave generators can only be placed in the sea, produce moderate amounts of energy, and create no air pollution. The energy generation speed is determined by the wind speed.",
