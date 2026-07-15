@@ -852,10 +852,28 @@ namespace RM_EDU
         }
 
         // Calculates the energy creation cost.
+        // If the stage is in generation mode, there is no attack energy cost.
+        public static float CalculateAttackEnergyCost(float attackEnergyCost, GameSettings.gameMode gameMode)
+        {
+            // Checks the provided game mode to know what calculation to use.
+            switch(gameMode)
+            {
+                // Generation mode, so no attack energy cost.
+                case GameSettings.gameMode.generation:
+                    return 0;
+
+                // Defense mode, so do calculation.
+                case GameSettings.gameMode.defense:
+                default:
+                    // Divide by 10, multiply by 4.25 and round up to the nearest value.
+                    return Mathf.Ceil(attackEnergyCost / 10.0F * 4.25F);
+            }
+        }
+
+        // Calculates the energy creation cost using the game settings gameplay mode.
         public static float CalculateAttackEnergyCost(float attackEnergyCost)
         {
-            // Divide by 10, multiply by 4.25 and round up to the nearest value.
-            return Mathf.Ceil(attackEnergyCost / 10.0F * 4.25F);
+            return CalculateAttackEnergyCost(attackEnergyCost, GameSettings.Instance.gameplayMode);
         }
 
         // Calculates the attack cooldown time.

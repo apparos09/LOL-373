@@ -62,13 +62,20 @@
 
       "kwd_tutorialLog": 28,
 
+      "kwd_energy": 18,
       "kwd_energyStartBonus": 28,
+
 
 
       "kwd_naturalResource": 28,
       "kwd_naturalResources": 28,
       "kwd_resource": 18,
       "kwd_resources": 18,
+
+
+
+      "kwd_player": 18,
+      "kwd_user": 18,
 
       "kwd_generator": 18,
       "kwd_generators": 18,
@@ -537,6 +544,7 @@
 
     "kwd_tutorialLog": "Tutorial Log",
 
+    "kwd_energy": "Energy",
     "kwd_energyStartBonus": "Energy Start Bonus",
 
 
@@ -546,6 +554,9 @@
     "kwd_resources": "Resources",
 
 
+
+    "kwd_player": "Player",
+    "kwd_user": "User",
 
     "kwd_generator": "Generator",
     "kwd_generators": "Generators",

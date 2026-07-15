@@ -102,11 +102,11 @@ namespace RM_EDU
 
         // Applies the game difficulty to the enemy.
         // resetValues: if true, reset the current values to match the current difficulty.
-        //  - NOTE: if the spawn time is reset, it's reset to the max value, not the starting value.
+        //  * NOTE: if the spawn time is reset, it's reset to the max value, not the starting value.
         public void ApplyDifficulty(int difficulty, bool resetValues)
         {
             // Clamps the difficulty from 0 to 9.
-            float enemyDiff = Mathf.Clamp(difficulty, 0, 9);
+            int enemyDiff = Mathf.Clamp(difficulty, 0, 9);
 
             // Clears the enemy ids.
             enemyIds.Clear();

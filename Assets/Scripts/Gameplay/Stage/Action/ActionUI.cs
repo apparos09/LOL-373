@@ -109,6 +109,12 @@ namespace RM_EDU
 
         [Header("Action/Right")]
 
+        // The user's energy UI.
+        public GameObject playerUserEnergyUI;
+
+        // The user's energy bar.
+        public ProgressBar playerUserEnergyBar;
+
         // The enemy's energy UI.
         public GameObject playerEnemyEnergyUI;
 
@@ -167,6 +173,10 @@ namespace RM_EDU
             // If generation mode, show generation mode UI. If defense mode, show defense mode UI.
             generationModeUI.gameObject.SetActive(genMode);
             defenseModeUI.gameObject.SetActive(!genMode);
+
+            // If generation mode, show user energy bar. If defense mode, show enemy energy bar.
+            playerUserEnergyUI.gameObject.SetActive(genMode);
+            playerEnemyEnergyUI.gameObject.SetActive(!genMode);
         }
 
         // Gets the instance.
@@ -219,7 +229,7 @@ namespace RM_EDU
             // Gets the user.
             ActionPlayerUser playerUser = actionManager.playerUser;
 
-            // If the player exists, update the energy and air pollution text.
+            // If the player exists, update the energy text, air pollution text, and energy bar.
             if(playerUser != null)
             {
                 // The new energy and air pollution text.
@@ -233,6 +243,13 @@ namespace RM_EDU
                 // If the current player user air pollution text is different, change it to the new value.
                 if (playerUserAirPollutionText.text != newAirPollutionText)
                     playerUserAirPollutionText.text = newAirPollutionText;
+
+                // If the game is in generation mode, update the user energy bar.
+                if (GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
+                {
+                    float energyPercent = playerUser.energyGenTotal / playerUser.energyGenGoal;
+                    playerUserEnergyBar.SetValueAsPercentage(energyPercent);
+                }
             }
             // The player user couldn't be found, so clear the text.
             else
@@ -259,12 +276,16 @@ namespace RM_EDU
             // If the enemy exists, update the bar.
             if (playerEnemy != null)
             {
-                // Since the player enemy's energy amount is constantly changing...
-                // It's probably fine to update this every frame.
+                // If the game is in defense mode, update the enemy energy bar.
+                if (GameSettings.Instance.gameplayMode == GameSettings.gameMode.defense)
+                {
+                    // Since the player enemy's energy amount is constantly changing...
+                    // It's probably fine to update this every frame.
 
-                // Calculates the energy percent and applies it to the energy bar.
-                float energyPercent = playerEnemy.energy / playerEnemy.energyMax;
-                playerEnemyEnergyBar.SetValueAsPercentage(energyPercent);
+                    // Calculates the energy percent and applies it to the energy bar.
+                    float energyPercent = playerEnemy.energy / playerEnemy.energyMax;
+                    playerEnemyEnergyBar.SetValueAsPercentage(energyPercent);
+                }
             }
         }
 

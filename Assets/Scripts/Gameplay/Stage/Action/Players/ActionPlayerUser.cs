@@ -22,6 +22,7 @@ namespace RM_EDU
         public float energyStartBonus = 0.0F;
 
         // If 'true', the starting energy bonus is applied.
+        // If the game is in generation mode, the energy start bonus will always be 0.
         private bool applyEnergyBonus = true;
 
         // The energy the player had on the previous update.
@@ -44,7 +45,12 @@ namespace RM_EDU
         private bool energyAutoGenEnabled = true;
 
         // The total amount of energy generated.
+        [Tooltip("The energy the user has generated since the start of the stage.")]
         public float energyGenTotal = 0.0F;
+
+        // The energy goal for the user. This only applies in generation mode.
+        [Tooltip("The energy generation goal. This is only used for generation mode.")]
+        public float energyGenGoal = 10000.0F;
 
         [Header("User/Units")]
 
@@ -104,6 +110,56 @@ namespace RM_EDU
 
             // Resets the energy auto generation timer.
             ResetEnergyAutoGenerationTimer();
+        }
+
+        // Applies the game difficulty to the user.
+        // resetValues: if true, reset the current values to match the current difficulty.
+        public void ApplyDifficulty(int difficulty, bool resetValues)
+        {
+            // The user difficulty.
+            int userDiff = Mathf.Clamp(difficulty, 0, 9);
+
+            // Checks the user difficulty.
+            switch (userDiff)
+            {
+                case 1:
+                    energyGenGoal = 200000;
+                    break;
+
+                case 2:
+                    energyGenGoal = 30000;
+                    break;
+
+                case 3:
+                    energyGenGoal = 40000;
+                    break;
+
+                case 4:
+                    energyGenGoal = 50000;
+                    break;
+
+                case 5:
+                    energyGenGoal = 60000;
+                    break;
+
+                case 6:
+                    energyGenGoal = 70000;
+                    break;
+
+                case 7:
+                    energyGenGoal = 80000;
+                    break;
+
+                case 8:
+                    energyGenGoal = 90000;
+                    break;
+
+                default: // Max/Main Difficulty
+                case 0:
+                case 9:
+                    energyGenGoal = 100000;
+                    break;
+            }
         }
 
 
@@ -686,6 +742,18 @@ namespace RM_EDU
                 if(prevUpdateEnergy != energy)
                 {
                     OnEnergyChanged();
+                }
+
+                // If in generation mode, see if the energy generation total has been reached.
+                if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
+                {
+                    // If the energy generation total is at or above the goal...
+                    // The player has won.
+                    if(energyGenTotal >= energyGenGoal)
+                    {
+                        // Sets the player's energy at 0.
+                        actionManager.playerEnemy.energy = 0.0F;
+                    }
                 }
             }
                 

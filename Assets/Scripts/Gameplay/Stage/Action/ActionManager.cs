@@ -286,6 +286,10 @@ namespace RM_EDU
             playerUser.SetGeneratorPrefabsFromManager();
             playerUser.SetDefensePrefabsFromManager();
 
+            // If the game is in defense mode, enable the auto energy loss.
+            // If the game is in generation mode, don't automatically reduce the energy.
+            playerEnemy.autoEnergyLoss = GameSettings.Instance.gameplayMode == GameSettings.gameMode.defense;
+
             // Applies the enemy difficulty and resets the values.
             // Also sets the spawn timer value to its starting amount rather than its max amount.
             playerEnemy.ApplyDifficulty(true);
