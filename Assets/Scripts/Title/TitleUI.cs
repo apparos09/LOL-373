@@ -45,6 +45,9 @@ namespace RM_EDU
         public GameSettingsUI settingsDialog;
         public Licenses licensesDialog;
 
+        // The game mode dialog (unused).
+        public GameModeDialog gameModeDialog;
+
         [Header("Other")]
         // The save text for the game.
         public TMP_Text saveText;
@@ -225,6 +228,7 @@ namespace RM_EDU
             instructionsDialog.gameObject.SetActive(false);
             settingsDialog.gameObject.SetActive(false);
             licensesDialog.gameObject.SetActive(false);
+            gameModeDialog.gameObject.SetActive(false);
         }
 
         // Opens the title dialog, which closes all the other dialogs.
@@ -249,6 +253,12 @@ namespace RM_EDU
         public void OpenLicensesDialog()
         {
             OpenDialog(licensesDialog.gameObject, true);
+        }
+
+        // Opens the game mode dialog.
+        public void OpenGameModeDialog()
+        {
+            OpenDialog(gameModeDialog.gameObject, true);
         }
 
         // Other

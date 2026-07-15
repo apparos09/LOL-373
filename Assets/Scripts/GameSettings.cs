@@ -11,6 +11,11 @@ namespace RM_EDU
     // The game settings.
     public class GameSettings : MonoBehaviour
     {
+        // The two game modes.
+        // Generation: for action stages, the player must generate enough energy to win.
+        // Defense: for aciton stages, the player must fight off enemies until the enemy side runs out of power.
+        public enum gameMode { generation, defense }
+
         // the instance of the game settings.
         private static GameSettings instance;
 
@@ -22,6 +27,9 @@ namespace RM_EDU
         public const bool IS_LOL_BUILD = true;
 
         [Header("Settings")]
+
+        // The gameplay mode for the game.
+        public gameMode gameplayMode = gameMode.generation;
 
         // TODO: enable by default for submission build.
         // Use the text-to-speech options.
@@ -156,6 +164,12 @@ namespace RM_EDU
             {
                 return LOLSDK.Instance.IsInitialized;
             }
+        }
+
+        // Gets and sets the current gameplay mode.
+        public gameMode GameplayMode()
+        {
+            return gameplayMode;
         }
 
         // Is text-to-speech being used?
