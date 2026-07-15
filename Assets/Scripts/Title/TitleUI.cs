@@ -24,8 +24,9 @@ namespace RM_EDU
 
         [Header("Main Buttons")]
 
-        // The new game button, new game (with mode), and continue button.
+        // The new game button, new game (with mode) button, and continue button.
         public Button newGameButton;
+        public Button newGameModeButton;
         public Button continueButton;
 
         // The instructions, settings, and licenses.
@@ -156,6 +157,11 @@ namespace RM_EDU
                 // Show the quit button.
                 quitButton.gameObject.SetActive(true);
             }
+
+            // If game mode select isn't enabled, use the new game button.
+            // If it is enable,d use the new game mode button.
+            newGameButton.gameObject.SetActive(!GameSettings.GAME_MODE_SELECT_ENABLED);
+            newGameModeButton.gameObject.SetActive(GameSettings.GAME_MODE_SELECT_ENABLED);
 
             // Opens the title window at the start.
             OpenTitleDialog();

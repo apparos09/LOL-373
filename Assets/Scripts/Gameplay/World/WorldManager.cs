@@ -77,6 +77,16 @@ namespace RM_EDU
         [Tooltip("The defense ids that are set by default.")]
         public List<int> defaultDefenseIds = new List<int>();
 
+        // The name of generation game mode, and its translation key.
+        private string gameModeGenName = "Generation";
+        private string gameModeGenNameKey = "kwd_generation";
+        private bool gameModeGenTranslated = false;
+
+        // The name of defense game mode, and its translation key.
+        private string gameModeDefName = "Defense";
+        private string gameModeDefNameKey = "kwd_defense";
+        private bool gameModeDefTranslated = false;
+
         // Set to 'true' if the world has been initialized.
         protected bool worldInitialized = false;
 
@@ -494,6 +504,57 @@ namespace RM_EDU
         public bool WorldInitialized
         {
             get { return worldInitialized; }
+        }
+
+        // GAME MODE TEXT
+        // Gets the game mode text.
+        public string GetGameModeTextTranslated()
+        {
+            // Gets the generation mode and the related value.
+            bool genMode = GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation;
+            string value = genMode ? GetGameModeGenerationTextTranslated() : GetGameModeDefenseTextTranslated();
+
+            return value;
+        }
+
+        // Gets the generation mode text translated.
+        public string GetGameModeGenerationTextTranslated()
+        {
+            // Not already translated.
+            if(!gameModeGenTranslated)
+            {
+                // If available, translate text.
+                if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    gameModeGenName = LOLManager.GetLanguageTextStatic(gameModeGenNameKey);
+                }
+
+                // Text now translated.
+                gameModeGenTranslated = true;
+            }
+
+            // Return gen mode name.
+            return gameModeGenName;
+        }
+
+        // Gets the defense mode text translated.
+        public string GetGameModeDefenseTextTranslated()
+        {
+            // Not already translated.
+            if (!gameModeDefTranslated)
+            {
+                // If available, translate text.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    gameModeDefName = LOLManager.GetLanguageTextStatic(gameModeDefNameKey);
+                }
+
+                // Text now translated.
+                gameModeDefTranslated = true;
+            }
+
+            // Return def mode name.
+            return gameModeDefName;
         }
 
         // SAVING/LOADING

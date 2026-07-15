@@ -31,6 +31,9 @@ namespace RM_EDU
         // The gameplay mode for the game.
         public gameMode gameplayMode = gameMode.generation;
 
+        // If game mode selection is enabled, the player selects the mode at the start.
+        public const bool GAME_MODE_SELECT_ENABLED = false;
+
         // TODO: enable by default for submission build.
         // Use the text-to-speech options.
         private bool useTTS = true;

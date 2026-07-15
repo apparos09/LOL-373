@@ -67,12 +67,25 @@ namespace RM_EDU
 
         [Header("Action/Left")]
 
-        // Speed
-        // The speed button UI.
-        public GameObject speedButtonUI;
+        // The generation mode buttons.
+        public GameObject generationModeUI;
 
-        // The speed button.
-        public ActionStageSpeedButton speedButton;
+        // The defense mode buttons.
+        public GameObject defenseModeUI;
+
+        // Speed
+        // The speed button (generation mode) UI.
+        public GameObject speedButtonGenUI;
+
+        // The speed button (generation mode).
+        public ActionStageSpeedButton speedButtonGen;
+
+        // The speed button (defense mode) UI.
+        public GameObject speedButtonDefUI;
+
+        // The speed button (defense mode).
+        public ActionStageSpeedButton speedButtonDef;
+
 
         // Deselect
         // The deselect button UI.
@@ -146,6 +159,14 @@ namespace RM_EDU
             // Gets the instance.
             if (actionManager == null)
                 actionManager = ActionManager.Instance;
+
+            // Checks the gameplay mode to know which UI to display.
+            // True if in generation mode.
+            bool genMode = GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation;
+
+            // If generation mode, show generation mode UI. If defense mode, show defense mode UI.
+            generationModeUI.gameObject.SetActive(genMode);
+            defenseModeUI.gameObject.SetActive(!genMode);
         }
 
         // Gets the instance.

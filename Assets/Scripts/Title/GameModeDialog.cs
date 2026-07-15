@@ -54,9 +54,19 @@ namespace RM_EDU
         // Called when a mode has been selected.
         protected void OnModeSelected()
         {
-            // Close this dialog.
-            titleUI.CloseDialog(gameObject);
+            // Starts the new game.
+            titleUI.titleManager.StartNewGame();
+
+            // Closes the dialog (unneeded).
+            // titleUI.CloseDialog(gameObject);
         }
+
+        // // Closes the dialog.
+        // public void CloseDialog()
+        // {
+        //     // Close this dialog.
+        //     titleUI.CloseDialog(gameObject);
+        // }
 
     }
 }

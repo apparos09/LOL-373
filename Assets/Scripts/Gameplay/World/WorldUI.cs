@@ -32,8 +32,11 @@ namespace RM_EDU
         // The info log button.
         public Button infoLogButton;
 
+        // The game mode display.
+        public TMP_LabeledValue gameModeDisplay;
+        
         // The energy bonus.
-        public TMP_LabeledValue energyStartBonus;
+        public TMP_LabeledValue energyStartBonusDisplay;
 
         // The options button.
         public Button optionsButton;
@@ -118,7 +121,14 @@ namespace RM_EDU
                 }
             }
 
-            // Updates the energy start bonus display.
+            // Updates the game mode dispaly.
+            UpdateGameModeDisplay();
+
+            // Shows the game mode display if game mode select is enabled.
+            gameModeDisplay.gameObject.SetActive(GameSettings.GAME_MODE_SELECT_ENABLED);
+
+            // Updates the energy start bonus display (removed).
+            // This display should already be hidden.
             UpdateEnergyStartBonusDisplay();
 
             // Closes all the dialogs.
@@ -207,6 +217,13 @@ namespace RM_EDU
 
         }
 
+        // Updates the game mode display.
+        public void UpdateGameModeDisplay()
+        {
+            // Gets the game mode text.
+            gameModeDisplay.valueText.text = worldManager.GetGameModeTextTranslated();
+        }
+
         // Top Header
         // Updates the energy bonus text.
         public void UpdateEnergyStartBonusDisplay()
@@ -214,11 +231,11 @@ namespace RM_EDU
             // Checks if teh data logger exists.
             if(DataLogger.Instantiated)
             {
-                energyStartBonus.valueText.text = Mathf.CeilToInt(DataLogger.Instance.energyStartBonus).ToString();
+                energyStartBonusDisplay.valueText.text = Mathf.CeilToInt(DataLogger.Instance.energyStartBonus).ToString();
             }
             else
             {
-                energyStartBonus.valueText.text = "-";
+                energyStartBonusDisplay.valueText.text = "-";
             }
         }
 

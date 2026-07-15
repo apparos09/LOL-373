@@ -91,7 +91,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -128}
+  m_AnchoredPosition: {x: 0, y: -136}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2716452842361900547
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 7080135976551513465}
-  key: 
+  key: dlg_gameMode_dsc
 --- !u!114 &6808374650789197166
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +351,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4032197454635582201}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dd24ea5e708a9a4419056b262a271fc0, type: 3}
   m_Name: 
@@ -506,7 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   text: {fileID: 3936287206302166423}
-  key: 
+  key: kwd_gameMode
 --- !u!1001 &895113546228735207
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,6 +515,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1540120507467102967}
     m_Modifications:
+    - target: {fileID: 1288014189901964098, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: key
+      value: kwd_defense
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288014189901964098, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1470436684491121091, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Name
       value: Defense Mode Button (UI)
@@ -592,6 +600,18 @@ PrefabInstance:
       value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -625,7 +645,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -32
+      value: -28
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -668,6 +688,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1540120507467102967}
     m_Modifications:
+    - target: {fileID: 1288014189901964098, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: key
+      value: kwd_generation
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288014189901964098, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1470436684491121091, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_Name
       value: Generation Mode Button (UI)
@@ -745,6 +773,18 @@ PrefabInstance:
       value: 48
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -778,7 +818,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 32
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 5485035752250312177, guid: 77f1817714185a741937f2deb494834e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

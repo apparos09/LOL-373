@@ -362,10 +362,14 @@ namespace RM_EDU
             {
                 // Disables the speed, deselect, remove, and block button UIs.
                 // The UIs include the buttons and the labels they've been given.
-                actionUI.speedButtonUI.gameObject.SetActive(false);
-                // actionUI.deselectButtonUI.gameObject.SetActive(false); // Unused
-                // actionUI.removeButtonUI.gameObject.SetActive(false); // Unused
+                // Generation Mode
+                actionUI.speedButtonGenUI.gameObject.SetActive(false);
+                actionUI.deselectButtonUI.gameObject.SetActive(false);
+                actionUI.removeButtonUI.gameObject.SetActive(false);
                 actionUI.blockButtonUI.gameObject.SetActive(false);
+
+                // Defense Mode
+                actionUI.speedButtonDefUI.gameObject.SetActive(false);
 
                 // Disables the reset and world buttons.
                 // This is to prevent the player from resetting or leaving the stage before the tutorial ends.
@@ -403,10 +407,14 @@ namespace RM_EDU
         public void OnFirstActionFirstKillTutorialStart()
         {
             // Activates the speed button UI, deselect button UI, remove button UI, and block button UI.
-            actionUI.speedButtonUI.gameObject.SetActive(true);
-            // actionUI.deselectButtonUI.gameObject.SetActive(true); // Unused
-            // actionUI.removeButtonUI.gameObject.SetActive(true); // Unused
+            // Generation Mode
+            actionUI.speedButtonGenUI.gameObject.SetActive(true);
+            actionUI.deselectButtonUI.gameObject.SetActive(true);
+            actionUI.removeButtonUI.gameObject.SetActive(true);
             actionUI.blockButtonUI.gameObject.SetActive(true);
+
+            // Defense Mode
+            actionUI.speedButtonDefUI.gameObject.SetActive(true);
 
             // Enables the reset and world buttons.
             actionUI.optionsDialog.resetButton.interactable = true;
@@ -1127,9 +1135,10 @@ namespace RM_EDU
             }
 
 
-            // Resets stage speed. Also refreshes the speed button.
+            // Resets stage speed. Also refreshes the speed buttons.
             ResetStageSpeed();
-            actionUI.speedButton.RefreshSpeedIcon();
+            actionUI.speedButtonGen.RefreshSpeedIcon();
+            actionUI.speedButtonDef.RefreshSpeedIcon();
 
             // Resets the day-night cycle, and the wind.
             ResetDayNightCycle();
