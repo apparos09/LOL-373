@@ -31,8 +31,8 @@ namespace RM_EDU
         // The final time text.
         public TMP_LabeledValue gameTime;
 
-        // The energy total text.
-        public TMP_LabeledValue gameEnergyTotal;
+        // // The energy total text (removed).
+        // public TMP_LabeledValue gameEnergyTotal;
 
         [Header("Stage Infos")]
 
@@ -124,7 +124,7 @@ namespace RM_EDU
             // Game Values
             gameTime.valueText.text = StringFormatter.FormatTime(dataLogger.gameTimer, true, true, false);
             gameScore.valueText.text = Mathf.CeilToInt(dataLogger.gameScore).ToString();
-            gameEnergyTotal.valueText.text = Mathf.CeilToInt(dataLogger.GetWorldStageDatasEnergyTotal()).ToString();
+            // gameEnergyTotal.valueText.text = Mathf.CeilToInt(dataLogger.GetWorldStageDatasEnergyTotal()).ToString();
 
             // Stage Infos
             for (int i = 0; i < resultsStageInfos.Count && i < dataLogger.worldStageDatas.Length; i++)
@@ -139,7 +139,7 @@ namespace RM_EDU
             // Game Values
             gameTime.valueText.text = "-";
             gameScore.valueText.text = "-";
-            gameEnergyTotal.valueText.text = "-";
+            // gameEnergyTotal.valueText.text = "-";
 
             // Stage Infos
             for (int i = 0; i < resultsStageInfos.Count; i++)

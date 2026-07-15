@@ -25,8 +25,8 @@ namespace RM_EDU
         // The stage score.
         public TMP_LabeledValue stageScore;
 
-        // The stage energy total.
-        public TMP_LabeledValue stageEnergyTotal;
+        // The stage energy total (removed).
+        // public TMP_LabeledValue stageEnergyTotal;
 
 
         // Start is called before the first frame update
@@ -51,7 +51,7 @@ namespace RM_EDU
                 stageTime.valueText.text = StringFormatter.FormatTime(data.time, false, true, false);
 
                 stageScore.valueText.text = Mathf.CeilToInt(data.score).ToString();
-                stageEnergyTotal.valueText.text = Mathf.CeilToInt(data.energyTotal).ToString();
+                // stageEnergyTotal.valueText.text = Mathf.CeilToInt(data.energyTotal).ToString();
             }
             // Data is null, so clear the world stage data.
             else
@@ -67,7 +67,7 @@ namespace RM_EDU
             stageType.valueText.text = "-";
             stageTime.valueText.text = "-";
             stageScore.valueText.text = "-";
-            stageEnergyTotal.valueText.text = "-";
+            // stageEnergyTotal.valueText.text = "-";
         }
     }
 }

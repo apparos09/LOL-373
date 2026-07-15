@@ -2129,6 +2129,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Energy Start Bonus Display
       objectReference: {fileID: 0}
+    - target: {fileID: 5742420476798662559, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9006426568367406274, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_text
       value: Energy Start Bonus

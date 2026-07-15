@@ -105,6 +105,9 @@ namespace RM_EDU
         // The slow time scale.
         public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.5F;
 
+        // Uses the stage energy start bonus.
+        private bool useEnergyStartBonus = true;
+
         // If 'true', the stage start dialog is used.
         private bool useStageStartDialog = true;
 
@@ -263,9 +266,21 @@ namespace RM_EDU
             // If the data logger exists, use it to check for bonus energy.
             if(DataLogger.Instantiated)
             {
-                playerUser.energyStartBonus = DataLogger.Instance.energyStartBonus;
-                playerUser.SetEnergyToStartingEnergy();
+                // If the starting energy bonus should be used, set it to the value.
+                if(useEnergyStartBonus)
+                {
+                    playerUser.energyStartBonus = DataLogger.Instance.energyStartBonus;
+                }
+                // The energy start bonus shouldn't be used, so make sure it's 0.
+                else
+                {
+                    playerUser.energyStartBonus = 0.0F;
+                }
             }
+
+            // Sets the energy to the starting energy.
+            // This also gets called in the player user's start function, but it shouldn't be a big deal.
+            playerUser.SetEnergyToStartingEnergy();
 
             // Sets the generator and defense prefabs.
             playerUser.SetGeneratorPrefabsFromManager();
