@@ -317,7 +317,7 @@ namespace RM_EDU
             switch (GameSettings.Instance.gameplayMode)
             {
                 case GameSettings.gameMode.generation:
-                    energyAutoGenTimerMax = 15.0F;
+                    energyAutoGenTimerMax = 12.5F;
                     energyAutoGenAmount = 100.0F;
                     break;
 
