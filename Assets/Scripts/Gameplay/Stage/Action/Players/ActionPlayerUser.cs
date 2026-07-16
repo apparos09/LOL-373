@@ -138,41 +138,41 @@ namespace RM_EDU
             switch (userDiff)
             {
                 case 1:
-                    energyGenGoal = 20000;
+                    energyGenGoal = 10000;
                     break;
 
                 case 2:
-                    energyGenGoal = 30000;
+                    energyGenGoal = 15000;
                     break;
 
                 case 3:
-                    energyGenGoal = 40000;
+                    energyGenGoal = 20000;
                     break;
 
                 case 4:
-                    energyGenGoal = 50000;
+                    energyGenGoal = 25000;
                     break;
 
                 case 5:
-                    energyGenGoal = 60000;
+                    energyGenGoal = 30000;
                     break;
 
                 case 6:
-                    energyGenGoal = 70000;
+                    energyGenGoal = 35000;
                     break;
 
                 case 7:
-                    energyGenGoal = 80000;
+                    energyGenGoal = 40000;
                     break;
 
                 case 8:
-                    energyGenGoal = 90000;
+                    energyGenGoal = 45000;
                     break;
 
                 default: // Max/Main Difficulty
                 case 0:
                 case 9:
-                    energyGenGoal = 100000;
+                    energyGenGoal = 50000;
                     break;
             }
             // If values should be reset based on the new difficulty.
@@ -271,7 +271,7 @@ namespace RM_EDU
                 // Generation mode, so boost the energy amount being added to the total.
                 if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
                 {
-                    energyGenTotal += energyPlus * 8.0F;
+                    energyGenTotal += energyPlus * 5.0F;
                 }
                 // Defense mode, so just add the energy itself.
                 else

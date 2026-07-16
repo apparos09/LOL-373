@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 namespace RM_EDU
 {
@@ -798,27 +799,32 @@ namespace RM_EDU
         // If 'allowNegative' is false, the damage rounds up to 1 if the attackerPower is greater than 0.
         public static float CalculateDamage(float attackerStatFactor, float attackerPower, float targetStatFactor, float targetDurability, bool allowNegative = false)
         {
+            // Original
             // 5.0 * statFactor + ((attackPower * 1.75 * statFactor) - (target.durability * 1.25 * target.statFactor))
             // The amount of damage being done.
-            float damage = (5.0F * attackerStatFactor) +
-                ((attackerPower * 1.75F * attackerStatFactor) - (targetDurability * 1.25F * targetStatFactor));
+            // float damage = (5.0F * attackerStatFactor) +
+            //     ((attackerPower * 1.75F * attackerStatFactor) - (targetDurability * 1.25F * targetStatFactor));
+
+            // New
+            // The amount of damage being done.
+            float damage;
 
             // Changes damage calculation based on the gameplay mode.
-            // switch (GameSettings.Instance.gameplayMode)
-            // {
-            //     case GameSettings.gameMode.generation:
-            //         // 5.0 * statFactor + ((attackPower * 1.60 * statFactor) - (target.durability * 1.40 * target.statFactor))
-            //         damage = (5.0F * attackerStatFactor) +
-            //     ((attackerPower * 1.60F * attackerStatFactor) - (targetDurability * 1.40F * targetStatFactor));
-            //         break;
-            // 
-            //     case GameSettings.gameMode.defense:
-            //     default:
-            //         // 5.0 * statFactor + ((attackPower * 1.75 * statFactor) - (target.durability * 1.25 * target.statFactor))
-            //         damage = (5.0F * attackerStatFactor) +
-            //     ((attackerPower * 1.75F * attackerStatFactor) - (targetDurability * 1.25F * targetStatFactor));
-            //         break;
-            // }
+            switch (GameSettings.Instance.gameplayMode)
+            {
+                case GameSettings.gameMode.generation:
+                    // 5.0 * statFactor + ((attackPower * 1.60 * statFactor) - (target.durability * 1.40 * target.statFactor))
+                    damage = (5.0F * attackerStatFactor) +
+                ((attackerPower * 1.70F * attackerStatFactor) - (targetDurability * 1.30F * targetStatFactor));
+                    break;
+            
+                case GameSettings.gameMode.defense:
+                default:
+                    // 5.0 * statFactor + ((attackPower * 1.75 * statFactor) - (target.durability * 1.25 * target.statFactor))
+                    damage = (5.0F * attackerStatFactor) +
+                ((attackerPower * 1.75F * attackerStatFactor) - (targetDurability * 1.25F * targetStatFactor));
+                    break;
+            }
 
 
             // If the damage is negative and allowNegative is false...

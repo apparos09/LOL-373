@@ -503,7 +503,7 @@ namespace RM_EDU
             switch(GameSettings.Instance.gameplayMode)
             {
                 case GameSettings.gameMode.generation: // Generation
-                    return movementSpeed / 100.0F * 0.875F * statFactor;
+                    return movementSpeed / 100.0F * 0.850F * statFactor;
 
                 case GameSettings.gameMode.defense: // Defense
                 default:
