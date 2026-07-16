@@ -505,11 +505,15 @@ namespace RM_EDU
             // If the game is playing and the game is unpaused, run the enemy actions.
             if(actionManager.IsStagePlayingAndGameUnpaused())
             {
-                // If energy should be automatically lost as time progresses.
-                if(autoEnergyLoss)
+                // If the game is in defense mode.
+                if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.defense)
                 {
-                    // Reduces the energy.
-                    DecreaseEnergy(energyDec * Time.deltaTime);
+                    // If energy should be automatically lost as time progresses.
+                    if (autoEnergyLoss)
+                    {
+                        // Reduces the energy.
+                        DecreaseEnergy(energyDec * Time.deltaTime);
+                    }
                 }
 
                 // Bounds check.

@@ -653,8 +653,17 @@ namespace RM_EDU
         // Calculates the energy generation amount. This is the general static function for it.
         public static float CalculateEnergyGenerationAmount(float energyGenAmnt)
         {
-            // Ceil(Amount Stat / Stat Maximum * 24.75)
-            return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 24.75F);
+            switch(GameSettings.Instance.gameplayMode)
+            {
+                case GameSettings.gameMode.generation: // Generation Mode
+                    // Ceil(Amount Stat / Stat Maximum * 8.25)
+                    return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 8.25F);
+
+                case GameSettings.gameMode.defense: // Defense Mode
+                default:
+                    // Ceil(Amount Stat / Stat Maximum * 24.75)
+                    return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 24.75F);
+            }
         }
 
         // Override this function if the calculation should be changed.
@@ -865,8 +874,8 @@ namespace RM_EDU
                 // Defense mode, so do calculation.
                 case GameSettings.gameMode.defense:
                 default:
-                    // Divide by 10, multiply by 4.25 and round up to the nearest value.
-                    return Mathf.Ceil(attackEnergyCost / 10.0F * 4.25F);
+                    // Divide by 10, multiply by 4.00 and round up to the nearest value.
+                    return Mathf.Ceil(attackEnergyCost / 10.0F * 4.00F);
             }
         }
 
@@ -879,8 +888,8 @@ namespace RM_EDU
         // Calculates the attack cooldown time.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
         {
-            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 4.05F)
-            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 4.05F);
+            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.80F)
+            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.80F);
         }
 
         // Calculates the attack cooldown time.

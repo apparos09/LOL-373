@@ -500,7 +500,15 @@ namespace RM_EDU
         // Calculates the movement speed with the provided stat factor.
         public static float CalculateMovementSpeed(float statFactor, float movementSpeed)
         {
-            return movementSpeed / 100.0F * 0.825F * statFactor;
+            switch(GameSettings.Instance.gameplayMode)
+            {
+                case GameSettings.gameMode.generation: // Generation
+                    return movementSpeed / 100.0F * 0.875F * statFactor;
+
+                case GameSettings.gameMode.defense: // Defense
+                default:
+                    return movementSpeed / 100.0F * 0.825F * statFactor;
+            }
         }
 
         // Calculates movement speed with a stat factor of 1.

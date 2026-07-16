@@ -44,6 +44,7 @@ namespace RM_EDU
         // If 'true', the player automatically generates energy.
         private bool energyAutoGenEnabled = true;
 
+        [Header("User/Energy Gen Total")]
         // The total amount of energy generated.
         [Tooltip("The energy the user has generated since the start of the stage.")]
         public float energyGenTotal = 0.0F;
@@ -51,6 +52,17 @@ namespace RM_EDU
         // The energy goal for the user. This only applies in generation mode.
         [Tooltip("The energy generation goal. This is only used for generation mode.")]
         public float energyGenGoal = 10000.0F;
+
+        // If 'true', the energy auto generated amount is added to the energy total.
+        [Tooltip("If 'true', the energy auto generated amount is added to the energy total.")]
+        public bool addEnergyAutoGenToTotal = false;
+
+        // The automatic energy generation total increment.
+        private float energyGenTotalInc = 0.0F;
+
+        // If true, the energy generation total is automatically incremented.
+        // The increment amount is based on the maximum stage length.
+        public bool autoAddToEnergyGenTotal = true;
 
         [Header("User/Units")]
 
@@ -110,6 +122,9 @@ namespace RM_EDU
 
             // Resets the energy auto generation timer.
             ResetEnergyAutoGenerationTimer();
+
+            // Calculates and sets the energy generation total inc amount to its default.
+            CalculateAndSetEnergyGenerationTotalIncrementAmount();
         }
 
         // Applies the game difficulty to the user.
@@ -123,7 +138,7 @@ namespace RM_EDU
             switch (userDiff)
             {
                 case 1:
-                    energyGenGoal = 200000;
+                    energyGenGoal = 20000;
                     break;
 
                 case 2:
@@ -160,6 +175,13 @@ namespace RM_EDU
                     energyGenGoal = 100000;
                     break;
             }
+        }
+
+        // Gets the difficulty from the manager and uses that to apply the settings.
+        // If 'resetValues' are true, the relevant parameters are adjusted to their new defaults.
+        public void ApplyDifficulty(bool resetValues)
+        {
+            ApplyDifficulty(ActionManager.Instance.difficulty, resetValues);
         }
 
 
@@ -228,7 +250,19 @@ namespace RM_EDU
         {
             // Adds to the energy generation total.
             if(energyPlus >= 0)
-                energyGenTotal += energyPlus;
+            {
+                // Checks the game mode to see what to do.
+                // Generation mode, so boost the energy amount being added to the total.
+                if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
+                {
+                    energyGenTotal += energyPlus * 2.0F;
+                }
+                // Defense mode, so just add the energy itself.
+                else
+                {
+                    energyGenTotal += energyPlus;
+                }
+            }
 
             // Calls the base function to increase the energy.
             base.IncreaseEnergy(energyPlus);
@@ -273,6 +307,32 @@ namespace RM_EDU
             prevUpdateEnergy = energy;
         }
 
+        // ENERGY GENERATION TOTAL
+        // Calculates the energy generation total increment amount per second.
+        public float CalculateEnergyGenerationTotalIncrementAmount()
+        {
+            // The maximum length of the stage is used to determine...
+            // How much energy the energy total should be increased by every second.
+            float result = energyGenGoal / ActionManager.STAGE_LENGTH_MAX_SECONDS;
+
+            // If the result is negative, set it to 1.
+            if (result < 0)
+                result = 1.0F;
+
+            return result;
+        }
+
+        // Calculates and sets the energy decrement amount per second.
+        public void CalculateAndSetEnergyGenerationTotalIncrementAmount()
+        {
+            energyGenTotalInc = CalculateEnergyGenerationTotalIncrementAmount();
+        }
+
+        // Returns 'true' if the energy generation total goal has been reached.
+        public bool IsEnergyGenerationTotalGoalReached()
+        {
+            return energyGenTotal >= energyGenGoal;
+        }
 
         // UNIT PREFABS //
         // Sets the generator prefabs from the provided resources.
@@ -733,6 +793,17 @@ namespace RM_EDU
                         // Adds energy.
                         IncreaseEnergy(energyAutoGenAmount);
 
+                        // If the auto generation amount shouldn't be countered in the total.
+                        if(!addEnergyAutoGenToTotal)
+                        {
+                            // Reduce the auto gen amount from the energy total.
+                            energyGenTotal -= energyAutoGenAmount;
+
+                            // If out of bounds, make negative.
+                            if (energyGenTotal <= 0.0F)
+                                energyGenTotal = 0.0F;
+                        }
+
                         // Set timer to max.
                         ResetEnergyAutoGenerationTimer();
                     }
@@ -747,11 +818,24 @@ namespace RM_EDU
                 // If in generation mode, see if the energy generation total has been reached.
                 if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
                 {
+                    // If the energy generation total should automatically be added to.
+                    if (autoAddToEnergyGenTotal)
+                    {
+                        energyGenTotal += energyGenTotalInc * Time.deltaTime;
+                    }
+
                     // If the energy generation total is at or above the goal...
                     // The player has won.
-                    if(energyGenTotal >= energyGenGoal)
+                    if (energyGenTotal >= energyGenGoal)
                     {
                         // Sets the player's energy at 0.
+                        actionManager.playerEnemy.energy = 0.0F;
+                    }
+
+                    // If the goal has been reached, set the enemy energy amount to 0.
+                    // This triggers the enemy to lose.
+                    if(energyGenTotal >= energyGenGoal)
+                    {
                         actionManager.playerEnemy.energy = 0.0F;
                     }
                 }

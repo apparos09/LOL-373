@@ -278,6 +278,9 @@ namespace RM_EDU
                 }
             }
 
+            // Sets the player user difficulty.
+            playerUser.ApplyDifficulty(true);
+
             // Sets the energy to the starting energy.
             // This also gets called in the player user's start function, but it shouldn't be a big deal.
             playerUser.SetEnergyToStartingEnergy();
@@ -286,9 +289,10 @@ namespace RM_EDU
             playerUser.SetGeneratorPrefabsFromManager();
             playerUser.SetDefensePrefabsFromManager();
 
+            // NOTE: this check now happens in the enemy player script.
             // If the game is in defense mode, enable the auto energy loss.
             // If the game is in generation mode, don't automatically reduce the energy.
-            playerEnemy.autoEnergyLoss = GameSettings.Instance.gameplayMode == GameSettings.gameMode.defense;
+            // playerEnemy.autoEnergyLoss = GameSettings.Instance.gameplayMode == GameSettings.gameMode.defense;
 
             // Applies the enemy difficulty and resets the values.
             // Also sets the spawn timer value to its starting amount rather than its max amount.
