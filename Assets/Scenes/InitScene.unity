@@ -418,6 +418,7 @@ MonoBehaviour:
   lastSave:
     valid: 0
     complete: 0
+    gameMode: 0
     gameTime: 0
     gameScore: 0
     gameEnergyTotal: 0
@@ -438,7 +439,6 @@ MonoBehaviour:
       clearedFirstKnowledgeVerifyTutorial: 0
       clearedFirstKnowledgeCompleteTutorial: 0
       clearedFirstAreaCompleteTutorial: 0
-      clearedFinalAreaIntroTutorial: 0
       clearedBiomassTutorial: 0
       clearedGeothermalTutorial: 0
       clearedHydroTutorial: 0
@@ -452,6 +452,7 @@ MonoBehaviour:
   loadedData:
     valid: 0
     complete: 0
+    gameMode: 0
     gameTime: 0
     gameScore: 0
     gameEnergyTotal: 0
@@ -472,7 +473,6 @@ MonoBehaviour:
       clearedFirstKnowledgeVerifyTutorial: 0
       clearedFirstKnowledgeCompleteTutorial: 0
       clearedFirstAreaCompleteTutorial: 0
-      clearedFinalAreaIntroTutorial: 0
       clearedBiomassTutorial: 0
       clearedGeothermalTutorial: 0
       clearedHydroTutorial: 0
@@ -606,6 +606,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2886281d4c2ca844fb357345af8155da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameplayMode: 0
 --- !u!4 &1702759789
 Transform:
   m_ObjectHideFlags: 0

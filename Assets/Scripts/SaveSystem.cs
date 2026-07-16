@@ -19,6 +19,9 @@ namespace RM_EDU
         // Gets set to 'true' if the game was completed.
         public bool complete = false;
 
+        // The game mode of the saved game.
+        public GameSettings.gameMode gameMode;
+
         // The game time
         public float gameTime = 0;
 

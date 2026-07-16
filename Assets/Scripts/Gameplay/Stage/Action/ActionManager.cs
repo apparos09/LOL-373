@@ -106,7 +106,8 @@ namespace RM_EDU
         public const float STAGE_SPEED_SLOW_TIME_SCALE = 0.5F;
 
         // Uses the stage energy start bonus.
-        private bool useEnergyStartBonus = true;
+        // This feature has been removed, so leave this as false.
+        private bool useEnergyStartBonus = false;
 
         // If 'true', the stage start dialog is used.
         private bool useStageStartDialog = true;

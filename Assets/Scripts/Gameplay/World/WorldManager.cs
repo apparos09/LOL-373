@@ -460,6 +460,9 @@ namespace RM_EDU
             // Save the game score to the data logger.
             dataLogger.gameScore = gameScore;
 
+            // Updates the game mode display.
+            worldUI.UpdateGameModeDisplay();
+
             // Updates the energy start bonus display.
             worldUI.UpdateEnergyStartBonusDisplay();
 
@@ -567,6 +570,9 @@ namespace RM_EDU
             // If the data logger isn't set, grab the instance.
             if (dataLogger == null)
                 dataLogger = DataLogger.Instance;
+
+            // Saves the gameplay mode.
+            data.gameMode = GameSettings.Instance.gameplayMode;
 
             // Gets the game score, game time, game energy, and game air pollution.
             data.gameScore = dataLogger.gameScore;
@@ -798,11 +804,14 @@ namespace RM_EDU
             if (dataLogger == null)
                 dataLogger = DataLogger.Instance;
 
+            // Sets the gameplay mode.
+            GameSettings.Instance.gameplayMode = data.gameMode;
+
             // Gets the game score, game time, and game energy.
             dataLogger.gameScore = data.gameScore;
             dataLogger.gameTimer = data.gameTime;
-            // TODO: maybe store the energy total and air pollution somewhere? Right now they're summed from the stages.
 
+            // TODO: maybe store the energy total and air pollution somewhere? Right now they're summed from the stages.
 
             // World Stages
             // Gets the world stage data for every stage.
