@@ -117,11 +117,12 @@ namespace RM_EDU
                 laneBlasterPrefab = (ActionUnitDefenseBlasterLane)actionUnitPrefabs.GetDefensePrefab(LANE_BLASTER_ID);
             }
 
-            // Sets the user's energy to the starting energy.
-            SetEnergyToStartingEnergy();
+            // Sets the starting energy by the game mode, and sets the user's energy.
+            SetStartingEnergyByGameMode(true);
 
-            // Resets the energy auto generation timer.
-            ResetEnergyAutoGenerationTimer();
+            // Sets the energy auto gen timer max and amount by the game mode.
+            // Also sets the energy auto generation timer.
+            SetEnergyAutoGenTimerMaxAndAmountByGameMode(true);
 
             // Calculates and sets the energy generation total inc amount to its default.
             CalculateAndSetEnergyGenerationTotalIncrementAmount();
@@ -179,6 +180,7 @@ namespace RM_EDU
             if (resetValues)
             {
                 // Sets the energy to its starting value and the energy total gen increment amount.
+                // SetStartingEnergyByGameMode(true); // Not needed since the game mode should still be the same.
                 SetEnergyToStartingEnergy();
                 CalculateAndSetEnergyGenerationTotalIncrementAmount();
             }
@@ -204,6 +206,30 @@ namespace RM_EDU
         public bool HasEnergyStartBonus()
         {
             return energyStartBonus > 0;
+        }
+
+        // Sets the starting energy by the game mode.
+        // setEnergyToStartingEnergy: if true, the user's energy is set to the starting energy.
+        public void SetStartingEnergyByGameMode(bool setEnergyToStartingEnergy)
+        {
+            // Sets the starting energy based on the game mode.
+            switch (GameSettings.Instance.gameplayMode)
+            {
+                case GameSettings.gameMode.generation:
+                    energyStart = 150.0F;
+                    break;
+
+                case GameSettings.gameMode.defense:
+                default:
+                    energyStart = 200.0F;
+                    break;
+            }
+
+            // If 'true', the energy is set to the starting energy.
+            if(setEnergyToStartingEnergy)
+            {
+                SetEnergyToStartingEnergy();
+            }
         }
 
         // Sets the user's energy to their starting energy.
@@ -282,6 +308,32 @@ namespace RM_EDU
 
             // Calls the base function to increase the energy.
             base.IncreaseEnergy(energyPlus);
+        }
+
+        // Sets the energy auto gen timer and amount by the game mode.
+        public void SetEnergyAutoGenTimerMaxAndAmountByGameMode(bool resetTimer)
+        {
+            // Sets the starting energy based on the game mode.
+            switch (GameSettings.Instance.gameplayMode)
+            {
+                case GameSettings.gameMode.generation:
+                    energyAutoGenTimerMax = 15.0F;
+                    energyAutoGenAmount = 100.0F;
+                    break;
+
+                case GameSettings.gameMode.defense:
+                default:
+                    energyAutoGenTimerMax = 12.0F;
+                    energyAutoGenAmount = 120.0F;
+                    break;
+            }
+
+            // If the timer should be reset.
+            if(resetTimer)
+            {
+                // Resets the energy auto generation timer.
+                ResetEnergyAutoGenerationTimer();
+            }
         }
 
         // Gets the energy auto generation timer max.

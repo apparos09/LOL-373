@@ -282,9 +282,11 @@ namespace RM_EDU
             // Sets the player user difficulty.
             playerUser.ApplyDifficulty(true);
 
-            // Sets the energy to the starting energy.
+            // OLD: sets the energy to the starting energy.
+            // New: sets the starting energy by the game mode, and sets the starting energy.
             // This also gets called in the player user's start function, but it shouldn't be a big deal.
-            playerUser.SetEnergyToStartingEnergy();
+            // playerUser.SetEnergyToStartingEnergy();
+            playerUser.SetStartingEnergyByGameMode(true);
 
             // Sets the generator and defense prefabs.
             playerUser.SetGeneratorPrefabsFromManager();

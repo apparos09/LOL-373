@@ -35,7 +35,12 @@ namespace RM_EDU
         public const string STAGE_OVER_MESSAGE_KEY = "asg_msg_stageOver";
 
         // The player user has won message key.
-        public const string PLAYER_USER_WON_MESSAGE_KEY = "asg_msg_userWon";
+        // Since the LOL verison only uses generation mode, only that language text has been included.
+        public const string PLAYER_USER_WON_GEN_MESSAGE_KEY = "asg_msg_userWon";
+        // public const string PLAYER_USER_WON_GEN_MESSAGE_KEY = "asg_msg_userWon_gen"; // Unused
+
+        // The player user has won message key (defense mode) - unused.
+        // public const string PLAYER_USER_WON_DEF_MESSAGE_KEY = "asg_msg_userWon_def";
 
         // The player user lost message key.
         public const string PLAYER_USER_LOST_MESSAGE_KEY = "asg_msg_userLost";
@@ -136,7 +141,10 @@ namespace RM_EDU
                     userLostButtons.gameObject.SetActive(false);
 
                     // The user won message key.
-                    messageKey = PLAYER_USER_WON_MESSAGE_KEY;
+                    // Since the LOL version only uses generation mode, that's the only message key used.
+                    messageKey = PLAYER_USER_WON_GEN_MESSAGE_KEY;
+                    // messageKey = (GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation) ?
+                    //     PLAYER_USER_WON_GEN_MESSAGE_KEY : PLAYER_USER_WON_DEF_MESSAGE_KEY;
 
                     break;
 
@@ -235,16 +243,41 @@ namespace RM_EDU
         // Gets the user won message.
         public string GetStageEndUserWonMessage()
         {
+            // Set to 'true' if the game is using generation mode.
+            bool genMode = GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation;
+
             // If the LOLSDK is set, use the translated message.
             if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
             {
-                return LOLManager.GetLanguageTextStatic(PLAYER_USER_WON_MESSAGE_KEY);
+                return LOLManager.GetLanguageTextStatic(PLAYER_USER_WON_GEN_MESSAGE_KEY);
+
+                // // Returns the generation mode message.
+                // if(genMode)
+                // {
+                //     return LOLManager.GetLanguageTextStatic(PLAYER_USER_WON_GEN_MESSAGE_KEY);
+                // }
+                // // Returns the defense mode message.
+                // else
+                // {
+                //     return LOLManager.GetLanguageTextStatic(PLAYER_USER_WON_DEF_MESSAGE_KEY);
+                // }
             }
             // Use default message.
             else
             {
-                // return "Your side has won! The enemy side has run out of power!"; // Old
-                return "Your side has won! The enemy side have run out of power!"; // New (reviewer edited)
+                // No translation.
+                // Returns the generation mode message.
+                if(genMode)
+                {
+                    return "Your side has won! You've generated enough energy!";
+                }
+                // Returns the defense mode message.
+                else
+                {
+                    return "Your side has won! The enemy side has run out of power!"; // Old (creator written)
+                    // return "Your side has won! The enemy side have run out of power!"; // New (reviewer edited)
+
+                }
             }
         }
 
