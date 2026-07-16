@@ -175,6 +175,14 @@ namespace RM_EDU
                     energyGenGoal = 100000;
                     break;
             }
+            // If values should be reset based on the new difficulty.
+            if (resetValues)
+            {
+                // Sets the energy to its starting value and the energy total gen increment amount.
+                SetEnergyToStartingEnergy();
+                CalculateAndSetEnergyGenerationTotalIncrementAmount();
+            }
+
         }
 
         // Gets the difficulty from the manager and uses that to apply the settings.
@@ -248,14 +256,22 @@ namespace RM_EDU
         // Modifies the energy by adding the provided amount.
         public override void IncreaseEnergy(float energyPlus)
         {
-            // Adds to the energy generation total.
-            if(energyPlus >= 0)
+            // Increase the energy and add to the energy total.
+            IncreaseEnergy(energyPlus, true);
+        }
+
+        // Modifies the energy by adding the provided amount.
+        public void IncreaseEnergy(float energyPlus, bool addToEnergyGenTotal)
+        {
+            // If the value should be added to the energy gen total...
+            // And there's a value to add, add it.
+            if(addToEnergyGenTotal && energyPlus >= 0)
             {
                 // Checks the game mode to see what to do.
                 // Generation mode, so boost the energy amount being added to the total.
                 if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
                 {
-                    energyGenTotal += energyPlus * 2.0F;
+                    energyGenTotal += energyPlus * 8.0F;
                 }
                 // Defense mode, so just add the energy itself.
                 else
@@ -791,18 +807,9 @@ namespace RM_EDU
                         energyAutoGenTimer = 0.0F;
 
                         // Adds energy.
-                        IncreaseEnergy(energyAutoGenAmount);
-
-                        // If the auto generation amount shouldn't be countered in the total.
-                        if(!addEnergyAutoGenToTotal)
-                        {
-                            // Reduce the auto gen amount from the energy total.
-                            energyGenTotal -= energyAutoGenAmount;
-
-                            // If out of bounds, make negative.
-                            if (energyGenTotal <= 0.0F)
-                                energyGenTotal = 0.0F;
-                        }
+                        // 'addEnergyAutoGenToTotal' determines if this energy addition...
+                        // Is counted in the energy total.
+                        IncreaseEnergy(energyAutoGenAmount, addEnergyAutoGenToTotal);
 
                         // Set timer to max.
                         ResetEnergyAutoGenerationTimer();
