@@ -500,8 +500,8 @@ namespace RM_EDU
             // If the player user has generated air pollution, calculate a reduction.
             if(playerUser.airPollution > 0)
             {
-                // For every 30 points of air pollution, deduct 40 points from the score.
-                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 30.0F) * 40.0F;
+                // For every 25 points of air pollution, deduct 50 points from the score.
+                pollutionDeduction = Mathf.Floor(playerUser.airPollution / 25.0F) * 50.0F;
             }
 
             // Calculates the bonus. If the bonus is less than 0, make it 0.

@@ -129,7 +129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 0.000015258789}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 896, y: 512}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &90471234442587018
@@ -221,7 +221,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 70}
+  m_AnchoredPosition: {x: 0, y: 70}
   m_SizeDelta: {x: 850, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1644734777797297468
@@ -252,16 +252,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Select the Game Mode.
-
-
-    Generation Mode: generate enough energy to
-    clear action stages, and match statements in knowledge stages.
-
-
-    Defense
-    Mode: deplete the enemy side''s energy in action stages, and match statements
-    in knowledge stages.'
+  m_text: 'This game has two modes: <b>generation mode</b> and <b>defense mode</b>.
+    While knowledge stages work the same in both modes, the action stage win condition
+    depends on the mode. In <b>Generation Mode</b>, action stages are completed by
+    generating enough energy. In <b>Defense Mode</b>, action stages are completed
+    by reducing the enemy side''s energy to zero. Please select a mode.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -393,7 +388,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000030517578, y: 225.00003}
+  m_AnchoredPosition: {x: 0, y: 225.00003}
   m_SizeDelta: {x: 800, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7201339586697214644
@@ -454,9 +449,9 @@ MonoBehaviour:
   m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 14
+  m_fontSizeMax: 36
   m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512

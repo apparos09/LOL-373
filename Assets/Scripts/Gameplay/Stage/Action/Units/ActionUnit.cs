@@ -657,8 +657,8 @@ namespace RM_EDU
             switch(GameSettings.Instance.gameplayMode)
             {
                 case GameSettings.gameMode.generation: // Generation Mode
-                    // Ceil(Amount Stat / Stat Maximum * 9.75)
-                    return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 9.75F);
+                    // Ceil(Amount Stat / Stat Maximum * 12.25)
+                    return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 12.25F);
 
                 case GameSettings.gameMode.defense: // Defense Mode
                 default:
