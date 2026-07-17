@@ -744,7 +744,7 @@ namespace RM_EDU
                 new EDU_Page(title, titleKey, "Welcome to the Energy Defense Unit (EDU)! This is a training simulation that teaches you about the Earth's natural resources. There are two stage types in this simulation game: action (blue) and knowledge (green). You'll get more details on both later.", "trl_intro_txt_00", tutorialsUI.textBox.stageTypesSprite),
                 new EDU_Page(title, titleKey, "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.", "trl_intro_txt_01", tutorialsUI.textBox.logButtonSprite),
                 new EDU_Page(title, titleKey, "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings. When in a stage, the options menu allows you to reset the stage.", "trl_intro_txt_02", tutorialsUI.textBox.optionsButtonSprite),
-                new EDU_Page(title, titleKey, "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.", "trl_intro_txt_03"),
+                new EDU_Page(title, titleKey, "With all that covered, please select the available stage. Details on natural resources will be provided when relevant.", "trl_intro_txt_03"),
             };
 
             // Creates the info object.
@@ -1014,7 +1014,6 @@ namespace RM_EDU
             {
                 // Load the pages.
                 new EDU_Page(title, titleKey, "You've performed a connection verification! All statements and resources that were matched correctly have become locked. All statements that weren't matched correctly or weren't matched at all have been randomized.", "trl_firstKnowledgeVerify_txt_00"),
-                new EDU_Page(title, titleKey, "When you complete a knowledge stage, you can get an energy start bonus, which is used in action stages. The rewarded energy amount depends on how many verifications it took to beat the stage. If too many verifications were performed, no bonus will be given.", "trl_firstKnowledgeVerify_txt_01"),
             };
 
             // Creates the info object.

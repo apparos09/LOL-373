@@ -423,7 +423,6 @@
 
       "trl_firstKnowledgeVerify_ttl": 50,
       "trl_firstKnowledgeVerify_txt_00": 445,
-      "trl_firstKnowledgeVerify_txt_01": 445,
 
 
       "trl_firstKnowledgeComplete_ttl": 50,
@@ -503,7 +502,7 @@
     "kwd_world": "World",
     "dlg_instructions_emt_world": "In the world section, you select action stages and knowledge stages. Once all stages are complete, the game is finished.",
     "kwd_action": "Action",
-    "dlg_instructions_emt_action": "In an action stage, you place generator units to generate energy and place defense units to defend the base from enemies.",
+    "dlg_instructions_emt_action": "In an action stage, you place generator units to generate energy and place defense units to defend your base from enemies.",
     "kwd_knowledge": "Knowledge",
     "dlg_instructions_emt_knowledge": "In a knowledge stage, you match statements with the resources they apply to.",
 
@@ -865,7 +864,7 @@
     "trl_intro_txt_00": "Welcome to the Energy Defense Unit (EDU)! This is a training simulation that teaches you about the Earth's natural resources. There are two stage types in this simulation game: action (blue) and knowledge (green). You'll get more details on both later.",
     "trl_intro_txt_01": "In the top left is the info log button, which opens the info log. The info log provides information on simulation elements you've encountered.",
     "trl_intro_txt_02": "In the top right is the options button, which opens the options menu. The options menu allows you to save your progress, quit the game, reread tutorials, and adjust the game's settings. When in a stage, the options menu allows you to reset the stage.",
-    "trl_intro_txt_03": "In the top middle is the energy start bonus display, but that'll be explained later. With all that covered, please select the available stage. Details on natural resources will be provided when relevant.",
+    "trl_intro_txt_03": "With all that covered, please select the available stage. Details on natural resources will be provided when relevant.",
 
 
     "trl_firstActionIntro_ttl": "First Action Stage - Introduction",
@@ -904,7 +903,6 @@
 
     "trl_firstKnowledgeVerify_ttl": "First Knowledge Stage - Verification",
     "trl_firstKnowledgeVerify_txt_00": "You've performed a connection verification! All statements and resources that were matched correctly have become locked. All statements that weren't matched correctly or weren't matched at all have been randomized.",
-    "trl_firstKnowledgeVerify_txt_01": "When you complete a knowledge stage, you can get an energy start bonus, which is used in action stages. The rewarded energy amount depends on how many verifications it took to beat the stage. If too many verifications were performed, no bonus will be given.",
 
 
     "trl_firstKnowledgeComplete_ttl": "First Knowledge Stage Complete",

@@ -181,7 +181,7 @@ namespace RM_EDU
             element.nameTranslated = false;
             element.saveNameTranslated = true;
 
-            element.description = "In an action stage, you place generator units to generate energy and place defense units to defend the base from enemies.";
+            element.description = "In an action stage, you place generator units to generate energy and place defense units to defend your base from enemies.";
             element.descriptionKey = "dlg_instructions_emt_action";
             element.descTranslated = false;
             element.saveDescTranslated = true;
