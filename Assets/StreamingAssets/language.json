@@ -858,7 +858,7 @@
 
 
     "trl_firstActionIntro_ttl": "First Action Stage - Introduction",
-    "trl_firstActionIntro_txt_00": "This is an action stage! In action stages, you generate energy while preventing enemies from entering your base. Enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose.",
+    "trl_firstActionIntro_txt_00": "This is an action stage! In action stages, you generate energy while stopping enemies from entering your base. Enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose.",
     "trl_firstActionIntro_txt_01": "If you reach the energy generation goal, which is displayed by the bar on the right, you win. The energy generation goal bar fills automatically, but generating energy fills the bar faster.",
     "trl_firstActionIntro_txt_02": "Some energy will be given periodically, but only energy you generate contributes to the energy goal. To generate energy, you use generator units, which can be found in the bottom left. The energy needed to create a unit is displayed on its unit button.",
     "trl_firstActionIntro_txt_03": "When a unit is selected, it'll be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. With all that covered, please place a unit on the field.",

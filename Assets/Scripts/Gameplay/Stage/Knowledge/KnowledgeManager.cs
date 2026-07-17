@@ -1201,24 +1201,24 @@ namespace RM_EDU
             switch(verifyAttempts)
             {
                 case 5: // 5 attempts.
-                    scoreVerifyBonus = 50.0F;
+                    scoreVerifyBonus = 200.0F;
                     break;
 
                 case 4: // 4 attempts
-                    scoreVerifyBonus = 100.0F;
+                    scoreVerifyBonus = 400.0F;
                     break;
 
                 case 3: // 3 attempts
-                    scoreVerifyBonus = 150.0F;
+                    scoreVerifyBonus = 600.0F;
                     break;
 
                 case 2: // 2 attempts
-                    scoreVerifyBonus = 200.0F;
+                    scoreVerifyBonus = 800.0F;
                     break;
 
                 case 1: // 1 attempt (lowest).
                 case 0: // 0 attempts (not possible).
-                    scoreVerifyBonus = 250.0F;
+                    scoreVerifyBonus = 1000.0F;
                     break;
 
                 default: // No bonus since too many attempts.
