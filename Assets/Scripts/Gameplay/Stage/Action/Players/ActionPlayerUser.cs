@@ -297,7 +297,7 @@ namespace RM_EDU
                 // Generation mode, so boost the energy amount being added to the total.
                 if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
                 {
-                    energyGenTotal += energyPlus * 5.0F;
+                    energyGenTotal += energyPlus * 4.0F;
                 }
                 // Defense mode, so just add the energy itself.
                 else

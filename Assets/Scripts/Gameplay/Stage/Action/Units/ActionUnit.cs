@@ -909,10 +909,28 @@ namespace RM_EDU
         }
 
         // Calculates the attack cooldown time.
+        public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum, GameSettings.gameMode gameMode)
+        {
+            // Checks the provided game mode to know what calculation to use.
+            switch (gameMode)
+            {
+                // Generation Mode
+                case GameSettings.gameMode.generation:
+                    // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.90F)
+                    return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.90F);
+
+                // Defense Mode
+                case GameSettings.gameMode.defense:
+                default:
+                    // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.80F)
+                    return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.80F);
+            }
+        }
+
+        // Calculates the attack cooldown time using the current gameplay mode.
         public static float CalculateAttackCooldownTime(float attackSpeed, float attackSpeedMaximum)
         {
-            // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.80F)
-            return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.80F);
+            return CalculateAttackCooldownTime(attackSpeed, attackSpeedMaximum, GameSettings.Instance.gameplayMode);
         }
 
         // Calculates the attack cooldown time.

@@ -936,6 +936,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Action Stage Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 2923519790483817520, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2923519790483817520, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3306661983057246600, guid: 2a47cdf50c36b0244addba869d92a9fb, type: 3}
       propertyPath: m_Pivot.x
       value: 0
