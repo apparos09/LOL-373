@@ -817,7 +817,8 @@ MonoBehaviour:
   naturalGasSprite: {fileID: 21300000, guid: 60ae3bb2d337b1c40a735becb7033830, type: 3}
   nuclearSprite: {fileID: 21300000, guid: d679c97814b753745a0829f73d787070, type: 3}
   oilSprite: {fileID: 21300000, guid: 3f5e08bbccdc13b4bb66752f6e968bae, type: 3}
-  actionEnemyEnergyBarSprite: {fileID: 21300000, guid: 6ae25a9362d46504780fc45fae80b29a, type: 3}
+  actionEnergyBarUserSprite: {fileID: 21300000, guid: ab069fe76b038f84ea0164eee346167d, type: 3}
+  actionEnergyBarEnemySprite: {fileID: 21300000, guid: 6ae25a9362d46504780fc45fae80b29a, type: 3}
   actionUnitButtonsSprite: {fileID: 21300000, guid: 5fbdce38e4f699c41a2ebe3dc73dd718, type: 3}
   actionUnitSelectorArrowsSprite: {fileID: 21300000, guid: 17887b8c2d19aba45abf0168fd9e9e9f, type: 3}
   actionUnitSelectorArrowsAltSprite: {fileID: 21300000, guid: 4a73d10e702b9e948ab2cb2e593f292a, type: 3}

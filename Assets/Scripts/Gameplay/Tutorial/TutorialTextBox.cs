@@ -63,8 +63,9 @@ namespace RM_EDU
 
         [Header("Tutorials/Sprites/Action")]
 
-        // Action enemy player bar
-        public Sprite actionEnemyEnergyBarSprite;
+        // Action user and enemy energy bar
+        public Sprite actionEnergyBarUserSprite;
+        public Sprite actionEnergyBarEnemySprite;
 
         // Action unit buttons
         [Header("Tutorials/Sprites/Action/Units")]
@@ -93,7 +94,7 @@ namespace RM_EDU
         public Sprite energyBlockSprite;
 
         [Header("Tutorials/Sprites/Knowledge")]
-
+        // The knowledge resource and statement buttons.
         public Sprite knowledgeElementsSprite;
 
         // Awake is called when the script instance is being loaded
