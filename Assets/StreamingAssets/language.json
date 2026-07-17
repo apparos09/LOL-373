@@ -397,7 +397,6 @@
       "trl_firstActionGenerators_txt_00": 445,
       "trl_firstActionGenerators_txt_01": 445,
       "trl_firstActionGenerators_txt_02": 445,
-      "trl_firstActionGenerators_txt_03": 445,
 
       "trl_firstActionDefenses_ttl": 50,
       "trl_firstActionDefenses_txt_00": 445,
@@ -407,12 +406,6 @@
       "trl_firstActionFirstKill_ttl": 50,
       "trl_firstActionFirstKill_txt_00": 445,
       "trl_firstActionFirstKill_txt_01": 445,
-      "trl_firstActionFirstKill_txt_02": 445,
-      "trl_firstActionFirstKill_txt_03": 445,
-
-
-      "trl_firstActionComplete_ttl": 50,
-      "trl_firstActionComplete_txt_00": 445,
 
 
       "trl_firstKnowledgeIntro_ttl": 50,
@@ -424,9 +417,6 @@
       "trl_firstKnowledgeVerify_ttl": 50,
       "trl_firstKnowledgeVerify_txt_00": 445,
 
-
-      "trl_firstKnowledgeComplete_ttl": 50,
-      "trl_firstKnowledgeComplete_txt_00": 445,
 
       "trl_firstAreaComplete_ttl": 50,
       "trl_firstAreaComplete_txt_00": 445,
@@ -868,31 +858,24 @@
 
 
     "trl_firstActionIntro_ttl": "First Action Stage - Introduction",
-    "trl_firstActionIntro_txt_00": "This is an action stage! In action stages, you place units on the field to fight off alien invaders that are trying to enter an Earth base. The enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose.",
-    "trl_firstActionIntro_txt_01": "If the enemy side runs out of energy, you win. The enemy side automatically loses energy as the stage progresses, but defeating an enemy makes the enemy side lose energy faster. The enemy side's energy amount is displayed by the bar on the right.",
-    "trl_firstActionIntro_txt_02": "To place a unit on the field you need energy. Some energy is generated periodically, but that won't be enough to defeat the enemies. To get more energy, you need to create generator units, which can be found in the bottom left.",
-    "trl_firstActionIntro_txt_03": "The energy needed to create a unit is displayed on its unit button. When you have a unit selected, it'll be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. With all that covered, please place a unit on the field.",
+    "trl_firstActionIntro_txt_00": "This is an action stage! In action stages, you generate energy while preventing enemies from entering your base. Enemies start on the right side of the field and make their way to the left side. If an enemy makes it to the left end of the field, you lose.",
+    "trl_firstActionIntro_txt_01": "If you reach the energy generation goal, which is displayed by the bar on the right, you win. The energy generation goal bar fills automatically, but generating energy fills the bar faster.",
+    "trl_firstActionIntro_txt_02": "Some energy will be given periodically, but only energy you generate contributes to the energy goal. To generate energy, you use generator units, which can be found in the bottom left. The energy needed to create a unit is displayed on its unit button.",
+    "trl_firstActionIntro_txt_03": "When a unit is selected, it'll be displayed in the bottom middle, and spots on the field will be highlighted to show where it can go. With all that covered, please place a unit on the field.",
 
     "trl_firstActionGenerators_ttl": "First Action Stage - Generators",
     "trl_firstActionGenerators_txt_00": "You've placed a generator unit! Generators generate energy if their conditions are met. A generator flashes blue when it generates energy and goes dark if it cannot generate energy. Some generators also produce air pollution, which can lower your stage score.",
     "trl_firstActionGenerators_txt_01": "In the top left is the day-night indicator and in the top right is the wind indicator. The day-night indicator shows the time of day, and the wind indicator shows the current wind speed. Units affected by these elements are explained when relevant.",
-    "trl_firstActionGenerators_txt_02": "In the top middle is the energy display (top value) and air pollution display (bottom value). The energy display shows how much energy you currently have, and the air pollution display shows how much air pollution you've generated in the current stage.",
-    "trl_firstActionGenerators_txt_03": "With all that covered, let's continue with the stage. When the enemy side is about to begin its attack, a notification will be shown and an alarm will go off, so make sure you're prepared.",
+    "trl_firstActionGenerators_txt_02": "In the top middle is the energy display (top value) and pollution display (bottom value). The energy display shows your current energy amount, and the pollution display shows how much air pollution you've generated in the current stage. With all that explained, let the stage continue.",
 
     "trl_firstActionDefenses_ttl": "First Action Stage - Defenses",
-    "trl_firstActionDefenses_txt_00": "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. The energy used to create units is also used to power certain unit attacks, so manage your energy well. Defense units come in three types: blaster, shield, and trap.",
-    "trl_firstActionDefenses_txt_01": "Blasters (BSRs) use energy to fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units as the simulation progresses. To assist you, there are lane blasters on the left side of the field.",
-    "trl_firstActionDefenses_txt_02": "A lane blaster destroys all enemies in its row upon an enemy touching it. It uses no energy but destroys itself upon performing an attack. You cannot restore lost lane blasters, but you always get them back at the start of a stage. With all that explained, let the stage recommence!",
+    "trl_firstActionDefenses_txt_00": "Enemies are approaching! You'll need to place defense units to defeat them, which can be found in the bottom right. Defense units come in three types: blaster, shield, and trap.",
+    "trl_firstActionDefenses_txt_01": "Blasters (BSRs) fire projectiles at enemies, shields (SHDs) block enemies, and traps (TRPs) attack enemies that interact with them. You'll unlock more defense units as the simulation progresses. To assist you, there are lane blasters on the left side of the field.",
+    "trl_firstActionDefenses_txt_02": "A lane blaster destroys all enemies in its row upon an enemy touching it, but it also destroys itself in the process. You cannot restore lost lane blasters, but you always get them back at the start of a stage. With all that covered, let the stage recommence!",
 
     "trl_firstActionFirstKill_ttl": "First Action Stage - Enemy Unit Defeated",
     "trl_firstActionFirstKill_txt_00": "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. Relatedly, the arrows on a unit button light up if you have the energy to create the unit they're pointing towards in a nearby row.",
-    "trl_firstActionFirstKill_txt_01": "On the left are two buttons. The stage speed button switches between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed.",
-    "trl_firstActionFirstKill_txt_02": "The energy disable button toggles the energy flow to defense units. When the flow is disabled, defense units cannot use attacks that require energy. Any defense units affected will also go dark.",
-    "trl_firstActionFirstKill_txt_03": "The energy disable button's icon shows a connected plug when the flow is enabled and a disconnected plug when the flow is disabled. With all that explained, back to the stage.",
-
-
-    "trl_firstActionComplete_ttl": "First Action Stage Complete",
-    "trl_firstActionComplete_txt_00": "You've completed your first action stage! When a stage is cleared, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.",
+    "trl_firstActionFirstKill_txt_01": "On the left is the stage speed button, which switches between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed. With all that explained, back to the stage.",
 
 
     "trl_firstKnowledgeIntro_ttl": "First Knowledge Stage - Introduction",
@@ -904,9 +887,6 @@
     "trl_firstKnowledgeVerify_ttl": "First Knowledge Stage - Verification",
     "trl_firstKnowledgeVerify_txt_00": "You've performed a connection verification! All statements and resources that were matched correctly have become locked. All statements that weren't matched correctly or weren't matched at all have been randomized.",
 
-
-    "trl_firstKnowledgeComplete_ttl": "First Knowledge Stage Complete",
-    "trl_firstKnowledgeComplete_txt_00": "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. If applicable, the energy bonus will automatically be applied at the start of your next action stage.",
 
     "trl_firstAreaComplete_ttl": "First Area Complete",
     "trl_firstAreaComplete_txt_00": "You've cleared the first area! When all stages in an area are completed, you're able to move onto the next area. There are three areas total, and all areas must be cleared to complete the game. Switch areas using the world arrow buttons.",
