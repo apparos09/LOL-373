@@ -934,53 +934,55 @@ namespace RM_EDU
                     startedTutorial = true;
                 }
 
-                // Checks if the player has cleared their first action stage.
-                if(!startedTutorial && !tutorials.Data.clearedFirstActionCompleteTutorial)
-                {
-                    // Checks all stages.
-                    for(int i = 0; i < stages.Count; i++)
-                    {
-                        // Stage exists.
-                        if (stages[i] != null)
-                        {
-                            // Is an action stage.
-                            if (stages[i].GetStageType() == WorldStage.stageType.action)
-                            {
-                                // If the stage is complete.
-                                if (stages[i].IsComplete())
-                                {
-                                    tutorials.LoadFirstActionCompleteTutorial();
-                                    startedTutorial = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                // This tutorial has been removed.
+                // // Checks if the player has cleared their first action stage.
+                // if(!startedTutorial && !tutorials.Data.clearedFirstActionCompleteTutorial)
+                // {
+                //     // Checks all stages.
+                //     for(int i = 0; i < stages.Count; i++)
+                //     {
+                //         // Stage exists.
+                //         if (stages[i] != null)
+                //         {
+                //             // Is an action stage.
+                //             if (stages[i].GetStageType() == WorldStage.stageType.action)
+                //             {
+                //                 // If the stage is complete.
+                //                 if (stages[i].IsComplete())
+                //                 {
+                //                     tutorials.LoadFirstActionCompleteTutorial();
+                //                     startedTutorial = true;
+                //                     break;
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
 
-                // Checks if the player has cleared their first knowledge stage.
-                if (!startedTutorial && !tutorials.Data.clearedFirstKnowledgeCompleteTutorial)
-                {
-                    // Checks all stages.
-                    for (int i = 0; i < stages.Count; i++)
-                    {
-                        // Stage exists.
-                        if (stages[i] != null)
-                        {
-                            // Is a knowledge stage.
-                            if (stages[i].GetStageType() == WorldStage.stageType.knowledge)
-                            {
-                                // If the stage is complete.
-                                if (stages[i].IsComplete())
-                                {
-                                    tutorials.LoadFirstKnowledgeCompleteTutorial();
-                                    startedTutorial = true;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
+                // This tutorial has been removed.
+                // // Checks if the player has cleared their first knowledge stage.
+                // if (!startedTutorial && !tutorials.Data.clearedFirstKnowledgeCompleteTutorial)
+                // {
+                //     // Checks all stages.
+                //     for (int i = 0; i < stages.Count; i++)
+                //     {
+                //         // Stage exists.
+                //         if (stages[i] != null)
+                //         {
+                //             // Is a knowledge stage.
+                //             if (stages[i].GetStageType() == WorldStage.stageType.knowledge)
+                //             {
+                //                 // If the stage is complete.
+                //                 if (stages[i].IsComplete())
+                //                 {
+                //                     tutorials.LoadFirstKnowledgeCompleteTutorial();
+                //                     startedTutorial = true;
+                //                     break;
+                //                 }
+                //             }
+                //         }
+                //     }
+                // }
 
                 // Checks if the player has cleared the first area.
                 if (!startedTutorial && !tutorials.Data.clearedFirstAreaCompleteTutorial)

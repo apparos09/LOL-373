@@ -26,14 +26,14 @@ namespace RM_EDU
             public bool clearedFirstActionFirstKillTutorial = false;
 
             // Action Complete (World)
-            public bool clearedFirstActionCompleteTutorial = false;
+            // public bool clearedFirstActionCompleteTutorial = false; // Removed
 
             // Knowledge 
             public bool clearedFirstKnowledgeIntroTutorial = false;
             public bool clearedFirstKnowledgeVerifyTutorial = false;
 
             // Knowledge Complete (World)
-            public bool clearedFirstKnowledgeCompleteTutorial = false;
+            // public bool clearedFirstKnowledgeCompleteTutorial = false; - Removed
 
             // World - 2
             public bool clearedFirstAreaCompleteTutorial = false;
@@ -113,14 +113,14 @@ namespace RM_EDU
                     clearedFirstActionFirstKillTutorial,
 
                     // Action Complete (World)
-                    clearedFirstActionCompleteTutorial,
+                    // clearedFirstActionCompleteTutorial, // Removed
 
                     // Knowledge 
                     clearedFirstKnowledgeIntroTutorial,
                     clearedFirstKnowledgeVerifyTutorial,
 
                     // Knowledge Complete (World)
-                    clearedFirstKnowledgeCompleteTutorial,
+                    // clearedFirstKnowledgeCompleteTutorial, // Removed
 
                     // World - 2
                     clearedFirstAreaCompleteTutorial,
@@ -167,17 +167,19 @@ namespace RM_EDU
                 copyData.clearedFirstActionFirstKillTutorial = clearedFirstActionFirstKillTutorial;
 
                 // Action - Complete (World)
-                copyData.clearedFirstActionCompleteTutorial = clearedFirstActionCompleteTutorial;
+                // copyData.clearedFirstActionCompleteTutorial = clearedFirstActionCompleteTutorial; // Removed
 
                 // Knowledge
                 copyData.clearedFirstKnowledgeIntroTutorial = clearedFirstKnowledgeIntroTutorial;
                 copyData.clearedFirstKnowledgeVerifyTutorial = clearedFirstKnowledgeVerifyTutorial;
 
                 // Knowledge - Complete (World)
-                copyData.clearedFirstKnowledgeCompleteTutorial = clearedFirstKnowledgeCompleteTutorial;
+                // copyData.clearedFirstKnowledgeCompleteTutorial = clearedFirstKnowledgeCompleteTutorial; // Removed
 
                 // World - 2
                 copyData.clearedFirstAreaCompleteTutorial = clearedFirstAreaCompleteTutorial;
+
+                // World - 3
                 // copyData.clearedFinalAreaIntroTutorial = clearedFinalAreaIntroTutorial; // Removed.
 
                 // Natural Resources
@@ -210,17 +212,19 @@ namespace RM_EDU
                 clearedFirstActionFirstKillTutorial = pasteData.clearedFirstActionFirstKillTutorial;
 
                 // Action - Complete
-                clearedFirstActionCompleteTutorial = pasteData.clearedFirstActionCompleteTutorial;
+                // clearedFirstActionCompleteTutorial = pasteData.clearedFirstActionCompleteTutorial; // Removed
 
                 // Knowledge
                 clearedFirstKnowledgeIntroTutorial = pasteData.clearedFirstKnowledgeIntroTutorial;
                 clearedFirstKnowledgeVerifyTutorial = pasteData.clearedFirstKnowledgeVerifyTutorial;
 
                 // Knowledge - Complete
-                clearedFirstKnowledgeCompleteTutorial = pasteData.clearedFirstKnowledgeCompleteTutorial;
+                // clearedFirstKnowledgeCompleteTutorial = pasteData.clearedFirstKnowledgeCompleteTutorial; // Removed
 
                 // World - 2
                 clearedFirstAreaCompleteTutorial = pasteData.clearedFirstAreaCompleteTutorial;
+
+                // World - 3
                 // clearedFinalAreaIntroTutorial = pasteData.clearedFinalAreaIntroTutorial; // Removed.
 
                 // Natural Resources
@@ -600,9 +604,9 @@ namespace RM_EDU
             if (!clearedOnly || (clearedOnly && Data.clearedFirstActionFirstKillTutorial))
                 resultList.Add(GetFirstActionFirstKillTutorialInfo());
 
-            // Action Complete (World)
-            if (!clearedOnly || (clearedOnly && Data.clearedFirstActionCompleteTutorial))
-                resultList.Add(GetFirstActionCompleteTutorialInfo());
+            // // Action Complete (World) - Removed since the tutorial is no longer used.
+            // if (!clearedOnly || (clearedOnly && Data.clearedFirstActionCompleteTutorial))
+            //     resultList.Add(GetFirstActionCompleteTutorialInfo());
 
             // Knowledge 
             if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeIntroTutorial))
@@ -611,15 +615,15 @@ namespace RM_EDU
             if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeVerifyTutorial))
                 resultList.Add(GetFirstKnowledgeVerifyTutorialInfo());
 
-            // Knowledge Complete (World)
-            if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeCompleteTutorial))
-                resultList.Add(GetFirstKnowledgeCompleteTutorialInfo());
+            // // Knowledge Complete (World) - Removed since the tutorial is no longer used.
+            // if (!clearedOnly || (clearedOnly && Data.clearedFirstKnowledgeCompleteTutorial))
+            //     resultList.Add(GetFirstKnowledgeCompleteTutorialInfo());
 
             // World - 2
             if (!clearedOnly || (clearedOnly && Data.clearedFirstAreaCompleteTutorial))
                 resultList.Add(GetFirstAreaCompleteTutorialInfo());
 
-            // // Removed since the final area intro tutorial is no longer used.
+            // // World - 3 - Removed since the tutorial is no longer used.
             // if (!clearedOnly || (clearedOnly && Data.clearedFinalAreaIntroTutorial))
             //     resultList.Add(GetFinalAreaIntroTutorialInfo());
 
@@ -917,38 +921,38 @@ namespace RM_EDU
             return tutorialInfo;
         }
 
-        // FIRST ACTION COMPLETE
-        // Loads the first action stage complete tutorial.
-        public void LoadFirstActionCompleteTutorial(bool startTutorial = true)
-        {
-            // Gets the tutorial info.
-            TutorialInfo tutorialInfo = GetFirstActionCompleteTutorialInfo();
-
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstActionCompleteTutorial = true;
-            LoadTutorial(ref tutorialInfo.pages, startTutorial);
-        }
-
-        // Loads the first action complete tutorial info into an object and returns it.
-        public TutorialInfo GetFirstActionCompleteTutorialInfo()
-        {
-            // The title and title translation key.
-            string title = "First Action Stage Complete";
-            string titleKey = "trl_firstActionComplete_ttl";
-
-            // Create the pages list.
-            List<Page> pages = new List<Page>
-            {
-                // Load the pages.
-                new EDU_Page(title, titleKey, "You've completed your first action stage! When a stage is cleared, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.", "trl_firstActionComplete_txt_00"),
-            };
-
-            // Creates the info object.
-            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
-
-            // Returns the info.
-            return tutorialInfo;
-        }
+        // // FIRST ACTION COMPLETE - Removed
+        // // Loads the first action stage complete tutorial.
+        // public void LoadFirstActionCompleteTutorial(bool startTutorial = true)
+        // {
+        //     // Gets the tutorial info.
+        //     TutorialInfo tutorialInfo = GetFirstActionCompleteTutorialInfo();
+        // 
+        //     // Sets the bool and loads the tutorial.
+        //     data.clearedFirstActionCompleteTutorial = true;
+        //     LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        // }
+        // 
+        // // Loads the first action complete tutorial info into an object and returns it.
+        // public TutorialInfo GetFirstActionCompleteTutorialInfo()
+        // {
+        //     // The title and title translation key.
+        //     string title = "First Action Stage Complete";
+        //     string titleKey = "trl_firstActionComplete_ttl";
+        // 
+        //     // Create the pages list.
+        //     List<Page> pages = new List<Page>
+        //     {
+        //         // Load the pages.
+        //         new EDU_Page(title, titleKey, "You've completed your first action stage! When a stage is cleared, sometimes one or more new stages are unlocked. Some stages can be beaten before others, but all stages must be completed to finish the simulation.", "trl_firstActionComplete_txt_00"),
+        //     };
+        // 
+        //     // Creates the info object.
+        //     TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+        // 
+        //     // Returns the info.
+        //     return tutorialInfo;
+        // }
 
         // FIRST KNOWLEDGE - INTRO
         // Loads the first knowledge stage - intro tutorial.
@@ -1020,38 +1024,38 @@ namespace RM_EDU
             return tutorialInfo;
         }
 
-        // FIRST KNOWLEDGE COMPLETE
-        // Loads the first knowledge stage complete tutorial.
-        public void LoadFirstKnowledgeCompleteTutorial(bool startTutorial = true)
-        {
-            // Gets the tutorial info.
-            TutorialInfo tutorialInfo = GetFirstKnowledgeCompleteTutorialInfo();
-
-            // Sets the bool and loads the tutorial.
-            data.clearedFirstKnowledgeCompleteTutorial = true;
-            LoadTutorial(ref tutorialInfo.pages, startTutorial);
-        }
-
-        // Loads the first knowledge complete tutorial info into an object and returns it.
-        public TutorialInfo GetFirstKnowledgeCompleteTutorialInfo()
-        {
-            // The title and title translation key.
-            string title = "First Knowledge Stage Complete";
-            string titleKey = "trl_firstKnowledgeComplete_ttl";
-
-            // Create the pages list.
-            List<Page> pages = new List<Page>
-            {
-                // Load the pages.
-                new EDU_Page(title, titleKey, "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. If applicable, the energy bonus will automatically be applied at the start of your next action stage.", "trl_firstKnowledgeComplete_txt_00"),
-            };
-
-            // Creates the info object.
-            TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
-
-            // Returns the info.
-            return tutorialInfo;
-        }
+        // // FIRST KNOWLEDGE COMPLETE - Removed
+        // // Loads the first knowledge stage complete tutorial.
+        // public void LoadFirstKnowledgeCompleteTutorial(bool startTutorial = true)
+        // {
+        //     // Gets the tutorial info.
+        //     TutorialInfo tutorialInfo = GetFirstKnowledgeCompleteTutorialInfo();
+        // 
+        //     // Sets the bool and loads the tutorial.
+        //     data.clearedFirstKnowledgeCompleteTutorial = true;
+        //     LoadTutorial(ref tutorialInfo.pages, startTutorial);
+        // }
+        // 
+        // // Loads the first knowledge complete tutorial info into an object and returns it.
+        // public TutorialInfo GetFirstKnowledgeCompleteTutorialInfo()
+        // {
+        //     // The title and title translation key.
+        //     string title = "First Knowledge Stage Complete";
+        //     string titleKey = "trl_firstKnowledgeComplete_ttl";
+        // 
+        //     // Create the pages list.
+        //     List<Page> pages = new List<Page>
+        //     {
+        //         // Load the pages.
+        //         new EDU_Page(title, titleKey, "You've completed your first knowledge stage! If you got an energy start bonus, it'll be displayed at the top middle of the screen. If applicable, the energy bonus will automatically be applied at the start of your next action stage.", "trl_firstKnowledgeComplete_txt_00"),
+        //     };
+        // 
+        //     // Creates the info object.
+        //     TutorialInfo tutorialInfo = GenerateTutorialInfo(title, titleKey, ref pages);
+        // 
+        //     // Returns the info.
+        //     return tutorialInfo;
+        // }
 
         // FIRST AREA COMPLETE
         // Loads the first area complete tutorial.
@@ -1086,9 +1090,8 @@ namespace RM_EDU
             return tutorialInfo;
         }
 
-        // // FNAL AREA INTRO
+        // // FNAL AREA INTRO - Removed
         // // Loads the final area intro tutorial.
-        // // NOTE: this tutorial has been removed.
         // public void LoadFinalAreaIntroTutorial(bool startTutorial = true)
         // {
         //     // Gets the tutorial info.
