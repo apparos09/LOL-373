@@ -662,8 +662,8 @@ namespace RM_EDU
 
                 case GameSettings.gameMode.defense: // Defense Mode
                 default:
-                    // Ceil(Amount Stat / Stat Maximum * 24.75)
-                    return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 24.75F);
+                    // Ceil(Amount Stat / Stat Maximum * 25.5)
+                    return Mathf.Ceil(energyGenAmnt / BASE_STAT_MAXIMUM * 25.5F);
             }
         }
 
