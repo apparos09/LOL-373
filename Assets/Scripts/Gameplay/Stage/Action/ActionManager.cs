@@ -343,9 +343,18 @@ namespace RM_EDU
         // Called when the first action intro tutorial is starting.
         public void OnFirstActionIntroTutorialStart()
         {
-            // Disables elements that will be enabled by another tutorial.
+            // Disables elements that will be enabled by another tutorial (generators tutorial).
             if(!tutorials.Data.clearedFirstActionGeneratorsTutorial)
             {
+                // If in generation mode, disable the auto-fill of the energy goal bar.
+                // This is to fix an oversight that caused it to fill while enemies couldn't spawn.
+                // It will be turned back on when the generation tutorial is triggered.
+                if(GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
+                {
+                    // This setting is only used in generation mode, hence the conditional statement.
+                    playerUser.autoAddToEnergyGenTotal = false;
+                }
+
                 // Disables the enemy player, day-night cycle and wind.
                 playerEnemy.gameObject.SetActive(false);
                 dayNightEnabled = false;
@@ -358,7 +367,7 @@ namespace RM_EDU
                 actionUI.optionsButton.gameObject.SetActive(false);
             }
 
-            // Disables elements that will be enabled by another tutorial.
+            // Disables elements that will be enabled by another tutorial (defenses tutorial).
             if (!tutorials.Data.clearedFirstActionDefensesTutorial)
             {
                 // Disables the defense unit selector.
@@ -368,7 +377,7 @@ namespace RM_EDU
                 playerUser.laneBlastersParent.gameObject.SetActive(false);
             }
 
-            // Disables elements that will be enabled by another tutorial.
+            // Disables elements that will be enabled by another tutorial (first kill tutorial).
             if (!tutorials.Data.clearedFirstActionFirstKillTutorial)
             {
                 // Disables the speed, deselect, remove, and block button UIs.
@@ -392,6 +401,14 @@ namespace RM_EDU
         // Called when the first action generator tutorial is starting.
         public void OnFirstActionGeneratorsTutorialStart()
         {
+            // Enables the player user's energy generation goal bar being auto filled.
+            // This was to fix an oversight with tutorials.
+            if (GameSettings.Instance.gameplayMode == GameSettings.gameMode.generation)
+            {
+                // This setting is only used in generation mode, hence the conditional statement.
+                playerUser.autoAddToEnergyGenTotal = true;
+            }
+
             // Enables the player enemy, the day-night system, and the wind system.
             playerEnemy.gameObject.SetActive(true);
             dayNightEnabled = true;
