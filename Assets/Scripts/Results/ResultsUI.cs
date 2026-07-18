@@ -25,11 +25,11 @@ namespace RM_EDU
 
         [Header("Final Texts")]
 
-        // The final score text.
-        public TMP_LabeledValue gameScore;
-
         // The final time text.
         public TMP_LabeledValue gameTime;
+
+        // The final score text.
+        public TMP_LabeledValue gameScore;
 
         // // The energy total text (removed).
         // public TMP_LabeledValue gameEnergyTotal;
