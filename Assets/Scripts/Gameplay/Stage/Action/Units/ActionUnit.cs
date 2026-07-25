@@ -813,9 +813,9 @@ namespace RM_EDU
             switch (GameSettings.Instance.gameplayMode)
             {
                 case GameSettings.gameMode.generation:
-                    // 5.0 * statFactor + ((attackPower * 1.60 * statFactor) - (target.durability * 1.40 * target.statFactor))
+                    // 5.0 * statFactor + ((attackPower * 1.725 * statFactor) - (target.durability * 1.275 * target.statFactor))
                     damage = (5.0F * attackerStatFactor) +
-                ((attackerPower * 1.70F * attackerStatFactor) - (targetDurability * 1.30F * targetStatFactor));
+                ((attackerPower * 1.725F * attackerStatFactor) - (targetDurability * 1.275F * targetStatFactor));
                     break;
             
                 case GameSettings.gameMode.defense:
@@ -916,14 +916,14 @@ namespace RM_EDU
             {
                 // Generation Mode
                 case GameSettings.gameMode.generation:
-                    // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.90F)
-                    return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.90F);
+                    // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.80F)
+                    return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.80F);
 
                 // Defense Mode
                 case GameSettings.gameMode.defense:
                 default:
-                    // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.80F)
-                    return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.80F);
+                    // 1.0F + ((BASE_STAT_MAXIMUM - attackSpeed) / BASE_STAT_MAXIMUM * 3.70F)
+                    return 1.0F + ((attackSpeedMaximum - attackSpeed) / attackSpeedMaximum * 3.70F);
             }
         }
 
