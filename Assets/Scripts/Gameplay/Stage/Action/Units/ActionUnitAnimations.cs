@@ -27,7 +27,10 @@ namespace RM_EDU
         // Animation for the unit becoming unusable.
         public string unusableAnim = "Action Unit - Unusable Animation";
 
-        // Plays the flash blue animation.
+        // Plays the red animation.
+        public string flashRedAnim = "Action Unit - Flash - Red Animation";
+
+        // Plays the blue animation.
         public string flashBlueAnim = "Action Unit - Flash - Blue Animation";
 
         // The death animation.
@@ -108,6 +111,12 @@ namespace RM_EDU
         }
 
         // FLASH
+
+        // Plays the flash red animation.
+        public void PlayFlashRedAnimation()
+        {
+            PlayAnimation(flashRedAnim);
+        }
 
         // Plays the flash blue animation.
         public void PlayFlashBlueAnimation()

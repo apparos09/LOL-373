@@ -73,6 +73,12 @@ namespace RM_EDU
         // If 'true', the spawn animation is used.
         private bool useSpawnAnim = true;
 
+        // The spawn animation for the unit.
+        public string unitDamagedAnim = "Action Unit - Flash - Red Animation";
+
+        // If 'true', the damage animation is played when the enemy takes damage.
+        protected bool useDamagedAnim = true;
+
         [Header("Enemy/Audio")]
 
         // The attack sound effect.
@@ -467,6 +473,17 @@ namespace RM_EDU
         {
             base.OnUnitDamaged(damage);
 
+            // If the damage animation should be used.
+            if(useDamagedAnim)
+            {
+                // If some damage was done, play the animation.
+                if (damage > 0)
+                {
+                    // Plays the unit damage animation.
+                    PlayUnitDamagedAnimation();
+                }
+            }
+
             // If the damaged SFX should be used.
             if (useDamagedSfx)
             {
@@ -617,7 +634,19 @@ namespace RM_EDU
             // Plays the spawn animation if the animator and animation are set.
             if (animator != null && unitSpawnAnim != "")
             {
+                // Could use the UnitAnimations script, but this is more direct.
                 animator.Play(unitSpawnAnim);
+            }
+        }
+
+        // Plays the unit damage animation.
+        public void PlayUnitDamagedAnimation()
+        {
+            // Plays the damage animation if the animator and animation are set.
+            if (animator != null && unitDamagedAnim != "")
+            {
+                // Could use the UnitAnimations script, but this is more direct.
+                animator.Play(unitDamagedAnim);
             }
         }
 
