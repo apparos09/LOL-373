@@ -157,46 +157,64 @@ namespace RM_EDU
                 // If uses wind to generate energy, set the speed based on that.
                 if(useWindToGenEnergy)
                 {
-                    // The incrementer for the speed.
-                    // The higher the speed, the shorter the time.
-                    float speedInc = BASE_STAT_MAXIMUM / 5;
+                    // Originally, the value ranged from 0 to the stat maximum.
+                    // Now, it ranges from (max/2) to max.
+
+                    // The speed minimum. // Before
+                    // float speedMin = 0.0F; // Use this if the stat range should be [0, max].
+                    float speedMin = BASE_STAT_MAXIMUM / 2; // After
+
+                    // The incrementer for the speed. The higher the speed, the shorter the time.
+                    // The lowest maximum is BASE_STAT_MAXIMUM / 2.
+                    // The highest maximum is BASE_STAT_MAXIMUM.
+                    float speedInc = (BASE_STAT_MAXIMUM - speedMin) / 5;
 
                     // Checks the wind rating to see the speed.
                     // The recent wind rating should match the current wind rating...
                     // So it shouldn't need to be recalculated.
                     switch (actionManager.GetCurrentWindRating(false))
                     {
+                        // NOTE: the function CanGenerateEnergy() should prevent the generator from...
+                        // Reaching the default, unknown, none, and nonMinus functions...
+                        // To set the energy generation speed.
                         default:
                         case statRating.unknown:
-                        case statRating.noneMinus:
-                        case statRating.none:
-                            // NOTE: the function CanGenerateEnergy() should prevent the generator from...
-                            // Reaching this function to set the energy generation speed.
+                            // Leave it as the default since it's unknown.
                             currEnergyGenSpeed = energyGenerationSpeed; // Default
                             break;
 
+                        case statRating.noneMinus:
+                        case statRating.none:
+                            // Sets the current energy speed to 0 since there's no wind.
+                            currEnergyGenSpeed = 0.0F;
+                            break;
+
                         case statRating.veryLow:
-                            currEnergyGenSpeed = speedInc * 1;
+                            currEnergyGenSpeed = speedMin + speedInc * 1;
                             break;
 
                         case statRating.low:
-                            currEnergyGenSpeed = speedInc * 2;
+                            currEnergyGenSpeed = speedMin + speedInc * 2;
                             break;
 
                         case statRating.medium:
-                            currEnergyGenSpeed = speedInc * 3;
+                            currEnergyGenSpeed = speedMin + speedInc * 3;
                             break;
 
                         case statRating.high:
-                            currEnergyGenSpeed = speedInc * 4;
+                            currEnergyGenSpeed = speedMin + speedInc * 4;
                             break;
 
                         case statRating.veryHigh:
                         case statRating.maximum:
                         case statRating.maximumPlus:
-                            currEnergyGenSpeed = speedInc * 5;
+                            currEnergyGenSpeed = speedMin + speedInc * 5;
                             break;
                     }
+
+                    // Makes sure the speed value is clamped between 0 and the maximum.
+                    // This was commented out since it shouldn't be necessary.
+                    // currEnergyGenSpeed = Mathf.Clamp(currEnergyGenSpeed, 0, BASE_STAT_MAXIMUM);
                 }
                 // Fixed generation time max.
                 else
