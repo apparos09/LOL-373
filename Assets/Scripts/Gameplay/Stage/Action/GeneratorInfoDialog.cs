@@ -13,15 +13,15 @@ namespace RM_EDU
         // 
         // }
 
-        // The gameplay UI.
-        public GameplayUI gameUI;
+        // The action UI.
+        public ActionUI actionUI;
 
         // Start is called before the first frame update
         void Start()
         {
-            // Finds the gameplay UI if it's not set.
-            if(gameUI == null)
-                gameUI = FindObjectOfType<GameplayUI>();
+            // Finds the action UI if it's not set.
+            if(actionUI == null)
+                actionUI = ActionUI.Instance;
         }
 
         // Update is called once per frame
