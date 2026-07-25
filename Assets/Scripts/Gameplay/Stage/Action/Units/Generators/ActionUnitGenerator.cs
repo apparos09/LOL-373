@@ -205,9 +205,9 @@ namespace RM_EDU
                 }
 
                 // Calculates the value based on the current energy generation speed.
-                // Calculation: 1 sec + 6.5 secs * ((maxSpeed - Abs(speed)) / maxSpeed)
-                //  - Maximum wait time of 7.5 seconds for each instance of energy generation.
-                value = 1.0F + 6.5F * ((BASE_STAT_MAXIMUM - Mathf.Abs(currEnergyGenSpeed)) / BASE_STAT_MAXIMUM);
+                // Calculation: 1 sec + 6.25 secs * ((maxSpeed - Abs(speed)) / maxSpeed)
+                //  - Maximum wait time of 7.25 seconds for each instance of energy generation.
+                value = 1.0F + 6.25F * ((BASE_STAT_MAXIMUM - Mathf.Abs(currEnergyGenSpeed)) / BASE_STAT_MAXIMUM);
 
                 // Bounds check.
                 if (value < 0)
