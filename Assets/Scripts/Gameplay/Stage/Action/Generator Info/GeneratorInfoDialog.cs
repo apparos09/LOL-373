@@ -121,16 +121,6 @@ namespace RM_EDU
         // The renewable toggle.
         public Toggle renewableToggle;
 
-        // The "yes" string.
-        private string yesStr = "Yes";
-        public const string YES_STR_KEY = "kwd_yes";
-        private bool yesStrTranslated = false;
-
-        // The "no" string.
-        private string noStr = "No";
-        public const string NO_STR_KEY = "kwd_no";
-        private bool noStrTranslated = false;
-
         // The energy generation amount progess bar.
         public ProgressBar energyGenAmountBar;
 
@@ -169,9 +159,6 @@ namespace RM_EDU
         // The notes title text.
         public TMP_Text notesTitleText;
 
-        // The tutorial title text.
-        public TMP_Text tutorialTitleText;
-
         // The notes text.
         public TMP_Text notesText;
 
@@ -204,11 +191,6 @@ namespace RM_EDU
             // Finds the action UI if it's not set.
             if(actionUI == null)
                 actionUI = ActionUI.Instance;
-
-            // Enables/disables the notes and tutorial title text objects...
-            // Based on what kind of text is ggoing to dispaly.
-            notesTitleText.gameObject.SetActive(!useTutorialsForGenInfoNotes);
-            tutorialTitleText.gameObject.SetActive(useTutorialsForGenInfoNotes);
 
             // If the generator infos should be loaded on start and they haven't been loaded already.
             if (loadGeneratorInfosOnStart && !generatorInfosLoaded)
@@ -244,43 +226,6 @@ namespace RM_EDU
         //     // Set to the first generator in the list.
         //     SetCurrentGeneratorInfo(0); 
         // }
-
-        // YES / NO
-        // Gets the yes string translated.
-        public string GetYesStringTranslated()
-        {
-            // Checks if not translated.
-            if(!yesStrTranslated)
-            {
-                // Available for translation.
-                if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-                {
-                    yesStr = LOLManager.GetLanguageTextStatic(YES_STR_KEY);
-                }
-
-                yesStrTranslated = true;
-            }
-
-            return yesStr;
-        }
-
-        // Gets the no string translated.
-        public string GetNoStringTranslated()
-        {
-            // Checks if not translated.
-            if (!noStrTranslated)
-            {
-                // Available for translation.
-                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
-                {
-                    noStr = LOLManager.GetLanguageTextStatic(NO_STR_KEY);
-                }
-
-                noStrTranslated = true;
-            }
-
-            return noStr;
-        }
 
         // Gets the no string translated.
 
