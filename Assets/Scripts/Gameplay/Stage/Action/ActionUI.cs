@@ -31,6 +31,9 @@ namespace RM_EDU
         // The stage start dialog.
         public ActionStageStartDialog stageStartDialog;
 
+        // The generator info dialog.
+        public GeneratorInfoDialog generatorInfoDialog;
+
         // The info log dialog.
         public InfoLog infoLogDialog;
 
@@ -382,6 +385,7 @@ namespace RM_EDU
 
             // Adds the rest of the dialogs.
             dialogList.Add(stageStartDialog.gameObject);
+            dialogList.Add(generatorInfoDialog.gameObject);
             dialogList.Add(infoLogDialog.gameObject);
             dialogList.Add(stageEndDialog.gameObject);
 
@@ -400,6 +404,24 @@ namespace RM_EDU
         {
             CloseDialog(stageStartDialog.gameObject);
             // StartStage() is called by button in Stage Start Dialog.
+        }
+
+        // Returns 'true' if the generator info dialog is open.
+        public bool IsGeneratorInfoDialogOpen()
+        {
+            return generatorInfoDialog.gameObject.activeSelf;
+        }
+
+        // Opens the generator info dialog dialog.
+        public void OpenGeneratorInfoDialog(bool closeOtherDialogs)
+        {
+            OpenDialog(generatorInfoDialog.gameObject, closeOtherDialogs);
+        }
+
+        // Closes the generator info dialog dialog.
+        public void CloseGeneratorInfoDialog()
+        {
+            CloseDialog(generatorInfoDialog.gameObject);
         }
 
         // Returns 'true' if the info log is open.

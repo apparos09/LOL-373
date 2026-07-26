@@ -3389,6 +3389,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 4257413956163299439, guid: 88641a66a4520bf41974ab7c501811e2, type: 3}
   m_PrefabInstance: {fileID: 1825309888648548956}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &8910678770384168498 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7133097687133156462, guid: 88641a66a4520bf41974ab7c501811e2, type: 3}
+  m_PrefabInstance: {fileID: 1825309888648548956}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39e3d6ce50032d34ba9acd044898e8e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2618488294350931445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4749,6 +4760,7 @@ MonoBehaviour:
   actionManager: {fileID: 0}
   dayNightOverlay: {fileID: 2542411952875463459}
   stageStartDialog: {fileID: 2630995746116842333}
+  generatorInfoDialog: {fileID: 8910678770384168498}
   infoLogDialog: {fileID: 2033835999506590310}
   stageEndDialog: {fileID: 3566748489729921327}
   infoLogButton: {fileID: 7507906042172924463}

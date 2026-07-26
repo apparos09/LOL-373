@@ -78,6 +78,9 @@
       "kwd_player": 18,
       "kwd_user": 18,
 
+      "kwd_tiles": 18,
+      "kwd_spots": 18,
+
       "kwd_land": 18,
       "kwd_river": 18,
       "kwd_sea": 18,
@@ -90,6 +93,14 @@
       "kwd_defenses": 18,
       "kwd_enemy": 18,
       "kwd_enemies": 18,
+
+
+
+      "kwd_generatorInfo": 28,
+      "kwd_energyGenerationAmount": 36,
+      "kwd_energyGenerationSpeed": 36,
+      "kwd_energyCost": 28,
+      "kwd_notes": 18,
 
 
 
@@ -555,6 +566,9 @@
     "kwd_player": "Player",
     "kwd_user": "User",
 
+    "kwd_tiles": "Tiles",
+    "kwd_spots": "Spots",
+
     "kwd_land": "Land",
     "kwd_river": "River",
     "kwd_sea": "Sea",
@@ -567,6 +581,14 @@
     "kwd_defenses": "Defenses",
     "kwd_enemy": "Enemy",
     "kwd_enemies": "Enemies",
+
+
+
+    "kwd_generatorInfo": "Generator Info",
+    "kwd_energyGenerationAmount": "Energy Generation Amount",
+    "kwd_energyGenerationSpeed": "Energy Generation Speed",
+    "kwd_energyCost": "Energy Cost",
+    "kwd_notes": "Notes",
 
 
 
