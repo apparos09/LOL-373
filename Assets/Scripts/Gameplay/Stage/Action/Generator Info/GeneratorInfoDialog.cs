@@ -118,8 +118,8 @@ namespace RM_EDU
         // The energy cost value.
         public TMP_LabeledValue energyCostValue;
 
-        // The renewable value.
-        public TMP_LabeledValue renewableValue;
+        // The renewable toggle.
+        public Toggle renewableToggle;
 
         // The "yes" string.
         private string yesStr = "Yes";
@@ -418,8 +418,7 @@ namespace RM_EDU
             // Sets the name, energy cost, and renewable.
             resourceNameText.text = genInfo.name;
             energyCostValue.valueText.text = genInfo.energyCost.ToString();
-            renewableValue.valueText.text = NaturalResources.IsRenewable(genInfo.resource) ?
-                GetYesStringTranslated() : GetNoStringTranslated();
+            renewableToggle.isOn = NaturalResources.IsRenewable(genInfo.resource);
 
             // Sets the energy amount, energy speed, and air pollution.
             energyGenAmountBar.SetValueAsPercentage(genInfo.energyGenAmount / ActionUnit.BASE_STAT_MAXIMUM);
@@ -534,7 +533,7 @@ namespace RM_EDU
 
             // Clears te energy cost value and renewable value.
             energyCostValue.valueText.text = "-";
-            renewableValue.valueText.text = "-";
+            renewableToggle.isOn = false;
 
             // Clears the progess bars.
             energyGenAmountBar.SetValue(0, false);
