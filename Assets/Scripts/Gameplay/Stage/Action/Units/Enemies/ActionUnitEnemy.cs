@@ -74,7 +74,7 @@ namespace RM_EDU
         private bool useSpawnAnim = true;
 
         // The spawn animation for the unit.
-        public string unitDamagedAnim = "Action Unit - Flash - Red Animation";
+        public string unitDamagedAnim = "Action Unit Enemy - Damage Animation";
 
         // If 'true', the damage animation is played when the enemy takes damage.
         protected bool useDamagedAnim = true;
