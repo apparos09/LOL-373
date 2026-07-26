@@ -90,6 +90,12 @@ namespace RM_EDU
             // GameSettings.Instance.AdjustAllAudioLevels();
         }
 
+        // Returns 'true' if the provided BGM clip is set to bgmSource and bgmSource is playing.
+        public bool IsBackgroundMusicPlaying(AudioClip bgmClip)
+        {
+            return bgmSource.clip == bgmClip && bgmSource.isPlaying;
+        }
+
         // Restarts the BGM source if it's currently playing.
         // This isn't applied if there's no audio clip.
         public void RestartBackgroundMusic()

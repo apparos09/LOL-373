@@ -71,7 +71,15 @@ namespace RM_EDU
         public void StopStage()
         {
             ActionManager.Instance.SetStagePlaying(false);
-            ActionAudio.Instance.PlayStagePreparationBgm();
+
+            // Grabs the audio instance.
+            ActionAudio actionAudio = ActionAudio.Instance;
+
+            // If the stage preparation BGM isn't playing, play it.
+            if(!actionAudio.IsStagePreparationBgmPlaying())
+            {
+                ActionAudio.Instance.PlayStagePreparationBgm();
+            }
         }
     }
 }

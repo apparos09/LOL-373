@@ -1235,7 +1235,60 @@ namespace RM_EDU
 
 
         // NATURAL RESOURCES //
-        // Gets tutorial info for the provided natrual resource.
+        // Sets natural resource tutorial cleared by the provided resource.
+        public void SetNaturalResourceTutorialCleared(NaturalResources.naturalResource resource, bool cleared)
+        {
+            // Checks the resource.
+            switch (resource)
+            {
+                // default:
+                // case NaturalResources.naturalResource.unknown:
+                //     // ...
+                //     break;
+
+                case NaturalResources.naturalResource.biomass:
+                    data.clearedBiomassTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.geothermal:
+                    data.clearedGeothermalTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.hydro:
+                    data.clearedHydroTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.solar:
+                    data.clearedSolarTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.wave:
+                    data.clearedWaveTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.wind:
+                    data.clearedWindTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.coal:
+                    data.clearedCoalTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.naturalGas:
+                    data.clearedNaturalGasTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.nuclear:
+                    data.clearedNuclearTutorial = cleared;
+                    break;
+
+                case NaturalResources.naturalResource.oil:
+                    data.clearedOilTutorial = cleared;
+                    break;
+            }
+        }
+
+        // Gets tutorial info for the provided natural resource.
         public TutorialInfo GetNaturalResourceTutorialInfo(NaturalResources.naturalResource resource)
         {
             // The tutorial info to be returned.

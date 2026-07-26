@@ -210,7 +210,9 @@ namespace RM_EDU
                 actionUI.CloseStageStartDialog();
             }
 
-            // Opens the generator info log to make sure
+            // Opens the generator info dialog if it should be shown on start.
+            // This closes the stage start dialog, but opens it back up...
+            // Once the generator info dialog is closed.
             if (openGenInfoDialogOnLateStart)
             {
                 // Make sure not to go back to the options dialog on close.

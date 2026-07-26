@@ -127,6 +127,16 @@ namespace RM_EDU
         // The air pollution progerss bar.
         public ProgressBar airPollutionBar;
 
+        // These are the default colors. Check the prefab for the actual colors.
+
+        // The color to show that a stat is being used. Used for progess bars.
+        [Tooltip("Used to show that the displayed stat is being used as presented.")]
+        public Color statUsedColor = Color.yellow;
+
+        // The color to show that a stat isn't being used. Used for progress bars.
+        [Tooltip("Used to show that the displayed stat isn't being used as presented.")]
+        public Color statUnusedColor = Color.grey;
+
         [Header("Stats/Tiles")]
 
         // The land options toggle.
@@ -142,6 +152,12 @@ namespace RM_EDU
         public TileOptionToggle symbolToggle;
 
         [Header("Stats/Notes")]
+
+        // The notes title text.
+        public TMP_Text notesTitleText;
+
+        // The tutorial title text.
+        public TMP_Text tutorialTitleText;
 
         // The notes text.
         public TMP_Text notesText;
@@ -176,8 +192,13 @@ namespace RM_EDU
             if(actionUI == null)
                 actionUI = ActionUI.Instance;
 
+            // Enables/disables the notes and tutorial title text objects...
+            // Based on what kind of text is ggoing to dispaly.
+            notesTitleText.gameObject.SetActive(!useTutorialsForGenInfoNotes);
+            tutorialTitleText.gameObject.SetActive(useTutorialsForGenInfoNotes);
+
             // If the generator infos should be loaded on start and they haven't been loaded already.
-            if(loadGeneratorInfosOnStart && !generatorInfosLoaded)
+            if (loadGeneratorInfosOnStart && !generatorInfosLoaded)
             {
                 LoadGeneratorInfos();
             }
@@ -186,19 +207,30 @@ namespace RM_EDU
         // This function is called when the object becomes enabled and active.
         private void OnEnable()
         {
-            // If the generators haven't been loaded.
-            if (!generatorInfosLoaded)
+            // If the generator infos are loaded.
+            if (generatorInfosLoaded)
             {
+                // Sets the current generator info is 0.
+                SetCurrentGeneratorInfo(0);
+            }
+            // Genrator infos not loaded.
+            else
+            {
+                // Load them.
                 LoadGeneratorInfos();
             }
         }
 
-        // This function is called when the behaviour becomes disabled and inactive.
-        private void OnDisable()
-        {
-            // Set to the first generator in the list.
-            SetCurrentGeneratorInfo(0); 
-        }
+        // This was removed because it kept getting called when the game stops running.
+        // This caused the game settings object to be created when things are already being deleted.
+        // This caused an error.
+
+        // // This function is called when the behaviour becomes disabled and inactive.
+        // private void OnDisable()
+        // {
+        //     // Set to the first generator in the list.
+        //     SetCurrentGeneratorInfo(0); 
+        // }
 
         // GENERATOR INFO
         // Returns 'true' if the generator infos haven't been loaded.
@@ -226,9 +258,11 @@ namespace RM_EDU
                 // If the tutorial text should be used instead of the built-in notes.
                 if(useTutorialsForGenInfoNotes)
                 {
-                    // Gets the tutorial info.
+                    // Gets the tutorial info and sets that said tutorial has been cleared.
+                    // This replaces the tutorial for the generator.
                     Tutorials.TutorialInfo tutorialInfo = Tutorials.Instance.GetNaturalResourceTutorialInfo(genInfo.resource);
-                    
+                    Tutorials.Instance.SetNaturalResourceTutorialCleared(genInfo.resource, true);
+
                     // Clears the notes and keys.
                     genInfo.notes.Clear();
                     genInfo.notesKeys.Clear();
@@ -337,6 +371,14 @@ namespace RM_EDU
             energyGenAmountBar.SetValueAsPercentage(genInfo.energyGenAmount / ActionUnit.BASE_STAT_MAXIMUM);
             energyGenSpeedBar.SetValueAsPercentage(genInfo.energyGenSpeed / ActionUnit.BASE_STAT_MAXIMUM);
             airPollutionBar.SetValueAsPercentage(genInfo.airPollution / ActionUnit.BASE_STAT_MAXIMUM);
+
+            // If wind is used for generating energy, the energy gen speed can vary.
+            // As such, the color is changed accordingly.
+            Color energyGenSpeedBarColor = (genInfo.generatorPrefab.useWindToGenEnergy) ? statUnusedColor : statUsedColor;
+
+            // If the energy generation speed bar fill image color needs to be changed, change it.
+            if (energyGenSpeedBar.fillImage.color != energyGenSpeedBarColor)
+                energyGenSpeedBar.fillImage.color = energyGenSpeedBarColor;
 
             // Sets the valid tiles.
             landToggle.toggle.isOn = false;
@@ -480,6 +522,13 @@ namespace RM_EDU
                 // Sets the notes text and updates the page.
                 notesText.text = currInfo.notes[index];
                 notesPageText.text = (index + 1).ToString() + "/" + currInfo.notes.Count.ToString();
+
+                // If text-to-speech should be used.
+                if(GameSettings.Instance.UseTextToSpeech)
+                {
+                    // Speak the text for the notes keys.
+                    SpeakText(currInfo.notesKeys[notesPageIndex]);
+                }
             }
             // No notes, so clear the page.
             else
@@ -532,7 +581,9 @@ namespace RM_EDU
             // If 'true', close all dialogs.
             if(closeAllDialogsOnClose)
             {
-                actionUI.CloseAllDialogs();
+                // Closes the generator info dialog.
+                actionUI.CloseAllDialogs(); // Close all dialogs.
+                // actionUI.CloseGeneratorInfoDialog(); // Close this dialog.
 
                 // Gets the action manager and aciton audio.
                 ActionManager actionManager = ActionManager.Instance;
@@ -549,7 +600,18 @@ namespace RM_EDU
             // False, so only close this dialog.
             else
             {
-                actionUI.CloseGeneratorInfoDialog();
+                actionUI.OpenOptionsDialog(true);
+            }
+        }
+
+        // TEXT-TO-SPEECH
+        // Speaks text.
+        public void SpeakText(string key)
+        {
+            // If the LOL manager is instantiated and the SDK is initialized.
+            if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+            {
+                LOLManager.Instance.SpeakText(key);
             }
         }
 

@@ -57,6 +57,12 @@ namespace RM_EDU
         // }
         // 
 
+        // Returns 'true' if the stage preparation BGM is playing
+        public bool IsStagePreparationBgmPlaying()
+        {
+            return IsBackgroundMusicPlaying(stagePrepBgm);
+        }
+
         // Plays the stage preparation BGM.
         public void PlayStagePreparationBgm()
         {
