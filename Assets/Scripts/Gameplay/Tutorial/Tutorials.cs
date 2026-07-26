@@ -1235,6 +1235,64 @@ namespace RM_EDU
 
 
         // NATURAL RESOURCES //
+        // Gets tutorial info for the provided natrual resource.
+        public TutorialInfo GetNaturalResourceTutorialInfo(NaturalResources.naturalResource resource)
+        {
+            // The tutorial info to be returned.
+            TutorialInfo tutorialInfo = null;
+
+            // Checks the resource.
+            switch (resource)
+            {
+                default:
+                case NaturalResources.naturalResource.unknown:
+                    tutorialInfo = null;
+                    break;
+
+                case NaturalResources.naturalResource.biomass:
+                    tutorialInfo = GetBiomassTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.geothermal:
+                    tutorialInfo = GetGeothermalTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.hydro:
+                    tutorialInfo = GetHydroTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.solar:
+                    tutorialInfo = GetSolarTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.wave:
+                    tutorialInfo = GetWaveTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.wind:
+                    tutorialInfo = GetWindTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.coal:
+                    tutorialInfo = GetCoalTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.naturalGas:
+                    tutorialInfo = GetNaturalGasTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.nuclear:
+                    tutorialInfo = GetNuclearTutorialInfo();
+                    break;
+
+                case NaturalResources.naturalResource.oil:
+                    tutorialInfo = GetOilTutorialInfo();
+                    break;
+            }
+
+            return tutorialInfo;
+        }
+
         // BIOMASS
         // Loads the biomass tutorial.
         public void LoadBiomassTutorial(bool startTutorial = true)

@@ -24,11 +24,20 @@ namespace RM_EDU
             // Gets the action UI instance.
             if (actionUI == null)
                 actionUI = ActionUI.Instance;
+
+            // Handled in the dedicated function for opening the info dialog.
+            // Since this dialog is being opened as a sub dialog...
+            // Don't close all dialogs.
+            // actionUI.generatorInfoDialog.closeAllDialogsOnClose = false;
         }
 
         // Opens the generator info dialog.
         public void OpenGeneratorInfoDialog()
         {
+            // Make sure it returns to the options dialog.
+            actionUI.generatorInfoDialog.closeAllDialogsOnClose = false;
+
+            // Open the generator info dialog.
             actionUI.OpenGeneratorInfoDialog(true);
         }
     }

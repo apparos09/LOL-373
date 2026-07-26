@@ -14,8 +14,9 @@ namespace RM_EDU
         // The generator info struct.
         public class GeneratorInfo
         {
-            // The generator prefab and its diagram sprite.
+            // The generator prefab, resource, and its diagram sprite.
             public ActionUnitGenerator generatorPrefab;
+            public NaturalResources.naturalResource resource;
             public Sprite diagramSprite;
 
             // The name of the generator.
@@ -31,8 +32,9 @@ namespace RM_EDU
             // The valid tiles.
             public List<ActionTile.actionTile> validTiles;
 
-            // The notes for the generator.
+            // The notes and notes keys for the generator.
             public List<string> notes;
+            public List<string> notesKeys;
 
             // Generates generator info using the provided resource.
             public static GeneratorInfo GenerateGeneratorInfo(NaturalResources.naturalResource resource)
@@ -50,7 +52,8 @@ namespace RM_EDU
                 // Values
                 // Prefab and diagram.
                 newInfo.generatorPrefab = generator;
-                newInfo.diagramSprite = TutorialUI.Instance.textBox.GetNaturalResourceDiagramSprite(generator.resource);
+                newInfo.resource = generator.resource;
+                newInfo.diagramSprite = TutorialUI.Instance.textBox.GetNaturalResourceDiagramSprite(newInfo.resource);
 
                 // Name, energy cost, energy gen amount, and energy gen speed.
                 newInfo.name = generator.GetUnitNameTranslated();
@@ -63,6 +66,7 @@ namespace RM_EDU
 
                 // Notes.
                 newInfo.notes = generator.GetGeneratorNotesTranslated();
+                newInfo.notesKeys = generator.GenerateNotesKeys();
 
                 // Returns the new info.
                 return newInfo;
@@ -73,7 +77,7 @@ namespace RM_EDU
         public ActionUI actionUI;
 
         // The generator infos.
-        public List<GeneratorInfo> generatorInfos;
+        public List<GeneratorInfo> generatorInfos = new List<GeneratorInfo>();
 
         // The current generator info index.
         protected int generatorInfoIndex = 0;
@@ -81,8 +85,17 @@ namespace RM_EDU
         // Loads up the generator infos on start.
         public bool loadGeneratorInfosOnStart = true;
 
+        // If 'true', the tutorial text is used for the generation info notes...
+        // Instead of what's actually listed.
+        private bool useTutorialsForGenInfoNotes = true;
+
         // Set to 'true' when generator infos have been loaded.
         private bool generatorInfosLoaded = false;
+
+        // If 'true', all dialog boxes are closed when this dialog box is closed.
+        // If 'false', only this dialog box is closed.
+        [Tooltip("Closes all dialog boxes when this one is closed if true. If false, only close this dialog box.")]
+        public bool closeAllDialogsOnClose = false;
 
         [Header("Diagram")]
 
@@ -199,8 +212,33 @@ namespace RM_EDU
             // Goes through all the generator prefabs.
             for(int i = 0; i < playerUser.generatorPrefabs.Count; i++)
             {
-                // Generates a generator info from the player user's prefab.
-                generatorInfos.Add(GeneratorInfo.GenerateGeneratorInfo(playerUser.generatorPrefabs[i]));
+                // Generates the generator info.
+                GeneratorInfo genInfo = GeneratorInfo.GenerateGeneratorInfo(playerUser.generatorPrefabs[i]);
+
+                // If the tutorial text should be used instead of the built-in notes.
+                if(useTutorialsForGenInfoNotes)
+                {
+                    // Gets the tutorial info.
+                    Tutorials.TutorialInfo tutorialInfo = Tutorials.Instance.GetNaturalResourceTutorialInfo(genInfo.resource);
+                    
+                    // Clears the notes and keys.
+                    genInfo.notes.Clear();
+                    genInfo.notesKeys.Clear();
+
+                    // Goes throguh all pages.
+                    foreach (Page page in tutorialInfo.pages)
+                    {
+                        // Convert the page.
+                        EDU_Page eduPage = page as EDU_Page;
+
+                        // Add the text as the note, and the text language key as the note key.
+                        genInfo.notes.Add(eduPage.text);
+                        genInfo.notesKeys.Add(eduPage.textLanguageKey);
+                    }
+                }
+
+                // Adds the generator info.
+                generatorInfos.Add(genInfo);
             }
 
             // Sets the current generator info index.
@@ -272,7 +310,7 @@ namespace RM_EDU
             diagramImage.sprite = genInfo.diagramSprite;
 
             // Sets the name and energy cost.
-            resourceNameText.text = genInfo.generatorPrefab.name;
+            resourceNameText.text = genInfo.name;
             energyCostValue.valueText.text = genInfo.energyCost.ToString();
 
             // Sets the energy amount and speed.
@@ -306,7 +344,7 @@ namespace RM_EDU
             }
 
             // Detrmines if the symbol toggle is on based on the resource.
-            switch (genInfo.generatorPrefab.resource)
+            switch (genInfo.resource)
             {
                 default:
                     symbolToggle.toggle.isOn = false;
@@ -399,12 +437,21 @@ namespace RM_EDU
             // Gets the current info.
             GeneratorInfo currInfo = GetCurrentGeneratorInfo();
 
-            // Gets the notes page index clamped.
-            notesPageIndex = Mathf.Clamp(index, 0, currInfo.notes.Count - 1);
+            // There are notes to display.
+            if(currInfo.notes.Count > 0)
+            {
+                // Gets the notes page index clamped.
+                notesPageIndex = Mathf.Clamp(index, 0, currInfo.notes.Count - 1);
 
-            // Sets the notes text and updates the page.
-            notesText.text = currInfo.notes[index];
-            notesPageText.text = (index + 1).ToString() + "/" + currInfo.notes.Count.ToString();
+                // Sets the notes text and updates the page.
+                notesText.text = currInfo.notes[index];
+                notesPageText.text = (index + 1).ToString() + "/" + currInfo.notes.Count.ToString();
+            }
+            // No notes, so clear the page.
+            else
+            {
+                ClearNotesPage();
+            }
         }
 
         // Goes to the previous notes page.
@@ -448,7 +495,28 @@ namespace RM_EDU
         // Closes this dialog.
         public void CloseGeneratorInfoDialog()
         {
-            actionUI.CloseGeneratorInfoDialog();
+            // If 'true', close all dialogs.
+            if(closeAllDialogsOnClose)
+            {
+                actionUI.CloseAllDialogs();
+
+                // Gets the action manager and aciton audio.
+                ActionManager actionManager = ActionManager.Instance;
+                ActionAudio actionAudio = ActionAudio.Instance;
+
+                // If all dialogs should be closed, that means this was called at the start of a stage.
+                // As such, check if the stage start dialog is being used. If so, and the stage isn't playing...
+                // Open the stage start dialog back up.
+                if (actionManager.IsUsingStageStartDialog() && !actionManager.IsStagePlaying())
+                {
+                    actionUI.OpenStageStartDialog();
+                }
+            }
+            // False, so only close this dialog.
+            else
+            {
+                actionUI.CloseGeneratorInfoDialog();
+            }
         }
 
     }

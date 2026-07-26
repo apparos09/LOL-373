@@ -11,11 +11,17 @@ namespace RM_EDU
         // The language key for the page title.
         public string titleLanguageKey = string.Empty;
 
+        // Set to 'true' if the title has been translated.
+        protected bool titleTranslated = false;
+
         // The language key for the page text.
         public string textLanguageKey = string.Empty;
 
         // The speak key for the page.
         public string textSpeakKey = string.Empty;
+
+        // Set to 'true' if the text has been translated.
+        protected bool textTranslated = false;
 
         // The display sprite for the page.
         public Sprite displaySprite = null;
@@ -155,6 +161,18 @@ namespace RM_EDU
             AddSpeakTextCallback();
         }
 
+        // Returns 'true' if the title is translated.
+        public bool IsTitleTranslated()
+        {
+            return titleTranslated;
+        }
+
+        // Returns 'true' if the text is translated.
+        public bool IsTextTranslated()
+        {
+            return textTranslated;
+        }
+
         // Translates the title and text for the page title and text.
         public void TranslateTitleAndText()
         {
@@ -182,6 +200,9 @@ namespace RM_EDU
 
                 // If the new text is not null, use it. If the new text is null, use an empty string.
                 text = (newTitle != null) ? newTitle : string.Empty;
+
+                // The title has been translated.
+                titleTranslated = true;
             }
         }
 
@@ -203,6 +224,9 @@ namespace RM_EDU
 
                 // If the new text is not null, use it. If the new text is null, use an empty string.
                 text = (newText != null) ? newText : string.Empty;
+
+                // The text has been translated.
+                textTranslated = true;
             }
         }
 

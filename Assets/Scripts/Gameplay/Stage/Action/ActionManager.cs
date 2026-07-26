@@ -109,6 +109,9 @@ namespace RM_EDU
         // This feature has been removed, so leave this as false.
         private bool useEnergyStartBonus = false;
 
+        // If 'true', the generator info dialog is opened upon the stage being initialzied.
+        private bool openGenInfoDialogOnLateStart = true;
+
         // If 'true', the stage start dialog is used.
         private bool useStageStartDialog = true;
 
@@ -206,6 +209,16 @@ namespace RM_EDU
             {
                 actionUI.CloseStageStartDialog();
             }
+
+            // Opens the generator info log to make sure
+            if (openGenInfoDialogOnLateStart)
+            {
+                // Make sure not to go back to the options dialog on close.
+                actionUI.generatorInfoDialog.closeAllDialogsOnClose = true;
+
+                // Open the info dialog.
+                actionUI.OpenGeneratorInfoDialog(true);
+            }
         }
 
         // Gets the instance.
@@ -302,9 +315,6 @@ namespace RM_EDU
             playerEnemy.ApplyDifficulty(true);
             playerEnemy.SetSpawnTimerToStartingAmount();
 
-            // Opens the generator info log to make sure
-            // actionUI.OpenGeneratorInfoDialog(true);
-
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
 
@@ -316,6 +326,12 @@ namespace RM_EDU
         public bool ActionInitialized
         {
             get { return actionInitialized; }
+        }
+
+        // Returns 'true' if the stage start dialog is being used.
+        public bool IsUsingStageStartDialog()
+        {
+            return useStageStartDialog;
         }
 
         // TUTORIALS

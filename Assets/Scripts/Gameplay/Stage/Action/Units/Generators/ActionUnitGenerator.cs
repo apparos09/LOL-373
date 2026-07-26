@@ -217,7 +217,7 @@ namespace RM_EDU
             // Goes through all the genNotes pages.
             for (int i = 0; i < genNotes.Count; i++)
             {
-                genNoteKeys.Add(unitDescKey + "_" + i.ToString("D2"));
+                genNoteKeys.Add(genNotesKey + "_" + i.ToString("D2"));
             }
 
             // Returns the notes keys.

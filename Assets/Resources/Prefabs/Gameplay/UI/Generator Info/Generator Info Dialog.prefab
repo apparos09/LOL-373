@@ -1891,6 +1891,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1865545862043070055, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
+      propertyPath: toggleTransition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5937968125392874231, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
       propertyPath: m_Name
       value: Symbol Option Toggle (TMP)
@@ -1932,6 +1936,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8000272534518023106}
     m_Modifications:
+    - target: {fileID: 274085256841670817, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
+      propertyPath: key
+      value: kwd_energyCost
+      objectReference: {fileID: 0}
     - target: {fileID: 3767953775928500626, guid: d6157ae8cb8ba5c48acb917372e97731, type: 3}
       propertyPath: m_SizeDelta.x
       value: 300
@@ -2161,6 +2169,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1865545862043070055, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
+      propertyPath: toggleTransition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5937968125392874231, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
       propertyPath: m_Name
       value: Sea Option Toggle (TMP)
@@ -2213,6 +2225,14 @@ PrefabInstance:
     - target: {fileID: 6279426138215923253, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279426139091862111, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
+      propertyPath: useTransition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389827543007233927, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
+      propertyPath: key
+      value: kwd_energyGenerationAmount
       objectReference: {fileID: 0}
     - target: {fileID: 7133325362478423553, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
       propertyPath: m_Pivot.x
@@ -2338,6 +2358,14 @@ PrefabInstance:
     - target: {fileID: 6279426138215923253, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6279426139091862111, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
+      propertyPath: useTransition
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6389827543007233927, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
+      propertyPath: key
+      value: kwd_energyGenerationSpeed
       objectReference: {fileID: 0}
     - target: {fileID: 7133325362478423553, guid: e357619ddce43944d8fa3c79495a7572, type: 3}
       propertyPath: m_Pivot.x
@@ -2687,6 +2715,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 476340922111486489, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865545862043070055, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
+      propertyPath: toggleTransition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5937968125392874231, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
@@ -3429,6 +3461,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 476340922111486489, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1865545862043070055, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
+      propertyPath: toggleTransition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5937968125392874231, guid: e841807e5f4c00042a23d9d662a9be93, type: 3}
