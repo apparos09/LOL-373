@@ -118,6 +118,19 @@ namespace RM_EDU
         // The energy cost value.
         public TMP_LabeledValue energyCostValue;
 
+        // The renewable value.
+        public TMP_LabeledValue renewableValue;
+
+        // The "yes" string.
+        private string yesStr = "Yes";
+        public const string YES_STR_KEY = "kwd_yes";
+        private bool yesStrTranslated = false;
+
+        // The "no" string.
+        private string noStr = "No";
+        public const string NO_STR_KEY = "kwd_no";
+        private bool noStrTranslated = false;
+
         // The energy generation amount progess bar.
         public ProgressBar energyGenAmountBar;
 
@@ -231,6 +244,45 @@ namespace RM_EDU
         //     // Set to the first generator in the list.
         //     SetCurrentGeneratorInfo(0); 
         // }
+
+        // YES / NO
+        // Gets the yes string translated.
+        public string GetYesStringTranslated()
+        {
+            // Checks if not translated.
+            if(!yesStrTranslated)
+            {
+                // Available for translation.
+                if(LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    yesStr = LOLManager.GetLanguageTextStatic(YES_STR_KEY);
+                }
+
+                yesStrTranslated = true;
+            }
+
+            return yesStr;
+        }
+
+        // Gets the no string translated.
+        public string GetNoStringTranslated()
+        {
+            // Checks if not translated.
+            if (!noStrTranslated)
+            {
+                // Available for translation.
+                if (LOLManager.IsInstantiatedAndIsLOLSDKInitialized())
+                {
+                    noStr = LOLManager.GetLanguageTextStatic(NO_STR_KEY);
+                }
+
+                noStrTranslated = true;
+            }
+
+            return noStr;
+        }
+
+        // Gets the no string translated.
 
         // GENERATOR INFO
         // Returns 'true' if the generator infos haven't been loaded.
@@ -363,9 +415,11 @@ namespace RM_EDU
             // Sets the sprite.
             diagramImage.sprite = genInfo.diagramSprite;
 
-            // Sets the name and energy cost.
+            // Sets the name, energy cost, and renewable.
             resourceNameText.text = genInfo.name;
             energyCostValue.valueText.text = genInfo.energyCost.ToString();
+            renewableValue.valueText.text = NaturalResources.IsRenewable(genInfo.resource) ?
+                GetYesStringTranslated() : GetNoStringTranslated();
 
             // Sets the energy amount, energy speed, and air pollution.
             energyGenAmountBar.SetValueAsPercentage(genInfo.energyGenAmount / ActionUnit.BASE_STAT_MAXIMUM);
@@ -478,8 +532,9 @@ namespace RM_EDU
             // Clears the diagram.
             diagramImage.sprite = diagramNoneSprite;
 
-            // Clears te energy cost value.
+            // Clears te energy cost value and renewable value.
             energyCostValue.valueText.text = "-";
+            renewableValue.valueText.text = "-";
 
             // Clears the progess bars.
             energyGenAmountBar.SetValue(0, false);

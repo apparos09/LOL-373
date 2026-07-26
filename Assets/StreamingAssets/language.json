@@ -98,9 +98,16 @@
 
       "kwd_generatorInfo": 28,
       "kwd_stageInfo": 28,
+      "kwd_renewable": 18,
+      "kwd_nonrenewable": 18,
+
+      "kwd_yes": 18,
+      "kwd_no": 18,
+
       "kwd_energyGenerationAmount": 36,
       "kwd_energyGenerationSpeed": 36,
       "kwd_energyCost": 28,
+
       "kwd_notes": 18,
 
 
@@ -587,9 +594,16 @@
 
     "kwd_generatorInfo": "Generator Info",
     "kwd_stageInfo": "Stage Info",
+    "kwd_renewable": "Renewable",
+    "kwd_nonrenewable": "Non-renewable",
+
+    "kwd_yes": "Yes",
+    "kwd_no": "No",
+
     "kwd_energyGenerationAmount": "Energy Generation Amount",
     "kwd_energyGenerationSpeed": "Energy Generation Speed",
     "kwd_energyCost": "Energy Cost",
+
     "kwd_notes": "Notes",
 
 
