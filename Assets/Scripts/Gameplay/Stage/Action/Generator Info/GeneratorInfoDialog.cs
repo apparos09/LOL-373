@@ -143,16 +143,16 @@ namespace RM_EDU
         [Header("Stats/Tiles")]
 
         // The land options toggle.
-        public TileOptionToggle landToggle;
+        public DisplayToggle landToggle;
 
         // The river options toggle.
-        public TileOptionToggle riverToggle;
+        public DisplayToggle riverToggle;
 
         // The sea options toggle.
-        public TileOptionToggle seaToggle;
+        public DisplayToggle seaToggle;
 
         // The symbol options toggle.
-        public TileOptionToggle symbolToggle;
+        public DisplayToggle symbolToggle;
 
         [Header("Stats/Notes")]
 

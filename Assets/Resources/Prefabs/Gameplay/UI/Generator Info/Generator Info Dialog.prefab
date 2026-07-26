@@ -1727,7 +1727,6 @@ MonoBehaviour:
   seaToggle: {fileID: 181611912796557303}
   symbolToggle: {fileID: 4522096793285148856}
   notesTitleText: {fileID: 8882940103955476381}
-  tutorialTitleText: {fileID: 0}
   notesText: {fileID: 8276007513792376020}
   prevNotesPageButton: {fileID: 9122709226902900386}
   nextNotesPageButton: {fileID: 1361881243380346326}

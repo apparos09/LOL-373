@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 namespace RM_EDU
 {
-    // The tile option toggle.
-    public class TileOptionToggle : MonoBehaviour
+    // The display toggle. These toggles are only used to show if a setting is on or off.
+    public class DisplayToggle : MonoBehaviour
     {
         // The action UI.
         public ActionUI actionUI;
