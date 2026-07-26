@@ -37,6 +37,9 @@ namespace RM_EDU
         [Header("Tutorials/Sprites")]
         // A transparent sprite (alpha = 0).
         public Sprite alpha0Sprite;
+
+        // The diagram none sprite.
+        public Sprite noneSprite;
         
         // The two stage types: action and knowledge
         public Sprite stageTypesSprite;
@@ -193,6 +196,64 @@ namespace RM_EDU
         public void ClearDisplayImageSprite()
         {
             displayImage.sprite = null;
+        }
+
+        // Returns the natural resource diagram sprite by the provided resource.
+        public Sprite GetNaturalResourceDiagramSprite(NaturalResources.naturalResource resource)
+        {
+            // The sprite to be returned.
+            Sprite sprite = null;
+
+            // Checks the resource.
+            switch(resource)
+            {
+                default:
+                case NaturalResources.naturalResource.unknown:
+                    sprite = noneSprite;
+                    break;
+
+                case NaturalResources.naturalResource.biomass:
+                    sprite = biomassSprite;
+                    break;
+
+                case NaturalResources.naturalResource.geothermal:
+                    sprite = geothermalSprite;
+                    break;
+
+                case NaturalResources.naturalResource.hydro:
+                    sprite = hydroSprite;
+                    break;
+
+                case NaturalResources.naturalResource.solar:
+                    sprite = solarSprite;
+                    break;
+
+                case NaturalResources.naturalResource.wave:
+                    sprite = waveSprite;
+                    break;
+
+                case NaturalResources.naturalResource.wind:
+                    sprite = windSprite;
+                    break;
+
+                case NaturalResources.naturalResource.coal:
+                    sprite = coalSprite;
+                    break;
+
+                case NaturalResources.naturalResource.naturalGas:
+                    sprite = naturalGasSprite;
+                    break;
+
+                case NaturalResources.naturalResource.nuclear:
+                    sprite = nuclearSprite;
+                    break;
+
+                case NaturalResources.naturalResource.oil:
+                    sprite = oilSprite;
+                    break;
+            }
+
+            return sprite;
         }
 
         // PAGE CHANGED/TEXT CHANGED

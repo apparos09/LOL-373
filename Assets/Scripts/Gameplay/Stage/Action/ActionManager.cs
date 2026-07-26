@@ -302,6 +302,9 @@ namespace RM_EDU
             playerEnemy.ApplyDifficulty(true);
             playerEnemy.SetSpawnTimerToStartingAmount();
 
+            // Opens the generator info log to make sure
+            // actionUI.OpenGeneratorInfoDialog(true);
+
             // Call the base function to mark that the stage has been initialized successfully.
             base.InitializeStage();
 

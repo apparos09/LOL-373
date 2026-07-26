@@ -803,6 +803,7 @@ MonoBehaviour:
   delayNextPageButtonTimerMax: 4
   delayNextPageButtonTimerBar: {fileID: 2449478873345824284}
   alpha0Sprite: {fileID: 21300000, guid: bdd637e8ecf094d45bd207a895ae47df, type: 3}
+  noneSprite: {fileID: 21300000, guid: 73a98b1bc4386f14aa815b1262a87842, type: 3}
   stageTypesSprite: {fileID: 21300000, guid: ee120598bcbec304da98e5e2a32da486, type: 3}
   logOptionsButtonsSprite: {fileID: 21300000, guid: e35bb7b78e3ffab41ba91cdcfef272de, type: 3}
   logButtonSprite: {fileID: 21300000, guid: 8adebd517ae5ba84eb79754e05ef83a8, type: 3}

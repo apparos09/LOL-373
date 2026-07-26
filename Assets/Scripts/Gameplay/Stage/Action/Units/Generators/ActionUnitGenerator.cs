@@ -15,6 +15,20 @@ namespace RM_EDU
         // The resource this generator uses.
         public NaturalResources.naturalResource resource;
 
+        // The notes for the generator.
+        [Tooltip("The notes, which will be shown in the generator info window.")]
+        public List<string> genNotes;
+
+        // The translation key for the generator notes.
+        [Tooltip("The translation key for the generator notes.")]
+        public string genNotesKey = "";
+
+        // Gets set to 'true' if the notes have been translated.
+        private bool genNotesTranslated = false;
+
+        // Saves the notes translated upon the first translation call if true.
+        private bool saveGenNotesTranslated = true;
+
         // The energy generation timer. This is set to the energyGenerationSpeed when counting down.
         [Tooltip("The timer for generating energy. When the timer hits 0, energy is generated.")]
         public float energyGenerationTimer = 0.0F;
@@ -131,6 +145,85 @@ namespace RM_EDU
         {
             return NaturalResources.GetNaturalResourceNameAbbreviationKey(resource);
         }
+
+        // Gets the generator notes.
+        public List<string> GetGeneratorNotes()
+        {
+            return genNotes;
+        }
+
+        // Returns the generator notes key.
+        public string GetGeneratorNotesKey()
+        {
+            return genNotesKey;
+        }
+
+        // Gets the generator notes translated.
+        public List<string> GetGeneratorNotesTranslated()
+        {
+            // The result to be returned.
+            List<string> result;
+
+            // If the notes translation is being saved and has been saved.
+            if (saveGenNotesTranslated && genNotesTranslated)
+            {
+                result = new List<string>(genNotes);
+            }
+            else
+            {
+                // LOL SDK Initialized and the key is set, so get the translated text.
+                if (LOLManager.IsLOLSDKInitialized() && genNotesKey != "")
+                {
+                    // Create a new list.
+                    result = new List<string>();
+
+                    // Generates the keys.
+                    List<string> notesKeys = GenerateNotesKeys();
+
+                    // Translate each page with the applicable key.
+                    for (int i = 0; i < notesKeys.Count; i++)
+                    {
+                        result.Add(LOLManager.GetLanguageTextStatic(notesKeys[i]));
+                    }
+
+                    // If the notes translation should be saved...
+                    // Override generatorNotes and mark that the translation has been saved.
+                    if (genNotesTranslated)
+                    {
+                        // Clear the notes list and add the result.
+                        genNotes.Clear();
+                        genNotes.AddRange(result);
+
+                        // Mark that the notes have been translated.
+                        genNotesTranslated = true;
+                    }
+                }
+                else
+                {
+                    // Create a new list with the provided values.
+                    result = new List<string>(genNotes);
+                }
+            }
+
+            return result;
+        }
+
+        // Generates the transation keys for the notes.
+        public List<string> GenerateNotesKeys()
+        {
+            // The list of keys to return.
+            List<string> genNoteKeys = new List<string>();
+
+            // Goes through all the genNotes pages.
+            for (int i = 0; i < genNotes.Count; i++)
+            {
+                genNoteKeys.Add(unitDescKey + "_" + i.ToString("D2"));
+            }
+
+            // Returns the notes keys.
+            return genNoteKeys;
+        }
+
 
         // Returns 'true' if the generator is marked usable.
         public bool MarkedUsable

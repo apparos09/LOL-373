@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 670575123849592295}
   - component: {fileID: 1623596155341312879}
   m_Layer: 5
-  m_Name: Generator Page Text (TMP)
+  m_Name: Generator Info Page Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -978,7 +978,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7156846132446949891}
   m_Layer: 5
-  m_Name: Generator Page
+  m_Name: Generator Info
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1636,7 +1636,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   actionUI: {fileID: 0}
-  diagramImage: {fileID: 0}
+  loadGeneratorInfosOnStart: 1
+  diagramImage: {fileID: 1748652672637100897}
   diagramNoneSprite: {fileID: 21300000, guid: 73a98b1bc4386f14aa815b1262a87842, type: 3}
   resourceNameText: {fileID: 4624293532266225631}
   energyCostValue: {fileID: 4639277947440290349}
@@ -1650,9 +1651,9 @@ MonoBehaviour:
   prevNotesPageButton: {fileID: 9122709226902900386}
   nextNotesPageButton: {fileID: 1361881243380346326}
   notesPageText: {fileID: 4666473586602486848}
-  prevGeneratorPageButton: {fileID: 7942427339581171939}
-  nextGeneratorPageButton: {fileID: 3876475305666060385}
-  generatorPageText: {fileID: 1623596155341312879}
+  prevGeneratorInfoButton: {fileID: 7942427339581171939}
+  nextGeneratorInfoButton: {fileID: 3876475305666060385}
+  generatorInfoPageText: {fileID: 1623596155341312879}
 --- !u!1 &9056242762787908440
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,14 +2471,14 @@ PrefabInstance:
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7133097687133156462}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PreviousEntryButtonsPage
+      value: PreviousNotesPage
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2485,7 +2486,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RM_EDU.InfoLog, Assembly-CSharp
+      value: RM_EDU.GeneratorInfoDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -2823,7 +2824,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4757749248475574053, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_Name
-      value: Next Generator Page Button
+      value: Next Generator Info Button
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -2840,14 +2841,14 @@ PrefabInstance:
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7133097687133156462}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextEntryButtonsPage
+      value: NextGeneratorInfo
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -2855,7 +2856,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RM_EDU.InfoLog, Assembly-CSharp
+      value: RM_EDU.GeneratorInfoDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -2903,16 +2904,20 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 7133097687133156462}
+    - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: CloseInfoLogDialog
+      value: CloseGeneratorInfoDialog
       objectReference: {fileID: 0}
     - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
-      value: RM_EDU.ActionUI, Assembly-CSharp
+      value: RM_EDU.GeneratorInfoDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1812717754745728753, guid: c5a54c6352b821d4d9505cce4bdee2cc, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -3026,7 +3031,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 488236532843614248, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_Name
-      value: Previous Generator Page Button
+      value: Previous Generator Info Button
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -3043,22 +3048,22 @@ PrefabInstance:
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7133097687133156462}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: PreviousEntryButtonsPage
+      value: PreviousGeneratorInfo
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: PreviousEntryButtonsPage
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RM_EDU.InfoLog, Assembly-CSharp
+      value: RM_EDU.GeneratorInfoDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
@@ -3066,7 +3071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4236769494259301163, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6823050334902580250, guid: fdb84c19cc3fd91419eb9af58a524186, type: 3}
       propertyPath: m_Pivot.x
@@ -3300,14 +3305,14 @@ PrefabInstance:
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 7133097687133156462}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: NextEntryButtonsPage
+      value: NextNotesPage
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
@@ -3315,7 +3320,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: RM_EDU.InfoLog, Assembly-CSharp
+      value: RM_EDU.GeneratorInfoDialog, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 9082771273210053670, guid: dfa9d9ec45d99fc42abfa60abd3eef52, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName

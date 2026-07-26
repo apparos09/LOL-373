@@ -29,7 +29,7 @@ namespace RM_EDU
         public Button backButton;
 
         // Start is called before the first frame update
-        void Start()
+        protected virtual void Start()
         {
             // If the stage UI isn't set, try to get it.
             if (stageUI == null)
