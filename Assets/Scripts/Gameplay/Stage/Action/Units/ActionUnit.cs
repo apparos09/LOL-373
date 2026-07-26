@@ -2,6 +2,7 @@ using LoLSDK;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -489,13 +490,13 @@ namespace RM_EDU
 
         // STATS //
         // Gets the stat rating, using the base stat maximum for comparison.
-        public statRating GetStatRating(float stat)
+        public static statRating GetStatRating(float stat)
         {
             return GetStatRating(stat, BASE_STAT_MAXIMUM);
         }
 
         // Gets the stat rating using the provided stat maximum.
-        public statRating GetStatRating(float stat, float statMax)
+        public static statRating GetStatRating(float stat, float statMax)
         {
             // The threshold stats are compared to.
             // The stat maximum is 100.
@@ -546,8 +547,85 @@ namespace RM_EDU
             return rating;
         }
 
+        // Gets the stat rating color.
+        public Color GetStatRatingColor(statRating rating)
+        {
+            // The percentage to be set.
+            float percentage;
+
+            switch(rating)
+            {
+                default:
+                case statRating.unknown:
+                case statRating.noneMinus:
+                case statRating.none:
+                    percentage = 0.0F;
+                    break;
+
+                case statRating.veryLow:
+                    percentage = 0.20F;
+                    break;
+
+                case statRating.low:
+                    percentage = 0.40F;
+                    break;
+
+                case statRating.medium:
+                    percentage = 0.60F;
+                    break;
+
+                case statRating.high:
+                    percentage = 0.80F;
+                    break;
+
+                case statRating.veryHigh:
+                case statRating.maximum:
+                case statRating.maximumPlus:
+                    percentage = 1.0F;
+                    break;
+            }
+
+            // Return the percentage.
+            return GetStatRatingColor(percentage);
+        }
+
+        // Gets the color for a given percentage. This is used for the bars.
+        public Color GetStatRatingColor(float percentage)
+        {
+            // The color to be returned.
+            Color color;
+
+            // Checks the percentage.
+            if (percentage > 0.80F) // Very High
+            {
+                color = Color.green;
+            }
+            else if(percentage > 0.60F) // High
+            {
+                color = Color.Lerp(Color.yellow, Color.green, 0.5F);
+            }
+            else if(percentage > 0.40F) // Medium
+            {
+                color = Color.yellow;
+            }
+            else if(percentage > 0.20F) // Low
+            {
+                color = Color.Lerp(Color.red, Color.yellow, 0.5F);
+            }
+            else if(percentage > 0.0F) // Very Low
+            {
+                color = Color.red;
+            }
+            else // None
+            {
+                color = Color.grey;
+            }
+
+            return color;
+        }
+
         // Converts a stat rating to a string.
-        public string StatRatingToString(statRating statRating)
+        public static string StatRatingToString(statRating statRating)
         {
             // NOTE: these aren't translated since they aren't displayed in the actual game.
 

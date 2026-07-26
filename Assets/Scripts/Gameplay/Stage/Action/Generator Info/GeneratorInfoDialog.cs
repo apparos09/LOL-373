@@ -25,9 +25,10 @@ namespace RM_EDU
             // The energy cost of the generator.
             public float energyCost;
 
-            // The energy generation amount and speed.
+            // The energy generation amount and speed. Also air pollution amount.
             public float energyGenAmount;
             public float energyGenSpeed;
+            public float airPollution;
 
             // The valid tiles.
             public List<ActionTile.actionTile> validTiles;
@@ -55,11 +56,15 @@ namespace RM_EDU
                 newInfo.resource = generator.resource;
                 newInfo.diagramSprite = TutorialUI.Instance.textBox.GetNaturalResourceDiagramSprite(newInfo.resource);
 
-                // Name, energy cost, energy gen amount, and energy gen speed.
-                newInfo.name = generator.GetUnitNameTranslated();
+                // Name, energy cost.
+                // newInfo.name = generator.GetUnitNameTranslated(); // Unit Name
+                newInfo.name = NaturalResources.GetNaturalResourceName(newInfo.resource); // Resource Name
                 newInfo.energyCost = generator.energyCreationCost;
+
+                // Energy gen amount, energy gen speed, and air pollution.
                 newInfo.energyGenAmount = generator.energyGenerationAmount;
                 newInfo.energyGenSpeed = generator.energyGenerationSpeed;
+                newInfo.airPollution = generator.airPollution;
 
                 // Tiles
                 newInfo.validTiles = new List<ActionTile.actionTile>(generator.validTiles);
@@ -118,6 +123,9 @@ namespace RM_EDU
 
         // The energy generation speed progerss bar.
         public ProgressBar energyGenSpeedBar;
+
+        // The air pollution progerss bar.
+        public ProgressBar airPollutionBar;
 
         [Header("Stats/Tiles")]
 
@@ -241,6 +249,19 @@ namespace RM_EDU
                 generatorInfos.Add(genInfo);
             }
 
+            // If there's more than one generator info object, enable the page buttons.
+            if (generatorInfos.Count > 1)
+            {
+                prevGeneratorInfoButton.interactable = true;
+                nextGeneratorInfoButton.interactable = true;
+            }
+            // If there's one or less generator info objects, disable the page buttons.
+            else
+            {
+                prevGeneratorInfoButton.interactable = false;
+                nextGeneratorInfoButton.interactable = false;
+            }
+
             // Sets the current generator info index.
             SetCurrentGeneratorInfo(0);
 
@@ -272,7 +293,6 @@ namespace RM_EDU
             return GeneratorInfo.GenerateGeneratorInfo(generator);
         }
 
-        // INFO
         // Gets the generator info count.
         public int GetGeneratorInfoCount()
         {
@@ -313,9 +333,10 @@ namespace RM_EDU
             resourceNameText.text = genInfo.name;
             energyCostValue.valueText.text = genInfo.energyCost.ToString();
 
-            // Sets the energy amount and speed.
+            // Sets the energy amount, energy speed, and air pollution.
             energyGenAmountBar.SetValueAsPercentage(genInfo.energyGenAmount / ActionUnit.BASE_STAT_MAXIMUM);
             energyGenSpeedBar.SetValueAsPercentage(genInfo.energyGenSpeed / ActionUnit.BASE_STAT_MAXIMUM);
+            airPollutionBar.SetValueAsPercentage(genInfo.airPollution / ActionUnit.BASE_STAT_MAXIMUM);
 
             // Sets the valid tiles.
             landToggle.toggle.isOn = false;
@@ -357,6 +378,19 @@ namespace RM_EDU
                 case NaturalResources.naturalResource.oil:
                     symbolToggle.toggle.isOn = true;
                     break;
+            }
+
+            // If there's more than one notes page, enable the page buttons.
+            if (genInfo.notes.Count > 1)
+            {
+                prevNotesPageButton.interactable = true;
+                nextNotesPageButton.interactable = true;
+            }
+            // If there's one or zero notes pages, disable the page buttons.
+            else
+            {
+                prevNotesPageButton.interactable = false;
+                nextNotesPageButton.interactable = false;
             }
 
             // Notes the notes to page 0.
