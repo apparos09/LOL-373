@@ -979,11 +979,15 @@ namespace RM_EDU
             string title = "First Action Stage - Enemy Unit Defeated";
             string titleKey = "trl_firstActionFirstKill_ttl";
 
+            // NOTE: the selector arrows diagram has been replaced with the the selector arrows guide diagram.
+            // This is now used for both generation and defense mode since it should be clearer than the screenshot.
+            // The original images are still in the game files.
+
             // Create the pages list.
             List<Page> pages = new List<Page>
             {
                 // Load the pages.
-                new EDU_Page(title, titleKey, "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. Relatedly, the arrows on a unit button light up if you have the energy to create the unit they're pointing towards in a nearby row.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsAltSprite),
+                new EDU_Page(title, titleKey, "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. The arrows on a unit button indicate if the unit button in the next or previous row that's within the same column is usable.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsGuideSprite),
                 new EDU_Page(title, titleKey, "On the left is the stage speed button, which switches between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed. With all that explained, back to the stage.", "trl_firstActionFirstKill_txt_01", tutorialsUI.textBox.stageSpeedSprite),
             };
 
@@ -1003,7 +1007,7 @@ namespace RM_EDU
             //         pages = new List<Page>
             //         {
             //             // Load the pages.
-            //             new EDU_Page(title, titleKey, "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. Relatedly, the arrows on a unit button light up if you have the energy to create the unit they're pointing towards in a nearby row.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsAltSprite),
+            //             new EDU_Page(title, titleKey, "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. The arrows on a unit button indicate if the unit button in the next or previous row that's within the same column is usable.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsGuideSprite),
             //             new EDU_Page(title, titleKey, "On the left is the stage speed button, which switches between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed. With all that explained, back to the stage.", "trl_firstActionFirstKill_txt_01", tutorialsUI.textBox.stageSpeedSprite),
             //         };
             //         break;
@@ -1014,7 +1018,7 @@ namespace RM_EDU
             //         pages = new List<Page>
             //         {
             //             // Load the pages.
-            //             new EDU_Page(title, titleKey, "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. Relatedly, the arrows on a unit button light up if you have the energy to create the unit they're pointing towards in a nearby row.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsAltSprite),
+            //             new EDU_Page(title, titleKey, "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. The arrows on a unit button indicate if the unit button in the next or previous row that's within the same column is usable.", "trl_firstActionFirstKill_txt_00", tutorialsUI.textBox.actionUnitSelectorArrowsGuideSprite),
             //             new EDU_Page(title, titleKey, "On the left are various buttons. The stage speed button switches between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed.", "trl_firstActionFirstKill_txt_01", tutorialsUI.textBox.stageSpeedSprite),
             //             new EDU_Page(title, titleKey, "The unit deselect button deselects the unit you currently have selected. Your selected unit will also be deselected automatically if you no longer have the energy to create it.", "trl_firstActionFirstKill_txt_02", tutorialsUI.textBox.unitDeselectSprite),
             //             new EDU_Page(title, titleKey, "The unit remove button toggles remove mode, which allows you to remove any of the units you've placed on the field. When remove mode is active, it's displayed in the bottom middle. To remove a field unit, select said unit while in remove mode.", "trl_firstActionFirstKill_txt_03", tutorialsUI.textBox.unitRemoveSprite),

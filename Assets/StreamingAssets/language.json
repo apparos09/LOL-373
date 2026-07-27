@@ -920,7 +920,7 @@
     "trl_firstActionDefenses_txt_02": "A lane blaster destroys all enemies in its row upon an enemy touching it, but it also destroys itself in the process. You cannot restore lost lane blasters, but you always get them back at the start of a stage. With all that covered, let the stage recommence!",
 
     "trl_firstActionFirstKill_ttl": "First Action Stage - Enemy Unit Defeated",
-    "trl_firstActionFirstKill_txt_00": "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. Relatedly, the arrows on a unit button light up if you have the energy to create the unit they're pointing towards in a nearby row.",
+    "trl_firstActionFirstKill_txt_00": "You've defeated your first enemy! When you have more units than a unit selector can display at once, rows are switched using the arrow buttons. The arrows on a unit button indicate if the unit button in the next or previous row that's within the same column is usable.",
     "trl_firstActionFirstKill_txt_01": "On the left is the stage speed button, which switches between normal stage speed and fast stage speed. The button's icon displays the current stage speed, with 2 arrows meaning normal speed and 3 arrows meaning fast speed. With all that explained, back to the stage.",
 
 
