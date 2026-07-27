@@ -302,7 +302,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tile Option Toggle (TMP) Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4736267448893906044, guid: d5dcb564b5035624097563d21902ce16, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3517647727474014750, guid: d5dcb564b5035624097563d21902ce16, type: 3}
