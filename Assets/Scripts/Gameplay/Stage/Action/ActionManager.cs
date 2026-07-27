@@ -216,7 +216,7 @@ namespace RM_EDU
             if (openGenInfoDialogOnLateStart)
             {
                 // Make sure not to go back to the options dialog on close.
-                actionUI.generatorInfoDialog.closeAllDialogsOnClose = true;
+                actionUI.generatorInfoDialog.CloseAllDialogsOnClose = true;
 
                 // Open the info dialog.
                 actionUI.OpenGeneratorInfoDialog(true);

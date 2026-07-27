@@ -35,7 +35,12 @@ namespace RM_EDU
         public void OpenGeneratorInfoDialog()
         {
             // Make sure it returns to the options dialog.
-            actionUI.generatorInfoDialog.closeAllDialogsOnClose = false;
+            // This checks if the value is true since there's UI assets are adjusted...
+            // When this value is changed.
+            if(actionUI.generatorInfoDialog.CloseAllDialogsOnClose)
+            {
+                actionUI.generatorInfoDialog.CloseAllDialogsOnClose = false;
+            }
 
             // Open the generator info dialog.
             actionUI.OpenGeneratorInfoDialog(true);

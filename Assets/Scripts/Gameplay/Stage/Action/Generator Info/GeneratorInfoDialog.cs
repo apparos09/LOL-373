@@ -99,7 +99,15 @@ namespace RM_EDU
         // If 'true', all dialog boxes are closed when this dialog box is closed.
         // If 'false', only this dialog box is closed.
         [Tooltip("Closes all dialog boxes when this one is closed if true. If false, only close this dialog box.")]
-        public bool closeAllDialogsOnClose = false;
+        private bool closeAllDialogsOnClose = false;
+
+        // The close button. Used if all dialogs will be closed on the dialog being closed.
+        [Tooltip("Close button. Used if all dialogs will be closed when this dialog is closed.")]
+        public Button closeButton;
+
+        // The back button. Used if going back to options menu when dialog is closed.
+        [Tooltip("Back button. Used if going back to options menu when this dialog is closed.")]
+        public Button backButton;
 
         [Header("Diagram")]
 
@@ -227,6 +235,33 @@ namespace RM_EDU
         // }
 
         // Gets the no string translated.
+
+        // Sets if all dialogs should be closed when this dialog is closed.
+        public bool CloseAllDialogsOnClose
+        {
+            get 
+            { 
+                return closeAllDialogsOnClose; 
+            }
+            
+            set 
+            { 
+                closeAllDialogsOnClose = value; 
+
+                // If all dialogs should be closed, use close button.
+                if(closeAllDialogsOnClose)
+                {
+                    closeButton.gameObject.SetActive(true);
+                    backButton.gameObject.SetActive(false);
+                }
+                // Not all dialogs will be closed, use back button.
+                else
+                {
+                    closeButton.gameObject.SetActive(false);
+                    backButton.gameObject.SetActive(true);
+                }
+            }
+        }
 
         // GENERATOR INFO
         // Returns 'true' if the generator infos haven't been loaded.
