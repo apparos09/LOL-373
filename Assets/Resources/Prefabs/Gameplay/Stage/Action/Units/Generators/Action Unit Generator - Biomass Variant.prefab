@@ -147,6 +147,9 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 1
+  genNotes:
+  - Biomass generators burn plant and/or waste materials for generating energy.
+  genNotesKey: gio_biomass_nte
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

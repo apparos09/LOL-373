@@ -240,11 +240,16 @@ MonoBehaviour:
   movementSpeed: 0
   airPollution: 60
   projectilePoolDestroyTimer: 0
-  validTiles: 
+  validTiles: 010000000200000003000000
   tile: {fileID: 0}
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 8
+  genNotes:
+  - Natural gas generators use the fossil fuel resource natural gas to produce gases,
+    which then turn a turbine to generate energy. Natural gas generators can be placed
+    on spots with natural gas, coal, or oil symbols.
+  genNotesKey: gio_naturalGas_nte
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

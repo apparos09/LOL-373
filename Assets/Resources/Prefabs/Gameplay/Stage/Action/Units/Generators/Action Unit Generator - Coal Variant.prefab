@@ -136,6 +136,10 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 7
+  genNotes:
+  - Coal generators feed the fossil fuel resource coal to a furnace for generating
+    energy. Coal generators can only be placed on spots with coal symbols.
+  genNotesKey: gio_coal_nte
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

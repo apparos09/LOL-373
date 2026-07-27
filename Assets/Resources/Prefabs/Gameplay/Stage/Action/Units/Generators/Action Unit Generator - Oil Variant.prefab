@@ -247,6 +247,13 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 10
+  genNotes:
+  - Oil generators burn the fossil fuel resource oil for generating energy. Oil generators
+    can only be placed on spots with oil symbols.
+  - If an oil generator is destroyed by an enemy before it uses up its resources,
+    it leaves an oil spill behind. No units can be placed on spots that have oil
+    spills.
+  genNotesKey: gio_oil_nte
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

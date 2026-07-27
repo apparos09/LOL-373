@@ -91,7 +91,8 @@ namespace RM_EDU
 
         // If 'true', the tutorial text is used for the generation info notes...
         // Instead of what's actually listed.
-        private bool useTutorialsForGenInfoNotes = true;
+        // This setting was turned off in favour of using notes that have less text.
+        private bool useTutorialsForGenInfoNotes = false;
 
         // Set to 'true' when generator infos have been loaded.
         private bool generatorInfosLoaded = false;

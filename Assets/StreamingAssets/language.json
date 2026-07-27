@@ -295,6 +295,30 @@
 
 
 
+      "gio_biomass_nte_00": 280,
+
+      "gio_geothermal_nte_00": 280,
+
+      "gio_hydro_nte_00": 280,
+
+      "gio_solar_nte_00": 280,
+
+      "gio_wave_nte_00": 280,
+
+      "gio_wind_nte_00": 280,
+
+      "gio_coal_nte_00": 280,
+
+      "gio_naturalGas_nte_00": 280,
+
+      "gio_nuclear_nte_00": 280,
+      "gio_nuclear_nte_01": 280,
+
+      "gio_oil_nte_00": 280,
+      "gio_oil_nte_01": 280,
+
+
+
       "kwd_timeOfDay": 18,
       "kwd_energyPollution": 28,
       "kwd_windSpeed": 18,
@@ -787,6 +811,30 @@
 
     "aue_enemySlow_nme": "Slow Enemy",
     "aue_enemySlow_dsc_00": "A slow, durable enemy that travels from the right side of the field to the left.",
+
+
+
+    "gio_biomass_nte_00": "Biomass generators burn plant and/or waste materials for generating energy.",
+
+    "gio_geothermal_nte_00": "Geothermal generators use the Earth's internal heat for generating energy. They can only be placed on spots with geothermal symbols.",
+
+    "gio_hydro_nte_00": "Hydro generators use the flow of water for generating energy. Hydro generators cannot be placed next to each other and flood the spots behind them if they run for too long.",
+
+    "gio_solar_nte_00": "Solar generators use sunlight for generating energy. They can only generate energy during the day.",
+
+    "gio_wave_nte_00": "Wave generators use the movement of waves for generating energy. Their energy generation speed is determined by the wind speed.",
+
+    "gio_wind_nte_00": "Wind generators use moving air for generating energy. Wind generators can be placed on land or in water near land. Their energy generation speed is determined by the wind speed.",
+
+    "gio_coal_nte_00": "Coal generators feed the fossil fuel resource coal to a furnace for generating energy. Coal generators can only be placed on spots with coal symbols.",
+
+    "gio_naturalGas_nte_00": "Natural gas generators use the fossil fuel resource natural gas to produce gases, which then turn a turbine to generate energy. Natural gas generators can be placed on spots with natural gas, coal, or oil symbols.",
+
+    "gio_nuclear_nte_00": "Nuclear generators split uranium atoms for generating energy. Nuclear generators can only be placed on spots with nuclear symbols and are automatically destroyed once they run out of resources.",
+    "gio_nuclear_nte_01": "If a nuclear generator is destroyed by an enemy before its used up its resources, it will leave nuclear waste behind. No units can be placed on a spot that has nuclear waste.",
+
+    "gio_oil_nte_00": "Oil generators burn the fossil fuel resource oil for generating energy. Oil generators can only be placed on spots with oil symbols.",
+    "gio_oil_nte_01": "If an oil generator is destroyed by an enemy before it uses up its resources, it leaves an oil spill behind. No units can be placed on spots that have oil spills.",
 
 
 

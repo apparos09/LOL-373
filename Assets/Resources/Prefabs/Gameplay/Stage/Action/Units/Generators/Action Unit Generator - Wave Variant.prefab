@@ -190,8 +190,10 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 5
-  genNotes: []
-  genNotesKey: 
+  genNotes:
+  - Wave generators use the movement of waves for generating energy. Their energy
+    generation speed is determined by the wind speed.
+  genNotesKey: gio_wave_nte
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 1

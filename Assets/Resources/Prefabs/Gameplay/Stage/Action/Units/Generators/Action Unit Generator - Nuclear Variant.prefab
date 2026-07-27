@@ -166,6 +166,14 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 9
+  genNotes:
+  - Nuclear generators split uranium atoms for generating energy. Nuclear generators
+    can only be placed on spots with nuclear symbols and are automatically destroyed
+    once they run out of resources.
+  - If a nuclear generator is destroyed by an enemy before its used up its resources,
+    it will leave nuclear waste behind. No units can be placed on a spot that has
+    nuclear waste.
+  genNotesKey: gio_nuclear_nte
   energyGenerationTimer: 0
   timeUsage: 0
   useWindToGenEnergy: 0

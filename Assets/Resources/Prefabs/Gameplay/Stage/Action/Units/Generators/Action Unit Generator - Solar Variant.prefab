@@ -131,6 +131,10 @@ MonoBehaviour:
   tilePosOffset: {x: 0, y: 0, z: 0}
   removableByUser: 1
   resource: 4
+  genNotes:
+  - Solar generators use sunlight for generating energy. They can only generate energy
+    during the day.
+  genNotesKey: gio_solar_nte
   energyGenerationTimer: 0
   timeUsage: 1
   useWindToGenEnergy: 0
