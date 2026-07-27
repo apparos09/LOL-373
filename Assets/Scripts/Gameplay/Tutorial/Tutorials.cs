@@ -1239,6 +1239,64 @@ namespace RM_EDU
 
 
         // NATURAL RESOURCES //
+        // Returns if the requested natural resource tutorial has been cleared.
+        public bool GetNaturalResourceTutorialCleared(NaturalResources.naturalResource resource)
+        {
+            // The result to be returned.
+            bool result;
+
+            // Checks the resource.
+            switch (resource)
+            {
+                default:
+                case NaturalResources.naturalResource.unknown:
+                    result = false; // False by default.
+                    break;
+
+                case NaturalResources.naturalResource.biomass:
+                    result = data.clearedBiomassTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.geothermal:
+                    result = data.clearedGeothermalTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.hydro:
+                    result = data.clearedHydroTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.solar:
+                    result = data.clearedSolarTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.wave:
+                    result = data.clearedWaveTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.wind:
+                    result = data.clearedWindTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.coal:
+                    result = data.clearedCoalTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.naturalGas:
+                    result = data.clearedNaturalGasTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.nuclear:
+                    result = data.clearedNuclearTutorial;
+                    break;
+
+                case NaturalResources.naturalResource.oil:
+                    result = data.clearedOilTutorial;
+                    break;
+            }
+
+            return result;
+        }
+
         // Sets natural resource tutorial cleared by the provided resource.
         public void SetNaturalResourceTutorialCleared(NaturalResources.naturalResource resource, bool cleared)
         {

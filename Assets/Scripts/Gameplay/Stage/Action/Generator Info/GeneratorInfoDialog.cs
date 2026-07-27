@@ -292,7 +292,6 @@ namespace RM_EDU
                     // Gets the tutorial info and sets that said tutorial has been cleared.
                     // This replaces the tutorial for the generator.
                     Tutorials.TutorialInfo tutorialInfo = Tutorials.Instance.GetNaturalResourceTutorialInfo(genInfo.resource);
-                    Tutorials.Instance.SetNaturalResourceTutorialCleared(genInfo.resource, true);
 
                     // Clears the notes and keys.
                     genInfo.notes.Clear();
@@ -309,6 +308,11 @@ namespace RM_EDU
                         genInfo.notesKeys.Add(eduPage.textLanguageKey);
                     }
                 }
+
+                // Marks the tutorial for this resource as being complete.
+                // This happens whether the tutorial text is being used for the notes or not...
+                // As the notes still convey the same information.
+                Tutorials.Instance.SetNaturalResourceTutorialCleared(genInfo.resource, true);
 
                 // Adds the generator info.
                 generatorInfos.Add(genInfo);
