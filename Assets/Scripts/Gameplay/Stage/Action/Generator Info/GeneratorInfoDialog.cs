@@ -561,8 +561,9 @@ namespace RM_EDU
                 notesText.text = currInfo.notes[index];
                 notesPageText.text = (index + 1).ToString() + "/" + currInfo.notes.Count.ToString();
 
-                // If text-to-speech should be used.
-                if(GameSettings.Instance.UseTextToSpeech)
+                // If text-to-speech should be used and a tutorial isn't active.
+                // Tutorials are checked so that it doesn't overwrite tutorial TTS calls.
+                if(GameSettings.Instance.UseTextToSpeech && !Tutorials.Instance.IsTutorialRunning())
                 {
                     // Speak the text for the notes keys.
                     SpeakText(currInfo.notesKeys[notesPageIndex]);
