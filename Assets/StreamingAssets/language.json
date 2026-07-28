@@ -79,7 +79,9 @@
       "kwd_user": 18,
 
       "kwd_tiles": 18,
+      "kwd_tileTypes": 18,
       "kwd_spots": 18,
+      "kwd_spotTypes": 18,
 
       "kwd_land": 18,
       "kwd_river": 18,
@@ -598,7 +600,9 @@
     "kwd_user": "User",
 
     "kwd_tiles": "Tiles",
+    "kwd_tileTypes": "Tile Types",
     "kwd_spots": "Spots",
+    "kwd_spotTypes": "Spot Types",
 
     "kwd_land": "Land",
     "kwd_river": "River",
